@@ -50,9 +50,9 @@ public class SecurityConfig {
         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         .and()
         .authenticationProvider(authenticationProvider())
+        .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
         .exceptionHandling().authenticationEntryPoint(authEntryPoint)
         .and()
-        .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
         .build();
   }
 

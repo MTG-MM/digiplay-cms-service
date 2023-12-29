@@ -1,8 +1,7 @@
 package com.managersystem.admin.handleRequest.controller;
 
 import com.managersystem.admin.handleRequest.controller.dto.*;
-import com.managersystem.admin.server.security.UserSecurityService;
-import com.managersystem.admin.server.service.user.AccountService;
+import com.managersystem.admin.server.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

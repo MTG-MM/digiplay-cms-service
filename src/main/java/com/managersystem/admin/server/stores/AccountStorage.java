@@ -1,9 +1,8 @@
-package com.managersystem.admin.server.stores.user;
+package com.managersystem.admin.server.stores;
 
-import com.managersystem.admin.handleRequest.controller.dto.AccountDto;
 import com.managersystem.admin.server.entities.AccountEntity;
 import com.managersystem.admin.server.entities.type.UserRole;
-import com.managersystem.admin.server.stores.BaseStorage;
+import com.managersystem.admin.server.stores.base.BaseStorage;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;

@@ -1,18 +1,18 @@
-package com.managersystem.admin.server.service.user;
+package com.managersystem.admin.server.service;
 
 import com.managersystem.admin.handleRequest.controller.dto.AccountDto;
 import com.managersystem.admin.handleRequest.controller.dto.LoginDto;
 import com.managersystem.admin.server.entities.AccountEntity;
+import com.managersystem.admin.server.entities.type.Rank;
 import com.managersystem.admin.server.entities.type.UserRole;
 import com.managersystem.admin.server.exception.BadRequestException;
 import com.managersystem.admin.server.security.JwtService;
 import com.managersystem.admin.server.security.UserSecurityService;
-import com.managersystem.admin.server.service.BaseService;
+import com.managersystem.admin.server.service.base.BaseService;
+import com.managersystem.admin.server.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
-
-import java.util.Collections;
 
 @Service
 public class AccountService extends BaseService {
@@ -26,9 +26,10 @@ public class AccountService extends BaseService {
   UserSecurityService userSecurityService;
 
   public boolean createAccount(AccountDto dto){
-    AccountEntity accountEntity = new AccountEntity();
-    accountEntity.setUsername(dto.getUsername());
+    AccountEntity accountEntity = modelMapper.toAccountEntity(dto);
     accountEntity.setPassword(userSecurityService.encode(dto.getPassword()));
+    accountEntity.setRank(Rank.BRONZE);
+    accountEntity.setLastLogin(DateUtils.getNowMillisAtUtc());
     accountEntity.setRole(UserRole.OPERATOR);
     accountStorage.save(accountEntity);
     return true;
@@ -42,7 +43,7 @@ public class AccountService extends BaseService {
     if(!userSecurityService.decode(dto.getPassword(), accountEntity.getPassword())){
       throw new BadRequestException("User not exists");
     }
-    return jwtService.generateToken(accountEntity.getId());
+    return jwtService.generateToken(accountEntity);
   }
 
   public boolean initAdminAccount() {

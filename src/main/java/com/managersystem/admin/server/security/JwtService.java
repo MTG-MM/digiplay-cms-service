@@ -1,5 +1,7 @@
 package com.managersystem.admin.server.security;
 
+import com.managersystem.admin.server.entities.AccountEntity;
+import com.managersystem.admin.server.utils.Helper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -19,9 +21,9 @@ import java.util.function.Function;
 public class JwtService {
 
   public static final String SECRET = "5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437";
-  public String generateToken(UUID userId) {
-    Map<String, Object> claims = new HashMap<>();
-    return createToken(claims, String.valueOf(userId));
+  public String generateToken(AccountEntity account) {
+    Map<String, Object> claims = Helper.convertObjectToMap(account);
+    return createToken(claims, String.valueOf(account.getId()));
   }
 
   private String createToken(Map<String, Object> claims, String id) {

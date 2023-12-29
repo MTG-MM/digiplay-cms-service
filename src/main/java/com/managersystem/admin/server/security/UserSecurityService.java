@@ -1,7 +1,7 @@
 package com.managersystem.admin.server.security;
 
 import com.managersystem.admin.server.entities.AccountEntity;
-import com.managersystem.admin.server.stores.user.AccountStorage;
+import com.managersystem.admin.server.stores.AccountStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

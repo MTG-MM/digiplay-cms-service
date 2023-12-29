@@ -21,33 +21,33 @@ public class AccountEntity extends BaseEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
-  private UUID id;
+  public UUID id;
 
   @Column(name = "role")
   @Enumerated(EnumType.STRING)
-  private UserRole role;
+  public UserRole role;
 
-  @Column(name = "username", unique = true)
-  private String username;
+  @Column(name = "username")
+  public String username;
 
   @Column(name = "password")
-  private String password;
+  public String password;
 
   @Column(name = "group_code")
-  private String groupCode;
+  public String groupCode;
 
-  @Column(name = "rank")
+  @Column(name = "user_rank")
   @Enumerated(EnumType.STRING)
-  private Rank rank;
+  public Rank rank;
 
   @Column(name = "state")
   @Enumerated(EnumType.STRING)
-  private State state;
+  public State state;
 
   @Column(name = "last_login")
-  private Long lastLogin;
+  public Long lastLogin;
 
   @Column(name = "account_state")
   @Enumerated(EnumType.STRING)
-  private NewAccountState accountState;
+  public NewAccountState accountState;
 }

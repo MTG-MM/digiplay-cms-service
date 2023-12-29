@@ -23,7 +23,7 @@ public class UserDetailsImpl implements UserDetails {
     username = account.getUsername();
     password = account.getPassword();
     authorities = Stream.of(account.getRole())
-        .map(role -> new SimpleGrantedAuthority(role.name()))
+        .map(role -> new SimpleGrantedAuthority("ROLE_" + role.name()))
         .collect(Collectors.toList());
   }
 

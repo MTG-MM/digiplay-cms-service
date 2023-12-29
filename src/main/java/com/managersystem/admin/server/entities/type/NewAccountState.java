@@ -7,6 +7,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum NewAccountState {
   CREATE_ACCOUNT(0),
-  CREATE_PROFILE(1);
+  CREATE_PROFILE(1),
+  COMPLETE(10);
   public final int level;
 }

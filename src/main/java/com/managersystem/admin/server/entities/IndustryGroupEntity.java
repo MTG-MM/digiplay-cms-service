@@ -31,11 +31,11 @@ public class IndustryGroupEntity  extends BaseEntity {
   private String description;
 
   @Column(name = "total_seller")
-  private Long totalSeller;
+  private Long totalSeller = 0L;
 
   @Column(name = "total_purchase")
-  private Long totalPurchase;
+  private Long totalPurchase = 0L;
 
   @Column(name = "total_view")
-  private Long totalView;
+  private Long totalView = 0L;
 }

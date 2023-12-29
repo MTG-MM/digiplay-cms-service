@@ -1,21 +1,37 @@
 package com.managersystem.admin.server.entities.base;
 
-import jakarta.persistence.Column;
+import com.managersystem.admin.server.utils.DateUtils;
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.util.UUID;
 
-
+@Data
+@NoArgsConstructor
 public class BaseEntity {
 
   @Column(name = "created_at")
-  protected Long createdAt;
+  public Long createdAt = DateUtils.getNowMillisAtUtc();
 
   @Column(name = "updated_at")
-  protected Long updatedAt;
+  public Long updatedAt = DateUtils.getNowMillisAtUtc();
 
   @Column(name = "updated_by")
-  protected UUID updatedBy;
+  public UUID updatedBy;
 
   @Column(name = "created_by")
-  protected UUID createdBy;
+  public UUID createdBy;
+
+
+  @PrePersist
+  protected void onCreate() {
+    updatedAt = createdAt = DateUtils.getNowMillisAtUtc();
+  }
+
+  @PreUpdate
+  protected void onUpdate() {
+    updatedAt = DateUtils.getNowMillisAtUtc();
+  }
 }

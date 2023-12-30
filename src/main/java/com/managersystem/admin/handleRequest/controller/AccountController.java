@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/mos/cms/auth")
-@CrossOrigin("*")
+@CrossOrigin(origins = "*")
 public class AccountController {
 
   @Autowired

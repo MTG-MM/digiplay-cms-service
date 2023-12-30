@@ -22,4 +22,8 @@ public class AccountStorage extends BaseStorage {
   public AccountEntity findById(UUID id) {
     return accountRepository.findById(id).orElse(null);
   }
+
+  public AccountEntity findByUsername(String username) {
+    return accountRepository.findByUsername(username);
+  }
 }

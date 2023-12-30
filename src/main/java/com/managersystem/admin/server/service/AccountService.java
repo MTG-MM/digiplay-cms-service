@@ -48,7 +48,7 @@ public class AccountService extends BaseService {
   }
 
   public String login(LoginDto dto){
-    AccountEntity accountEntity = accountStorage.findByUsernameAndRole(dto.getUsername(), dto.getUserRole());
+    AccountEntity accountEntity = accountStorage.findByUsername(dto.getUsername());
     if(accountEntity == null){
       throw new BadRequestException("User not exists");
     }

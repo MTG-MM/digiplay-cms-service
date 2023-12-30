@@ -6,7 +6,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("mos/cms/user")
+@RequestMapping("api/mos/cms/user")
 public class UserController {
 
   @PostMapping("")

@@ -1,7 +1,9 @@
 package com.managersystem.admin.server.exception.base;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 public class BaseException extends RuntimeException {
 

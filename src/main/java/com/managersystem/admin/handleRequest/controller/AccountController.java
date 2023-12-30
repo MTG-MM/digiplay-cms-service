@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/mos/cms/auth")
+@RequestMapping("mos/cms/auth")
 public class AccountController {
 
   @Autowired

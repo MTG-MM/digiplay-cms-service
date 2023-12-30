@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/mos/cms/industry-group")
+@RequestMapping("mos/cms/industry-group")
 public class IndustryGroupController {
 
   @Autowired

@@ -38,10 +38,8 @@ public class AccountController extends BaseController {
 
   @PostMapping("login")
   public ResponseEntity<?> login(@RequestBody LoginDto dto) {
-    try {
+
       return ResponseEntity.ok(accountService.login(dto));
-    } catch (Exception ex) {
-      return errorApi(ex);
-    }
+
   }
 }

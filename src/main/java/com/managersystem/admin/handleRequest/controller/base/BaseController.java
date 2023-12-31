@@ -36,7 +36,7 @@ public class BaseController {
 
   protected ResponseEntity<BaseResponse> errorApi(Exception ex) {
     log.error("handle error ",ex);
-    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new BaseResponse<>(500, true, ex.getMessage(), null));
+    return ResponseEntity.status(HttpStatus.OK).body(new BaseResponse<>(0, true, ex.getMessage(), null));
   }
 
   protected ResponseEntity<BaseResponse> errorApi(String message, Object data) {

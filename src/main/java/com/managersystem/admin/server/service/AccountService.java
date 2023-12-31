@@ -9,6 +9,7 @@ import com.managersystem.admin.server.entities.type.Rank;
 import com.managersystem.admin.server.entities.type.State;
 import com.managersystem.admin.server.entities.type.UserRole;
 import com.managersystem.admin.server.exception.BadRequestException;
+import com.managersystem.admin.server.exception.base.ErrorCode;
 import com.managersystem.admin.server.security.JwtService;
 import com.managersystem.admin.server.security.UserSecurityService;
 import com.managersystem.admin.server.service.base.BaseService;
@@ -51,10 +52,10 @@ public class AccountService extends BaseService {
   public TokenResponse login(LoginDto dto){
     AccountEntity accountEntity = accountStorage.findByUsername(dto.getUsername());
     if(accountEntity == null){
-      throw new BadRequestException("User not exists");
+      throw new BadRequestException("Invalid username or password", ErrorCode.INVALID_USERNAME_OR_PASSWORD);
     }
     if(!userSecurityService.decode(dto.getPassword(), accountEntity.getPassword())){
-      throw new BadRequestException("User not exists");
+      throw new BadRequestException("Invalid username or password", ErrorCode.INVALID_USERNAME_OR_PASSWORD);
     }
     String token = jwtService.generateToken(accountEntity);
     return new TokenResponse(token, accountEntity.getRole(), accountEntity.getAccountState(), accountEntity.getState());

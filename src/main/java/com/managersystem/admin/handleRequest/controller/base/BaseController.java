@@ -3,6 +3,7 @@ package com.managersystem.admin.handleRequest.controller.base;
 import com.managersystem.admin.handleRequest.controller.response.base.BaseResponse;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -35,7 +36,7 @@ public class BaseController {
 
   protected ResponseEntity<BaseResponse> errorApi(Exception ex) {
     log.error("handle error ",ex);
-    return ResponseEntity.ok(new BaseResponse(0, true, ex.getMessage(), null));
+    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new BaseResponse<>(500, true, ex.getMessage(), null));
   }
 
   protected ResponseEntity<BaseResponse> errorApi(String message, Object data) {
@@ -51,7 +52,7 @@ public class BaseController {
   }
 
   protected ResponseEntity<BaseResponse> errorApiStatus500(String message) {
-    return ResponseEntity.status(500).body(new BaseResponse(0, true, message, null));
+    return ResponseEntity.status(500).body(new BaseResponse<>(0, true, message, null));
   }
 }
 

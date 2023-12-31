@@ -2,6 +2,7 @@ package com.managersystem.admin.server.service;
 
 import com.managersystem.admin.handleRequest.controller.dto.AccountDto;
 import com.managersystem.admin.handleRequest.controller.dto.LoginDto;
+import com.managersystem.admin.handleRequest.controller.response.TokenResponse;
 import com.managersystem.admin.server.entities.AccountEntity;
 import com.managersystem.admin.server.entities.type.NewAccountState;
 import com.managersystem.admin.server.entities.type.Rank;
@@ -47,7 +48,7 @@ public class AccountService extends BaseService {
     return true;
   }
 
-  public String login(LoginDto dto){
+  public TokenResponse login(LoginDto dto){
     AccountEntity accountEntity = accountStorage.findByUsername(dto.getUsername());
     if(accountEntity == null){
       throw new BadRequestException("User not exists");
@@ -55,7 +56,8 @@ public class AccountService extends BaseService {
     if(!userSecurityService.decode(dto.getPassword(), accountEntity.getPassword())){
       throw new BadRequestException("User not exists");
     }
-    return jwtService.generateToken(accountEntity);
+    String token = jwtService.generateToken(accountEntity);
+    return new TokenResponse(token, accountEntity.getRole(), accountEntity.getAccountState(), accountEntity.getState());
   }
 
   public boolean initAdminAccount() {

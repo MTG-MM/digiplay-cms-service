@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class IndustryGroupService extends BaseService {
+public class ApplicationService extends BaseService {
 
   public boolean addIndustryGroup(ApplicationDto dto) {
     // Convert the DTO to an entity if needed

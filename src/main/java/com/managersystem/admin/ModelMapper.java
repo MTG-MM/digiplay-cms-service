@@ -2,11 +2,11 @@ package com.managersystem.admin;
 
 
 import com.managersystem.admin.handleRequest.controller.dto.AccountDto;
-import com.managersystem.admin.handleRequest.controller.dto.IndustryGroupDto;
+import com.managersystem.admin.handleRequest.controller.dto.ApplicationDto;
 import com.managersystem.admin.handleRequest.controller.dto.UserInfoDto;
-import com.managersystem.admin.handleRequest.controller.response.IndustryGroupResponse;
+import com.managersystem.admin.handleRequest.controller.response.ApplicationResponse;
 import com.managersystem.admin.server.entities.AccountEntity;
-import com.managersystem.admin.server.entities.IndustryGroupEntity;
+import com.managersystem.admin.server.entities.ApplicationEntity;
 import com.managersystem.admin.server.entities.UserEntity;
 import com.managersystem.admin.server.pojo.TokenInfo;
 import org.mapstruct.Mapper;
@@ -27,11 +27,11 @@ public interface ModelMapper {
   UserEntity toUser(UserInfoDto userInfoDto);
 
 
-  IndustryGroupResponse toIndustryGroupResponse(IndustryGroupEntity industryGroupEntity);
+  ApplicationResponse toIndustryGroupResponse(ApplicationEntity applicationEntity);
 
-  List<IndustryGroupResponse> toIndustryGroupResponses(List<IndustryGroupEntity> industryGroupEntities);
+  List<ApplicationResponse> toIndustryGroupResponses(List<ApplicationEntity> industryGroupEntities);
 
-  void toIndustryGroupEntity(IndustryGroupDto dto, @MappingTarget IndustryGroupEntity entity);
+  void toIndustryGroupEntity(ApplicationDto dto, @MappingTarget ApplicationEntity entity);
 
-  IndustryGroupEntity toIndustryGroupEntity(IndustryGroupDto dto);
+  ApplicationEntity toIndustryGroupEntity(ApplicationDto dto);
 }

@@ -1,8 +1,8 @@
 package com.managersystem.admin.server.service;
 
-import com.managersystem.admin.handleRequest.controller.dto.IndustryGroupDto;
-import com.managersystem.admin.handleRequest.controller.response.IndustryGroupResponse;
-import com.managersystem.admin.server.entities.IndustryGroupEntity;
+import com.managersystem.admin.handleRequest.controller.dto.ApplicationDto;
+import com.managersystem.admin.handleRequest.controller.response.ApplicationResponse;
+import com.managersystem.admin.server.entities.ApplicationEntity;
 import com.managersystem.admin.server.service.base.BaseService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -14,33 +14,33 @@ import java.util.List;
 @Service
 public class IndustryGroupService extends BaseService {
 
-  public boolean addIndustryGroup(IndustryGroupDto dto) {
+  public boolean addIndustryGroup(ApplicationDto dto) {
     // Convert the DTO to an entity if needed
-    IndustryGroupEntity industryGroupEntity = modelMapper.toIndustryGroupEntity(dto);
+    ApplicationEntity applicationEntity = modelMapper.toIndustryGroupEntity(dto);
     // Call the appropriate repository method to save the entity
     // Return true if the operation was successful, false otherwise
-    return industryGroupStorage.save(industryGroupEntity) != null;
+    return applicationStorage.save(applicationEntity) != null;
   }
 
   @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRES_NEW)
-  public boolean updateIndustryGroup(int id, IndustryGroupDto dto) {
-    IndustryGroupEntity entity = industryGroupStorage.findById(id);
+  public boolean updateIndustryGroup(int id, ApplicationDto dto) {
+    ApplicationEntity entity = applicationStorage.findById(id);
     modelMapper.toIndustryGroupEntity(dto, entity);
-    return industryGroupStorage.save(entity) != null;
+    return applicationStorage.save(entity) != null;
   }
 
   @Transactional
   public boolean deleteIndustryGroup(int id) {
-    industryGroupStorage.deleteById(id);
+    applicationStorage.deleteById(id);
     return true;
   }
 
-  public IndustryGroupResponse getIndustryGroupById(int id) {
-    return modelMapper.toIndustryGroupResponse(industryGroupStorage.findById(id));
+  public ApplicationResponse getIndustryGroupById(int id) {
+    return modelMapper.toIndustryGroupResponse(applicationStorage.findById(id));
   }
 
-  public List<IndustryGroupResponse> searchIndustryGroupByName(String name) {
-    List<IndustryGroupEntity> industryGroupEntities = industryGroupStorage.findByNameContaining(name);
+  public List<ApplicationResponse> searchIndustryGroupByName(String name) {
+    List<ApplicationEntity> industryGroupEntities = applicationStorage.findByNameContaining(name);
     return modelMapper.toIndustryGroupResponses(industryGroupEntities);
   }
 

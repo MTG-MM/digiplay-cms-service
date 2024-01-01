@@ -1,18 +1,14 @@
 package com.managersystem.admin.handleRequest.controller.response;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.Data;
 
 @Data
-public class IndustryGroupResponse {
+public class ApplicationResponse {
   private int id;
 
-  private String industryGroupCode;
+  private String applicationCode;
 
-  private String industryGroupName;
+  private String applicationName;
 
   private String imageUrl;
 

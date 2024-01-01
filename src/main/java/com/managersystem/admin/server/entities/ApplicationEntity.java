@@ -6,20 +6,20 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
-@Table(schema = "prod", name = "industry_group")
+@Table(schema = "prod", name = "application")
 @Data
 @Entity
-public class IndustryGroupEntity  extends BaseEntity {
+public class ApplicationEntity extends BaseEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
-  @Column(name = "industry_group_code")
-  private String industryGroupCode;
+  @Column(name = "application_code")
+  private String applicationCode;
 
-  @Column(name = "industry_group_name")
-  private String industryGroupName;
+  @Column(name = "application_name")
+  private String applicationName;
 
   @Column(name = "image_url")
   private String imageUrl;

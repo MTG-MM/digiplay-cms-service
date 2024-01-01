@@ -1,14 +1,13 @@
 package com.managersystem.admin.handleRequest.controller.dto;
 
-import jakarta.persistence.Column;
 import lombok.Data;
 
 @Data
-public class IndustryGroupDto {
+public class ApplicationDto {
 
-  private String industryGroupCode;
+  private String applicationCode;
 
-  private String industryGroupName;
+  private String applicationName;
 
   private String imageUrl;
 

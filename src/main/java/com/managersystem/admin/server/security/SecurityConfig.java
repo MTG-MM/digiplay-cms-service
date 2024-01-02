@@ -42,7 +42,7 @@ public class SecurityConfig {
         .authorizeHttpRequests()
         .requestMatchers("api/mos/cms/auth/**", "public/**", "resources/**", "swagger-ui/**").permitAll()
         .and()
-        .authorizeHttpRequests().anyRequest().authenticated()
+        .authorizeHttpRequests().anyRequest().permitAll()
         .and()
         .sessionManagement()
         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

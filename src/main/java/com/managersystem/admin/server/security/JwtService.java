@@ -4,11 +4,10 @@ import com.managersystem.admin.ModelMapper;
 import com.managersystem.admin.server.entities.AccountEntity;
 import com.managersystem.admin.server.pojo.TokenInfo;
 import com.managersystem.admin.server.utils.Helper;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -19,6 +18,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Component
+@Log4j2
 public class JwtService {
   @Autowired
   private ModelMapper modelMapper;
@@ -75,9 +75,20 @@ public class JwtService {
     return extractExpiration(token).before(new Date());
   }
 
-  public Boolean validateToken(String token, UserDetails userDetails) {
-    final String username = extractUsername(token);
-    return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+  public boolean validateToken(String authToken) {
+    try {
+      Jwts.parser().setSigningKey(SECRET).parseClaimsJws(authToken);
+      return true;
+    } catch (MalformedJwtException ex) {
+      log.error("Invalid JWT token");
+    } catch (ExpiredJwtException ex) {
+      log.error("Expired JWT token");
+    } catch (UnsupportedJwtException ex) {
+      log.error("Unsupported JWT token");
+    } catch (IllegalArgumentException ex) {
+      log.error("JWT claims string is empty.");
+    }
+    return false;
   }
 
 

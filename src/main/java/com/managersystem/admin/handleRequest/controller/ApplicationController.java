@@ -55,8 +55,8 @@ public class ApplicationController {
 
   @GetMapping()
   @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_OPERATOR')")
-  public ResponseEntity<PageResponse<ApplicationResponse>> getIndustryGroupById(@PageableDefault(page = 20) Pageable pageable) {
-    return ResponseEntity.ok(applicationService.getApplication(pageable));
+  public ResponseEntity<PageResponse<ApplicationResponse>> getPageApplication(@PageableDefault(page = 20) Pageable pageable) {
+    return ResponseEntity.ok(applicationService.getPageApplication(pageable));
   }
 
   @GetMapping("search/{name}")

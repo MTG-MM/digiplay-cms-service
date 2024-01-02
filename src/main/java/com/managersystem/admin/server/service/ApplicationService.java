@@ -53,7 +53,7 @@ public class ApplicationService extends BaseService {
     return modelMapper.toApplicationResponses(industryGroupEntities);
   }
 
-  public PageResponse<ApplicationResponse> getApplication(Pageable pageable) {
+  public PageResponse<ApplicationResponse> getPageApplication(Pageable pageable) {
     Page<ApplicationEntity> applications = applicationStorage.findAll(pageable);
     return PageResponse.createFrom(modelMapper.toPageApplicationResponse(applications));
   }

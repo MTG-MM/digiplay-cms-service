@@ -5,7 +5,6 @@ import com.managersystem.admin.server.entities.AccountEntity;
 import com.managersystem.admin.server.entities.UserEntity;
 import com.managersystem.admin.server.exception.base.ResourceNotFoundException;
 import com.managersystem.admin.server.service.base.BaseService;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;

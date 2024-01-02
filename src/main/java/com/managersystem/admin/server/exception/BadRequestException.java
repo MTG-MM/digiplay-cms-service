@@ -12,7 +12,9 @@ public class BadRequestException extends BaseException {
   public BadRequestException(String exception) {
     super(exception, ErrorCode.BAD_REQUEST);
   }
-
+  public BadRequestException(Integer code) {
+    super("Error", code);
+  }
   public BadRequestException(String exception, Integer code) {
     super(exception, code);
   }

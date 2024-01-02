@@ -1,7 +1,6 @@
 package com.managersystem.admin.server.entities;
 
 import com.managersystem.admin.server.entities.base.BaseEntity;
-import com.managersystem.admin.server.entities.type.State;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -10,7 +9,7 @@ import java.util.UUID;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@Table(schema = "prod", name = "user")
+@Table( name = "user")
 @Entity
 public class UserEntity  extends BaseEntity {
 

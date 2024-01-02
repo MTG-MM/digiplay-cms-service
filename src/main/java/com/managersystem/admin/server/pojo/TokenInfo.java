@@ -4,7 +4,6 @@ import com.managersystem.admin.server.entities.type.NewAccountState;
 import com.managersystem.admin.server.entities.type.Rank;
 import com.managersystem.admin.server.entities.type.State;
 import com.managersystem.admin.server.entities.type.UserRole;
-import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.UUID;

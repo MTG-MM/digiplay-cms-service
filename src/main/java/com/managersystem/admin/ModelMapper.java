@@ -11,12 +11,15 @@ import com.managersystem.admin.server.entities.UserEntity;
 import com.managersystem.admin.server.pojo.TokenInfo;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface ModelMapper {
-
+  default <T> Page<T> mapPage(Page<T> source) {
+    return source;
+  }
 
   AccountEntity toAccountEntity(AccountDto dto);
 
@@ -27,11 +30,16 @@ public interface ModelMapper {
   UserEntity toUser(UserInfoDto userInfoDto);
 
 
-  ApplicationResponse toIndustryGroupResponse(ApplicationEntity applicationEntity);
+  ApplicationResponse toApplicationResponse(ApplicationEntity applicationEntity);
 
-  List<ApplicationResponse> toIndustryGroupResponses(List<ApplicationEntity> industryGroupEntities);
+  List<ApplicationResponse> toApplicationResponses(List<ApplicationEntity> industryGroupEntities);
 
-  void toIndustryGroupEntity(ApplicationDto dto, @MappingTarget ApplicationEntity entity);
+  void toApplicationEntity(ApplicationDto dto, @MappingTarget ApplicationEntity entity);
 
-  ApplicationEntity toIndustryGroupEntity(ApplicationDto dto);
+  ApplicationEntity toApplicationEntity(ApplicationDto dto);
+
+  default Page<ApplicationResponse> toPageApplicationResponse(Page<ApplicationEntity> applications) {
+    return applications.map(this::toApplicationResponse);
+  }
+
 }

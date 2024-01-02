@@ -4,7 +4,6 @@ import com.managersystem.admin.ModelMapper;
 import com.managersystem.admin.server.entities.AccountEntity;
 import com.managersystem.admin.server.pojo.TokenInfo;
 import com.managersystem.admin.server.utils.Helper;
-import com.managersystem.admin.server.utils.JsonParser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -16,9 +15,7 @@ import org.springframework.stereotype.Component;
 
 import java.security.Key;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 import java.util.function.Function;
 
 @Component

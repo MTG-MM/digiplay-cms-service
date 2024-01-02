@@ -2,17 +2,8 @@ package com.managersystem.admin.handleRequest.controller.base;
 
 import com.managersystem.admin.handleRequest.controller.response.base.BaseResponse;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Log4j2
 public class BaseController {

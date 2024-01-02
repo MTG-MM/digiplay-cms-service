@@ -3,6 +3,8 @@ package com.managersystem.admin.server.stores;
 import com.managersystem.admin.server.entities.AccountEntity;
 import com.managersystem.admin.server.entities.type.UserRole;
 import com.managersystem.admin.server.stores.base.BaseStorage;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -14,6 +16,9 @@ public class AccountStorage extends BaseStorage {
     return accountRepository.findByUsernameAndRole(username, userRole);
   }
 
+  Page<AccountEntity> findAll(Pageable pageable){
+    return accountRepository.findAll(pageable);
+  }
 
   public void save(AccountEntity account) {
     accountRepository.save(account);

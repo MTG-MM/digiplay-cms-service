@@ -8,14 +8,14 @@ import com.managersystem.admin.server.entities.type.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Collection;
-import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @EqualsAndHashCode(callSuper = true)
-@Data
-@Table(schema = "prod", name = "account")
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
+@Table(name = "account")
 @Entity
 public class AccountEntity extends BaseEntity {
 

@@ -4,22 +4,18 @@ import com.managersystem.admin.server.exception.base.BaseException;
 import com.managersystem.admin.server.exception.base.ErrorCode;
 import com.managersystem.admin.server.exception.base.ExceptionResponse;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import java.sql.SQLException;
 import java.util.List;
 
 @RestControllerAdvice
@@ -33,7 +29,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     return new ResponseEntity<>(ExceptionResponse.createFrom(ex), HttpStatus.BAD_REQUEST);
   }
 
-  @ExceptionHandler(value = {Exception.class, SQLException.class, DataIntegrityViolationException.class})
+  @ExceptionHandler(value = {Exception.class})
   public ResponseEntity<?> internalException(BaseException ex, WebRequest request) {
     return new ResponseEntity<>(ExceptionResponse.createFrom(ex), HttpStatus.INTERNAL_SERVER_ERROR);
   }

@@ -65,10 +65,12 @@ public class RewardScheduleService extends BaseService {
     }
 
     LocalDateTime localDateTime = DateUtils.getNowDateTimeAtVn();
+    int currentMinute = localDateTime.getHour() * 60 + localDateTime.getMinute();
     if (localDateTime.getMinute() == rewardState.getLastMinute()) {
       log.debug("====>processAddQuantity process in minute");
       return;
     }
+
     if (rewardSchedule.getPeriodType() == PeriodType.DAY) {
       if (localDateTime.getDayOfMonth() != rewardState.getLastDay()) {
         log.debug("====>update new day {}", localDateTime);
@@ -77,8 +79,11 @@ public class RewardScheduleService extends BaseService {
         rewardState.setCountHour(0L);
         rewardState.setCountMinute(0L);
       }
-      int minutesToNextDay = 24 * 60 - localDateTime.getHour() * 60 - localDateTime.getMinute();
+      int minutesToNextDay = 24 * 60 - currentMinute;
       int quantity = processStateDayQuantity(rewardState, rewardSchedule.getQuantity(), minutesToNextDay, localDateTime.getDayOfMonth());
+      if(quantity > 0) {
+        rewardState.setLastMinute(currentMinute);
+      }
       saveUpdateStateLog(rewardState, localDateTime, quantity);
     } else if (rewardSchedule.getPeriodType() == PeriodType.HOUR) {
       if (localDateTime.getHour() != rewardState.getLastHour()) {
@@ -90,6 +95,9 @@ public class RewardScheduleService extends BaseService {
       }
       int minutesToNextHour = 60 - localDateTime.getMinute();
       int quantity = processStateHourQuantity(rewardState, rewardSchedule.getQuantity(), minutesToNextHour, localDateTime.getHour());
+      if(quantity > 0) {
+        rewardState.setLastMinute(currentMinute);
+      }
       saveUpdateStateLog(rewardState, localDateTime, quantity);
     } else if (rewardSchedule.getPeriodType() == PeriodType.MINUTE) {
       log.debug("====>update new minute {}", localDateTime);
@@ -97,7 +105,10 @@ public class RewardScheduleService extends BaseService {
       rewardState.setCountDay(0L);
       rewardState.setCountHour(0L);
       rewardState.setCountMinute(0L);
-      long quantity = processStateMinuterQuantity(rewardState, rewardSchedule.getQuantity(), localDateTime.getHour() * 60 + localDateTime.getMinute());
+      long quantity = processStateMinuterQuantity(rewardState, rewardSchedule.getQuantity(), currentMinute);
+      if(quantity > 0) {
+        rewardState.setLastMinute(currentMinute);
+      }
       saveUpdateStateLog(rewardState, localDateTime, quantity);
     }
     rewardStateStorage.save(rewardState);

@@ -1,35 +1,35 @@
-04/02/24 01:16:22.767 | INFO  | sale_service | 0 | StartupInfoLogger.java: Starting CmsApplication using Java 17.0.9 with PID 1584 (D:\manager-system-cms-service\target\classes started by Admin in D:\manager-system-cms-service)
-04/02/24 01:16:22.775 | INFO  | sale_service | 0 | SpringApplication.java: No active profile set, falling back to 1 default profile: "default"
-04/02/24 01:16:23.604 | INFO  | sale_service | 0 | RepositoryConfigurationDelegate.java: Multiple Spring Data modules found, entering strict repository configuration mode
-04/02/24 01:16:23.606 | INFO  | sale_service | 0 | RepositoryConfigurationDelegate.java: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-04/02/24 01:16:23.841 | INFO  | sale_service | 0 | RepositoryConfigurationDelegate.java: Finished Spring Data repository scanning in 229 ms. Found 10 JPA repository interfaces.
-04/02/24 01:16:23.853 | INFO  | sale_service | 0 | RepositoryConfigurationDelegate.java: Multiple Spring Data modules found, entering strict repository configuration mode
-04/02/24 01:16:23.854 | INFO  | sale_service | 0 | RepositoryConfigurationDelegate.java: Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-04/02/24 01:16:23.866 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.AccountRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-04/02/24 01:16:23.867 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.ApplicationRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-04/02/24 01:16:23.867 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.RewardItemHistoryRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-04/02/24 01:16:23.867 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.RewardItemRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-04/02/24 01:16:23.867 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.RewardScheduleRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-04/02/24 01:16:23.868 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.RewardSegmentDetailRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-04/02/24 01:16:23.868 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.RewardSegmentRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-04/02/24 01:16:23.869 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.RewardStateLogRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-04/02/24 01:16:23.869 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.RewardStateRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-04/02/24 01:16:23.870 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-04/02/24 01:16:23.870 | INFO  | sale_service | 0 | RepositoryConfigurationDelegate.java: Finished Spring Data repository scanning in 10 ms. Found 0 Redis repository interfaces.
-04/02/24 01:16:24.379 | INFO  | sale_service | 0 | TomcatWebServer.java: Tomcat initialized with port(s): 8080 (http)
-04/02/24 01:16:24.385 | INFO  | sale_service | 0 | DirectJDKLog.java: Initializing ProtocolHandler ["http-nio-8080"]
-04/02/24 01:16:24.387 | INFO  | sale_service | 0 | DirectJDKLog.java: Starting service [Tomcat]
-04/02/24 01:16:24.387 | INFO  | sale_service | 0 | DirectJDKLog.java: Starting Servlet engine: [Apache Tomcat/10.1.13]
-04/02/24 01:16:24.477 | INFO  | sale_service | 0 | DirectJDKLog.java: Initializing Spring embedded WebApplicationContext
-04/02/24 01:16:24.478 | INFO  | sale_service | 0 | ServletWebServerApplicationContext.java: Root WebApplicationContext: initialization completed in 1669 ms
-04/02/24 01:16:24.614 | DEBUG | sale_service | 0 | GenericFilterBean.java: Filter 'serverHttpObservationFilter' configured for use
-04/02/24 01:16:24.731 | INFO  | sale_service | 0 | LogHelper.java: HHH000204: Processing PersistenceUnitInfo [name: default]
-04/02/24 01:16:24.770 | INFO  | sale_service | 0 | Version.java: HHH000412: Hibernate ORM core version 6.1.7.Final
-04/02/24 01:16:24.994 | INFO  | sale_service | 0 | HikariDataSource.java: HikariPool-1 - Starting...
-04/02/24 01:16:25.357 | INFO  | sale_service | 0 | HikariPool.java: HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7f9dbe11
-04/02/24 01:16:25.359 | INFO  | sale_service | 0 | HikariDataSource.java: HikariPool-1 - Start completed.
-04/02/24 01:16:25.435 | INFO  | sale_service | 0 | DialectFactoryImpl.java: HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
-04/02/24 01:16:25.674 | INFO  | sale_service | 0 | TypeSafeActivator.java: Error calling `jakarta.validation.Validation#buildDefaultValidatorFactory`
+04/02/24 03:01:52.446 | INFO  | sale_service | 0 | StartupInfoLogger.java: Starting CmsApplication using Java 17.0.9 with PID 12016 (D:\manager-system-cms-service\target\classes started by Admin in D:\manager-system-cms-service)
+04/02/24 03:01:52.454 | INFO  | sale_service | 0 | SpringApplication.java: No active profile set, falling back to 1 default profile: "default"
+04/02/24 03:01:53.376 | INFO  | sale_service | 0 | RepositoryConfigurationDelegate.java: Multiple Spring Data modules found, entering strict repository configuration mode
+04/02/24 03:01:53.378 | INFO  | sale_service | 0 | RepositoryConfigurationDelegate.java: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+04/02/24 03:01:53.660 | INFO  | sale_service | 0 | RepositoryConfigurationDelegate.java: Finished Spring Data repository scanning in 275 ms. Found 10 JPA repository interfaces.
+04/02/24 03:01:53.672 | INFO  | sale_service | 0 | RepositoryConfigurationDelegate.java: Multiple Spring Data modules found, entering strict repository configuration mode
+04/02/24 03:01:53.673 | INFO  | sale_service | 0 | RepositoryConfigurationDelegate.java: Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+04/02/24 03:01:53.687 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.AccountRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+04/02/24 03:01:53.687 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.ApplicationRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+04/02/24 03:01:53.687 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.RewardItemHistoryRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+04/02/24 03:01:53.688 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.RewardItemRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+04/02/24 03:01:53.688 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.RewardScheduleRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+04/02/24 03:01:53.688 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.RewardSegmentDetailRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+04/02/24 03:01:53.689 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.RewardSegmentRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+04/02/24 03:01:53.689 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.RewardStateLogRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+04/02/24 03:01:53.689 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.RewardStateRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+04/02/24 03:01:53.690 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+04/02/24 03:01:53.690 | INFO  | sale_service | 0 | RepositoryConfigurationDelegate.java: Finished Spring Data repository scanning in 9 ms. Found 0 Redis repository interfaces.
+04/02/24 03:01:54.292 | INFO  | sale_service | 0 | TomcatWebServer.java: Tomcat initialized with port(s): 8080 (http)
+04/02/24 03:01:54.298 | INFO  | sale_service | 0 | DirectJDKLog.java: Initializing ProtocolHandler ["http-nio-8080"]
+04/02/24 03:01:54.299 | INFO  | sale_service | 0 | DirectJDKLog.java: Starting service [Tomcat]
+04/02/24 03:01:54.300 | INFO  | sale_service | 0 | DirectJDKLog.java: Starting Servlet engine: [Apache Tomcat/10.1.13]
+04/02/24 03:01:54.383 | INFO  | sale_service | 0 | DirectJDKLog.java: Initializing Spring embedded WebApplicationContext
+04/02/24 03:01:54.383 | INFO  | sale_service | 0 | ServletWebServerApplicationContext.java: Root WebApplicationContext: initialization completed in 1893 ms
+04/02/24 03:01:54.518 | DEBUG | sale_service | 0 | GenericFilterBean.java: Filter 'serverHttpObservationFilter' configured for use
+04/02/24 03:01:54.640 | INFO  | sale_service | 0 | LogHelper.java: HHH000204: Processing PersistenceUnitInfo [name: default]
+04/02/24 03:01:54.680 | INFO  | sale_service | 0 | Version.java: HHH000412: Hibernate ORM core version 6.1.7.Final
+04/02/24 03:01:54.912 | INFO  | sale_service | 0 | HikariDataSource.java: HikariPool-1 - Starting...
+04/02/24 03:01:55.224 | INFO  | sale_service | 0 | HikariPool.java: HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1cc81ea1
+04/02/24 03:01:55.226 | INFO  | sale_service | 0 | HikariDataSource.java: HikariPool-1 - Start completed.
+04/02/24 03:01:55.301 | INFO  | sale_service | 0 | DialectFactoryImpl.java: HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+04/02/24 03:01:55.609 | INFO  | sale_service | 0 | TypeSafeActivator.java: Error calling `jakarta.validation.Validation#buildDefaultValidatorFactory`
 jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
 	at jakarta.validation.Validation$GenericBootstrapImpl.configure(Validation.java:291) ~[jakarta.validation-api-3.0.2.jar:?]
 	at jakarta.validation.Validation.buildDefaultValidatorFactory(Validation.java:103) ~[jakarta.validation-api-3.0.2.jar:?]
@@ -66,12 +66,12 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1304) ~[spring-boot-3.0.11.jar:3.0.11]
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1293) ~[spring-boot-3.0.11.jar:3.0.11]
 	at com.managersystem.admin.CmsApplication.main(CmsApplication.java:14) ~[classes/:?]
-04/02/24 01:16:26.181 | INFO  | sale_service | 0 | JtaPlatformInitiator.java: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-04/02/24 01:16:26.190 | INFO  | sale_service | 0 | AbstractEntityManagerFactoryBean.java: Initialized JPA EntityManagerFactory for persistence unit 'default'
-04/02/24 01:16:26.397 | INFO  | sale_service | 0 | Version.java: Redisson 3.24.3
-04/02/24 01:16:26.826 | INFO  | sale_service | 0 | ConnectionPool.java: 1 connections initialized for tcp.appengine.bfcplatform.vn/103.69.194.195:13437
-04/02/24 01:16:28.789 | INFO  | sale_service | 0 | ConnectionPool.java: 24 connections initialized for tcp.appengine.bfcplatform.vn/103.69.194.195:13437
-04/02/24 01:16:28.974 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:56.231 | INFO  | sale_service | 0 | JtaPlatformInitiator.java: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+04/02/24 03:01:56.243 | INFO  | sale_service | 0 | AbstractEntityManagerFactoryBean.java: Initialized JPA EntityManagerFactory for persistence unit 'default'
+04/02/24 03:01:56.516 | INFO  | sale_service | 0 | Version.java: Redisson 3.24.3
+04/02/24 03:01:56.871 | INFO  | sale_service | 0 | ConnectionPool.java: 1 connections initialized for tcp.appengine.bfcplatform.vn/103.69.194.120:13437
+04/02/24 03:01:57.692 | INFO  | sale_service | 0 | ConnectionPool.java: 24 connections initialized for tcp.appengine.bfcplatform.vn/103.69.194.120:13437
+04/02/24 03:01:57.887 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -83,7 +83,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:28.975 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:57.888 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -95,7 +95,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.036 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:57.951 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -107,7 +107,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.122 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.009 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -119,7 +119,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.125 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.011 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -131,7 +131,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.178 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.059 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -143,7 +143,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.179 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.060 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -155,7 +155,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.198 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.073 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -167,7 +167,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.207 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.079 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -179,7 +179,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.229 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.097 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -191,7 +191,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.236 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.102 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -203,7 +203,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.252 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.115 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -215,7 +215,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.253 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.115 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -227,7 +227,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.262 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.122 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -239,7 +239,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.263 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.123 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -251,7 +251,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.430 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.279 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -263,7 +263,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.439 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.290 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -275,7 +275,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.449 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.300 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -287,7 +287,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.453 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.304 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -299,7 +299,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.487 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.324 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -311,7 +311,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.492 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.329 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -323,7 +323,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.511 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.359 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -335,7 +335,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.515 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.363 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -347,7 +347,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.525 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.373 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -359,7 +359,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.526 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.374 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -371,7 +371,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.539 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.384 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -383,7 +383,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.541 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.387 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -395,7 +395,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.552 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.398 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -407,7 +407,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.552 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.398 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -419,7 +419,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.565 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.408 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -431,7 +431,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.568 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.411 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -443,7 +443,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.578 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.422 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -455,7 +455,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.579 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.422 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -467,7 +467,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.589 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.432 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -479,7 +479,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.592 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.434 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -491,7 +491,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.610 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.452 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -503,7 +503,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:29.613 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 03:01:58.455 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -515,179 +515,35 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:16:30.061 | DEBUG | sale_service | 0 | AbstractHandlerMethodMapping.java: 19 mappings in 'requestMappingHandlerMapping'
-04/02/24 01:16:30.143 | DEBUG | sale_service | 0 | SimpleUrlHandlerMapping.java: Patterns [/webjars/**, /**, /v1/docs/swagger-ui*/*swagger-initializer.js, /v1/docs/swagger-ui*/**] in 'resourceHandlerMapping'
-04/02/24 01:16:30.267 | INFO  | sale_service | 0 | EndpointLinksResolver.java: Exposing 1 endpoint(s) beneath base path '/actuator'
-04/02/24 01:16:30.315 | INFO  | sale_service | 0 | DefaultSecurityFilterChain.java: Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5f18f8a1, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@26d63c94, org.springframework.security.web.context.SecurityContextHolderFilter@b807b32, org.springframework.security.web.header.HeaderWriterFilter@4b96b0bd, org.springframework.security.web.authentication.logout.LogoutFilter@49f82f95, com.managersystem.admin.server.security.JwtAuthFilter@49d543a9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6bcc277a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3a4e3343, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4e42beba, org.springframework.security.web.session.SessionManagementFilter@70d28000, org.springframework.security.web.access.ExceptionTranslationFilter@4edea6b4, org.springframework.security.web.access.intercept.AuthorizationFilter@6d7298be]
-04/02/24 01:16:30.377 | DEBUG | sale_service | 0 | RequestMappingHandlerAdapter.java: ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-04/02/24 01:16:30.413 | DEBUG | sale_service | 0 | ExceptionHandlerExceptionResolver.java: ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
-04/02/24 01:16:30.740 | INFO  | sale_service | 0 | DirectJDKLog.java: Starting ProtocolHandler ["http-nio-8080"]
-04/02/24 01:16:30.750 | INFO  | sale_service | 0 | TomcatWebServer.java: Tomcat started on port(s): 8080 (http) with context path ''
-04/02/24 01:16:30.766 | INFO  | sale_service | 0 | StartupInfoLogger.java: Started CmsApplication in 8.309 seconds (process running for 9.136)
-04/02/24 01:16:30.920 | INFO  | sale_service | 0 | DirectJDKLog.java: Initializing Spring DispatcherServlet 'dispatcherServlet'
-04/02/24 01:16:30.920 | INFO  | sale_service | 0 | FrameworkServlet.java: Initializing Servlet 'dispatcherServlet'
-04/02/24 01:16:30.921 | DEBUG | sale_service | 0 | DispatcherServlet.java: Detected StandardServletMultipartResolver
-04/02/24 01:16:30.921 | DEBUG | sale_service | 0 | DispatcherServlet.java: Detected AcceptHeaderLocaleResolver
-04/02/24 01:16:30.921 | DEBUG | sale_service | 0 | DispatcherServlet.java: Detected FixedThemeResolver
-04/02/24 01:16:30.922 | DEBUG | sale_service | 0 | DispatcherServlet.java: Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@ae54cb3
-04/02/24 01:16:30.923 | DEBUG | sale_service | 0 | DispatcherServlet.java: Detected org.springframework.web.servlet.support.SessionFlashMapManager@4306191
-04/02/24 01:16:30.923 | DEBUG | sale_service | 0 | FrameworkServlet.java: enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
-04/02/24 01:16:30.923 | INFO  | sale_service | 0 | FrameworkServlet.java: Completed initialization in 2 ms
-04/02/24 01:16:32.033 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
-    12102600 nanoseconds spent acquiring 1 JDBC connections;
+04/02/24 03:01:58.812 | DEBUG | sale_service | 0 | AbstractHandlerMethodMapping.java: 35 mappings in 'requestMappingHandlerMapping'
+04/02/24 03:01:58.900 | DEBUG | sale_service | 0 | SimpleUrlHandlerMapping.java: Patterns [/webjars/**, /**, /v1/docs/swagger-ui*/*swagger-initializer.js, /v1/docs/swagger-ui*/**] in 'resourceHandlerMapping'
+04/02/24 03:01:59.014 | INFO  | sale_service | 0 | EndpointLinksResolver.java: Exposing 1 endpoint(s) beneath base path '/actuator'
+04/02/24 03:01:59.065 | INFO  | sale_service | 0 | DefaultSecurityFilterChain.java: Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@507a53b6, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@43758a1, org.springframework.security.web.context.SecurityContextHolderFilter@31a65ddd, org.springframework.security.web.header.HeaderWriterFilter@2a09e0d4, org.springframework.security.web.authentication.logout.LogoutFilter@7def2e4f, com.managersystem.admin.server.security.JwtAuthFilter@8cb7185, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@33dcbbfa, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5418225f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2c50f1ab, org.springframework.security.web.session.SessionManagementFilter@1bf2cf15, org.springframework.security.web.access.ExceptionTranslationFilter@225fb905, org.springframework.security.web.access.intercept.AuthorizationFilter@385d9880]
+04/02/24 03:01:59.131 | DEBUG | sale_service | 0 | RequestMappingHandlerAdapter.java: ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+04/02/24 03:01:59.167 | DEBUG | sale_service | 0 | ExceptionHandlerExceptionResolver.java: ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+04/02/24 03:01:59.471 | INFO  | sale_service | 0 | DirectJDKLog.java: Starting ProtocolHandler ["http-nio-8080"]
+04/02/24 03:01:59.480 | INFO  | sale_service | 0 | TomcatWebServer.java: Tomcat started on port(s): 8080 (http) with context path ''
+04/02/24 03:01:59.496 | INFO  | sale_service | 0 | StartupInfoLogger.java: Started CmsApplication in 7.429 seconds (process running for 8.361)
+04/02/24 03:01:59.938 | INFO  | sale_service | 0 | DirectJDKLog.java: Initializing Spring DispatcherServlet 'dispatcherServlet'
+04/02/24 03:01:59.938 | INFO  | sale_service | 0 | FrameworkServlet.java: Initializing Servlet 'dispatcherServlet'
+04/02/24 03:01:59.938 | DEBUG | sale_service | 0 | DispatcherServlet.java: Detected StandardServletMultipartResolver
+04/02/24 03:01:59.939 | DEBUG | sale_service | 0 | DispatcherServlet.java: Detected AcceptHeaderLocaleResolver
+04/02/24 03:01:59.939 | DEBUG | sale_service | 0 | DispatcherServlet.java: Detected FixedThemeResolver
+04/02/24 03:01:59.940 | DEBUG | sale_service | 0 | DispatcherServlet.java: Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@32f6d000
+04/02/24 03:01:59.940 | DEBUG | sale_service | 0 | DispatcherServlet.java: Detected org.springframework.web.servlet.support.SessionFlashMapManager@e0f22c3
+04/02/24 03:01:59.941 | DEBUG | sale_service | 0 | FrameworkServlet.java: enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+04/02/24 03:01:59.941 | INFO  | sale_service | 0 | FrameworkServlet.java: Completed initialization in 3 ms
+04/02/24 03:02:00.418 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+    27647999 nanoseconds spent acquiring 1 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
-    126116304 nanoseconds spent preparing 24 JDBC statements;
-    715517501 nanoseconds spent executing 22 JDBC statements;
-    58460501 nanoseconds spent executing 2 JDBC batches;
+    151209199 nanoseconds spent preparing 15 JDBC statements;
+    299785804 nanoseconds spent executing 13 JDBC statements;
+    123133400 nanoseconds spent executing 2 JDBC batches;
     0 nanoseconds spent performing 0 L2C puts;
     0 nanoseconds spent performing 0 L2C hits;
     0 nanoseconds spent performing 0 L2C misses;
-    115778500 nanoseconds spent executing 1 flushes (flushing a total of 46 entities and 0 collections);
-    11070300 nanoseconds spent executing 4 partial-flushes (flushing a total of 30 entities and 30 collections)
+    168130999 nanoseconds spent executing 1 flushes (flushing a total of 46 entities and 0 collections);
+    12488102 nanoseconds spent executing 4 partial-flushes (flushing a total of 30 entities and 30 collections)
 }
-04/02/24 01:17:32.801 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
-    14863200 nanoseconds spent acquiring 1 JDBC connections;
-    0 nanoseconds spent releasing 0 JDBC connections;
-    11519603 nanoseconds spent preparing 15 JDBC statements;
-    388390802 nanoseconds spent executing 13 JDBC statements;
-    123411500 nanoseconds spent executing 2 JDBC batches;
-    0 nanoseconds spent performing 0 L2C puts;
-    0 nanoseconds spent performing 0 L2C hits;
-    0 nanoseconds spent performing 0 L2C misses;
-    139156700 nanoseconds spent executing 1 flushes (flushing a total of 46 entities and 0 collections);
-    931600 nanoseconds spent executing 4 partial-flushes (flushing a total of 30 entities and 30 collections)
-}
-04/02/24 01:18:33.529 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
-    16147800 nanoseconds spent acquiring 1 JDBC connections;
-    0 nanoseconds spent releasing 0 JDBC connections;
-    634499 nanoseconds spent preparing 15 JDBC statements;
-    363269399 nanoseconds spent executing 13 JDBC statements;
-    83723001 nanoseconds spent executing 2 JDBC batches;
-    0 nanoseconds spent performing 0 L2C puts;
-    0 nanoseconds spent performing 0 L2C hits;
-    0 nanoseconds spent performing 0 L2C misses;
-    87518499 nanoseconds spent executing 1 flushes (flushing a total of 46 entities and 0 collections);
-    745499 nanoseconds spent executing 4 partial-flushes (flushing a total of 30 entities and 30 collections)
-}
-04/02/24 01:19:34.247 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
-    16745099 nanoseconds spent acquiring 1 JDBC connections;
-    0 nanoseconds spent releasing 0 JDBC connections;
-    811599 nanoseconds spent preparing 15 JDBC statements;
-    436837302 nanoseconds spent executing 13 JDBC statements;
-    84084199 nanoseconds spent executing 2 JDBC batches;
-    0 nanoseconds spent performing 0 L2C puts;
-    0 nanoseconds spent performing 0 L2C hits;
-    0 nanoseconds spent performing 0 L2C misses;
-    87524601 nanoseconds spent executing 1 flushes (flushing a total of 46 entities and 0 collections);
-    706901 nanoseconds spent executing 4 partial-flushes (flushing a total of 30 entities and 30 collections)
-}
-04/02/24 01:20:36.863 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
-    14771200 nanoseconds spent acquiring 1 JDBC connections;
-    0 nanoseconds spent releasing 0 JDBC connections;
-    707399 nanoseconds spent preparing 15 JDBC statements;
-    2130238897 nanoseconds spent executing 13 JDBC statements;
-    293992199 nanoseconds spent executing 2 JDBC batches;
-    0 nanoseconds spent performing 0 L2C puts;
-    0 nanoseconds spent performing 0 L2C hits;
-    0 nanoseconds spent performing 0 L2C misses;
-    296207900 nanoseconds spent executing 1 flushes (flushing a total of 46 entities and 0 collections);
-    708000 nanoseconds spent executing 4 partial-flushes (flushing a total of 30 entities and 30 collections)
-}
-04/02/24 01:21:34.273 | ERROR | sale_service | 0 | DNSMonitor.java: Unable to resolve tcp.appengine.bfcplatform.vn
-java.net.UnknownHostException: Failed to resolve 'tcp.appengine.bfcplatform.vn' [A(1)]
-	at io.netty.resolver.dns.DnsResolveContext.finishResolve(DnsResolveContext.java:1097) ~[netty-resolver-dns-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.resolver.dns.DnsResolveContext.tryToFinishResolve(DnsResolveContext.java:1044) ~[netty-resolver-dns-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.resolver.dns.DnsResolveContext.query(DnsResolveContext.java:432) ~[netty-resolver-dns-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.resolver.dns.DnsResolveContext.access$700(DnsResolveContext.java:66) ~[netty-resolver-dns-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.resolver.dns.DnsResolveContext$2.operationComplete(DnsResolveContext.java:500) ~[netty-resolver-dns-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.concurrent.DefaultPromise.notifyListener0(DefaultPromise.java:590) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.concurrent.DefaultPromise.notifyListeners0(DefaultPromise.java:583) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.concurrent.DefaultPromise.notifyListenersNow(DefaultPromise.java:559) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:492) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.concurrent.DefaultPromise.setValue0(DefaultPromise.java:636) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.concurrent.DefaultPromise.setFailure0(DefaultPromise.java:629) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.concurrent.DefaultPromise.tryFailure(DefaultPromise.java:118) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.resolver.dns.DnsQueryContext.finishFailure(DnsQueryContext.java:348) ~[netty-resolver-dns-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.resolver.dns.DnsQueryContext$5.run(DnsQueryContext.java:290) ~[netty-resolver-dns-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.concurrent.PromiseTask.runTask(PromiseTask.java:98) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.concurrent.ScheduledFutureTask.run(ScheduledFutureTask.java:153) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.concurrent.AbstractEventExecutor.runTask$$$capture(AbstractEventExecutor.java:174) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.concurrent.AbstractEventExecutor.runTask(AbstractEventExecutor.java) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute$$$capture(AbstractEventExecutor.java:167) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:470) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:569) ~[netty-transport-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at java.lang.Thread.run(Thread.java:840) ~[?:?]
-Caused by: io.netty.resolver.dns.DnsNameResolverTimeoutException: [35029: /192.168.31.1:53] DefaultDnsQuestion(tcp.appengine.bfcplatform.vn. IN A) query '35029' via UDP timed out after 5000 milliseconds (no stack trace available)
-04/02/24 01:21:44.295 | ERROR | sale_service | 0 | DNSMonitor.java: Unable to resolve tcp.appengine.bfcplatform.vn
-java.net.UnknownHostException: Failed to resolve 'tcp.appengine.bfcplatform.vn' [A(1)]
-	at io.netty.resolver.dns.DnsResolveContext.finishResolve(DnsResolveContext.java:1097) ~[netty-resolver-dns-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.resolver.dns.DnsResolveContext.tryToFinishResolve(DnsResolveContext.java:1044) ~[netty-resolver-dns-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.resolver.dns.DnsResolveContext.query(DnsResolveContext.java:432) ~[netty-resolver-dns-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.resolver.dns.DnsResolveContext.access$700(DnsResolveContext.java:66) ~[netty-resolver-dns-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.resolver.dns.DnsResolveContext$2.operationComplete(DnsResolveContext.java:500) ~[netty-resolver-dns-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.concurrent.DefaultPromise.notifyListener0(DefaultPromise.java:590) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.concurrent.DefaultPromise.notifyListeners0(DefaultPromise.java:583) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.concurrent.DefaultPromise.notifyListenersNow(DefaultPromise.java:559) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:492) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.concurrent.DefaultPromise.setValue0(DefaultPromise.java:636) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.concurrent.DefaultPromise.setFailure0(DefaultPromise.java:629) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.concurrent.DefaultPromise.tryFailure(DefaultPromise.java:118) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.resolver.dns.DnsQueryContext.finishFailure(DnsQueryContext.java:348) ~[netty-resolver-dns-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.resolver.dns.DnsQueryContext$5.run(DnsQueryContext.java:290) ~[netty-resolver-dns-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.concurrent.PromiseTask.runTask(PromiseTask.java:98) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.concurrent.ScheduledFutureTask.run(ScheduledFutureTask.java:153) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.concurrent.AbstractEventExecutor.runTask$$$capture(AbstractEventExecutor.java:174) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.concurrent.AbstractEventExecutor.runTask(AbstractEventExecutor.java) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute$$$capture(AbstractEventExecutor.java:167) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:470) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:569) ~[netty-transport-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.97.Final.jar:4.1.97.Final]
-	at java.lang.Thread.run(Thread.java:840) ~[?:?]
-Caused by: io.netty.resolver.dns.DnsNameResolverTimeoutException: [13721: /192.168.31.1:53] DefaultDnsQuestion(tcp.appengine.bfcplatform.vn. IN A) query '13721' via UDP timed out after 5000 milliseconds (no stack trace available)
-04/02/24 01:21:46.888 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
-    9372032300 nanoseconds spent acquiring 1 JDBC connections;
-    0 nanoseconds spent releasing 0 JDBC connections;
-    906500 nanoseconds spent preparing 15 JDBC statements;
-    383400101 nanoseconds spent executing 13 JDBC statements;
-    74217599 nanoseconds spent executing 2 JDBC batches;
-    0 nanoseconds spent performing 0 L2C puts;
-    0 nanoseconds spent performing 0 L2C hits;
-    0 nanoseconds spent performing 0 L2C misses;
-    77843900 nanoseconds spent executing 1 flushes (flushing a total of 46 entities and 0 collections);
-    758900 nanoseconds spent executing 4 partial-flushes (flushing a total of 30 entities and 30 collections)
-}
-04/02/24 01:21:49.308 | INFO  | sale_service | 0 | DNSMonitor.java: Detected DNS change. Master redis://tcp.appengine.bfcplatform.vn:13437 has changed ip from 103.69.194.195 to 103.69.194.5
-04/02/24 01:21:49.356 | INFO  | sale_service | 0 | ConnectionPool.java: 1 connections initialized for tcp.appengine.bfcplatform.vn/103.69.194.5:13437
-04/02/24 01:21:50.582 | INFO  | sale_service | 0 | MasterSlaveEntry.java: master tcp.appengine.bfcplatform.vn/103.69.194.195:13437 has changed to tcp.appengine.bfcplatform.vn/103.69.194.5:13437
-04/02/24 01:21:50.582 | INFO  | sale_service | 0 | ConnectionPool.java: 24 connections initialized for tcp.appengine.bfcplatform.vn/103.69.194.5:13437
-04/02/24 01:22:46.914 | WARN  | sale_service | 0 | PoolBase.java: HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@7f9dbe11 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
-04/02/24 01:22:46.919 | WARN  | sale_service | 0 | PoolBase.java: HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@598b5329 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
-04/02/24 01:22:46.921 | WARN  | sale_service | 0 | PoolBase.java: HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@324d2d2c (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
-04/02/24 01:22:46.923 | WARN  | sale_service | 0 | PoolBase.java: HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@e67c765 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
-04/02/24 01:22:46.925 | WARN  | sale_service | 0 | PoolBase.java: HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@7aaedc40 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
-04/02/24 01:22:46.927 | WARN  | sale_service | 0 | PoolBase.java: HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@79bfca27 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
-04/02/24 01:22:46.928 | WARN  | sale_service | 0 | PoolBase.java: HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@22c0bc71 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
-04/02/24 01:22:46.930 | WARN  | sale_service | 0 | PoolBase.java: HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@122c1ba3 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
-04/02/24 01:22:46.931 | WARN  | sale_service | 0 | PoolBase.java: HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@1eec897a (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
-04/02/24 01:22:46.932 | WARN  | sale_service | 0 | PoolBase.java: HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@19058672 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
-04/02/24 01:22:47.781 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
-    126379100 nanoseconds spent acquiring 1 JDBC connections;
-    0 nanoseconds spent releasing 0 JDBC connections;
-    130815599 nanoseconds spent preparing 15 JDBC statements;
-    354896101 nanoseconds spent executing 13 JDBC statements;
-    67614601 nanoseconds spent executing 2 JDBC batches;
-    0 nanoseconds spent performing 0 L2C puts;
-    0 nanoseconds spent performing 0 L2C hits;
-    0 nanoseconds spent performing 0 L2C misses;
-    93132000 nanoseconds spent executing 1 flushes (flushing a total of 46 entities and 0 collections);
-    322499 nanoseconds spent executing 4 partial-flushes (flushing a total of 30 entities and 30 collections)
-}
-04/02/24 01:23:12.790 | INFO  | sale_service | 0 | AbstractEntityManagerFactoryBean.java: Closing JPA EntityManagerFactory for persistence unit 'default'
-04/02/24 01:23:12.792 | INFO  | sale_service | 0 | HikariDataSource.java: HikariPool-1 - Shutdown initiated...
+04/02/24 03:02:04.314 | INFO  | sale_service | 0 | AbstractEntityManagerFactoryBean.java: Closing JPA EntityManagerFactory for persistence unit 'default'
+04/02/24 03:02:04.316 | INFO  | sale_service | 0 | HikariDataSource.java: HikariPool-1 - Shutdown initiated...

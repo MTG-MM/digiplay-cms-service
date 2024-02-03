@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("api/mos/it/reward-schedule")
 @CrossOrigin(origins = "*")
-public class RewardScheduleController {
+public class RewardScheduleItController {
 
   @Autowired
   RewardScheduleService rewardScheduleService;

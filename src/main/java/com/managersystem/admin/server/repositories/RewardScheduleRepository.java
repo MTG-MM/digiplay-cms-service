@@ -11,4 +11,6 @@ public interface RewardScheduleRepository extends JpaRepository<RewardSchedule, 
 
 
   List<RewardSchedule> findByRewardSegmentDetailIdIn(List<Long> rewardSegmentIds);
+
+  List<RewardSchedule> findByRewardSegmentDetailId(Long rewardSegmentId);
 }

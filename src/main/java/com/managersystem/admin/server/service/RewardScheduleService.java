@@ -1,9 +1,12 @@
 package com.managersystem.admin.server.service;
 
+import com.managersystem.admin.handleRequest.controller.dto.RewardScheduleDto;
+import com.managersystem.admin.handleRequest.controller.response.RewardScheduleResponse;
 import com.managersystem.admin.server.entities.*;
 import com.managersystem.admin.server.entities.type.PeriodType;
 import com.managersystem.admin.server.entities.type.RewardType;
 import com.managersystem.admin.server.entities.type.Status;
+import com.managersystem.admin.server.exception.base.ResourceNotFoundException;
 import com.managersystem.admin.server.service.base.BaseService;
 import com.managersystem.admin.server.utils.DateUtils;
 import lombok.extern.log4j.Log4j2;
@@ -21,6 +24,35 @@ import java.util.stream.Collectors;
 @Service
 @Log4j2
 public class RewardScheduleService extends BaseService {
+
+  public List<RewardScheduleResponse> getAllRewardSchedules(Long rewardSegmentId) {
+    return modelMapper.toListRewardScheduleResponse(rewardScheduleStorage.findByRewardSegmentDetailId(rewardSegmentId));
+  }
+
+  public boolean createRewardSchedules(RewardScheduleDto rewardScheduleDto) {
+    RewardSchedule rewardSchedule = modelMapper.toRewardSchedule(rewardScheduleDto);
+    rewardScheduleStorage.save(rewardSchedule);
+    return true;
+  }
+
+  public Boolean updateRewardSchedules(Long id, RewardScheduleDto rewardScheduleDto) {
+    RewardSchedule rewardSchedule = rewardScheduleStorage.findById(id);
+    if (rewardSchedule == null){
+      throw new ResourceNotFoundException("item not found");
+    }
+
+    modelMapper.mapRewardScheduleDtoToRewardSchedule(rewardScheduleDto, rewardSchedule);
+    rewardScheduleStorage.save(rewardSchedule);
+    return true;
+  }
+
+  public RewardScheduleResponse getRewardScheduleDetail(Long id) {
+    RewardSchedule rewardSchedule = rewardScheduleStorage.findById(id);
+    if (rewardSchedule == null){
+      throw new ResourceNotFoundException("item not found");
+    }
+    return modelMapper.toRewardScheduleResponse(rewardSchedule);
+  }
 
   @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
   public void addRewardSegmentQuantity() {

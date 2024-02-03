@@ -1,13 +1,9 @@
 package com.managersystem.admin;
 
 
-import com.managersystem.admin.handleRequest.controller.dto.AccountDto;
-import com.managersystem.admin.handleRequest.controller.dto.ApplicationDto;
-import com.managersystem.admin.handleRequest.controller.dto.UserInfoDto;
-import com.managersystem.admin.handleRequest.controller.response.ApplicationResponse;
-import com.managersystem.admin.server.entities.AccountEntity;
-import com.managersystem.admin.server.entities.ApplicationEntity;
-import com.managersystem.admin.server.entities.UserEntity;
+import com.managersystem.admin.handleRequest.controller.dto.*;
+import com.managersystem.admin.handleRequest.controller.response.*;
+import com.managersystem.admin.server.entities.*;
 import com.managersystem.admin.server.pojo.TokenInfo;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
@@ -42,4 +38,44 @@ public interface ModelMapper {
     return applications.map(this::toApplicationResponse);
   }
 
+  RewardItemResponse toRewardItemResponse(RewardItem rw);
+
+  default Page<RewardItemResponse> toPageRewardItemResponse(Page<RewardItem> rewardItems) {
+    return rewardItems.map(this::toRewardItemResponse);
+  }
+
+  RewardItem toRewardItem(RewardItemDto rewardItemDto);
+
+  void mapRewardItemDtoToRewardItem(RewardItemDto rewardItemDto, @MappingTarget RewardItem rewardItem);
+
+  RewardSegment toRewardSegment(RewardSegmentDto rewardSegmentDto);
+
+  RewardSegmentResponse toRewardSegmentResponse(RewardSegment rewardSegment);
+
+  void mapRewardSegmentDtoToRewardSegment(RewardSegmentDto rewardSegmentDto, @MappingTarget RewardSegment rewardSegment);
+
+  default Page<RewardSegmentResponse> toPageRewardSegmentResponse(Page<RewardSegment> rewardSegments) {
+    return rewardSegments.map(this::toRewardSegmentResponse);
+  }
+
+  default Page<RewardSegmentDetailResponse> toPageRewardSegmentDetailResponse(Page<RewardSegmentDetail> rewardSegmentDetails) {
+    return rewardSegmentDetails.map(this::toRewardSegmentDetailResponse);
+  }
+
+  RewardSegmentDetail toRewardSegmentDetail(RewardSegmentDetailDto rewardSegmentDetailDto);
+
+  void mapRewardSegmentDetailDtoToRewardSegmentDetail(RewardSegmentDetailDto rewardSegmentDetailDto, @MappingTarget RewardSegmentDetail rewardSegmentDetail);
+
+  RewardSegmentDetailResponse toRewardSegmentDetailResponse(RewardSegmentDetail rewardSegmentDetail);
+
+  RewardScheduleResponse toRewardScheduleResponse(RewardSchedule rewardSchedule);
+
+  void mapRewardScheduleDtoToRewardSchedule(RewardScheduleDto rewardScheduleDto, @MappingTarget RewardSchedule rewardSchedule);
+
+  RewardSchedule toRewardSchedule(RewardScheduleDto rewardScheduleDto);
+
+
+  List<RewardScheduleResponse> toListRewardScheduleResponse(List<RewardSchedule> all);
+
+  List<RewardSegmentDetailResponse> toRewardSegmentDetailResponses(List<RewardSegmentDetail> all);
 }

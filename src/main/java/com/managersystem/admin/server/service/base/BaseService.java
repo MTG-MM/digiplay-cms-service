@@ -1,9 +1,7 @@
 package com.managersystem.admin.server.service.base;
 
 import com.managersystem.admin.ModelMapper;
-import com.managersystem.admin.server.stores.AccountStorage;
-import com.managersystem.admin.server.stores.ApplicationStorage;
-import com.managersystem.admin.server.stores.UserStorage;
+import com.managersystem.admin.server.stores.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,4 +11,11 @@ public class BaseService {
   @Autowired protected AccountStorage accountStorage;
   @Autowired protected UserStorage userStorage;
   @Autowired protected ApplicationStorage applicationStorage;
+  @Autowired protected RewardItemHistoryStorage rewardItemHistoryStorage;
+  @Autowired protected RewardItemStorage rewardItemStorage;
+  @Autowired protected RewardScheduleStorage rewardScheduleStorage;
+  @Autowired protected RewardSegmentDetailStorage rewardSegmentDetailStorage;
+  @Autowired protected RewardSegmentStorage rewardSegmentStorage;
+  @Autowired protected RewardStateStorage rewardStateStorage;
+  @Autowired protected RewardStateLogStorage rewardStateLogStorage;
 }

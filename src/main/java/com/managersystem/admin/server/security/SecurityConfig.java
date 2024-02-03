@@ -40,7 +40,7 @@ public class SecurityConfig {
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     return http.csrf().disable()
         .authorizeHttpRequests()
-        .requestMatchers("api/mos/cms/auth/**", "public/**", "resources/**", "swagger-ui/**").permitAll()
+        .requestMatchers("api/mos/cms/auth/**", "public/**", "/v1/docs/**").permitAll()
         .and()
         .authorizeHttpRequests().anyRequest().permitAll()
         .and()

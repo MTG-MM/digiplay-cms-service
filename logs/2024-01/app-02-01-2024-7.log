@@ -1,20 +1,20 @@
-02/01/24 22:18:38.018 | INFO  | sale_service | 0 | StartupInfoLogger.java: Starting CmsApplication using Java 17.0.9 with PID 48188 (D:\manager-system-cms-service\target\classes started by Admin in D:\manager-system-cms-service)
-02/01/24 22:18:38.025 | INFO  | sale_service | 0 | SpringApplication.java: No active profile set, falling back to 1 default profile: "default"
-02/01/24 22:18:38.656 | INFO  | sale_service | 0 | RepositoryConfigurationDelegate.java: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-02/01/24 22:18:38.711 | INFO  | sale_service | 0 | RepositoryConfigurationDelegate.java: Finished Spring Data repository scanning in 49 ms. Found 3 JPA repository interfaces.
-02/01/24 22:18:39.150 | INFO  | sale_service | 0 | TomcatWebServer.java: Tomcat initialized with port(s): 8080 (http)
-02/01/24 22:18:39.156 | INFO  | sale_service | 0 | DirectJDKLog.java: Initializing ProtocolHandler ["http-nio-8080"]
-02/01/24 22:18:39.158 | INFO  | sale_service | 0 | DirectJDKLog.java: Starting service [Tomcat]
-02/01/24 22:18:39.158 | INFO  | sale_service | 0 | DirectJDKLog.java: Starting Servlet engine: [Apache Tomcat/10.1.13]
-02/01/24 22:18:39.248 | INFO  | sale_service | 0 | DirectJDKLog.java: Initializing Spring embedded WebApplicationContext
-02/01/24 22:18:39.249 | INFO  | sale_service | 0 | ServletWebServerApplicationContext.java: Root WebApplicationContext: initialization completed in 1187 ms
-02/01/24 22:18:39.466 | INFO  | sale_service | 0 | LogHelper.java: HHH000204: Processing PersistenceUnitInfo [name: default]
-02/01/24 22:18:39.505 | INFO  | sale_service | 0 | Version.java: HHH000412: Hibernate ORM core version 6.1.7.Final
-02/01/24 22:18:39.730 | INFO  | sale_service | 0 | HikariDataSource.java: HikariPool-1 - Starting...
-02/01/24 22:18:40.052 | INFO  | sale_service | 0 | HikariPool.java: HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@51df2a41
-02/01/24 22:18:40.054 | INFO  | sale_service | 0 | HikariDataSource.java: HikariPool-1 - Start completed.
-02/01/24 22:18:40.144 | INFO  | sale_service | 0 | DialectFactoryImpl.java: HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
-02/01/24 22:18:40.355 | INFO  | sale_service | 0 | TypeSafeActivator.java: Error calling `jakarta.validation.Validation#buildDefaultValidatorFactory`
+02/01/24 22:24:52.293 | INFO  | sale_service | 0 | StartupInfoLogger.java: Starting CmsApplication using Java 17.0.9 with PID 8556 (D:\manager-system-cms-service\target\classes started by Admin in D:\manager-system-cms-service)
+02/01/24 22:24:52.300 | INFO  | sale_service | 0 | SpringApplication.java: No active profile set, falling back to 1 default profile: "default"
+02/01/24 22:24:52.931 | INFO  | sale_service | 0 | RepositoryConfigurationDelegate.java: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+02/01/24 22:24:52.985 | INFO  | sale_service | 0 | RepositoryConfigurationDelegate.java: Finished Spring Data repository scanning in 49 ms. Found 3 JPA repository interfaces.
+02/01/24 22:24:53.420 | INFO  | sale_service | 0 | TomcatWebServer.java: Tomcat initialized with port(s): 8080 (http)
+02/01/24 22:24:53.427 | INFO  | sale_service | 0 | DirectJDKLog.java: Initializing ProtocolHandler ["http-nio-8080"]
+02/01/24 22:24:53.429 | INFO  | sale_service | 0 | DirectJDKLog.java: Starting service [Tomcat]
+02/01/24 22:24:53.429 | INFO  | sale_service | 0 | DirectJDKLog.java: Starting Servlet engine: [Apache Tomcat/10.1.13]
+02/01/24 22:24:53.510 | INFO  | sale_service | 0 | DirectJDKLog.java: Initializing Spring embedded WebApplicationContext
+02/01/24 22:24:53.511 | INFO  | sale_service | 0 | ServletWebServerApplicationContext.java: Root WebApplicationContext: initialization completed in 1170 ms
+02/01/24 22:24:53.721 | INFO  | sale_service | 0 | LogHelper.java: HHH000204: Processing PersistenceUnitInfo [name: default]
+02/01/24 22:24:53.763 | INFO  | sale_service | 0 | Version.java: HHH000412: Hibernate ORM core version 6.1.7.Final
+02/01/24 22:24:54.011 | INFO  | sale_service | 0 | HikariDataSource.java: HikariPool-1 - Starting...
+02/01/24 22:24:54.334 | INFO  | sale_service | 0 | HikariPool.java: HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@32e65852
+02/01/24 22:24:54.336 | INFO  | sale_service | 0 | HikariDataSource.java: HikariPool-1 - Start completed.
+02/01/24 22:24:54.400 | INFO  | sale_service | 0 | DialectFactoryImpl.java: HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+02/01/24 22:24:54.611 | INFO  | sale_service | 0 | TypeSafeActivator.java: Error calling `jakarta.validation.Validation#buildDefaultValidatorFactory`
 jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
 	at jakarta.validation.Validation$GenericBootstrapImpl.configure(Validation.java:291) ~[jakarta.validation-api-3.0.2.jar:?]
 	at jakarta.validation.Validation.buildDefaultValidatorFactory(Validation.java:103) ~[jakarta.validation-api-3.0.2.jar:?]
@@ -51,9 +51,9 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1304) ~[spring-boot-3.0.11.jar:3.0.11]
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1293) ~[spring-boot-3.0.11.jar:3.0.11]
 	at com.managersystem.admin.CmsApplication.main(CmsApplication.java:12) ~[classes/:?]
-02/01/24 22:18:40.875 | INFO  | sale_service | 0 | JtaPlatformInitiator.java: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-02/01/24 22:18:40.883 | INFO  | sale_service | 0 | AbstractEntityManagerFactoryBean.java: Initialized JPA EntityManagerFactory for persistence unit 'default'
-02/01/24 22:18:40.999 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+02/01/24 22:24:55.501 | INFO  | sale_service | 0 | JtaPlatformInitiator.java: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+02/01/24 22:24:55.515 | INFO  | sale_service | 0 | AbstractEntityManagerFactoryBean.java: Initialized JPA EntityManagerFactory for persistence unit 'default'
+02/01/24 22:24:55.632 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -65,7 +65,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-02/01/24 22:18:41.000 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+02/01/24 22:24:55.633 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -77,7 +77,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-02/01/24 22:18:41.045 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+02/01/24 22:24:55.676 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -89,7 +89,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-02/01/24 22:18:41.091 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+02/01/24 22:24:55.756 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -101,7 +101,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-02/01/24 22:18:41.094 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+02/01/24 22:24:55.762 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -113,7 +113,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-02/01/24 22:18:41.143 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+02/01/24 22:24:55.818 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -125,7 +125,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-02/01/24 22:18:41.144 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+02/01/24 22:24:55.818 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -137,7 +137,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-02/01/24 22:18:41.162 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+02/01/24 22:24:55.834 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -149,7 +149,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-02/01/24 22:18:41.170 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+02/01/24 22:24:55.840 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -161,7 +161,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-02/01/24 22:18:41.191 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+02/01/24 22:24:55.860 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -173,7 +173,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-02/01/24 22:18:41.197 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+02/01/24 22:24:55.867 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -185,7 +185,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-02/01/24 22:18:41.211 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+02/01/24 22:24:55.879 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -197,7 +197,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-02/01/24 22:18:41.212 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+02/01/24 22:24:55.879 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -209,7 +209,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-02/01/24 22:18:41.219 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+02/01/24 22:24:55.886 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -221,7 +221,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-02/01/24 22:18:41.220 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+02/01/24 22:24:55.887 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -233,7 +233,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-02/01/24 22:18:41.421 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+02/01/24 22:24:56.054 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -245,7 +245,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-02/01/24 22:18:41.432 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+02/01/24 22:24:56.068 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -257,28 +257,136 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-02/01/24 22:18:41.826 | DEBUG | sale_service | 0 | AbstractHandlerMethodMapping.java: 17 mappings in 'requestMappingHandlerMapping'
-02/01/24 22:18:42.217 | DEBUG | sale_service | 0 | SimpleUrlHandlerMapping.java: Patterns [/webjars/**, /**, /public/swagger-ui*/*swagger-initializer.js, /public/swagger-ui*/**] in 'resourceHandlerMapping'
-02/01/24 22:18:42.248 | INFO  | sale_service | 0 | DefaultSecurityFilterChain.java: Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7ae49d52, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@40ef1198, org.springframework.security.web.context.SecurityContextHolderFilter@16cc5e51, org.springframework.security.web.header.HeaderWriterFilter@3f1b4a14, org.springframework.security.web.authentication.logout.LogoutFilter@24c4370a, com.managersystem.admin.server.security.JwtAuthFilter@73e4bb60, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@198c97d0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@512319dc, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@72161dbb, org.springframework.security.web.session.SessionManagementFilter@105e9fef, org.springframework.security.web.access.ExceptionTranslationFilter@fbc1de9, org.springframework.security.web.access.intercept.AuthorizationFilter@1ea482b4]
-02/01/24 22:18:42.305 | DEBUG | sale_service | 0 | RequestMappingHandlerAdapter.java: ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-02/01/24 22:18:42.343 | DEBUG | sale_service | 0 | ExceptionHandlerExceptionResolver.java: ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
-02/01/24 22:18:42.532 | INFO  | sale_service | 0 | DirectJDKLog.java: Starting ProtocolHandler ["http-nio-8080"]
-02/01/24 22:18:42.549 | INFO  | sale_service | 0 | TomcatWebServer.java: Tomcat started on port(s): 8080 (http) with context path ''
-02/01/24 22:18:42.557 | INFO  | sale_service | 0 | StartupInfoLogger.java: Started CmsApplication in 4.853 seconds (process running for 5.733)
-02/01/24 22:18:51.101 | INFO  | sale_service | 0 | DirectJDKLog.java: Initializing Spring DispatcherServlet 'dispatcherServlet'
-02/01/24 22:18:51.103 | INFO  | sale_service | 0 | FrameworkServlet.java: Initializing Servlet 'dispatcherServlet'
-02/01/24 22:18:51.103 | DEBUG | sale_service | 0 | DispatcherServlet.java: Detected StandardServletMultipartResolver
-02/01/24 22:18:51.104 | DEBUG | sale_service | 0 | DispatcherServlet.java: Detected AcceptHeaderLocaleResolver
-02/01/24 22:18:51.104 | DEBUG | sale_service | 0 | DispatcherServlet.java: Detected FixedThemeResolver
-02/01/24 22:18:51.105 | DEBUG | sale_service | 0 | DispatcherServlet.java: Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@5f6e6902
-02/01/24 22:18:51.106 | DEBUG | sale_service | 0 | DispatcherServlet.java: Detected org.springframework.web.servlet.support.SessionFlashMapManager@4c2057c6
-02/01/24 22:18:51.106 | DEBUG | sale_service | 0 | FrameworkServlet.java: enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
-02/01/24 22:18:51.107 | INFO  | sale_service | 0 | FrameworkServlet.java: Completed initialization in 4 ms
-02/01/24 22:18:51.350 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
-    22681700 nanoseconds spent acquiring 1 JDBC connections;
+02/01/24 22:24:56.488 | DEBUG | sale_service | 0 | AbstractHandlerMethodMapping.java: 17 mappings in 'requestMappingHandlerMapping'
+02/01/24 22:24:56.892 | DEBUG | sale_service | 0 | SimpleUrlHandlerMapping.java: Patterns [/webjars/**, /**, /public/swagger-ui*/*swagger-initializer.js, /public/swagger-ui*/**] in 'resourceHandlerMapping'
+02/01/24 22:24:56.925 | INFO  | sale_service | 0 | DefaultSecurityFilterChain.java: Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1ea482b4, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3470c771, org.springframework.security.web.context.SecurityContextHolderFilter@105e9fef, org.springframework.security.web.header.HeaderWriterFilter@38c840fb, org.springframework.security.web.authentication.logout.LogoutFilter@1c7da28, com.managersystem.admin.server.security.JwtAuthFilter@70f148dc, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5a5cd0af, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@72090a80, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7d2ccd7f, org.springframework.security.web.session.SessionManagementFilter@1268ac94, org.springframework.security.web.access.ExceptionTranslationFilter@2c914aa3, org.springframework.security.web.access.intercept.AuthorizationFilter@557fe039]
+02/01/24 22:24:56.983 | DEBUG | sale_service | 0 | RequestMappingHandlerAdapter.java: ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+02/01/24 22:24:57.022 | DEBUG | sale_service | 0 | ExceptionHandlerExceptionResolver.java: ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+02/01/24 22:24:57.207 | INFO  | sale_service | 0 | DirectJDKLog.java: Starting ProtocolHandler ["http-nio-8080"]
+02/01/24 22:24:57.224 | INFO  | sale_service | 0 | TomcatWebServer.java: Tomcat started on port(s): 8080 (http) with context path ''
+02/01/24 22:24:57.233 | INFO  | sale_service | 0 | StartupInfoLogger.java: Started CmsApplication in 5.249 seconds (process running for 6.218)
+02/01/24 22:25:17.864 | INFO  | sale_service | 0 | DirectJDKLog.java: Initializing Spring DispatcherServlet 'dispatcherServlet'
+02/01/24 22:25:17.864 | INFO  | sale_service | 0 | FrameworkServlet.java: Initializing Servlet 'dispatcherServlet'
+02/01/24 22:25:17.865 | DEBUG | sale_service | 0 | DispatcherServlet.java: Detected StandardServletMultipartResolver
+02/01/24 22:25:17.865 | DEBUG | sale_service | 0 | DispatcherServlet.java: Detected AcceptHeaderLocaleResolver
+02/01/24 22:25:17.865 | DEBUG | sale_service | 0 | DispatcherServlet.java: Detected FixedThemeResolver
+02/01/24 22:25:17.866 | DEBUG | sale_service | 0 | DispatcherServlet.java: Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@7f1e946f
+02/01/24 22:25:17.866 | DEBUG | sale_service | 0 | DispatcherServlet.java: Detected org.springframework.web.servlet.support.SessionFlashMapManager@2ad39f2f
+02/01/24 22:25:17.866 | DEBUG | sale_service | 0 | FrameworkServlet.java: enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+02/01/24 22:25:17.867 | INFO  | sale_service | 0 | FrameworkServlet.java: Completed initialization in 2 ms
+02/01/24 22:25:17.910 | ERROR | sale_service | 0 | JwtService.java: Expired JWT token
+02/01/24 22:25:17.921 | DEBUG | sale_service | 0 | AbstractHandlerMapping.java: Mapped to com.managersystem.admin.handleRequest.controller.ApplicationController#getPageApplication(Pageable)
+02/01/24 22:25:17.922 | DEBUG | sale_service | 0 | AbstractHandlerMapping.java: Mapped to com.managersystem.admin.handleRequest.controller.ApplicationController#getPageApplication(Pageable)
+02/01/24 22:25:17.923 | DEBUG | sale_service | 0 | AbstractHandlerMapping.java: Mapped to com.managersystem.admin.handleRequest.controller.ApplicationController#getPageApplication(Pageable)
+02/01/24 22:25:17.923 | DEBUG | sale_service | 0 | AbstractHandlerMapping.java: Mapped to com.managersystem.admin.handleRequest.controller.ApplicationController#getPageApplication(Pageable)
+02/01/24 22:25:17.925 | DEBUG | sale_service | 0 | LogFormatUtils.java: GET "/api/mos/cms/applications?page=0&size=10&sort=string", parameters={masked}
+02/01/24 22:25:17.926 | DEBUG | sale_service | 0 | AbstractHandlerMapping.java: Mapped to com.managersystem.admin.handleRequest.controller.ApplicationController#getPageApplication(Pageable)
+02/01/24 22:25:17.951 | DEBUG | sale_service | 0 | ExceptionHandlerExceptionResolver.java: Using @ExceptionHandler com.managersystem.admin.server.exception.GlobalExceptionHandler#internalException(BaseException, WebRequest)
+02/01/24 22:25:17.953 | WARN  | sale_service | 0 | ExceptionHandlerExceptionResolver.java: Failure in @ExceptionHandler com.managersystem.admin.server.exception.GlobalExceptionHandler#internalException(BaseException, WebRequest)
+java.lang.IllegalStateException: Could not resolve parameter [0] in public org.springframework.http.ResponseEntity<?> com.managersystem.admin.server.exception.GlobalExceptionHandler.internalException(com.managersystem.admin.server.exception.base.BaseException,org.springframework.web.context.request.WebRequest): No suitable resolver
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:176) ~[spring-web-6.0.12.jar:6.0.12]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:146) ~[spring-web-6.0.12.jar:6.0.12]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.0.12.jar:6.0.12]
+	at org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver.doResolveHandlerMethodException(ExceptionHandlerExceptionResolver.java:413) ~[spring-webmvc-6.0.12.jar:6.0.12]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodExceptionResolver.doResolveException(AbstractHandlerMethodExceptionResolver.java:74) ~[spring-webmvc-6.0.12.jar:6.0.12]
+	at org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver.resolveException(AbstractHandlerExceptionResolver.java:141) ~[spring-webmvc-6.0.12.jar:6.0.12]
+	at org.springframework.web.servlet.handler.HandlerExceptionResolverComposite.resolveException(HandlerExceptionResolverComposite.java:80) ~[spring-webmvc-6.0.12.jar:6.0.12]
+	at org.springframework.web.servlet.DispatcherServlet.processHandlerException(DispatcherServlet.java:1341) ~[spring-webmvc-6.0.12.jar:6.0.12]
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1152) ~[spring-webmvc-6.0.12.jar:6.0.12]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1098) ~[spring-webmvc-6.0.12.jar:6.0.12]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974) ~[spring-webmvc-6.0.12.jar:6.0.12]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011) ~[spring-webmvc-6.0.12.jar:6.0.12]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.0.12.jar:6.0.12]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) ~[tomcat-embed-core-10.1.13.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.0.12.jar:6.0.12]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.13.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.13.jar:10.1.13]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.13.jar:10.1.13]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.13.jar:10.1.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.13.jar:10.1.13]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.13.jar:10.1.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110) ~[spring-web-6.0.12.jar:6.0.12]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.13.jar:10.1.13]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.13.jar:10.1.13]
+	at com.managersystem.admin.server.config.LoggingFilter.doFilter(LoggingFilter.java:30) ~[classes/:?]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.13.jar:10.1.13]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.13.jar:10.1.13]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.0.7.jar:6.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365) ~[spring-security-web-6.0.7.jar:6.0.7]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100) ~[spring-security-web-6.0.7.jar:6.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.0.7.jar:6.0.7]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.0.7.jar:6.0.7]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.0.7.jar:6.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.0.7.jar:6.0.7]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131) ~[spring-security-web-6.0.7.jar:6.0.7]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85) ~[spring-security-web-6.0.7.jar:6.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.0.7.jar:6.0.7]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.0.7.jar:6.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.0.7.jar:6.0.7]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.0.7.jar:6.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.0.7.jar:6.0.7]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.0.7.jar:6.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.0.7.jar:6.0.7]
+	at com.managersystem.admin.server.security.JwtAuthFilter.doFilterInternal(JwtAuthFilter.java:52) ~[classes/:?]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.12.jar:6.0.12]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.0.7.jar:6.0.7]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.0.7.jar:6.0.7]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.0.7.jar:6.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.0.7.jar:6.0.7]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.0.7.jar:6.0.7]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.0.7.jar:6.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.12.jar:6.0.12]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.0.7.jar:6.0.7]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.0.7.jar:6.0.7]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.0.7.jar:6.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.0.7.jar:6.0.7]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.0.7.jar:6.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.12.jar:6.0.12]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.0.7.jar:6.0.7]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.0.7.jar:6.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.12.jar:6.0.12]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.0.7.jar:6.0.7]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.0.7.jar:6.0.7]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.0.7.jar:6.0.7]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352) ~[spring-web-6.0.12.jar:6.0.12]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268) ~[spring-web-6.0.12.jar:6.0.12]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.13.jar:10.1.13]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.13.jar:10.1.13]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.0.12.jar:6.0.12]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.12.jar:6.0.12]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.13.jar:10.1.13]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.13.jar:10.1.13]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.0.12.jar:6.0.12]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.12.jar:6.0.12]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.13.jar:10.1.13]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.13.jar:10.1.13]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.0.12.jar:6.0.12]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.12.jar:6.0.12]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.13.jar:10.1.13]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.13.jar:10.1.13]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.13.jar:10.1.13]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.13.jar:10.1.13]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.13.jar:10.1.13]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.13.jar:10.1.13]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.13.jar:10.1.13]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.13.jar:10.1.13]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-10.1.13.jar:10.1.13]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391) ~[tomcat-embed-core-10.1.13.jar:10.1.13]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.13.jar:10.1.13]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894) ~[tomcat-embed-core-10.1.13.jar:10.1.13]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740) ~[tomcat-embed-core-10.1.13.jar:10.1.13]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.13.jar:10.1.13]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.13.jar:10.1.13]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.13.jar:10.1.13]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.13.jar:10.1.13]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+02/01/24 22:25:17.956 | DEBUG | sale_service | 0 | FrameworkServlet.java: Failed to complete request: org.springframework.security.access.AccessDeniedException: Access Denied
+02/01/24 22:25:17.957 | ERROR | sale_service | 0 | CustomAuthenticationEntryPoint.java: Unauthorized error: Full authentication is required to access this resource
+02/01/24 22:25:30.782 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+    27958700 nanoseconds spent acquiring 1 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
-    39000500 nanoseconds spent preparing 1 JDBC statements;
-    14013500 nanoseconds spent executing 1 JDBC statements;
+    18301900 nanoseconds spent preparing 1 JDBC statements;
+    42788800 nanoseconds spent executing 1 JDBC statements;
     0 nanoseconds spent executing 0 JDBC batches;
     0 nanoseconds spent performing 0 L2C puts;
     0 nanoseconds spent performing 0 L2C hits;
@@ -286,17 +394,17 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-02/01/24 22:18:51.364 | DEBUG | sale_service | 0 | AbstractHandlerMapping.java: Mapped to com.managersystem.admin.handleRequest.controller.ApplicationController#getPageApplication(Pageable)
-02/01/24 22:18:51.366 | DEBUG | sale_service | 0 | AbstractHandlerMapping.java: Mapped to com.managersystem.admin.handleRequest.controller.ApplicationController#getPageApplication(Pageable)
-02/01/24 22:18:51.366 | DEBUG | sale_service | 0 | AbstractHandlerMapping.java: Mapped to com.managersystem.admin.handleRequest.controller.ApplicationController#getPageApplication(Pageable)
-02/01/24 22:18:51.366 | DEBUG | sale_service | 0 | AbstractHandlerMapping.java: Mapped to com.managersystem.admin.handleRequest.controller.ApplicationController#getPageApplication(Pageable)
-02/01/24 22:18:51.371 | DEBUG | sale_service | 0 | LogFormatUtils.java: GET "/api/mos/cms/applications", parameters={}
-02/01/24 22:18:51.374 | DEBUG | sale_service | 0 | AbstractHandlerMapping.java: Mapped to com.managersystem.admin.handleRequest.controller.ApplicationController#getPageApplication(Pageable)
-02/01/24 22:18:51.510 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
-    21000 nanoseconds spent acquiring 1 JDBC connections;
+02/01/24 22:25:30.789 | DEBUG | sale_service | 0 | AbstractHandlerMapping.java: Mapped to com.managersystem.admin.handleRequest.controller.ApplicationController#getPageApplication(Pageable)
+02/01/24 22:25:30.791 | DEBUG | sale_service | 0 | AbstractHandlerMapping.java: Mapped to com.managersystem.admin.handleRequest.controller.ApplicationController#getPageApplication(Pageable)
+02/01/24 22:25:30.792 | DEBUG | sale_service | 0 | AbstractHandlerMapping.java: Mapped to com.managersystem.admin.handleRequest.controller.ApplicationController#getPageApplication(Pageable)
+02/01/24 22:25:30.793 | DEBUG | sale_service | 0 | AbstractHandlerMapping.java: Mapped to com.managersystem.admin.handleRequest.controller.ApplicationController#getPageApplication(Pageable)
+02/01/24 22:25:30.794 | DEBUG | sale_service | 0 | LogFormatUtils.java: GET "/api/mos/cms/applications?page=0&size=10&sort=string", parameters={masked}
+02/01/24 22:25:30.795 | DEBUG | sale_service | 0 | AbstractHandlerMapping.java: Mapped to com.managersystem.admin.handleRequest.controller.ApplicationController#getPageApplication(Pageable)
+02/01/24 22:25:30.943 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+    19500 nanoseconds spent acquiring 1 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
-    17400400 nanoseconds spent preparing 1 JDBC statements;
-    14148500 nanoseconds spent executing 1 JDBC statements;
+    29506800 nanoseconds spent preparing 1 JDBC statements;
+    47311000 nanoseconds spent executing 1 JDBC statements;
     0 nanoseconds spent executing 0 JDBC batches;
     0 nanoseconds spent performing 0 L2C puts;
     0 nanoseconds spent performing 0 L2C hits;
@@ -304,70 +412,9 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-02/01/24 22:18:51.549 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
-    18600 nanoseconds spent acquiring 1 JDBC connections;
-    0 nanoseconds spent releasing 0 JDBC connections;
-    19799400 nanoseconds spent preparing 1 JDBC statements;
-    12395800 nanoseconds spent executing 1 JDBC statements;
-    0 nanoseconds spent executing 0 JDBC batches;
-    0 nanoseconds spent performing 0 L2C puts;
-    0 nanoseconds spent performing 0 L2C hits;
-    0 nanoseconds spent performing 0 L2C misses;
-    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
-    0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
-}
-02/01/24 22:18:51.552 | DEBUG | sale_service | 0 | ExceptionHandlerExceptionResolver.java: Using @ExceptionHandler com.managersystem.admin.server.exception.GlobalExceptionHandler#badRequestException(BaseException, WebRequest)
-02/01/24 22:18:58.229 | DEBUG | sale_service | 0 | AbstractMessageConverterMethodProcessor.java: Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
-02/01/24 22:18:58.231 | DEBUG | sale_service | 0 | LogFormatUtils.java: Writing [ExceptionResponse(code=400, message=tẹ)]
-02/01/24 22:18:58.240 | DEBUG | sale_service | 0 | AbstractHandlerExceptionResolver.java: Resolved [BaseException(code=400)]
-02/01/24 22:18:58.242 | DEBUG | sale_service | 0 | FrameworkServlet.java: Completed 400 BAD_REQUEST
-02/01/24 22:18:58.244 | WARN  | sale_service | 6876 | LoggingFilter.java: end request ==> GET  /api/mos/cms/applications 6876
-02/01/24 22:18:58.362 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
-    12362900 nanoseconds spent acquiring 1 JDBC connections;
-    0 nanoseconds spent releasing 0 JDBC connections;
-    82600 nanoseconds spent preparing 1 JDBC statements;
-    27105100 nanoseconds spent executing 1 JDBC statements;
-    0 nanoseconds spent executing 0 JDBC batches;
-    0 nanoseconds spent performing 0 L2C puts;
-    0 nanoseconds spent performing 0 L2C hits;
-    0 nanoseconds spent performing 0 L2C misses;
-    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
-    0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
-}
-02/01/24 22:18:58.364 | DEBUG | sale_service | 0 | AbstractHandlerMapping.java: Mapped to com.managersystem.admin.handleRequest.controller.ApplicationController#getPageApplication(Pageable)
-02/01/24 22:18:58.364 | DEBUG | sale_service | 0 | AbstractHandlerMapping.java: Mapped to com.managersystem.admin.handleRequest.controller.ApplicationController#getPageApplication(Pageable)
-02/01/24 22:18:58.364 | DEBUG | sale_service | 0 | AbstractHandlerMapping.java: Mapped to com.managersystem.admin.handleRequest.controller.ApplicationController#getPageApplication(Pageable)
-02/01/24 22:18:58.365 | DEBUG | sale_service | 0 | AbstractHandlerMapping.java: Mapped to com.managersystem.admin.handleRequest.controller.ApplicationController#getPageApplication(Pageable)
-02/01/24 22:18:58.365 | DEBUG | sale_service | 0 | LogFormatUtils.java: GET "/api/mos/cms/applications", parameters={}
-02/01/24 22:18:58.365 | DEBUG | sale_service | 0 | AbstractHandlerMapping.java: Mapped to com.managersystem.admin.handleRequest.controller.ApplicationController#getPageApplication(Pageable)
-02/01/24 22:18:58.394 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
-    21300 nanoseconds spent acquiring 1 JDBC connections;
-    0 nanoseconds spent releasing 0 JDBC connections;
-    81000 nanoseconds spent preparing 1 JDBC statements;
-    26637700 nanoseconds spent executing 1 JDBC statements;
-    0 nanoseconds spent executing 0 JDBC batches;
-    0 nanoseconds spent performing 0 L2C puts;
-    0 nanoseconds spent performing 0 L2C hits;
-    0 nanoseconds spent performing 0 L2C misses;
-    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
-    0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
-}
-02/01/24 22:18:58.431 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
-    13000 nanoseconds spent acquiring 1 JDBC connections;
-    0 nanoseconds spent releasing 0 JDBC connections;
-    51100 nanoseconds spent preparing 1 JDBC statements;
-    36915700 nanoseconds spent executing 1 JDBC statements;
-    0 nanoseconds spent executing 0 JDBC batches;
-    0 nanoseconds spent performing 0 L2C puts;
-    0 nanoseconds spent performing 0 L2C hits;
-    0 nanoseconds spent performing 0 L2C misses;
-    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
-    0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
-}
-02/01/24 22:18:58.432 | DEBUG | sale_service | 0 | ExceptionHandlerExceptionResolver.java: Using @ExceptionHandler com.managersystem.admin.server.exception.GlobalExceptionHandler#badRequestException(BaseException, WebRequest)
-02/01/24 22:18:58.432 | DEBUG | sale_service | 0 | AbstractMessageConverterMethodProcessor.java: Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
-02/01/24 22:18:58.433 | DEBUG | sale_service | 0 | LogFormatUtils.java: Writing [ExceptionResponse(code=400, message=tẹ)]
-02/01/24 22:18:58.433 | DEBUG | sale_service | 0 | AbstractHandlerExceptionResolver.java: Resolved [BaseException(code=400)]
-02/01/24 22:18:58.434 | DEBUG | sale_service | 0 | FrameworkServlet.java: Completed 400 BAD_REQUEST
-02/01/24 22:19:27.449 | INFO  | sale_service | 0 | AbstractEntityManagerFactoryBean.java: Closing JPA EntityManagerFactory for persistence unit 'default'
-02/01/24 22:19:27.450 | INFO  | sale_service | 0 | HikariDataSource.java: HikariPool-1 - Shutdown initiated...
+02/01/24 22:25:30.971 | DEBUG | sale_service | 0 | AbstractMessageConverterMethodProcessor.java: Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+02/01/24 22:25:30.978 | DEBUG | sale_service | 0 | LogFormatUtils.java: Writing [PageResponse(data=[ApplicationResponse(id=8, applicationCode=FOO, applicationName=Quản lý quán ăn, i (truncated)...]
+02/01/24 22:25:30.985 | DEBUG | sale_service | 0 | FrameworkServlet.java: Completed 200 OK
+02/01/24 22:25:30.988 | WARN  | sale_service | 192 | LoggingFilter.java: end request ==> GET  /api/mos/cms/applications?page=0&size=10&sort=string 192
+02/01/24 22:26:56.875 | INFO  | sale_service | 0 | AbstractEntityManagerFactoryBean.java: Closing JPA EntityManagerFactory for persistence unit 'default'
+02/01/24 22:26:56.877 | INFO  | sale_service | 0 | HikariDataSource.java: HikariPool-1 - Shutdown initiated...

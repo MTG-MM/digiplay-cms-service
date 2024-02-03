@@ -78,8 +78,8 @@ public class RewardScheduleService extends BaseService {
         rewardState.setCountMinute(0L);
       }
       int minutesToNextDay = 24 * 60 - localDateTime.getHour() * 60 - localDateTime.getMinute();
-      processStateDayQuantity(rewardState, rewardSchedule.getQuantity(), minutesToNextDay);
-      saveUpdateStateLog(rewardState, localDateTime);
+      int quantity = processStateDayQuantity(rewardState, rewardSchedule.getQuantity(), minutesToNextDay, localDateTime.getDayOfMonth());
+      saveUpdateStateLog(rewardState, localDateTime, quantity);
     } else if (rewardSchedule.getPeriodType() == PeriodType.HOUR) {
       if (localDateTime.getHour() != rewardState.getLastHour()) {
         log.debug("====>update new hour {}", localDateTime);
@@ -89,24 +89,27 @@ public class RewardScheduleService extends BaseService {
         rewardState.setCountMinute(0L);
       }
       int minutesToNextHour = 60 - localDateTime.getMinute();
-      processStateHourQuantity(rewardState, rewardSchedule.getQuantity(), minutesToNextHour);
-      saveUpdateStateLog(rewardState, localDateTime);
+      int quantity = processStateHourQuantity(rewardState, rewardSchedule.getQuantity(), minutesToNextHour, localDateTime.getHour());
+      saveUpdateStateLog(rewardState, localDateTime, quantity);
     } else if (rewardSchedule.getPeriodType() == PeriodType.MINUTE) {
       log.debug("====>update new minute {}", localDateTime);
       rewardState.setLastMinute(localDateTime.getMinute());
       rewardState.setCountDay(0L);
       rewardState.setCountHour(0L);
       rewardState.setCountMinute(0L);
-      processStateMinuterQuantity(rewardState, rewardSchedule.getQuantity());
-      saveUpdateStateLog(rewardState, localDateTime);
+      long quantity = processStateMinuterQuantity(rewardState, rewardSchedule.getQuantity(), localDateTime.getHour() * 60 + localDateTime.getMinute());
+      saveUpdateStateLog(rewardState, localDateTime, quantity);
     }
     rewardStateStorage.save(rewardState);
   }
 
-  public void processStateDayQuantity(RewardState rewardState, long quantity, long minuteToNextDay) {
+  public int processStateDayQuantity(RewardState rewardState, long quantity, long minuteToNextDay, int time) {
     int processQuantity = 0;
     long notProcessQuantity = quantity - rewardState.getCountDay();
-
+    if(notProcessQuantity == 0) {
+      log.warn("=====>processStateHourQuantity: notProcessQuantity == 0");
+      return 0;
+    }
     if (notProcessQuantity >= minuteToNextDay) {
       //Nếu số quà có số lượng lớn hơn số phút còn lại thì cộng thêm bằng số quà còn lại / số phút còn lại
       processQuantity = (int) (notProcessQuantity / minuteToNextDay);
@@ -114,23 +117,30 @@ public class RewardScheduleService extends BaseService {
       int minuteInDay = 60 * 24;
       //Nêu số quà có số lượng ít hơn so phut con lai
       int avgMinutePerReward = (int) ((minuteInDay) / notProcessQuantity);
+      //Nếu chỉ còn 1 quà thì cần xu ly de khong tra ngay khi goi
+      if(notProcessQuantity == 1){
+        avgMinutePerReward = avgMinutePerReward * 2;
+      }
       if (minuteToNextDay % avgMinutePerReward == 0) {
         processQuantity = 1;
       }
     }
-    rewardState.addCountDay(processQuantity);
-    rewardState.addCountHour(processQuantity);
-    rewardState.addCountMinute(processQuantity);
-
+    if(processQuantity > 0) {
+      rewardState.addCountDay(processQuantity);
+      rewardState.addCountHour(processQuantity);
+      rewardState.addCountMinute(processQuantity);
+      rewardState.setLastDay(time);
+    }
+    return processQuantity;
   }
 
 
-  public void processStateHourQuantity(RewardState rewardState, long quantity, long minuteToNextHour) {
+  public int processStateHourQuantity(RewardState rewardState, long quantity, long minuteToNextHour, int time) {
     int processQuantity = 0;
     long notProcessQuantity = quantity - rewardState.getCountHour();
     if(notProcessQuantity == 0) {
       log.warn("=====>processStateHourQuantity: notProcessQuantity == 0");
-      return;
+      return 0;
     }
     if (notProcessQuantity >= minuteToNextHour) {
       //Nếu số quà có số lượng lớn hơn số phút còn lại thì cộng thêm bằng số quà còn lại / số phút còn lại
@@ -147,23 +157,30 @@ public class RewardScheduleService extends BaseService {
         processQuantity = 1;
       }
     }
-    rewardState.addCountMinute(processQuantity);
-    rewardState.addCountDay(processQuantity);
-    rewardState.addCountHour(processQuantity);
+    if(processQuantity > 0) {
+      rewardState.addCountDay(processQuantity);
+      rewardState.addCountHour(processQuantity);
+      rewardState.addCountMinute(processQuantity);
+      rewardState.setLastHour(time);
+    }
+    return processQuantity;
   }
 
-  public void processStateMinuterQuantity(RewardState rewardState, long quantity) {
+  public long processStateMinuterQuantity(RewardState rewardState, long quantity, int time) {
     rewardState.addCountMinute(quantity);
     rewardState.addCountDay(quantity);
     rewardState.addCountHour(quantity);
+    rewardState.setLastMinute(time);
+    return quantity;
   }
 
-  public void saveUpdateStateLog(RewardState rewardState, LocalDateTime localDateTime) {
+  public void saveUpdateStateLog(RewardState rewardState, LocalDateTime localDateTime, long updateQuantity) {
     RewardStateLog rewardStateLog = new RewardStateLog();
     rewardStateLog.setRewardStateId(rewardState.getId());
     rewardStateLog.setQuantityDay(rewardState.getCountDay());
     rewardStateLog.setQuantityHour(rewardState.getCountHour());
     rewardStateLog.setQuantityMinute(rewardState.getCountMinute());
+    rewardStateLog.setUpdateQuantity(updateQuantity);
     rewardStateLog.setCreatedTime(localDateTime);
     rewardStateLogStorage.save(rewardStateLog);
   }

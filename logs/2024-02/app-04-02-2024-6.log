@@ -1,35 +1,35 @@
-04/02/24 01:09:48.922 | INFO  | sale_service | 0 | StartupInfoLogger.java: Starting CmsApplication using Java 17.0.9 with PID 23360 (D:\manager-system-cms-service\target\classes started by Admin in D:\manager-system-cms-service)
-04/02/24 01:09:48.931 | INFO  | sale_service | 0 | SpringApplication.java: No active profile set, falling back to 1 default profile: "default"
-04/02/24 01:09:49.748 | INFO  | sale_service | 0 | RepositoryConfigurationDelegate.java: Multiple Spring Data modules found, entering strict repository configuration mode
-04/02/24 01:09:49.749 | INFO  | sale_service | 0 | RepositoryConfigurationDelegate.java: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-04/02/24 01:09:49.984 | INFO  | sale_service | 0 | RepositoryConfigurationDelegate.java: Finished Spring Data repository scanning in 228 ms. Found 10 JPA repository interfaces.
-04/02/24 01:09:49.995 | INFO  | sale_service | 0 | RepositoryConfigurationDelegate.java: Multiple Spring Data modules found, entering strict repository configuration mode
-04/02/24 01:09:49.996 | INFO  | sale_service | 0 | RepositoryConfigurationDelegate.java: Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-04/02/24 01:09:50.009 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.AccountRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-04/02/24 01:09:50.009 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.ApplicationRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-04/02/24 01:09:50.010 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.RewardItemHistoryRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-04/02/24 01:09:50.010 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.RewardItemRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-04/02/24 01:09:50.010 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.RewardScheduleRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-04/02/24 01:09:50.010 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.RewardSegmentDetailRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-04/02/24 01:09:50.011 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.RewardSegmentRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-04/02/24 01:09:50.011 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.RewardStateLogRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-04/02/24 01:09:50.011 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.RewardStateRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-04/02/24 01:09:50.011 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-04/02/24 01:09:50.012 | INFO  | sale_service | 0 | RepositoryConfigurationDelegate.java: Finished Spring Data repository scanning in 9 ms. Found 0 Redis repository interfaces.
-04/02/24 01:09:50.513 | INFO  | sale_service | 0 | TomcatWebServer.java: Tomcat initialized with port(s): 8080 (http)
-04/02/24 01:09:50.518 | INFO  | sale_service | 0 | DirectJDKLog.java: Initializing ProtocolHandler ["http-nio-8080"]
-04/02/24 01:09:50.520 | INFO  | sale_service | 0 | DirectJDKLog.java: Starting service [Tomcat]
-04/02/24 01:09:50.520 | INFO  | sale_service | 0 | DirectJDKLog.java: Starting Servlet engine: [Apache Tomcat/10.1.13]
-04/02/24 01:09:50.597 | INFO  | sale_service | 0 | DirectJDKLog.java: Initializing Spring embedded WebApplicationContext
-04/02/24 01:09:50.597 | INFO  | sale_service | 0 | ServletWebServerApplicationContext.java: Root WebApplicationContext: initialization completed in 1629 ms
-04/02/24 01:09:50.731 | DEBUG | sale_service | 0 | GenericFilterBean.java: Filter 'serverHttpObservationFilter' configured for use
-04/02/24 01:09:50.850 | INFO  | sale_service | 0 | LogHelper.java: HHH000204: Processing PersistenceUnitInfo [name: default]
-04/02/24 01:09:50.888 | INFO  | sale_service | 0 | Version.java: HHH000412: Hibernate ORM core version 6.1.7.Final
-04/02/24 01:09:51.118 | INFO  | sale_service | 0 | HikariDataSource.java: HikariPool-1 - Starting...
-04/02/24 01:09:51.437 | INFO  | sale_service | 0 | HikariPool.java: HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@282aea3c
-04/02/24 01:09:51.439 | INFO  | sale_service | 0 | HikariDataSource.java: HikariPool-1 - Start completed.
-04/02/24 01:09:51.511 | INFO  | sale_service | 0 | DialectFactoryImpl.java: HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
-04/02/24 01:09:51.758 | INFO  | sale_service | 0 | TypeSafeActivator.java: Error calling `jakarta.validation.Validation#buildDefaultValidatorFactory`
+04/02/24 01:15:49.561 | INFO  | sale_service | 0 | StartupInfoLogger.java: Starting CmsApplication using Java 17.0.9 with PID 21532 (D:\manager-system-cms-service\target\classes started by Admin in D:\manager-system-cms-service)
+04/02/24 01:15:49.568 | INFO  | sale_service | 0 | SpringApplication.java: No active profile set, falling back to 1 default profile: "default"
+04/02/24 01:15:50.449 | INFO  | sale_service | 0 | RepositoryConfigurationDelegate.java: Multiple Spring Data modules found, entering strict repository configuration mode
+04/02/24 01:15:50.450 | INFO  | sale_service | 0 | RepositoryConfigurationDelegate.java: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+04/02/24 01:15:50.754 | INFO  | sale_service | 0 | RepositoryConfigurationDelegate.java: Finished Spring Data repository scanning in 296 ms. Found 10 JPA repository interfaces.
+04/02/24 01:15:50.768 | INFO  | sale_service | 0 | RepositoryConfigurationDelegate.java: Multiple Spring Data modules found, entering strict repository configuration mode
+04/02/24 01:15:50.769 | INFO  | sale_service | 0 | RepositoryConfigurationDelegate.java: Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+04/02/24 01:15:50.783 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.AccountRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+04/02/24 01:15:50.784 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.ApplicationRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+04/02/24 01:15:50.784 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.RewardItemHistoryRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+04/02/24 01:15:50.785 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.RewardItemRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+04/02/24 01:15:50.785 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.RewardScheduleRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+04/02/24 01:15:50.785 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.RewardSegmentDetailRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+04/02/24 01:15:50.786 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.RewardSegmentRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+04/02/24 01:15:50.786 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.RewardStateLogRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+04/02/24 01:15:50.786 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.RewardStateRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+04/02/24 01:15:50.787 | INFO  | sale_service | 0 | RepositoryConfigurationExtensionSupport.java: Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.managersystem.admin.server.repositories.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+04/02/24 01:15:50.787 | INFO  | sale_service | 0 | RepositoryConfigurationDelegate.java: Finished Spring Data repository scanning in 10 ms. Found 0 Redis repository interfaces.
+04/02/24 01:15:51.309 | INFO  | sale_service | 0 | TomcatWebServer.java: Tomcat initialized with port(s): 8080 (http)
+04/02/24 01:15:51.316 | INFO  | sale_service | 0 | DirectJDKLog.java: Initializing ProtocolHandler ["http-nio-8080"]
+04/02/24 01:15:51.317 | INFO  | sale_service | 0 | DirectJDKLog.java: Starting service [Tomcat]
+04/02/24 01:15:51.318 | INFO  | sale_service | 0 | DirectJDKLog.java: Starting Servlet engine: [Apache Tomcat/10.1.13]
+04/02/24 01:15:51.408 | INFO  | sale_service | 0 | DirectJDKLog.java: Initializing Spring embedded WebApplicationContext
+04/02/24 01:15:51.408 | INFO  | sale_service | 0 | ServletWebServerApplicationContext.java: Root WebApplicationContext: initialization completed in 1800 ms
+04/02/24 01:15:51.564 | DEBUG | sale_service | 0 | GenericFilterBean.java: Filter 'serverHttpObservationFilter' configured for use
+04/02/24 01:15:51.688 | INFO  | sale_service | 0 | LogHelper.java: HHH000204: Processing PersistenceUnitInfo [name: default]
+04/02/24 01:15:51.731 | INFO  | sale_service | 0 | Version.java: HHH000412: Hibernate ORM core version 6.1.7.Final
+04/02/24 01:15:51.976 | INFO  | sale_service | 0 | HikariDataSource.java: HikariPool-1 - Starting...
+04/02/24 01:15:52.309 | INFO  | sale_service | 0 | HikariPool.java: HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@72a61e61
+04/02/24 01:15:52.311 | INFO  | sale_service | 0 | HikariDataSource.java: HikariPool-1 - Start completed.
+04/02/24 01:15:52.413 | INFO  | sale_service | 0 | DialectFactoryImpl.java: HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+04/02/24 01:15:52.658 | INFO  | sale_service | 0 | TypeSafeActivator.java: Error calling `jakarta.validation.Validation#buildDefaultValidatorFactory`
 jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
 	at jakarta.validation.Validation$GenericBootstrapImpl.configure(Validation.java:291) ~[jakarta.validation-api-3.0.2.jar:?]
 	at jakarta.validation.Validation.buildDefaultValidatorFactory(Validation.java:103) ~[jakarta.validation-api-3.0.2.jar:?]
@@ -66,12 +66,12 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1304) ~[spring-boot-3.0.11.jar:3.0.11]
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1293) ~[spring-boot-3.0.11.jar:3.0.11]
 	at com.managersystem.admin.CmsApplication.main(CmsApplication.java:14) ~[classes/:?]
-04/02/24 01:09:52.252 | INFO  | sale_service | 0 | JtaPlatformInitiator.java: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-04/02/24 01:09:52.260 | INFO  | sale_service | 0 | AbstractEntityManagerFactoryBean.java: Initialized JPA EntityManagerFactory for persistence unit 'default'
-04/02/24 01:09:52.451 | INFO  | sale_service | 0 | Version.java: Redisson 3.24.3
-04/02/24 01:09:52.751 | INFO  | sale_service | 0 | ConnectionPool.java: 1 connections initialized for tcp.appengine.bfcplatform.vn/103.69.194.195:13437
-04/02/24 01:09:53.446 | INFO  | sale_service | 0 | ConnectionPool.java: 24 connections initialized for tcp.appengine.bfcplatform.vn/103.69.194.195:13437
-04/02/24 01:09:53.673 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:53.208 | INFO  | sale_service | 0 | JtaPlatformInitiator.java: HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+04/02/24 01:15:53.217 | INFO  | sale_service | 0 | AbstractEntityManagerFactoryBean.java: Initialized JPA EntityManagerFactory for persistence unit 'default'
+04/02/24 01:15:53.428 | INFO  | sale_service | 0 | Version.java: Redisson 3.24.3
+04/02/24 01:15:53.833 | INFO  | sale_service | 0 | ConnectionPool.java: 1 connections initialized for tcp.appengine.bfcplatform.vn/103.69.194.5:13437
+04/02/24 01:15:54.564 | INFO  | sale_service | 0 | ConnectionPool.java: 24 connections initialized for tcp.appengine.bfcplatform.vn/103.69.194.5:13437
+04/02/24 01:15:54.762 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -83,7 +83,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:53.674 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:54.764 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -95,7 +95,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:53.722 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:54.831 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -107,7 +107,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:53.775 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:54.890 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -119,7 +119,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:53.777 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:54.894 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -131,7 +131,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:53.820 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:54.933 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -143,7 +143,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:53.821 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:54.933 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -155,7 +155,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:53.836 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:54.947 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -167,7 +167,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:53.843 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:54.953 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -179,7 +179,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:53.863 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:54.971 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -191,7 +191,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:53.868 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:54.976 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -203,7 +203,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:53.891 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:54.990 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -215,7 +215,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:53.892 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:54.990 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -227,7 +227,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:53.902 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:54.997 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -239,7 +239,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:53.903 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:54.998 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -251,7 +251,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:54.052 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:55.158 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -263,7 +263,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:54.062 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:55.168 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -275,7 +275,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:54.072 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:55.179 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -287,7 +287,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:54.076 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:55.182 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -299,7 +299,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:54.097 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:55.201 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -311,7 +311,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:54.103 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:55.206 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -323,7 +323,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:54.124 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:55.228 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -335,7 +335,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:54.127 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:55.231 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -347,7 +347,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:54.142 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:55.253 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -359,7 +359,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:54.142 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:55.253 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -371,7 +371,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:54.158 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:55.278 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -383,7 +383,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:54.160 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:55.280 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -395,7 +395,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:54.172 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:55.290 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -407,7 +407,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:54.172 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:55.291 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -419,7 +419,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:54.184 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:55.304 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -431,7 +431,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:54.187 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:55.307 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -443,7 +443,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:54.199 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:55.319 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -455,7 +455,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:54.199 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:55.320 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -467,7 +467,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:54.210 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:55.331 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -479,7 +479,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:54.213 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:55.333 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -491,7 +491,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:54.231 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:55.352 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -503,7 +503,7 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:54.234 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+04/02/24 01:15:55.355 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
     0 nanoseconds spent acquiring 0 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
     0 nanoseconds spent preparing 0 JDBC statements;
@@ -515,783 +515,35 @@ jakarta.validation.NoProviderFoundException: Unable to create a Configuration, b
     0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
     0 nanoseconds spent executing 0 partial-flushes (flushing a total of 0 entities and 0 collections)
 }
-04/02/24 01:09:54.582 | DEBUG | sale_service | 0 | AbstractHandlerMethodMapping.java: 19 mappings in 'requestMappingHandlerMapping'
-04/02/24 01:09:54.663 | DEBUG | sale_service | 0 | SimpleUrlHandlerMapping.java: Patterns [/webjars/**, /**, /v1/docs/swagger-ui*/*swagger-initializer.js, /v1/docs/swagger-ui*/**] in 'resourceHandlerMapping'
-04/02/24 01:09:54.787 | INFO  | sale_service | 0 | EndpointLinksResolver.java: Exposing 1 endpoint(s) beneath base path '/actuator'
-04/02/24 01:09:54.846 | INFO  | sale_service | 0 | DefaultSecurityFilterChain.java: Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@278e5f8e, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@44a3b4d9, org.springframework.security.web.context.SecurityContextHolderFilter@6e9d60e1, org.springframework.security.web.header.HeaderWriterFilter@55c9e012, org.springframework.security.web.authentication.logout.LogoutFilter@32a53a59, com.managersystem.admin.server.security.JwtAuthFilter@7ecb9e17, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6b6d68d2, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@912fdbb, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@16e3a461, org.springframework.security.web.session.SessionManagementFilter@321f97d9, org.springframework.security.web.access.ExceptionTranslationFilter@694c23e4, org.springframework.security.web.access.intercept.AuthorizationFilter@73021987]
-04/02/24 01:09:54.903 | DEBUG | sale_service | 0 | RequestMappingHandlerAdapter.java: ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-04/02/24 01:09:54.938 | DEBUG | sale_service | 0 | ExceptionHandlerExceptionResolver.java: ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
-04/02/24 01:09:55.266 | INFO  | sale_service | 0 | DirectJDKLog.java: Starting ProtocolHandler ["http-nio-8080"]
-04/02/24 01:09:55.275 | INFO  | sale_service | 0 | TomcatWebServer.java: Tomcat started on port(s): 8080 (http) with context path ''
-04/02/24 01:09:55.291 | INFO  | sale_service | 0 | StartupInfoLogger.java: Started CmsApplication in 6.687 seconds (process running for 7.645)
-04/02/24 01:09:55.412 | INFO  | sale_service | 0 | DirectJDKLog.java: Initializing Spring DispatcherServlet 'dispatcherServlet'
-04/02/24 01:09:55.412 | INFO  | sale_service | 0 | FrameworkServlet.java: Initializing Servlet 'dispatcherServlet'
-04/02/24 01:09:55.412 | DEBUG | sale_service | 0 | DispatcherServlet.java: Detected StandardServletMultipartResolver
-04/02/24 01:09:55.412 | DEBUG | sale_service | 0 | DispatcherServlet.java: Detected AcceptHeaderLocaleResolver
-04/02/24 01:09:55.412 | DEBUG | sale_service | 0 | DispatcherServlet.java: Detected FixedThemeResolver
-04/02/24 01:09:55.413 | DEBUG | sale_service | 0 | DispatcherServlet.java: Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@3f13ab39
-04/02/24 01:09:55.414 | DEBUG | sale_service | 0 | DispatcherServlet.java: Detected org.springframework.web.servlet.support.SessionFlashMapManager@4fbdc20
-04/02/24 01:09:55.414 | DEBUG | sale_service | 0 | FrameworkServlet.java: enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
-04/02/24 01:09:55.414 | INFO  | sale_service | 0 | FrameworkServlet.java: Completed initialization in 2 ms
-04/02/24 01:09:57.625 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
-    10785500 nanoseconds spent acquiring 1 JDBC connections;
+04/02/24 01:15:55.710 | DEBUG | sale_service | 0 | AbstractHandlerMethodMapping.java: 19 mappings in 'requestMappingHandlerMapping'
+04/02/24 01:15:55.807 | DEBUG | sale_service | 0 | SimpleUrlHandlerMapping.java: Patterns [/webjars/**, /**, /v1/docs/swagger-ui*/*swagger-initializer.js, /v1/docs/swagger-ui*/**] in 'resourceHandlerMapping'
+04/02/24 01:15:55.959 | INFO  | sale_service | 0 | EndpointLinksResolver.java: Exposing 1 endpoint(s) beneath base path '/actuator'
+04/02/24 01:15:56.012 | INFO  | sale_service | 0 | DefaultSecurityFilterChain.java: Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7ce299c6, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@278e5f8e, org.springframework.security.web.context.SecurityContextHolderFilter@64e06cf0, org.springframework.security.web.header.HeaderWriterFilter@50853850, org.springframework.security.web.authentication.logout.LogoutFilter@5331be15, com.managersystem.admin.server.security.JwtAuthFilter@538e74fc, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@207283b4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@c8d0ea3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@44a3b4d9, org.springframework.security.web.session.SessionManagementFilter@6bcc277a, org.springframework.security.web.access.ExceptionTranslationFilter@17a17af5, org.springframework.security.web.access.intercept.AuthorizationFilter@4e42beba]
+04/02/24 01:15:56.078 | DEBUG | sale_service | 0 | RequestMappingHandlerAdapter.java: ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+04/02/24 01:15:56.119 | DEBUG | sale_service | 0 | ExceptionHandlerExceptionResolver.java: ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+04/02/24 01:15:56.456 | INFO  | sale_service | 0 | DirectJDKLog.java: Starting ProtocolHandler ["http-nio-8080"]
+04/02/24 01:15:56.465 | INFO  | sale_service | 0 | TomcatWebServer.java: Tomcat started on port(s): 8080 (http) with context path ''
+04/02/24 01:15:56.483 | INFO  | sale_service | 0 | StartupInfoLogger.java: Started CmsApplication in 7.291 seconds (process running for 8.196)
+04/02/24 01:15:56.578 | INFO  | sale_service | 0 | DirectJDKLog.java: Initializing Spring DispatcherServlet 'dispatcherServlet'
+04/02/24 01:15:56.578 | INFO  | sale_service | 0 | FrameworkServlet.java: Initializing Servlet 'dispatcherServlet'
+04/02/24 01:15:56.579 | DEBUG | sale_service | 0 | DispatcherServlet.java: Detected StandardServletMultipartResolver
+04/02/24 01:15:56.579 | DEBUG | sale_service | 0 | DispatcherServlet.java: Detected AcceptHeaderLocaleResolver
+04/02/24 01:15:56.579 | DEBUG | sale_service | 0 | DispatcherServlet.java: Detected FixedThemeResolver
+04/02/24 01:15:56.580 | DEBUG | sale_service | 0 | DispatcherServlet.java: Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@77ae2d25
+04/02/24 01:15:56.581 | DEBUG | sale_service | 0 | DispatcherServlet.java: Detected org.springframework.web.servlet.support.SessionFlashMapManager@27e037c1
+04/02/24 01:15:56.581 | DEBUG | sale_service | 0 | FrameworkServlet.java: enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+04/02/24 01:15:56.582 | INFO  | sale_service | 0 | FrameworkServlet.java: Completed initialization in 3 ms
+04/02/24 01:15:57.461 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
+    12777301 nanoseconds spent acquiring 1 JDBC connections;
     0 nanoseconds spent releasing 0 JDBC connections;
-    113376199 nanoseconds spent preparing 24 JDBC statements;
-    1524649195 nanoseconds spent executing 22 JDBC statements;
-    344342002 nanoseconds spent executing 2 JDBC batches;
+    120953199 nanoseconds spent preparing 15 JDBC statements;
+    297021102 nanoseconds spent executing 13 JDBC statements;
+    114820699 nanoseconds spent executing 2 JDBC batches;
     0 nanoseconds spent performing 0 L2C puts;
     0 nanoseconds spent performing 0 L2C hits;
     0 nanoseconds spent performing 0 L2C misses;
-    397688500 nanoseconds spent executing 1 flushes (flushing a total of 46 entities and 0 collections);
-    12120399 nanoseconds spent executing 4 partial-flushes (flushing a total of 30 entities and 30 collections)
+    154251500 nanoseconds spent executing 1 flushes (flushing a total of 46 entities and 0 collections);
+    11924300 nanoseconds spent executing 4 partial-flushes (flushing a total of 30 entities and 30 collections)
 }
-04/02/24 01:10:58.434 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
-    12958000 nanoseconds spent acquiring 1 JDBC connections;
-    0 nanoseconds spent releasing 0 JDBC connections;
-    21194404 nanoseconds spent preparing 15 JDBC statements;
-    430945102 nanoseconds spent executing 13 JDBC statements;
-    112711200 nanoseconds spent executing 2 JDBC batches;
-    0 nanoseconds spent performing 0 L2C puts;
-    0 nanoseconds spent performing 0 L2C hits;
-    0 nanoseconds spent performing 0 L2C misses;
-    139046300 nanoseconds spent executing 1 flushes (flushing a total of 46 entities and 0 collections);
-    2745899 nanoseconds spent executing 4 partial-flushes (flushing a total of 30 entities and 30 collections)
-}
-04/02/24 01:11:59.172 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
-    23470500 nanoseconds spent acquiring 1 JDBC connections;
-    0 nanoseconds spent releasing 0 JDBC connections;
-    950701 nanoseconds spent preparing 15 JDBC statements;
-    425756098 nanoseconds spent executing 13 JDBC statements;
-    103509099 nanoseconds spent executing 2 JDBC batches;
-    0 nanoseconds spent performing 0 L2C puts;
-    0 nanoseconds spent performing 0 L2C hits;
-    0 nanoseconds spent performing 0 L2C misses;
-    109369101 nanoseconds spent executing 1 flushes (flushing a total of 46 entities and 0 collections);
-    2024601 nanoseconds spent executing 4 partial-flushes (flushing a total of 30 entities and 30 collections)
-}
-04/02/24 01:13:00.462 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
-    15225800 nanoseconds spent acquiring 1 JDBC connections;
-    0 nanoseconds spent releasing 0 JDBC connections;
-    982899 nanoseconds spent preparing 15 JDBC statements;
-    484042998 nanoseconds spent executing 13 JDBC statements;
-    174976299 nanoseconds spent executing 2 JDBC batches;
-    0 nanoseconds spent performing 0 L2C puts;
-    0 nanoseconds spent performing 0 L2C hits;
-    0 nanoseconds spent performing 0 L2C misses;
-    177800600 nanoseconds spent executing 1 flushes (flushing a total of 46 entities and 0 collections);
-    1589801 nanoseconds spent executing 4 partial-flushes (flushing a total of 30 entities and 30 collections)
-}
-04/02/24 01:14:01.129 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
-    13744200 nanoseconds spent acquiring 1 JDBC connections;
-    0 nanoseconds spent releasing 0 JDBC connections;
-    948903 nanoseconds spent preparing 15 JDBC statements;
-    398430000 nanoseconds spent executing 13 JDBC statements;
-    88165299 nanoseconds spent executing 2 JDBC batches;
-    0 nanoseconds spent performing 0 L2C puts;
-    0 nanoseconds spent performing 0 L2C hits;
-    0 nanoseconds spent performing 0 L2C misses;
-    91475800 nanoseconds spent executing 1 flushes (flushing a total of 46 entities and 0 collections);
-    1287699 nanoseconds spent executing 4 partial-flushes (flushing a total of 30 entities and 30 collections)
-}
-04/02/24 01:14:54.068 | INFO  | sale_service | 0 | DNSMonitor.java: Detected DNS change. Master redis://tcp.appengine.bfcplatform.vn:13437 has changed ip from 103.69.194.195 to 103.69.194.120
-04/02/24 01:14:54.124 | INFO  | sale_service | 0 | ConnectionPool.java: 1 connections initialized for tcp.appengine.bfcplatform.vn/103.69.194.120:13437
-04/02/24 01:14:54.839 | INFO  | sale_service | 0 | MasterSlaveEntry.java: master tcp.appengine.bfcplatform.vn/103.69.194.195:13437 has changed to tcp.appengine.bfcplatform.vn/103.69.194.120:13437
-04/02/24 01:14:54.840 | INFO  | sale_service | 0 | ConnectionPool.java: 24 connections initialized for tcp.appengine.bfcplatform.vn/103.69.194.120:13437
-04/02/24 01:15:01.652 | WARN  | sale_service | 0 | ProxyConnection.java: HikariPool-1 - Connection com.mysql.cj.jdbc.ConnectionImpl@282aea3c marked as broken because of SQLSTATE(08S01), ErrorCode(0)
-com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
-	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:175) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:64) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.jdbc.ServerPreparedStatement.serverExecute(ServerPreparedStatement.java:555) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.jdbc.ServerPreparedStatement.executeInternal(ServerPreparedStatement.java:339) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeQuery(ClientPreparedStatement.java:972) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52) ~[HikariCP-5.0.1.jar:?]
-	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeQuery(HikariProxyPreparedStatement.java) ~[HikariCP-5.0.1.jar:?]
-	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:217) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:146) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.advanceNext(JdbcValuesResultSetImpl.java:205) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.processNext(JdbcValuesResultSetImpl.java:85) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.jdbc.internal.AbstractJdbcValues.next(AbstractJdbcValues.java:29) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.internal.RowProcessingStateStandardImpl.next(RowProcessingStateStandardImpl.java:88) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:183) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:33) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:443) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:166) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:91) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.ast.internal.SingleIdLoadPlan.load(SingleIdLoadPlan.java:140) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.ast.internal.SingleIdLoadPlan.load(SingleIdLoadPlan.java:110) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.ast.internal.SingleIdEntityLoaderStandardImpl.load(SingleIdEntityLoaderStandardImpl.java:72) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.persister.entity.AbstractEntityPersister.doLoad(AbstractEntityPersister.java:4416) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.persister.entity.AbstractEntityPersister.load(AbstractEntityPersister.java:4406) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.loadFromDatasource(DefaultLoadEventListener.java:590) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.doLoad(DefaultLoadEventListener.java:563) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.load(DefaultLoadEventListener.java:221) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.proxyOrLoad(DefaultLoadEventListener.java:358) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.doOnLoad(DefaultLoadEventListener.java:110) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.onLoad(DefaultLoadEventListener.java:72) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:118) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.internal.SessionImpl.fireLoadNoChecks(SessionImpl.java:1244) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.internal.SessionImpl.fireLoad(SessionImpl.java:1232) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.access.IdentifierLoadAccessImpl.doLoad(IdentifierLoadAccessImpl.java:195) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.access.IdentifierLoadAccessImpl.lambda$load$1(IdentifierLoadAccessImpl.java:161) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.access.IdentifierLoadAccessImpl.perform(IdentifierLoadAccessImpl.java:108) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.access.IdentifierLoadAccessImpl.load(IdentifierLoadAccessImpl.java:161) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.internal.SessionImpl.find(SessionImpl.java:2336) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.internal.SessionImpl.find(SessionImpl.java:2303) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at jdk.internal.reflect.GeneratedMethodAccessor62.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:311) ~[spring-orm-6.0.12.jar:6.0.12]
-	at jdk.proxy2.$Proxy157.find(Unknown Source) ~[?:?]
-	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.findById(SimpleJpaRepository.java:308) ~[spring-data-jpa-3.0.10.jar:3.0.10]
-	at jdk.internal.reflect.GeneratedMethodAccessor61.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker$RepositoryFragmentMethodInvoker.lambda$new$0(RepositoryMethodInvoker.java:288) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:136) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:120) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:516) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:285) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:628) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:168) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:143) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:72) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:391) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:164) ~[spring-data-jpa-3.0.10.jar:3.0.10]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:244) ~[spring-aop-6.0.12.jar:6.0.12]
-	at jdk.proxy2.$Proxy170.findById(Unknown Source) ~[?:?]
-	at com.managersystem.admin.server.stores.RewardStateStorage.findById(RewardStateStorage.java:11) ~[classes/:?]
-	at com.managersystem.admin.server.service.RewardScheduleService.processAddQuantity(RewardScheduleService.java:55) ~[classes/:?]
-	at com.managersystem.admin.server.service.RewardScheduleService.lambda$processAddRewardSegmentDetail$1(RewardScheduleService.java:46) ~[classes/:?]
-	at java.util.ArrayList.forEach(ArrayList.java:1511) ~[?:?]
-	at com.managersystem.admin.server.service.RewardScheduleService.processAddRewardSegmentDetail(RewardScheduleService.java:40) ~[classes/:?]
-	at com.managersystem.admin.server.service.RewardScheduleService.lambda$addRewardSegmentQuantity$0(RewardScheduleService.java:30) ~[classes/:?]
-	at java.util.ArrayList.forEach(ArrayList.java:1511) ~[?:?]
-	at com.managersystem.admin.server.service.RewardScheduleService.addRewardSegmentQuantity(RewardScheduleService.java:30) ~[classes/:?]
-	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
-	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:751) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:391) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:751) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:703) ~[spring-aop-6.0.12.jar:6.0.12]
-	at com.managersystem.admin.server.service.RewardScheduleService$$SpringCGLIB$$0.addRewardSegmentQuantity(<generated>) ~[classes/:?]
-	at com.managersystem.admin.handleRequest.schedule.job.Schedule.processRewardSchedule(Schedule.java:18) ~[classes/:?]
-	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
-	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84) ~[spring-context-6.0.12.jar:6.0.12]
-	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) ~[spring-context-6.0.12.jar:6.0.12]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) ~[?:?]
-	at java.util.concurrent.FutureTask.runAndReset$$$capture(FutureTask.java:305) ~[?:?]
-	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java) ~[?:?]
-	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) ~[?:?]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[?:?]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[?:?]
-	at java.lang.Thread.run(Thread.java:840) ~[?:?]
-Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
-	at jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:?]
-	at jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77) ~[?:?]
-	at jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:?]
-	at java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499) ~[?:?]
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:480) ~[?:?]
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:62) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:105) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:150) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:166) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.protocol.a.NativeProtocol.readMessage(NativeProtocol.java:582) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.protocol.a.NativeProtocol.checkErrorMessage(NativeProtocol.java:762) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.protocol.a.NativeProtocol.sendCommand(NativeProtocol.java:701) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.ServerPreparedQuery.sendExecutePacket(ServerPreparedQuery.java:277) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.ServerPreparedQuery.serverExecute(ServerPreparedQuery.java:200) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.jdbc.ServerPreparedStatement.serverExecute(ServerPreparedStatement.java:553) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	... 106 more
-Caused by: java.io.EOFException: Can not read response from server. Expected to read 4 bytes, read 0 bytes before connection was unexpectedly lost.
-	at com.mysql.cj.protocol.FullReadInputStream.readFully(FullReadInputStream.java:67) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.protocol.a.SimplePacketReader.readHeaderLocal(SimplePacketReader.java:81) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.protocol.a.SimplePacketReader.readHeader(SimplePacketReader.java:63) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.protocol.a.SimplePacketReader.readHeader(SimplePacketReader.java:45) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.protocol.a.MultiPacketReader.readHeader(MultiPacketReader.java:54) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.protocol.a.MultiPacketReader.readHeader(MultiPacketReader.java:44) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.protocol.a.NativeProtocol.readMessage(NativeProtocol.java:576) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.protocol.a.NativeProtocol.checkErrorMessage(NativeProtocol.java:762) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.protocol.a.NativeProtocol.sendCommand(NativeProtocol.java:701) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.ServerPreparedQuery.sendExecutePacket(ServerPreparedQuery.java:277) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.ServerPreparedQuery.serverExecute(ServerPreparedQuery.java:200) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.jdbc.ServerPreparedStatement.serverExecute(ServerPreparedStatement.java:553) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	... 106 more
-04/02/24 01:15:01.656 | WARN  | sale_service | 0 | SqlExceptionHelper.java: SQL Error: 0, SQLState: 08S01
-04/02/24 01:15:01.657 | ERROR | sale_service | 0 | SqlExceptionHelper.java: Communications link failure
-04/02/24 01:15:01.658 | INFO  | sale_service | 0 | DefaultLoadEventListener.java: HHH000327: Error performing load command
-org.hibernate.exception.JDBCConnectionException: JDBC exception executing SQL [select r1_0.id,r1_0.count_day,r1_0.count_hour,r1_0.count_minute,r1_0.last_day,r1_0.last_hour,r1_0.last_minute from reward_state r1_0 where r1_0.id=?]
-	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:98) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:56) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:109) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:95) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:253) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:146) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.advanceNext(JdbcValuesResultSetImpl.java:205) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.processNext(JdbcValuesResultSetImpl.java:85) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.jdbc.internal.AbstractJdbcValues.next(AbstractJdbcValues.java:29) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.internal.RowProcessingStateStandardImpl.next(RowProcessingStateStandardImpl.java:88) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:183) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:33) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:443) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:166) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:91) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.ast.internal.SingleIdLoadPlan.load(SingleIdLoadPlan.java:140) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.ast.internal.SingleIdLoadPlan.load(SingleIdLoadPlan.java:110) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.ast.internal.SingleIdEntityLoaderStandardImpl.load(SingleIdEntityLoaderStandardImpl.java:72) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.persister.entity.AbstractEntityPersister.doLoad(AbstractEntityPersister.java:4416) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.persister.entity.AbstractEntityPersister.load(AbstractEntityPersister.java:4406) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.loadFromDatasource(DefaultLoadEventListener.java:590) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.doLoad(DefaultLoadEventListener.java:563) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.load(DefaultLoadEventListener.java:221) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.proxyOrLoad(DefaultLoadEventListener.java:358) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.doOnLoad(DefaultLoadEventListener.java:110) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.onLoad(DefaultLoadEventListener.java:72) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:118) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.internal.SessionImpl.fireLoadNoChecks(SessionImpl.java:1244) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.internal.SessionImpl.fireLoad(SessionImpl.java:1232) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.access.IdentifierLoadAccessImpl.doLoad(IdentifierLoadAccessImpl.java:195) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.access.IdentifierLoadAccessImpl.lambda$load$1(IdentifierLoadAccessImpl.java:161) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.access.IdentifierLoadAccessImpl.perform(IdentifierLoadAccessImpl.java:108) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.access.IdentifierLoadAccessImpl.load(IdentifierLoadAccessImpl.java:161) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.internal.SessionImpl.find(SessionImpl.java:2336) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.internal.SessionImpl.find(SessionImpl.java:2303) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at jdk.internal.reflect.GeneratedMethodAccessor62.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:311) ~[spring-orm-6.0.12.jar:6.0.12]
-	at jdk.proxy2.$Proxy157.find(Unknown Source) ~[?:?]
-	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.findById(SimpleJpaRepository.java:308) ~[spring-data-jpa-3.0.10.jar:3.0.10]
-	at jdk.internal.reflect.GeneratedMethodAccessor61.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker$RepositoryFragmentMethodInvoker.lambda$new$0(RepositoryMethodInvoker.java:288) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:136) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:120) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:516) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:285) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:628) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:168) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:143) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:72) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:391) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:164) ~[spring-data-jpa-3.0.10.jar:3.0.10]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:244) ~[spring-aop-6.0.12.jar:6.0.12]
-	at jdk.proxy2.$Proxy170.findById(Unknown Source) ~[?:?]
-	at com.managersystem.admin.server.stores.RewardStateStorage.findById(RewardStateStorage.java:11) ~[classes/:?]
-	at com.managersystem.admin.server.service.RewardScheduleService.processAddQuantity(RewardScheduleService.java:55) ~[classes/:?]
-	at com.managersystem.admin.server.service.RewardScheduleService.lambda$processAddRewardSegmentDetail$1(RewardScheduleService.java:46) ~[classes/:?]
-	at java.util.ArrayList.forEach(ArrayList.java:1511) ~[?:?]
-	at com.managersystem.admin.server.service.RewardScheduleService.processAddRewardSegmentDetail(RewardScheduleService.java:40) ~[classes/:?]
-	at com.managersystem.admin.server.service.RewardScheduleService.lambda$addRewardSegmentQuantity$0(RewardScheduleService.java:30) ~[classes/:?]
-	at java.util.ArrayList.forEach(ArrayList.java:1511) ~[?:?]
-	at com.managersystem.admin.server.service.RewardScheduleService.addRewardSegmentQuantity(RewardScheduleService.java:30) ~[classes/:?]
-	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
-	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:751) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:391) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:751) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:703) ~[spring-aop-6.0.12.jar:6.0.12]
-	at com.managersystem.admin.server.service.RewardScheduleService$$SpringCGLIB$$0.addRewardSegmentQuantity(<generated>) ~[classes/:?]
-	at com.managersystem.admin.handleRequest.schedule.job.Schedule.processRewardSchedule(Schedule.java:18) ~[classes/:?]
-	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
-	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84) ~[spring-context-6.0.12.jar:6.0.12]
-	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) ~[spring-context-6.0.12.jar:6.0.12]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) ~[?:?]
-	at java.util.concurrent.FutureTask.runAndReset$$$capture(FutureTask.java:305) ~[?:?]
-	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java) ~[?:?]
-	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) ~[?:?]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[?:?]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[?:?]
-	at java.lang.Thread.run(Thread.java:840) ~[?:?]
-Caused by: com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
-	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:175) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:64) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.jdbc.ServerPreparedStatement.serverExecute(ServerPreparedStatement.java:555) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.jdbc.ServerPreparedStatement.executeInternal(ServerPreparedStatement.java:339) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeQuery(ClientPreparedStatement.java:972) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52) ~[HikariCP-5.0.1.jar:?]
-	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeQuery(HikariProxyPreparedStatement.java) ~[HikariCP-5.0.1.jar:?]
-	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:217) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	... 101 more
-Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
-	at jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:?]
-	at jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77) ~[?:?]
-	at jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:?]
-	at java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499) ~[?:?]
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:480) ~[?:?]
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:62) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:105) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:150) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:166) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.protocol.a.NativeProtocol.readMessage(NativeProtocol.java:582) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.protocol.a.NativeProtocol.checkErrorMessage(NativeProtocol.java:762) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.protocol.a.NativeProtocol.sendCommand(NativeProtocol.java:701) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.ServerPreparedQuery.sendExecutePacket(ServerPreparedQuery.java:277) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.ServerPreparedQuery.serverExecute(ServerPreparedQuery.java:200) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.jdbc.ServerPreparedStatement.serverExecute(ServerPreparedStatement.java:553) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.jdbc.ServerPreparedStatement.executeInternal(ServerPreparedStatement.java:339) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeQuery(ClientPreparedStatement.java:972) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52) ~[HikariCP-5.0.1.jar:?]
-	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeQuery(HikariProxyPreparedStatement.java) ~[HikariCP-5.0.1.jar:?]
-	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:217) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	... 101 more
-Caused by: java.io.EOFException: Can not read response from server. Expected to read 4 bytes, read 0 bytes before connection was unexpectedly lost.
-	at com.mysql.cj.protocol.FullReadInputStream.readFully(FullReadInputStream.java:67) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.protocol.a.SimplePacketReader.readHeaderLocal(SimplePacketReader.java:81) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.protocol.a.SimplePacketReader.readHeader(SimplePacketReader.java:63) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.protocol.a.SimplePacketReader.readHeader(SimplePacketReader.java:45) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.protocol.a.MultiPacketReader.readHeader(MultiPacketReader.java:54) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.protocol.a.MultiPacketReader.readHeader(MultiPacketReader.java:44) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.protocol.a.NativeProtocol.readMessage(NativeProtocol.java:576) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.protocol.a.NativeProtocol.checkErrorMessage(NativeProtocol.java:762) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.protocol.a.NativeProtocol.sendCommand(NativeProtocol.java:701) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.ServerPreparedQuery.sendExecutePacket(ServerPreparedQuery.java:277) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.ServerPreparedQuery.serverExecute(ServerPreparedQuery.java:200) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.jdbc.ServerPreparedStatement.serverExecute(ServerPreparedStatement.java:553) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.jdbc.ServerPreparedStatement.executeInternal(ServerPreparedStatement.java:339) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeQuery(ClientPreparedStatement.java:972) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52) ~[HikariCP-5.0.1.jar:?]
-	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeQuery(HikariProxyPreparedStatement.java) ~[HikariCP-5.0.1.jar:?]
-	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:217) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	... 101 more
-04/02/24 01:15:01.669 | INFO  | sale_service | 0 | StatisticalLoggingSessionEventListener.java: Session Metrics {
-    18461600 nanoseconds spent acquiring 1 JDBC connections;
-    0 nanoseconds spent releasing 0 JDBC connections;
-    463802 nanoseconds spent preparing 11 JDBC statements;
-    441429201 nanoseconds spent executing 11 JDBC statements;
-    0 nanoseconds spent executing 0 JDBC batches;
-    0 nanoseconds spent performing 0 L2C puts;
-    0 nanoseconds spent performing 0 L2C hits;
-    0 nanoseconds spent performing 0 L2C misses;
-    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
-    636599 nanoseconds spent executing 4 partial-flushes (flushing a total of 30 entities and 30 collections)
-}
-04/02/24 01:15:01.669 | ERROR | sale_service | 0 | TransactionAspectSupport.java: Application exception overridden by rollback exception
-org.springframework.dao.DataAccessResourceFailureException: JDBC exception executing SQL [select r1_0.id,r1_0.count_day,r1_0.count_hour,r1_0.count_minute,r1_0.last_day,r1_0.last_hour,r1_0.last_minute from reward_state r1_0 where r1_0.id=?]
-	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:253) ~[spring-orm-6.0.12.jar:6.0.12]
-	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:232) ~[spring-orm-6.0.12.jar:6.0.12]
-	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:550) ~[spring-orm-6.0.12.jar:6.0.12]
-	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:243) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:152) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:164) ~[spring-data-jpa-3.0.10.jar:3.0.10]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:244) ~[spring-aop-6.0.12.jar:6.0.12]
-	at jdk.proxy2.$Proxy170.findById(Unknown Source) ~[?:?]
-	at com.managersystem.admin.server.stores.RewardStateStorage.findById(RewardStateStorage.java:11) ~[classes/:?]
-	at com.managersystem.admin.server.service.RewardScheduleService.processAddQuantity(RewardScheduleService.java:55) ~[classes/:?]
-	at com.managersystem.admin.server.service.RewardScheduleService.lambda$processAddRewardSegmentDetail$1(RewardScheduleService.java:46) ~[classes/:?]
-	at java.util.ArrayList.forEach(ArrayList.java:1511) ~[?:?]
-	at com.managersystem.admin.server.service.RewardScheduleService.processAddRewardSegmentDetail(RewardScheduleService.java:40) ~[classes/:?]
-	at com.managersystem.admin.server.service.RewardScheduleService.lambda$addRewardSegmentQuantity$0(RewardScheduleService.java:30) ~[classes/:?]
-	at java.util.ArrayList.forEach(ArrayList.java:1511) ~[?:?]
-	at com.managersystem.admin.server.service.RewardScheduleService.addRewardSegmentQuantity(RewardScheduleService.java:30) ~[classes/:?]
-	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
-	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:751) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:391) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:751) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:703) ~[spring-aop-6.0.12.jar:6.0.12]
-	at com.managersystem.admin.server.service.RewardScheduleService$$SpringCGLIB$$0.addRewardSegmentQuantity(<generated>) ~[classes/:?]
-	at com.managersystem.admin.handleRequest.schedule.job.Schedule.processRewardSchedule(Schedule.java:18) ~[classes/:?]
-	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
-	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84) ~[spring-context-6.0.12.jar:6.0.12]
-	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) ~[spring-context-6.0.12.jar:6.0.12]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) ~[?:?]
-	at java.util.concurrent.FutureTask.runAndReset$$$capture(FutureTask.java:305) ~[?:?]
-	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java) ~[?:?]
-	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) ~[?:?]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[?:?]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[?:?]
-	at java.lang.Thread.run(Thread.java:840) ~[?:?]
-Caused by: org.hibernate.exception.JDBCConnectionException: JDBC exception executing SQL [select r1_0.id,r1_0.count_day,r1_0.count_hour,r1_0.count_minute,r1_0.last_day,r1_0.last_hour,r1_0.last_minute from reward_state r1_0 where r1_0.id=?]
-	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:98) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:56) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:109) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:95) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:253) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:146) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.advanceNext(JdbcValuesResultSetImpl.java:205) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.processNext(JdbcValuesResultSetImpl.java:85) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.jdbc.internal.AbstractJdbcValues.next(AbstractJdbcValues.java:29) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.internal.RowProcessingStateStandardImpl.next(RowProcessingStateStandardImpl.java:88) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:183) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:33) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:443) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:166) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:91) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.ast.internal.SingleIdLoadPlan.load(SingleIdLoadPlan.java:140) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.ast.internal.SingleIdLoadPlan.load(SingleIdLoadPlan.java:110) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.ast.internal.SingleIdEntityLoaderStandardImpl.load(SingleIdEntityLoaderStandardImpl.java:72) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.persister.entity.AbstractEntityPersister.doLoad(AbstractEntityPersister.java:4416) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.persister.entity.AbstractEntityPersister.load(AbstractEntityPersister.java:4406) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.loadFromDatasource(DefaultLoadEventListener.java:590) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.doLoad(DefaultLoadEventListener.java:563) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.load(DefaultLoadEventListener.java:221) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.proxyOrLoad(DefaultLoadEventListener.java:358) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.doOnLoad(DefaultLoadEventListener.java:110) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.onLoad(DefaultLoadEventListener.java:72) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:118) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.internal.SessionImpl.fireLoadNoChecks(SessionImpl.java:1244) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.internal.SessionImpl.fireLoad(SessionImpl.java:1232) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.access.IdentifierLoadAccessImpl.doLoad(IdentifierLoadAccessImpl.java:195) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.access.IdentifierLoadAccessImpl.lambda$load$1(IdentifierLoadAccessImpl.java:161) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.access.IdentifierLoadAccessImpl.perform(IdentifierLoadAccessImpl.java:108) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.access.IdentifierLoadAccessImpl.load(IdentifierLoadAccessImpl.java:161) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.internal.SessionImpl.find(SessionImpl.java:2336) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.internal.SessionImpl.find(SessionImpl.java:2303) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at jdk.internal.reflect.GeneratedMethodAccessor62.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:311) ~[spring-orm-6.0.12.jar:6.0.12]
-	at jdk.proxy2.$Proxy157.find(Unknown Source) ~[?:?]
-	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.findById(SimpleJpaRepository.java:308) ~[spring-data-jpa-3.0.10.jar:3.0.10]
-	at jdk.internal.reflect.GeneratedMethodAccessor61.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker$RepositoryFragmentMethodInvoker.lambda$new$0(RepositoryMethodInvoker.java:288) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:136) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:120) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:516) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:285) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:628) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:168) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:143) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:72) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:391) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-6.0.12.jar:6.0.12]
-	... 44 more
-Caused by: com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
-	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:175) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:64) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.jdbc.ServerPreparedStatement.serverExecute(ServerPreparedStatement.java:555) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.jdbc.ServerPreparedStatement.executeInternal(ServerPreparedStatement.java:339) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeQuery(ClientPreparedStatement.java:972) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52) ~[HikariCP-5.0.1.jar:?]
-	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeQuery(HikariProxyPreparedStatement.java) ~[HikariCP-5.0.1.jar:?]
-	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:217) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:146) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.advanceNext(JdbcValuesResultSetImpl.java:205) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.processNext(JdbcValuesResultSetImpl.java:85) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.jdbc.internal.AbstractJdbcValues.next(AbstractJdbcValues.java:29) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.internal.RowProcessingStateStandardImpl.next(RowProcessingStateStandardImpl.java:88) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:183) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:33) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:443) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:166) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:91) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.ast.internal.SingleIdLoadPlan.load(SingleIdLoadPlan.java:140) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.ast.internal.SingleIdLoadPlan.load(SingleIdLoadPlan.java:110) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.ast.internal.SingleIdEntityLoaderStandardImpl.load(SingleIdEntityLoaderStandardImpl.java:72) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.persister.entity.AbstractEntityPersister.doLoad(AbstractEntityPersister.java:4416) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.persister.entity.AbstractEntityPersister.load(AbstractEntityPersister.java:4406) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.loadFromDatasource(DefaultLoadEventListener.java:590) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.doLoad(DefaultLoadEventListener.java:563) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.load(DefaultLoadEventListener.java:221) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.proxyOrLoad(DefaultLoadEventListener.java:358) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.doOnLoad(DefaultLoadEventListener.java:110) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.onLoad(DefaultLoadEventListener.java:72) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:118) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.internal.SessionImpl.fireLoadNoChecks(SessionImpl.java:1244) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.internal.SessionImpl.fireLoad(SessionImpl.java:1232) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.access.IdentifierLoadAccessImpl.doLoad(IdentifierLoadAccessImpl.java:195) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.access.IdentifierLoadAccessImpl.lambda$load$1(IdentifierLoadAccessImpl.java:161) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.access.IdentifierLoadAccessImpl.perform(IdentifierLoadAccessImpl.java:108) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.access.IdentifierLoadAccessImpl.load(IdentifierLoadAccessImpl.java:161) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.internal.SessionImpl.find(SessionImpl.java:2336) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.internal.SessionImpl.find(SessionImpl.java:2303) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at jdk.internal.reflect.GeneratedMethodAccessor62.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:311) ~[spring-orm-6.0.12.jar:6.0.12]
-	at jdk.proxy2.$Proxy157.find(Unknown Source) ~[?:?]
-	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.findById(SimpleJpaRepository.java:308) ~[spring-data-jpa-3.0.10.jar:3.0.10]
-	at jdk.internal.reflect.GeneratedMethodAccessor61.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker$RepositoryFragmentMethodInvoker.lambda$new$0(RepositoryMethodInvoker.java:288) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:136) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:120) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:516) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:285) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:628) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:168) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:143) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:72) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:391) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-6.0.12.jar:6.0.12]
-	... 44 more
-Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
-	at jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:?]
-	at jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77) ~[?:?]
-	at jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:?]
-	at java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499) ~[?:?]
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:480) ~[?:?]
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:62) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:105) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:150) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:166) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.protocol.a.NativeProtocol.readMessage(NativeProtocol.java:582) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.protocol.a.NativeProtocol.checkErrorMessage(NativeProtocol.java:762) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.protocol.a.NativeProtocol.sendCommand(NativeProtocol.java:701) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.ServerPreparedQuery.sendExecutePacket(ServerPreparedQuery.java:277) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.ServerPreparedQuery.serverExecute(ServerPreparedQuery.java:200) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.jdbc.ServerPreparedStatement.serverExecute(ServerPreparedStatement.java:553) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.jdbc.ServerPreparedStatement.executeInternal(ServerPreparedStatement.java:339) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeQuery(ClientPreparedStatement.java:972) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52) ~[HikariCP-5.0.1.jar:?]
-	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeQuery(HikariProxyPreparedStatement.java) ~[HikariCP-5.0.1.jar:?]
-	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:217) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:146) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.advanceNext(JdbcValuesResultSetImpl.java:205) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.processNext(JdbcValuesResultSetImpl.java:85) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.jdbc.internal.AbstractJdbcValues.next(AbstractJdbcValues.java:29) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.internal.RowProcessingStateStandardImpl.next(RowProcessingStateStandardImpl.java:88) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:183) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:33) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:443) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:166) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:91) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.ast.internal.SingleIdLoadPlan.load(SingleIdLoadPlan.java:140) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.ast.internal.SingleIdLoadPlan.load(SingleIdLoadPlan.java:110) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.ast.internal.SingleIdEntityLoaderStandardImpl.load(SingleIdEntityLoaderStandardImpl.java:72) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.persister.entity.AbstractEntityPersister.doLoad(AbstractEntityPersister.java:4416) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.persister.entity.AbstractEntityPersister.load(AbstractEntityPersister.java:4406) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.loadFromDatasource(DefaultLoadEventListener.java:590) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.doLoad(DefaultLoadEventListener.java:563) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.load(DefaultLoadEventListener.java:221) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.proxyOrLoad(DefaultLoadEventListener.java:358) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.doOnLoad(DefaultLoadEventListener.java:110) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.onLoad(DefaultLoadEventListener.java:72) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:118) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.internal.SessionImpl.fireLoadNoChecks(SessionImpl.java:1244) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.internal.SessionImpl.fireLoad(SessionImpl.java:1232) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.access.IdentifierLoadAccessImpl.doLoad(IdentifierLoadAccessImpl.java:195) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.access.IdentifierLoadAccessImpl.lambda$load$1(IdentifierLoadAccessImpl.java:161) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.access.IdentifierLoadAccessImpl.perform(IdentifierLoadAccessImpl.java:108) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.access.IdentifierLoadAccessImpl.load(IdentifierLoadAccessImpl.java:161) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.internal.SessionImpl.find(SessionImpl.java:2336) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.internal.SessionImpl.find(SessionImpl.java:2303) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at jdk.internal.reflect.GeneratedMethodAccessor62.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:311) ~[spring-orm-6.0.12.jar:6.0.12]
-	at jdk.proxy2.$Proxy157.find(Unknown Source) ~[?:?]
-	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.findById(SimpleJpaRepository.java:308) ~[spring-data-jpa-3.0.10.jar:3.0.10]
-	at jdk.internal.reflect.GeneratedMethodAccessor61.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker$RepositoryFragmentMethodInvoker.lambda$new$0(RepositoryMethodInvoker.java:288) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:136) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:120) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:516) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:285) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:628) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:168) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:143) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:72) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:391) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-6.0.12.jar:6.0.12]
-	... 44 more
-Caused by: java.io.EOFException: Can not read response from server. Expected to read 4 bytes, read 0 bytes before connection was unexpectedly lost.
-	at com.mysql.cj.protocol.FullReadInputStream.readFully(FullReadInputStream.java:67) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.protocol.a.SimplePacketReader.readHeaderLocal(SimplePacketReader.java:81) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.protocol.a.SimplePacketReader.readHeader(SimplePacketReader.java:63) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.protocol.a.SimplePacketReader.readHeader(SimplePacketReader.java:45) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.protocol.a.MultiPacketReader.readHeader(MultiPacketReader.java:54) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.protocol.a.MultiPacketReader.readHeader(MultiPacketReader.java:44) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.protocol.a.NativeProtocol.readMessage(NativeProtocol.java:576) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.protocol.a.NativeProtocol.checkErrorMessage(NativeProtocol.java:762) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.protocol.a.NativeProtocol.sendCommand(NativeProtocol.java:701) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.ServerPreparedQuery.sendExecutePacket(ServerPreparedQuery.java:277) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.ServerPreparedQuery.serverExecute(ServerPreparedQuery.java:200) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.jdbc.ServerPreparedStatement.serverExecute(ServerPreparedStatement.java:553) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.jdbc.ServerPreparedStatement.executeInternal(ServerPreparedStatement.java:339) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeQuery(ClientPreparedStatement.java:972) ~[mysql-connector-j-8.0.33.jar:8.0.33]
-	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52) ~[HikariCP-5.0.1.jar:?]
-	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeQuery(HikariProxyPreparedStatement.java) ~[HikariCP-5.0.1.jar:?]
-	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:217) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:146) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.advanceNext(JdbcValuesResultSetImpl.java:205) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.processNext(JdbcValuesResultSetImpl.java:85) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.jdbc.internal.AbstractJdbcValues.next(AbstractJdbcValues.java:29) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.internal.RowProcessingStateStandardImpl.next(RowProcessingStateStandardImpl.java:88) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:183) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:33) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:443) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:166) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:91) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.ast.internal.SingleIdLoadPlan.load(SingleIdLoadPlan.java:140) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.ast.internal.SingleIdLoadPlan.load(SingleIdLoadPlan.java:110) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.ast.internal.SingleIdEntityLoaderStandardImpl.load(SingleIdEntityLoaderStandardImpl.java:72) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.persister.entity.AbstractEntityPersister.doLoad(AbstractEntityPersister.java:4416) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.persister.entity.AbstractEntityPersister.load(AbstractEntityPersister.java:4406) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.loadFromDatasource(DefaultLoadEventListener.java:590) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.doLoad(DefaultLoadEventListener.java:563) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.load(DefaultLoadEventListener.java:221) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.proxyOrLoad(DefaultLoadEventListener.java:358) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.doOnLoad(DefaultLoadEventListener.java:110) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.internal.DefaultLoadEventListener.onLoad(DefaultLoadEventListener.java:72) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:118) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.internal.SessionImpl.fireLoadNoChecks(SessionImpl.java:1244) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.internal.SessionImpl.fireLoad(SessionImpl.java:1232) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.access.IdentifierLoadAccessImpl.doLoad(IdentifierLoadAccessImpl.java:195) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.access.IdentifierLoadAccessImpl.lambda$load$1(IdentifierLoadAccessImpl.java:161) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.access.IdentifierLoadAccessImpl.perform(IdentifierLoadAccessImpl.java:108) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.loader.access.IdentifierLoadAccessImpl.load(IdentifierLoadAccessImpl.java:161) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.internal.SessionImpl.find(SessionImpl.java:2336) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.internal.SessionImpl.find(SessionImpl.java:2303) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at jdk.internal.reflect.GeneratedMethodAccessor62.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:311) ~[spring-orm-6.0.12.jar:6.0.12]
-	at jdk.proxy2.$Proxy157.find(Unknown Source) ~[?:?]
-	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.findById(SimpleJpaRepository.java:308) ~[spring-data-jpa-3.0.10.jar:3.0.10]
-	at jdk.internal.reflect.GeneratedMethodAccessor61.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker$RepositoryFragmentMethodInvoker.lambda$new$0(RepositoryMethodInvoker.java:288) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:136) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:120) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:516) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:285) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:628) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:168) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:143) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:72) ~[spring-data-commons-3.0.10.jar:3.0.10]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:391) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-6.0.12.jar:6.0.12]
-	... 44 more
-04/02/24 01:15:01.672 | ERROR | sale_service | 0 | TaskUtils.java: Unexpected error occurred in scheduled task
-org.springframework.transaction.TransactionSystemException: Could not roll back JPA transaction
-	at org.springframework.orm.jpa.JpaTransactionManager.doRollback(JpaTransactionManager.java:592) ~[spring-orm-6.0.12.jar:6.0.12]
-	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processRollback(AbstractPlatformTransactionManager.java:835) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.transaction.support.AbstractPlatformTransactionManager.rollback(AbstractPlatformTransactionManager.java:809) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.completeTransactionAfterThrowing(TransactionAspectSupport.java:678) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:395) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:751) ~[spring-aop-6.0.12.jar:6.0.12]
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:703) ~[spring-aop-6.0.12.jar:6.0.12]
-	at com.managersystem.admin.server.service.RewardScheduleService$$SpringCGLIB$$0.addRewardSegmentQuantity(<generated>) ~[classes/:?]
-	at com.managersystem.admin.handleRequest.schedule.job.Schedule.processRewardSchedule(Schedule.java:18) ~[classes/:?]
-	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
-	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84) ~[spring-context-6.0.12.jar:6.0.12]
-	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) ~[spring-context-6.0.12.jar:6.0.12]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) ~[?:?]
-	at java.util.concurrent.FutureTask.runAndReset$$$capture(FutureTask.java:305) ~[?:?]
-	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java) ~[?:?]
-	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) ~[?:?]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[?:?]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[?:?]
-	at java.lang.Thread.run(Thread.java:840) ~[?:?]
-Caused by: org.hibernate.TransactionException: Unable to rollback against JDBC Connection
-	at org.hibernate.resource.jdbc.internal.AbstractLogicalConnectionImplementor.rollback(AbstractLogicalConnectionImplementor.java:127) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.rollback(JdbcResourceLocalTransactionCoordinatorImpl.java:304) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.engine.transaction.internal.TransactionImpl.rollback(TransactionImpl.java:142) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.springframework.orm.jpa.JpaTransactionManager.doRollback(JpaTransactionManager.java:588) ~[spring-orm-6.0.12.jar:6.0.12]
-	... 23 more
-Caused by: java.sql.SQLException: Connection is closed
-	at com.zaxxer.hikari.pool.ProxyConnection$ClosedConnection.lambda$getClosedConnection$0(ProxyConnection.java:502) ~[HikariCP-5.0.1.jar:?]
-	at jdk.proxy3.$Proxy128.rollback(Unknown Source) ~[?:?]
-	at com.zaxxer.hikari.pool.ProxyConnection.rollback(ProxyConnection.java:385) ~[HikariCP-5.0.1.jar:?]
-	at com.zaxxer.hikari.pool.HikariProxyConnection.rollback(HikariProxyConnection.java) ~[HikariCP-5.0.1.jar:?]
-	at org.hibernate.resource.jdbc.internal.AbstractLogicalConnectionImplementor.rollback(AbstractLogicalConnectionImplementor.java:121) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.rollback(JdbcResourceLocalTransactionCoordinatorImpl.java:304) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.engine.transaction.internal.TransactionImpl.rollback(TransactionImpl.java:142) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.springframework.orm.jpa.JpaTransactionManager.doRollback(JpaTransactionManager.java:588) ~[spring-orm-6.0.12.jar:6.0.12]
-	... 23 more
-04/02/24 01:15:31.550 | INFO  | sale_service | 0 | AbstractEntityManagerFactoryBean.java: Closing JPA EntityManagerFactory for persistence unit 'default'
-04/02/24 01:15:31.552 | INFO  | sale_service | 0 | HikariDataSource.java: HikariPool-1 - Shutdown initiated...
-04/02/24 01:15:31.574 | INFO  | sale_service | 0 | HikariDataSource.java: HikariPool-1 - Shutdown completed.
+04/02/24 01:15:59.642 | INFO  | sale_service | 0 | AbstractEntityManagerFactoryBean.java: Closing JPA EntityManagerFactory for persistence unit 'default'
+04/02/24 01:15:59.644 | INFO  | sale_service | 0 | HikariDataSource.java: HikariPool-1 - Shutdown initiated...

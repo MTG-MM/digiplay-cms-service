@@ -33,6 +33,9 @@ public class RewardStateLog extends BaseEntity {
   @Column(name = "quantity_minute")
   private Long quantityMinute;
 
+  @Column(name = "update_quantity")
+  private Long updateQuantity;
+
   @Column(name = "created_time")
   private LocalDateTime createdTime;
 }

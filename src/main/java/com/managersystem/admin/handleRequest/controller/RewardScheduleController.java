@@ -4,7 +4,6 @@ import com.managersystem.admin.handleRequest.controller.dto.RewardScheduleDto;
 import com.managersystem.admin.handleRequest.controller.response.RewardScheduleResponse;
 import com.managersystem.admin.handleRequest.controller.response.base.PageResponse;
 import com.managersystem.admin.server.service.RewardScheduleService;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;

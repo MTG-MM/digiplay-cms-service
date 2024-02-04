@@ -5,7 +5,6 @@ import com.managersystem.admin.handleRequest.controller.dto.RewardSegmentDto;
 import com.managersystem.admin.handleRequest.controller.response.RewardSegmentResponse;
 import com.managersystem.admin.handleRequest.controller.response.base.PageResponse;
 import com.managersystem.admin.server.service.RewardSegmentService;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;

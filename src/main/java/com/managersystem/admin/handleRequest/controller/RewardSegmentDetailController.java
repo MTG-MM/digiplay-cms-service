@@ -21,8 +21,8 @@ public class RewardSegmentDetailController {
   private RewardSegmentDetailService rewardSegmentDetailService;
 
   @GetMapping("")
-  public ResponseEntity<List<RewardSegmentDetailResponse>> getRewardSegmentDetails() {
-    return ResponseEntity.ok(rewardSegmentDetailService.getAllRewardSegmentDetails());
+  public ResponseEntity<List<RewardSegmentDetailResponse>> getRewardSegmentDetails(@RequestParam Long rewardSegmentId) {
+    return ResponseEntity.ok(rewardSegmentDetailService.getAllRewardSegmentDetails(rewardSegmentId));
   }
 
   @GetMapping("{id}")

@@ -15,8 +15,8 @@ import java.util.List;
 @Service
 public class RewardSegmentDetailService extends BaseService {
 
-  public List<RewardSegmentDetailResponse> getAllRewardSegmentDetails() {
-    return modelMapper.toRewardSegmentDetailResponses(rewardSegmentDetailStorage.findAll());
+  public List<RewardSegmentDetailResponse> getAllRewardSegmentDetails(Long id) {
+    return modelMapper.toRewardSegmentDetailResponses(rewardSegmentDetailStorage.findByRewardSegmentId(id));
   }
 
   public boolean createRewardSegmentDetails(RewardSegmentDetailDto rewardSegmentDetailDto) {

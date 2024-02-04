@@ -80,4 +80,6 @@ public interface ModelMapper {
   default Page<RewardItemResponse> toPageRewardItemResponse(Page<RewardItem> rewardItems) {
     return rewardItems.map(this::toRewardItemResponse);
   }
+
+  void mapRewardScheduleUpdateDtoToRewardSchedule(RewardScheduleUpdateDto rewardScheduleDto,@MappingTarget RewardSchedule rewardSchedule);
 }

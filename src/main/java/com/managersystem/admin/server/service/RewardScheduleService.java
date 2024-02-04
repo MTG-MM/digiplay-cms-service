@@ -1,6 +1,7 @@
 package com.managersystem.admin.server.service;
 
 import com.managersystem.admin.handleRequest.controller.dto.RewardScheduleDto;
+import com.managersystem.admin.handleRequest.controller.dto.RewardScheduleUpdateDto;
 import com.managersystem.admin.handleRequest.controller.response.RewardScheduleResponse;
 import com.managersystem.admin.server.entities.*;
 import com.managersystem.admin.server.entities.type.PeriodType;
@@ -35,13 +36,13 @@ public class RewardScheduleService extends BaseService {
     return true;
   }
 
-  public Boolean updateRewardSchedules(Long id, RewardScheduleDto rewardScheduleDto) {
+  public Boolean updateRewardSchedules(Long id, RewardScheduleUpdateDto rewardScheduleDto) {
     RewardSchedule rewardSchedule = rewardScheduleStorage.findById(id);
     if (rewardSchedule == null){
       throw new ResourceNotFoundException("item not found");
     }
 
-    modelMapper.mapRewardScheduleDtoToRewardSchedule(rewardScheduleDto, rewardSchedule);
+    modelMapper.mapRewardScheduleUpdateDtoToRewardSchedule(rewardScheduleDto, rewardSchedule);
     rewardScheduleStorage.save(rewardSchedule);
     return true;
   }

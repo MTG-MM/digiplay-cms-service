@@ -4,17 +4,11 @@ import com.managersystem.admin.server.entities.type.PeriodType;
 import com.managersystem.admin.server.entities.type.RewardType;
 import com.managersystem.admin.server.entities.type.Status;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class RewardScheduleDto {
+public class RewardScheduleDto extends RewardScheduleUpdateDto{
 
   private Long rewardSegmentDetailId;
-
-  private PeriodType periodType;
-
-  private Long quantity;
-
-  private Long startAt;
-
-  private Long endAt;
 }

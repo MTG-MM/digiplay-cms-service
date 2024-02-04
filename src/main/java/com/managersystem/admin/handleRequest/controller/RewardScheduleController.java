@@ -1,6 +1,7 @@
 package com.managersystem.admin.handleRequest.controller;
 
 import com.managersystem.admin.handleRequest.controller.dto.RewardScheduleDto;
+import com.managersystem.admin.handleRequest.controller.dto.RewardScheduleUpdateDto;
 import com.managersystem.admin.handleRequest.controller.response.RewardScheduleResponse;
 import com.managersystem.admin.handleRequest.controller.response.base.PageResponse;
 import com.managersystem.admin.server.service.RewardScheduleService;
@@ -35,7 +36,7 @@ public class RewardScheduleController {
   }
 
   @PutMapping("{id}")
-  public ResponseEntity<Boolean> updateRewardSchedules(@PathVariable Long id, @RequestBody RewardScheduleDto rewardScheduleDto) {
+  public ResponseEntity<Boolean> updateRewardSchedules(@PathVariable Long id, @RequestBody RewardScheduleUpdateDto rewardScheduleDto) {
     return ResponseEntity.ok(rewardScheduleService.updateRewardSchedules(id, rewardScheduleDto));
   }
 }

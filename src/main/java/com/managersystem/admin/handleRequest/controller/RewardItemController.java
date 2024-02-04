@@ -4,7 +4,7 @@ import com.managersystem.admin.handleRequest.controller.dto.RewardItemDto;
 import com.managersystem.admin.handleRequest.controller.response.RewardItemResponse;
 import com.managersystem.admin.handleRequest.controller.response.base.PageResponse;
 import com.managersystem.admin.server.service.RewardItemService;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +34,7 @@ public class RewardItemController {
   }
 
   @PutMapping("{id}")
-  public ResponseEntity<Boolean> updateRewardItems(@PathVariable Long id, @RequestBody RewardItemDto rewardItemDto) {
+  public ResponseEntity<Boolean> updateRewardItems(@PathVariable Long id, @RequestBody @Valid RewardItemDto rewardItemDto) {
     return ResponseEntity.ok(rewardItemService.updateRewardItems(id, rewardItemDto));
   }
 }

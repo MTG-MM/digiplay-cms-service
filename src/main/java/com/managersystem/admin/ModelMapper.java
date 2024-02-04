@@ -34,15 +34,8 @@ public interface ModelMapper {
 
   ApplicationEntity toApplicationEntity(ApplicationDto dto);
 
-  default Page<ApplicationResponse> toPageApplicationResponse(Page<ApplicationEntity> applications) {
-    return applications.map(this::toApplicationResponse);
-  }
 
   RewardItemResponse toRewardItemResponse(RewardItem rw);
-
-  default Page<RewardItemResponse> toPageRewardItemResponse(Page<RewardItem> rewardItems) {
-    return rewardItems.map(this::toRewardItemResponse);
-  }
 
   RewardItem toRewardItem(RewardItemDto rewardItemDto);
 
@@ -54,13 +47,6 @@ public interface ModelMapper {
 
   void mapRewardSegmentDtoToRewardSegment(RewardSegmentDto rewardSegmentDto, @MappingTarget RewardSegment rewardSegment);
 
-  default Page<RewardSegmentResponse> toPageRewardSegmentResponse(Page<RewardSegment> rewardSegments) {
-    return rewardSegments.map(this::toRewardSegmentResponse);
-  }
-
-  default Page<RewardSegmentDetailResponse> toPageRewardSegmentDetailResponse(Page<RewardSegmentDetail> rewardSegmentDetails) {
-    return rewardSegmentDetails.map(this::toRewardSegmentDetailResponse);
-  }
 
   RewardSegmentDetail toRewardSegmentDetail(RewardSegmentDetailDto rewardSegmentDetailDto);
 
@@ -78,4 +64,20 @@ public interface ModelMapper {
   List<RewardScheduleResponse> toListRewardScheduleResponse(List<RewardSchedule> all);
 
   List<RewardSegmentDetailResponse> toRewardSegmentDetailResponses(List<RewardSegmentDetail> all);
+
+  default Page<ApplicationResponse> toPageApplicationResponse(Page<ApplicationEntity> applications) {
+    return applications.map(this::toApplicationResponse);
+  }
+
+  default Page<RewardSegmentDetailResponse> toPageRewardSegmentDetailResponse(Page<RewardSegmentDetail> rewardSegmentDetails) {
+    return rewardSegmentDetails.map(this::toRewardSegmentDetailResponse);
+  }
+
+  default Page<RewardSegmentResponse> toPageRewardSegmentResponse(Page<RewardSegment> rewardSegments) {
+    return rewardSegments.map(this::toRewardSegmentResponse);
+  }
+
+  default Page<RewardItemResponse> toPageRewardItemResponse(Page<RewardItem> rewardItems) {
+    return rewardItems.map(this::toRewardItemResponse);
+  }
 }

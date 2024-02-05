@@ -45,4 +45,18 @@ public class Helper {
   }
 
 
+  public static long numberAround(long number1, long number2){
+    double processQuantity = Math.ceil((double) number1 / number2);
+    return (long) processQuantity;
+  }
+
+  public static void main(String[] args) {
+    int a = 10;
+    int b = 3;
+    double processQuantity = Math.ceil((double) a / b);
+    System.out.println((int) a / b);
+    System.out.println((double) a / (double)b);
+    System.out.println(processQuantity);
+    System.out.println((int) processQuantity);
+  }
 }

@@ -10,6 +10,7 @@ import com.managersystem.admin.server.entities.type.Status;
 import com.managersystem.admin.server.exception.base.ResourceNotFoundException;
 import com.managersystem.admin.server.service.base.BaseService;
 import com.managersystem.admin.server.utils.DateUtils;
+import com.managersystem.admin.server.utils.Helper;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -113,7 +114,7 @@ public class RewardScheduleService extends BaseService {
         rewardState.setCountMinute(0L);
       }
       int minutesToNextDay = 24 * 60 - currentMinute;
-      int quantity = processStateDayQuantity(rewardState, rewardSchedule.getQuantity(), minutesToNextDay, localDateTime.getDayOfMonth());
+      long quantity = processStateDayQuantity(rewardState, rewardSchedule.getQuantity(), minutesToNextDay, localDateTime.getDayOfMonth());
       if(quantity > 0) {
         rewardState.setLastMinute(currentMinute);
       }
@@ -127,7 +128,7 @@ public class RewardScheduleService extends BaseService {
         rewardState.setCountMinute(0L);
       }
       int minutesToNextHour = 60 - localDateTime.getMinute();
-      int quantity = processStateHourQuantity(rewardState, rewardSchedule.getQuantity(), minutesToNextHour, localDateTime.getHour());
+      long quantity = processStateHourQuantity(rewardState, rewardSchedule.getQuantity(), minutesToNextHour, localDateTime.getHour());
       if(quantity > 0) {
         rewardState.setLastMinute(currentMinute);
       }
@@ -147,8 +148,8 @@ public class RewardScheduleService extends BaseService {
     rewardStateStorage.save(rewardState);
   }
 
-  public int processStateDayQuantity(RewardState rewardState, long quantity, long minuteToNextDay, int time) {
-    int processQuantity = 0;
+  public long processStateDayQuantity(RewardState rewardState, long quantity, long minuteToNextDay, int time) {
+    long processQuantity = 0;
     long notProcessQuantity = quantity - rewardState.getCountDay();
     if(notProcessQuantity == 0) {
       log.warn("=====>processStateHourQuantity: notProcessQuantity == 0");
@@ -156,7 +157,7 @@ public class RewardScheduleService extends BaseService {
     }
     if (notProcessQuantity >= minuteToNextDay) {
       //Nếu số quà có số lượng lớn hơn số phút còn lại thì cộng thêm bằng số quà còn lại / số phút còn lại
-      processQuantity = (int) (notProcessQuantity / minuteToNextDay);
+      processQuantity = Helper.numberAround(notProcessQuantity ,minuteToNextDay);
     } else {
       int minuteInDay = 60 * 24;
       //Nêu số quà có số lượng ít hơn so phut con lai
@@ -179,8 +180,8 @@ public class RewardScheduleService extends BaseService {
   }
 
 
-  public int processStateHourQuantity(RewardState rewardState, long quantity, long minuteToNextHour, int time) {
-    int processQuantity = 0;
+  public long processStateHourQuantity(RewardState rewardState, long quantity, long minuteToNextHour, int time) {
+    long processQuantity = 0;
     long notProcessQuantity = quantity - rewardState.getCountHour();
     if(notProcessQuantity == 0) {
       log.warn("=====>processStateHourQuantity: notProcessQuantity == 0");
@@ -188,7 +189,7 @@ public class RewardScheduleService extends BaseService {
     }
     if (notProcessQuantity >= minuteToNextHour) {
       //Nếu số quà có số lượng lớn hơn số phút còn lại thì cộng thêm bằng số quà còn lại / số phút còn lại
-      processQuantity = (int) (notProcessQuantity / minuteToNextHour);
+      processQuantity = Helper.numberAround(notProcessQuantity , minuteToNextHour);
     } else {
       int minuteInHour = 60;
       //Nêu số quà có số lượng ít hơn so phut con lai

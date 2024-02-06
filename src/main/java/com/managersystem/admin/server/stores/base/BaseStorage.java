@@ -20,4 +20,7 @@ public class BaseStorage {
   @Autowired protected RewardSegmentRepository rewardSegmentRepository;
   @Autowired protected RewardStateRepository rewardStateRepository;
   @Autowired protected RewardStateLogRepository rewardStateLogRepository;
+  @Autowired protected RewardTypeRepository rewardTypeRepository;
+  @Autowired protected VoucherStoreRepository voucherStoreRepository;
+  @Autowired protected VoucherDetailRepository voucherDetailRepository;
 }

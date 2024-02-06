@@ -12,12 +12,15 @@ import com.managersystem.admin.server.service.base.BaseService;
 import com.managersystem.admin.server.utils.DateUtils;
 import com.managersystem.admin.server.utils.Helper;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -280,4 +283,38 @@ public class RewardScheduleService extends BaseService {
     }
     return true;
   }
+
+  public boolean pushToRDeque(String key) {
+//    int[] arr = new int[] {};
+    for(int i = 0 ; i < 100000; i++){
+//      arr[i] = i;
+      System.out.println(i);
+      remoteCache.rDequePutId(key, i);
+    }
+//    remoteCache.rDequePutId(key, arr);
+    return true;
+  }
+
+  public List<String> getFromRDeque(String key) {
+    List<String> dataStrings= remoteCache.rDequeGetAll(key);
+    System.out.println("dataStrings" + dataStrings.size());
+    return dataStrings;
+  }
+
+  @Autowired
+  @Lazy
+  RewardScheduleService self;
+
+  public boolean rDequePeekFirst(String key) {
+    for(int i = 0 ; i < 10000; i++){
+      peekItem(key);
+    }
+    return true;
+  }
+
+  public void peekItem (String key){
+    Integer data = remoteCache.rDequePoolFirst(key);
+    System.out.println(data);
+  }
+
 }

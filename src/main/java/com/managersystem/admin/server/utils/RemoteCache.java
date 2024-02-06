@@ -1,7 +1,11 @@
 package com.managersystem.admin.server.utils;
 
 import lombok.extern.slf4j.Slf4j;
+import org.redisson.Redisson;
+import org.redisson.api.RDeque;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
@@ -25,6 +29,50 @@ public class RemoteCache {
 
   @Autowired
   private RedisTemplate<String, String> redisTemplate;
+
+  @Autowired
+  @Qualifier("redisson")
+  private RedissonClient redissonClient;
+
+
+  public void rDequePutId(String key, int value){
+    try{
+      RDeque<Object> queue = redissonClient.getDeque(key);
+      queue.addAsync(value);
+    }catch (Exception e){{
+      log.error(e.getMessage());
+    }}
+  }
+
+  public <T> T rDequePeekFirst(String key){
+    try{
+      RDeque<T> queue = redissonClient.getDeque(key);
+      return queue.peekLast();
+    }catch (Exception e){{
+      log.error(e.getMessage());
+    }}
+    return null;
+  }
+
+  public <T> T rDequePoolFirst(String key){
+    try{
+      RDeque<T> queue = redissonClient.getDeque(key);
+      return queue.pollFirst();
+    }catch (Exception e){{
+      log.error(e.getMessage());
+    }}
+    return null;
+  }
+
+  public <T> List<T> rDequeGetAll(String key){
+    try{
+      RDeque<T> queue = redissonClient.getDeque(key);
+      return queue.readAllAsync().get();
+    }catch (Exception e){{
+      log.error(e.getMessage());
+    }}
+    return null;
+  }
 
   public void putExpireMillis(String key, Object value, long expireTime) {
     try {

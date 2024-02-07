@@ -4,6 +4,5 @@ public enum PeriodType {
   DAY,
   HOUR,
   MINUTE,
-
   SPECIFIC
 }

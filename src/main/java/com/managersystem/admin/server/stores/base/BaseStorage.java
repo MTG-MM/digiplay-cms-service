@@ -2,6 +2,7 @@ package com.managersystem.admin.server.stores.base;
 
 import com.managersystem.admin.server.entities.RewardStateLog;
 import com.managersystem.admin.server.repositories.*;
+import com.managersystem.admin.server.utils.CacheKey;
 import com.managersystem.admin.server.utils.RemoteCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Component;
 public class BaseStorage {
 
   @Autowired protected RemoteCache remoteCache;
+  @Autowired protected CacheKey cacheKey;
   @Autowired protected AccountRepository accountRepository;
   @Autowired protected UserRepository userRepository;
   @Autowired protected ApplicationRepository applicationRepository;

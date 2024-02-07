@@ -13,4 +13,7 @@ public class CacheKey {
   @Value("${redis.prefix-key}")
   public String redisPrefixKey;
 
+  public String getPeriodTypeByUser(UUID id, Long rewardSegmentId, Long rewardItemId) {
+    return null;
+  }
 }

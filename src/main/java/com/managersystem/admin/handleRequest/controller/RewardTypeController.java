@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/mos/cms/reward-items")
+@RequestMapping("api/mos/cms/reward-types")
 @CrossOrigin(origins = "*")
 public class RewardTypeController {
 

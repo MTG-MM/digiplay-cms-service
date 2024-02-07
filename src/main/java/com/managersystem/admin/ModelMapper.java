@@ -23,7 +23,7 @@ public interface ModelMapper {
 
   AccountEntity toAccountEntity(TokenInfo tokenInfo);
 
-  UserEntity toUser(UserInfoDto userInfoDto);
+  User toUser(UserInfoDto userInfoDto);
 
 
   ApplicationResponse toApplicationResponse(ApplicationEntity applicationEntity);

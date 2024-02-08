@@ -1,4 +1,4 @@
-FROM maven:3.8.6-eclipse-temurin-21-alpine AS build
+FROM maven:3.9.6-eclipse-temurin-21-alpine AS build
 RUN apk update && apk add gcompat
 WORKDIR /app
 ADD settings.xml /root/.m2/

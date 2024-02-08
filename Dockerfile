@@ -1,13 +1,15 @@
+# Build Stage
 FROM maven:3.9.6-eclipse-temurin-21-alpine AS build
 RUN apk update && apk add gcompat
 WORKDIR /app
 COPY pom.xml ./pom.xml
-RUN  mvn clean
-RUN  mvn install
+RUN mvn clean
+RUN mvn install
 COPY src ./src
 RUN mvn package
 
-FROM eclipse-temurin:21-jre-alpine
-COPY --from=build /app/target/mos-cms-service-0.0.1-SNAPSHOT.jar /usr/local/lib/mos-cms-service.jar
-EXPOSE 8088
-ENTRYPOINT ["sh", "-c", "java  -jar /usr/local/lib/mos-cms-service.jar"]
+# Runtime Stage
+FROM tomcat:9.0.56-jre11-alpine
+COPY --from=build /app/target/mos-cms-service.war /usr/local/tomcat/webapps/mos-cms-service.war
+EXPOSE 8900
+CMD ["catalina.sh", "run"]

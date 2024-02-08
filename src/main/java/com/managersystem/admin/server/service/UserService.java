@@ -2,7 +2,7 @@ package com.managersystem.admin.server.service;
 
 import com.managersystem.admin.handleRequest.controller.dto.UserInfoDto;
 import com.managersystem.admin.server.entities.AccountEntity;
-import com.managersystem.admin.server.entities.UserEntity;
+import com.managersystem.admin.server.entities.User;
 import com.managersystem.admin.server.exception.base.ResourceNotFoundException;
 import com.managersystem.admin.server.service.base.BaseService;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ public class UserService extends BaseService {
     if(account == null){
       throw new ResourceNotFoundException();
     }
-    UserEntity user = modelMapper.toUser(userInfoDto);
+    User user = modelMapper.toUser(userInfoDto);
     user.setId(userId);
   }
 }

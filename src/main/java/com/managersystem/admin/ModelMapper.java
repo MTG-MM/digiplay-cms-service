@@ -23,7 +23,7 @@ public interface ModelMapper {
 
   AccountEntity toAccountEntity(TokenInfo tokenInfo);
 
-  UserEntity toUser(UserInfoDto userInfoDto);
+  User toUser(UserInfoDto userInfoDto);
 
 
   ApplicationResponse toApplicationResponse(ApplicationEntity applicationEntity);
@@ -82,4 +82,12 @@ public interface ModelMapper {
   }
 
   void mapRewardScheduleUpdateDtoToRewardSchedule(RewardScheduleUpdateDto rewardScheduleDto,@MappingTarget RewardSchedule rewardSchedule);
+
+  List<RewardTypeResponse> toPageRewardTypeResponse(List<RewardType> rewardItems);
+
+  RewardType toRewardType(RewardTypeCreateDto rewardTypeCreateDto);
+
+  void mapRewardTypeDtoToRewardType(RewardTypeUpdateDto rewardTypeDto,@MappingTarget RewardType rewardType);
+
+  RewardTypeResponse toRewardTypeResponse(RewardType rewardType);
 }

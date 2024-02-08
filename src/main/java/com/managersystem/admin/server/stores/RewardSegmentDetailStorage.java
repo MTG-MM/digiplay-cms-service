@@ -1,6 +1,7 @@
 package com.managersystem.admin.server.stores;
 
 import com.managersystem.admin.server.entities.RewardSegmentDetail;
+import com.managersystem.admin.server.entities.User;
 import com.managersystem.admin.server.stores.base.BaseStorage;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,5 +26,21 @@ public class RewardSegmentDetailStorage extends BaseStorage {
 
   public List<RewardSegmentDetail> findAll() {
     return rewardSegmentDetailRepository.findAll();
+  }
+
+  public int getQuantityInPeriodType(User user, RewardSegmentDetail segmentDetail){
+    Integer quantity = remoteCache.get(cacheKey.getPeriodTypeByUser(user.getId(), segmentDetail.getRewardSegmentId(), segmentDetail.getRewardItemId()), Integer.class);
+    if(quantity == null){
+      quantity = 0;
+    }
+    return quantity;
+  }
+
+  public int putQuantityInPeriodType(User user, RewardSegmentDetail segmentDetail){
+    Integer quantity = remoteCache.get(cacheKey.getPeriodTypeByUser(user.getId(), segmentDetail.getRewardSegmentId(), segmentDetail.getRewardItemId()), Integer.class);
+    if(quantity == null){
+      quantity = 0;
+    }
+    return quantity;
   }
 }

@@ -12,9 +12,9 @@ import org.springframework.stereotype.Component;
 public class Schedule {
 
   @Autowired private RewardScheduleService rewardScheduleService;
-  @Scheduled(fixedDelay = 1000 * 60)
-  public void processRewardSchedule() {
-    log.debug("===============>processRewardSchedule: {} ", DateUtils.getNowDateTimeAtVn());
-    rewardScheduleService.addRewardSegmentQuantity();
-  }
+//  @Scheduled(fixedDelay = 1000 * 60)
+//  public void processRewardSchedule() {
+//    log.debug("===============>processRewardSchedule: {} ", DateUtils.getNowDateTimeAtVn());
+//    rewardScheduleService.addRewardSegmentQuantity();
+//  }
 }

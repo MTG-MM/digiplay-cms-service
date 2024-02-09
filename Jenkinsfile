@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                   if(BRANCH_NAME == 'master'){
-                     sh "sudo docker run --name ${NAME}:${BUILD_NUMBER} -d -p ${PORT}:80 ${RESPOSITORY}/${NAME}:${BUILD_NUMBER}"
+                     sh "sudo docker run --name ${NAME}-${BUILD_NUMBER} -d -p ${PORT}:80 ${RESPOSITORY}/${NAME}:${BUILD_NUMBER}"
                   }
 
                   try{
@@ -31,7 +31,7 @@ pipeline {
                      echo "No running container found with the name ${NAME}."
                   }
 
-                  sh "docker rename ${NAME}:${BUILD_NUMBER} ${NAME}"
+                  sh "docker rename ${NAME}-${BUILD_NUMBER} ${NAME}"
                   try{
                     sh 'sudo docker container prune -f'
                     sh 'sudo docker image prune -f'

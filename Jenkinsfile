@@ -21,6 +21,9 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
+                  if(BRANCH_NAME == 'master'){
+                     sh "sudo docker run --name ${NAME}:${BUILD_NUMBER} -d -p ${PORT}:80 ${RESPOSITORY}/${NAME}:${BUILD_NUMBER}"
+                  }
 
                   try{
                     sh "sudo docker stop ${NAME}"
@@ -28,41 +31,16 @@ pipeline {
                      echo "No running container found with the name ${NAME}."
                   }
 
-                  if(BRANCH_NAME == 'master'){
-                    try{
-                     sh "sudo docker run --name ${NAME} -d -p ${PORT}:80 ${RESPOSITORY}/${NAME}:${BUILD_NUMBER}"
-                    }catch(Exception e) {
-                     def previousSuccessfulBuildNumber = findPreviousSuccessfulBuild(env.JOB_NAME, env.BUILD_NUMBER)
-                     def previousImageVersion = "${DOCKER_HUB_URL}/${NAME}:${previousSuccessfulBuildNumber}"
-                     sh "sudo docker run --name ${NAME} -d -p ${PORT}:80 ${previousImageVersion}"
-                    }
-                  }
-
+                  sh "docker rename ${NAME}:${BUILD_NUMBER} ${NAME}"
                   try{
                     sh 'sudo docker container prune -f'
                     sh 'sudo docker image prune -f'
                   } catch(Exception e) {
-                     echo "remove trash image"
+                     echo "remove trash image, container"
                   }
                }
             }
         }
 
     }
-}
-
-def findPreviousSuccessfulBuild(jobName, currentBuildNumber) {
-    def buildNumber = currentBuildNumber.toInteger() - 1
-
-    while (buildNumber > 0) {
-        def buildInfo = currentBuild.rawBuild.getProject().getBuildByNumber(buildNumber)
-
-        if (buildInfo.getResult().toString() == 'SUCCESS') {
-            return buildNumber
-        }
-
-        buildNumber--
-    }
-
-    return 0
 }

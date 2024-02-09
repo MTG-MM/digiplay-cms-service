@@ -12,5 +12,5 @@ RUN mvn package
 RUN apk add --no-cache nodejs npm
 RUN npm install -g env-cmd
 
-RUN env-cmd
+CMD ["env-cmd", "-f", ".env"]
 ENTRYPOINT ["java","-jar","/app/target/mos-cms-service-0.0.1-SNAPSHOT.jar"]

@@ -21,15 +21,21 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                  if(BRANCH_NAME == 'master'){
-                     sh "sudo docker run --name ${NAME}-${BUILD_NUMBER} -d -p ${PORT}:80 ${RESPOSITORY}/${NAME}:${BUILD_NUMBER}"
-                  }
 
                   try{
                     sh "sudo docker stop ${NAME}"
                   } catch(Exception e) {
                      echo "No running container found with the name ${NAME}."
                   }
+
+                  if(BRANCH_NAME == 'master'){
+                    try{
+                     sh "sudo docker run --name ${NAME}-${BUILD_NUMBER} -d -p ${PORT}:80 ${RESPOSITORY}/${NAME}:${BUILD_NUMBER}"
+                    } catch(Exception e) {
+                      sh "sudo docker start ${NAME}"
+                    }
+                  }
+
 
                   sh "sudo docker rename ${NAME}-${BUILD_NUMBER} ${NAME}"
                   try{

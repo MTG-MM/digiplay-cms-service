@@ -57,7 +57,7 @@ pipeline {
                   try{
                     def buildPrevName = "${RESPOSITORY}/${NAME}:${BUILD_NUMBER-10}"
                     sh 'sudo docker container prune -f'
-                    sh 'sudo docker rmi $(sudo docker images -q --filter "before=$buildPrevName")'
+                    sh 'sudo docker rmi $(sudo docker images -q --filter "before=${buildPrevName}")'
                   } catch(Exception e) {
                      echo "remove trash image, container"
                   }

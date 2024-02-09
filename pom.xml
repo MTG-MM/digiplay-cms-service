@@ -8,7 +8,7 @@
         <relativePath/>
     </parent>
     <groupId>com.managersystem</groupId>
-    <artifactId>admin</artifactId>
+    <artifactId>mos-cms-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>mos-cms-service</name>

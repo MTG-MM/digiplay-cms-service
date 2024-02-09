@@ -31,7 +31,7 @@ pipeline {
                      echo "No running container found with the name ${NAME}."
                   }
 
-                  sh "docker rename ${NAME}-${BUILD_NUMBER} ${NAME}"
+                  sh "sudo docker rename ${NAME}-${BUILD_NUMBER} ${NAME}"
                   try{
                     sh 'sudo docker container prune -f'
                     sh 'sudo docker image prune -f'

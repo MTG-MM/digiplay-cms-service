@@ -10,6 +10,6 @@ RUN mvn package
 
 # Runtime Stage
 FROM tomcat:9.0.56-jre11-alpine
-COPY --from=build /app/target/mos-cms-service.war /usr/local/tomcat/webapps/mos-cms-service.war
+COPY --from=build /app/target/mos-cms-service.jar /usr/local/tomcat/webapps/mos-cms-service.jar
 EXPOSE 8900
 CMD ["catalina.sh", "run"]

@@ -10,7 +10,7 @@
     <groupId>com.manager-system</groupId>
     <artifactId>admin</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>cms</name>
     <description>He thong quan ly admin he thong</description>
     <properties>
@@ -128,13 +128,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                  <executions>
-                           <execution>
-                             <goals>
-                                 <goal>repackage</goal>
-                             </goals>
-                         </execution>
-                  </executions>
                 <configuration>
                     <excludes>
                         <exclude>

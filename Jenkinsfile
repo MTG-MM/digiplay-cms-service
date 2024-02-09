@@ -28,11 +28,28 @@ pipeline {
                      echo "No running container found with the name ${NAME}."
                   }
 
+                  try{
+                    sh "sudo docker rm ${NAME}"
+                  } catch(Exception e) {
+                     echo "No runnistop container found with the name ${NAME}."
+                  }
+
                   if(BRANCH_NAME == 'master'){
                     try{
                      sh "sudo docker run --name ${NAME}-${BUILD_NUMBER} -d -p ${PORT}:80 ${RESPOSITORY}/${NAME}:${BUILD_NUMBER}"
                     } catch(Exception e) {
-                      sh "sudo docker start ${NAME}"
+                      def lastSuccessfulBuildID = 0
+                              def build = currentBuild.previousBuild
+                              while (build != null) {
+                                  if (build.result == "SUCCESS")
+                                  {
+                                      lastSuccessfulBuildID = build.id as Integer
+                                      break
+                                  }
+                                  build = build.previousBuild
+                              }
+                       sh "sudo docker run --name ${NAME}-${build} -d -p ${PORT}:80 ${RESPOSITORY}/${NAME}:${BUILD_NUMBER}"
+
                     }
                   }
 

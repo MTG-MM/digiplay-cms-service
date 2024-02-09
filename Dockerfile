@@ -19,4 +19,5 @@ RUN npm install -g env-cmd
 
 # Sao chép tệp .env và sử dụng env-cmd để đọc biến môi trường
 COPY .env .env
-CMD ["env-cmd", "catalina.sh", "run"]
+
+CMD ["env-cmd", "mvn", "spring-boot:run"]

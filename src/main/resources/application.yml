@@ -51,4 +51,4 @@ logging:
 redis:
   prefix-key: ${REDIS_PREFIX_KEY:mos}
 server:
-  port: ${PORT:8900}
+  port: ${PORT:8080}

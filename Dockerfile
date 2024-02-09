@@ -11,13 +11,11 @@ RUN mvn package
 # Runtime Stage
 FROM tomcat:8-jre8-alpine
 COPY --from=build /app/target/mos-cms-service-0.0.1-SNAPSHOT.jar /usr/local/tomcat/webapps/mos-cms-service.jar
-EXPOSE 8900
-
+CMD ["mvn", "spring-boot:run"]
 # Cài đặt env-cmd
 RUN apk add --no-cache nodejs npm
 RUN npm install -g env-cmd
 
 # Sao chép tệp .env và sử dụng env-cmd để đọc biến môi trường
 COPY .env .env
-
-CMD ["env-cmd", "mvn spring-boot:run"]
+CMD ["env-cmd", "catalina.sh", "run"]

@@ -8,10 +8,10 @@
         <relativePath/>
     </parent>
     <groupId>com.manager-system</groupId>
-    <artifactId>mos-cms-service</artifactId>
+    <artifactId>admin</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>cms</name>
+    <name>mos-cms-service</name>
     <description>He thong quan ly admin he thong</description>
     <properties>
         <java.version>21</java.version>

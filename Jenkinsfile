@@ -13,7 +13,7 @@ pipeline {
             steps {
                 script {
                   sh "sudo docker login | echo ${RESPOSITORY} | echo ${DOCKER_HUB_TOKEN}"
-                    sh "sudo docker build -t lambro2510/${NAME}:${BUILD_NUMBER} ."
+                    sh "sudo docker build -t ${RESPOSITORY}/${NAME}:${BUILD_NUMBER} ."
                 }
             }
         }
@@ -36,18 +36,17 @@ pipeline {
 
                   if(BRANCH_NAME == 'master'){
                     try{
-                     sh "sudo docker run --name ${NAME}-${BUILD_NUMBER} -d -p ${PORT}:8080 ${RESPOSITORY}/${NAME}:${BUILD_NUMBER}"
+                        sh "sudo docker run --name ${NAME}-${BUILD_NUMBER} -d -p ${PORT}:8080 ${RESPOSITORY}/${NAME}:${BUILD_NUMBER}"
                     } catch(Exception e) {
-                      def lastSuccessfulBuildID = 0
-                              def build = currentBuild.previousBuild
-                              while (build != null) {
-                                  if (build.result == "SUCCESS")
-                                  {
-                                      lastSuccessfulBuildID = build.id as Integer
-                                      break
-                                  }
-                                  build = build.previousBuild
-                              }
+                        def lastSuccessfulBuildID = 0
+                        def build = currentBuild.previousBuild
+                        while (build != null) {
+                        f (build.result == "SUCCESS"){
+                            lastSuccessfulBuildID = build.id as Integer
+                            break
+                            }
+                            build = build.previousBuild
+                         }
                        sh "sudo docker run --name ${NAME}-${build} -d -p ${PORT}:80 ${RESPOSITORY}/${NAME}:${BUILD_NUMBER}"
 
                     }
@@ -56,8 +55,9 @@ pipeline {
 
                   sh "sudo docker rename ${NAME}-${BUILD_NUMBER} ${NAME}"
                   try{
+                    def buildPrevName = "${RESPOSITORY}/${NAME}:${BUILD_NUMBER-10}"
                     sh 'sudo docker container prune -f'
-                    sh 'sudo docker image prune -f'
+                    sh 'sudo docker rmi $(sudo docker images -q --filter "before=$buildPrevName")'
                   } catch(Exception e) {
                      echo "remove trash image, container"
                   }

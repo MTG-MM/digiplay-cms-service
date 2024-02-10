@@ -17,4 +17,4 @@ RUN apk add --no-cache nodejs npm
 RUN npm install -g env-cmd
 
 CMD ["env-cmd", "-f", ".env"]
-ENTRYPOINT ["java","-javaagent:/usr/local/newrelic/newrelic.jar","-jar","/app/target/mos-cms-service-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","/app/target/mos-cms-service-0.0.1-SNAPSHOT.jar"]

@@ -2,9 +2,9 @@ spring:
   application:
     name: vtpost_gami_service
   datasource:
-    url: ${DATASOURCE_URL}
-    username: ${DATASOURCE_USERNAME}
-    password: ${DATASOURCE_PASSWORD}
+    url: ${DATASOURCE_URL:jdbc:mysql://103.69.194.195:25035/prod}
+    username: ${DATASOURCE_USERNAME:root}
+    password: ${DATASOURCE_PASSWORD:banhmy09}
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       validation-timeout: ${DATASOURCE_HIKARI_VALIDATION_TIMEOUT:10000}

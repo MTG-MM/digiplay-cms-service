@@ -36,7 +36,7 @@ pipeline {
 
                   if(BRANCH_NAME == 'master'){
                     try{
-                        sh "sudo docker run --name ${NAME}-${BUILD_NUMBER} -d -p ${PORT}:8080 ${RESPOSITORY}/${NAME}:${BUILD_NUMBER}"
+                        sh "sudo docker run --name ${NAME}-${BUILD_NUMBER} -d -p ${PORT}:8080 --network=host --cap-add=SYS_PTRACE --privileged --pid=host -v \"/:/host:ro\" -v \"/var/run/docker.sock:/var/run/docker.sock\" ${RESPOSITORY}/${NAME}:${BUILD_NUMBER}"
                     } catch(Exception e) {
                         def lastSuccessfulBuildID = 0
                         def build = currentBuild.previousBuild

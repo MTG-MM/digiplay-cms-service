@@ -8,6 +8,8 @@ import com.managersystem.admin.server.entities.type.VoucherStatus;
 import com.managersystem.admin.server.service.base.BaseService;
 import com.managersystem.admin.server.utils.DateUtils;
 import lombok.extern.log4j.Log4j2;
+import org.redisson.api.RLock;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -46,10 +48,20 @@ public class VoucherDetailService extends BaseService {
     return voucherDetail;
   }
 
-  public List<VoucherDetail> getVoucherDetail(int voucherStoreId, int limit){
-    List<VoucherDetail> voucherDetails = voucherDetailStorage.getListVoucherDetailByStatus(voucherStoreId, VoucherStatus.NEW, limit);
-    voucherDetails.forEach(v -> v.setStatus(VoucherStatus.IN_POOL));
-    voucherDetailStorage.saveAll(voucherDetails);
+  public List<VoucherDetail> getVoucherDetail(int voucherStoreId, int limit) {
+
+    RLock rLock = lockManager.startLockVoucher(voucherStoreId);
+    List<VoucherDetail> voucherDetails = null;
+    try {
+      voucherDetails = voucherDetailStorage.getListVoucherDetailByStatus(voucherStoreId, VoucherStatus.NEW, limit);
+
+      voucherDetails.forEach(v -> v.setStatus(VoucherStatus.IN_POOL));
+      voucherDetailStorage.saveAll(voucherDetails);
+    } catch (Exception ex){
+      log.error("======>getVoucherDetail {}" , voucherStoreId);
+    } finally {
+      lockManager.unLock(rLock);
+    }
     return voucherDetails;
   }
   public void initRandomVoucherDetail(){

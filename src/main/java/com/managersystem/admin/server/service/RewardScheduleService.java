@@ -14,6 +14,7 @@ import com.managersystem.admin.server.utils.Helper;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
@@ -30,6 +31,7 @@ import java.util.stream.Collectors;
 public class RewardScheduleService extends BaseService {
 
   @Autowired VoucherDetailService voucherDetailService;
+  @Autowired @Lazy RewardScheduleService self;
   public List<RewardScheduleResponse> getAllRewardSchedules(Long rewardSegmentId) {
     return modelMapper.toListRewardScheduleResponse(rewardScheduleStorage.findByRewardSegmentDetailId(rewardSegmentId));
   }
@@ -67,6 +69,7 @@ public class RewardScheduleService extends BaseService {
     rewardSegmentEntities.forEach(rs -> processAddRewardSegmentDetail(rs.getId(), rewardItemMap));
   }
 
+  @Transactional(propagation = Propagation.MANDATORY)
   public void processAddRewardSegmentDetail(Long rewardSegmentId, Map<Long, RewardItem> rewardItemMap) {
     List<RewardSegmentDetail> rewardSegmentDetails = rewardSegmentDetailStorage.findByRewardSegmentId(rewardSegmentId);
     Map<Long, RewardSegmentDetail> rewardSegmentDetailMap = rewardSegmentDetails.stream().collect(Collectors.toMap(RewardSegmentDetail::getId, Function.identity()));
@@ -84,6 +87,7 @@ public class RewardScheduleService extends BaseService {
     });
   }
 
+  @Transactional(propagation = Propagation.MANDATORY)
   public void processAddQuantity(RewardSchedule rewardSchedule, RewardItem rewardItem, RewardSegmentDetail segmentDetail) {
     if (rewardItem == null || !rewardItem.getIsLimited()) {
       return;
@@ -120,7 +124,7 @@ public class RewardScheduleService extends BaseService {
       long quantity = processStateDayQuantity(rewardState, rewardSchedule.getQuantity(), minutesToNextDay, localDateTime.getDayOfMonth());
       if(quantity > 0) {
         rewardState.setLastMinute(currentMinute);
-        processUpdatePoolItem((int) quantity, rewardItem, segmentDetail);
+        self.processUpdatePoolItem((int) quantity, rewardItem, segmentDetail);
       }
       saveUpdateStateLog(rewardState, localDateTime, quantity);
     } else if (rewardSchedule.getPeriodType() == PeriodType.HOUR) {
@@ -135,7 +139,7 @@ public class RewardScheduleService extends BaseService {
       long quantity = processStateHourQuantity(rewardState, rewardSchedule.getQuantity(), minutesToNextHour, localDateTime.getHour());
       if(quantity > 0) {
         rewardState.setLastMinute(currentMinute);
-        processUpdatePoolItem((int) quantity, rewardItem, segmentDetail);
+        self.processUpdatePoolItem((int) quantity, rewardItem, segmentDetail);
       }
       saveUpdateStateLog(rewardState, localDateTime, quantity);
     } else if (rewardSchedule.getPeriodType() == PeriodType.MINUTE) {
@@ -147,13 +151,14 @@ public class RewardScheduleService extends BaseService {
       long quantity = processStateMinuterQuantity(rewardState, rewardSchedule.getQuantity(), currentMinute);
       if(quantity > 0) {
         rewardState.setLastMinute(currentMinute);
-        processUpdatePoolItem((int) quantity, rewardItem, segmentDetail);
+        self.processUpdatePoolItem((int) quantity, rewardItem, segmentDetail);
       }
       saveUpdateStateLog(rewardState, localDateTime, quantity);
     }
     rewardStateStorage.save(rewardState);
   }
 
+  @Transactional(propagation = Propagation.MANDATORY)
   public void processUpdatePoolItem(int amount, RewardItem rewardItem, RewardSegmentDetail segmentDetail){
     switch (rewardItem.getRewardType()){
       case POINT -> {
@@ -318,10 +323,6 @@ public class RewardScheduleService extends BaseService {
     System.out.println("dataStrings" + dataStrings.size());
     return dataStrings;
   }
-
-  @Autowired
-  @Lazy
-  RewardScheduleService self;
 
   public boolean rDequePeekFirst(String key) {
     for(int i = 0 ; i < 10000; i++){

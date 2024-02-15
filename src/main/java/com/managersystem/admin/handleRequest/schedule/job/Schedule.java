@@ -14,7 +14,9 @@ public class Schedule {
   @Autowired private RewardScheduleService rewardScheduleService;
   @Scheduled(fixedDelay = 1000 * 60)
   public void processRewardSchedule() {
+    long start = DateUtils.getNowMillisAtUtc();
     log.debug("===============>processRewardSchedule: {} ", DateUtils.getNowDateTimeAtVn());
     rewardScheduleService.addRewardSegmentQuantity();
+    log.debug("===============>processRewardSchedule: duration{} ", DateUtils.getNowMillisAtUtc() - start);
   }
 }

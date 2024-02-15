@@ -26,13 +26,13 @@ spring:
   jpa:
     open-in-view: ${JPA_OPEN_IN_VIEW:false}
     database: mysql
-    show-sql: true
+    show-sql: ${JPA_OPEN_IN_VIEW:false}
     hibernate:
       ddl-auto: none
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
-        generate_statistics: ${HIBERNATE_STATISTICS:true}
+        generate_statistics: ${HIBERNATE_STATISTICS:false}
         jdbc.batch_size: ${DATASOURCE_BATCH_SIZE:100}
         order_inserts: true
         order_updates: true
@@ -47,6 +47,7 @@ springdoc:
 logging:
   level:
     org.springframework.web: ${LOG_LEVEL:debug}
+    com.managersystem: ${LOG_LEVEL:debug}
 
 redis:
   prefix-key: ${REDIS_PREFIX_KEY:mos}

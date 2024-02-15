@@ -14,9 +14,9 @@ public class SpringAsyncConfig {
   @Bean(name = "threadPoolTaskExecutor")
   public Executor threadPoolTaskExecutor() {
     ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-    executor.setCorePoolSize(200);
-    executor.setMaxPoolSize(200);
-    executor.setQueueCapacity(500);
+    executor.setCorePoolSize(5);
+    executor.setMaxPoolSize(20);
+    executor.setQueueCapacity(50);
     executor.setThreadNamePrefix("mos-cms-");
     executor.initialize();
     return executor;

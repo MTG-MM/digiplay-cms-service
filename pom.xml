@@ -87,6 +87,13 @@
             <version>0.11.5</version>
         </dependency>
 
+<!--        feign-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <version>4.0.2</version>
+        </dependency>
+
         <!-- logging-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

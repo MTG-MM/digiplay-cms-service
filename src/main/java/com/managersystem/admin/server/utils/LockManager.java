@@ -1,6 +1,7 @@
 package com.managersystem.admin.server.utils;
 
 import lombok.extern.log4j.Log4j2;
+import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,4 +26,15 @@ public class LockManager {
   private RedissonClient client;
 
 
+  public RLock startLockVoucher(int voucherStoreId) {
+    RLock lock = client.getLock(redisPrefixKey + ":lock:voucher:store" + voucherStoreId);
+    lock.lock(TIME_LOCK_IN_SECOND, TimeUnit.SECONDS);
+    return lock;
+  }
+
+  public void unLock(RLock lock) {
+    if (lock != null) {
+      lock.unlockAsync();
+    }
+  }
 }

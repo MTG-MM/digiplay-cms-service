@@ -12,4 +12,6 @@ public interface RewardSegmentRepository extends JpaRepository<RewardSegment, Lo
 
 
   List<RewardSegment> findByStatus(Status status);
+
+  RewardSegment findByCode(String code);
 }

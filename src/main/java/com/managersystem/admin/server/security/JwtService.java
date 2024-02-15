@@ -1,7 +1,7 @@
 package com.managersystem.admin.server.security;
 
 import com.managersystem.admin.ModelMapper;
-import com.managersystem.admin.server.entities.AccountEntity;
+import com.managersystem.admin.server.entities.Account;
 import com.managersystem.admin.server.pojo.TokenInfo;
 import com.managersystem.admin.server.utils.Helper;
 import io.jsonwebtoken.*;
@@ -9,7 +9,6 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
@@ -23,7 +22,7 @@ public class JwtService {
   @Autowired
   private ModelMapper modelMapper;
   public static final String SECRET = "5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437";
-  public String generateToken(AccountEntity account) {
+  public String generateToken(Account account) {
     TokenInfo tokenInfo = modelMapper.toTokenInfo(account);
     Map<String, Object> claims = Helper.convertObjectToMap(tokenInfo);
     return createToken(claims, String.valueOf(account.getId()));

@@ -5,4 +5,5 @@ public enum VoucherStatus {
   IN_POOL,
   RECEIVE,
   USED,
+  EXPIRE
 }

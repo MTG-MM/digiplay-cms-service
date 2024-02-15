@@ -14,7 +14,6 @@ import java.util.UUID;
 public class User extends BaseEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.UUID)
   private UUID id;
 
   @Column(name = "first_name")
@@ -38,6 +37,9 @@ public class User extends BaseEntity {
   @Column(name ="birth")
   private String birth;
 
+  @Column(name ="point")
+  private Long point = 0L;
+
   @Column(name ="invite_code")
   private String inviteCode; // Mã mời của tài khoản bản thân
 
@@ -49,4 +51,11 @@ public class User extends BaseEntity {
 
   @Column(name = "is_phone_number_verify")
   private Boolean isVerifyPhoneNumber = false;
+
+  public void addPointForUser(long amount){
+    point += amount;
+  }
+  public void minusPointForUser(long amount){
+    point = Math.max(0, point - amount);
+  }
 }

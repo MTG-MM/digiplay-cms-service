@@ -22,10 +22,4 @@ public class VoucherStore extends BaseEntity {
   @Column(name = "status")
   @Enumerated(EnumType.STRING)
   private Status status;
-
-  @Column(name = "startAt")
-  private Long startAt;
-
-  @Column(name = "endAt")
-  private Long endAt;
 }

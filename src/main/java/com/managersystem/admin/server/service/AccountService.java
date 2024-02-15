@@ -3,7 +3,7 @@ package com.managersystem.admin.server.service;
 import com.managersystem.admin.handleRequest.controller.dto.AccountDto;
 import com.managersystem.admin.handleRequest.controller.dto.LoginDto;
 import com.managersystem.admin.handleRequest.controller.response.TokenResponse;
-import com.managersystem.admin.server.entities.AccountEntity;
+import com.managersystem.admin.server.entities.Account;
 import com.managersystem.admin.server.entities.type.NewAccountState;
 import com.managersystem.admin.server.entities.type.Rank;
 import com.managersystem.admin.server.entities.type.State;
@@ -26,56 +26,58 @@ public class AccountService extends BaseService {
   @Autowired
   JwtService jwtService;
 
+  @Autowired UserService userService;
 
   @Autowired
   @Lazy
   UserSecurityService userSecurityService;
 
   public boolean createAccount(AccountDto dto){
-    AccountEntity accountEntity = new AccountEntity();
-    accountEntity.setId(UUID.randomUUID());
-    accountEntity.setUsername(dto.getUsername());
-    accountEntity.setPassword(userSecurityService.encode(dto.getPassword()));
-    accountEntity.setRank(Rank.BRONZE);
-    accountEntity.setState(State.NOT_VERIFY);
-    accountEntity.setAccountState(NewAccountState.CREATE_ACCOUNT);
-    accountEntity.setLastLogin(DateUtils.getNowMillisAtUtc());
-    accountEntity.setRole(UserRole.OPERATOR);
-    accountEntity.setGroupCode("ADMIN");
-    accountEntity.setCreatedBy(accountEntity.getId());
-    accountEntity.setUpdatedBy(accountEntity.getId());
-    accountEntity.setGroupCode("ADMIN");
-    accountStorage.save(accountEntity);
+    Account account = new Account();
+    account.setId(UUID.randomUUID());
+    account.setUsername(dto.getUsername());
+    account.setPassword(userSecurityService.encode(dto.getPassword()));
+    account.setRank(Rank.BRONZE);
+    account.setState(State.NOT_VERIFY);
+    account.setAccountState(NewAccountState.CREATE_ACCOUNT);
+    account.setLastLogin(DateUtils.getNowMillisAtUtc());
+    account.setRole(UserRole.OPERATOR);
+    account.setGroupCode("ADMIN");
+    account.setCreatedBy(account.getId());
+    account.setUpdatedBy(account.getId());
+    account.setGroupCode("ADMIN");
+    accountStorage.save(account);
+    userService.createUserInfo(account.getId(), dto.getUserInfoDto());
     return true;
   }
 
   public TokenResponse login(LoginDto dto){
-    AccountEntity accountEntity = accountStorage.findByUsername(dto.getUsername());
-    if(accountEntity == null){
+    Account account = accountStorage.findByUsername(dto.getUsername());
+    if(account == null){
       throw new BadRequestException("Invalid username or password", ErrorCode.INVALID_USERNAME_OR_PASSWORD);
     }
-    if(!userSecurityService.decode(dto.getPassword(), accountEntity.getPassword())){
+    if(!userSecurityService.decode(dto.getPassword(), account.getPassword())){
       throw new BadRequestException("Invalid username or password", ErrorCode.INVALID_USERNAME_OR_PASSWORD);
     }
-    String token = jwtService.generateToken(accountEntity);
-    return new TokenResponse(token, accountEntity.getRole(), accountEntity.getAccountState(), accountEntity.getState());
+    String token = jwtService.generateToken(account);
+    return new TokenResponse(token, account.getRole(), account.getAccountState(), account.getState());
   }
 
   public boolean initAdminAccount() {
-    AccountEntity accountEntity = new AccountEntity();
-    accountEntity.setUsername("MosSystemAdmin");
-    accountEntity.setPassword(userSecurityService.encode("admin123456"));
-    accountEntity.setRole(UserRole.ADMIN);
-    accountEntity.setRank(Rank.DIAMOND);
-    accountEntity.setState(State.VERIFY);
-    accountEntity.setAccountState(NewAccountState.COMPLETE);
-    accountEntity.setLastLogin(DateUtils.getNowMillisAtUtc());
-    accountEntity.setRole(UserRole.ADMIN);
-    accountEntity.setGroupCode("ADMIN");
-    accountEntity.setCreatedBy(accountEntity.getId());
-    accountEntity.setUpdatedBy(accountEntity.getId());
-    accountEntity.setGroupCode("ADMIN");
-    accountStorage.save(accountEntity);
+    Account account = new Account();
+    account.setUsername("MosSystemAdmin");
+    account.setPassword(userSecurityService.encode("admin123456"));
+    account.setRole(UserRole.ADMIN);
+    account.setRank(Rank.DIAMOND);
+    account.setState(State.VERIFY);
+    account.setAccountState(NewAccountState.COMPLETE);
+    account.setLastLogin(DateUtils.getNowMillisAtUtc());
+    account.setRole(UserRole.ADMIN);
+    account.setGroupCode("ADMIN");
+    account.setCreatedBy(account.getId());
+    account.setUpdatedBy(account.getId());
+    account.setGroupCode("ADMIN");
+    accountStorage.save(account);
     return true;
   }
 }

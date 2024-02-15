@@ -20,6 +20,9 @@ public class VoucherDetail extends BaseEntity {
   @GeneratedValue(strategy = GenerationType.UUID)
   private UUID id;
 
+  @Column(name = "store_id")
+  private Long storeId;
+
   @Column(name = "name")
   private String name;
 
@@ -27,7 +30,7 @@ public class VoucherDetail extends BaseEntity {
   private String code;
 
   @Column(name = "user_id")
-  private String userId;
+  private UUID userId;
 
   @Column(name = "given_at")
   private Long givenAt;
@@ -35,4 +38,10 @@ public class VoucherDetail extends BaseEntity {
   @Column(name = "voucher_status")
   @Enumerated(EnumType.STRING)
   private VoucherStatus status;
+
+  @Column(name = "start_at")
+  private Long startAt;
+
+  @Column(name = "expire_at")
+  private Long expireAt;
 }

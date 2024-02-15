@@ -3,7 +3,7 @@ package com.managersystem.admin.server.service;
 import com.managersystem.admin.handleRequest.controller.dto.ApplicationDto;
 import com.managersystem.admin.handleRequest.controller.response.ApplicationResponse;
 import com.managersystem.admin.handleRequest.controller.response.base.PageResponse;
-import com.managersystem.admin.server.entities.AccountEntity;
+import com.managersystem.admin.server.entities.Account;
 import com.managersystem.admin.server.entities.ApplicationEntity;
 import com.managersystem.admin.server.exception.BadRequestException;
 import com.managersystem.admin.server.exception.base.ErrorCode;
@@ -21,7 +21,7 @@ import java.util.List;
 public class ApplicationService extends BaseService {
 
   public boolean addIndustryGroup(String username, ApplicationDto dto) {
-    AccountEntity account = accountStorage.findByUsername(username);
+    Account account = accountStorage.findByUsername(username);
     if(account == null){
       throw new BadRequestException(ErrorCode.USER_NOT_FOUND);
     }

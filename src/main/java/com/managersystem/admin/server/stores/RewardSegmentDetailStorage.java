@@ -36,11 +36,12 @@ public class RewardSegmentDetailStorage extends BaseStorage {
     return quantity;
   }
 
-  public int putQuantityInPeriodType(User user, RewardSegmentDetail segmentDetail){
+  public int putQuantityInPeriodType(User user, RewardSegmentDetail segmentDetail, int amount){
     Integer quantity = remoteCache.get(cacheKey.getPeriodTypeByUser(user.getId(), segmentDetail.getRewardSegmentId(), segmentDetail.getRewardItemId()), Integer.class);
     if(quantity == null){
       quantity = 0;
     }
+    remoteCache.putExpireMillis(cacheKey.getPeriodTypeByUser(user.getId(), segmentDetail.getRewardSegmentId(), segmentDetail.getRewardItemId()), amount, segmentDetail.getPeriodType().getMillis() * segmentDetail.getPeriodNumber());
     return quantity;
   }
 }

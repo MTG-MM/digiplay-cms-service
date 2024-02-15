@@ -17,10 +17,9 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Table(name = "account")
 @Entity
-public class AccountEntity extends BaseEntity {
+public class Account extends BaseEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.UUID)
   public UUID id;
 
   @Column(name = "role")

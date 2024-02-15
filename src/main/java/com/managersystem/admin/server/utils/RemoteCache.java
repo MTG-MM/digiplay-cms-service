@@ -35,7 +35,7 @@ public class RemoteCache {
   private RedissonClient redissonClient;
 
 
-  public void rDequePutId(String key, int value){
+  public void rDequePutId(String key, Object value){
     try{
       RDeque<Object> queue = redissonClient.getDeque(key);
       queue.addAsync(value);

@@ -20,7 +20,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -30,6 +29,7 @@ import java.util.stream.Collectors;
 @Log4j2
 public class RewardScheduleService extends BaseService {
 
+  @Autowired VoucherDetailService voucherDetailService;
   public List<RewardScheduleResponse> getAllRewardSchedules(Long rewardSegmentId) {
     return modelMapper.toListRewardScheduleResponse(rewardScheduleStorage.findByRewardSegmentDetailId(rewardSegmentId));
   }
@@ -80,11 +80,11 @@ public class RewardScheduleService extends BaseService {
       if (rewardSegmentDetail != null) {
         rewardItem = rewardItemMap.get(rewardSegmentDetail.getRewardItemId());
       }
-      processAddQuantity(rewardSchedule, rewardItem);
+      processAddQuantity(rewardSchedule, rewardItem, rewardSegmentDetail);
     });
   }
 
-  public void processAddQuantity(RewardSchedule rewardSchedule, RewardItem rewardItem) {
+  public void processAddQuantity(RewardSchedule rewardSchedule, RewardItem rewardItem, RewardSegmentDetail segmentDetail) {
     if (rewardItem == null || !rewardItem.getIsLimited()) {
       return;
     }
@@ -120,6 +120,7 @@ public class RewardScheduleService extends BaseService {
       long quantity = processStateDayQuantity(rewardState, rewardSchedule.getQuantity(), minutesToNextDay, localDateTime.getDayOfMonth());
       if(quantity > 0) {
         rewardState.setLastMinute(currentMinute);
+        processUpdatePoolItem((int) quantity, rewardItem, segmentDetail);
       }
       saveUpdateStateLog(rewardState, localDateTime, quantity);
     } else if (rewardSchedule.getPeriodType() == PeriodType.HOUR) {
@@ -134,6 +135,7 @@ public class RewardScheduleService extends BaseService {
       long quantity = processStateHourQuantity(rewardState, rewardSchedule.getQuantity(), minutesToNextHour, localDateTime.getHour());
       if(quantity > 0) {
         rewardState.setLastMinute(currentMinute);
+        processUpdatePoolItem((int) quantity, rewardItem, segmentDetail);
       }
       saveUpdateStateLog(rewardState, localDateTime, quantity);
     } else if (rewardSchedule.getPeriodType() == PeriodType.MINUTE) {
@@ -145,12 +147,28 @@ public class RewardScheduleService extends BaseService {
       long quantity = processStateMinuterQuantity(rewardState, rewardSchedule.getQuantity(), currentMinute);
       if(quantity > 0) {
         rewardState.setLastMinute(currentMinute);
+        processUpdatePoolItem((int) quantity, rewardItem, segmentDetail);
       }
       saveUpdateStateLog(rewardState, localDateTime, quantity);
     }
     rewardStateStorage.save(rewardState);
   }
 
+  public void processUpdatePoolItem(int amount, RewardItem rewardItem, RewardSegmentDetail segmentDetail){
+    switch (rewardItem.getRewardType()){
+      case POINT -> {
+      }
+      case VOUCHER -> {
+        List<VoucherDetail> voucherDetails = voucherDetailService.getVoucherDetail(Integer.parseInt(rewardItem.getExternalId()), amount);
+        if(!voucherDetails.isEmpty()){
+          voucherDetails.forEach(v -> remoteCache.rDequePutId(cacheKey.getRewardPoolItemIds(segmentDetail.getRewardSegmentId(), segmentDetail.getRewardItemId()), v.getId()));
+        }
+
+      }
+      case PHYSICAL -> {
+      }
+    }
+  }
   public long processStateDayQuantity(RewardState rewardState, long quantity, long minuteToNextDay, int time) {
     long processQuantity = 0;
     long notProcessQuantity = quantity - rewardState.getCountDay();

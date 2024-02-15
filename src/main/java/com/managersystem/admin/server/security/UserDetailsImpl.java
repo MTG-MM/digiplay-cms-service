@@ -1,6 +1,8 @@
 package com.managersystem.admin.server.security;
 
-import com.managersystem.admin.server.entities.AccountEntity;
+import com.managersystem.admin.server.entities.Account;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,13 +14,15 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class UserDetailsImpl implements UserDetails {
+  @Setter
+  @Getter
   private UUID id;
   private String username;
   private String password;
   private List<GrantedAuthority> authorities;
 
-  public UserDetailsImpl(AccountEntity account) {
-    id=account.getId();
+  public UserDetailsImpl(Account account) {
+    id = account.getId();
     username = account.getUsername();
     password = account.getPassword();
     authorities = Stream.of(account.getRole())
@@ -60,5 +64,6 @@ public class UserDetailsImpl implements UserDetails {
   public boolean isEnabled() {
     return true;
   }
+
 }
 

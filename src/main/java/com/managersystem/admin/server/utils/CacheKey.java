@@ -13,7 +13,11 @@ public class CacheKey {
   @Value("${redis.prefix-key}")
   public String redisPrefixKey;
 
-  public String getPeriodTypeByUser(UUID id, Long rewardSegmentId, Long rewardItemId) {
-    return null;
+  public String getPeriodTypeByUser(UUID userId, Long rewardSegmentId, Long rewardItemId) {
+    return redisPrefixKey + ":u:" + userId + ":rws:" + rewardSegmentId + ":rwi:" + rewardItemId;
+  }
+
+  public String getRewardPoolItemIds(Long rewardSegmentId, Long rewardItemId) {
+    return redisPrefixKey + ":rws:" + rewardSegmentId + ":rwi:" + rewardItemId;
   }
 }

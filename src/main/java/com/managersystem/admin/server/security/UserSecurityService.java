@@ -1,6 +1,6 @@
 package com.managersystem.admin.server.security;
 
-import com.managersystem.admin.server.entities.AccountEntity;
+import com.managersystem.admin.server.entities.Account;
 import com.managersystem.admin.server.stores.AccountStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,7 +23,7 @@ public class UserSecurityService implements UserDetailsService {
   @Override
   public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
 
-    AccountEntity account = accountStorage.findById(UUID.fromString(id));
+    Account account = accountStorage.findById(UUID.fromString(id));
 
     if(account == null){
       throw new UsernameNotFoundException("User not found " + id);

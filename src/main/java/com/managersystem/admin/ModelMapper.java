@@ -4,7 +4,7 @@ package com.managersystem.admin;
 import com.managersystem.admin.handleRequest.controller.dto.*;
 import com.managersystem.admin.handleRequest.controller.response.*;
 import com.managersystem.admin.server.entities.*;
-import com.managersystem.admin.server.pojo.TokenInfo;
+import com.managersystem.admin.server.pojo.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 import org.springframework.data.domain.Page;
@@ -17,11 +17,11 @@ public interface ModelMapper {
     return source;
   }
 
-  AccountEntity toAccountEntity(AccountDto dto);
+  Account toAccountEntity(AccountDto dto);
 
-  TokenInfo toTokenInfo(AccountEntity account);
+  TokenInfo toTokenInfo(Account account);
 
-  AccountEntity toAccountEntity(TokenInfo tokenInfo);
+  Account toAccountEntity(TokenInfo tokenInfo);
 
   User toUser(UserInfoDto userInfoDto);
 

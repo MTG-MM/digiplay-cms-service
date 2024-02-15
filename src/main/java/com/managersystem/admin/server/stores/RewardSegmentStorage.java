@@ -27,4 +27,9 @@ public class RewardSegmentStorage extends BaseStorage {
   public Page<RewardSegment> findAll(Pageable pageable) {
     return rewardSegmentRepository.findAll(pageable);
   }
+
+
+  public RewardSegment findByCode(String code) {
+    return rewardSegmentRepository.findByCode(code);
+  }
 }

@@ -38,7 +38,7 @@ public class RewardSegmentDetail {
   private PeriodLimitType periodType; //Khoảng thời gian
 
   @Column(name = "period_number")
-  private Long periodNumber; //Số khoảng thời gian
+  private Long periodNumber; //Số khoảng thời gian (periodNumber = 3, periodType = DAY => 3 ngay nhan duoc toi da {periodValue} qua)
 
   @Column(name = "period_value")
   private Long periodValue; //Số quà tối đa người dùng có thể nhận trong khoảng thời gian

@@ -29,4 +29,5 @@ public class RewardItemResponse {
   private Long usedQuantity;
 
   private String externalId;
+
 }

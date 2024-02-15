@@ -22,6 +22,9 @@ public class RewardItem extends BaseEntity {
   @Column(name = "reward_name")
   private String rewardName;
 
+  @Column(name = "value")
+  private Long value;
+
   @Column(name = "description")
   private String description;
 

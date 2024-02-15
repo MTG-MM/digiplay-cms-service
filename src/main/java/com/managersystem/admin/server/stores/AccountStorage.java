@@ -1,6 +1,6 @@
 package com.managersystem.admin.server.stores;
 
-import com.managersystem.admin.server.entities.AccountEntity;
+import com.managersystem.admin.server.entities.Account;
 import com.managersystem.admin.server.entities.type.UserRole;
 import com.managersystem.admin.server.stores.base.BaseStorage;
 import org.springframework.data.domain.Page;
@@ -12,23 +12,23 @@ import java.util.UUID;
 @Component
 public class AccountStorage extends BaseStorage {
 
-  public AccountEntity findByUsernameAndRole(String username, UserRole userRole) {
+  public Account findByUsernameAndRole(String username, UserRole userRole) {
     return accountRepository.findByUsernameAndRole(username, userRole);
   }
 
-  Page<AccountEntity> findAll(Pageable pageable){
+  Page<Account> findAll(Pageable pageable){
     return accountRepository.findAll(pageable);
   }
 
-  public void save(AccountEntity account) {
+  public void save(Account account) {
     accountRepository.save(account);
   }
 
-  public AccountEntity findById(UUID id) {
+  public Account findById(UUID id) {
     return accountRepository.findById(id).orElse(null);
   }
 
-  public AccountEntity findByUsername(String username) {
+  public Account findByUsername(String username) {
     return accountRepository.findByUsername(username);
   }
 }

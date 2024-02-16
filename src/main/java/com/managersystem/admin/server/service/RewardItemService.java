@@ -4,10 +4,7 @@ import com.managersystem.admin.handleRequest.controller.dto.RewardItemDto;
 import com.managersystem.admin.handleRequest.controller.response.RewardItemResponse;
 import com.managersystem.admin.handleRequest.controller.response.RewardResponse;
 import com.managersystem.admin.handleRequest.controller.response.base.PageResponse;
-import com.managersystem.admin.server.entities.RewardItem;
-import com.managersystem.admin.server.entities.RewardSegmentDetail;
-import com.managersystem.admin.server.entities.User;
-import com.managersystem.admin.server.entities.VoucherDetail;
+import com.managersystem.admin.server.entities.*;
 import com.managersystem.admin.server.exception.base.ResourceNotFoundException;
 import com.managersystem.admin.server.service.base.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +29,11 @@ public class RewardItemService extends BaseService {
 
   public boolean createRewardItems(RewardItemDto rewardItemDto) {
     RewardItem rewardItem = modelMapper.toRewardItem(rewardItemDto);
+    RewardType rewardType = rewardTypeStorage.findById(rewardItemDto.getRewardTypeId());
+    if (rewardType == null){
+      throw new ResourceNotFoundException("reward type not found");
+    }
+    rewardItem.setRewardTypeId(rewardType.getId());
     rewardItemStorage.save(rewardItem);
     return true;
   }
@@ -41,7 +43,11 @@ public class RewardItemService extends BaseService {
     if (rewardItem == null){
       throw new ResourceNotFoundException("item not found");
     }
-
+    RewardType rewardType = rewardTypeStorage.findById(rewardItemDto.getRewardTypeId());
+    if (rewardType == null){
+      throw new ResourceNotFoundException("reward type not found");
+    }
+    rewardItem.setRewardTypeId(rewardType.getId());
     modelMapper.mapRewardItemDtoToRewardItem(rewardItemDto, rewardItem);
     rewardItemStorage.save(rewardItem);
     return true;

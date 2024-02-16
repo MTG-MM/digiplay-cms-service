@@ -35,6 +35,9 @@ public class RewardItem extends BaseEntity {
   @Enumerated(EnumType.STRING)
   private RewardType rewardType;
 
+  @Column(name = "reward_type_id")
+  private Long rewardTypeId;
+
   @Column(name = "status")
   @Enumerated(EnumType.STRING)
   private Status status;

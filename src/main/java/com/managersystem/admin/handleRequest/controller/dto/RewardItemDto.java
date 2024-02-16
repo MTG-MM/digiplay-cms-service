@@ -16,19 +16,15 @@ public class RewardItemDto {
   @NotNull(message = "Không được để trống")
   @NotBlank(message = "Không được để trống")
   private String rewardName;
-
   private String description;
-
   private String imageUrl;
-
   @NotNull
   private RewardType rewardType;
-
   @NotNull
   private Status status;
-
   @NotNull
   private Boolean isLimited;
 
   private String externalId;
+  private Long rewardTypeId;
 }

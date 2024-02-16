@@ -85,7 +85,7 @@ public interface ModelMapper {
 
   List<RewardTypeResponse> toPageRewardTypeResponse(List<RewardType> rewardItems);
 
-  RewardType toRewardType(RewardTypeCreateDto rewardTypeCreateDto);
+  RewardType toRewardType(RewardTypeDto rewardTypeDto);
 
   void mapRewardTypeDtoToRewardType(RewardTypeUpdateDto rewardTypeDto,@MappingTarget RewardType rewardType);
 

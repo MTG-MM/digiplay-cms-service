@@ -1,13 +1,11 @@
 package com.managersystem.admin.handleRequest.controller;
 
-import com.managersystem.admin.handleRequest.controller.dto.RewardTypeCreateDto;
+import com.managersystem.admin.handleRequest.controller.dto.RewardTypeDto;
 import com.managersystem.admin.handleRequest.controller.dto.RewardTypeUpdateDto;
 import com.managersystem.admin.handleRequest.controller.response.RewardTypeResponse;
-import com.managersystem.admin.handleRequest.controller.response.base.PageResponse;
 import com.managersystem.admin.server.service.RewardTypeService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,7 +30,7 @@ public class RewardTypeController {
   }
 
   @PostMapping("")
-  public ResponseEntity<Boolean> createRewardTypes(@RequestBody RewardTypeCreateDto rewardTypeDto) {
+  public ResponseEntity<Boolean> createRewardTypes(@RequestBody RewardTypeDto rewardTypeDto) {
     return ResponseEntity.ok(rewardTypeService.createRewardTypes(rewardTypeDto));
   }
 

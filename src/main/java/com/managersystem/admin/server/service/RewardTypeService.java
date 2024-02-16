@@ -1,6 +1,6 @@
 package com.managersystem.admin.server.service;
 
-import com.managersystem.admin.handleRequest.controller.dto.RewardTypeCreateDto;
+import com.managersystem.admin.handleRequest.controller.dto.RewardTypeDto;
 import com.managersystem.admin.handleRequest.controller.dto.RewardTypeUpdateDto;
 import com.managersystem.admin.handleRequest.controller.response.RewardTypeResponse;
 import com.managersystem.admin.server.entities.RewardType;
@@ -18,8 +18,8 @@ public class RewardTypeService extends BaseService {
     return modelMapper.toPageRewardTypeResponse(rewardTypes);
   }
 
-  public boolean createRewardTypes(RewardTypeCreateDto rewardTypeCreateDto) {
-    RewardType rewardType = modelMapper.toRewardType(rewardTypeCreateDto);
+  public boolean createRewardTypes(RewardTypeDto rewardTypeDto) {
+    RewardType rewardType = modelMapper.toRewardType(rewardTypeDto);
     rewardTypeStorage.save(rewardType);
     return true;
   }

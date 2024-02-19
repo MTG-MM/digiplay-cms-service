@@ -2,6 +2,7 @@ package com.managersystem.admin.server.repositories;
 
 import com.managersystem.admin.server.entities.VoucherDetail;
 import com.managersystem.admin.server.entities.type.PollItemStatus;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -27,4 +28,6 @@ public interface VoucherDetailRepository extends JpaRepository<VoucherDetail, UU
   @Modifying
   void updateItemStatus(
       @Param("segmentDetailId") Long segmentDetailId);
+
+  Page<VoucherDetail> findByStoreId(Long storeId, Pageable pageable);
 }

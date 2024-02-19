@@ -1,5 +1,7 @@
 package com.managersystem.admin.server.service;
 
+import com.managersystem.admin.handleRequest.controller.response.VoucherDetailResponse;
+import com.managersystem.admin.handleRequest.controller.response.base.PageResponse;
 import com.managersystem.admin.server.entities.*;
 import com.managersystem.admin.server.entities.type.Status;
 import com.managersystem.admin.server.entities.type.PollItemStatus;
@@ -7,6 +9,8 @@ import com.managersystem.admin.server.entities.type.StoreType;
 import com.managersystem.admin.server.service.base.BaseService;
 import com.managersystem.admin.server.utils.DateUtils;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -83,5 +87,10 @@ public class VoucherDetailService extends BaseService {
     }
     voucherDetailStorage.saveAll(voucherDetails);
     rewardItemStoreStorage.save(rewardItemStore);
+  }
+
+  public PageResponse<VoucherDetailResponse> getAllVoucherDetails(Long storeId, Pageable pageable) {
+    Page<VoucherDetail> voucherDetails = voucherDetailStorage.findByStoreId(storeId, pageable);
+    return PageResponse.createFrom(modelMapper.toPageVoucherDetailResponse(voucherDetails));
   }
 }

@@ -16,5 +16,7 @@ public class RewardSegmentResponse {
 
   private String imageUrl;
 
+  private Boolean isAccumulativePriority;
+
   private Status status;
 }

@@ -90,4 +90,20 @@ public interface ModelMapper {
   void mapRewardTypeDtoToRewardType(RewardTypeUpdateDto rewardTypeDto,@MappingTarget RewardType rewardType);
 
   RewardTypeResponse toRewardTypeResponse(RewardType rewardType);
+
+  default Page<VoucherDetailResponse> toPageVoucherDetailResponse(Page<VoucherDetail> voucherDetails){
+    return voucherDetails.map(this::toVoucherDetailResponse);
+  }
+
+  VoucherDetailResponse toVoucherDetailResponse(VoucherDetail voucherDetail);
+
+  RewardItemStoreResponse toRewardItemStoreResponse(RewardItemStore rewardItemStore);
+
+  default Page<RewardItemStoreResponse> toPageRewardItemStoreResponse(Page<RewardItemStore> rewardItemStores){
+    return rewardItemStores.map(this::toRewardItemStoreResponse);
+  }
+
+  RewardItemStore toRewardItemStore(RewardItemStoreCreateDto rewardItemStoreDto);
+
+  void mapRewardItemStoreDtoToRewardItemStore(RewardItemStoreUpdateDto rewardItemStoreDto,@MappingTarget RewardItemStore rewardItemStore);
 }

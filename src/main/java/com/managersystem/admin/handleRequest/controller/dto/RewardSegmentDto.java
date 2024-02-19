@@ -16,5 +16,7 @@ public class RewardSegmentDto {
 
   private String imageUrl;
 
+  private Boolean isAccumulativePriority;
+
   private Status status;
 }

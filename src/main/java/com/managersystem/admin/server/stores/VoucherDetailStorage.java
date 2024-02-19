@@ -42,4 +42,8 @@ public class VoucherDetailStorage extends BaseStorage {
   public void updateItemStatus(Long rewardSegmentDetailId) {
     voucherDetailRepository.updateItemStatus(rewardSegmentDetailId);
   }
+
+  public Page<VoucherDetail> findByStoreId(Long storeId, Pageable pageable) {
+    return voucherDetailRepository.findByStoreId(storeId, pageable);
+  }
 }

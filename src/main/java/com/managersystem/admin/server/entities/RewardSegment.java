@@ -27,6 +27,9 @@ public class RewardSegment extends BaseEntity {
   @Column(name = "image_url")
   private String imageUrl;
 
+  @Column(name = "is_accumulative_priority")
+  private Boolean isAccumulativePriority; //Có tích lũy vào quà default nếu quà không hợp lệ không
+
   @Column(name = "status")
   @Enumerated(EnumType.STRING)
   private Status status;

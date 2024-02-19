@@ -1,6 +1,7 @@
 package com.managersystem.admin.server.service;
 
 import com.managersystem.admin.server.entities.RewardItemStore;
+import com.managersystem.admin.server.entities.RewardSchedule;
 import com.managersystem.admin.server.entities.User;
 import com.managersystem.admin.server.entities.ProductDetail;
 import com.managersystem.admin.server.entities.type.PollItemStatus;
@@ -47,9 +48,12 @@ public class ProductDetailService extends BaseService {
     return productDetail;
   }
 
-  public List<ProductDetail> getProductDetail(int productStoreId, int limit, boolean newPeriod) {
+  public List<ProductDetail> getProductDetail(int productStoreId, int limit, RewardSchedule rewardSchedule, boolean newPeriod) {
     List<ProductDetail> productDetails = null;
     try {
+      if(newPeriod && !rewardSchedule.getIsAccumulative()){
+        productDetailStorage.updateItemStatus(rewardSchedule.getRewardSegmentDetailId());
+      }
       productDetails = productDetailStorage.getListProductDetailByStatus(productStoreId, PollItemStatus.NEW, limit);
       productDetails.forEach(v -> v.setStatus(PollItemStatus.IN_POOL));
       productDetailStorage.saveAll(productDetails);

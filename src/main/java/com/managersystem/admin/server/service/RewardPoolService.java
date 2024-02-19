@@ -40,7 +40,7 @@ public class RewardPoolService extends BaseService {
       throw new ResourceNotFoundException(Constant.SYSTEM_MAINTAIN);
     }
     List<RewardSegmentDetail> rewardSegmentDetails = rewardSegmentDetailStorage.findByRewardSegmentId(rewardSegment.getId());
-    List<RewardSegmentDetail> validSegmentDetails = getValidPoolDetail(user, rewardSegmentDetails);
+    List<RewardSegmentDetail> validSegmentDetails = getValidPoolDetail(user, rewardSegmentDetails, rewardSegment);
     if(validSegmentDetails.isEmpty()){
       segmentDetail = getDefaultRewardSegmentDetail(rewardSegmentDetails);
     }else{
@@ -94,7 +94,7 @@ public class RewardPoolService extends BaseService {
       Double min = odds.get(keyMin);
       Double max = odds.get(keyMax);
       if (min <= index && index < max) {
-        result = list.stream().filter(item -> item.getId().equals(id)).toList().get(0);
+        result = list.stream().filter(item -> item.getId().equals(id)).toList().getFirst();
         break;
       }
     }
@@ -105,17 +105,19 @@ public class RewardPoolService extends BaseService {
    * chuyen doi danh sach toan bo qua trong kho qua thanh danh sach nhung qua co the nhan cua user
    * @return danh sach qua hop le
    */
-  private List<RewardSegmentDetail> getValidPoolDetail(User user, List<RewardSegmentDetail> rewardSegmentDetails) {
+  private List<RewardSegmentDetail> getValidPoolDetail(User user, List<RewardSegmentDetail> rewardSegmentDetails, RewardSegment rewardSegment) {
     log.debug("============>getValidPoolDetail item pre process {}", rewardSegmentDetails);
     List<RewardSegmentDetail> rewardSegmentDetailsToRemove = new ArrayList<>();
     Long defaultRate = 0L;
     UserSegment userSegment = userSegmentService.getUserSegment(user);
 
     for (RewardSegmentDetail rewardSegmentDetail : rewardSegmentDetails) {
-      if (!checkCapping(user, rewardSegmentDetail, userSegment)) {
+      if (!checkCapping(user, rewardSegmentDetail, userSegment, rewardSegment)) {
         log.debug("============>getValidPoolDetail caping item {} ", rewardSegmentDetail);
         rewardSegmentDetailsToRemove.add(rewardSegmentDetail);
-        defaultRate += rewardSegmentDetail.getPriority();
+        if(rewardSegment.getIsAccumulativePriority()){
+          defaultRate += rewardSegmentDetail.getPriority();
+        }
       }
     }
     log.debug("============>getValidPoolDetail remove item {} ", rewardSegmentDetailsToRemove);
@@ -137,7 +139,7 @@ public class RewardPoolService extends BaseService {
    * kiem tra rank cua nguoi dung
    * @return true neu nguoi dung con co the nhan qua
    */
-  public boolean checkCapping(User user, RewardSegmentDetail rewardSegmentDetail, UserSegment userSegment){
+  public boolean checkCapping(User user, RewardSegmentDetail rewardSegmentDetail, UserSegment userSegment, RewardSegment rewardSegment){
     if(rewardSegmentDetail.getPeriodType() == PeriodLimitType.UNLIMITED){
       return true;
     }

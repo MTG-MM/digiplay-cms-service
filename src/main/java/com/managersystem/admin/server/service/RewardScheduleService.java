@@ -29,9 +29,14 @@ import java.util.stream.Collectors;
 @Log4j2
 public class RewardScheduleService extends BaseService {
 
-  @Autowired VoucherDetailService voucherDetailService;
-  @Autowired ProductDetailService productDetailService;
-  @Autowired @Lazy RewardScheduleService self;
+  @Autowired
+  VoucherDetailService voucherDetailService;
+  @Autowired
+  ProductDetailService productDetailService;
+  @Autowired
+  @Lazy
+  RewardScheduleService self;
+
   public List<RewardScheduleResponse> getAllRewardSchedules(Long rewardSegmentId) {
     return modelMapper.toListRewardScheduleResponse(rewardScheduleStorage.findByRewardSegmentDetailId(rewardSegmentId));
   }
@@ -44,7 +49,7 @@ public class RewardScheduleService extends BaseService {
 
   public Boolean updateRewardSchedules(Long id, RewardScheduleUpdateDto rewardScheduleDto) {
     RewardSchedule rewardSchedule = rewardScheduleStorage.findById(id);
-    if (rewardSchedule == null){
+    if (rewardSchedule == null) {
       throw new ResourceNotFoundException("item not found");
     }
 
@@ -55,7 +60,7 @@ public class RewardScheduleService extends BaseService {
 
   public RewardScheduleResponse getRewardScheduleDetail(Long id) {
     RewardSchedule rewardSchedule = rewardScheduleStorage.findById(id);
-    if (rewardSchedule == null){
+    if (rewardSchedule == null) {
       throw new ResourceNotFoundException("item not found");
     }
     return modelMapper.toRewardScheduleResponse(rewardSchedule);
@@ -124,7 +129,7 @@ public class RewardScheduleService extends BaseService {
       }
       int minutesToNextDay = 24 * 60 - currentMinute;
       long quantity = processStateDayQuantity(rewardState, rewardSchedule.getQuantity(), minutesToNextDay, localDateTime.getDayOfMonth());
-      if(quantity > 0) {
+      if (quantity > 0) {
         rewardState.setLastMinute(currentMinute);
         self.processUpdatePoolItem((int) quantity, rewardItem, rewardSchedule, newPeriod);
       }
@@ -140,7 +145,7 @@ public class RewardScheduleService extends BaseService {
       }
       int minutesToNextHour = 60 - localDateTime.getMinute();
       long quantity = processStateHourQuantity(rewardState, rewardSchedule.getQuantity(), minutesToNextHour, localDateTime.getHour());
-      if(quantity > 0) {
+      if (quantity > 0) {
         rewardState.setLastMinute(currentMinute);
         self.processUpdatePoolItem((int) quantity, rewardItem, rewardSchedule, newPeriod);
       }
@@ -152,7 +157,7 @@ public class RewardScheduleService extends BaseService {
       rewardState.setCountHour(0L);
       rewardState.setCountMinute(0L);
       long quantity = processStateMinuterQuantity(rewardState, rewardSchedule.getQuantity(), currentMinute);
-      if(quantity > 0) {
+      if (quantity > 0) {
         rewardState.setLastMinute(currentMinute);
         self.processUpdatePoolItem((int) quantity, rewardItem, rewardSchedule, true);
       }
@@ -162,48 +167,49 @@ public class RewardScheduleService extends BaseService {
   }
 
   @Transactional(propagation = Propagation.MANDATORY)
-  public void processUpdatePoolItem(int amount, RewardItem rewardItem, RewardSchedule rewardSchedule, boolean newPeriod){
-    switch (rewardItem.getRewardType()){
+  public void processUpdatePoolItem(int amount, RewardItem rewardItem, RewardSchedule rewardSchedule, boolean newPeriod) {
+    switch (rewardItem.getRewardType()) {
       case POINT -> {
       }
       case VOUCHER -> {
         List<VoucherDetail> voucherDetails = voucherDetailService.getVoucherDetail(Integer.parseInt(rewardItem.getExternalId()), amount, rewardSchedule, newPeriod);
-        if(!voucherDetails.isEmpty()){
+        if (!voucherDetails.isEmpty()) {
           voucherDetails.forEach(v -> remoteCache.rDequePutId(cacheKey.getRewardPoolItemIds(rewardSchedule.getRewardSegmentDetailId(), rewardItem.getId()), v.getId()));
         }
 
       }
       case PRODUCT -> {
-        List<ProductDetail> productDetails = productDetailService.getProductDetail(Integer.parseInt(rewardItem.getExternalId()), amount, newPeriod);
-        if(!productDetails.isEmpty()){
+        List<ProductDetail> productDetails = productDetailService.getProductDetail(Integer.parseInt(rewardItem.getExternalId()), amount, rewardSchedule, newPeriod);
+        if (!productDetails.isEmpty()) {
           productDetails.forEach(v -> remoteCache.rDequePutId(cacheKey.getRewardPoolItemIds(rewardSchedule.getRewardSegmentDetailId(), rewardItem.getId()), v.getId()));
         }
       }
     }
   }
+
   public long processStateDayQuantity(RewardState rewardState, long quantity, long minuteToNextDay, int time) {
     long processQuantity = 0;
     long notProcessQuantity = quantity - rewardState.getCountDay();
-    if(notProcessQuantity == 0) {
+    if (notProcessQuantity == 0) {
       log.warn("=====>processStateHourQuantity: notProcessQuantity == 0");
       return 0;
     }
     if (notProcessQuantity >= minuteToNextDay) {
       //Nếu số quà có số lượng lớn hơn số phút còn lại thì cộng thêm bằng số quà còn lại / số phút còn lại
-      processQuantity = Helper.numberAround(notProcessQuantity ,minuteToNextDay);
+      processQuantity = Helper.numberAround(notProcessQuantity, minuteToNextDay);
     } else {
       int minuteInDay = 60 * 24;
       //Nêu số quà có số lượng ít hơn so phut con lai
       int avgMinutePerReward = (int) ((minuteInDay) / notProcessQuantity);
       //Nếu chỉ còn 1 quà thì cần xu ly de khong tra ngay khi goi
-      if(notProcessQuantity == 1){
+      if (notProcessQuantity == 1) {
         avgMinutePerReward = avgMinutePerReward * 2;
       }
       if (minuteToNextDay % avgMinutePerReward == 0) {
         processQuantity = 1;
       }
     }
-    if(processQuantity > 0) {
+    if (processQuantity > 0) {
       rewardState.addCountDay(processQuantity);
       rewardState.addCountHour(processQuantity);
       rewardState.addCountMinute(processQuantity);
@@ -216,26 +222,26 @@ public class RewardScheduleService extends BaseService {
   public long processStateHourQuantity(RewardState rewardState, long quantity, long minuteToNextHour, int time) {
     long processQuantity = 0;
     long notProcessQuantity = quantity - rewardState.getCountHour();
-    if(notProcessQuantity == 0) {
+    if (notProcessQuantity == 0) {
       log.warn("=====>processStateHourQuantity: notProcessQuantity == 0");
       return 0;
     }
     if (notProcessQuantity >= minuteToNextHour) {
       //Nếu số quà có số lượng lớn hơn số phút còn lại thì cộng thêm bằng số quà còn lại / số phút còn lại
-      processQuantity = Helper.numberAround(notProcessQuantity , minuteToNextHour);
+      processQuantity = Helper.numberAround(notProcessQuantity, minuteToNextHour);
     } else {
       int minuteInHour = 60;
       //Nêu số quà có số lượng ít hơn so phut con lai
       int avgMinutePerReward = (int) ((minuteInHour) / notProcessQuantity);
       //Nếu chỉ còn 1 quà thì cần xu ly de khong tra ngay khi goi
-      if(notProcessQuantity == 1){
+      if (notProcessQuantity == 1) {
         avgMinutePerReward = avgMinutePerReward * 2;
       }
       if (minuteToNextHour % avgMinutePerReward == 0) {
         processQuantity = 1;
       }
     }
-    if(processQuantity > 0) {
+    if (processQuantity > 0) {
       rewardState.addCountDay(processQuantity);
       rewardState.addCountHour(processQuantity);
       rewardState.addCountMinute(processQuantity);
@@ -316,7 +322,7 @@ public class RewardScheduleService extends BaseService {
 
   public boolean pushToRDeque(String key) {
 //    int[] arr = new int[] {};
-    for(int i = 0 ; i < 100000; i++){
+    for (int i = 0; i < 100000; i++) {
 //      arr[i] = i;
       System.out.println(i);
       remoteCache.rDequePutId(key, i);
@@ -326,19 +332,19 @@ public class RewardScheduleService extends BaseService {
   }
 
   public List<String> getFromRDeque(String key) {
-    List<String> dataStrings= remoteCache.rDequeGetAll(key);
+    List<String> dataStrings = remoteCache.rDequeGetAll(key);
     System.out.println("dataStrings" + dataStrings.size());
     return dataStrings;
   }
 
   public boolean rDequePeekFirst(String key) {
-    for(int i = 0 ; i < 10000; i++){
+    for (int i = 0; i < 10000; i++) {
       peekItem(key);
     }
     return true;
   }
 
-  public void peekItem (String key){
+  public void peekItem(String key) {
     Integer data = remoteCache.rDequePoolFirst(key);
     System.out.println(data);
   }

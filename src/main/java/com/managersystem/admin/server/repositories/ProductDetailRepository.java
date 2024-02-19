@@ -5,6 +5,7 @@ import com.managersystem.admin.server.entities.ProductDetail;
 import com.managersystem.admin.server.entities.type.PollItemStatus;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -22,5 +23,8 @@ public interface ProductDetailRepository extends JpaRepository<ProductDetail, UU
       @Param("productStatus") PollItemStatus pollItemStatus,
       Pageable pageable
   );
-
+  @Query(nativeQuery = true, value = "UPDATE product_detail set product_status = 'NEW', segment_detail_id = NULL where segment_detail_id = :segmentDetailId")
+  @Modifying
+  void updateItemStatus(
+      @Param("segmentDetailId") Long rewardSegmentDetailId);
 }

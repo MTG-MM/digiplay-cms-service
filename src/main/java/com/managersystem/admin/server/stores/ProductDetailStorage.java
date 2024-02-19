@@ -38,4 +38,8 @@ public class ProductDetailStorage extends BaseStorage {
     Pageable pageable = PageRequest.of(0, limit);
     return productDetailRepository.getListProductDetailByStatus(productStoreId, pollItemStatus, pageable);
   }
+
+  public void updateItemStatus(Long rewardSegmentDetailId) {
+    productDetailRepository.updateItemStatus(rewardSegmentDetailId);
+  }
 }

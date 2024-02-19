@@ -39,6 +39,9 @@ public class ProductDetail extends BaseEntity {
   @Enumerated(EnumType.STRING)
   private PollItemStatus status;
 
+  @Column(name = "segment_detail_id")
+  private Long segmentDetailId;
+
   @Column(name = "start_at")
   private Long startAt;
 

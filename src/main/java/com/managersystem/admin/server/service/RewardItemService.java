@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
@@ -18,8 +21,8 @@ import java.util.UUID;
 public class RewardItemService extends BaseService {
 
   @Autowired UserService userService;
-
   @Autowired VoucherDetailService voucherDetailService;
+  @Autowired ProductDetailService productDetailService;
 
   public PageResponse<RewardItemResponse> getAllRewardItems(Pageable pageable) {
     Page<RewardItem> rewardItems = rewardItemStorage.findAll(pageable);
@@ -61,6 +64,7 @@ public class RewardItemService extends BaseService {
     return modelMapper.toRewardItemResponse(rewardItem);
   }
 
+  @Transactional(propagation = Propagation.MANDATORY)
   public RewardResponse processReturnRewardItem(User user, RewardSegmentDetail segmentDetail){
     RewardItem rewardItem = rewardItemStorage.findById(segmentDetail.getRewardItemId());
     if(rewardItem == null){
@@ -79,6 +83,16 @@ public class RewardItemService extends BaseService {
         VoucherDetail voucherDetail = voucherDetailService.setVoucherDetailForUser(user, detailId);
         if(voucherDetail != null){
           return new RewardResponse(rewardItem, segmentDetail, voucherDetail);
+        }
+      }
+      case PRODUCT -> {
+        UUID detailId = getRewardItemInCache(segmentDetail);
+        if(detailId == null){
+          return null;
+        }
+        ProductDetail productDetail = productDetailService.setProductDetailForUser(user, detailId);
+        if(productDetail != null){
+          return new RewardResponse(rewardItem, segmentDetail, productDetail);
         }
       }
       case PHYSICAL -> {

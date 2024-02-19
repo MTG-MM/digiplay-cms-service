@@ -1,6 +1,5 @@
 package com.managersystem.admin.server.stores.base;
 
-import com.managersystem.admin.server.entities.RewardStateLog;
 import com.managersystem.admin.server.repositories.*;
 import com.managersystem.admin.server.utils.CacheKey;
 import com.managersystem.admin.server.utils.RemoteCache;
@@ -23,6 +22,8 @@ public class BaseStorage {
   @Autowired protected RewardStateRepository rewardStateRepository;
   @Autowired protected RewardStateLogRepository rewardStateLogRepository;
   @Autowired protected RewardTypeRepository rewardTypeRepository;
-  @Autowired protected VoucherStoreRepository voucherStoreRepository;
+  @Autowired protected RewardItemStoreRepository rewardItemStoreRepository;
   @Autowired protected VoucherDetailRepository voucherDetailRepository;
+  @Autowired protected ProductDetailRepository productDetailRepository;
+  @Autowired protected UserSegmentRepository userSegmentRepository;
 }

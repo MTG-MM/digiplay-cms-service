@@ -14,7 +14,6 @@ import com.managersystem.admin.server.utils.Helper;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
@@ -31,6 +30,7 @@ import java.util.stream.Collectors;
 public class RewardScheduleService extends BaseService {
 
   @Autowired VoucherDetailService voucherDetailService;
+  @Autowired ProductDetailService productDetailService;
   @Autowired @Lazy RewardScheduleService self;
   public List<RewardScheduleResponse> getAllRewardSchedules(Long rewardSegmentId) {
     return modelMapper.toListRewardScheduleResponse(rewardScheduleStorage.findByRewardSegmentDetailId(rewardSegmentId));
@@ -89,6 +89,7 @@ public class RewardScheduleService extends BaseService {
 
   @Transactional(propagation = Propagation.MANDATORY)
   public void processAddQuantity(RewardSchedule rewardSchedule, RewardItem rewardItem, RewardSegmentDetail segmentDetail) {
+    boolean newPeriod = false;
     if (rewardItem == null || !rewardItem.getIsLimited()) {
       return;
     }
@@ -115,6 +116,7 @@ public class RewardScheduleService extends BaseService {
     if (rewardSchedule.getPeriodType() == PeriodType.DAY) {
       if (localDateTime.getDayOfMonth() != rewardState.getLastDay()) {
         log.debug("====>update new day {}", localDateTime);
+        newPeriod = true;
         rewardState.setLastDay(localDateTime.getDayOfMonth());
         rewardState.setCountDay(0L);
         rewardState.setCountHour(0L);
@@ -124,12 +126,13 @@ public class RewardScheduleService extends BaseService {
       long quantity = processStateDayQuantity(rewardState, rewardSchedule.getQuantity(), minutesToNextDay, localDateTime.getDayOfMonth());
       if(quantity > 0) {
         rewardState.setLastMinute(currentMinute);
-        self.processUpdatePoolItem((int) quantity, rewardItem, segmentDetail);
+        self.processUpdatePoolItem((int) quantity, rewardItem, rewardSchedule, newPeriod);
       }
       saveUpdateStateLog(rewardState, localDateTime, quantity);
     } else if (rewardSchedule.getPeriodType() == PeriodType.HOUR) {
       if (localDateTime.getHour() != rewardState.getLastHour()) {
         log.debug("====>update new hour {}", localDateTime);
+        newPeriod = true;
         rewardState.setLastHour(localDateTime.getHour());
         rewardState.setCountDay(0L);
         rewardState.setCountHour(0L);
@@ -139,7 +142,7 @@ public class RewardScheduleService extends BaseService {
       long quantity = processStateHourQuantity(rewardState, rewardSchedule.getQuantity(), minutesToNextHour, localDateTime.getHour());
       if(quantity > 0) {
         rewardState.setLastMinute(currentMinute);
-        self.processUpdatePoolItem((int) quantity, rewardItem, segmentDetail);
+        self.processUpdatePoolItem((int) quantity, rewardItem, rewardSchedule, newPeriod);
       }
       saveUpdateStateLog(rewardState, localDateTime, quantity);
     } else if (rewardSchedule.getPeriodType() == PeriodType.MINUTE) {
@@ -151,7 +154,7 @@ public class RewardScheduleService extends BaseService {
       long quantity = processStateMinuterQuantity(rewardState, rewardSchedule.getQuantity(), currentMinute);
       if(quantity > 0) {
         rewardState.setLastMinute(currentMinute);
-        self.processUpdatePoolItem((int) quantity, rewardItem, segmentDetail);
+        self.processUpdatePoolItem((int) quantity, rewardItem, rewardSchedule, true);
       }
       saveUpdateStateLog(rewardState, localDateTime, quantity);
     }
@@ -159,18 +162,22 @@ public class RewardScheduleService extends BaseService {
   }
 
   @Transactional(propagation = Propagation.MANDATORY)
-  public void processUpdatePoolItem(int amount, RewardItem rewardItem, RewardSegmentDetail segmentDetail){
+  public void processUpdatePoolItem(int amount, RewardItem rewardItem, RewardSchedule rewardSchedule, boolean newPeriod){
     switch (rewardItem.getRewardType()){
       case POINT -> {
       }
       case VOUCHER -> {
-        List<VoucherDetail> voucherDetails = voucherDetailService.getVoucherDetail(Integer.parseInt(rewardItem.getExternalId()), amount);
+        List<VoucherDetail> voucherDetails = voucherDetailService.getVoucherDetail(Integer.parseInt(rewardItem.getExternalId()), amount, rewardSchedule, newPeriod);
         if(!voucherDetails.isEmpty()){
-          voucherDetails.forEach(v -> remoteCache.rDequePutId(cacheKey.getRewardPoolItemIds(segmentDetail.getRewardSegmentId(), segmentDetail.getRewardItemId()), v.getId()));
+          voucherDetails.forEach(v -> remoteCache.rDequePutId(cacheKey.getRewardPoolItemIds(rewardSchedule.getRewardSegmentDetailId(), rewardItem.getId()), v.getId()));
         }
 
       }
-      case PHYSICAL -> {
+      case PRODUCT -> {
+        List<ProductDetail> productDetails = productDetailService.getProductDetail(Integer.parseInt(rewardItem.getExternalId()), amount, newPeriod);
+        if(!productDetails.isEmpty()){
+          productDetails.forEach(v -> remoteCache.rDequePutId(cacheKey.getRewardPoolItemIds(rewardSchedule.getRewardSegmentDetailId(), rewardItem.getId()), v.getId()));
+        }
       }
     }
   }

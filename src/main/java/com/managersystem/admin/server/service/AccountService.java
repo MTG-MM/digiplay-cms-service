@@ -2,6 +2,7 @@ package com.managersystem.admin.server.service;
 
 import com.managersystem.admin.handleRequest.controller.dto.AccountDto;
 import com.managersystem.admin.handleRequest.controller.dto.LoginDto;
+import com.managersystem.admin.handleRequest.controller.dto.UserInfoDto;
 import com.managersystem.admin.handleRequest.controller.response.TokenResponse;
 import com.managersystem.admin.server.entities.Account;
 import com.managersystem.admin.server.entities.type.NewAccountState;
@@ -17,7 +18,12 @@ import com.managersystem.admin.server.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -32,7 +38,8 @@ public class AccountService extends BaseService {
   @Lazy
   UserSecurityService userSecurityService;
 
-  public boolean createAccount(AccountDto dto){
+  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
+  public Account createAccount(AccountDto dto){
     Account account = new Account();
     account.setId(UUID.randomUUID());
     account.setUsername(dto.getUsername());
@@ -48,7 +55,7 @@ public class AccountService extends BaseService {
     account.setGroupCode("ADMIN");
     accountStorage.save(account);
     userService.createUserInfo(account.getId(), dto.getUserInfoDto());
-    return true;
+    return account;
   }
 
   public TokenResponse login(LoginDto dto){
@@ -65,6 +72,7 @@ public class AccountService extends BaseService {
 
   public boolean initAdminAccount() {
     Account account = new Account();
+    account.setId(UUID.randomUUID());
     account.setUsername("MosSystemAdmin");
     account.setPassword(userSecurityService.encode("admin123456"));
     account.setRole(UserRole.ADMIN);
@@ -79,5 +87,33 @@ public class AccountService extends BaseService {
     account.setGroupCode("ADMIN");
     accountStorage.save(account);
     return true;
+  }
+
+  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
+  public List<TokenResponse> initAccountTest() {
+    List<TokenResponse> responses = new ArrayList<>();
+    List<Account> accounts = new ArrayList<>();
+    for(int i = 0 ; i < 100; i++){
+      Account account = accountStorage.findByUsername("acc" + i);
+      if(account == null){
+        AccountDto accountDto = new AccountDto();
+        accountDto.setUsername("acc" + i);
+        accountDto.setPassword("acc" + i);
+        UserInfoDto userInfoDto = new UserInfoDto();
+        userInfoDto.setLastName("acc first name " + i);
+        userInfoDto.setLastName("acc last name " + i);
+        userInfoDto.setPhoneNumber("acc phone " + i);
+        userInfoDto.setBirth("acc " + i);
+        userInfoDto.setEmail("acc last name " + i);
+        userInfoDto.setCurrentAddress("acc last name " + i);
+        accountDto.setUserInfoDto(userInfoDto);
+        account = createAccount(accountDto);
+        accounts.add(account);
+      }
+    }
+    accounts.forEach(acc -> {
+      responses.add(new TokenResponse(jwtService.generateToken(acc), acc.getRole(), acc.getAccountState(), acc.getState() ));
+    });
+    return responses;
   }
 }

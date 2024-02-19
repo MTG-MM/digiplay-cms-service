@@ -1,8 +1,6 @@
 package com.managersystem.admin.server.entities.type;
 
-public enum RewardType {
-  POINT,
+public enum StoreType {
   VOUCHER,
-  PRODUCT,
-  PHYSICAL
+  PRODUCT
 }

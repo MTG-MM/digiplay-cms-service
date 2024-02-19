@@ -1,5 +1,7 @@
 package com.managersystem.admin.handleRequest.controller;
 
+import com.managersystem.admin.server.service.AccountService;
+import com.managersystem.admin.server.service.ProductDetailService;
 import com.managersystem.admin.server.service.RewardScheduleService;
 import com.managersystem.admin.server.service.VoucherDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +15,13 @@ import java.util.List;
 public class HealthCheckController {
 
   @Autowired
+  AccountService accountService;
+  @Autowired
   RewardScheduleService rewardScheduleService;
   @Autowired
   VoucherDetailService voucherDetailService;
+  @Autowired
+  ProductDetailService productDetailService;
 
   @GetMapping("")
   public ResponseEntity<?> healthCheck() {
@@ -30,6 +36,17 @@ public class HealthCheckController {
   @PostMapping("init-voucher-test")
   public ResponseEntity<?> initVoucherTest() {
     voucherDetailService.initRandomVoucherDetail();
+    return ResponseEntity.ok(true);
+  }
+
+  @PostMapping("init-account-test")
+  public ResponseEntity<?> initAccountTest() {
+    return ResponseEntity.ok(accountService.initAccountTest());
+  }
+
+  @PostMapping("init-product-test")
+  public ResponseEntity<?> initProductTest() {
+    productDetailService.initRandomProductDetail();
     return ResponseEntity.ok(true);
   }
 

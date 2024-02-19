@@ -40,6 +40,9 @@ public class User extends BaseEntity {
   @Column(name ="point")
   private Long point = 0L;
 
+  @Column(name ="user_segment_id")
+  private Long userSegmentId;
+
   @Column(name ="invite_code")
   private String inviteCode; // Mã mời của tài khoản bản thân
 

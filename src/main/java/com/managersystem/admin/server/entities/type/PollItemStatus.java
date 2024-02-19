@@ -1,6 +1,6 @@
 package com.managersystem.admin.server.entities.type;
 
-public enum VoucherStatus {
+public enum PollItemStatus {
   NEW,
   IN_POOL,
   RECEIVE,

@@ -27,6 +27,9 @@ public class RewardSchedule extends BaseEntity {
   @Column(name = "quantity")
   private Long quantity;
 
+  @Column(name = "is_accumulative")
+  private Boolean isAccumulative; // true thì sẽ tích lũy số lượng của ngày hôm trước vào ngày hôm sau
+
   @Column(name = "start_at")
   private Long startAt;
 

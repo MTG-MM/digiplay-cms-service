@@ -44,13 +44,11 @@ public class SecurityConfig {
         .and()
         .authorizeHttpRequests().anyRequest().permitAll()
         .and()
-        .sessionManagement()
-        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        .and()
         .authenticationProvider(authenticationProvider())
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         .and()
-        .exceptionHandling((exception) -> exception.authenticationEntryPoint(authEntryPoint))
+        .exceptionHandling().authenticationEntryPoint(authEntryPoint)
+        .and()
         .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
         .build();
   }

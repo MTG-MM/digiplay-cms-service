@@ -16,6 +16,7 @@ public class BaseService {
   @Autowired protected LockManager lockManager;
   @Autowired protected AccountStorage accountStorage;
   @Autowired protected UserStorage userStorage;
+  @Autowired protected UserSegmentStorage userSegmentStorage;
   @Autowired protected ApplicationStorage applicationStorage;
   @Autowired protected RewardItemHistoryStorage rewardItemHistoryStorage;
   @Autowired protected RewardItemStorage rewardItemStorage;
@@ -26,5 +27,6 @@ public class BaseService {
   @Autowired protected RewardStateLogStorage rewardStateLogStorage;
   @Autowired protected RewardTypeStorage rewardTypeStorage;
   @Autowired protected VoucherDetailStorage voucherDetailStorage;
-  @Autowired protected VoucherStoreStorage voucherStoreStorage;
+  @Autowired protected ProductDetailStorage productDetailStorage;
+  @Autowired protected RewardItemStoreStorage rewardItemStoreStorage;
 }

@@ -1,7 +1,7 @@
 package com.managersystem.admin.server.stores;
 
 import com.managersystem.admin.server.entities.VoucherDetail;
-import com.managersystem.admin.server.entities.type.VoucherStatus;
+import com.managersystem.admin.server.entities.type.PollItemStatus;
 import com.managersystem.admin.server.stores.base.BaseStorage;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -34,8 +34,12 @@ public class VoucherDetailStorage extends BaseStorage {
     voucherDetailRepository.saveAll(voucherDetails);
   }
 
-  public List<VoucherDetail> getListVoucherDetailByStatus(int voucherStoreId, VoucherStatus voucherStatus, int limit) {
+  public List<VoucherDetail> getListVoucherDetailByStatus(int voucherStoreId, PollItemStatus pollItemStatus, int limit) {
     Pageable pageable = PageRequest.of(0, limit);
-    return voucherDetailRepository.getListVoucherDetailByStatus(voucherStoreId, voucherStatus, pageable);
+    return voucherDetailRepository.getListVoucherDetailByStatus(voucherStoreId, pollItemStatus, pageable);
+  }
+
+  public void updateItemStatus(Long rewardSegmentDetailId) {
+    voucherDetailRepository.updateItemStatus(rewardSegmentDetailId);
   }
 }

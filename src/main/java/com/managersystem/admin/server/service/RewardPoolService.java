@@ -1,11 +1,7 @@
 package com.managersystem.admin.server.service;
 
-import com.managersystem.admin.handleRequest.controller.response.RewardItemResponse;
 import com.managersystem.admin.handleRequest.controller.response.RewardResponse;
-import com.managersystem.admin.server.entities.RewardItem;
-import com.managersystem.admin.server.entities.RewardSegment;
-import com.managersystem.admin.server.entities.RewardSegmentDetail;
-import com.managersystem.admin.server.entities.User;
+import com.managersystem.admin.server.entities.*;
 import com.managersystem.admin.server.entities.type.PeriodLimitType;
 import com.managersystem.admin.server.exception.BadRequestException;
 import com.managersystem.admin.server.exception.base.ResourceNotFoundException;
@@ -15,6 +11,9 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
@@ -25,7 +24,9 @@ public class RewardPoolService extends BaseService {
 
   @Autowired @Lazy RewardPoolService rewardPoolService;
   @Autowired @Lazy RewardItemService rewardItemService;
+  @Autowired @Lazy UserSegmentService userSegmentService;
 
+  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
   public RewardResponse getRewardItem(UUID userId, String code){
     RewardResponse rewardResponse;
     RewardSegmentDetail segmentDetail;
@@ -108,8 +109,10 @@ public class RewardPoolService extends BaseService {
     log.debug("============>getValidPoolDetail item pre process {}", rewardSegmentDetails);
     List<RewardSegmentDetail> rewardSegmentDetailsToRemove = new ArrayList<>();
     Long defaultRate = 0L;
+    UserSegment userSegment = userSegmentService.getUserSegment(user);
+
     for (RewardSegmentDetail rewardSegmentDetail : rewardSegmentDetails) {
-      if (!checkCapping(user, rewardSegmentDetail)) {
+      if (!checkCapping(user, rewardSegmentDetail, userSegment)) {
         log.debug("============>getValidPoolDetail caping item {} ", rewardSegmentDetail);
         rewardSegmentDetailsToRemove.add(rewardSegmentDetail);
         defaultRate += rewardSegmentDetail.getPriority();
@@ -131,13 +134,19 @@ public class RewardPoolService extends BaseService {
 
   /**
    * kiem tra so lan nhan qua cua user trong 1 khoang thoi gian
+   * kiem tra rank cua nguoi dung
    * @return true neu nguoi dung con co the nhan qua
    */
-  public boolean checkCapping(User user, RewardSegmentDetail rewardSegmentDetail){
+  public boolean checkCapping(User user, RewardSegmentDetail rewardSegmentDetail, UserSegment userSegment){
     if(rewardSegmentDetail.getPeriodType() == PeriodLimitType.UNLIMITED){
       return true;
     }
     if(rewardSegmentDetail.getIsDefault()){
+      return true;
+    }
+    //Neu rank nguoi dung nam trong khoang min <= rank <= max
+    if(rewardSegmentDetail.getSegmentRate() >= userSegment.getMinPriority()
+        && rewardSegmentDetail.getSegmentRate() <= userSegment.getMaxPriority()){
       return true;
     }
     int rewardOfNumber = rewardSegmentDetailStorage.getQuantityInPeriodType(user, rewardSegmentDetail);

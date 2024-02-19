@@ -1,6 +1,7 @@
 package com.managersystem.admin.handleRequest.controller.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.managersystem.admin.server.entities.ProductDetail;
 import com.managersystem.admin.server.entities.RewardItem;
 import com.managersystem.admin.server.entities.RewardSegmentDetail;
 import com.managersystem.admin.server.entities.VoucherDetail;
@@ -44,6 +45,18 @@ public class RewardResponse {
     imageUrl = rewardItem.getImageUrl();
     rewardType = rewardItem.getRewardType();
     code = voucherDetail.getCode();
+    position = segmentDetail.getPosition();
+    this.rewardItem = rewardItem;
+    this.rewardSegmentDetail = segmentDetail;
+  }
+
+  public RewardResponse(RewardItem rewardItem, RewardSegmentDetail segmentDetail, ProductDetail productDetail){
+    itemId = rewardItem.getId();
+    itemName = rewardItem.getRewardName();
+    value = rewardItem.getValue();
+    imageUrl = rewardItem.getImageUrl();
+    rewardType = rewardItem.getRewardType();
+    code = productDetail.getCode();
     position = segmentDetail.getPosition();
     this.rewardItem = rewardItem;
     this.rewardSegmentDetail = segmentDetail;

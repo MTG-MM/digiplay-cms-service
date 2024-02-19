@@ -7,14 +7,14 @@ import lombok.*;
 
 import java.util.UUID;
 
-@Table(name = "voucher_detail")
+@Table(name = "product_detail")
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class VoucherDetail extends BaseEntity {
+public class ProductDetail extends BaseEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
@@ -35,12 +35,9 @@ public class VoucherDetail extends BaseEntity {
   @Column(name = "given_at")
   private Long givenAt;
 
-  @Column(name = "voucher_status")
+  @Column(name = "product_status")
   @Enumerated(EnumType.STRING)
   private PollItemStatus status;
-
-  @Column(name = "segment_detail_id")
-  private Long segmentDetailId;
 
   @Column(name = "start_at")
   private Long startAt;

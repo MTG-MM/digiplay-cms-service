@@ -6,7 +6,7 @@ import com.managersystem.admin.server.entities.type.Status;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Table(name = "reward_state")
+@Table(name = "reward_type")
 @Getter
 @Setter
 @ToString

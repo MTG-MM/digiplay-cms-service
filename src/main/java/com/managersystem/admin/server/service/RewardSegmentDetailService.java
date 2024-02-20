@@ -1,6 +1,8 @@
 package com.managersystem.admin.server.service;
 
 import com.managersystem.admin.handleRequest.controller.dto.RewardSegmentDetailDto;
+import com.managersystem.admin.handleRequest.controller.dto.RewardSegmentDetailUpdateDto;
+import com.managersystem.admin.handleRequest.controller.dto.RewardSegmentDetailsUpdateDto;
 import com.managersystem.admin.handleRequest.controller.response.RewardSegmentDetailResponse;
 import com.managersystem.admin.handleRequest.controller.response.base.PageResponse;
 import com.managersystem.admin.server.entities.RewardItem;
@@ -12,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -49,7 +52,7 @@ public class RewardSegmentDetailService extends BaseService {
     return true;
   }
 
-  public Boolean updateRewardSegmentDetails(Long id, RewardSegmentDetailDto rewardSegmentDetailDto) {
+  public Boolean updateRewardSegmentDetails(Long id, RewardSegmentDetailUpdateDto rewardSegmentDetailDto) {
     RewardSegmentDetail rewardSegmentDetail = rewardSegmentDetailStorage.findById(id);
     if (rewardSegmentDetail == null){
       throw new ResourceNotFoundException("item not found");
@@ -66,5 +69,27 @@ public class RewardSegmentDetailService extends BaseService {
       throw new ResourceNotFoundException("item not found");
     }
     return modelMapper.toRewardSegmentDetailResponse(rewardSegmentDetail);
+  }
+
+  public Boolean publishRewardSegmentDetails(List<RewardSegmentDetailsUpdateDto> detailsUpdateDtos) {
+    List<RewardSegmentDetail> rewardSegmentDetails = rewardSegmentDetailStorage.findByIdIn(detailsUpdateDtos.stream().map(RewardSegmentDetailsUpdateDto::getId).toList());
+    Map<Long, RewardSegmentDetailsUpdateDto> detailsUpdateDtoMap = detailsUpdateDtos.stream().collect(Collectors.toMap(RewardSegmentDetailsUpdateDto::getId, Function.identity()));
+    Map<Long, RewardSegmentDetail> segmentDetailMap = rewardSegmentDetails.stream().collect(Collectors.toMap(RewardSegmentDetail::getId, Function.identity()));
+    for(RewardSegmentDetail segmentDetail : rewardSegmentDetails){
+      RewardSegmentDetailsUpdateDto detailsUpdateDto = detailsUpdateDtoMap.get(segmentDetail.getId());
+      if(detailsUpdateDto == null){
+        throw new ResourceNotFoundException("Item " + segmentDetail.getId() + " not found");
+      }
+
+      RewardSegmentDetail rewardSegmentDetail = segmentDetailMap.get(segmentDetail.getId());
+      if(rewardSegmentDetail == null){
+        throw new ResourceNotFoundException("Item " + segmentDetail.getId() + " not found");
+      }
+
+      modelMapper.mapRewardSegmentDetailsDtoToRewardSegmentDetail(detailsUpdateDto, rewardSegmentDetail);
+    }
+
+    rewardSegmentDetailStorage.saveAll(new ArrayList<>(segmentDetailMap.values()));
+    return true;
   }
 }

@@ -2,6 +2,8 @@ package com.managersystem.admin.handleRequest.controller;
 
 
 import com.managersystem.admin.handleRequest.controller.dto.RewardSegmentDetailDto;
+import com.managersystem.admin.handleRequest.controller.dto.RewardSegmentDetailUpdateDto;
+import com.managersystem.admin.handleRequest.controller.dto.RewardSegmentDetailsUpdateDto;
 import com.managersystem.admin.handleRequest.controller.response.RewardSegmentDetailResponse;
 import com.managersystem.admin.handleRequest.controller.response.base.PageResponse;
 import com.managersystem.admin.server.service.RewardSegmentDetailService;
@@ -36,7 +38,12 @@ public class RewardSegmentDetailController {
   }
 
   @PutMapping("{id}")
-  public ResponseEntity<Boolean> updateRewardSegmentDetails(@PathVariable Long id, @RequestBody RewardSegmentDetailDto rewardSegmentDetailDto) {
+  public ResponseEntity<Boolean> updateRewardSegmentDetails(@PathVariable Long id, @RequestBody RewardSegmentDetailUpdateDto rewardSegmentDetailDto) {
     return ResponseEntity.ok(rewardSegmentDetailService.updateRewardSegmentDetails(id, rewardSegmentDetailDto));
+  }
+
+  @PutMapping("publish")
+  public ResponseEntity<Boolean> publishRewardSegmentDetails(@RequestBody List<RewardSegmentDetailsUpdateDto> rewardSegmentDetailDto) {
+    return ResponseEntity.ok(rewardSegmentDetailService.publishRewardSegmentDetails(rewardSegmentDetailDto));
   }
 }

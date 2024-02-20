@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -43,5 +44,13 @@ public class RewardSegmentDetailStorage extends BaseStorage {
     }
     remoteCache.putExpireMillis(cacheKey.getPeriodTypeByUser(user.getId(), segmentDetail.getRewardSegmentId(), segmentDetail.getRewardItemId()), amount, segmentDetail.getPeriodType().getMillis() * segmentDetail.getPeriodNumber());
     return quantity;
+  }
+
+  public List<RewardSegmentDetail> findByIdIn(List<Long> ids) {
+    return rewardSegmentDetailRepository.findByIdIn(ids);
+  }
+
+  public void saveAll(List<RewardSegmentDetail> rewardSegmentDetails) {
+    rewardSegmentDetailRepository.saveAll(rewardSegmentDetails);
   }
 }

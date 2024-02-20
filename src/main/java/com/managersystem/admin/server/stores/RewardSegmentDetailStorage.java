@@ -5,6 +5,7 @@ import com.managersystem.admin.server.entities.User;
 import com.managersystem.admin.server.stores.base.BaseStorage;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -28,6 +29,10 @@ public class RewardSegmentDetailStorage extends BaseStorage {
     return rewardSegmentDetailRepository.findAll();
   }
 
+  public List<RewardSegmentDetail> findAll(Specification<RewardSegmentDetail> rewardSegmentDetailSpecification) {
+    return rewardSegmentDetailRepository.findAll(rewardSegmentDetailSpecification);
+  }
+
   public int getQuantityInPeriodType(User user, RewardSegmentDetail segmentDetail){
     Integer quantity = remoteCache.get(cacheKey.getPeriodTypeByUser(user.getId(), segmentDetail.getRewardSegmentId(), segmentDetail.getRewardItemId()), Integer.class);
     if(quantity == null){
@@ -43,5 +48,17 @@ public class RewardSegmentDetailStorage extends BaseStorage {
     }
     remoteCache.putExpireMillis(cacheKey.getPeriodTypeByUser(user.getId(), segmentDetail.getRewardSegmentId(), segmentDetail.getRewardItemId()), amount, segmentDetail.getPeriodType().getMillis() * segmentDetail.getPeriodNumber());
     return quantity;
+  }
+
+  public RewardSegmentDetail findBySegmentIdAndRwItemId(Long rewardSegmentId, Long id) {
+    return rewardSegmentDetailRepository.findByRewardSegmentIdAndRewardItemId(rewardSegmentId, id);
+  }
+
+  public void deleteList(List<RewardSegmentDetail> rewardSegmentDetails) {
+    rewardSegmentDetailRepository.deleteAll(rewardSegmentDetails);
+  }
+
+  public void saveAll(List<RewardSegmentDetail> rewardSegmentDetails) {
+    rewardSegmentDetailRepository.saveAll(rewardSegmentDetails);
   }
 }

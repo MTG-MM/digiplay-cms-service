@@ -18,8 +18,8 @@ public class UserSegmentService extends BaseService {
     }
     List<UserSegment> userSegments = userSegmentStorage.findByIsDefault(true);
     if(!userSegments.isEmpty()){
-      user.setUserSegmentId(userSegments.getFirst().getId());
-      return userSegments.getFirst();
+      user.setUserSegmentId(userSegments.get(0).getId());
+      return userSegments.get(0);
     }else{
       throw new ResourceNotFoundException(Constant.INVALID_RANK_OF_USER);
     }

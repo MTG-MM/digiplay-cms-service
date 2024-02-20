@@ -18,10 +18,10 @@ public class RewardTypeService extends BaseService {
     return modelMapper.toPageRewardTypeResponse(rewardTypes);
   }
 
-  public boolean createRewardTypes(RewardTypeDto rewardTypeDto) {
+  public Long createRewardTypes(RewardTypeDto rewardTypeDto) {
     RewardType rewardType = modelMapper.toRewardType(rewardTypeDto);
     rewardTypeStorage.save(rewardType);
-    return true;
+    return rewardType.getId();
   }
 
   public Boolean updateRewardTypes(Long id, RewardTypeUpdateDto rewardTypeDto) {

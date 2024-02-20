@@ -1,7 +1,9 @@
 package com.managersystem.admin.server.entities;
 
+import com.managersystem.admin.server.entities.base.BaseEntity;
 import com.managersystem.admin.server.entities.type.PeriodLimitType;
 import com.managersystem.admin.server.entities.type.PeriodType;
+import com.managersystem.admin.server.utils.DateUtils;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,6 +19,9 @@ public class RewardSegmentDetail {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+
+  @Column(name = "name")
+  private String name;
 
   @Column(name = "priority")
   private Long priority; //do uu tien nhan qua theo ti le
@@ -48,4 +53,10 @@ public class RewardSegmentDetail {
 
   @Transient
   private Long updatePriority = 0L;
+
+  @Column(name = "created_at")
+  private Long createdAt = DateUtils.getNowMillisAtUtc();
+
+  @Column(name = "updated_at")
+  private Long updatedAt = DateUtils.getNowMillisAtUtc();
 }

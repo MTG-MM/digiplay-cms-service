@@ -7,14 +7,18 @@ import com.managersystem.admin.handleRequest.controller.response.base.PageRespon
 import com.managersystem.admin.server.entities.*;
 import com.managersystem.admin.server.exception.base.ResourceNotFoundException;
 import com.managersystem.admin.server.service.base.BaseService;
+import jakarta.persistence.criteria.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -24,13 +28,38 @@ public class RewardItemService extends BaseService {
   @Autowired VoucherDetailService voucherDetailService;
   @Autowired ProductDetailService productDetailService;
 
-  public PageResponse<RewardItemResponse> getAllRewardItems(Pageable pageable) {
-    Page<RewardItem> rewardItems = rewardItemStorage.findAll(pageable);
-    Page<RewardItemResponse> responses = modelMapper.toPageRewardItemResponse(rewardItems);
+//  public PageResponse<RewardItemResponse> getAllRewardItems(Pageable pageable) {
+//    Page<RewardItem> rewardItems = rewardItemStorage.findAll(pageable);
+//    Page<RewardItemResponse> responses = modelMapper.toPageRewardItemResponse(rewardItems);
+//    return PageResponse.createFrom(responses);
+//  }
+
+  public PageResponse<RewardItemResponse> getAll
+      (Integer id, String name, com.managersystem.admin.server.entities.type.RewardType type, Pageable pageable) {
+    Page<RewardItem> rwItems = rewardItemStorage.findAll(rwItemCondition(id, name, type), pageable);
+    Page<RewardItemResponse> responses = modelMapper.toPageRewardItemResponse(rwItems);
     return PageResponse.createFrom(responses);
   }
 
-  public boolean createRewardItems(RewardItemDto rewardItemDto) {
+  public Specification<RewardItem> rwItemCondition(
+      Integer id, String name, com.managersystem.admin.server.entities.type.RewardType type) {
+    return (rwItem, query, criteriaBuilder) -> {
+      List<Predicate> conditionsList = new ArrayList<>();
+
+      if (id != null) {
+        conditionsList.add(criteriaBuilder.equal(rwItem.get("id"), id));
+      }
+      if (name != null) {
+        conditionsList.add(criteriaBuilder.like(rwItem.get("rewardName"), "%" + name + "%"));
+      }
+      if (type != null) {
+        conditionsList.add(criteriaBuilder.equal(rwItem.get("rewardType"), type));
+      }
+      return criteriaBuilder.and(conditionsList.toArray(new Predicate[0]));
+    };
+  }
+
+  public Long createRewardItems(RewardItemDto rewardItemDto) {
     RewardItem rewardItem = modelMapper.toRewardItem(rewardItemDto);
     RewardType rewardType = rewardTypeStorage.findById(rewardItemDto.getRewardTypeId());
     if (rewardType == null){
@@ -38,7 +67,7 @@ public class RewardItemService extends BaseService {
     }
     rewardItem.setRewardTypeId(rewardType.getId());
     rewardItemStorage.save(rewardItem);
-    return true;
+    return rewardItem.getId();
   }
 
   public Boolean updateRewardItems(Long id, RewardItemDto rewardItemDto) {

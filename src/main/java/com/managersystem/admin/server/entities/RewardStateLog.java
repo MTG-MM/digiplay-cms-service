@@ -1,6 +1,7 @@
 package com.managersystem.admin.server.entities;
 
 import com.managersystem.admin.server.entities.base.BaseEntity;
+import com.managersystem.admin.server.utils.DateUtils;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,7 +15,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class RewardStateLog extends BaseEntity {
+public class RewardStateLog{
 
 
   @Id
@@ -38,4 +39,10 @@ public class RewardStateLog extends BaseEntity {
 
   @Column(name = "created_time")
   private LocalDateTime createdTime;
+
+  @Column(name = "created_at")
+  private Long createdAt = DateUtils.getNowMillisAtUtc();
+
+  @Column(name = "updated_at")
+  private Long updatedAt = DateUtils.getNowMillisAtUtc();
 }

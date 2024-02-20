@@ -42,8 +42,8 @@ public class RewardSegmentDetailController {
     return ResponseEntity.ok(rewardSegmentDetailService.updateRewardSegmentDetails(id, rewardSegmentDetailDto));
   }
 
-  @PutMapping("publish")
-  public ResponseEntity<Boolean> publishRewardSegmentDetails(@RequestBody List<RewardSegmentDetailsUpdateDto> rewardSegmentDetailDto) {
-    return ResponseEntity.ok(rewardSegmentDetailService.publishRewardSegmentDetails(rewardSegmentDetailDto));
+  @PutMapping("publish{rewardSegmentId}")
+  public ResponseEntity<Boolean> publishRewardSegmentDetails(@PathVariable Long rewardSegmentId,@RequestBody List<RewardSegmentDetailsUpdateDto> rewardSegmentDetailDto) {
+    return ResponseEntity.ok(rewardSegmentDetailService.publishRewardSegmentDetails(rewardSegmentId, rewardSegmentDetailDto));
   }
 }

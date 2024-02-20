@@ -3,11 +3,8 @@ package com.managersystem.admin.server.stores;
 import com.managersystem.admin.server.entities.RewardSegmentDetail;
 import com.managersystem.admin.server.entities.User;
 import com.managersystem.admin.server.stores.base.BaseStorage;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -46,11 +43,15 @@ public class RewardSegmentDetailStorage extends BaseStorage {
     return quantity;
   }
 
-  public List<RewardSegmentDetail> findByIdIn(List<Long> ids) {
-    return rewardSegmentDetailRepository.findByIdIn(ids);
+  public List<RewardSegmentDetail> findByIdIn(Long rewardSegmentId, List<Long> rwItemIds) {
+    return rewardSegmentDetailRepository.findByRewardSegmentIdAndRewardItemIdIn(rewardSegmentId, rwItemIds);
   }
 
   public void saveAll(List<RewardSegmentDetail> rewardSegmentDetails) {
     rewardSegmentDetailRepository.saveAll(rewardSegmentDetails);
+  }
+
+  public void deleteAllById(List<Long> removeIds) {
+    rewardSegmentDetailRepository.deleteAllById(removeIds);
   }
 }

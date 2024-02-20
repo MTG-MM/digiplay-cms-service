@@ -12,5 +12,5 @@ public interface RewardSegmentDetailRepository extends JpaRepository<RewardSegme
 
   List<RewardSegmentDetail> findByRewardSegmentId(Long rewardSegmentId);
 
-  List<RewardSegmentDetail> findByIdIn(List<Long> ids);
+  List<RewardSegmentDetail> findByRewardSegmentIdAndRewardItemIdIn(Long rwSegmentId, List<Long> ids);
 }

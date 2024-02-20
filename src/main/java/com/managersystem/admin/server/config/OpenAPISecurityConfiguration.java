@@ -1,6 +1,11 @@
 package com.managersystem.admin.server.config;
 
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Contact;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.info.License;
+import io.swagger.v3.oas.annotations.servers.Server;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
@@ -9,19 +14,24 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-//@OpenAPIDefinition(
-//    info =@Info(
-//        title = "Salepage api",
-//        version = "v1",
-//        contact = @Contact(
-//            name = "lambro2510", email = "lambro2510@gmail.com", url = "http://lam-banhang.click"
-//        ),
-//        license = @License(
-//            name = "Apache 2.0", url = "https://www.apache.org/licenses/LICENSE-2.0"
-//        ),
-//        description = "api mô tả"
-//    )
-//)
+@OpenAPIDefinition(
+    info =@Info(
+        title = "Lucky present test",
+        version = "v1",
+        contact = @Contact(
+            name = "lambro2510", email = "lambro2510@gmail.com", url = "https://cms.luckypresent.com.vn"
+        ),
+        license = @License(
+            name = "Nginx", url = ""
+        ),
+        description = "api mô tả"
+    ),
+    servers = {
+        @Server(url = "https://api.luckypresent.com.vn", description = "Production Server"),
+        @Server(url = "http://localhost:8900", description = "Local Server")
+    }
+
+)
 public class OpenAPISecurityConfiguration {
   @Bean
   public OpenAPI customizeOpenAPI() {

@@ -7,6 +7,9 @@ import com.managersystem.admin.handleRequest.controller.response.base.PageRespon
 import com.managersystem.admin.server.service.RewardSegmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.SortDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +22,11 @@ public class RewardSegmentController {
   private RewardSegmentService rewardSegmentService;
 
   @GetMapping("")
-  public ResponseEntity<PageResponse<RewardSegmentResponse>> getRewardSegments(Pageable pageable) {
+  public ResponseEntity<PageResponse<RewardSegmentResponse>> getRewardSegments(
+      @SortDefault(sort = "updatedAt", direction = Sort.Direction.DESC)
+      @PageableDefault(value = 5)
+      final Pageable pageable
+      ) {
     return ResponseEntity.ok(rewardSegmentService.getAllRewardSegments(pageable));
   }
 

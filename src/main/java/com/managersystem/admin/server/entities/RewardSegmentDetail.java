@@ -24,10 +24,10 @@ public class RewardSegmentDetail {
   private String name;
 
   @Column(name = "priority")
-  private Long priority; //do uu tien nhan qua theo ti le
+  private Long priority = 0L; //do uu tien nhan qua theo ti le
 
   @Column(name = "segment_rate")
-  private Long segmentRate; //do uu tien nhan qua theo loai nguoi dung
+  private Long segmentRate = 0L; //do uu tien nhan qua theo loai nguoi dung
 
   @Column(name = "position")
   private Long position;
@@ -36,17 +36,17 @@ public class RewardSegmentDetail {
   private Long rewardItemId;
 
   @Column(name = "is_default")
-  private Boolean isDefault; //Là quà mặc định sẽ nhả ra nếu không còn quà
+  private Boolean isDefault = false; //Là quà mặc định sẽ nhả ra nếu không còn quà
 
   @Column(name = "period_type")
   @Enumerated(EnumType.STRING)
-  private PeriodLimitType periodType; //Khoảng thời gian
+  private PeriodLimitType periodType = PeriodLimitType.DAY; //Khoảng thời gian
 
   @Column(name = "period_number")
-  private Long periodNumber; //Số khoảng thời gian (periodNumber = 3, periodType = DAY => 3 ngay nhan duoc toi da {periodValue} qua)
+  private Long periodNumber = 1L; //Số khoảng thời gian (periodNumber = 3, periodType = DAY => 3 ngay nhan duoc toi da {periodValue} qua)
 
   @Column(name = "period_value")
-  private Long periodValue; //Số quà tối đa người dùng có thể nhận trong khoảng thời gian
+  private Long periodValue = 1L; //Số quà tối đa người dùng có thể nhận trong khoảng thời gian
 
   @Column(name = "reward_segment_id")
   private Long rewardSegmentId;

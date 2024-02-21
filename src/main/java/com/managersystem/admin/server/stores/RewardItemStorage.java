@@ -32,6 +32,10 @@ public class RewardItemStorage extends BaseStorage {
     return rewardItemRepository.findById(id).orElse(null);
   }
 
+  public List<RewardItem> findByIdIn(List<Long> ids) {
+    return rewardItemRepository.findByIdIn(ids);
+  }
+
   public List<RewardItem> findRewardItemByIdIn(List<Long> ids) {
     return rewardItemRepository.findAllByIdIn(ids);
   }

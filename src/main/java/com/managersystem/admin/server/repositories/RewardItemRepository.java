@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface RewardItemRepository extends JpaRepository<RewardItem, Long>, JpaSpecificationExecutor<RewardItem> {
   List<RewardItem> findAllByIdIn(List<Long> ids);
+
+  List<RewardItem> findByIdIn(List<Long> ids);
 }

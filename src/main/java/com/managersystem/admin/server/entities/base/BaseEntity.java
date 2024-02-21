@@ -19,13 +19,13 @@ public class BaseEntity {
   @Column(name = "updated_at")
   private Long updatedAt = DateUtils.getNowMillisAtUtc();
 
-  @Column(name = "updated_by")
-  public UUID updatedBy;
-
-  @Column(name = "created_by")
-  public UUID createdBy;
-
-  @Column(name = "string")
-  public String string;
+//  @Column(name = "updated_by")
+//  public UUID updatedBy;
+//
+//  @Column(name = "created_by")
+//  public UUID createdBy;
+//
+//  @Column(name = "string")
+//  public String string;
 
 }

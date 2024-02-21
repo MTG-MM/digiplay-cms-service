@@ -61,4 +61,13 @@ public class RewardSegmentDetailStorage extends BaseStorage {
   public void saveAll(List<RewardSegmentDetail> rewardSegmentDetails) {
     rewardSegmentDetailRepository.saveAll(rewardSegmentDetails);
   }
+
+  public List<RewardSegmentDetail> findByIdIn(Long rewardSegmentId, List<Long> rwItemIds) {
+    return rewardSegmentDetailRepository.findByRewardSegmentIdAndRewardItemIdIn(rewardSegmentId, rwItemIds);
+  }
+
+
+  public void deleteAllById(List<Long> removeIds) {
+    rewardSegmentDetailRepository.deleteAllById(removeIds);
+  }
 }

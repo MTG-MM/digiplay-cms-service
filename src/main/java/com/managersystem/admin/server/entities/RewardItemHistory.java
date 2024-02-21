@@ -8,7 +8,7 @@ import lombok.*;
 
 import java.util.UUID;
 
-@Table(name = "reward_item_histoty")
+@Table(name = "reward_item_history")
 @Getter
 @Setter
 @ToString
@@ -30,6 +30,12 @@ public class RewardItemHistory extends BaseEntity {
 
   @Column(name = "user_id")
   private UUID userId;
+
+  @Column(name = "reward_item_id")
+  private UUID rewardItemDetailId;
+
+  @Column(name = "reward_segment_id")
+  private Long rewardSegmentId;
 
   @Column(name = "image_url")
   private String imageUrl;

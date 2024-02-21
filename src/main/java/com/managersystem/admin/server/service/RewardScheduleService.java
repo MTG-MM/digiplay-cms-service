@@ -168,6 +168,9 @@ public class RewardScheduleService extends BaseService {
 
   @Transactional(propagation = Propagation.MANDATORY)
   public void processUpdatePoolItem(int amount, RewardItem rewardItem, RewardSchedule rewardSchedule, boolean newPeriod) {
+    if(newPeriod && !rewardSchedule.getIsAccumulative()){
+      remoteCache.del(cacheKey.getRewardPoolItemIds(rewardSchedule.getRewardSegmentDetailId(), rewardItem.getId()));
+    }
     switch (rewardItem.getRewardType()) {
       case POINT -> {
       }

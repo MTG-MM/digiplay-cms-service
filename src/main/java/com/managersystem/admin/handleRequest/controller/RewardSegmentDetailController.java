@@ -2,7 +2,6 @@ package com.managersystem.admin.handleRequest.controller;
 
 
 import com.managersystem.admin.handleRequest.controller.dto.RewardSegmentDetailDto;
-import com.managersystem.admin.handleRequest.controller.dto.RewardSegmentDetailUpdateDto;
 import com.managersystem.admin.handleRequest.controller.dto.RewardSegmentDetailsUpdateDto;
 import com.managersystem.admin.handleRequest.controller.response.RewardSegmentDetailResponse;
 import com.managersystem.admin.handleRequest.controller.response.base.PageResponse;
@@ -25,7 +24,7 @@ public class RewardSegmentDetailController {
 
   @GetMapping("")
   public ResponseEntity<List<RewardSegmentDetailResponse>> getRewardSegmentDetails(@RequestParam Long rewardSegmentId) {
-    return ResponseEntity.ok(rewardSegmentDetailService.getAllRewardSegmentDetails(rewardSegmentId));
+    return ResponseEntity.ok(rewardSegmentDetailService.getAllRwSegmentDetails(rewardSegmentId));
   }
 
   @PutMapping("update")
@@ -43,15 +42,11 @@ public class RewardSegmentDetailController {
     return ResponseEntity.ok(rewardSegmentDetailService.createRewardSegmentDetails(rewardSegmentDetailDto));
   }
 
-  @PutMapping("{id}")
-  public ResponseEntity<Boolean> updateRewardSegmentDetails(@PathVariable Long id, @RequestBody RewardSegmentDetailUpdateDto rewardSegmentDetailDto) {
-    return ResponseEntity.ok(rewardSegmentDetailService.updateRewardSegmentDetails(id, rewardSegmentDetailDto));
-  }
-
   @PutMapping("publish{rewardSegmentId}")
   public ResponseEntity<Boolean> publishRewardSegmentDetails(@PathVariable Long rewardSegmentId,@RequestBody List<RewardSegmentDetailsUpdateDto> rewardSegmentDetailDto) {
     return ResponseEntity.ok(rewardSegmentDetailService.publishRewardSegmentDetails(rewardSegmentId, rewardSegmentDetailDto));
   }
+
 //  @PutMapping("{id}")
 //  public ResponseEntity<Boolean> updateRewardSegmentDetails(@PathVariable Long id, @RequestBody RewardSegmentDetailDto rewardSegmentDetailDto) {
 //    return ResponseEntity.ok(rewardSegmentDetailService.updateRewardSegmentDetails(id, rewardSegmentDetailDto));

@@ -1,58 +1,55 @@
 package com.managersystem.admin.server.service;
 
 import com.managersystem.admin.handleRequest.controller.dto.RewardSegmentDetailDto;
-import com.managersystem.admin.handleRequest.controller.dto.RewardSegmentDetailUpdateDto;
 import com.managersystem.admin.handleRequest.controller.dto.RewardSegmentDetailsUpdateDto;
 import com.managersystem.admin.handleRequest.controller.response.RewardSegmentDetailResponse;
+import com.managersystem.admin.handleRequest.controller.response.base.PageResponse;
 import com.managersystem.admin.server.entities.RewardItem;
 import com.managersystem.admin.server.entities.RewardSegmentDetail;
 import com.managersystem.admin.server.entities.type.PeriodLimitType;
 import com.managersystem.admin.server.exception.BadRequestException;
 import com.managersystem.admin.server.exception.base.ResourceNotFoundException;
 import com.managersystem.admin.server.service.base.BaseService;
+import com.managersystem.admin.server.utils.Constant;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
-import com.managersystem.admin.server.utils.Constant;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 @Service
 public class RewardSegmentDetailService extends BaseService {
 
+  //  public List<RewardSegmentDetailResponse> getAllRewardSegmentDetails(Long id) {
+//    return modelMapper.toRewardSegmentDetailResponses(rewardSegmentDetailStorage.findByRewardSegmentId(id));
+//  }
   public List<RewardSegmentDetailResponse> getAllRewardSegmentDetails(Long id) {
     List<RewardSegmentDetailResponse> responses = modelMapper.toRewardSegmentDetailResponses(rewardSegmentDetailStorage.findByRewardSegmentId(id));
     List<RewardItem> rewardItems = rewardItemStorage.findByIdIn(responses.stream().map(RewardSegmentDetailResponse::getRewardItemId).toList());
     Map<Long, RewardItem> rewardItemMap = rewardItems.stream().collect(Collectors.toMap(RewardItem::getId, Function.identity()));
     responses.forEach(res -> {
       RewardItem rewardItem = rewardItemMap.get(res.getRewardItemId());
-      if(rewardItem == null){
+      if (rewardItem == null) {
         res.setRewardName(Constant.RESOURCE_IS_DELETED);
-      }else{
+      } else {
         res.setRewardName(rewardItem.getRewardName());
         res.setIsLimited(rewardItem.getIsLimited());
-        if(res.getIsLimited()){
+        if (res.getIsLimited()) {
           List<UUID> listIds = remoteCache.rDequeGetAll(cacheKey.getRewardPoolItemIds(res.getRewardSegmentId(), res.getRewardItemId()));
-          if(listIds != null && !listIds.isEmpty()){
+          if (listIds != null && !listIds.isEmpty()) {
             res.setQuantityInPoll(listIds.size());
           }
         }
       }
     });
     return responses;
-//  public List<RewardSegmentDetailResponse> getAllRewardSegmentDetails(Long id) {
-//    return modelMapper.toRewardSegmentDetailResponses(rewardSegmentDetailStorage.findByRewardSegmentId(id));
-//  }
+  }
 
-  public List<RewardSegmentDetailResponse> getAllRewardSegmentDetails(Long rwSegmentId){
+  public List<RewardSegmentDetailResponse> getAllRwSegmentDetails(Long rwSegmentId) {
     List<RewardSegmentDetail> rewardSegmentDetails = rewardSegmentDetailStorage.findAll(rwSegmentDetailCondition(rwSegmentId));
     return modelMapper.toRewardSegmentDetailResponses(rewardSegmentDetails);
   }
@@ -69,24 +66,17 @@ public class RewardSegmentDetailService extends BaseService {
     };
   }
 
-  public Boolean updateRewardSegmentDetails(Long rwSegmentId, List<RewardSegmentDetailDto> dtos){
+  public Boolean updateRewardSegmentDetails(Long rwSegmentId, List<RewardSegmentDetailDto> dtos) {
     if (dtos.stream().noneMatch(RewardSegmentDetailDto::getIsDefault)) {
       throw new BadRequestException("No default Reward Item found");
     }
 
-  public Boolean updateRewardSegmentDetails(Long id, RewardSegmentDetailUpdateDto rewardSegmentDetailDto) {
-    RewardSegmentDetail rewardSegmentDetail = rewardSegmentDetailStorage.findById(id);
-    if (rewardSegmentDetail == null){
-      throw new ResourceNotFoundException("item not found");
-    }
-
-    modelMapper.mapRewardSegmentDetailDtoToRewardSegmentDetail(rewardSegmentDetailDto, rewardSegmentDetail);
-    if(dtos.stream().filter(RewardSegmentDetailDto::getIsDefault).count() > 1){
+    if (dtos.stream().filter(RewardSegmentDetailDto::getIsDefault).count() > 1) {
       throw new BadRequestException("Number default is exceed the amount");
     }
 
     RewardSegmentDetailDto rewardSegmentDetailDtoDefault = dtos.stream().filter(RewardSegmentDetailDto::getIsDefault).toList().get(0);
-    if(!rewardSegmentDetailDtoDefault.getPeriodType().equals(PeriodLimitType.UNLIMITED)){
+    if (!rewardSegmentDetailDtoDefault.getPeriodType().equals(PeriodLimitType.UNLIMITED)) {
       throw new BadRequestException("PeriodType of default item must be unlimited");
     }
 
@@ -96,10 +86,10 @@ public class RewardSegmentDetailService extends BaseService {
         throw new BadRequestException("Position " + " already exist!");
       }
     }
-    List<RewardSegmentDetail> rewardSegmentDetails  = new ArrayList<>();
+    List<RewardSegmentDetail> rewardSegmentDetails = new ArrayList<>();
     for (RewardSegmentDetailDto rewardSegmentDetailDto : dtos) {
       RewardSegmentDetail rewardSegmentDetail = rewardSegmentDetailStorage.findBySegmentIdAndRwItemId(rwSegmentId, rewardSegmentDetailDto.getRewardItemId());
-      if (rewardSegmentDetail == null){
+      if (rewardSegmentDetail == null) {
         throw new ResourceNotFoundException("item not found");
       }
       modelMapper.mapRewardSegmentDetailDtoToRewardSegmentDetail(rewardSegmentDetailDto, rewardSegmentDetail);
@@ -128,7 +118,7 @@ public class RewardSegmentDetailService extends BaseService {
 
   public RewardSegmentDetailResponse getRewardSegmentDetailDetail(Long id) {
     RewardSegmentDetail rewardSegmentDetail = rewardSegmentDetailStorage.findById(id);
-    if (rewardSegmentDetail == null){
+    if (rewardSegmentDetail == null) {
       throw new ResourceNotFoundException("item not found");
     }
     return modelMapper.toRewardSegmentDetailResponse(rewardSegmentDetail);

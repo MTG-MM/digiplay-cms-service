@@ -24,7 +24,7 @@ public class RewardSegmentDetailController {
 
   @GetMapping("")
   public ResponseEntity<List<RewardSegmentDetailResponse>> getRewardSegmentDetails(@RequestParam Long rewardSegmentId) {
-    return ResponseEntity.ok(rewardSegmentDetailService.getAllRwSegmentDetails(rewardSegmentId));
+    return ResponseEntity.ok(rewardSegmentDetailService.getAllRewardSegmentDetails(rewardSegmentId));
   }
 
   @PutMapping("update")
@@ -42,7 +42,7 @@ public class RewardSegmentDetailController {
     return ResponseEntity.ok(rewardSegmentDetailService.createRewardSegmentDetails(rewardSegmentDetailDto));
   }
 
-  @PutMapping("publish{rewardSegmentId}")
+  @PutMapping("publish/{rewardSegmentId}")
   public ResponseEntity<Boolean> publishRewardSegmentDetails(@PathVariable Long rewardSegmentId,@RequestBody List<RewardSegmentDetailsUpdateDto> rewardSegmentDetailDto) {
     return ResponseEntity.ok(rewardSegmentDetailService.publishRewardSegmentDetails(rewardSegmentId, rewardSegmentDetailDto));
   }

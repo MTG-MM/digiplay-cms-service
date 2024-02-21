@@ -129,14 +129,14 @@ public class RewardSegmentDetailService extends BaseService {
     List<RewardSegmentDetail> rewardSegmentDetails = rewardSegmentDetailStorage.findByIdIn(rewardSegmentId, detailsUpdateDtos.stream().map(RewardSegmentDetailsUpdateDto::getRewardItemId).toList());
     Map<Long, RewardSegmentDetailsUpdateDto> detailsUpdateDtoMap = detailsUpdateDtos.stream().filter(Objects::nonNull).collect(Collectors.toMap(RewardSegmentDetailsUpdateDto::getRewardItemId, Function.identity()));
     Map<Long, RewardSegmentDetail> segmentDetailMap = rewardSegmentDetails.stream().collect(Collectors.toMap(RewardSegmentDetail::getId, Function.identity()));
-    for(RewardSegmentDetail segmentDetail : rewardSegmentDetails){
+    for (RewardSegmentDetail segmentDetail : rewardSegmentDetails) {
       RewardSegmentDetailsUpdateDto detailsUpdateDto = detailsUpdateDtoMap.get(segmentDetail.getRewardItemId());
-      if(detailsUpdateDto == null){
+      if (detailsUpdateDto == null) {
         throw new ResourceNotFoundException("Item " + segmentDetail.getId() + " not found");
       }
 
       RewardSegmentDetail rewardSegmentDetail = segmentDetailMap.get(segmentDetail.getRewardItemId());
-      if(rewardSegmentDetail == null){
+      if (rewardSegmentDetail == null) {
         throw new ResourceNotFoundException("Item " + segmentDetail.getId() + " not found");
       }
 

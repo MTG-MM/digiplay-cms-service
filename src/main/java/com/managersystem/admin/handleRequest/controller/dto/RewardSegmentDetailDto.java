@@ -24,14 +24,4 @@ public class RewardSegmentDetailDto extends RewardSegmentDetailUpdateDto{
   private Integer periodValue;
 
   private Boolean isDefault;
-
-  @NotNull
-  @Min(0)
-  private Long priority;
-
-  @NotNull
-  private Long segmentRate;
-
-  @NotNull
-  private Long position;
 }

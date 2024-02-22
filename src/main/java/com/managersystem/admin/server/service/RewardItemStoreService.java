@@ -6,11 +6,14 @@ import com.managersystem.admin.handleRequest.controller.response.RewardItemStore
 import com.managersystem.admin.handleRequest.controller.response.RewardItemStoreResponse;
 import com.managersystem.admin.handleRequest.controller.response.base.PageResponse;
 import com.managersystem.admin.server.entities.RewardItemStore;
+import com.managersystem.admin.server.entities.type.StoreType;
 import com.managersystem.admin.server.exception.base.ResourceNotFoundException;
 import com.managersystem.admin.server.service.base.BaseService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class RewardItemStoreService extends BaseService {
@@ -43,5 +46,9 @@ public class RewardItemStoreService extends BaseService {
     modelMapper.mapRewardItemStoreDtoToRewardItemStore(rewardItemStoreDto, rewardItemStore);
     rewardItemStoreStorage.save(rewardItemStore);
     return true;
+  }
+
+  public List<RewardItemStoreResponse> getAllRewardItemStores(StoreType type) {
+    return modelMapper.toListRewardItemStoreResponses(rewardItemStoreStorage.findByType(type));
   }
 }

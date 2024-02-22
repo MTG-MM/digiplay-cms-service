@@ -1,6 +1,7 @@
 package com.managersystem.admin.server.stores;
 
 import com.managersystem.admin.server.entities.RewardItemStore;
+import com.managersystem.admin.server.entities.type.StoreType;
 import com.managersystem.admin.server.stores.base.BaseStorage;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,5 +26,9 @@ public class RewardItemStoreStorage extends BaseStorage {
 
   public RewardItemStore findById(Long id) {
     return rewardItemStoreRepository.findById(id).orElse(null);
+  }
+
+  public List<RewardItemStore> findByType(StoreType type) {
+    return rewardItemStoreRepository.findByType(type);
   }
 }

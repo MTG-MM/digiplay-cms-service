@@ -106,4 +106,6 @@ public interface ModelMapper {
   RewardItemStore toRewardItemStore(RewardItemStoreCreateDto rewardItemStoreDto);
 
   void mapRewardItemStoreDtoToRewardItemStore(RewardItemStoreUpdateDto rewardItemStoreDto,@MappingTarget RewardItemStore rewardItemStore);
+
+  List<RewardItemStoreResponse> toListRewardItemStoreResponses(List<RewardItemStore> byType);
 }

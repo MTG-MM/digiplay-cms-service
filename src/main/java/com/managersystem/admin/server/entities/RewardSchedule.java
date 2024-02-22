@@ -2,6 +2,7 @@ package com.managersystem.admin.server.entities;
 
 import com.managersystem.admin.server.entities.base.BaseEntity;
 import com.managersystem.admin.server.entities.type.PeriodType;
+import com.managersystem.admin.server.utils.DateUtils;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,7 +13,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class RewardSchedule extends BaseEntity {
+public class RewardSchedule {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -36,4 +37,9 @@ public class RewardSchedule extends BaseEntity {
   @Column(name = "end_at")
   private Long endAt;
 
+  @Column(name = "created_at")
+  private Long createdAt = DateUtils.getNowMillisAtUtc();
+
+  @Column(name = "updated_at")
+  private Long updatedAt = DateUtils.getNowMillisAtUtc();
 }

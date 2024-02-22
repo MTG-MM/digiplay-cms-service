@@ -22,4 +22,10 @@ public class RewardSegmentDetailResponse {
   private Long rewardItemId;
 
   private Long rewardSegmentId;
+
+  private Integer quantityInPoll = 0;
+
+  private String rewardName;
+
+  private Boolean isLimited = false;
 }

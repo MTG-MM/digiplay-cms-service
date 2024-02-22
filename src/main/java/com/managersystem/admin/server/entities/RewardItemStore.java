@@ -3,6 +3,7 @@ package com.managersystem.admin.server.entities;
 import com.managersystem.admin.server.entities.base.BaseEntity;
 import com.managersystem.admin.server.entities.type.Status;
 import com.managersystem.admin.server.entities.type.StoreType;
+import com.managersystem.admin.server.utils.DateUtils;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,7 +14,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class RewardItemStore extends BaseEntity {
+public class RewardItemStore {
   @Id
   private Long id;
 
@@ -27,4 +28,10 @@ public class RewardItemStore extends BaseEntity {
   @Column(name = "status")
   @Enumerated(EnumType.STRING)
   private Status status;
+
+  @Column(name = "created_at")
+  private Long createdAt = DateUtils.getNowMillisAtUtc();
+
+  @Column(name = "updated_at")
+  private Long updatedAt = DateUtils.getNowMillisAtUtc();
 }

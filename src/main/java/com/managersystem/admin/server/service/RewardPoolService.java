@@ -94,7 +94,7 @@ public class RewardPoolService extends BaseService {
       Double min = odds.get(keyMin);
       Double max = odds.get(keyMax);
       if (min <= index && index < max) {
-        result = list.stream().filter(item -> item.getId().equals(id)).toList().getFirst();
+        result = list.stream().filter(item -> item.getId().equals(id)).toList().get(0);
         break;
       }
     }

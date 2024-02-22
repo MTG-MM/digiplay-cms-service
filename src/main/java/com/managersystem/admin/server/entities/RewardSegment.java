@@ -2,6 +2,7 @@ package com.managersystem.admin.server.entities;
 
 import com.managersystem.admin.server.entities.base.BaseEntity;
 import com.managersystem.admin.server.entities.type.Status;
+import com.managersystem.admin.server.utils.DateUtils;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,7 +13,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class RewardSegment extends BaseEntity {
+public class RewardSegment {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,4 +35,9 @@ public class RewardSegment extends BaseEntity {
   @Enumerated(EnumType.STRING)
   private Status status;
 
+  @Column(name = "created_at")
+  private Long createdAt = DateUtils.getNowMillisAtUtc();
+
+  @Column(name = "updated_at")
+  private Long updatedAt = DateUtils.getNowMillisAtUtc();
 }

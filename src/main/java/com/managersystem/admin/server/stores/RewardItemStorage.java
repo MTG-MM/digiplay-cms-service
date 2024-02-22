@@ -4,6 +4,7 @@ import com.managersystem.admin.server.entities.RewardItem;
 import com.managersystem.admin.server.stores.base.BaseStorage;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -23,7 +24,19 @@ public class RewardItemStorage extends BaseStorage {
     return rewardItemRepository.findAll(pageable);
   }
 
+  public Page<RewardItem> findAll(Specification<RewardItem> rwItemCondition, Pageable pageable) {
+    return rewardItemRepository.findAll(rwItemCondition, pageable);
+  }
+
   public RewardItem findById(Long id) {
     return rewardItemRepository.findById(id).orElse(null);
+  }
+
+  public List<RewardItem> findByIdIn(List<Long> ids) {
+    return rewardItemRepository.findByIdIn(ids);
+  }
+
+  public List<RewardItem> findRewardItemByIdIn(List<Long> ids) {
+    return rewardItemRepository.findAllByIdIn(ids);
   }
 }

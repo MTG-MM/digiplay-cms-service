@@ -50,8 +50,6 @@ public class AccountService extends BaseService {
     account.setLastLogin(DateUtils.getNowMillisAtUtc());
     account.setRole(UserRole.OPERATOR);
     account.setGroupCode("ADMIN");
-    account.setCreatedBy(account.getId());
-    account.setUpdatedBy(account.getId());
     account.setGroupCode("ADMIN");
     accountStorage.save(account);
     userService.createUserInfo(account.getId(), dto.getUserInfoDto());
@@ -82,8 +80,6 @@ public class AccountService extends BaseService {
     account.setLastLogin(DateUtils.getNowMillisAtUtc());
     account.setRole(UserRole.ADMIN);
     account.setGroupCode("ADMIN");
-    account.setCreatedBy(account.getId());
-    account.setUpdatedBy(account.getId());
     account.setGroupCode("ADMIN");
     accountStorage.save(account);
     return true;

@@ -26,8 +26,6 @@ public class ApplicationService extends BaseService {
       throw new BadRequestException(ErrorCode.USER_NOT_FOUND);
     }
     ApplicationEntity applicationEntity = modelMapper.toApplicationEntity(dto);
-    applicationEntity.setCreatedBy(account.getId());
-    applicationEntity.setUpdatedBy(account.getId());
     return applicationStorage.save(applicationEntity) != null;
   }
 

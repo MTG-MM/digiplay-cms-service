@@ -9,6 +9,7 @@ import lombok.Data;
 public class RewardItemResponse {
 
   private Long id;
+  private Long rewardTypeId;
 
   private String rewardName;
 

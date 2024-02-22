@@ -9,7 +9,6 @@ import com.managersystem.admin.server.entities.RewardSegmentDetail;
 import com.managersystem.admin.server.entities.type.PeriodLimitType;
 import com.managersystem.admin.server.exception.base.ResourceNotFoundException;
 import com.managersystem.admin.server.service.base.BaseService;
-import com.google.common.collect.Lists;
 import com.managersystem.admin.server.utils.DateUtils;
 import jakarta.persistence.RollbackException;
 import lombok.extern.log4j.Log4j2;
@@ -20,6 +19,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -66,13 +66,13 @@ public class RewardSegmentService extends BaseService {
     Map<Long, RewardItem> rwItemMap = rewardItems.stream().collect(Collectors.toMap(RewardItem::getId, Function.identity()));
 
     try{
-      List<RewardSegmentDetail> rewardSegmentDetails = Lists.newArrayList();
+      List<RewardSegmentDetail> rewardSegmentDetails = new ArrayList<>();
       List<RewardSegmentDetail> rewardSegmentDetailList = rewardSegmentDetailStorage.findByRewardSegmentId(rewardSegmentId);
 
       // delete uncheck reward
       List<RewardSegmentDetail> rewardSegmentDetailsRemove = rewardSegmentDetailList.stream()
           .filter(rw -> !ids.contains(rw.getRewardItemId()))
-          .collect(Collectors.toList());
+          .toList();
       rewardSegmentDetailStorage.deleteList(rewardSegmentDetailsRemove);
 
       for (Long id : ids) {

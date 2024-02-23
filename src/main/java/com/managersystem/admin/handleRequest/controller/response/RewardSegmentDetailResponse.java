@@ -1,11 +1,9 @@
 package com.managersystem.admin.handleRequest.controller.response;
 
+import com.managersystem.admin.server.entities.type.PeriodLimitType;
 import com.managersystem.admin.server.entities.type.RewardType;
 import com.managersystem.admin.server.entities.type.Status;
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
@@ -22,6 +20,12 @@ public class RewardSegmentDetailResponse {
   private Long rewardItemId;
 
   private Long rewardSegmentId;
+
+  private PeriodLimitType periodType;
+
+  private Long periodNumber = 1L;
+
+  private Long periodValue = 1L;
 
   private Integer quantityInPoll = 0;
 

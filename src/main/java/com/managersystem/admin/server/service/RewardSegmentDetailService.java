@@ -3,7 +3,6 @@ package com.managersystem.admin.server.service;
 import com.managersystem.admin.handleRequest.controller.dto.RewardSegmentDetailDto;
 import com.managersystem.admin.handleRequest.controller.dto.RewardSegmentDetailsUpdateDto;
 import com.managersystem.admin.handleRequest.controller.response.RewardSegmentDetailResponse;
-import com.managersystem.admin.handleRequest.controller.response.base.PageResponse;
 import com.managersystem.admin.server.entities.RewardItem;
 import com.managersystem.admin.server.entities.RewardSegmentDetail;
 import com.managersystem.admin.server.entities.type.PeriodLimitType;
@@ -12,8 +11,6 @@ import com.managersystem.admin.server.exception.base.ResourceNotFoundException;
 import com.managersystem.admin.server.service.base.BaseService;
 import com.managersystem.admin.server.utils.Constant;
 import jakarta.persistence.criteria.Predicate;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -128,7 +125,7 @@ public class RewardSegmentDetailService extends BaseService {
     List<RewardSegmentDetail> oldSegmentDetails = rewardSegmentDetailStorage.findByRewardSegmentId(rewardSegmentId);
     List<RewardSegmentDetail> rewardSegmentDetails = rewardSegmentDetailStorage.findByIdIn(rewardSegmentId, detailsUpdateDtos.stream().map(RewardSegmentDetailsUpdateDto::getRewardItemId).toList());
     Map<Long, RewardSegmentDetailsUpdateDto> detailsUpdateDtoMap = detailsUpdateDtos.stream().filter(Objects::nonNull).collect(Collectors.toMap(RewardSegmentDetailsUpdateDto::getRewardItemId, Function.identity()));
-    Map<Long, RewardSegmentDetail> segmentDetailMap = rewardSegmentDetails.stream().collect(Collectors.toMap(RewardSegmentDetail::getId, Function.identity()));
+    Map<Long, RewardSegmentDetail> segmentDetailMap = rewardSegmentDetails.stream().collect(Collectors.toMap(RewardSegmentDetail::getRewardItemId, Function.identity()));
     for (RewardSegmentDetail segmentDetail : rewardSegmentDetails) {
       RewardSegmentDetailsUpdateDto detailsUpdateDto = detailsUpdateDtoMap.get(segmentDetail.getRewardItemId());
       if (detailsUpdateDto == null) {
@@ -142,11 +139,21 @@ public class RewardSegmentDetailService extends BaseService {
 
       modelMapper.mapRewardSegmentDetailsDtoToRewardSegmentDetail(detailsUpdateDto, rewardSegmentDetail);
     }
+    List<RewardSegmentDetailsUpdateDto> newRewardSegmentDetail = detailsUpdateDtos.stream()
+        .filter(dto -> !segmentDetailMap.containsKey(dto.getRewardItemId())).toList();
+    for (RewardSegmentDetailsUpdateDto createDto : newRewardSegmentDetail) {
+      RewardSegmentDetail rewardSegmentDetail = modelMapper.toRewardSegmentDetail(createDto);
+      rewardSegmentDetail.setRewardSegmentId(rewardSegmentId);
+      rewardSegmentDetail.setIsDefault(false);
+      rewardSegmentDetail.setPeriodType(PeriodLimitType.UNLIMITED);
+      rewardSegmentDetailStorage.save(rewardSegmentDetail);
+    }
+
     List<RewardSegmentDetail> updateRwSegment = new ArrayList<>(segmentDetailMap.values());
     List<Long> oldIds = oldSegmentDetails.stream().map(RewardSegmentDetail::getId).toList();
     List<Long> updateIds = updateRwSegment.stream().map(RewardSegmentDetail::getId).toList();
     List<Long> removeIds = new ArrayList<>(oldIds);
-    removeIds.retainAll(updateIds);
+    removeIds = removeIds.stream().filter(id -> !updateIds.contains(id)).toList();
     rewardSegmentDetailStorage.deleteAllById(removeIds);
     rewardSegmentDetailStorage.saveAll(updateRwSegment);
     return true;

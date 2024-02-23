@@ -50,6 +50,8 @@ public interface ModelMapper {
 
   RewardSegmentDetail toRewardSegmentDetail(RewardSegmentDetailDto rewardSegmentDetailDto);
 
+  RewardSegmentDetail toRewardSegmentDetail(RewardSegmentDetailsUpdateDto createDto);
+
   void mapRewardSegmentDetailDtoToRewardSegmentDetail(RewardSegmentDetailUpdateDto rewardSegmentDetailDto, @MappingTarget RewardSegmentDetail rewardSegmentDetail);
 
   RewardSegmentDetailResponse toRewardSegmentDetailResponse(RewardSegmentDetail rewardSegmentDetail);
@@ -110,4 +112,6 @@ public interface ModelMapper {
   List<RewardItemStoreResponse> toListRewardItemStoreResponses(List<RewardItemStore> byType);
 
   void mapRewardSegmentDetailsDtoToRewardSegmentDetail(RewardSegmentDetailsUpdateDto detailsUpdateDto,@MappingTarget RewardSegmentDetail rewardSegmentDetail);
+
+
 }

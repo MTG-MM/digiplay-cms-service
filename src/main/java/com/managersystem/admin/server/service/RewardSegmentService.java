@@ -87,7 +87,6 @@ public class RewardSegmentService extends BaseService {
           RewardSegmentDetail rewardSegmentDetailNew = new RewardSegmentDetail();
           rewardSegmentDetailNew.setRewardItemId(id);
           rewardSegmentDetailNew.setRewardSegmentId(rewardSegmentId);
-          rewardSegmentDetailNew.setName(rewardItem.getRewardName() + " - " + rewardSegmentId);
           rewardSegmentDetailNew.setIsDefault(false);
           rewardSegmentDetailNew.setCreatedAt(DateUtils.getNowMillisAtUtc());
           rewardSegmentDetails.add(rewardSegmentDetailNew);

@@ -14,14 +14,11 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class RewardSegmentDetail {
+public class RewardSegmentDetail extends BaseEntity{
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-
-  @Column(name = "name")
-  private String name;
 
   @Column(name = "priority")
   private Long priority = 0L; //do uu tien nhan qua theo ti le
@@ -53,10 +50,4 @@ public class RewardSegmentDetail {
 
   @Transient
   private Long updatePriority = 0L;
-
-  @Column(name = "created_at")
-  private Long createdAt = DateUtils.getNowMillisAtUtc();
-
-  @Column(name = "updated_at")
-  private Long updatedAt = DateUtils.getNowMillisAtUtc();
 }

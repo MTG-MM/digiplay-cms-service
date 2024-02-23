@@ -144,8 +144,6 @@ public class RewardSegmentDetailService extends BaseService {
     for (RewardSegmentDetailsUpdateDto createDto : newRewardSegmentDetail) {
       RewardSegmentDetail rewardSegmentDetail = modelMapper.toRewardSegmentDetail(createDto);
       rewardSegmentDetail.setRewardSegmentId(rewardSegmentId);
-      rewardSegmentDetail.setIsDefault(false);
-      rewardSegmentDetail.setPeriodType(PeriodLimitType.UNLIMITED);
       rewardSegmentDetailStorage.save(rewardSegmentDetail);
     }
 

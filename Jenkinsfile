@@ -66,7 +66,7 @@ pipeline {
         stage('Push') {
             steps {
                 script {
-                  sh "docker push ${RESPOSITORY}/${NAME}:${BUILD_NUMBER}"
+                  sh "sudo docker push ${RESPOSITORY}/${NAME}:${BUILD_NUMBER}"
                 }
             }
         }

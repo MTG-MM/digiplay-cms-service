@@ -63,6 +63,12 @@ pipeline {
                }
             }
         }
-
+        stage('Build') {
+            steps {
+                script {
+                  sh "docker push ${RESPOSITORY}/${NAME}:${BUILD_NUMBER}"
+                }
+            }
+        }
     }
 }

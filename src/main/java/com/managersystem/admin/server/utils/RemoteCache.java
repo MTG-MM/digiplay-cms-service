@@ -44,6 +44,15 @@ public class RemoteCache {
     }}
   }
 
+  public void deleteKey(String key){
+    try{
+      RDeque<Object> queue = redissonClient.getDeque(key);
+      queue.delete();
+    }catch (Exception e){{
+      log.error(e.getMessage());
+    }}
+  }
+
   public <T> T rDequePeekFirst(String key){
     try{
       RDeque<T> queue = redissonClient.getDeque(key);

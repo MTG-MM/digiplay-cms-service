@@ -25,10 +25,22 @@ public class AccountStorage extends BaseStorage {
   }
 
   public Account findById(UUID id) {
-    return accountRepository.findById(id).orElse(null);
+    String key = cacheKey.getUserById(id);
+    Account account = remoteCache.get(key, Account.class);
+    if(account == null){
+      account = accountRepository.findById(id).orElse(null);
+      remoteCache.put(key, account);
+    }
+    return account;
   }
 
   public Account findByUsername(String username) {
-    return accountRepository.findByUsername(username);
+    String key = cacheKey.getUserByUsername(username);
+    Account account = remoteCache.get(key, Account.class);
+    if(account == null){
+      account = accountRepository.findByUsername(username);
+      remoteCache.put(key, account);
+    }
+    return account;
   }
 }

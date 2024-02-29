@@ -20,4 +20,12 @@ public class CacheKey {
   public String getRewardPoolItemIds(Long rewardSegmentId, Long rewardItemId) {
     return redisPrefixKey + ":rws:" + rewardSegmentId + ":rwi:" + rewardItemId;
   }
+
+  public String getUserById(UUID id) {
+    return redisPrefixKey + ":u:id" + id;
+  }
+
+  public String getUserByUsername(String username) {
+    return redisPrefixKey + ":u:name" + username;
+  }
 }

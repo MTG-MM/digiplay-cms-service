@@ -18,51 +18,51 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
-            steps {
-                script {
-
-                  try{
-                    sh "sudo docker stop ${NAME}"
-                  } catch(Exception e) {
-                     echo "No running container found with the name ${NAME}."
-                  }
-
-                  try{
-                    sh "sudo docker rm ${NAME}"
-                  } catch(Exception e) {
-                     echo "No runnistop container found with the name ${NAME}."
-                  }
-
-                  if(BRANCH_NAME == 'master'){
-                    try{
-                        sh "sudo docker run --name ${NAME}-${BUILD_NUMBER} -d -p ${PORT}:8080 --cap-add=SYS_PTRACE --privileged -v \"/var/run/docker.sock:/var/run/docker.sock\" ${RESPOSITORY}/${NAME}:${BUILD_NUMBER}"
-                    } catch(Exception e) {
-                        def lastSuccessfulBuildID = 0
-                        def build = currentBuild.previousBuild
-                        while (build != null) {
-                        f (build.result == "SUCCESS"){
-                            lastSuccessfulBuildID = build.id as Integer
-                            break
-                            }
-                            build = build.previousBuild
-                         }
-                       sh "sudo docker run --name ${NAME}-${build} -d -p ${PORT}:80 ${RESPOSITORY}/${NAME}:${BUILD_NUMBER}"
-
-                    }
-                  }
-
-
-                  sh "sudo docker rename ${NAME}-${BUILD_NUMBER} ${NAME}"
-                  try{
-                    sh 'sudo docker container prune -f'
-                    sh "sudo docker rmi \$(sudo docker images -q --filter \"before=${RESPOSITORY}/${NAME}:${BUILD_NUMBER-10}\")"
-                  } catch(Exception e) {
-                     echo "remove trash image, container"
-                  }
-               }
-            }
-        }
+//         stage('Deploy') {
+//             steps {
+//                 script {
+//
+//                   try{
+//                     sh "sudo docker stop ${NAME}"
+//                   } catch(Exception e) {
+//                      echo "No running container found with the name ${NAME}."
+//                   }
+//
+//                   try{
+//                     sh "sudo docker rm ${NAME}"
+//                   } catch(Exception e) {
+//                      echo "No runnistop container found with the name ${NAME}."
+//                   }
+//
+//                   if(BRANCH_NAME == 'master'){
+//                     try{
+//                         sh "sudo docker run --name ${NAME}-${BUILD_NUMBER} -d -p ${PORT}:8080 --cap-add=SYS_PTRACE --privileged -v \"/var/run/docker.sock:/var/run/docker.sock\" ${RESPOSITORY}/${NAME}:${BUILD_NUMBER}"
+//                     } catch(Exception e) {
+//                         def lastSuccessfulBuildID = 0
+//                         def build = currentBuild.previousBuild
+//                         while (build != null) {
+//                         f (build.result == "SUCCESS"){
+//                             lastSuccessfulBuildID = build.id as Integer
+//                             break
+//                             }
+//                             build = build.previousBuild
+//                          }
+//                        sh "sudo docker run --name ${NAME}-${build} -d -p ${PORT}:80 ${RESPOSITORY}/${NAME}:${BUILD_NUMBER}"
+//
+//                     }
+//                   }
+//
+//
+//                   sh "sudo docker rename ${NAME}-${BUILD_NUMBER} ${NAME}"
+//                   try{
+//                     sh 'sudo docker container prune -f'
+//                     sh "sudo docker rmi \$(sudo docker images -q --filter \"before=${RESPOSITORY}/${NAME}:${BUILD_NUMBER-10}\")"
+//                   } catch(Exception e) {
+//                      echo "remove trash image, container"
+//                   }
+//                }
+//             }
+//         }
         stage('Push') {
             steps {
                 script {

@@ -16,7 +16,7 @@ public class Schedule {
   public void processRewardSchedule() {
     long start = DateUtils.getNowMillisAtUtc();
     log.debug("===============>processRewardSchedule: {} ", DateUtils.getNowDateTimeAtVn());
-    rewardScheduleService.addRewardSegmentQuantity();
+//    rewardScheduleService.addRewardSegmentQuantity();
     log.debug("===============>processRewardSchedule: duration{} ", DateUtils.getNowMillisAtUtc() - start);
   }
 }

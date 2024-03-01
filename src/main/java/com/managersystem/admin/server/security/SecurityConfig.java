@@ -42,7 +42,7 @@ public class SecurityConfig {
         .authorizeHttpRequests()
         .requestMatchers("api/mos/cms/auth/**", "public/**", "/v1/docs/**").permitAll()
         .and()
-        .authorizeHttpRequests().anyRequest().permitAll()
+        .authorizeHttpRequests().anyRequest().authenticated()
         .and()
         .authenticationProvider(authenticationProvider())
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

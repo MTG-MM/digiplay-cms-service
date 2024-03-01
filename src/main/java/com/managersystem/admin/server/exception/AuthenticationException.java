@@ -12,8 +12,8 @@ public class AuthenticationException extends BaseException {
   @Serial
   private static final long serialVersionUID = 1L;
 
-  public AuthenticationException(String exception) {
-    super(exception, ErrorCode.UNAUTHORIZED);
+  public AuthenticationException(String message) {
+    super(message, ErrorCode.UNAUTHORIZED);
   }
   public AuthenticationException(Integer code) {
     super("Error", code);

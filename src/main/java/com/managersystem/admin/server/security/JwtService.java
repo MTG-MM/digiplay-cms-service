@@ -10,6 +10,7 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
@@ -22,7 +23,10 @@ import java.util.function.Function;
 public class JwtService {
   @Autowired
   private ModelMapper modelMapper;
-  public static final String SECRET = "5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437";
+  @Value(value = "${jwt.secret}")
+  public String secret;
+  @Value(value = "${jwt.expire_time}")
+  public Long expireTime;
   public String generateToken(Account account) {
     TokenInfo tokenInfo = modelMapper.toTokenInfo(account);
     Map<String, Object> claims = Helper.convertObjectToMap(tokenInfo);
@@ -34,12 +38,12 @@ public class JwtService {
         .setClaims(claims)
         .setSubject(id)
         .setIssuedAt(new Date(System.currentTimeMillis()))
-        .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 30))
+        .setExpiration(new Date(System.currentTimeMillis() + expireTime))
         .signWith(getSignKey(), SignatureAlgorithm.HS256).compact();
   }
 
   private Key getSignKey() {
-    byte[] keyBytes= Decoders.BASE64.decode(SECRET);
+    byte[] keyBytes= Decoders.BASE64.decode(secret);
     return Keys.hmacShaKeyFor(keyBytes);
   }
 
@@ -77,7 +81,7 @@ public class JwtService {
 
   public boolean validateToken(String authToken) {
     try {
-      Jwts.parser().setSigningKey(SECRET).parseClaimsJws(authToken);
+      Jwts.parserBuilder().setSigningKey(getSignKey()).build().parseClaimsJws(authToken);
       return true;
     } catch (MalformedJwtException ex) {
       log.error("Invalid JWT token");
@@ -90,6 +94,7 @@ public class JwtService {
     }
     return false;
   }
+
 
 
 }

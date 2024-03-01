@@ -39,8 +39,8 @@ public class VoucherDetailStorage extends BaseStorage {
     return voucherDetailRepository.getListVoucherDetailByStatus(voucherStoreId, rewardItemStatus, pageable);
   }
 
-  public void updateItemStatus(Long rewardSegmentId, Long rewardItemId) {
-    voucherDetailRepository.updateItemStatus(rewardSegmentId, rewardItemId);
+  public void updateItemStatus(Long rewardSegmentId, Long rewardItemId, long limit) {
+    voucherDetailRepository.updateItemStatus(rewardSegmentId, rewardItemId, limit);
   }
 
   public Page<VoucherDetail> findByStoreId(Long storeId, Pageable pageable) {

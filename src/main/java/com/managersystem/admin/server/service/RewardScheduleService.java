@@ -70,15 +70,14 @@ public class RewardScheduleService extends BaseService {
 
   @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
   public void addRewardSegmentQuantity() {
-    LocalDate nowAtVn = DateUtils.getNowDateAtVn();
     List<RewardSegment> rewardSegmentEntities = rewardSegmentStorage.findByStatus(Status.ACTIVE);
     List<RewardItem> rewardItems = rewardItemStorage.findAll();
     Map<Long, RewardItem> rewardItemMap = rewardItems.stream().collect(Collectors.toMap(RewardItem::getId, Function.identity()));
-    rewardSegmentEntities.forEach(rs -> self.processAddRewardSegmentDetail(rs.getId(), rewardItemMap, nowAtVn));
+    rewardSegmentEntities.forEach(rs -> self.processAddRewardSegmentDetail(rs.getId(), rewardItemMap));
   }
 
   @Transactional(propagation = Propagation.MANDATORY)
-  public void processAddRewardSegmentDetail(Long rewardSegmentId, Map<Long, RewardItem> rewardItemMap, LocalDate nowAtVn) {
+  public void processAddRewardSegmentDetail(Long rewardSegmentId, Map<Long, RewardItem> rewardItemMap) {
     List<RewardSegmentDetail> rewardSegmentDetails = rewardSegmentDetailStorage.findByRewardSegmentId(rewardSegmentId);
     Map<Long, RewardSegmentDetail> rewardSegmentDetailMap = rewardSegmentDetails.stream().collect(Collectors.toMap(RewardSegmentDetail::getId, Function.identity()));
 
@@ -91,12 +90,12 @@ public class RewardScheduleService extends BaseService {
       if (rewardSegmentDetail != null) {
         rewardItem = rewardItemMap.get(rewardSegmentDetail.getRewardItemId());
       }
-      self.processAddQuantity(rewardSchedule, rewardItem, rewardSegmentDetail, nowAtVn);
+      self.processAddQuantity(rewardSchedule, rewardItem, rewardSegmentDetail);
     });
   }
 
   @Transactional(propagation = Propagation.MANDATORY)
-  public void processAddQuantity(RewardSchedule rewardSchedule, RewardItem rewardItem, RewardSegmentDetail segmentDetail, LocalDate nowAtVn) {
+  public void processAddQuantity(RewardSchedule rewardSchedule, RewardItem rewardItem, RewardSegmentDetail segmentDetail) {
     boolean newPeriod = false;
     if (rewardItem == null || !rewardItem.getIsLimited()) {
       return;
@@ -134,7 +133,7 @@ public class RewardScheduleService extends BaseService {
       long quantity = processStateDayQuantity(rewardState, rewardSchedule.getQuantity(), minutesToNextDay, localDateTime.getDayOfMonth());
       if (quantity > 0) {
         rewardState.setLastMinute(currentMinute);
-        self.processUpdatePoolItem((int) quantity, rewardItem, rewardSchedule, newPeriod, segmentDetail, nowAtVn);
+        self.processUpdatePoolItem((int) quantity, rewardItem, rewardSchedule, newPeriod, segmentDetail);
       }
       saveUpdateStateLog(rewardState, localDateTime, quantity);
     } else if (rewardSchedule.getPeriodType() == PeriodType.HOUR) {
@@ -150,7 +149,7 @@ public class RewardScheduleService extends BaseService {
       long quantity = processStateHourQuantity(rewardState, rewardSchedule.getQuantity(), minutesToNextHour, localDateTime.getHour());
       if (quantity > 0) {
         rewardState.setLastMinute(currentMinute);
-        self.processUpdatePoolItem((int) quantity, rewardItem, rewardSchedule, newPeriod, segmentDetail, nowAtVn);
+        self.processUpdatePoolItem((int) quantity, rewardItem, rewardSchedule, newPeriod, segmentDetail);
       }
       saveUpdateStateLog(rewardState, localDateTime, quantity);
     } else if (rewardSchedule.getPeriodType() == PeriodType.MINUTE) {
@@ -162,7 +161,7 @@ public class RewardScheduleService extends BaseService {
       long quantity = processStateMinuterQuantity(rewardState, rewardSchedule.getQuantity(), currentMinute);
       if (quantity > 0) {
         rewardState.setLastMinute(currentMinute);
-        self.processUpdatePoolItem((int) quantity, rewardItem, rewardSchedule, true, segmentDetail, nowAtVn);
+        self.processUpdatePoolItem((int) quantity, rewardItem, rewardSchedule, true, segmentDetail);
       }
       saveUpdateStateLog(rewardState, localDateTime, quantity);
     }
@@ -170,7 +169,7 @@ public class RewardScheduleService extends BaseService {
   }
 
   @Transactional(propagation = Propagation.MANDATORY)
-  public void processUpdatePoolItem(int amount, RewardItem rewardItem, RewardSchedule rewardSchedule, boolean newPeriod, RewardSegmentDetail rewardSegment, LocalDate nowAtVn) {
+  public void processUpdatePoolItem(int amount, RewardItem rewardItem, RewardSchedule rewardSchedule, boolean newPeriod, RewardSegmentDetail rewardSegment) {
     long numberItemRemoved = 0;
     if (newPeriod && Boolean.TRUE.equals(!rewardSchedule.getIsAccumulative())) {
       for (int i = 0; i < rewardSchedule.getQuantity(); i++) {

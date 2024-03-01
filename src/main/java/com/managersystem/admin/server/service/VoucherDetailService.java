@@ -54,7 +54,7 @@ public class VoucherDetailService extends BaseService {
     List<VoucherDetail> voucherDetails = null;
     try {
       if (newPeriod && Boolean.FALSE.equals(rewardSchedule.getIsAccumulative())) {
-        voucherDetailStorage.updateItemStatus(rewardSegmentDetail.getRewardSegmentId(), rewardSegmentDetail.getRewardItemId());
+        voucherDetailStorage.updateItemStatus(rewardSegmentDetail.getRewardSegmentId(), rewardSegmentDetail.getRewardItemId(),rewardSchedule.getQuantity() );
       }
       voucherDetails = voucherDetailStorage.getListVoucherDetailByStatus(voucherStoreId, RewardItemStatus.NEW, limit);
 

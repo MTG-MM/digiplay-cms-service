@@ -39,8 +39,8 @@ public class ProductDetailStorage extends BaseStorage {
     return productDetailRepository.getListProductDetailByStatus(productStoreId, rewardItemStatus, pageable);
   }
 
-  public void updateItemStatus(Long rewardSegmentId, Long rewardItemId) {
-    productDetailRepository.updateItemStatus(rewardSegmentId, rewardItemId);
+  public void updateItemStatus(Long rewardSegmentId, Long rewardItemId, long limit) {
+    productDetailRepository.updateItemStatus(rewardSegmentId, rewardItemId, limit);
   }
 
   public Integer getListInPollProductInGivenInPool(Long rewardSegmentId, Long rewardItemId, long startDateAtVn, long endDateAtVn) {

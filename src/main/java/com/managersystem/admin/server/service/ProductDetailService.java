@@ -52,7 +52,7 @@ public class ProductDetailService extends BaseService {
     List<ProductDetail> productDetails = null;
     try {
       if(newPeriod && Boolean.FALSE.equals(rewardSchedule.getIsAccumulative())){
-        productDetailStorage.updateItemStatus(rewardSegmentDetail.getRewardSegmentId(), rewardSegmentDetail.getRewardItemId());
+        productDetailStorage.updateItemStatus(rewardSegmentDetail.getRewardSegmentId(), rewardSegmentDetail.getRewardItemId(), rewardSchedule.getQuantity());
       }
       productDetails = productDetailStorage.getListProductDetailByStatus(productStoreId, RewardItemStatus.NEW, limit);
       productDetails.forEach(v -> {

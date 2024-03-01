@@ -24,11 +24,12 @@ public interface ProductDetailRepository extends JpaRepository<ProductDetail, UU
   );
 
   @Query(nativeQuery = true, value = "UPDATE product_detail set product_status = 'NEW', reward_segment_id = NULL, reward_item_id = NULL " +
-      "where reward_segment_id = :segmentId and reward_item_id = :itemId")
+      "where reward_segment_id = :segmentId and reward_item_id = :itemId LIMIT :limit")
   @Modifying
   void updateItemStatus(
       @Param("segmentId") Long rewardSegmentId,
-      @Param("itemId") Long rewardItemId
+      @Param("itemId") Long rewardItemId,
+      @Param("limit") long limit
   );
 
   @Query(value = "SELECT COUNT(*) FROM ProductDetail WHERE rewardSegmentId = :rewardSegmentId " +

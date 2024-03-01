@@ -25,11 +25,12 @@ public interface VoucherDetailRepository extends JpaRepository<VoucherDetail, UU
   );
 
   @Query(nativeQuery = true, value = "UPDATE voucher_detail set voucher_status = 'NEW', reward_segment_id = NULL, reward_item_id = NULL " +
-      "where reward_segment_id = :segmentId and reward_item_id = :itemId")
+      "where reward_segment_id = :segmentId and reward_item_id = :itemId LIMIT :limit")
   @Modifying
   void updateItemStatus(
       @Param("segmentId") Long segmentId,
-      @Param("itemId") Long itemId
+      @Param("itemId") Long itemId,
+      @Param("limit") long limit
   );
 
   Page<VoucherDetail> findByStoreId(Long storeId, Pageable pageable);

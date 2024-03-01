@@ -23,6 +23,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -170,27 +171,34 @@ public class RewardScheduleService extends BaseService {
 
   @Transactional(propagation = Propagation.MANDATORY)
   public void processUpdatePoolItem(int amount, RewardItem rewardItem, RewardSchedule rewardSchedule, boolean newPeriod, RewardSegmentDetail rewardSegment, LocalDate nowAtVn) {
+    long numberItemRemoved = 0;
     if (newPeriod && Boolean.TRUE.equals(!rewardSchedule.getIsAccumulative())) {
-      remoteCache.deleteKey(cacheKey.getRewardPoolItemIds(rewardSegment.getRewardSegmentId(), rewardItem.getId()));
+      for (int i = 0; i < rewardSchedule.getQuantity(); i++) {
+        UUID itemIdRemove = remoteCache.rDequePoolFirst(cacheKey.getRewardPoolItemIds(rewardSegment.getRewardSegmentId(), rewardItem.getId()));
+        if (itemIdRemove != null) {
+          numberItemRemoved++;
+        }
+      }
+      log.debug("====>processUpdatePoolItem remove item: {}", numberItemRemoved);
     }
     switch (rewardItem.getRewardType()) {
       case POINT -> {
       }
       case VOUCHER -> {
-        List<VoucherDetail> voucherDetails = voucherDetailService.getVoucherDetail(Integer.parseInt(rewardItem.getExternalId()), amount, rewardSchedule,rewardSegment , newPeriod);
+        List<VoucherDetail> voucherDetails = voucherDetailService.getVoucherDetail(Integer.parseInt(rewardItem.getExternalId()), amount, rewardSchedule, rewardSegment, newPeriod);
         if (!voucherDetails.isEmpty()) {
-          voucherDetails.forEach(v -> {
-            remoteCache.rDequePutId(cacheKey.getRewardPoolItemIds(rewardSegment.getRewardSegmentId(), rewardItem.getId()), v.getId());
-          });
+          voucherDetails.forEach(v ->
+              remoteCache.rDequePutId(cacheKey.getRewardPoolItemIds(rewardSegment.getRewardSegmentId(), rewardItem.getId()), v.getId())
+          );
         }
 
       }
       case PRODUCT -> {
-        List<ProductDetail> productDetails = productDetailService.getProductDetail(Integer.parseInt(rewardItem.getExternalId()), amount, rewardSchedule,rewardSegment, newPeriod);
+        List<ProductDetail> productDetails = productDetailService.getProductDetail(Integer.parseInt(rewardItem.getExternalId()), amount, rewardSchedule, rewardSegment, newPeriod);
         if (!productDetails.isEmpty()) {
-          productDetails.forEach(v -> {
-            remoteCache.rDequePutId(cacheKey.getRewardPoolItemIds(rewardSegment.getRewardSegmentId(), rewardItem.getId()), v.getId());
-          });
+          productDetails.forEach(v ->
+              remoteCache.rDequePutId(cacheKey.getRewardPoolItemIds(rewardSegment.getRewardSegmentId(), rewardItem.getId()), v.getId())
+          );
         }
       }
     }

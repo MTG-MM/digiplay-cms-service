@@ -77,9 +77,9 @@ public class RemoteCache {
     try{
       RDeque<T> queue = redissonClient.getDeque(key);
       return queue.readAllAsync().get();
-    }catch (Exception e){{
+    }catch (Exception e){
       log.error(e.getMessage());
-    }}
+    }
     return null;
   }
 

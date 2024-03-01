@@ -8,6 +8,7 @@ import com.managersystem.admin.server.entities.*;
 import com.managersystem.admin.server.exception.base.ResourceNotFoundException;
 import com.managersystem.admin.server.service.base.BaseService;
 import jakarta.persistence.criteria.Predicate;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,6 +23,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
+@Log4j2
 public class RewardItemService extends BaseService {
 
   @Autowired
@@ -107,6 +109,7 @@ public class RewardItemService extends BaseService {
   //Trả quà
   @Transactional(propagation = Propagation.MANDATORY)
   public RewardResponse processReturnRewardItem(User user, RewardSegmentDetail segmentDetail) {
+    log.debug("===========>processReturnRewardItem segmentDetail: {}", segmentDetail);
     RewardItem rewardItem = rewardItemStorage.findById(segmentDetail.getRewardItemId());
     if (rewardItem == null) {
       return null;

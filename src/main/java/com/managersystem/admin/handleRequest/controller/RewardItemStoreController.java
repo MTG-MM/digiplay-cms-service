@@ -15,7 +15,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/mos/cms/reward-item-stores")
-@CrossOrigin(origins = "*")
 public class RewardItemStoreController {
 
   @Autowired private RewardItemStoreService rewardItemStoreService;

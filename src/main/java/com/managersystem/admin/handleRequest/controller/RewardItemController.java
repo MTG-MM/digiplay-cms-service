@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/mos/cms/reward-items")
-@CrossOrigin(origins = "*")
 public class RewardItemController {
 
   @Autowired

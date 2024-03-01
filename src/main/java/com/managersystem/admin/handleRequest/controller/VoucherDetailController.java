@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/mos/cms/voucher-details")
-@CrossOrigin(origins = "*")
 public class VoucherDetailController {
 
   @Autowired

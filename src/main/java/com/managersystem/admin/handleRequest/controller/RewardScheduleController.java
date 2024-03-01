@@ -14,7 +14,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/mos/cms/reward-schedule")
-@CrossOrigin(origins = "*")
 public class RewardScheduleController {
 
   @Autowired

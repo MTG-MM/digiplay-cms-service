@@ -1,6 +1,7 @@
 package com.managersystem.admin.server.service.base;
 
 import com.managersystem.admin.ModelMapper;
+import com.managersystem.admin.server.repositories.RewardItemStatisticRepository;
 import com.managersystem.admin.server.stores.*;
 import com.managersystem.admin.server.utils.CacheKey;
 import com.managersystem.admin.server.utils.LockManager;
@@ -29,4 +30,5 @@ public class BaseService {
   @Autowired protected VoucherDetailStorage voucherDetailStorage;
   @Autowired protected ProductDetailStorage productDetailStorage;
   @Autowired protected RewardItemStoreStorage rewardItemStoreStorage;
+  @Autowired protected RewardItemStatisticStorage rewardItemStatisticStorage;
 }

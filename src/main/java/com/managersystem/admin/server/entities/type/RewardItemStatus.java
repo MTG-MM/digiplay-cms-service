@@ -1,6 +1,6 @@
 package com.managersystem.admin.server.entities.type;
 
-public enum PollItemStatus {
+public enum RewardItemStatus {
   NEW,
   IN_POOL,
   RECEIVE,

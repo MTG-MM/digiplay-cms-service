@@ -1,7 +1,7 @@
 package com.managersystem.admin.server.stores;
 
 import com.managersystem.admin.server.entities.VoucherDetail;
-import com.managersystem.admin.server.entities.type.PollItemStatus;
+import com.managersystem.admin.server.entities.type.RewardItemStatus;
 import com.managersystem.admin.server.stores.base.BaseStorage;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -34,16 +34,20 @@ public class VoucherDetailStorage extends BaseStorage {
     voucherDetailRepository.saveAll(voucherDetails);
   }
 
-  public List<VoucherDetail> getListVoucherDetailByStatus(int voucherStoreId, PollItemStatus pollItemStatus, int limit) {
+  public List<VoucherDetail> getListVoucherDetailByStatus(int voucherStoreId, RewardItemStatus rewardItemStatus, int limit) {
     Pageable pageable = PageRequest.of(0, limit);
-    return voucherDetailRepository.getListVoucherDetailByStatus(voucherStoreId, pollItemStatus, pageable);
+    return voucherDetailRepository.getListVoucherDetailByStatus(voucherStoreId, rewardItemStatus, pageable);
   }
 
-  public void updateItemStatus(Long rewardSegmentDetailId) {
-    voucherDetailRepository.updateItemStatus(rewardSegmentDetailId);
+  public void updateItemStatus(Long rewardSegmentId, Long rewardItemId) {
+    voucherDetailRepository.updateItemStatus(rewardSegmentId, rewardItemId);
   }
 
   public Page<VoucherDetail> findByStoreId(Long storeId, Pageable pageable) {
     return voucherDetailRepository.findByStoreId(storeId, pageable);
+  }
+
+  public Integer getListInPollVoucherInGivenInPool(Long rewardSegmentId, Long rewardItemId, long startDateAtVn, long endDateAtVn) {
+    return voucherDetailRepository.getListInPollVoucherInGivenInPool(rewardSegmentId, rewardItemId, startDateAtVn, endDateAtVn);
   }
 }

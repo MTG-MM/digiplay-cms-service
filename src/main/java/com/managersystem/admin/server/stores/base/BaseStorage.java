@@ -26,4 +26,5 @@ public class BaseStorage {
   @Autowired protected VoucherDetailRepository voucherDetailRepository;
   @Autowired protected ProductDetailRepository productDetailRepository;
   @Autowired protected UserSegmentRepository userSegmentRepository;
+  @Autowired protected RewardItemStatisticRepository rewardItemStatisticRepository;
 }

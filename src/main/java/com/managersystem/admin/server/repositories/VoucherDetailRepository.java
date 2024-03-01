@@ -1,7 +1,7 @@
 package com.managersystem.admin.server.repositories;
 
 import com.managersystem.admin.server.entities.VoucherDetail;
-import com.managersystem.admin.server.entities.type.PollItemStatus;
+import com.managersystem.admin.server.entities.type.RewardItemStatus;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,14 +20,26 @@ public interface VoucherDetailRepository extends JpaRepository<VoucherDetail, UU
   @Query("SELECT vd FROM VoucherDetail vd WHERE vd.storeId = :voucherStoreId and vd.status = :voucherStatus ORDER BY vd.expireAt ASC")
   List<VoucherDetail> getListVoucherDetailByStatus(
       @Param("voucherStoreId") int voucherStoreId,
-      @Param("voucherStatus") PollItemStatus pollItemStatus,
+      @Param("voucherStatus") RewardItemStatus rewardItemStatus,
       Pageable pageable
   );
 
-  @Query(nativeQuery = true, value = "UPDATE voucher_detail set voucher_status = 'NEW', segment_detail_id = NULL where segment_detail_id = :segmentDetailId")
+  @Query(nativeQuery = true, value = "UPDATE voucher_detail set voucher_status = 'NEW', reward_segment_id = NULL, reward_item_id = NULL " +
+      "where reward_segment_id = :segmentId and reward_item_id = :itemId")
   @Modifying
   void updateItemStatus(
-      @Param("segmentDetailId") Long segmentDetailId);
+      @Param("segmentId") Long segmentId,
+      @Param("itemId") Long itemId
+  );
 
   Page<VoucherDetail> findByStoreId(Long storeId, Pageable pageable);
-}
+
+  @Query(value = "SELECT COUNT(*) FROM VoucherDetail WHERE rewardSegmentId = :rewardSegmentId " +
+      "AND rewardItemId = :rewardItemId " +
+      "AND givenToPool >= :startDateAtVn " +
+      "AND givenToPool < :endDateAtVn")
+  Integer getListInPollVoucherInGivenInPool(
+      @Param("rewardSegmentId") Long rewardSegmentId,
+      @Param("rewardItemId") Long rewardItemId,
+      @Param("startDateAtVn") long startDateAtVn,
+      @Param("endDateAtVn") long endDateAtVn);}

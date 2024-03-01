@@ -1,7 +1,7 @@
 package com.managersystem.admin.server.stores;
 
 import com.managersystem.admin.server.entities.ProductDetail;
-import com.managersystem.admin.server.entities.type.PollItemStatus;
+import com.managersystem.admin.server.entities.type.RewardItemStatus;
 import com.managersystem.admin.server.stores.base.BaseStorage;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -34,12 +34,16 @@ public class ProductDetailStorage extends BaseStorage {
     productDetailRepository.saveAll(productDetails);
   }
 
-  public List<ProductDetail> getListProductDetailByStatus(int productStoreId, PollItemStatus pollItemStatus, int limit) {
+  public List<ProductDetail> getListProductDetailByStatus(int productStoreId, RewardItemStatus rewardItemStatus, int limit) {
     Pageable pageable = PageRequest.of(0, limit);
-    return productDetailRepository.getListProductDetailByStatus(productStoreId, pollItemStatus, pageable);
+    return productDetailRepository.getListProductDetailByStatus(productStoreId, rewardItemStatus, pageable);
   }
 
-  public void updateItemStatus(Long rewardSegmentDetailId) {
-    productDetailRepository.updateItemStatus(rewardSegmentDetailId);
+  public void updateItemStatus(Long rewardSegmentId, Long rewardItemId) {
+    productDetailRepository.updateItemStatus(rewardSegmentId, rewardItemId);
+  }
+
+  public Integer getListInPollProductInGivenInPool(Long rewardSegmentId, Long rewardItemId, long startDateAtVn, long endDateAtVn) {
+    return productDetailRepository.getListInPollProductInGivenInPool(rewardSegmentId, rewardItemId, startDateAtVn, endDateAtVn);
   }
 }

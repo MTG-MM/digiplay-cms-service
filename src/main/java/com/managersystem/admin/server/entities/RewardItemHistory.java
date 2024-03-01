@@ -32,7 +32,10 @@ public class RewardItemHistory extends BaseEntity {
   private UUID userId;
 
   @Column(name = "reward_item_id")
-  private UUID rewardItemDetailId;
+  private Long rewardItemId; // id reward item
+
+  @Column(name = "reward_item_detail_id")
+  private UUID rewardItemDetailId; // id qua trung thuong, (voucher <=> voucherDetailId, product <=> productDetailId)
 
   @Column(name = "reward_segment_id")
   private Long rewardSegmentId;

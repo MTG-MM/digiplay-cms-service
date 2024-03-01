@@ -3,8 +3,8 @@ package com.managersystem.admin.server.service;
 import com.managersystem.admin.handleRequest.controller.response.VoucherDetailResponse;
 import com.managersystem.admin.handleRequest.controller.response.base.PageResponse;
 import com.managersystem.admin.server.entities.*;
+import com.managersystem.admin.server.entities.type.RewardItemStatus;
 import com.managersystem.admin.server.entities.type.Status;
-import com.managersystem.admin.server.entities.type.PollItemStatus;
 import com.managersystem.admin.server.entities.type.StoreType;
 import com.managersystem.admin.server.service.base.BaseService;
 import com.managersystem.admin.server.utils.DateUtils;
@@ -23,66 +23,69 @@ public class VoucherDetailService extends BaseService {
   public VoucherDetail setVoucherDetailForUser(User user, UUID detailId) {
     Long now = DateUtils.getNowMillisAtUtc();
     VoucherDetail voucherDetail = voucherDetailStorage.findById(detailId);
-    if(voucherDetail == null){
+    if (voucherDetail == null) {
       log.warn("===========> setVoucherDetailForUser: voucher detail not found {}", detailId);
       return null;
     }
     RewardItemStore rewardItemStore = rewardItemStoreStorage.findById(voucherDetail.getStoreId());
-    if(rewardItemStore == null){
+    if (rewardItemStore == null) {
       log.warn("===========> setVoucherDetailForUser: voucher store not found {}", voucherDetail.getStoreId());
       return null;
     }
-    if(!rewardItemStore.getStatus().equals(Status.ACTIVE)){
+    if (!rewardItemStore.getStatus().equals(Status.ACTIVE)) {
       return null;
     }
-    if(now < voucherDetail.getStartAt()){
+    if (now < voucherDetail.getStartAt()) {
       return null;
     }
-    if(now > voucherDetail.getExpireAt()){
-      voucherDetail.setStatus(PollItemStatus.EXPIRE);
-    }else{
+    if (now > voucherDetail.getExpireAt()) {
+      voucherDetail.setStatus(RewardItemStatus.EXPIRE);
+    } else {
       voucherDetail.setGivenAt(now);
       voucherDetail.setUserId(user.getId());
-      voucherDetail.setStatus(PollItemStatus.RECEIVE);
+      voucherDetail.setStatus(RewardItemStatus.RECEIVE);
     }
     voucherDetailStorage.save(voucherDetail);
     return voucherDetail;
   }
 
-  public List<VoucherDetail> getVoucherDetail(int voucherStoreId, int limit, RewardSchedule rewardSchedule, boolean newPeriod) {
+  public List<VoucherDetail> getVoucherDetail(int voucherStoreId, int limit, RewardSchedule rewardSchedule, RewardSegmentDetail rewardSegmentDetail, boolean newPeriod) {
 
     List<VoucherDetail> voucherDetails = null;
     try {
-      if(newPeriod && !rewardSchedule.getIsAccumulative()){
-        voucherDetailStorage.updateItemStatus(rewardSchedule.getRewardSegmentDetailId());
+      if (newPeriod && Boolean.FALSE.equals(rewardSchedule.getIsAccumulative())) {
+        voucherDetailStorage.updateItemStatus(rewardSegmentDetail.getRewardSegmentId(), rewardSegmentDetail.getRewardItemId());
       }
-      voucherDetails = voucherDetailStorage.getListVoucherDetailByStatus(voucherStoreId, PollItemStatus.NEW, limit);
+      voucherDetails = voucherDetailStorage.getListVoucherDetailByStatus(voucherStoreId, RewardItemStatus.NEW, limit);
 
       voucherDetails.forEach(v -> {
-        v.setStatus(PollItemStatus.IN_POOL);
-        v.setSegmentDetailId(rewardSchedule.getRewardSegmentDetailId());
+        v.setStatus(RewardItemStatus.IN_POOL);
+        v.setRewardItemId(rewardSegmentDetail.getRewardItemId());
+        v.setRewardSegmentId(rewardSegmentDetail.getRewardSegmentId());
+        v.setGivenToPool(DateUtils.getNowMillisAtUtc());
       });
       voucherDetailStorage.saveAll(voucherDetails);
-    } catch (Exception ex){
-      log.error("======>getVoucherDetail {} {}" , voucherStoreId, ex);
+    } catch (Exception ex) {
+      log.error("======>getVoucherDetail {} {}", voucherStoreId, ex);
     }
     return voucherDetails;
   }
-  public void initRandomVoucherDetail(){
+
+  public void initRandomVoucherDetail() {
     RewardItemStore rewardItemStore = new RewardItemStore();
     rewardItemStore.setId(1L);
     rewardItemStore.setName("Voucher test");
     rewardItemStore.setStatus(Status.ACTIVE);
     rewardItemStore.setType(StoreType.VOUCHER);
     List<VoucherDetail> voucherDetails = new ArrayList<>();
-    for(int i = 0; i < 1000; i++){
+    for (int i = 0; i < 10000; i++) {
       VoucherDetail voucherDetail = new VoucherDetail();
       voucherDetail.setName(rewardItemStore.getName());
       voucherDetail.setCode(UUID.randomUUID().toString());
       voucherDetail.setStartAt(DateUtils.getNowMillisAtUtc());
-      voucherDetail.setExpireAt(DateUtils.getNowMillisAtUtc() + 1000L * 60 * 60 * 24 * 100 );
+      voucherDetail.setExpireAt(DateUtils.getNowMillisAtUtc() + 1000L * 60 * 60 * 24 * 100);
       voucherDetail.setStoreId(rewardItemStore.getId());
-      voucherDetail.setStatus(PollItemStatus.NEW);
+      voucherDetail.setStatus(RewardItemStatus.NEW);
       voucherDetails.add(voucherDetail);
     }
     voucherDetailStorage.saveAll(voucherDetails);

@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -68,14 +69,15 @@ public class RewardScheduleService extends BaseService {
 
   @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
   public void addRewardSegmentQuantity() {
+    LocalDate nowAtVn = DateUtils.getNowDateAtVn();
     List<RewardSegment> rewardSegmentEntities = rewardSegmentStorage.findByStatus(Status.ACTIVE);
     List<RewardItem> rewardItems = rewardItemStorage.findAll();
     Map<Long, RewardItem> rewardItemMap = rewardItems.stream().collect(Collectors.toMap(RewardItem::getId, Function.identity()));
-    rewardSegmentEntities.forEach(rs -> processAddRewardSegmentDetail(rs.getId(), rewardItemMap));
+    rewardSegmentEntities.forEach(rs -> self.processAddRewardSegmentDetail(rs.getId(), rewardItemMap, nowAtVn));
   }
 
   @Transactional(propagation = Propagation.MANDATORY)
-  public void processAddRewardSegmentDetail(Long rewardSegmentId, Map<Long, RewardItem> rewardItemMap) {
+  public void processAddRewardSegmentDetail(Long rewardSegmentId, Map<Long, RewardItem> rewardItemMap, LocalDate nowAtVn) {
     List<RewardSegmentDetail> rewardSegmentDetails = rewardSegmentDetailStorage.findByRewardSegmentId(rewardSegmentId);
     Map<Long, RewardSegmentDetail> rewardSegmentDetailMap = rewardSegmentDetails.stream().collect(Collectors.toMap(RewardSegmentDetail::getId, Function.identity()));
 
@@ -88,12 +90,12 @@ public class RewardScheduleService extends BaseService {
       if (rewardSegmentDetail != null) {
         rewardItem = rewardItemMap.get(rewardSegmentDetail.getRewardItemId());
       }
-      processAddQuantity(rewardSchedule, rewardItem, rewardSegmentDetail);
+      self.processAddQuantity(rewardSchedule, rewardItem, rewardSegmentDetail, nowAtVn);
     });
   }
 
   @Transactional(propagation = Propagation.MANDATORY)
-  public void processAddQuantity(RewardSchedule rewardSchedule, RewardItem rewardItem, RewardSegmentDetail segmentDetail) {
+  public void processAddQuantity(RewardSchedule rewardSchedule, RewardItem rewardItem, RewardSegmentDetail segmentDetail, LocalDate nowAtVn) {
     boolean newPeriod = false;
     if (rewardItem == null || !rewardItem.getIsLimited()) {
       return;
@@ -131,7 +133,7 @@ public class RewardScheduleService extends BaseService {
       long quantity = processStateDayQuantity(rewardState, rewardSchedule.getQuantity(), minutesToNextDay, localDateTime.getDayOfMonth());
       if (quantity > 0) {
         rewardState.setLastMinute(currentMinute);
-        self.processUpdatePoolItem((int) quantity, rewardItem, rewardSchedule, newPeriod, segmentDetail);
+        self.processUpdatePoolItem((int) quantity, rewardItem, rewardSchedule, newPeriod, segmentDetail, nowAtVn);
       }
       saveUpdateStateLog(rewardState, localDateTime, quantity);
     } else if (rewardSchedule.getPeriodType() == PeriodType.HOUR) {
@@ -147,7 +149,7 @@ public class RewardScheduleService extends BaseService {
       long quantity = processStateHourQuantity(rewardState, rewardSchedule.getQuantity(), minutesToNextHour, localDateTime.getHour());
       if (quantity > 0) {
         rewardState.setLastMinute(currentMinute);
-        self.processUpdatePoolItem((int) quantity, rewardItem, rewardSchedule, newPeriod, segmentDetail);
+        self.processUpdatePoolItem((int) quantity, rewardItem, rewardSchedule, newPeriod, segmentDetail, nowAtVn);
       }
       saveUpdateStateLog(rewardState, localDateTime, quantity);
     } else if (rewardSchedule.getPeriodType() == PeriodType.MINUTE) {
@@ -159,7 +161,7 @@ public class RewardScheduleService extends BaseService {
       long quantity = processStateMinuterQuantity(rewardState, rewardSchedule.getQuantity(), currentMinute);
       if (quantity > 0) {
         rewardState.setLastMinute(currentMinute);
-        self.processUpdatePoolItem((int) quantity, rewardItem, rewardSchedule, true, segmentDetail);
+        self.processUpdatePoolItem((int) quantity, rewardItem, rewardSchedule, true, segmentDetail, nowAtVn);
       }
       saveUpdateStateLog(rewardState, localDateTime, quantity);
     }
@@ -167,24 +169,28 @@ public class RewardScheduleService extends BaseService {
   }
 
   @Transactional(propagation = Propagation.MANDATORY)
-  public void processUpdatePoolItem(int amount, RewardItem rewardItem, RewardSchedule rewardSchedule, boolean newPeriod, RewardSegmentDetail rewardSegment) {
-    if(newPeriod && !rewardSchedule.getIsAccumulative()){
+  public void processUpdatePoolItem(int amount, RewardItem rewardItem, RewardSchedule rewardSchedule, boolean newPeriod, RewardSegmentDetail rewardSegment, LocalDate nowAtVn) {
+    if (newPeriod && Boolean.TRUE.equals(!rewardSchedule.getIsAccumulative())) {
       remoteCache.deleteKey(cacheKey.getRewardPoolItemIds(rewardSegment.getRewardSegmentId(), rewardItem.getId()));
     }
     switch (rewardItem.getRewardType()) {
       case POINT -> {
       }
       case VOUCHER -> {
-        List<VoucherDetail> voucherDetails = voucherDetailService.getVoucherDetail(Integer.parseInt(rewardItem.getExternalId()), amount, rewardSchedule, newPeriod);
+        List<VoucherDetail> voucherDetails = voucherDetailService.getVoucherDetail(Integer.parseInt(rewardItem.getExternalId()), amount, rewardSchedule,rewardSegment , newPeriod);
         if (!voucherDetails.isEmpty()) {
-          voucherDetails.forEach(v -> remoteCache.rDequePutId(cacheKey.getRewardPoolItemIds(rewardSegment.getRewardSegmentId(), rewardItem.getId()), v.getId()));
+          voucherDetails.forEach(v -> {
+            remoteCache.rDequePutId(cacheKey.getRewardPoolItemIds(rewardSegment.getRewardSegmentId(), rewardItem.getId()), v.getId());
+          });
         }
 
       }
       case PRODUCT -> {
-        List<ProductDetail> productDetails = productDetailService.getProductDetail(Integer.parseInt(rewardItem.getExternalId()), amount, rewardSchedule, newPeriod);
+        List<ProductDetail> productDetails = productDetailService.getProductDetail(Integer.parseInt(rewardItem.getExternalId()), amount, rewardSchedule,rewardSegment, newPeriod);
         if (!productDetails.isEmpty()) {
-          productDetails.forEach(v -> remoteCache.rDequePutId(cacheKey.getRewardPoolItemIds(rewardSegment.getRewardSegmentId(), rewardItem.getId()), v.getId()));
+          productDetails.forEach(v -> {
+            remoteCache.rDequePutId(cacheKey.getRewardPoolItemIds(rewardSegment.getRewardSegmentId(), rewardItem.getId()), v.getId());
+          });
         }
       }
     }

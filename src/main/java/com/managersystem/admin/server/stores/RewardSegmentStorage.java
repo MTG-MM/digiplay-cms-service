@@ -32,4 +32,8 @@ public class RewardSegmentStorage extends BaseStorage {
   public RewardSegment findByCode(String code) {
     return rewardSegmentRepository.findByCode(code);
   }
+
+  public List<RewardSegment> findAll() {
+    return rewardSegmentRepository.findAll();
+  }
 }

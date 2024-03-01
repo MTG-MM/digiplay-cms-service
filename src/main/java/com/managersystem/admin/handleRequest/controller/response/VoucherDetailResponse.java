@@ -1,7 +1,6 @@
 package com.managersystem.admin.handleRequest.controller.response;
 
-import com.managersystem.admin.server.entities.type.PollItemStatus;
-import jakarta.persistence.*;
+import com.managersystem.admin.server.entities.type.RewardItemStatus;
 import lombok.Data;
 
 import java.util.UUID;
@@ -21,7 +20,7 @@ public class VoucherDetailResponse {
 
   private Long givenAt;
 
-  private PollItemStatus status;
+  private RewardItemStatus status;
 
   private Long segmentDetailId;
 

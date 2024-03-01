@@ -1,7 +1,7 @@
 package com.managersystem.admin.server.entities;
 
 import com.managersystem.admin.server.entities.base.BaseEntity;
-import com.managersystem.admin.server.entities.type.PollItemStatus;
+import com.managersystem.admin.server.entities.type.RewardItemStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -37,10 +37,16 @@ public class VoucherDetail extends BaseEntity {
 
   @Column(name = "voucher_status")
   @Enumerated(EnumType.STRING)
-  private PollItemStatus status;
+  private RewardItemStatus status;
 
-  @Column(name = "segment_detail_id")
-  private Long segmentDetailId;
+  @Column(name = "given_to_pool")
+  private Long givenToPool;
+
+  @Column(name = "reward_segment_id")
+  private Long rewardSegmentId;
+
+  @Column(name = "reward_item_id")
+  private Long rewardItemId;
 
   @Column(name = "start_at")
   private Long startAt;

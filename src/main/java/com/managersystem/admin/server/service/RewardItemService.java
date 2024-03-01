@@ -98,6 +98,13 @@ public class RewardItemService extends BaseService {
     return modelMapper.toRewardItemResponse(rewardItem);
   }
 
+  public void statisticRewardItem (){
+
+  }
+
+
+
+  //Trả quà
   @Transactional(propagation = Propagation.MANDATORY)
   public RewardResponse processReturnRewardItem(User user, RewardSegmentDetail segmentDetail) {
     RewardItem rewardItem = rewardItemStorage.findById(segmentDetail.getRewardItemId());

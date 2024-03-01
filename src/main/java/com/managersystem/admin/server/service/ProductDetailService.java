@@ -1,16 +1,15 @@
 package com.managersystem.admin.server.service;
 
-import com.managersystem.admin.server.entities.RewardItemStore;
-import com.managersystem.admin.server.entities.RewardSchedule;
-import com.managersystem.admin.server.entities.User;
-import com.managersystem.admin.server.entities.ProductDetail;
-import com.managersystem.admin.server.entities.type.PollItemStatus;
+import com.managersystem.admin.server.entities.*;
+import com.managersystem.admin.server.entities.type.RewardItemStatus;
 import com.managersystem.admin.server.entities.type.Status;
 import com.managersystem.admin.server.entities.type.StoreType;
 import com.managersystem.admin.server.service.base.BaseService;
 import com.managersystem.admin.server.utils.DateUtils;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,24 +37,30 @@ public class ProductDetailService extends BaseService {
       return null;
     }
     if(now > productDetail.getExpireAt()){
-      productDetail.setStatus(PollItemStatus.EXPIRE);
+      productDetail.setStatus(RewardItemStatus.EXPIRE);
     }else{
       productDetail.setGivenAt(now);
       productDetail.setUserId(user.getId());
-      productDetail.setStatus(PollItemStatus.RECEIVE);
+      productDetail.setStatus(RewardItemStatus.RECEIVE);
     }
     productDetailStorage.save(productDetail);
     return productDetail;
   }
 
-  public List<ProductDetail> getProductDetail(int productStoreId, int limit, RewardSchedule rewardSchedule, boolean newPeriod) {
+  @Transactional(propagation = Propagation.MANDATORY)
+  public List<ProductDetail> getProductDetail(int productStoreId, int limit, RewardSchedule rewardSchedule, RewardSegmentDetail rewardSegmentDetail, boolean newPeriod) {
     List<ProductDetail> productDetails = null;
     try {
-      if(newPeriod && !rewardSchedule.getIsAccumulative()){
-        productDetailStorage.updateItemStatus(rewardSchedule.getRewardSegmentDetailId());
+      if(newPeriod && Boolean.FALSE.equals(rewardSchedule.getIsAccumulative())){
+        productDetailStorage.updateItemStatus(rewardSegmentDetail.getRewardSegmentId(), rewardSegmentDetail.getRewardItemId());
       }
-      productDetails = productDetailStorage.getListProductDetailByStatus(productStoreId, PollItemStatus.NEW, limit);
-      productDetails.forEach(v -> v.setStatus(PollItemStatus.IN_POOL));
+      productDetails = productDetailStorage.getListProductDetailByStatus(productStoreId, RewardItemStatus.NEW, limit);
+      productDetails.forEach(v -> {
+        v.setStatus(RewardItemStatus.IN_POOL);
+        v.setRewardItemId(rewardSegmentDetail.getRewardItemId());
+        v.setRewardSegmentId(rewardSegmentDetail.getRewardSegmentId());
+        v.setGivenToPool(DateUtils.getNowMillisAtUtc());
+      });
       productDetailStorage.saveAll(productDetails);
     } catch (Exception ex){
       log.error("======>getProductDetail {} {}" , productStoreId, ex);
@@ -69,14 +74,14 @@ public class ProductDetailService extends BaseService {
     rewardItemStore.setStatus(Status.ACTIVE);
     rewardItemStore.setType(StoreType.PRODUCT);
     List<ProductDetail> productDetails = new ArrayList<>();
-    for(int i = 0; i < 1000; i++){
+    for(int i = 0; i < 10000; i++){
       ProductDetail productDetail = new ProductDetail();
       productDetail.setName(rewardItemStore.getName());
       productDetail.setCode(UUID.randomUUID().toString());
       productDetail.setStartAt(DateUtils.getNowMillisAtUtc());
       productDetail.setExpireAt(DateUtils.getNowMillisAtUtc() + 1000L * 60 * 60 * 24 * 100 );
       productDetail.setStoreId(rewardItemStore.getId());
-      productDetail.setStatus(PollItemStatus.NEW);
+      productDetail.setStatus(RewardItemStatus.NEW);
       productDetails.add(productDetail);
     }
     productDetailStorage.saveAll(productDetails);

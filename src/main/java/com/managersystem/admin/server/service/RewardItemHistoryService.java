@@ -22,6 +22,7 @@ public class RewardItemHistoryService extends BaseService {
     rewardItemHistory.setImageUrl(rewardItem.getImageUrl());
     rewardItemHistory.setRewardInfo(JsonParser.toJson(rewardItem));
     rewardItemHistory.setRewardItemDetailId(itemDetailId);
+    rewardItemHistory.setRewardItemId(rewardItem.getId());
     rewardItemHistoryStorage.save(rewardItemHistory);
   }
 }

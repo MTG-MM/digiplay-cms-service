@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/mos/it/schedule")
+@RequestMapping("api/mos/cms/it/schedule")
 @CrossOrigin(origins = "*")
 public class ScheduleController {
 

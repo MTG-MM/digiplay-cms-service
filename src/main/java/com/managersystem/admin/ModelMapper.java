@@ -26,13 +26,13 @@ public interface ModelMapper {
   User toUser(UserInfoDto userInfoDto);
 
 
-  ApplicationResponse toApplicationResponse(ApplicationEntity applicationEntity);
+  ApplicationResponse toApplicationResponse(Application application);
 
-  List<ApplicationResponse> toApplicationResponses(List<ApplicationEntity> industryGroupEntities);
+  List<ApplicationResponse> toApplicationResponses(List<Application> industryGroupEntities);
 
-  void toApplicationEntity(ApplicationDto dto, @MappingTarget ApplicationEntity entity);
+  void toApplication(ApplicationDto dto, @MappingTarget Application entity);
 
-  ApplicationEntity toApplicationEntity(ApplicationDto dto);
+  Application toApplication(ApplicationDto dto);
 
 
   RewardItemResponse toRewardItemResponse(RewardItem rw);
@@ -67,7 +67,7 @@ public interface ModelMapper {
 
   List<RewardSegmentDetailResponse> toRewardSegmentDetailResponses(List<RewardSegmentDetail> all);
 
-  default Page<ApplicationResponse> toPageApplicationResponse(Page<ApplicationEntity> applications) {
+  default Page<ApplicationResponse> toPageApplicationResponse(Page<Application> applications) {
     return applications.map(this::toApplicationResponse);
   }
 

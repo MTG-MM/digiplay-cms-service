@@ -1,6 +1,5 @@
 package com.managersystem.admin.server.entities;
 
-import com.managersystem.admin.server.entities.base.BaseEntity;
 import com.managersystem.admin.server.utils.DateUtils;
 import jakarta.persistence.*;
 import lombok.*;

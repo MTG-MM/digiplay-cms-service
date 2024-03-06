@@ -19,6 +19,7 @@ public class RewardItemHistory extends BaseEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
+  @Column(name = "id", columnDefinition = "BINARY(16)")
   private UUID id;
 
   @Column(name = "reward_name")
@@ -28,13 +29,13 @@ public class RewardItemHistory extends BaseEntity {
   @Enumerated(EnumType.STRING)
   private RewardType type;
 
-  @Column(name = "user_id")
+  @Column(name = "user_id", columnDefinition = "BINARY(16)")
   private UUID userId;
 
   @Column(name = "reward_item_id")
   private Long rewardItemId; // id reward item
 
-  @Column(name = "reward_item_detail_id")
+  @Column(name = "reward_item_detail_id", columnDefinition = "BINARY(16)")
   private UUID rewardItemDetailId; // id qua trung thuong, (voucher <=> voucherDetailId, product <=> productDetailId)
 
   @Column(name = "reward_segment_id")

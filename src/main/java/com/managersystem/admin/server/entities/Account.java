@@ -32,9 +32,6 @@ public class Account extends BaseEntity {
   @Column(name = "password")
   public String password;
 
-  @Column(name = "group_code")
-  public String groupCode;
-
   @Column(name = "user_rank")
   @Enumerated(EnumType.STRING)
   public Rank rank;
@@ -42,9 +39,6 @@ public class Account extends BaseEntity {
   @Column(name = "state")
   @Enumerated(EnumType.STRING)
   public State state;
-
-  @Column(name = "last_login")
-  public Long lastLogin;
 
   @Column(name = "account_state")
   @Enumerated(EnumType.STRING)

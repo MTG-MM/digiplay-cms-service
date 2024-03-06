@@ -47,8 +47,6 @@ public class RewardItemStatisticService extends BaseService {
     Integer totalReceived = rewardItemHistoryStorage.countRewardItemReceivedInCreatedAtBetween(segmentDetail.getRewardSegmentId(), segmentDetail.getRewardItemId(), startDateAtVn, endDateAtVn );
     totalUser = totalUser == null ? 0 : totalUser;
     totalReceived = totalReceived == null ? 0 : totalReceived;
-
-
     int totalRemain = 0;
     RewardItem rewardItem = rewardItemMap.get(segmentDetail.getRewardItemId());
     if (rewardItem != null && rewardItem.getIsLimited()) {

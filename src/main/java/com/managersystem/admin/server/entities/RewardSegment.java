@@ -1,6 +1,5 @@
 package com.managersystem.admin.server.entities;
 
-import com.managersystem.admin.server.entities.base.BaseEntity;
 import com.managersystem.admin.server.entities.type.Status;
 import com.managersystem.admin.server.utils.DateUtils;
 import jakarta.persistence.*;
@@ -28,7 +27,7 @@ public class RewardSegment {
   @Column(name = "image_url")
   private String imageUrl;
 
-  @Column(name = "is_accumulative_priority")
+  @Column(name = "is_accumulative_priority", columnDefinition = "BIT")
   private Boolean isAccumulativePriority; //Có tích lũy vào quà default nếu quà không hợp lệ không
 
   @Column(name = "status")

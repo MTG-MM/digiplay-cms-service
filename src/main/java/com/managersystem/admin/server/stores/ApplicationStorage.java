@@ -1,6 +1,6 @@
 package com.managersystem.admin.server.stores;
 
-import com.managersystem.admin.server.entities.ApplicationEntity;
+import com.managersystem.admin.server.entities.Application;
 import com.managersystem.admin.server.stores.base.BaseStorage;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,23 +12,23 @@ import java.util.List;
 public class ApplicationStorage extends BaseStorage {
 
 
-  public ApplicationEntity save(ApplicationEntity applicationEntity) {
-    return applicationRepository.save(applicationEntity);
+  public Application save(Application application) {
+    return applicationRepository.save(application);
   }
 
   public void deleteById(int id) {
     applicationRepository.deleteById(id);
   }
 
-  public ApplicationEntity findById(int id) {
+  public Application findById(int id) {
     return applicationRepository.findById(id).orElse(null);
   }
 
-  public List<ApplicationEntity> findByNameContaining(String name, Pageable pageable) {
-    return applicationRepository.findByApplicationCodeContaining(name, pageable);
+  public List<Application> findByNameContaining(String name, Pageable pageable) {
+    return applicationRepository.findByCodeContaining(name, pageable);
   }
 
-  public Page<ApplicationEntity> findAll(Pageable pageable) {
+  public Page<Application> findAll(Pageable pageable) {
     return applicationRepository.findAllWithSorting(pageable);
   }
 }

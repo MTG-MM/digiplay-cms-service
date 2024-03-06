@@ -17,7 +17,7 @@ public class UserSegment extends BaseEntity {
   @Column(name = "name")
   private String name;
 
-  @Column(name = "is_default")
+  @Column(name = "is_default", columnDefinition = "BIT")
   private Boolean isDefault;
 
   @Column(name = "min_priority")

@@ -4,7 +4,7 @@ import com.managersystem.admin.handleRequest.controller.dto.ApplicationDto;
 import com.managersystem.admin.handleRequest.controller.response.ApplicationResponse;
 import com.managersystem.admin.handleRequest.controller.response.base.PageResponse;
 import com.managersystem.admin.server.entities.Account;
-import com.managersystem.admin.server.entities.ApplicationEntity;
+import com.managersystem.admin.server.entities.Application;
 import com.managersystem.admin.server.exception.BadRequestException;
 import com.managersystem.admin.server.exception.base.ErrorCode;
 import com.managersystem.admin.server.service.base.BaseService;
@@ -25,14 +25,14 @@ public class ApplicationService extends BaseService {
     if(account == null){
       throw new BadRequestException(ErrorCode.USER_NOT_FOUND);
     }
-    ApplicationEntity applicationEntity = modelMapper.toApplicationEntity(dto);
-    return applicationStorage.save(applicationEntity) != null;
+    Application application = modelMapper.toApplication(dto);
+    return applicationStorage.save(application) != null;
   }
 
   @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRES_NEW)
   public boolean updateIndustryGroup(int id, ApplicationDto dto) {
-    ApplicationEntity entity = applicationStorage.findById(id);
-    modelMapper.toApplicationEntity(dto, entity);
+    Application entity = applicationStorage.findById(id);
+    modelMapper.toApplication(dto, entity);
     return applicationStorage.save(entity) != null;
   }
 
@@ -47,12 +47,12 @@ public class ApplicationService extends BaseService {
   }
 
   public List<ApplicationResponse> searchApplicationByName(String name, Pageable pageable) {
-    List<ApplicationEntity> industryGroupEntities = applicationStorage.findByNameContaining(name, pageable);
+    List<Application> industryGroupEntities = applicationStorage.findByNameContaining(name, pageable);
     return modelMapper.toApplicationResponses(industryGroupEntities);
   }
 
   public PageResponse<ApplicationResponse> getPageApplication(Pageable pageable) {
-    Page<ApplicationEntity> applications = applicationStorage.findAll(pageable);
+    Page<Application> applications = applicationStorage.findAll(pageable);
     return PageResponse.createFrom(modelMapper.toPageApplicationResponse(applications));
   }
 }

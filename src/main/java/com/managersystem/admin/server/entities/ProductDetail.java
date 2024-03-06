@@ -18,6 +18,7 @@ public class ProductDetail extends BaseEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
+  @Column(name = "id", columnDefinition = "BINARY(16)")
   private UUID id;
 
   @Column(name = "store_id")
@@ -29,7 +30,7 @@ public class ProductDetail extends BaseEntity {
   @Column(name = "code")
   private String code;
 
-  @Column(name = "user_id")
+  @Column(name = "user_id", columnDefinition = "BINARY(16)")
   private UUID userId;
 
   @Column(name = "given_at")

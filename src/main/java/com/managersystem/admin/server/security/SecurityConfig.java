@@ -41,7 +41,12 @@ public class SecurityConfig {
     return http.csrf().disable()
         .cors().disable()
         .authorizeHttpRequests()
-        .requestMatchers("api/mos/cms/auth/**", "public/**", "/v1/docs/**").permitAll()
+        .requestMatchers(
+            "/api/mos/cms/auth/**",
+            "/public/**",
+            "/v1/docs/**",
+            "api/mos/it/**"
+        ).permitAll()
         .and()
         .authorizeHttpRequests().anyRequest().authenticated()
         .and()

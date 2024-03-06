@@ -2,8 +2,6 @@ package com.managersystem.admin.server.entities;
 
 import com.managersystem.admin.server.entities.base.BaseEntity;
 import com.managersystem.admin.server.entities.type.PeriodLimitType;
-import com.managersystem.admin.server.entities.type.PeriodType;
-import com.managersystem.admin.server.utils.DateUtils;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -32,7 +30,7 @@ public class RewardSegmentDetail extends BaseEntity{
   @Column(name = "reward_item_id")
   private Long rewardItemId;
 
-  @Column(name = "is_default")
+  @Column(name = "is_default", columnDefinition = "BIT")
   private Boolean isDefault = false; //Là quà mặc định sẽ nhả ra nếu không còn quà
 
   @Column(name = "period_type")

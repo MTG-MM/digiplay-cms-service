@@ -1,6 +1,5 @@
 package com.managersystem.admin.server.entities;
 
-import com.managersystem.admin.server.entities.base.BaseEntity;
 import com.managersystem.admin.server.entities.type.RewardType;
 import com.managersystem.admin.server.entities.type.Status;
 import com.managersystem.admin.server.utils.DateUtils;
@@ -43,7 +42,7 @@ public class RewardItem {
   @Enumerated(EnumType.STRING)
   private Status status;
 
-  @Column(name = "is_limited")
+  @Column(name = "is_limited", columnDefinition = "BIT")
   private Boolean isLimited;
 
   @Column(name = "remaining_quantity")

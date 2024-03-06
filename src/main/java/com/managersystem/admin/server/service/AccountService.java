@@ -47,10 +47,7 @@ public class AccountService extends BaseService {
     account.setRank(Rank.BRONZE);
     account.setState(State.NOT_VERIFY);
     account.setAccountState(NewAccountState.CREATE_ACCOUNT);
-    account.setLastLogin(DateUtils.getNowMillisAtUtc());
     account.setRole(UserRole.OPERATOR);
-    account.setGroupCode("ADMIN");
-    account.setGroupCode("ADMIN");
     accountStorage.save(account);
     userService.createUserInfo(account.getId(), dto.getUserInfoDto());
     return account;
@@ -77,10 +74,7 @@ public class AccountService extends BaseService {
     account.setRank(Rank.DIAMOND);
     account.setState(State.VERIFY);
     account.setAccountState(NewAccountState.COMPLETE);
-    account.setLastLogin(DateUtils.getNowMillisAtUtc());
     account.setRole(UserRole.ADMIN);
-    account.setGroupCode("ADMIN");
-    account.setGroupCode("ADMIN");
     accountStorage.save(account);
     return true;
   }

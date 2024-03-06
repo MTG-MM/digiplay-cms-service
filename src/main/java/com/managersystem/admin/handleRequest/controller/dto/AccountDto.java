@@ -9,7 +9,7 @@ public class AccountDto {
   @NotNull(message = "Không được để trống")
   String username;
 
-  @NotNull
+  @NotNull(message = "Không được để trống")
   String password;
 
   @NotNull

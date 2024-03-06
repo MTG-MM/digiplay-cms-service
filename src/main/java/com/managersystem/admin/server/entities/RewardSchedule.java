@@ -1,6 +1,5 @@
 package com.managersystem.admin.server.entities;
 
-import com.managersystem.admin.server.entities.base.BaseEntity;
 import com.managersystem.admin.server.entities.type.PeriodType;
 import com.managersystem.admin.server.utils.DateUtils;
 import jakarta.persistence.*;
@@ -28,7 +27,7 @@ public class RewardSchedule {
   @Column(name = "quantity")
   private Long quantity;
 
-  @Column(name = "is_accumulative")
+  @Column(name = "is_accumulative", columnDefinition = "BIT")
   private Boolean isAccumulative; // true thì sẽ tích lũy số lượng của ngày hôm trước vào ngày hôm sau
 
   @Column(name = "start_at")

@@ -45,7 +45,7 @@ public class SecurityConfig {
             "/api/mos/cms/auth/**",
             "/public/**",
             "/v1/cms/docs/**",
-            "api/mos/it/**"
+            "/api/mos/cms/it/**"
         ).permitAll()
         .and()
         .authorizeHttpRequests().anyRequest().authenticated()

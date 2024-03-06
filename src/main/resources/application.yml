@@ -40,9 +40,9 @@ spring:
 
 springdoc:
   api-docs:
-    path: /v1/docs/api/index.html
+    path: /v1/cms/docs/api/index.html
   swagger-ui:
-    path: /v1/docs/index.html
+    path: /v1/cms/docs/index.html
     display-request-duration: true
 logging:
   level:

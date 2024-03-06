@@ -44,7 +44,7 @@ public class SecurityConfig {
         .requestMatchers(
             "/api/mos/cms/auth/**",
             "/public/**",
-            "/v1/docs/**",
+            "/v1/cms/docs/**",
             "api/mos/it/**"
         ).permitAll()
         .and()

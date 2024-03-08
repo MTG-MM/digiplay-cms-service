@@ -69,6 +69,7 @@ public class ProductDetailService extends BaseService {
   }
   public void initRandomProductDetail(){
     RewardItemStore rewardItemStore = new RewardItemStore();
+    rewardItemStore.setId(2L);
     rewardItemStore.setName("Product test");
     rewardItemStore.setStatus(Status.ACTIVE);
     rewardItemStore.setType(StoreType.PRODUCT);

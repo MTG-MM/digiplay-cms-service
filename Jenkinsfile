@@ -22,7 +22,7 @@ pipeline {
                   sh "sudo docker tag ${RESPOSITORY}/${NAME}:${BUILD_NUMBER} ${RESPOSITORY}/${NAME}:latest"
                   sh "sudo docker push ${RESPOSITORY}/${NAME}:${BUILD_NUMBER}"
                   sh "sudo docker push ${RESPOSITORY}/${NAME}:latest"
-                  sh "sudo docker rmi -f  \$(docker images -a -q)"
+                  sh "sudo docker rmi -f  \$(sudo docker images -a -q)"
                 }
             }
         }

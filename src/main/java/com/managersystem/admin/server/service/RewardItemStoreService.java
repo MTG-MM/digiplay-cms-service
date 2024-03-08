@@ -32,9 +32,9 @@ public class RewardItemStoreService extends BaseService {
   }
 
   public Boolean createRewardItemStores(RewardItemStoreCreateDto rewardItemStoreDto) {
-    RewardItemStore rewardItemStore = modelMapper.toRewardItemStore(rewardItemStoreDto);
-    rewardItemStoreStorage.save(rewardItemStore);
-    return true;
+      RewardItemStore rewardItemStore = modelMapper.toRewardItemStore(rewardItemStoreDto);
+      rewardItemStoreStorage.save(rewardItemStore);
+      return true;
   }
 
   public Boolean updateRewardItemStores(Long id, RewardItemStoreUpdateDto rewardItemStoreDto) {

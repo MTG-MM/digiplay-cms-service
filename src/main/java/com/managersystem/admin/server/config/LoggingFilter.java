@@ -1,10 +1,13 @@
 package com.managersystem.admin.server.config;
 
+import com.managersystem.admin.server.exception.GlobalExceptionHandler;
+import com.managersystem.admin.server.exception.base.BaseException;
 import com.managersystem.admin.server.utils.DateUtils;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.log4j.Log4j2;
 import org.slf4j.MDC;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -16,6 +19,8 @@ import java.io.IOException;
 @Log4j2
 public class LoggingFilter implements Filter {
 
+  @Autowired
+  GlobalExceptionHandler globalExceptionHandler;
   @Value("${server.timeoutSlowApi:100}")
   private Integer timeoutSlowApi;
 
@@ -27,17 +32,26 @@ public class LoggingFilter implements Filter {
   public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
     long start = DateUtils.getNowMillisAtUtc();
 
-    filterChain.doFilter(request, response);
-
-    long duration = DateUtils.getNowMillisAtUtc() - start;
-    MDC.put("duration", duration + "");
-    if(duration > timeoutSlowApi) {
-      log.warn("end request ==> {}  {} {}", ((HttpServletRequest)request).getMethod(), getPath((HttpServletRequest) request), duration);
-    } else{
-      log.debug("end request ==> {}  {} {}", ((HttpServletRequest)request).getMethod(), getPath((HttpServletRequest) request), duration);
+    try {
+      filterChain.doFilter(request, response);
+    } catch (BaseException e) {
+      globalExceptionHandler.badRequestException(new BaseException(e.getMessage(), 400), response);
+    } catch (Exception e) {
+      log.error("Error processing: ", e);
+      globalExceptionHandler.internalException(new BaseException("Đã có lỗi xảy ra", 500), response);
+    } finally {
+      long duration = DateUtils.getNowMillisAtUtc() - start;
+      MDC.put("duration", duration + "");
+      if (duration > timeoutSlowApi) {
+        log.warn("end request ==> {}  {} {}", ((HttpServletRequest) request).getMethod(), getPath((HttpServletRequest) request), duration);
+      } else {
+        log.debug("end request ==> {}  {} {}", ((HttpServletRequest) request).getMethod(), getPath((HttpServletRequest) request), duration);
+      }
+      MDC.remove("duration");
+      MDC.remove("userId");
     }
-    MDC.remove("duration");
-    MDC.remove("userId");
+
+
   }
 
   public static String getPath(HttpServletRequest request) {

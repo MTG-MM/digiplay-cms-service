@@ -20,7 +20,7 @@ pipeline {
             steps {
                 script {
                   sh "sudo docker login | echo ${RESPOSITORY} | echo ${DOCKER_HUB_TOKEN}"
-                    sh "sudo docker build -t ${RESPOSITORY}/${NAME}:${BUILD_NUMBER} ."
+                  sh "sudo docker build -t ${RESPOSITORY}/${NAME}:${BUILD_NUMBER} ."
                 }
             }
         }

@@ -77,9 +77,9 @@ pipeline {
         stage('Push') {
             steps {
                 script {
-                    sh "sudo docker tag ${RESPOSITORY}/${NAME}:${BUILD_NUMBER} ${RESPOSITORY}/${NAME}:latest"
+//                     sh "sudo docker tag ${RESPOSITORY}/${NAME}:${BUILD_NUMBER} ${RESPOSITORY}/${NAME}:latest"
                     sh "sudo docker push ${RESPOSITORY}/${NAME}:${BUILD_NUMBER}"
-                    sh "sudo docker push ${RESPOSITORY}/${NAME}:latest"
+//                     sh "sudo docker push ${RESPOSITORY}/${NAME}:latest"
                 }
             }
         }

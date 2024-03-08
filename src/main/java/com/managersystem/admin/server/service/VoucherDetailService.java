@@ -73,7 +73,6 @@ public class VoucherDetailService extends BaseService {
 
   public void initRandomVoucherDetail() {
     RewardItemStore rewardItemStore = new RewardItemStore();
-    rewardItemStore.setId(1L);
     rewardItemStore.setName("Voucher test");
     rewardItemStore.setStatus(Status.ACTIVE);
     rewardItemStore.setType(StoreType.VOUCHER);

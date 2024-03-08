@@ -19,7 +19,6 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                  sh "sudo docker login | echo ${RESPOSITORY} | echo ${DOCKER_HUB_TOKEN}"
                   sh "sudo docker build -t ${RESPOSITORY}/${NAME}:${BUILD_NUMBER} ."
                 }
             }
@@ -77,9 +76,10 @@ pipeline {
         stage('Push') {
             steps {
                 script {
-//                     sh "sudo docker tag ${RESPOSITORY}/${NAME}:${BUILD_NUMBER} ${RESPOSITORY}/${NAME}:latest"
-                    sh "sudo docker push ${RESPOSITORY}/${NAME}:${BUILD_NUMBER}"
-//                     sh "sudo docker push ${RESPOSITORY}/${NAME}:latest"
+                  sh "sudo docker login --username=${RESPOSITORY} --password=${DOCKER_HUB_TOKEN} docker.io"
+                  sh "sudo docker tag ${RESPOSITORY}/${NAME}:${BUILD_NUMBER} ${RESPOSITORY}/${NAME}:latest"
+                  sh "sudo docker push ${RESPOSITORY}/${NAME}:${BUILD_NUMBER}"
+                  sh "sudo docker push ${RESPOSITORY}/${NAME}:latest"
                 }
             }
         }

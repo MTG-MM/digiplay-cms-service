@@ -14,8 +14,4 @@ public class TokenResponse {
   String token;
 
   UserRole role;
-
-  NewAccountState accountState;
-
-  State state;
 }

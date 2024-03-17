@@ -39,11 +39,6 @@ public class HealthCheckController {
     return ResponseEntity.ok(true);
   }
 
-  @PostMapping("init-account-test")
-  public ResponseEntity<?> initAccountTest() {
-    return ResponseEntity.ok(accountService.initAccountTest());
-  }
-
   @PostMapping("init-product-test")
   public ResponseEntity<?> initProductTest() {
     productDetailService.initRandomProductDetail();

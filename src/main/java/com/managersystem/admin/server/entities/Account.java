@@ -32,15 +32,6 @@ public class Account extends BaseEntity {
   @Column(name = "password")
   public String password;
 
-  @Column(name = "user_rank")
-  @Enumerated(EnumType.STRING)
-  public Rank rank;
-
-  @Column(name = "state")
-  @Enumerated(EnumType.STRING)
-  public State state;
-
-  @Column(name = "account_state")
-  @Enumerated(EnumType.STRING)
-  public NewAccountState accountState;
+  @Column(name = "team_id")
+  public Long teamId;
 }

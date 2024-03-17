@@ -7,6 +7,7 @@ import com.managersystem.admin.server.service.AccountService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -26,8 +27,8 @@ public class AccountController extends BaseController {
     }
   }
 
-  @PostMapping("sign-up")
-  public ResponseEntity<?> createAccount(@RequestBody @Valid AccountDto dto) {
+  @PostMapping("create")
+  public ResponseEntity<?> createAccount(Authentication authentication, @RequestBody @Valid AccountDto dto) {
     try {
       return ResponseEntity.ok(accountService.createAccount(dto));
     } catch (Exception ex) {

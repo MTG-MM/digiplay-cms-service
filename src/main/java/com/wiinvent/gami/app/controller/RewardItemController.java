@@ -3,7 +3,7 @@ package com.wiinvent.gami.app.controller;
 import com.wiinvent.gami.app.controller.dto.RewardItemDto;
 import com.wiinvent.gami.app.controller.response.RewardItemResponse;
 import com.wiinvent.gami.app.controller.response.base.PageResponse;
-import com.wiinvent.gami.domain.entities.type.RewardType;
+import com.wiinvent.gami.domain.entities.type.RewardItemType;
 import com.wiinvent.gami.domain.service.RewardItemService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ public class RewardItemController {
   public PageResponse<RewardItemResponse> getAll(
       @RequestParam(required = false) String name,
       @RequestParam(required = false) Integer id,
-      @RequestParam(required = false) RewardType type,
+      @RequestParam(required = false) RewardItemType type,
       @PageableDefault(size = 20)
       @SortDefault.SortDefaults({
           @SortDefault(sort = "id", direction = Sort.Direction.DESC),

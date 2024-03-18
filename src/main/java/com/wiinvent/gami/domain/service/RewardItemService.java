@@ -7,7 +7,7 @@ import com.wiinvent.gami.app.controller.response.base.PageResponse;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.service.base.BaseService;
 import com.wiinvent.gami.domain.entities.*;
-import com.wiinvent.gami.domain.entities.type.RewardType;
+import com.wiinvent.gami.domain.entities.type.RewardItemType;
 import jakarta.persistence.criteria.Predicate;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,14 +42,14 @@ public class RewardItemService extends BaseService {
 //  }
 
   public PageResponse<RewardItemResponse> getAll
-      (Integer id, String name, RewardType type, Pageable pageable) {
+      (Integer id, String name, RewardItemType type, Pageable pageable) {
     Page<RewardItem> rwItems = rewardItemStorage.findAll(rwItemCondition(id, name, type), pageable);
     Page<RewardItemResponse> responses = modelMapper.toPageRewardItemResponse(rwItems);
     return PageResponse.createFrom(responses);
   }
 
   public Specification<RewardItem> rwItemCondition(
-      Integer id, String name, RewardType type) {
+      Integer id, String name, RewardItemType type) {
     return (rwItem, query, criteriaBuilder) -> {
       List<Predicate> conditionsList = new ArrayList<>();
 
@@ -100,78 +100,4 @@ public class RewardItemService extends BaseService {
     return modelMapper.toRewardItemResponse(rewardItem);
   }
 
-  public void statisticRewardItem (){
-
-  }
-
-
-
-  //Trả quà
-  @Transactional(propagation = Propagation.MANDATORY)
-  public RewardResponse processReturnRewardItem(User user, RewardSegmentDetail segmentDetail) {
-    log.debug("===========>processReturnRewardItem segmentDetail: {}", segmentDetail);
-    RewardItem rewardItem = rewardItemStorage.findById(segmentDetail.getRewardItemId());
-    if (rewardItem == null) {
-      return null;
-    }
-
-    switch (rewardItem.getRewardType()) {
-      case POINT -> {
-        userService.addPointForUser(user, rewardItem.getValue());
-      }
-      case VOUCHER -> {
-        UUID detailId = getRewardItemInCache(segmentDetail);
-        if (detailId == null) {
-          return null;
-        }
-        VoucherDetail voucherDetail = voucherDetailService.setVoucherDetailForUser(user, detailId);
-        if (voucherDetail != null) {
-          rewardItemHistoryService.createRewardItemHistory(user, rewardItem, voucherDetail.getId(), segmentDetail.getRewardSegmentId(), getNote(rewardItem));
-          return new RewardResponse(rewardItem, segmentDetail, voucherDetail);
-        }
-      }
-      case PRODUCT -> {
-        UUID detailId = getRewardItemInCache(segmentDetail);
-        if (detailId == null) {
-          return null;
-        }
-        ProductDetail productDetail = productDetailService.setProductDetailForUser(user, detailId);
-        if (productDetail != null) {
-          rewardItemHistoryService.createRewardItemHistory(user, rewardItem, productDetail.getId(), segmentDetail.getRewardSegmentId(), getNote(rewardItem));
-          return new RewardResponse(rewardItem, segmentDetail, productDetail);
-        }
-      }
-      case PHYSICAL -> {
-        UUID detailId = getRewardItemInCache(segmentDetail);
-        if (detailId == null) {
-          return null;
-        }
-      }
-      default -> {
-        return null;
-      }
-    }
-    return null;
-  }
-
-  /**
-   * Lay id qua ma schedule da them vao
-   *
-   * @return id qua con lai
-   */
-  public UUID getRewardItemInCache(RewardSegmentDetail segmentDetail) {
-    return remoteCache.rDequePoolFirst(cacheKey.getRewardPoolItemIds(segmentDetail.getRewardSegmentId(), segmentDetail.getRewardItemId()));
-  }
-
-  public String getNote(RewardItem rewardItem) {
-    switch (rewardItem.getRewardType()) {
-      case VOUCHER -> {
-        return "Chúc mừng bạn nhận được voucher " + rewardItem.getRewardName();
-      }
-      case PRODUCT -> {
-        return "Chúc mừng bạn nhận được phần thưởng " + rewardItem.getRewardName();
-      }
-    }
-    return "Bạn đã nhận được phần quà " + rewardItem.getRewardName();
-  }
 }

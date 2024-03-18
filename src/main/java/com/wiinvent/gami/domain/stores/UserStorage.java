@@ -2,6 +2,7 @@ package com.wiinvent.gami.domain.stores;
 
 import com.wiinvent.gami.domain.entities.User;
 import com.wiinvent.gami.domain.stores.base.BaseStorage;
+import com.wiinvent.gami.domain.utils.RemoteCache;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -16,4 +17,6 @@ public class UserStorage extends BaseStorage {
   public void save(User user) {
     userRepository.save(user);
   }
+
+
 }

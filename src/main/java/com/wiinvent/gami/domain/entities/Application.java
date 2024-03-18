@@ -23,7 +23,7 @@ public class Application extends BaseEntity {
   @Column(name = "code")
   private String code;
 
-  @Column(name = "mame")
+  @Column(name = "name")
   private String name;
 
   @Column(name = "image_url")

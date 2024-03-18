@@ -5,8 +5,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import java.util.UUID;
 
@@ -14,11 +13,17 @@ import java.util.UUID;
 @Data
 @Table( name = "user")
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class User extends BaseEntity {
 
   @Id
   @Column(name = "id", columnDefinition = "binary(16)")
   private UUID id;
+
+  @Column(name = "user_account_id", columnDefinition = "binary(16)")
+  private UUID userAccountId;
 
   @Column(name = "first_name")
   private String firstName;
@@ -32,6 +37,15 @@ public class User extends BaseEntity {
   @Column(name ="email")
   private String email;
 
+  @Column(name = "coin")
+  private Long coin = 0L;
+
+  @Column(name ="point")
+  private Long point = 0L;
+
+  @Column(name ="image_url")
+  private String imageUrl;
+
   @Column(name ="current_address")
   private String currentAddress;
 
@@ -40,9 +54,6 @@ public class User extends BaseEntity {
 
   @Column(name ="birth")
   private String birth;
-
-  @Column(name ="point")
-  private Long point = 0L;
 
   @Column(name ="user_segment_id")
   private Long userSegmentId;
@@ -56,11 +67,11 @@ public class User extends BaseEntity {
   @Column(name = "last_login")
   public Long lastLogin;
 
-  @Column(name = "is_email_verify", columnDefinition = "bit")
-  private Boolean isVerifyEmail = false;
+  @Column(name = "is_email_verify")
+  private Boolean isEmailVerify;
 
-  @Column(name = "is_phone_number_verify",  columnDefinition = "bit")
-  private Boolean isVerifyPhoneNumber = false;
+  @Column(name = "is_phone_number_verify")
+  private Boolean isPhoneNumberVerify;
 
   public void addPointForUser(long amount){
     point += amount;

@@ -5,7 +5,7 @@ import com.wiinvent.gami.app.controller.dto.RewardScheduleUpdateDto;
 import com.wiinvent.gami.app.controller.response.RewardScheduleResponse;
 import com.wiinvent.gami.domain.entities.*;
 import com.wiinvent.gami.domain.entities.type.PeriodType;
-import com.wiinvent.gami.domain.entities.type.RewardType;
+import com.wiinvent.gami.domain.entities.type.RewardItemType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.service.base.BaseService;
@@ -289,7 +289,7 @@ public class RewardScheduleService extends BaseService {
       RewardItem rewardItem = new RewardItem();
       rewardItem.setId(i);
       rewardItem.setRewardName("item" + i);
-      rewardItem.setRewardType(RewardType.VOUCHER);
+      rewardItem.setRewardType(RewardItemType.VOUCHER);
       rewardItem.setDescription("Test data");
       rewardItem.setQuantity(0L);
       rewardItem.setStatus(Status.ACTIVE);

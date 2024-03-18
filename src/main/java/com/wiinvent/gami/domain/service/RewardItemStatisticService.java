@@ -6,7 +6,7 @@ import com.wiinvent.gami.domain.entities.RewardSegment;
 import com.wiinvent.gami.domain.entities.RewardSegmentDetail;
 import com.wiinvent.gami.domain.service.base.BaseService;
 import com.wiinvent.gami.domain.utils.DateUtils;
-import com.wiinvent.gami.domain.entities.type.RewardType;
+import com.wiinvent.gami.domain.entities.type.RewardItemType;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -52,19 +52,19 @@ public class RewardItemStatisticService extends BaseService {
     RewardItem rewardItem = rewardItemMap.get(segmentDetail.getRewardItemId());
     if (rewardItem != null && rewardItem.getIsLimited()) {
       switch (rewardItem.getRewardType()) {
-        case RewardType.POINT -> {
+        case RewardItemType.POINT -> {
         }
-        case RewardType.VOUCHER -> {
+        case RewardItemType.VOUCHER -> {
           Integer totalVoucherInPoll = voucherDetailStorage.getListInPollVoucherInGivenInPool(segmentDetail.getRewardSegmentId(), segmentDetail.getRewardItemId(), startDateAtVn, endDateAtVn);
           totalVoucherInPoll = totalVoucherInPoll == null ? 0 : totalVoucherInPoll;
           totalRemain = totalVoucherInPoll - totalReceived;
         }
-        case RewardType.PRODUCT -> {
+        case RewardItemType.PRODUCT -> {
           Integer totalProductInPoll = productDetailStorage.getListInPollProductInGivenInPool(segmentDetail.getRewardSegmentId(), segmentDetail.getRewardItemId(), startDateAtVn, endDateAtVn);
           totalProductInPoll = totalProductInPoll == null ? 0 : totalProductInPoll;
           totalRemain = totalProductInPoll - totalReceived;
         }
-        case RewardType.PHYSICAL -> {
+        case RewardItemType.PHYSICAL -> {
         }
       }
 

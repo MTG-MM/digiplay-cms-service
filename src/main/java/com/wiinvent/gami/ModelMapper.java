@@ -22,9 +22,6 @@ public interface ModelMapper {
 
   Account toAccountEntity(TokenInfo tokenInfo);
 
-  User toUser(UserInfoDto userInfoDto);
-
-
   ApplicationResponse toApplicationResponse(Application application);
 
   List<ApplicationResponse> toApplicationResponses(List<Application> industryGroupEntities);

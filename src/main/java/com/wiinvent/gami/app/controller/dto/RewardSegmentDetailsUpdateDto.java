@@ -1,25 +1,35 @@
 package com.wiinvent.gami.app.controller.dto;
 
 import com.wiinvent.gami.domain.entities.type.PeriodLimitType;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
 public class RewardSegmentDetailsUpdateDto {
-  @NotNull
+
+  @NotNull(message = "ID phần thưởng không được để trống")
+  @Schema(description = "ID phần thưởng")
   protected Long rewardItemId;
-  
-  protected Long priority = 0L; //do uu tien nhan qua theo ti le
 
-  protected Long segmentRate = 0L; //do uu tien nhan qua theo loai nguoi dung
+  @Schema(description = "Độ ưu tiên nhận quà theo tỉ lệ", example = "0")
+  protected Long priority = 0L;
 
+  @Schema(description = "Độ ưu tiên nhận quà theo loại người dùng", example = "0")
+  protected Long segmentRate = 0L;
+
+  @Schema(description = "Vị trí")
   protected Long position;
 
-  private Boolean isDefault = false; //Là quà mặc định sẽ nhả ra nếu không còn quà
+  @Schema(description = "Là quà mặc định sẽ nhả ra nếu không còn quà", example = "false")
+  private Boolean isDefault = false;
 
-  private PeriodLimitType periodType = PeriodLimitType.DAY; //Khoảng thời gian
+  @Schema(description = "Khoảng thời gian", example = "DAY")
+  private PeriodLimitType periodType = PeriodLimitType.DAY;
 
-  private Long periodNumber = 1L; //Số khoảng thời gian (periodNumber = 3, periodType = DAY => 3 ngay nhan duoc toi da {periodValue} qua)
+  @Schema(description = "Số khoảng thời gian", example = "1")
+  private Long periodNumber = 1L;
 
-  private Long periodValue = 1L; //Số quà tối đa người dùng có thể nhận trong khoảng thời gian
+  @Schema(description = "Số quà tối đa người dùng có thể nhận trong khoảng thời gian", example = "1")
+  private Long periodValue = 1L;
 }

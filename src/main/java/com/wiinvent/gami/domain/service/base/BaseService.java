@@ -15,6 +15,7 @@ public class BaseService {
   @Autowired protected CacheKey cacheKey;
   @Autowired protected LockManager lockManager;
   @Autowired protected AccountStorage accountStorage;
+  @Autowired protected ConfigStorage configStorage;
   @Autowired protected UserStorage userStorage;
   @Autowired protected UserSegmentStorage userSegmentStorage;
   @Autowired protected ApplicationStorage applicationStorage;
@@ -30,4 +31,14 @@ public class BaseService {
   @Autowired protected ProductDetailStorage productDetailStorage;
   @Autowired protected RewardItemStoreStorage rewardItemStoreStorage;
   @Autowired protected RewardItemStatisticStorage rewardItemStatisticStorage;
+  @Autowired protected GameLikeStorage gameLikeStorage;
+  @Autowired protected GameStarStorage gameStarStorage;
+  @Autowired protected GameStorage gameStorage;
+  @Autowired protected GamePackageStorage gamePackageStorage;
+  @Autowired protected PaymentMethodStorage paymentMethodStorage;
+  @Autowired protected PaymentTransactionStorage paymentTransactionStorage;
+  @Autowired protected GamePaymentTransactionStorage gamePaymentTransactionStorage;
+  @Autowired protected FriendStorage friendStorage;
+  @Autowired protected UserNotifyStorage userNotifyStorage;
+
 }

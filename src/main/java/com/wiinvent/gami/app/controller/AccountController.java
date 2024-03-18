@@ -21,4 +21,6 @@ public class AccountController extends BaseController {
     accountService.createAccount(userDetails.getUsername(), userDetails.getAccountRole(), dto);
     return ResponseEntity.ok(true);
   }
+
+
 }

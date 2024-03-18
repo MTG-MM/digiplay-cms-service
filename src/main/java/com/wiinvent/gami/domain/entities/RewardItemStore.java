@@ -1,8 +1,8 @@
 package com.wiinvent.gami.domain.entities;
 
-import com.wiinvent.gami.domain.entities.base.BaseEntity;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.entities.type.StoreType;
+import com.wiinvent.gami.domain.utils.DateUtils;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,10 +13,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class RewardItemStore extends BaseEntity {
+public class RewardItemStore {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id", columnDefinition = "BIGINT", nullable = false)
   private Long id;
 
   @Column(name = "name")
@@ -29,4 +27,10 @@ public class RewardItemStore extends BaseEntity {
   @Column(name = "status")
   @Enumerated(EnumType.STRING)
   private Status status;
+
+  @Column(name = "created_at")
+  private Long createdAt = DateUtils.getNowMillisAtUtc();
+
+  @Column(name = "updated_at")
+  private Long updatedAt = DateUtils.getNowMillisAtUtc();
 }

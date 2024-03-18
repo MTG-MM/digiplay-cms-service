@@ -1,0 +1,13 @@
+package com.wiinvent.gami.domain.entities.type;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
+public enum NewAccountState {
+  CREATE_ACCOUNT(0),
+  CREATE_PROFILE(1),
+  COMPLETE(10);
+  public final int level;
+}

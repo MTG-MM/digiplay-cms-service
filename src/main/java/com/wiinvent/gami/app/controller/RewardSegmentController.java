@@ -13,10 +13,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.SortDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/mos/cms/reward-segment")
+@RequestMapping("api/vt/cms/reward-segment")
+@PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
 public class RewardSegmentController {
 
   @Autowired

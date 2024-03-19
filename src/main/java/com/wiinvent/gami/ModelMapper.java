@@ -5,6 +5,7 @@ import com.wiinvent.gami.app.controller.response.*;
 import com.wiinvent.gami.domain.entities.*;
 import com.wiinvent.gami.domain.pojo.TokenInfo;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.springframework.data.domain.Page;
 
@@ -21,15 +22,6 @@ public interface ModelMapper {
   TokenInfo toTokenInfo(Account account);
 
   Account toAccountEntity(TokenInfo tokenInfo);
-
-  ApplicationResponse toApplicationResponse(Application application);
-
-  List<ApplicationResponse> toApplicationResponses(List<Application> industryGroupEntities);
-
-  void toApplication(ApplicationDto dto, @MappingTarget Application entity);
-
-  Application toApplication(ApplicationDto dto);
-
 
   RewardItemResponse toRewardItemResponse(RewardItem rw);
 
@@ -62,10 +54,6 @@ public interface ModelMapper {
   List<RewardScheduleResponse> toListRewardScheduleResponse(List<RewardSchedule> all);
 
   List<RewardSegmentDetailResponse> toRewardSegmentDetailResponses(List<RewardSegmentDetail> all);
-
-  default Page<ApplicationResponse> toPageApplicationResponse(Page<Application> applications) {
-    return applications.map(this::toApplicationResponse);
-  }
 
   default Page<RewardSegmentDetailResponse> toPageRewardSegmentDetailResponse(Page<RewardSegmentDetail> rewardSegmentDetails) {
     return rewardSegmentDetails.map(this::toRewardSegmentDetailResponse);
@@ -109,5 +97,26 @@ public interface ModelMapper {
 
   void mapRewardSegmentDetailsDtoToRewardSegmentDetail(RewardSegmentDetailsUpdateDto detailsUpdateDto,@MappingTarget RewardSegmentDetail rewardSegmentDetail);
 
+  AccountResponse toAccountResponse(Account account);
 
+  default Page<AccountResponse> toPageAccountResponse(Page<Account> accounts) {
+    return accounts.map(this::toAccountResponse);
+  }
+
+  GameResponse toGameResponse(Game game);
+
+  default Page<GameResponse> toPageGameResponse(Page<Game> games) {
+    return games.map(this::toGameResponse);
+  }
+
+  Game toGame(GameCreateDto createDto);
+
+  void mapGameUpdateDtoToGame(GameUpdateDto updateDto, @MappingTarget Game game);
+
+  GamePackageResponse toGamePackageResponse(GamePackage gamePackage);
+
+
+  GamePackage toGamePackage(GamePackageCreateDto gamePackageCreateDto);
+
+  void mapGamePackageUpdateDtoToGamePackage(GamePackageUpdateDto dto,@MappingTarget GamePackage gamePackage);
 }

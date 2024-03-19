@@ -58,4 +58,8 @@ public class GamePackage extends BaseEntity {
   @Column(name = "priority")
   private Integer priority;
 
+  @Size(max = 500)
+  @Column(name = "payment_method_info", length = 500)
+  private String paymentMethodInfo;
+
 }

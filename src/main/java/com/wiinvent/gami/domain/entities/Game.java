@@ -7,6 +7,8 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @Entity
@@ -20,6 +22,10 @@ public class Game extends BaseEntity {
   @NotNull
   @Column(name = "category_id", nullable = false)
   private Integer categoryId;
+
+  @NotNull
+  @Column(name = "team_id", nullable = false)
+  private UUID teamId;
 
   @Size(max = 500)
   @Column(name = "name", length = 500)

@@ -12,10 +12,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.SortDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/mos/cms/reward-items")
+@RequestMapping("api/vt/cms/reward-items")
 public class RewardItemController {
 
   @Autowired
@@ -27,6 +28,7 @@ public class RewardItemController {
 //  }
 
   @GetMapping("")
+  @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
   public PageResponse<RewardItemResponse> getAll(
       @RequestParam(required = false) String name,
       @RequestParam(required = false) Integer id,
@@ -40,16 +42,19 @@ public class RewardItemController {
   }
 
   @GetMapping("{id}")
+  @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
   public ResponseEntity<RewardItemResponse> getRewardItemDetail(@PathVariable Long id) {
     return ResponseEntity.ok(rewardItemService.getRewardItemDetail(id));
   }
 
   @PostMapping("")
+  @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
   public ResponseEntity<Long> createRewardItems(@RequestBody RewardItemDto rewardItemDto) {
     return ResponseEntity.ok(rewardItemService.createRewardItems(rewardItemDto));
   }
 
   @PutMapping("{id}")
+  @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
   public ResponseEntity<Boolean> updateRewardItems(@PathVariable Long id, @RequestBody @Valid RewardItemDto rewardItemDto) {
     return ResponseEntity.ok(rewardItemService.updateRewardItems(id, rewardItemDto));
   }

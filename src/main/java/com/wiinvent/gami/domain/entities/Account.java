@@ -21,14 +21,6 @@ public class Account extends BaseEntity {
   @Column(name = "id")
   public UUID id;
 
-  @Column(name = "role")
-  @Enumerated(EnumType.STRING)
-  public AccountRole role;
-
-  @Column(name = "state")
-  @Enumerated(EnumType.STRING)
-  public AccountState accountState;
-
   @Column(name = "username")
   public String username;
 
@@ -37,4 +29,13 @@ public class Account extends BaseEntity {
 
   @Column(name = "team_id")
   public UUID teamId;
+
+  @Column(name = "role")
+  @Enumerated(EnumType.STRING)
+  public AccountRole role;
+
+  @Column(name = "state")
+  @Enumerated(EnumType.STRING)
+  public AccountState accountState;
+
 }

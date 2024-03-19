@@ -1,13 +1,12 @@
 package com.wiinvent.gami.domain.security;
 
 import com.wiinvent.gami.domain.exception.GlobalExceptionHandler;
-import com.wiinvent.gami.domain.security.jwt.CustomAuthenticationEntryPoint;
+import com.wiinvent.gami.domain.security.jwt.AuthedEntryPoint;
 import com.wiinvent.gami.domain.security.jwt.JwtAuthFilter;
 import com.wiinvent.gami.domain.security.service.UserSecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -36,8 +35,8 @@ public class SecurityConfig {
   }
 
   @Bean
-  public CustomAuthenticationEntryPoint authEntryPoint() {
-    return new CustomAuthenticationEntryPoint(globalExceptionHandler);
+  public AuthedEntryPoint authEntryPoint() {
+    return new AuthedEntryPoint(globalExceptionHandler);
   }
 
   @Bean
@@ -61,17 +60,18 @@ public class SecurityConfig {
             "/api/vt/it/**",
             "/api/vt/ext/**",
             "/login/**",
-            "/v1/docs/**").permitAll()
+            "/v1/cms/docs/**").permitAll()
         .and()
         .authorizeHttpRequests().anyRequest().authenticated()
         .and()
         .sessionManagement()
         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         .and()
-        .exceptionHandling().authenticationEntryPoint(authEntryPoint())
+        .exceptionHandling().authenticationEntryPoint(authEntryPoint()).accessDeniedHandler(authEntryPoint())
         .and()
         .authenticationProvider(authenticationProvider())
-        .addFilterBefore(authFilter(), UsernamePasswordAuthenticationFilter.class).build();
+        .addFilterBefore(authFilter(), UsernamePasswordAuthenticationFilter.class)
+        .build();
   }
 
   @Bean

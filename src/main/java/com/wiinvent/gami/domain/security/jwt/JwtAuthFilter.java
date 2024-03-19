@@ -1,5 +1,6 @@
 package com.wiinvent.gami.domain.security.jwt;
 
+import com.wiinvent.gami.domain.exception.GlobalExceptionHandler;
 import com.wiinvent.gami.domain.security.service.UserSecurityService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -24,7 +25,6 @@ import java.io.IOException;
 public class JwtAuthFilter extends OncePerRequestFilter {
 
   @Autowired @Lazy private JwtService jwtService;
-
   @Autowired @Lazy private UserSecurityService userDetailsService;
 
   @Override
@@ -43,6 +43,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
       authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
       SecurityContextHolder.getContext().setAuthentication(authToken);
     }
+
     filterChain.doFilter(request, response);
   }
 

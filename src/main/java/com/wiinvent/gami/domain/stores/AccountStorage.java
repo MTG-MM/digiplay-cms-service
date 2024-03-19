@@ -1,22 +1,22 @@
 package com.wiinvent.gami.domain.stores;
 
 import com.wiinvent.gami.domain.entities.Account;
-import com.wiinvent.gami.domain.entities.UserAccount;
-import com.wiinvent.gami.domain.entities.type.UserRole;
 import com.wiinvent.gami.domain.stores.base.BaseStorage;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Component
 public class AccountStorage extends BaseStorage {
-
-  public Account findByUsernameAndRole(String username, UserRole userRole) {
-    return accountRepository.findByUsernameAndRole(username, userRole);
-  }
-
 
   public void save(Account account) {
     accountRepository.save(account);
@@ -30,4 +30,24 @@ public class AccountStorage extends BaseStorage {
   public Account findByUsername(String username) {
     return accountRepository.findByUsername(username);
   }
+
+  public Page<Account> findPageAccount(String username, UUID teamId, Pageable pageable) {
+    return accountRepository.findAll(specificationAccount(username, teamId), pageable);
+  }
+
+  private Specification<Account> specificationAccount(String username, UUID teamId) {
+    return (Root<Account> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) -> {
+      List<Predicate> predicates = new ArrayList<>();
+
+      if(username != null){
+        predicates.add(criteriaBuilder.equal(root.get("username"), username));
+      }
+      if(teamId != null){
+        predicates.add(criteriaBuilder.equal(root.get("teamId"), teamId));
+      }
+
+      return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
+    };
+  }
+
 }

@@ -18,5 +18,5 @@ public class AccountDto {
 
   @NotNull(message = "Không được để trống")
   @Schema(description = "Vai trò tài khoản", example = "OPERATOR")
-  AccountRole accountRole;
+  AccountRole role;
 }

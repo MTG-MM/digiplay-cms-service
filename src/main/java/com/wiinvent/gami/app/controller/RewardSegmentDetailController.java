@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/mos/cms/reward-segment-detail")
+@RequestMapping("api/vt/cms/reward-segment-detail")
 public class RewardSegmentDetailController {
 
   @Autowired

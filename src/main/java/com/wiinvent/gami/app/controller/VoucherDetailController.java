@@ -6,10 +6,12 @@ import com.wiinvent.gami.domain.service.VoucherDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/mos/cms/voucher-details")
+@RequestMapping("api/vt/cms/voucher-details")
+@PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
 public class VoucherDetailController {
 
   @Autowired

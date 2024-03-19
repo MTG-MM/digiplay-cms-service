@@ -13,19 +13,20 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Stream;
 
+@Setter
+@Getter
 public class UserDetailsImpl implements UserDetails {
-  @Setter
-  @Getter
+
   private UUID id;
+  private UUID teamId;
   private String username;
   private String password;
-  @Setter
-  @Getter
   private AccountRole accountRole;
   private List<SimpleGrantedAuthority> authorities;
 
   public UserDetailsImpl(Account account) {
     id = account.getId();
+    teamId = account.getTeamId();
     username = account.getUsername();
     password = account.getPassword();
     accountRole = account.getRole();

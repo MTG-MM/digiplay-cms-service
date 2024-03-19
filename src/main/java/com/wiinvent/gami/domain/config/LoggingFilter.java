@@ -34,11 +34,6 @@ public class LoggingFilter implements Filter {
 
     try {
       filterChain.doFilter(request, response);
-    } catch (BaseException e) {
-      globalExceptionHandler.badRequestException(new BaseException(e.getMessage(), 400), response);
-    } catch (Exception e) {
-      log.error("Error processing: ", e);
-      globalExceptionHandler.internalException(new BaseException("Đã có lỗi xảy ra", 500), response);
     } finally {
       long duration = DateUtils.getNowMillisAtUtc() - start;
       MDC.put("duration", duration + "");

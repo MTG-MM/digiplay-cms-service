@@ -25,7 +25,7 @@ public class AccountController extends BaseController {
   @Autowired AccountService accountService;
 
   @PostMapping("")
-  @PreAuthorize("hasRole('PUBLISHER')" )
+  @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR') or hasRole('PUBLISHER')" )
   public ResponseEntity<?> createAccount(Authentication authentication, @RequestBody AccountDto dto) {
     UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
     accountService.createAccount(userDetails, userDetails.getAccountRole(), dto);

@@ -5,7 +5,9 @@ import com.wiinvent.gami.app.controller.response.RewardItemResponse;
 import com.wiinvent.gami.app.controller.response.base.PageResponse;
 import com.wiinvent.gami.domain.entities.type.RewardItemType;
 import com.wiinvent.gami.domain.service.RewardItemService;
+import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
+import org.springdoc.core.converters.models.PageableAsQueryParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -29,15 +31,12 @@ public class RewardItemController {
 
   @GetMapping("")
   @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
+  @PageableAsQueryParam
   public PageResponse<RewardItemResponse> getAll(
       @RequestParam(required = false) String name,
       @RequestParam(required = false) Integer id,
       @RequestParam(required = false) RewardItemType type,
-      @PageableDefault(size = 20)
-      @SortDefault.SortDefaults({
-          @SortDefault(sort = "id", direction = Sort.Direction.DESC),
-      })
-      Pageable pageable) {
+      @Parameter(hidden = true) Pageable pageable) {
     return rewardItemService.getAll(id, name, type,pageable);
   }
 

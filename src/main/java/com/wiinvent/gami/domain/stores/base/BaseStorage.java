@@ -1,6 +1,6 @@
 package com.wiinvent.gami.domain.stores.base;
 
-import com.wiinvent.gami.domain.entities.AccountRepository;
+import com.wiinvent.gami.domain.repositories.AccountRepository;
 import com.wiinvent.gami.domain.repositories.*;
 import com.wiinvent.gami.domain.utils.CacheKey;
 import com.wiinvent.gami.domain.utils.RemoteCache;
@@ -15,7 +15,6 @@ public class BaseStorage {
   @Autowired protected AccountRepository accountRepository;
   @Autowired protected ConfigRepository configRepository;
   @Autowired protected UserRepository userRepository;
-  @Autowired protected ApplicationRepository applicationRepository;
   @Autowired protected RewardItemHistoryRepository rewardItemHistoryRepository;
   @Autowired protected RewardItemRepository rewardItemRepository;
   @Autowired protected RewardScheduleRepository rewardScheduleRepository;

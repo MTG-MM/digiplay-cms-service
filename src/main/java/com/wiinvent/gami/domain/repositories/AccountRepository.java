@@ -1,5 +1,6 @@
-package com.wiinvent.gami.domain.entities;
+package com.wiinvent.gami.domain.repositories;
 
+import com.wiinvent.gami.domain.entities.Account;
 import com.wiinvent.gami.domain.entities.type.AccountRole;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

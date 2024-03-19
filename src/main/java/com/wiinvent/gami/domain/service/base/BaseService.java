@@ -18,7 +18,6 @@ public class BaseService {
   @Autowired protected ConfigStorage configStorage;
   @Autowired protected UserStorage userStorage;
   @Autowired protected UserSegmentStorage userSegmentStorage;
-  @Autowired protected ApplicationStorage applicationStorage;
   @Autowired protected RewardItemHistoryStorage rewardItemHistoryStorage;
   @Autowired protected RewardItemStorage rewardItemStorage;
   @Autowired protected RewardScheduleStorage rewardScheduleStorage;

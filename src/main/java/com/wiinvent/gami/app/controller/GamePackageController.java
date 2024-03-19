@@ -32,7 +32,7 @@ public class GamePackageController extends BaseController {
   }
 
   @PutMapping("{id}")
-  public ResponseEntity<Boolean> createGamePackage(@PathVariable int id, @RequestBody GamePackageUpdateDto dto){
+  public ResponseEntity<Boolean> updateGamePackage(@PathVariable int id, @RequestBody GamePackageUpdateDto dto){
     gamePackageService.updateGamePackage(id, dto);
     return ResponseEntity.ok(true);
   }

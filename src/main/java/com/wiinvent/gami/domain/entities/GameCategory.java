@@ -30,10 +30,13 @@ public class GameCategory extends BaseEntity {
   @Column(name = "category_type")
   private String categoryType;
 
-  @Column(name = "point_1_amount")
-  private Integer point1Amount;
+  @Column(name = "is_require_sub")
+  private Boolean isRequireSub;
 
-  @Column(name = "point_2_amount")
-  private Integer point2Amount;
+  @Column(name = "point")
+  private Integer point;
+
+  @Column(name = "coin")
+  private Integer coin;
 
 }

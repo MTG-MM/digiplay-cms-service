@@ -6,7 +6,9 @@ import com.wiinvent.gami.app.controller.dto.RewardSegmentDto;
 import com.wiinvent.gami.app.controller.response.RewardSegmentResponse;
 import com.wiinvent.gami.app.controller.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.RewardSegmentService;
+import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
+import org.springdoc.core.converters.models.PageableAsQueryParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -25,11 +27,12 @@ public class RewardSegmentController {
   private RewardSegmentService rewardSegmentService;
 
   @GetMapping("")
+  @PageableAsQueryParam
   public ResponseEntity<PageResponse<RewardSegmentResponse>> getRewardSegments(
+      @Parameter(hidden = true)
       @SortDefault(sort = "updatedAt", direction = Sort.Direction.DESC)
-      @PageableDefault(value = 5)
-      final Pageable pageable
-      ) {
+      @PageableDefault(value = 5) final Pageable pageable
+  ) {
     return ResponseEntity.ok(rewardSegmentService.getAllRewardSegments(pageable));
   }
 
@@ -50,7 +53,7 @@ public class RewardSegmentController {
 
   @PostMapping("chooseRwItem/{id}")
   public ResponseEntity<Boolean> chooseRwItem(@PathVariable(name = "id") Long rwSegmentId,
-                                              @RequestBody @Valid ChooseRewardItemSegmentDto dto){
+                                              @RequestBody @Valid ChooseRewardItemSegmentDto dto) {
     return ResponseEntity.ok(rewardSegmentService.chooseRwItem(rwSegmentId, dto.getIds()));
   }
 }

@@ -16,11 +16,12 @@ import com.wiinvent.gami.domain.utils.JsonParser;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class GamePackageService extends BaseService {
-
-
 
   public GamePackageResponse getPackageDetail(int id) {
     GamePackage gamePackage = gamePackageStorage.findById(id);
@@ -36,6 +37,7 @@ public class GamePackageService extends BaseService {
     gamePackageStorage.save(gamePackage);
   }
 
+  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
   public void updateGamePackage(int id, GamePackageUpdateDto dto) {
     GamePackage gamePackage = gamePackageStorage.findById(id);
     if (gamePackage == null) {

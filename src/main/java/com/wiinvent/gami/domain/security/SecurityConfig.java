@@ -57,9 +57,9 @@ public class SecurityConfig {
         .csrf(AbstractHttpConfigurer::disable)
         .authorizeHttpRequests()
         .requestMatchers(
-            "/api/vt/it/**",
-            "/api/vt/ext/**",
-            "/login/**",
+            "/api/vt/cms/it/**",
+            "/api/vt/cms/ext/**",
+            "/api/vt/cms/auth/**",
             "/v1/cms/docs/**").permitAll()
         .and()
         .authorizeHttpRequests().anyRequest().authenticated()

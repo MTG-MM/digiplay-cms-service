@@ -74,7 +74,7 @@ public class ProductDetailService extends BaseService {
     rewardItemStore.setStatus(Status.ACTIVE);
     rewardItemStore.setType(StoreType.PRODUCT);
     List<ProductDetail> productDetails = new ArrayList<>();
-    for(int i = 0; i < 10000; i++){
+    for(int i = 0; i < 100000; i++){
       ProductDetail productDetail = new ProductDetail();
       productDetail.setName(rewardItemStore.getName());
       productDetail.setCode(UUID.randomUUID().toString());

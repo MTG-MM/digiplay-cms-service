@@ -19,6 +19,9 @@
         <redisson.version>3.24.3</redisson.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
+        <guava.version>r05</guava.version>
+        <apache-poi.version>5.2.5</apache-poi.version>
+        <springdoc.version>2.2.0</springdoc.version>
 
     </properties>
     <dependencies>
@@ -34,15 +37,35 @@
         </dependency>
 
         <!-- Swagger -->
-
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-            <version>2.2.0</version>
+            <version>${springdoc.version}</version>
+        </dependency>
+
+        <!-- guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+
+        <!-- poi -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>${apache-poi.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/hu.webarticum/simple-spreadsheet-writer -->
+        <dependency>
+            <groupId>hu.webarticum</groupId>
+            <artifactId>simple-spreadsheet-writer</artifactId>
+            <version>0.4</version>
         </dependency>
 
 
-        <!--reids-->
+        <!--redis-->
         <dependency>
             <groupId>org.redisson</groupId>
             <artifactId>redisson-spring-boot-starter</artifactId>

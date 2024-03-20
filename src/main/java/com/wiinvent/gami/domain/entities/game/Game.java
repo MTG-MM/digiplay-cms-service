@@ -1,5 +1,6 @@
-package com.wiinvent.gami.domain.entities;
+package com.wiinvent.gami.domain.entities.game;
 
+import com.wiinvent.gami.domain.entities.BaseEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

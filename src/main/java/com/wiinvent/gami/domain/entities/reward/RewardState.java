@@ -1,4 +1,4 @@
-package com.wiinvent.gami.domain.entities;
+package com.wiinvent.gami.domain.entities.reward;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

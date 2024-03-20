@@ -1,5 +1,6 @@
-package com.wiinvent.gami.app.controller;
+package com.wiinvent.gami.app.controller.game;
 
+import com.wiinvent.gami.app.controller.BaseController;
 import com.wiinvent.gami.domain.dto.GameCreateDto;
 import com.wiinvent.gami.domain.dto.GameUpdateDto;
 import com.wiinvent.gami.domain.response.GameResponse;

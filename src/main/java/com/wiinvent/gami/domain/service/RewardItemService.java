@@ -1,12 +1,12 @@
 package com.wiinvent.gami.domain.service;
 
 import com.wiinvent.gami.domain.dto.RewardItemDto;
+import com.wiinvent.gami.domain.entities.reward.RewardItem;
+import com.wiinvent.gami.domain.entities.reward.RewardType;
 import com.wiinvent.gami.domain.response.RewardItemResponse;
-import com.wiinvent.gami.domain.response.RewardResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.service.base.BaseService;
-import com.wiinvent.gami.domain.entities.*;
 import com.wiinvent.gami.domain.entities.type.RewardItemType;
 import jakarta.persistence.criteria.Predicate;
 import lombok.extern.log4j.Log4j2;
@@ -15,12 +15,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @Log4j2
@@ -68,7 +65,7 @@ public class RewardItemService extends BaseService {
 
   public Long createRewardItems(RewardItemDto rewardItemDto) {
     RewardItem rewardItem = modelMapper.toRewardItem(rewardItemDto);
-    com.wiinvent.gami.domain.entities.RewardType rewardType = rewardTypeStorage.findById(rewardItemDto.getRewardTypeId());
+    RewardType rewardType = rewardTypeStorage.findById(rewardItemDto.getRewardTypeId());
     if (rewardType == null) {
       throw new ResourceNotFoundException("reward type not found");
     }
@@ -82,7 +79,7 @@ public class RewardItemService extends BaseService {
     if (rewardItem == null) {
       throw new ResourceNotFoundException("item not found");
     }
-    com.wiinvent.gami.domain.entities.RewardType rewardType = rewardTypeStorage.findById(rewardItemDto.getRewardTypeId());
+    RewardType rewardType = rewardTypeStorage.findById(rewardItemDto.getRewardTypeId());
     if (rewardType == null) {
       throw new ResourceNotFoundException("reward type not found");
     }

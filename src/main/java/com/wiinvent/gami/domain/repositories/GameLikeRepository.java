@@ -1,6 +1,6 @@
 package com.wiinvent.gami.domain.repositories;
 
-import com.wiinvent.gami.domain.entities.GameLike;
+import com.wiinvent.gami.domain.entities.game.GameLike;
 import com.wiinvent.gami.domain.entities.type.LikeStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

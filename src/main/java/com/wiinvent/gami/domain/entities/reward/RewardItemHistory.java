@@ -1,6 +1,7 @@
-package com.wiinvent.gami.domain.entities;
+package com.wiinvent.gami.domain.entities.reward;
 
 
+import com.wiinvent.gami.domain.entities.BaseEntity;
 import com.wiinvent.gami.domain.entities.type.RewardItemType;
 import jakarta.persistence.*;
 import lombok.*;

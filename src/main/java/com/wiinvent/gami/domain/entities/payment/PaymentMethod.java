@@ -1,5 +1,6 @@
-package com.wiinvent.gami.domain.entities;
+package com.wiinvent.gami.domain.entities.payment;
 
+import com.wiinvent.gami.domain.entities.BaseEntity;
 import com.wiinvent.gami.domain.entities.type.PaymentMethodType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import jakarta.persistence.*;

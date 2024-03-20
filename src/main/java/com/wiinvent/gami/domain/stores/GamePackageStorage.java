@@ -1,9 +1,7 @@
 package com.wiinvent.gami.domain.stores;
 
-import com.wiinvent.gami.domain.entities.GamePackage;
-import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
+import com.wiinvent.gami.domain.entities.game.GamePackage;
 import com.wiinvent.gami.domain.stores.base.BaseStorage;
-import com.wiinvent.gami.domain.utils.Constant;
 import org.springframework.stereotype.Component;
 
 @Component

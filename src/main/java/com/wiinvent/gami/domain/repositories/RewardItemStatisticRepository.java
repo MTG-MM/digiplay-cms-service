@@ -1,6 +1,6 @@
 package com.wiinvent.gami.domain.repositories;
 
-import com.wiinvent.gami.domain.entities.RewardItemStatistic;
+import com.wiinvent.gami.domain.entities.reward.RewardItemStatistic;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

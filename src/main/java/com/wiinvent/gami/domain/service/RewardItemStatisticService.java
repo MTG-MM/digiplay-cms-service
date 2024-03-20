@@ -1,9 +1,9 @@
 package com.wiinvent.gami.domain.service;
 
-import com.wiinvent.gami.domain.entities.RewardItem;
-import com.wiinvent.gami.domain.entities.RewardItemStatistic;
-import com.wiinvent.gami.domain.entities.RewardSegment;
-import com.wiinvent.gami.domain.entities.RewardSegmentDetail;
+import com.wiinvent.gami.domain.entities.reward.RewardItem;
+import com.wiinvent.gami.domain.entities.reward.RewardItemStatistic;
+import com.wiinvent.gami.domain.entities.reward.RewardSegment;
+import com.wiinvent.gami.domain.entities.reward.RewardSegmentDetail;
 import com.wiinvent.gami.domain.service.base.BaseService;
 import com.wiinvent.gami.domain.utils.DateUtils;
 import com.wiinvent.gami.domain.entities.type.RewardItemType;

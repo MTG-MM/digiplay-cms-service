@@ -1,6 +1,6 @@
 package com.wiinvent.gami.domain.service;
 
-import com.wiinvent.gami.domain.entities.User;
+import com.wiinvent.gami.domain.entities.user.User;
 import com.wiinvent.gami.domain.service.base.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

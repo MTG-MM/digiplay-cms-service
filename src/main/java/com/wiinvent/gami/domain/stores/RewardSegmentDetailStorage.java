@@ -1,7 +1,7 @@
 package com.wiinvent.gami.domain.stores;
 
-import com.wiinvent.gami.domain.entities.RewardSegmentDetail;
-import com.wiinvent.gami.domain.entities.User;
+import com.wiinvent.gami.domain.entities.reward.RewardSegmentDetail;
+import com.wiinvent.gami.domain.entities.user.User;
 import com.wiinvent.gami.domain.stores.base.BaseStorage;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;

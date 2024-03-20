@@ -1,11 +1,13 @@
 package com.wiinvent.gami;
 
 import com.wiinvent.gami.domain.dto.*;
+import com.wiinvent.gami.domain.entities.game.Game;
+import com.wiinvent.gami.domain.entities.game.GamePackage;
+import com.wiinvent.gami.domain.entities.reward.*;
 import com.wiinvent.gami.domain.response.*;
 import com.wiinvent.gami.domain.entities.*;
 import com.wiinvent.gami.domain.pojo.TokenInfo;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.springframework.data.domain.Page;
 

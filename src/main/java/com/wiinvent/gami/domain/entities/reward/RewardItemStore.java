@@ -1,4 +1,4 @@
-package com.wiinvent.gami.domain.entities;
+package com.wiinvent.gami.domain.entities.reward;
 
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.entities.type.StoreType;

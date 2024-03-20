@@ -1,6 +1,6 @@
 package com.wiinvent.gami.domain.repositories;
 
-import com.wiinvent.gami.domain.entities.RewardSegmentDetail;
+import com.wiinvent.gami.domain.entities.reward.RewardSegmentDetail;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;

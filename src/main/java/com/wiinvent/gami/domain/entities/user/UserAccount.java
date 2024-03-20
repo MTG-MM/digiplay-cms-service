@@ -1,5 +1,6 @@
-package com.wiinvent.gami.domain.entities;
+package com.wiinvent.gami.domain.entities.user;
 
+import com.wiinvent.gami.domain.entities.BaseEntity;
 import com.wiinvent.gami.domain.entities.type.NewAccountState;
 import com.wiinvent.gami.domain.entities.type.Rank;
 import com.wiinvent.gami.domain.entities.type.State;

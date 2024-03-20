@@ -1,6 +1,6 @@
 package com.wiinvent.gami.domain.stores;
 
-import com.wiinvent.gami.domain.entities.RewardSegment;
+import com.wiinvent.gami.domain.entities.reward.RewardSegment;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.stores.base.BaseStorage;
 import org.springframework.data.domain.Page;

@@ -1,4 +1,4 @@
-package com.wiinvent.gami.domain.entities;
+package com.wiinvent.gami.domain.entities.game;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

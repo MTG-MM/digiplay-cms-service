@@ -1,19 +1,18 @@
-package com.wiinvent.gami.domain.entities;
-
+package com.wiinvent.gami.domain.entities.reward;
 
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.utils.DateUtils;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Table(name = "reward_type")
+@Table(name = "reward_segment")
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class RewardType {
+public class RewardSegment {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,11 +21,14 @@ public class RewardType {
   @Column(name = "name")
   private String name;
 
-  @Column(name = "description")
-  private String description;
+  @Column(name = "code")
+  private String code;
 
-  @Column(name = "type")
-  private String type;
+  @Column(name = "image_url")
+  private String imageUrl;
+
+  @Column(name = "is_accumulative_priority", columnDefinition = "BIT")
+  private Boolean isAccumulativePriority; //Có tích lũy vào quà default nếu quà không hợp lệ không
 
   @Column(name = "status")
   @Enumerated(EnumType.STRING)

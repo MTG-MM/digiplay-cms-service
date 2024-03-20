@@ -1,5 +1,9 @@
 package com.wiinvent.gami.domain.service;
 
+import com.wiinvent.gami.domain.entities.reward.RewardItemStore;
+import com.wiinvent.gami.domain.entities.reward.RewardSchedule;
+import com.wiinvent.gami.domain.entities.reward.RewardSegmentDetail;
+import com.wiinvent.gami.domain.entities.user.User;
 import com.wiinvent.gami.domain.response.VoucherDetailResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.entities.type.RewardItemStatus;

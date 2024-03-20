@@ -1,7 +1,7 @@
 package com.wiinvent.gami.domain.service;
 
-import com.wiinvent.gami.domain.entities.User;
-import com.wiinvent.gami.domain.entities.UserSegment;
+import com.wiinvent.gami.domain.entities.user.User;
+import com.wiinvent.gami.domain.entities.user.UserSegment;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.service.base.BaseService;
 import com.wiinvent.gami.domain.utils.Constant;

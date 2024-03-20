@@ -1,6 +1,6 @@
 package com.wiinvent.gami.domain.stores;
 
-import com.wiinvent.gami.domain.entities.RewardSchedule;
+import com.wiinvent.gami.domain.entities.reward.RewardSchedule;
 import com.wiinvent.gami.domain.stores.base.BaseStorage;
 import org.springframework.stereotype.Component;
 

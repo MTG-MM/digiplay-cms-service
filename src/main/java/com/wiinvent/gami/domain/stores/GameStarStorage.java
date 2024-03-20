@@ -1,6 +1,6 @@
 package com.wiinvent.gami.domain.stores;
 
-import com.wiinvent.gami.domain.entities.GameStar;
+import com.wiinvent.gami.domain.entities.game.GameStar;
 import com.wiinvent.gami.domain.stores.base.BaseStorage;
 import org.springframework.stereotype.Component;
 

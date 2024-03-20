@@ -3,7 +3,7 @@ package com.wiinvent.gami.domain.service;
 import com.wiinvent.gami.domain.dto.RewardTypeDto;
 import com.wiinvent.gami.domain.dto.RewardTypeUpdateDto;
 import com.wiinvent.gami.domain.response.RewardTypeResponse;
-import com.wiinvent.gami.domain.entities.RewardType;
+import com.wiinvent.gami.domain.entities.reward.RewardType;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.service.base.BaseService;
 import org.springframework.stereotype.Service;

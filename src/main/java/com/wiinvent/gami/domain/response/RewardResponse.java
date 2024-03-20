@@ -2,8 +2,8 @@ package com.wiinvent.gami.domain.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.wiinvent.gami.domain.entities.ProductDetail;
-import com.wiinvent.gami.domain.entities.RewardItem;
-import com.wiinvent.gami.domain.entities.RewardSegmentDetail;
+import com.wiinvent.gami.domain.entities.reward.RewardItem;
+import com.wiinvent.gami.domain.entities.reward.RewardSegmentDetail;
 import com.wiinvent.gami.domain.entities.VoucherDetail;
 import com.wiinvent.gami.domain.entities.type.RewardItemType;
 import io.swagger.v3.oas.annotations.media.Schema;

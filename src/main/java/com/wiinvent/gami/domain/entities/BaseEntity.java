@@ -1,4 +1,4 @@
-package com.wiinvent.gami.domain.entities.base;
+package com.wiinvent.gami.domain.entities;
 
 import com.wiinvent.gami.domain.utils.DateUtils;
 import jakarta.persistence.Column;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @MappedSuperclass
-public class BaseEntity {
+public abstract class BaseEntity {
 
   @Column(name = "created_at")
   private Long createdAt = DateUtils.getNowMillisAtUtc();

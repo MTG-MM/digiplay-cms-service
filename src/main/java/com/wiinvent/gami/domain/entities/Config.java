@@ -1,6 +1,5 @@
 package com.wiinvent.gami.domain.entities;
 
-import com.wiinvent.gami.domain.entities.base.BaseEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;

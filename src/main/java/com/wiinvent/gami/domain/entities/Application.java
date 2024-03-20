@@ -1,6 +1,5 @@
 package com.wiinvent.gami.domain.entities;
 
-import com.wiinvent.gami.domain.entities.base.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;

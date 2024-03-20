@@ -1,4 +1,4 @@
-package com.wiinvent.gami.app.controller;
+package com.wiinvent.gami.app.controller.reward;
 
 
 import com.wiinvent.gami.domain.dto.RewardSegmentDetailDto;

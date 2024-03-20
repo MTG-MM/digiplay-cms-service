@@ -1,6 +1,5 @@
 package com.wiinvent.gami.domain.entities;
 
-import com.wiinvent.gami.domain.entities.base.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

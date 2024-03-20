@@ -1,6 +1,5 @@
 package com.wiinvent.gami.app.controller;
 
-import com.wiinvent.gami.app.controller.base.BaseController;
 import com.wiinvent.gami.domain.dto.AccountDto;
 import com.wiinvent.gami.domain.response.AccountResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;

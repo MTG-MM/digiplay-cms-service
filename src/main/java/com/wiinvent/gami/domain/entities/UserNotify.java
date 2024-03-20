@@ -1,6 +1,5 @@
 package com.wiinvent.gami.domain.entities;
 
-import com.wiinvent.gami.domain.entities.base.BaseEntity;
 import com.wiinvent.gami.domain.entities.type.UserNotifyType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

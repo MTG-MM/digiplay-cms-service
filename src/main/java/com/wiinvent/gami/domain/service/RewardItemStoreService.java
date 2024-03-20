@@ -1,9 +1,9 @@
 package com.wiinvent.gami.domain.service;
 
-import com.wiinvent.gami.app.controller.dto.RewardItemStoreCreateDto;
-import com.wiinvent.gami.app.controller.dto.RewardItemStoreUpdateDto;
-import com.wiinvent.gami.app.controller.response.RewardItemStoreResponse;
-import com.wiinvent.gami.app.controller.response.base.PageResponse;
+import com.wiinvent.gami.domain.dto.RewardItemStoreCreateDto;
+import com.wiinvent.gami.domain.dto.RewardItemStoreUpdateDto;
+import com.wiinvent.gami.domain.response.RewardItemStoreResponse;
+import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.entities.RewardItemStore;
 import com.wiinvent.gami.domain.entities.type.StoreType;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;

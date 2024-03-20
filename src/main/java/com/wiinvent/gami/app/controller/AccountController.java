@@ -1,9 +1,9 @@
 package com.wiinvent.gami.app.controller;
 
 import com.wiinvent.gami.app.controller.base.BaseController;
-import com.wiinvent.gami.app.controller.dto.AccountDto;
-import com.wiinvent.gami.app.controller.response.AccountResponse;
-import com.wiinvent.gami.app.controller.response.base.PageResponse;
+import com.wiinvent.gami.domain.dto.AccountDto;
+import com.wiinvent.gami.domain.response.AccountResponse;
+import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.security.service.UserDetailsImpl;
 import com.wiinvent.gami.domain.service.AccountService;
 import io.swagger.v3.oas.annotations.Parameter;

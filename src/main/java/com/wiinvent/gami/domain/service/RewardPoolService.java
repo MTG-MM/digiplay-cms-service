@@ -1,6 +1,6 @@
 package com.wiinvent.gami.domain.service;
 
-import com.wiinvent.gami.app.controller.response.RewardResponse;
+import com.wiinvent.gami.domain.response.RewardResponse;
 import com.wiinvent.gami.domain.entities.type.PeriodLimitType;
 import com.wiinvent.gami.domain.exception.BadRequestException;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;

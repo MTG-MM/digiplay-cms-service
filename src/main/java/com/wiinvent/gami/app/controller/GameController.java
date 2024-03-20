@@ -1,10 +1,10 @@
 package com.wiinvent.gami.app.controller;
 
 import com.wiinvent.gami.app.controller.base.BaseController;
-import com.wiinvent.gami.app.controller.dto.GameCreateDto;
-import com.wiinvent.gami.app.controller.dto.GameUpdateDto;
-import com.wiinvent.gami.app.controller.response.GameResponse;
-import com.wiinvent.gami.app.controller.response.base.PageResponse;
+import com.wiinvent.gami.domain.dto.GameCreateDto;
+import com.wiinvent.gami.domain.dto.GameUpdateDto;
+import com.wiinvent.gami.domain.response.GameResponse;
+import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.security.service.UserDetailsImpl;
 import com.wiinvent.gami.domain.service.GameService;
 import io.swagger.v3.oas.annotations.Parameter;

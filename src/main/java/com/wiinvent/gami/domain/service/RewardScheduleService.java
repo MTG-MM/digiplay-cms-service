@@ -1,8 +1,8 @@
 package com.wiinvent.gami.domain.service;
 
-import com.wiinvent.gami.app.controller.dto.RewardScheduleDto;
-import com.wiinvent.gami.app.controller.dto.RewardScheduleUpdateDto;
-import com.wiinvent.gami.app.controller.response.RewardScheduleResponse;
+import com.wiinvent.gami.domain.dto.RewardScheduleDto;
+import com.wiinvent.gami.domain.dto.RewardScheduleUpdateDto;
+import com.wiinvent.gami.domain.response.RewardScheduleResponse;
 import com.wiinvent.gami.domain.entities.*;
 import com.wiinvent.gami.domain.entities.type.PeriodType;
 import com.wiinvent.gami.domain.entities.type.RewardItemType;

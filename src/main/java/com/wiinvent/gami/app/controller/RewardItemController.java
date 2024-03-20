@@ -1,8 +1,8 @@
 package com.wiinvent.gami.app.controller;
 
-import com.wiinvent.gami.app.controller.dto.RewardItemDto;
-import com.wiinvent.gami.app.controller.response.RewardItemResponse;
-import com.wiinvent.gami.app.controller.response.base.PageResponse;
+import com.wiinvent.gami.domain.dto.RewardItemDto;
+import com.wiinvent.gami.domain.response.RewardItemResponse;
+import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.entities.type.RewardItemType;
 import com.wiinvent.gami.domain.service.RewardItemService;
 import io.swagger.v3.oas.annotations.Parameter;

@@ -1,8 +1,8 @@
 package com.wiinvent.gami.domain.service;
 
-import com.wiinvent.gami.app.controller.dto.RewardSegmentDetailDto;
-import com.wiinvent.gami.app.controller.dto.RewardSegmentDetailsUpdateDto;
-import com.wiinvent.gami.app.controller.response.RewardSegmentDetailResponse;
+import com.wiinvent.gami.domain.dto.RewardSegmentDetailDto;
+import com.wiinvent.gami.domain.dto.RewardSegmentDetailsUpdateDto;
+import com.wiinvent.gami.domain.response.RewardSegmentDetailResponse;
 import com.wiinvent.gami.domain.entities.RewardItem;
 import com.wiinvent.gami.domain.entities.RewardSegmentDetail;
 import com.wiinvent.gami.domain.entities.type.PeriodLimitType;

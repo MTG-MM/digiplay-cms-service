@@ -1,7 +1,7 @@
 package com.wiinvent.gami.domain.service;
 
-import com.wiinvent.gami.app.controller.response.VoucherDetailResponse;
-import com.wiinvent.gami.app.controller.response.base.PageResponse;
+import com.wiinvent.gami.domain.response.VoucherDetailResponse;
+import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.entities.type.RewardItemStatus;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.entities.type.StoreType;

@@ -1,7 +1,7 @@
 package com.wiinvent.gami.app.controller;
 
-import com.wiinvent.gami.app.controller.response.VoucherDetailResponse;
-import com.wiinvent.gami.app.controller.response.base.PageResponse;
+import com.wiinvent.gami.domain.response.VoucherDetailResponse;
+import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.VoucherDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;

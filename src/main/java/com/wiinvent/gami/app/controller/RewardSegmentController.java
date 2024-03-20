@@ -1,10 +1,10 @@
 package com.wiinvent.gami.app.controller;
 
 
-import com.wiinvent.gami.app.controller.dto.ChooseRewardItemSegmentDto;
-import com.wiinvent.gami.app.controller.dto.RewardSegmentDto;
-import com.wiinvent.gami.app.controller.response.RewardSegmentResponse;
-import com.wiinvent.gami.app.controller.response.base.PageResponse;
+import com.wiinvent.gami.domain.dto.ChooseRewardItemSegmentDto;
+import com.wiinvent.gami.domain.dto.RewardSegmentDto;
+import com.wiinvent.gami.domain.response.RewardSegmentResponse;
+import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.RewardSegmentService;
 import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;

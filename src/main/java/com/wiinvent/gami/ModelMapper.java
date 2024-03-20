@@ -1,7 +1,7 @@
 package com.wiinvent.gami;
 
-import com.wiinvent.gami.app.controller.dto.*;
-import com.wiinvent.gami.app.controller.response.*;
+import com.wiinvent.gami.domain.dto.*;
+import com.wiinvent.gami.domain.response.*;
 import com.wiinvent.gami.domain.entities.*;
 import com.wiinvent.gami.domain.pojo.TokenInfo;
 import org.mapstruct.Mapper;

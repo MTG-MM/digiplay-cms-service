@@ -1,8 +1,8 @@
 package com.wiinvent.gami.domain.service;
 
-import com.wiinvent.gami.app.controller.dto.RewardSegmentDto;
-import com.wiinvent.gami.app.controller.response.RewardSegmentResponse;
-import com.wiinvent.gami.app.controller.response.base.PageResponse;
+import com.wiinvent.gami.domain.dto.RewardSegmentDto;
+import com.wiinvent.gami.domain.response.RewardSegmentResponse;
+import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.entities.RewardItem;
 import com.wiinvent.gami.domain.entities.RewardSegment;
 import com.wiinvent.gami.domain.entities.RewardSegmentDetail;

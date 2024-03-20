@@ -1,6 +1,6 @@
 package com.wiinvent.gami.app.controller;
 
-import com.wiinvent.gami.app.controller.dto.LoginDto;
+import com.wiinvent.gami.domain.dto.LoginDto;
 import com.wiinvent.gami.domain.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

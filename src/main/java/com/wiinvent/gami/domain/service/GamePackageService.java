@@ -1,11 +1,11 @@
 package com.wiinvent.gami.domain.service;
 
-import com.wiinvent.gami.app.controller.dto.GameCreateDto;
-import com.wiinvent.gami.app.controller.dto.GamePackageCreateDto;
-import com.wiinvent.gami.app.controller.dto.GamePackageUpdateDto;
-import com.wiinvent.gami.app.controller.dto.GameUpdateDto;
-import com.wiinvent.gami.app.controller.response.GamePackageResponse;
-import com.wiinvent.gami.app.controller.response.GameResponse;
+import com.wiinvent.gami.domain.dto.GameCreateDto;
+import com.wiinvent.gami.domain.dto.GamePackageCreateDto;
+import com.wiinvent.gami.domain.dto.GamePackageUpdateDto;
+import com.wiinvent.gami.domain.dto.GameUpdateDto;
+import com.wiinvent.gami.domain.response.GamePackageResponse;
+import com.wiinvent.gami.domain.response.GameResponse;
 import com.wiinvent.gami.domain.entities.Game;
 import com.wiinvent.gami.domain.entities.GamePackage;
 import com.wiinvent.gami.domain.exception.BadRequestException;

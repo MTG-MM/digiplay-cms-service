@@ -1,10 +1,10 @@
 package com.wiinvent.gami.app.controller;
 
 import com.wiinvent.gami.app.controller.base.BaseController;
-import com.wiinvent.gami.app.controller.dto.GamePackageCreateDto;
-import com.wiinvent.gami.app.controller.dto.GamePackageUpdateDto;
-import com.wiinvent.gami.app.controller.response.GamePackageResponse;
-import com.wiinvent.gami.app.controller.response.base.PageResponse;
+import com.wiinvent.gami.domain.dto.GamePackageCreateDto;
+import com.wiinvent.gami.domain.dto.GamePackageUpdateDto;
+import com.wiinvent.gami.domain.response.GamePackageResponse;
+import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.GamePackageService;
 import io.swagger.v3.oas.annotations.Parameter;
 import org.springdoc.core.converters.models.PageableAsQueryParam;

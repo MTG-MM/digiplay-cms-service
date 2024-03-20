@@ -1,9 +1,9 @@
 package com.wiinvent.gami.domain.service;
 
-import com.wiinvent.gami.app.controller.dto.AccountDto;
-import com.wiinvent.gami.app.controller.dto.LoginDto;
-import com.wiinvent.gami.app.controller.response.AccountResponse;
-import com.wiinvent.gami.app.controller.response.TokenResponse;
+import com.wiinvent.gami.domain.dto.AccountDto;
+import com.wiinvent.gami.domain.dto.LoginDto;
+import com.wiinvent.gami.domain.response.AccountResponse;
+import com.wiinvent.gami.domain.response.TokenResponse;
 import com.wiinvent.gami.domain.entities.Account;
 import com.wiinvent.gami.domain.entities.type.AccountRole;
 import com.wiinvent.gami.domain.entities.type.AccountState;

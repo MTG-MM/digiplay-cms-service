@@ -1,8 +1,8 @@
 package com.wiinvent.gami.app.controller;
 
-import com.wiinvent.gami.app.controller.dto.RewardTypeDto;
-import com.wiinvent.gami.app.controller.dto.RewardTypeUpdateDto;
-import com.wiinvent.gami.app.controller.response.RewardTypeResponse;
+import com.wiinvent.gami.domain.dto.RewardTypeDto;
+import com.wiinvent.gami.domain.dto.RewardTypeUpdateDto;
+import com.wiinvent.gami.domain.response.RewardTypeResponse;
 import com.wiinvent.gami.domain.service.RewardTypeService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

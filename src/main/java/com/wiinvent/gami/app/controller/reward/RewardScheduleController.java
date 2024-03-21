@@ -3,7 +3,7 @@ package com.wiinvent.gami.app.controller.reward;
 import com.wiinvent.gami.domain.dto.RewardScheduleDto;
 import com.wiinvent.gami.domain.dto.RewardScheduleUpdateDto;
 import com.wiinvent.gami.domain.response.RewardScheduleResponse;
-import com.wiinvent.gami.domain.service.RewardScheduleService;
+import com.wiinvent.gami.domain.service.reward.RewardScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;

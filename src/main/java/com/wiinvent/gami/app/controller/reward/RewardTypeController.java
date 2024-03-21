@@ -3,7 +3,7 @@ package com.wiinvent.gami.app.controller.reward;
 import com.wiinvent.gami.domain.dto.RewardTypeDto;
 import com.wiinvent.gami.domain.dto.RewardTypeUpdateDto;
 import com.wiinvent.gami.domain.response.RewardTypeResponse;
-import com.wiinvent.gami.domain.service.RewardTypeService;
+import com.wiinvent.gami.domain.service.reward.RewardTypeService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

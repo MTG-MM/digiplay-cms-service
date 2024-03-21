@@ -4,7 +4,7 @@ import com.wiinvent.gami.app.controller.BaseController;
 import com.wiinvent.gami.domain.dto.GamePackageCreateDto;
 import com.wiinvent.gami.domain.dto.GamePackageUpdateDto;
 import com.wiinvent.gami.domain.response.GamePackageResponse;
-import com.wiinvent.gami.domain.service.GamePackageService;
+import com.wiinvent.gami.domain.service.game.GamePackageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;

@@ -9,7 +9,6 @@ import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.entities.type.RewardItemStatus;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.entities.type.StoreType;
-import com.wiinvent.gami.domain.service.base.BaseService;
 import com.wiinvent.gami.domain.utils.DateUtils;
 import com.wiinvent.gami.domain.entities.*;
 import lombok.extern.log4j.Log4j2;

@@ -5,7 +5,7 @@ import com.wiinvent.gami.domain.dto.ChooseRewardItemSegmentDto;
 import com.wiinvent.gami.domain.dto.RewardSegmentDto;
 import com.wiinvent.gami.domain.response.RewardSegmentResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
-import com.wiinvent.gami.domain.service.RewardSegmentService;
+import com.wiinvent.gami.domain.service.reward.RewardSegmentService;
 import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import org.springdoc.core.converters.models.PageableAsQueryParam;

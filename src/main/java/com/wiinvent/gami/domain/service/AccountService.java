@@ -11,7 +11,7 @@ import com.wiinvent.gami.domain.exception.BadRequestException;
 import com.wiinvent.gami.domain.security.jwt.JwtService;
 import com.wiinvent.gami.domain.security.service.UserDetailsImpl;
 import com.wiinvent.gami.domain.security.service.UserSecurityService;
-import com.wiinvent.gami.domain.service.base.BaseService;
+import com.wiinvent.gami.domain.service.user.UserService;
 import com.wiinvent.gami.domain.utils.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -27,7 +27,8 @@ public class AccountService extends BaseService {
 
   @Autowired JwtService jwtService;
 
-  @Autowired UserService userService;
+  @Autowired
+  UserService userService;
 
   @Autowired @Lazy UserSecurityService userSecurityService;
 

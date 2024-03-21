@@ -4,7 +4,7 @@ package com.wiinvent.gami.app.controller.reward;
 import com.wiinvent.gami.domain.dto.RewardSegmentDetailDto;
 import com.wiinvent.gami.domain.dto.RewardSegmentDetailsUpdateDto;
 import com.wiinvent.gami.domain.response.RewardSegmentDetailResponse;
-import com.wiinvent.gami.domain.service.RewardSegmentDetailService;
+import com.wiinvent.gami.domain.service.reward.RewardSegmentDetailService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

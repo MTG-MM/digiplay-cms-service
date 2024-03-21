@@ -5,7 +5,7 @@ import com.wiinvent.gami.domain.dto.GameCreateDto;
 import com.wiinvent.gami.domain.dto.GameUpdateDto;
 import com.wiinvent.gami.domain.response.GameResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
-import com.wiinvent.gami.domain.service.GameService;
+import com.wiinvent.gami.domain.service.game.GameService;
 import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import org.springdoc.core.converters.models.PageableAsQueryParam;

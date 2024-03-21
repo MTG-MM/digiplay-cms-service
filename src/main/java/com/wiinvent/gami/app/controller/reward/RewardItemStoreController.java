@@ -5,7 +5,7 @@ import com.wiinvent.gami.domain.dto.RewardItemStoreUpdateDto;
 import com.wiinvent.gami.domain.response.RewardItemStoreResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.entities.type.StoreType;
-import com.wiinvent.gami.domain.service.RewardItemStoreService;
+import com.wiinvent.gami.domain.service.reward.RewardItemStoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;

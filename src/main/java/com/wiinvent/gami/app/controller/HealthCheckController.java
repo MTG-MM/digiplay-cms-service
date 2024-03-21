@@ -2,7 +2,7 @@ package com.wiinvent.gami.app.controller;
 
 import com.wiinvent.gami.domain.service.AccountService;
 import com.wiinvent.gami.domain.service.ProductDetailService;
-import com.wiinvent.gami.domain.service.RewardScheduleService;
+import com.wiinvent.gami.domain.service.reward.RewardScheduleService;
 import com.wiinvent.gami.domain.service.VoucherDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

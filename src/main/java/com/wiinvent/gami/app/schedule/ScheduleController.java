@@ -1,7 +1,7 @@
 package com.wiinvent.gami.app.schedule;
 
-import com.wiinvent.gami.domain.service.RewardItemStatisticService;
-import com.wiinvent.gami.domain.service.RewardScheduleService;
+import com.wiinvent.gami.domain.service.reward.RewardItemStatisticService;
+import com.wiinvent.gami.domain.service.reward.RewardScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

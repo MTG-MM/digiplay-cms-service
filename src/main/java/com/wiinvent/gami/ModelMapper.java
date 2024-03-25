@@ -4,6 +4,7 @@ import com.wiinvent.gami.domain.dto.*;
 import com.wiinvent.gami.domain.entities.game.Game;
 import com.wiinvent.gami.domain.entities.game.GamePackage;
 import com.wiinvent.gami.domain.entities.reward.*;
+import com.wiinvent.gami.domain.entities.user.User;
 import com.wiinvent.gami.domain.entities.user.UserSegment;
 import com.wiinvent.gami.domain.response.*;
 import com.wiinvent.gami.domain.entities.*;
@@ -135,4 +136,6 @@ public interface ModelMapper {
   void mapUserSegmentDtoToUserSegment(UserSegmentDto userSegmentDto,@MappingTarget UserSegment userSegment);
 
   List<RewardItemHistoryResponse> toListRewardItemHistoryResponse(List<RewardItemHistory> rewardItemHistories);
+
+  List<UserResponse> toListUserResponse(List<User> users);
 }

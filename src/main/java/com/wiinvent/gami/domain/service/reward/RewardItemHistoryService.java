@@ -15,16 +15,9 @@ public class RewardItemHistoryService extends BaseService {
 
 
   public PageCursorResponse<RewardItemHistoryResponse> getRewardItemHistory(UUID userId, Long next, Long pre, int limit) {
-    CursorType type;
+
     List<RewardItemHistory> rewardItemHistories = rewardItemHistoryStorage.findAll(userId, next, pre, limit);
     List<RewardItemHistoryResponse> responses = modelMapper.toListRewardItemHistoryResponse(rewardItemHistories);
-    if (next == null && pre == null) {
-      type = CursorType.FIRST;
-    } else if (next != null) {
-      type = CursorType.NEXT;
-    } else {
-      type = CursorType.PRE;
-    }
-    return new PageCursorResponse<>(responses, limit, type, "createdAt");
+    return new PageCursorResponse<>(responses, limit, next, pre, "createdAt");
   }
 }

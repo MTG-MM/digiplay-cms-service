@@ -51,16 +51,10 @@ public class RewardItemHistoryStorage extends BaseStorage {
         conditionsList.add(criteriaBuilder.between(rwItemHistory.get("createdAt"), pre, next));
       }
 
-      // Thêm điều kiện limit
-      query.orderBy(criteriaBuilder.desc(rwItemHistory.get("createdAt"))); // Sắp xếp theo createdAt giảm dần
-
-      // Tạo một CriteriaQuery<RewardItemHistory> mới từ CriteriaBuilder
+      query.orderBy(criteriaBuilder.desc(rwItemHistory.get("createdAt")));
       CriteriaQuery<RewardItemHistory> typedCriteriaQuery = criteriaBuilder.createQuery(RewardItemHistory.class);
 
-      // Copy các điều kiện từ query cũ sang typedCriteriaQuery
       typedCriteriaQuery.select(typedCriteriaQuery.from(RewardItemHistory.class)).where(query.getRestriction());
-
-      // Tạo TypedQuery<RewardItemHistory> từ EntityManager
       TypedQuery<RewardItemHistory> typedQuery = entityManager.createQuery(typedCriteriaQuery);
       typedQuery.setMaxResults(limit);
 

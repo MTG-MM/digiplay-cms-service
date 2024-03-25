@@ -23,4 +23,5 @@ public class Constant {
   public static final String PAYMENT_METHOD_NOT_READY = "Hiện không hỗ trợ phương thức thanh toán này";
   public static final String USER_WAS_SEND_INVITE_FRIEND = "Bạn đã gửi lời mời kết bạn tới người này";
   public static final String USER_WAS_RECEIVE_INVITE_FRIEND = "Người bạn đã nhận được lời mời kết bạn";
+  public static final String CREATED_AT_VARIABLE = "createdAt";
 }

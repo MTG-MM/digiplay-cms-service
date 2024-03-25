@@ -13,12 +13,14 @@ import com.wiinvent.gami.domain.repositories.user.UserRepository;
 import com.wiinvent.gami.domain.repositories.user.UserSegmentRepository;
 import com.wiinvent.gami.domain.utils.CacheKey;
 import com.wiinvent.gami.domain.utils.RemoteCache;
+import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public abstract class BaseStorage {
 
+  @Autowired protected EntityManager entityManager;
   @Autowired protected RemoteCache remoteCache;
   @Autowired protected CacheKey cacheKey;
   @Autowired protected AccountRepository accountRepository;

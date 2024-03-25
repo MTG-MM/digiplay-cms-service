@@ -51,8 +51,7 @@ public class RewardSegmentDetailService extends BaseService {
     return modelMapper.toRewardSegmentDetailResponses(rewardSegmentDetails);
   }
 
-  public Specification<RewardSegmentDetail> rwSegmentDetailCondition(
-      Long rwSegmentId) {
+  public Specification<RewardSegmentDetail> rwSegmentDetailCondition(Long rwSegmentId) {
     return (rwSegmentDetailRoot, query, criteriaBuilder) -> {
       List<Predicate> conditionsList = new ArrayList<>();
 

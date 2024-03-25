@@ -5,10 +5,12 @@ import lombok.extern.log4j.Log4j2;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 @Log4j2
 public class Helper {
 
+  static Random random = new Random();
   public static Map<String, Object> convertObjectToMap(Object object){
     try{
       Map<String, Object> map = new HashMap<>();
@@ -50,13 +52,8 @@ public class Helper {
     return (long) processQuantity;
   }
 
-  public static void main(String[] args) {
-    int a = 10;
-    int b = 3;
-    double processQuantity = Math.ceil((double) a / b);
-    System.out.println((int) a / b);
-    System.out.println((double) a / (double)b);
-    System.out.println(processQuantity);
-    System.out.println((int) processQuantity);
+  public static long randomBetween(int min, int max) {
+    return random.nextInt(min, max + 1);
   }
+
 }

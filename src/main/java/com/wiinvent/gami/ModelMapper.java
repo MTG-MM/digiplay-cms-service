@@ -4,9 +4,11 @@ import com.wiinvent.gami.domain.dto.*;
 import com.wiinvent.gami.domain.entities.game.Game;
 import com.wiinvent.gami.domain.entities.game.GamePackage;
 import com.wiinvent.gami.domain.entities.reward.*;
+import com.wiinvent.gami.domain.entities.user.UserSegment;
 import com.wiinvent.gami.domain.response.*;
 import com.wiinvent.gami.domain.entities.*;
 import com.wiinvent.gami.domain.pojo.TokenInfo;
+import com.wiinvent.gami.domain.response.base.PageResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 import org.springframework.data.domain.Page;
@@ -121,4 +123,16 @@ public interface ModelMapper {
   GamePackage toGamePackage(GamePackageCreateDto gamePackageCreateDto);
 
   void mapGamePackageUpdateDtoToGamePackage(GamePackageUpdateDto dto,@MappingTarget GamePackage gamePackage);
+
+  UserSegmentResponse toUserSegmentResponse(UserSegment userSegment);
+
+  default Page<UserSegmentResponse> toPageUserSegmentResponse(Page<UserSegment> userSegments){
+    return userSegments.map(this::toUserSegmentResponse);
+  }
+
+  UserSegment toUserSegment(UserSegmentDto userSegmentDto);
+
+  void mapUserSegmentDtoToUserSegment(UserSegmentDto userSegmentDto,@MappingTarget UserSegment userSegment);
+
+  List<RewardItemHistoryResponse> toListRewardItemHistoryResponse(List<RewardItemHistory> rewardItemHistories);
 }

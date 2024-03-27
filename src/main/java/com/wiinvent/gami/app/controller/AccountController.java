@@ -31,6 +31,13 @@ public class AccountController extends BaseController {
     return ResponseEntity.ok(true);
   }
 
+  @PostMapping("")
+  @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR') or hasRole('PUBLISHER') or hasRole('READ_PUBLISHER')" )
+  public ResponseEntity<AccountResponse> createAccount(Authentication authentication) {
+    UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+    return ResponseEntity.ok(accountService.getAccountDetail(userDetails.getId()));
+  }
+
   @GetMapping("")
   @PageableAsQueryParam
   public ResponseEntity<PageResponse<AccountResponse>> getAllAccount(

@@ -70,6 +70,14 @@ public class AccountService extends BaseService {
     accountStorage.save(newAccount);
   }
 
+  public AccountResponse getAccountDetail(UUID accountId){
+    Account account = accountStorage.findById(accountId);
+    if(account == null){
+      throw new BadRequestException(Constant.USER_NOT_FOUND);
+    }
+    return modelMapper.toAccountResponse(account);
+  }
+
   public boolean initAdminAccount() {
     Account account = new Account();
     account.setId(UUID.fromString("00000000-0000-0000-0000-0000000000"));

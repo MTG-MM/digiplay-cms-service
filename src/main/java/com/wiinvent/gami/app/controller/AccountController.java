@@ -38,6 +38,12 @@ public class AccountController extends BaseController {
     return ResponseEntity.ok(accountService.getAccountDetail(userDetails.getId()));
   }
 
+  @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR') or hasRole('PUBLISHER') or hasRole('READ_PUBLISHER')" )
+  @DeleteMapping("/accounts/{username}")
+  public ResponseEntity<Boolean> deleteAccount(@PathVariable String username) {
+    return ResponseEntity.ok(accountService.delete(username));
+  }
+
   @GetMapping("")
   @PageableAsQueryParam
   public ResponseEntity<PageResponse<AccountResponse>> getAllAccount(

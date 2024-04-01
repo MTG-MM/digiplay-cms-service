@@ -138,4 +138,5 @@ public interface ModelMapper {
   List<RewardItemHistoryResponse> toListRewardItemHistoryResponse(List<RewardItemHistory> rewardItemHistories);
 
   List<UserResponse> toListUserResponse(List<User> users);
+  UserResponse toUserResponse(User user);
 }

@@ -1,6 +1,7 @@
 package com.wiinvent.gami.domain.service.user;
 
 import com.wiinvent.gami.domain.entities.user.User;
+import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.response.UserResponse;
 import com.wiinvent.gami.domain.response.base.PageCursorResponse;
 import com.wiinvent.gami.domain.response.type.CursorType;
@@ -31,6 +32,14 @@ public class UserService extends BaseService {
     List<User> users = userStorage.findAll(userId, phoneNumber, next, pre, limit);
     List<UserResponse> responses = modelMapper.toListUserResponse(users);
     return new PageCursorResponse<>(responses, limit, next, pre, Constant.CREATED_AT_VARIABLE);
+  }
+
+  public UserResponse getUserDetail(UUID userId){
+    User user = userStorage.findById(userId);
+    if (user == null) {
+      throw new ResourceNotFoundException("User id not found");
+    }
+    return modelMapper.toUserResponse(user);
   }
 
   public PageCursorResponse<UserResponse> getPageUser

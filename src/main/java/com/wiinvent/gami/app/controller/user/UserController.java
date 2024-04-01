@@ -1,5 +1,6 @@
 package com.wiinvent.gami.app.controller.user;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.wiinvent.gami.domain.response.UserResponse;
 import com.wiinvent.gami.domain.response.base.PageCursorResponse;
 import com.wiinvent.gami.domain.service.user.UserService;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @RestController
@@ -26,8 +28,10 @@ public class UserController {
       @RequestParam(required = false) String phoneNumber,
       @RequestParam(required = false) Long next,
       @RequestParam(required = false) Long pre,
-      @RequestParam(required = false, defaultValue = "20") int limit
+      @RequestParam(required = false, defaultValue = "20") Integer limit,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate gte,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte
   ) {
-    return ResponseEntity.ok(userService.getAllUsers(userId, phoneNumber, next, pre, limit));
+    return ResponseEntity.ok(userService.getPageUser(userId, phoneNumber, next, pre, limit, gte, lte));
   }
 }

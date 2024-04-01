@@ -24,21 +24,19 @@ public class UserResponse {
 
   private String imageUrl;
 
-  private String currentAddress;
-
   private String displayName;
 
   private String birth;
 
   private Long userSegmentId;
 
-  private String inviteCode; // Mã mời của tài khoản bản thân
-
-  private String invitedCode; // Mã mời bản thân đã nhập
+//  private String inviteCode; // Mã mời của tài khoản bản thân
+//
+//  private String invitedCode; // Mã mời bản thân đã nhập
 
   public Long lastLogin;
 
-  private Boolean isEmailVerify;
+//  private Boolean isEmailVerify;
 
-  private Boolean isPhoneNumberVerify;
+//  private Boolean isPhoneNumberVerify;
 }

@@ -1,16 +1,23 @@
 package com.wiinvent.gami.domain.stores.user;
 
 import com.wiinvent.gami.domain.entities.user.User;
+import com.wiinvent.gami.domain.response.UserResponse;
+import com.wiinvent.gami.domain.response.base.PageCursorResponse;
+import com.wiinvent.gami.domain.response.type.CursorType;
 import com.wiinvent.gami.domain.stores.BaseStorage;
 import com.wiinvent.gami.domain.utils.Constant;
 import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 @Component
@@ -60,5 +67,36 @@ public class UserStorage extends BaseStorage {
 
       return criteriaBuilder.and(conditionsList.toArray(new Predicate[0]));
     };
+  }
+
+  public List<User> findAllUser
+      (UUID userId, String phoneNumber, Long next, Long pre, Integer limit, Long startDate, Long endDate, CursorType type){
+    CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+    CriteriaQuery<User> query = criteriaBuilder.createQuery(User.class);
+    Root<User> root = query.from(User.class);
+    List<Predicate> conditionList = new ArrayList<>();
+    if (userId != null){
+      conditionList.add(criteriaBuilder.equal(root.get("id"), userId));
+    }
+    if (phoneNumber != null){
+      conditionList.add(criteriaBuilder.equal(root.get("phoneNumber"), phoneNumber));
+    }
+    if (startDate != null && endDate != null){
+      conditionList.add(criteriaBuilder.and(criteriaBuilder.greaterThan(root.get("createdAt"), startDate),
+          criteriaBuilder.lessThan(root.get("createdAt"), endDate)));
+    }
+
+    conditionList.add(criteriaBuilder.and(criteriaBuilder.greaterThan(root.get("createdAt"), pre),
+        criteriaBuilder.lessThan(root.get("createdAt"), next)));
+    if (type == CursorType.NEXT || type == CursorType.FIRST){
+      query.where(criteriaBuilder.and(conditionList.toArray(new Predicate[0])))
+          .orderBy(criteriaBuilder.desc(root.get("createdAt")));
+    }else if (type == CursorType.PRE){
+      query.where(criteriaBuilder.and(conditionList.toArray(new Predicate[0])))
+          .orderBy(criteriaBuilder.asc(root.get("createdAt")));
+    }
+    TypedQuery<User> typedQuery = entityManager.createQuery(query);
+    typedQuery.setMaxResults(limit);
+    return typedQuery.getResultList();
   }
 }

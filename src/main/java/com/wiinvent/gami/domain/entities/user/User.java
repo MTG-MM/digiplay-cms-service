@@ -63,6 +63,7 @@ public class User extends BaseEntity {
   @Column(name = "level", length = 50)
   private String level;
 
+
   public void addPointForUser(long amount){
     point += amount;
   }

@@ -3,13 +3,18 @@ package com.wiinvent.gami.domain.utils;
 import lombok.extern.log4j.Log4j2;
 
 import java.lang.reflect.Field;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
 @Log4j2
 public class Helper {
+  public static String ZONE_UTC = "UTC";
 
+  public static String ZONE_DEFAULT = "Asia/Ho_Chi_Minh";
   static Random random = new Random();
   public static Map<String, Object> convertObjectToMap(Object object){
     try{
@@ -56,4 +61,15 @@ public class Helper {
     return random.nextInt(min, max + 1);
   }
 
+  public static Long startOfDaytoLong(LocalDate dateTime) {
+    return dateTime.atTime(LocalTime.MIN).atZone(ZoneId.of(ZONE_DEFAULT)).withZoneSameInstant(ZoneId.of(ZONE_UTC)).toInstant().toEpochMilli();
+  }
+
+  public static Long endOfDaytoLong(LocalDate dateTime) {
+    return dateTime.atTime(LocalTime.MAX).atZone(ZoneId.of(ZONE_DEFAULT)).withZoneSameInstant(ZoneId.of(ZONE_UTC)).toInstant().toEpochMilli();
+  }
+
+  public static Long getNowMillisAtUtc() {
+    return System.currentTimeMillis();
+  }
 }

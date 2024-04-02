@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 public class PaymentTransactionResponse {
+  private String id;
   private String packageCode;
   private String packageInfo;
   private Integer price;

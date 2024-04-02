@@ -38,6 +38,9 @@ spring:
         order_updates: true
         continue-on-error: true
 aes-secret: ${AES_SECRET}
+file:
+  dir: ${FILE_DIR:/data/html/static.dev.wiinvent.tv}
+  url: ${FILE_URL:https://static.dev.wiinvent.co}
 springdoc:
   api-docs:
     path: /v1/cms/docs/api/index.html

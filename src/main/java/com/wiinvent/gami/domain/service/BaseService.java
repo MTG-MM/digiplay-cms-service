@@ -7,6 +7,7 @@ import com.wiinvent.gami.domain.stores.payment.PaymentMethodStorage;
 import com.wiinvent.gami.domain.stores.payment.PaymentTransactionStorage;
 import com.wiinvent.gami.domain.stores.reward.*;
 import com.wiinvent.gami.domain.stores.user.UserNotifyStorage;
+import com.wiinvent.gami.domain.stores.user.UserProfileStorage;
 import com.wiinvent.gami.domain.stores.user.UserSegmentStorage;
 import com.wiinvent.gami.domain.stores.user.UserStorage;
 import com.wiinvent.gami.domain.utils.CacheKey;
@@ -46,5 +47,5 @@ public abstract class BaseService {
   @Autowired protected GamePaymentTransactionStorage gamePaymentTransactionStorage;
   @Autowired protected FriendStorage friendStorage;
   @Autowired protected UserNotifyStorage userNotifyStorage;
-
+  @Autowired protected UserProfileStorage userProfileStorage;
 }

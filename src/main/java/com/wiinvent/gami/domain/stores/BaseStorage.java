@@ -9,6 +9,7 @@ import com.wiinvent.gami.domain.repositories.payment.PaymentMethodRepository;
 import com.wiinvent.gami.domain.repositories.payment.PaymentTransactionRepository;
 import com.wiinvent.gami.domain.repositories.reward.*;
 import com.wiinvent.gami.domain.repositories.user.UserNotifyRepository;
+import com.wiinvent.gami.domain.repositories.user.UserProfileRepository;
 import com.wiinvent.gami.domain.repositories.user.UserRepository;
 import com.wiinvent.gami.domain.repositories.user.UserSegmentRepository;
 import com.wiinvent.gami.domain.utils.CacheKey;
@@ -52,5 +53,5 @@ public abstract class BaseStorage {
   @Autowired protected PaymentTransactionRepository paymentTransactionRepository;
   @Autowired protected FriendRepository friendRepository;
   @Autowired protected UserNotifyRepository userNotifyRepository;
-
+  @Autowired protected UserProfileRepository userProfileRepository;
 }

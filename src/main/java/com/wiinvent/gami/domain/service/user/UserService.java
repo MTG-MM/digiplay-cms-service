@@ -1,6 +1,7 @@
 package com.wiinvent.gami.domain.service.user;
 
 import com.wiinvent.gami.domain.entities.user.User;
+import com.wiinvent.gami.domain.entities.user.UserProfile;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.response.UserResponse;
 import com.wiinvent.gami.domain.response.base.PageCursorResponse;
@@ -8,11 +9,14 @@ import com.wiinvent.gami.domain.response.type.CursorType;
 import com.wiinvent.gami.domain.service.BaseService;
 import com.wiinvent.gami.domain.utils.Constant;
 import com.wiinvent.gami.domain.utils.Helper;
+import org.jboss.marshalling.TraceInformation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService extends BaseService {
@@ -39,7 +43,14 @@ public class UserService extends BaseService {
     if (user == null) {
       throw new ResourceNotFoundException("User id not found");
     }
-    return modelMapper.toUserResponse(user);
+    UserResponse userResponse = modelMapper.toUserResponse(user);
+    UserProfile userProfile = userProfileStorage.findById(userResponse.getId());
+    userResponse.setFirstName(userProfile.getFirstName());
+    userResponse.setLastName(userProfile.getLastName());
+    userResponse.setEmail(userProfile.getEmail());
+    userResponse.setPhoneNumber(userProfile.getPhoneNumber());
+    userResponse.setBirth(userProfile.getBirth());
+    return userResponse;
   }
 
   public PageCursorResponse<UserResponse> getPageUser
@@ -64,7 +75,17 @@ public class UserService extends BaseService {
       users = userStorage.findAllUser(userId, phoneNumber, next, pre, limit, startDateLong, endDateLong, type);
       users = users.stream().sorted(Comparator.comparingLong(User::getCreatedAt).reversed()).toList();
     }
+    List<UUID> userIds = users.stream().map(User::getId).toList();
+    List<UserProfile> userProfiles = userProfileStorage.findAllByIdIn(userIds);
+    Map<UUID, UserProfile> userProfileMap = userProfiles.stream().collect(Collectors.toMap(UserProfile::getId, Function.identity()));
     List<UserResponse> userResponses = modelMapper.toListUserResponse(users);
+    userResponses.forEach(r -> {
+      r.setFirstName(userProfileMap.get(r.getId()).getFirstName());
+      r.setLastName(userProfileMap.get(r.getId()).getLastName());
+      r.setEmail(userProfileMap.get(r.getId()).getEmail());
+      r.setPhoneNumber(userProfileMap.get(r.getId()).getPhoneNumber());
+      r.setBirth(userProfileMap.get(r.getId()).getBirth());
+    });
     return new PageCursorResponse<>(userResponses, limit, next, pre, Constant.CREATED_AT_VARIABLE);
   }
 }

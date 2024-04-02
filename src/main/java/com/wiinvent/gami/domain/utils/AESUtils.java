@@ -11,7 +11,6 @@ import java.util.Base64;
 @Component
 @Log4j2
 public class AESUtils {
-
   public static final String TRANSFORMATION = "AES/ECB/PKCS5PADDING";
 
   @Value("${aes-secret}")

@@ -31,6 +31,12 @@ public class AccountController extends BaseController {
     return ResponseEntity.ok(true);
   }
 
+  @GetMapping("{accountId}")
+  @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')" )
+  public ResponseEntity<AccountResponse> getAccountDetail(@PathVariable UUID accountId) {
+    return ResponseEntity.ok(accountService.getAccountDetail(accountId));
+  }
+
   @GetMapping("profile")
   @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR') or hasRole('PUBLISHER') or hasRole('READ_PUBLISHER')" )
   public ResponseEntity<AccountResponse> getProfile(Authentication authentication) {

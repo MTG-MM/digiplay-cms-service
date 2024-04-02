@@ -47,6 +47,12 @@ springdoc:
   swagger-ui:
     path: /v1/cms/docs/index.html
     display-request-duration: true
+    syntax-highlight:
+      activated: true
+      theme: monokai
+    filter: true
+    tags-sorter: alpha
+    operations-sorter: alpha
 logging:
   level:
     org.springframework.web: ${LOG_LEVEL:debug}

@@ -1,11 +1,10 @@
-package com.wiinvent.gami.domain.utils;
+package com.wiinvent.gami.domain.utils.Converter;
 
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 @Converter
 @Component
 public class AesConverter implements AttributeConverter<String, String> {

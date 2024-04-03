@@ -1,13 +1,13 @@
 package com.wiinvent.gami.app.controller.user;
 
-import com.wiinvent.gami.domain.dto.UserSegmentDto;
+import com.wiinvent.gami.domain.dto.UserSegmentCreateDto;
+import com.wiinvent.gami.domain.dto.UserSegmentUpdateDto;
 import com.wiinvent.gami.domain.response.UserSegmentResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.user.UserSegmentService;
 import io.swagger.v3.oas.annotations.Parameter;
 import org.springdoc.core.converters.models.PageableAsQueryParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -37,13 +37,14 @@ public class UserSegmentController {
   }
 
   @PostMapping("")
-  public ResponseEntity<Boolean> createUserSegment(@RequestBody UserSegmentDto userSegmentDto){
-    userSegmentService.createUserSegment(userSegmentDto);
+  public ResponseEntity<Boolean> createUserSegment(@RequestBody UserSegmentCreateDto userSegmentCreateDto){
+    userSegmentService.createUserSegment(userSegmentCreateDto);
     return ResponseEntity.ok(true);
   }
+
   @PutMapping("{segmentId}")
-  public ResponseEntity<Boolean> updateUserSegment(@PathVariable long segmentId, @RequestBody UserSegmentDto userSegmentDto){
-    userSegmentService.updateUserSegment(segmentId, userSegmentDto);
+  public ResponseEntity<Boolean> updateUserSegment(@PathVariable long segmentId, @RequestBody UserSegmentUpdateDto userSegmentUpdateDto){
+    userSegmentService.updateUserSegment(segmentId, userSegmentUpdateDto);
     return ResponseEntity.ok(true);
   }
 

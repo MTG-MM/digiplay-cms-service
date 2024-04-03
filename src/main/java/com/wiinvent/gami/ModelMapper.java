@@ -1,7 +1,9 @@
 package com.wiinvent.gami;
 
 import com.wiinvent.gami.domain.dto.*;
+import com.wiinvent.gami.domain.entities.Package;
 import com.wiinvent.gami.domain.entities.Transaction.CoinTransaction;
+import com.wiinvent.gami.domain.entities.Transaction.ExpHistory;
 import com.wiinvent.gami.domain.entities.Transaction.PointTransaction;
 import com.wiinvent.gami.domain.entities.game.Game;
 import com.wiinvent.gami.domain.entities.game.GamePackage;
@@ -122,10 +124,15 @@ public interface ModelMapper {
 
   GamePackageResponse toGamePackageResponse(GamePackage gamePackage);
 
+  PackageResponse toPackageResponse(Package aPackage);
 
   GamePackage toGamePackage(GamePackageCreateDto gamePackageCreateDto);
 
+  Package toPackage(PackageCreateDto packageCreateDto);
+
   void mapGamePackageUpdateDtoToGamePackage(GamePackageUpdateDto dto,@MappingTarget GamePackage gamePackage);
+
+  void mapPackageUpdateDtoToPackage(PackageUpdateDto dto,@MappingTarget Package aPackage);
 
   UserSegmentResponse toUserSegmentResponse(UserSegment userSegment);
 
@@ -133,15 +140,16 @@ public interface ModelMapper {
     return userSegments.map(this::toUserSegmentResponse);
   }
 
-  UserSegment toUserSegment(UserSegmentDto userSegmentDto);
+  UserSegment toUserSegment(UserSegmentCreateDto userSegmentCreateDto);
 
-  void mapUserSegmentDtoToUserSegment(UserSegmentDto userSegmentDto,@MappingTarget UserSegment userSegment);
+  void mapUserSegmentDtoToUserSegment(UserSegmentUpdateDto userSegmentUpdateDto, @MappingTarget UserSegment userSegment);
 
   List<RewardItemHistoryResponse> toListRewardItemHistoryResponse(List<RewardItemHistory> rewardItemHistories);
   List<PaymentTransactionResponse> toPaymentTransactionResponse(List<PaymentTransaction> paymentTransactions);
 
   List<TransactionResponse> toCoinTransactionResponse(List<CoinTransaction> coinTransactions);
   List<TransactionResponse> toPointTransactionResponse(List<PointTransaction> pointTransactions);
+  List<TransactionResponse> toExpHistoryResponse(List<ExpHistory> expHistories);
   List<UserResponse> toListUserResponse(List<User> users);
   UserResponse toUserResponse(User user);
 }

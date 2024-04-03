@@ -1,6 +1,7 @@
 package com.wiinvent.gami.domain.entities.user;
 
 import com.wiinvent.gami.domain.entities.BaseEntity;
+import com.wiinvent.gami.domain.utils.Converter.UserSegmentRewardItemConverter;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -25,4 +26,23 @@ public class UserSegment extends BaseEntity {
 
   @Column(name = "max_priority")
   private Long maxPriority;
+
+  @Column(name = "level")
+  private Integer level;
+
+  @Column(name = "reward_items")
+  @Convert(converter = UserSegmentRewardItemConverter.class)
+  private UserSegmentRewardItems rewardItems;
+
+  @Column(name = "require_exp")
+  private Integer requireExp;
+
+  @Column(name = "point_limit")
+  private Integer pointLimit;
+
+  @Column(name = "point_bonus_rate")
+  private Integer pointBonusRate;
+
+  @Column(name = "sub_bonus_rate")
+  private Integer subBonusRate;
 }

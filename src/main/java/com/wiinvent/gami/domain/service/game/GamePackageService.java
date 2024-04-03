@@ -27,7 +27,6 @@ public class GamePackageService extends BaseService {
 
   public void createGamePackage(GamePackageCreateDto dto) {
     GamePackage gamePackage = modelMapper.toGamePackage(dto);
-    gamePackage.setPaymentMethodInfo(JsonParser.toJson(dto.getPaymentMethods()));
     gamePackageStorage.save(gamePackage);
   }
 
@@ -38,7 +37,6 @@ public class GamePackageService extends BaseService {
       throw new BadRequestException(Constant.GAME_PACKAGE_NOT_FOUND);
     }
     modelMapper.mapGamePackageUpdateDtoToGamePackage(dto, gamePackage);
-    gamePackage.setPaymentMethodInfo(JsonParser.toJson(dto.getPaymentMethods()));
     gamePackageStorage.save(gamePackage);
   }
 }

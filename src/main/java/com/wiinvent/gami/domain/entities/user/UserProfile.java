@@ -1,7 +1,7 @@
 package com.wiinvent.gami.domain.entities.user;
 
 import com.wiinvent.gami.domain.entities.BaseEntity;
-import com.wiinvent.gami.domain.utils.AesConverter;
+import com.wiinvent.gami.domain.utils.Converter.AesConverter;
 import jakarta.persistence.*;
 import lombok.*;
 

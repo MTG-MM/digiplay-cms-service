@@ -1,6 +1,7 @@
 package com.wiinvent.gami.domain.service.user;
 
-import com.wiinvent.gami.domain.dto.UserSegmentDto;
+import com.wiinvent.gami.domain.dto.UserSegmentCreateDto;
+import com.wiinvent.gami.domain.dto.UserSegmentUpdateDto;
 import com.wiinvent.gami.domain.entities.user.UserSegment;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.response.UserSegmentResponse;
@@ -27,16 +28,16 @@ public class UserSegmentService extends BaseService {
     return modelMapper.toPageUserSegmentResponse(userSegments);
   }
 
-  public void createUserSegment(UserSegmentDto userSegmentDto) {
-    UserSegment userSegment = modelMapper.toUserSegment(userSegmentDto);
+  public void createUserSegment(UserSegmentCreateDto userSegmentCreateDto) {
+    UserSegment userSegment = modelMapper.toUserSegment(userSegmentCreateDto);
     userSegmentStorage.save(userSegment);
   }
 
-  public void updateUserSegment(long id, UserSegmentDto userSegmentDto) {
+  public void updateUserSegment(long id, UserSegmentUpdateDto userSegmentUpdateDto) {
     UserSegment userSegment = userSegmentStorage.findById(id);
     if (userSegment == null) {
       throw new ResourceNotFoundException(Constant.USER_SEGMENT_NOT_FOUND);
     }
-    modelMapper.mapUserSegmentDtoToUserSegment(userSegmentDto, userSegment);
+    modelMapper.mapUserSegmentDtoToUserSegment(userSegmentUpdateDto, userSegment);
   }
 }

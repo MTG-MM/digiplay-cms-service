@@ -1,6 +1,7 @@
 package com.wiinvent.gami.domain.dto;
 
 import com.wiinvent.gami.domain.entities.payment.PaymentMethodInfo;
+import com.wiinvent.gami.domain.entities.type.PackageType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -12,14 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class GamePackageUpdateDto {
-
+public class PackageUpdateDto {
   @NotNull(message = "Không được để trống")
   @Size(max = 50)
   @NotEmpty
   @NotBlank(message = "Không được để trống")
   String code;
-
   @NotNull
   Integer point;
 
@@ -32,12 +31,8 @@ public class GamePackageUpdateDto {
   @Size(max = 1000)
   String thumbUrl;
 
-  @Size(max = 1000)
-  String description;
-
+  Integer daySub;
   Status status;
-
-  Integer priority;
-
+  PackageType packageType;
   List<PaymentMethodInfo> paymentMethodInfo = new ArrayList<>();
 }

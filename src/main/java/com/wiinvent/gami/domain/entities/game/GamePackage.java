@@ -1,12 +1,16 @@
 package com.wiinvent.gami.domain.entities.game;
 
 import com.wiinvent.gami.domain.entities.BaseEntity;
+import com.wiinvent.gami.domain.entities.payment.PaymentMethodInfo;
 import com.wiinvent.gami.domain.entities.type.Status;
+import com.wiinvent.gami.domain.utils.Converter.PaymentMethodInfoConverter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -58,8 +62,7 @@ public class GamePackage extends BaseEntity {
   @Column(name = "priority")
   private Integer priority;
 
-  @Size(max = 500)
-  @Column(name = "payment_method_info", length = 500)
-  private String paymentMethodInfo;
-
+  @Column(name = "payment_method_info")
+  @Convert(converter = PaymentMethodInfoConverter.class)
+  private List<PaymentMethodInfo> paymentMethodInfo;
 }

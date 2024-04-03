@@ -1,10 +1,10 @@
-package com.wiinvent.gami.domain.response;
+package com.wiinvent.gami.domain.dto;
 
 import com.wiinvent.gami.domain.entities.user.UserSegmentRewardItems;
 import lombok.Data;
 
 @Data
-public class UserSegmentResponse {
+public class UserSegmentUpdateDto {
   private String name;
   private Boolean isDefault;
   private Long minPriority;

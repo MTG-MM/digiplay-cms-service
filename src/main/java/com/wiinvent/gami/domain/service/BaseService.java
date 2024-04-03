@@ -46,5 +46,6 @@ public abstract class BaseService {
   @Autowired protected GamePaymentTransactionStorage gamePaymentTransactionStorage;
   @Autowired protected FriendStorage friendStorage;
   @Autowired protected UserNotifyStorage userNotifyStorage;
+  @Autowired protected GameTypeStorage gameTypeStorage;
 
 }

@@ -76,4 +76,7 @@ public class Game extends BaseEntity {
   @Column(name = "body_api_payment", length = 1000)
   private String bodyApiPayment;
 
+  @Column(name = "game_type_id")
+  private Integer gameTypeId;
+
 }

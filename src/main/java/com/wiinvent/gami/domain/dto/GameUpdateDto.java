@@ -31,4 +31,6 @@ public class GameUpdateDto{
 
   private String bodyApiPayment;
 
+  private Integer gameTypeId;
+
 }

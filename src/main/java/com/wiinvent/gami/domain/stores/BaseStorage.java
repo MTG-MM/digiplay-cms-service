@@ -50,5 +50,6 @@ public abstract class BaseStorage {
   @Autowired protected PaymentTransactionRepository paymentTransactionRepository;
   @Autowired protected FriendRepository friendRepository;
   @Autowired protected UserNotifyRepository userNotifyRepository;
+  @Autowired protected GameTypeRepository gameTypeRepository;
 
 }

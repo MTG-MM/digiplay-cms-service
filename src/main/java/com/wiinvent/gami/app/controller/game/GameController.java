@@ -2,6 +2,8 @@ package com.wiinvent.gami.app.controller.game;
 
 import com.wiinvent.gami.app.controller.BaseController;
 import com.wiinvent.gami.domain.dto.GameCreateDto;
+import com.wiinvent.gami.domain.dto.GameTypeCreateDto;
+import com.wiinvent.gami.domain.dto.GameTypeUpdateDto;
 import com.wiinvent.gami.domain.dto.GameUpdateDto;
 import com.wiinvent.gami.domain.response.GameResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
@@ -48,5 +50,38 @@ public class GameController extends BaseController {
   public ResponseEntity<Boolean> updateGames(@PathVariable Integer id, @RequestBody @Valid GameUpdateDto updateDto) {
     gameService.updateGame(id, updateDto);
     return ResponseEntity.ok(true);
+  }
+
+  //======================================================= GAME TYPE ===================================================
+  @GetMapping("/type")
+  @PageableAsQueryParam
+  public ResponseEntity<?> getGameTypes(
+      @RequestParam(required = false) String name,
+      @RequestParam(required = false) Integer id,
+      @Parameter(hidden = true) Pageable pageable) {
+    return ResponseEntity.ok(
+        PageResponse.createFrom(gameService.findGameTypes(id, name, pageable))
+    );
+  }
+
+  @GetMapping("/type/{id}")
+  public ResponseEntity<?> getGameTypeDetail(@PathVariable Integer id) {
+    return ResponseEntity.ok(gameService.getGameTypeDetail(id));
+  }
+
+
+  @PostMapping("/type")
+  public ResponseEntity<?> createGameType(@RequestBody @Valid GameTypeCreateDto dto){
+    return ResponseEntity.ok(gameService.createGameType(dto));
+  }
+
+  @PutMapping("/type")
+  public ResponseEntity<?> updateGameType(@RequestBody @Valid GameTypeUpdateDto dto){
+    return ResponseEntity.ok(gameService.updateGameType(dto));
+  }
+
+  @DeleteMapping("/type/{id}")
+  public ResponseEntity<?> deleteGameType(@PathVariable Integer id){
+    return ResponseEntity.ok(gameService.deleteGameType(id));
   }
 }

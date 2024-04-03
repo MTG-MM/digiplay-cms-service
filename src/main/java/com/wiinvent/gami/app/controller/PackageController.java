@@ -22,14 +22,20 @@ import org.springframework.web.bind.annotation.*;
     return ResponseEntity.ok(packageService.getPackageDetail(id));
   }
   @PostMapping("")
-  public ResponseEntity<Boolean> createGamePackage(@RequestBody PackageCreateDto packageCreateDto){
+  public ResponseEntity<Boolean> createPackage(@RequestBody PackageCreateDto packageCreateDto){
     packageService.createPackage(packageCreateDto);
     return ResponseEntity.ok(true);
   }
 
   @PutMapping("{id}")
-  public ResponseEntity<Boolean> updateGamePackage(@PathVariable int id, @RequestBody PackageUpdateDto dto){
+  public ResponseEntity<Boolean> updatePackage(@PathVariable int id, @RequestBody PackageUpdateDto dto){
     packageService.updatePackage(id, dto);
+    return ResponseEntity.ok(true);
+  }
+
+  @DeleteMapping("{id}")
+  public ResponseEntity<Boolean> deletePackage(@PathVariable int id){
+    packageService.deletePackage(id);
     return ResponseEntity.ok(true);
   }
 }

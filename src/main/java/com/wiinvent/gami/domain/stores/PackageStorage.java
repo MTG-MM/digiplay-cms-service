@@ -2,6 +2,7 @@ package com.wiinvent.gami.domain.stores;
 
 import com.wiinvent.gami.domain.entities.Package;
 import com.wiinvent.gami.domain.entities.game.GamePackage;
+import com.wiinvent.gami.domain.entities.type.Status;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,4 +15,7 @@ public class PackageStorage extends BaseStorage {
     packageRepository.save(aPackage);
   }
 
+  public Package findByIdAndStatusNot(int id, Status status) {
+    return packageRepository.findByIdAndStatusNot(id, status);
+  }
 }

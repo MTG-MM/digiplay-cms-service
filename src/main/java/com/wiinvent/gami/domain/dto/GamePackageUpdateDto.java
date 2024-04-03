@@ -26,6 +26,9 @@ public class GamePackageUpdateDto {
   @NotNull
   Integer coin;
 
+  @NotNull
+  Integer price;
+
   @Size(max = 1000)
   String imageUrl;
 

@@ -6,6 +6,7 @@ import com.wiinvent.gami.domain.dto.PackageCreateDto;
 import com.wiinvent.gami.domain.dto.PackageUpdateDto;
 import com.wiinvent.gami.domain.entities.Package;
 import com.wiinvent.gami.domain.entities.game.GamePackage;
+import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.exception.BadRequestException;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.response.GamePackageResponse;
@@ -16,6 +17,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Objects;
 
 @Service
 public class PackageService extends BaseService {
@@ -42,4 +45,13 @@ public class PackageService extends BaseService {
     packageStorage.save(aPackage);
   }
 
+  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
+  public void deletePackage(int id) {
+    Package aPackage = packageStorage.findByIdAndStatusNot(id, Status.DELETE);
+    if (Objects.isNull(aPackage)) {
+      throw new BadRequestException(Constant.GAME_PACKAGE_NOT_FOUND);
+    }
+    aPackage.setStatus(Status.DELETE);
+    packageStorage.save(aPackage);
+  }
 }

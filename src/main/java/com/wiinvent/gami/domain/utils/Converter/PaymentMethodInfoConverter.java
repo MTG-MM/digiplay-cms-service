@@ -5,15 +5,17 @@ import com.wiinvent.gami.domain.utils.JsonParser;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
+import java.util.List;
+
 @Converter
-public class PaymentMethodInfoConverter implements AttributeConverter<PaymentMethodInfo, String> {
+public class PaymentMethodInfoConverter implements AttributeConverter<List<PaymentMethodInfo>, String> {
   @Override
-  public String convertToDatabaseColumn(PaymentMethodInfo paymentMethodInfo) {
+  public String convertToDatabaseColumn(List<PaymentMethodInfo> paymentMethodInfo) {
     return JsonParser.toJson(paymentMethodInfo);
   }
 
   @Override
-  public PaymentMethodInfo convertToEntityAttribute(String dbData) {
-    return JsonParser.entity(dbData, PaymentMethodInfo.class);
+  public List<PaymentMethodInfo> convertToEntityAttribute(String dbData) {
+    return JsonParser.arrayList(dbData, PaymentMethodInfo.class);
   }
 }

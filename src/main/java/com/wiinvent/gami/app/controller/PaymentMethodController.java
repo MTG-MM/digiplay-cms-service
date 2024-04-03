@@ -2,6 +2,8 @@ package com.wiinvent.gami.app.controller;
 
 import com.wiinvent.gami.domain.dto.payment.PaymentMethodCreateDto;
 import com.wiinvent.gami.domain.dto.payment.PaymentMethodUpdateDto;
+import com.wiinvent.gami.domain.response.base.PageResponse;
+import com.wiinvent.gami.domain.response.payment.PaymentMethodResponse;
 import com.wiinvent.gami.domain.service.PaymentMethodService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,27 +17,29 @@ public class PaymentMethodController extends BaseController{
   @Autowired private PaymentMethodService paymentMethodService;
 
   @GetMapping("")
-  public ResponseEntity<?> findAll(Pageable pageable){
-    return ResponseEntity.ok(paymentMethodService.findAll(pageable));
+  public ResponseEntity<PageResponse<PaymentMethodResponse>> findAll(Pageable pageable){
+    return ResponseEntity.ok(
+        PageResponse.createFrom(paymentMethodService.findAll(pageable))
+    );
   }
 
   @GetMapping("{id}")
-  public ResponseEntity<?> getPaymentMethodDetail(@PathVariable Integer id){
+  public ResponseEntity<PaymentMethodResponse> getPaymentMethodDetail(@PathVariable Integer id){
     return ResponseEntity.ok(paymentMethodService.getPaymentMethodDetail(id));
   }
 
   @PostMapping("")
-  public ResponseEntity<?> createPaymentMethod(@RequestBody @Valid PaymentMethodCreateDto dto){
+  public ResponseEntity<Boolean> createPaymentMethod(@RequestBody @Valid PaymentMethodCreateDto dto){
     return ResponseEntity.ok(paymentMethodService.createPaymentMethod(dto));
   }
 
   @PutMapping("")
-  public ResponseEntity<?> updatePaymentMethod(@RequestBody @Valid PaymentMethodUpdateDto dto){
+  public ResponseEntity<Boolean> updatePaymentMethod(@RequestBody @Valid PaymentMethodUpdateDto dto){
     return ResponseEntity.ok(paymentMethodService.updatePaymentMethod(dto));
   }
 
   @DeleteMapping("{id}")
-  public ResponseEntity<?> deletePaymentMethod(@PathVariable Integer id){
+  public ResponseEntity<Boolean> deletePaymentMethod(@PathVariable Integer id){
     return ResponseEntity.ok(paymentMethodService.deletePaymentMethod(id));
   }
 }

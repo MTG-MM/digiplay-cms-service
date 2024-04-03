@@ -6,6 +6,7 @@ import com.wiinvent.gami.domain.dto.GameTypeCreateDto;
 import com.wiinvent.gami.domain.dto.GameTypeUpdateDto;
 import com.wiinvent.gami.domain.dto.GameUpdateDto;
 import com.wiinvent.gami.domain.response.GameResponse;
+import com.wiinvent.gami.domain.response.GameTypeResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.game.GameService;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -55,7 +56,7 @@ public class GameController extends BaseController {
   //======================================================= GAME TYPE ===================================================
   @GetMapping("/type")
   @PageableAsQueryParam
-  public ResponseEntity<?> getGameTypes(
+  public ResponseEntity<PageResponse<GameTypeResponse>> getGameTypes(
       @RequestParam(required = false) String name,
       @RequestParam(required = false) Integer id,
       @Parameter(hidden = true) Pageable pageable) {
@@ -65,23 +66,23 @@ public class GameController extends BaseController {
   }
 
   @GetMapping("/type/{id}")
-  public ResponseEntity<?> getGameTypeDetail(@PathVariable Integer id) {
+  public ResponseEntity<GameTypeResponse> getGameTypeDetail(@PathVariable Integer id) {
     return ResponseEntity.ok(gameService.getGameTypeDetail(id));
   }
 
 
   @PostMapping("/type")
-  public ResponseEntity<?> createGameType(@RequestBody @Valid GameTypeCreateDto dto){
+  public ResponseEntity<Boolean> createGameType(@RequestBody @Valid GameTypeCreateDto dto){
     return ResponseEntity.ok(gameService.createGameType(dto));
   }
 
   @PutMapping("/type")
-  public ResponseEntity<?> updateGameType(@RequestBody @Valid GameTypeUpdateDto dto){
+  public ResponseEntity<Boolean> updateGameType(@RequestBody @Valid GameTypeUpdateDto dto){
     return ResponseEntity.ok(gameService.updateGameType(dto));
   }
 
   @DeleteMapping("/type/{id}")
-  public ResponseEntity<?> deleteGameType(@PathVariable Integer id){
+  public ResponseEntity<Boolean> deleteGameType(@PathVariable Integer id){
     return ResponseEntity.ok(gameService.deleteGameType(id));
   }
 }

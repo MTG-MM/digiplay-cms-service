@@ -34,7 +34,7 @@ public class GameCategoryController extends BaseController {
   @PostMapping("")
   public ResponseEntity<Boolean> createGameCategory(@RequestBody @Valid GameCategoryCreateDto dto){
     return ResponseEntity.ok(
-      gameCategoryService.createGamePackage(dto)
+      gameCategoryService.createGameCategory(dto)
     );
   }
 
@@ -42,6 +42,13 @@ public class GameCategoryController extends BaseController {
   public ResponseEntity<Boolean> updateGameCategory(@RequestBody @Valid GameCategoryUpdateDto dto){
     return ResponseEntity.ok(
         gameCategoryService.updateGameCategory(dto)
+    );
+  }
+
+  @DeleteMapping("{id}")
+  public ResponseEntity<Boolean> deleteGameCategory(@PathVariable Integer id){
+    return ResponseEntity.ok(
+        gameCategoryService.deleteGameCategory(id)
     );
   }
 }

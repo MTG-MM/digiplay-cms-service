@@ -1,5 +1,6 @@
 package com.wiinvent.gami.domain.dto;
 
+import com.wiinvent.gami.domain.entities.payment.PaymentMethodInfo;
 import com.wiinvent.gami.domain.entities.type.Status;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -25,6 +26,9 @@ public class GamePackageUpdateDto {
   @NotNull
   Integer coin;
 
+  @NotNull
+  Integer price;
+
   @Size(max = 1000)
   String imageUrl;
 
@@ -38,5 +42,5 @@ public class GamePackageUpdateDto {
 
   Integer priority;
 
-  List<GamePackagePaymentMethodDto> paymentMethods = new ArrayList<>();
+  List<PaymentMethodInfo> paymentMethodInfo = new ArrayList<>();
 }

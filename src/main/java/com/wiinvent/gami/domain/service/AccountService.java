@@ -2,6 +2,7 @@ package com.wiinvent.gami.domain.service;
 
 import com.wiinvent.gami.domain.dto.AccountDto;
 import com.wiinvent.gami.domain.dto.LoginDto;
+import com.wiinvent.gami.domain.repositories.AccountRepository;
 import com.wiinvent.gami.domain.response.AccountResponse;
 import com.wiinvent.gami.domain.response.TokenResponse;
 import com.wiinvent.gami.domain.entities.Account;
@@ -69,6 +70,29 @@ public class AccountService extends BaseService {
 
     accountStorage.save(newAccount);
   }
+
+  public AccountResponse getAccountDetail(UUID accountId){
+    Account account = accountStorage.findById(accountId);
+    if(account == null){
+      throw new BadRequestException(Constant.USER_NOT_FOUND);
+    }
+    return modelMapper.toAccountResponse(account);
+  }
+
+  public Boolean delete(String username) {
+    if (username == null || username.equals("admin")) {
+      return false;
+    }
+
+    Account account = accountStorage.findByUserName(username);
+    if(account == null){
+      throw new BadRequestException(Constant.USER_NOT_FOUND);
+    }
+    accountStorage.delete(account);
+    return true;
+  }
+
+
 
   public boolean initAdminAccount() {
     Account account = new Account();

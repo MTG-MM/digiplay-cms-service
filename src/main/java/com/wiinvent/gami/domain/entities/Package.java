@@ -1,11 +1,16 @@
 package com.wiinvent.gami.domain.entities;
 
+import com.wiinvent.gami.domain.entities.payment.PaymentMethodInfo;
+import com.wiinvent.gami.domain.entities.type.PackageType;
 import com.wiinvent.gami.domain.entities.type.Status;
+import com.wiinvent.gami.domain.utils.Converter.PaymentMethodInfoConverter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -37,7 +42,6 @@ public class Package extends BaseEntity {
   @Column(name = "coin", nullable = false)
   private Integer coin;
 
-
   @Size(max = 500)
   @Column(name = "thumb_url", length = 500)
   private String thumbUrl;
@@ -52,6 +56,10 @@ public class Package extends BaseEntity {
 
   @Lob
   @Column(name = "package_type")
-  private String packageType;
+  @Enumerated(EnumType.STRING)
+  private PackageType packageType;
 
+  @Column(name = "payment_method_info")
+  @Convert(converter = PaymentMethodInfoConverter.class)
+  private List<PaymentMethodInfo> paymentMethodInfo;
 }

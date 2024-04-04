@@ -37,13 +37,22 @@ spring:
         order_inserts: true
         order_updates: true
         continue-on-error: true
-
+aes-secret: ${AES_SECRET}
+file:
+  dir: ${FILE_DIR:/data/html/static.dev.wiinvent.tv}
+  url: ${FILE_URL:https://static.dev.wiinvent.co}
 springdoc:
   api-docs:
     path: /v1/cms/docs/api/index.html
   swagger-ui:
     path: /v1/cms/docs/index.html
     display-request-duration: true
+    syntax-highlight:
+      activated: true
+      theme: monokai
+    filter: true
+    tags-sorter: alpha
+    operations-sorter: alpha
 logging:
   level:
     org.springframework.web: ${LOG_LEVEL:debug}

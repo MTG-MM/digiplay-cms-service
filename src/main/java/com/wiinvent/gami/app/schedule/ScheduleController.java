@@ -6,14 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/mos/cms/it/schedule")
+@RequestMapping("api/vt/cms/it/schedule")
 @CrossOrigin(origins = "*")
 public class ScheduleController {
 
-  @Autowired
-  RewardScheduleService rewardScheduleService;
-  @Autowired
-  RewardItemStatisticService rewardItemStatisticService;
+  private final RewardScheduleService rewardScheduleService;
+  private final RewardItemStatisticService rewardItemStatisticService;
+
+  public ScheduleController(RewardScheduleService rewardScheduleService, RewardItemStatisticService rewardItemStatisticService) {
+    this.rewardScheduleService = rewardScheduleService;
+    this.rewardItemStatisticService = rewardItemStatisticService;
+  }
 
   @GetMapping("statistic/today")
   public void processTodayStatistic(){

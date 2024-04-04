@@ -10,6 +10,7 @@ public class Constant {
   public static final String INVALID_TOKEN = "Invalid token";
   public static final String INVALID_OTP = "Sai mã xác nhận";
   public static final String USER_NOT_FOUND = "Không tìm thấy người dùng";
+  public static final String USER_SEGMENT_NOT_FOUND = "Không tìm thấy loại người dùng";
   public static final String FRIEND_NOT_FOUND = "Không tìm thấy bạn bè";
   public static final String INVALID_AUTHENTICATION = "Chưa đăng nhập";
   public static final String INVALID_PERMISSION = "Không có quyền";
@@ -26,4 +27,5 @@ public class Constant {
   public static final String GAME_TYPE_NOT_FOUND = "Không tìm thấy loại game";
   public static final String GAME_TYPE_DELETED = "loại game đã được xóa";
   public static final String GAME_CATEGORY_NOT_FOUND = "Không tìm thấy thể loại game này";
+  public static final String CREATED_AT_VARIABLE = "createdAt";
 }

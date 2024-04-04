@@ -2,6 +2,9 @@ package com.wiinvent.gami.domain.stores;
 
 import com.wiinvent.gami.domain.repositories.AccountRepository;
 import com.wiinvent.gami.domain.repositories.*;
+import com.wiinvent.gami.domain.repositories.Transaction.CoinTransactionRepository;
+import com.wiinvent.gami.domain.repositories.Transaction.ExpHistoryRepository;
+import com.wiinvent.gami.domain.repositories.Transaction.PointTransactionRepository;
 import com.wiinvent.gami.domain.repositories.game.*;
 import com.wiinvent.gami.domain.repositories.gvc.GcvHistoryRepository;
 import com.wiinvent.gami.domain.repositories.gvc.GvcPackageRepository;
@@ -9,16 +12,19 @@ import com.wiinvent.gami.domain.repositories.payment.PaymentMethodRepository;
 import com.wiinvent.gami.domain.repositories.payment.PaymentTransactionRepository;
 import com.wiinvent.gami.domain.repositories.reward.*;
 import com.wiinvent.gami.domain.repositories.user.UserNotifyRepository;
+import com.wiinvent.gami.domain.repositories.user.UserProfileRepository;
 import com.wiinvent.gami.domain.repositories.user.UserRepository;
 import com.wiinvent.gami.domain.repositories.user.UserSegmentRepository;
 import com.wiinvent.gami.domain.utils.CacheKey;
 import com.wiinvent.gami.domain.utils.RemoteCache;
+import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public abstract class BaseStorage {
 
+  @Autowired protected EntityManager entityManager;
   @Autowired protected RemoteCache remoteCache;
   @Autowired protected CacheKey cacheKey;
   @Autowired protected AccountRepository accountRepository;
@@ -51,5 +57,8 @@ public abstract class BaseStorage {
   @Autowired protected FriendRepository friendRepository;
   @Autowired protected UserNotifyRepository userNotifyRepository;
   @Autowired protected GameTypeRepository gameTypeRepository;
-
+  @Autowired protected UserProfileRepository userProfileRepository;
+  @Autowired protected CoinTransactionRepository coinTransactionRepository;
+  @Autowired protected PointTransactionRepository pointTransactionRepository;
+  @Autowired protected ExpHistoryRepository expHistoryRepository;
 }

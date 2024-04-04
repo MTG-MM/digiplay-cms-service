@@ -2,11 +2,15 @@ package com.wiinvent.gami.domain.service;
 
 import com.wiinvent.gami.ModelMapper;
 import com.wiinvent.gami.domain.stores.*;
+import com.wiinvent.gami.domain.stores.Transaction.CoinTransactionStorage;
+import com.wiinvent.gami.domain.stores.Transaction.ExpHistoryStorage;
+import com.wiinvent.gami.domain.stores.Transaction.PointTransactionStorage;
 import com.wiinvent.gami.domain.stores.game.*;
 import com.wiinvent.gami.domain.stores.payment.PaymentMethodStorage;
 import com.wiinvent.gami.domain.stores.payment.PaymentTransactionStorage;
 import com.wiinvent.gami.domain.stores.reward.*;
 import com.wiinvent.gami.domain.stores.user.UserNotifyStorage;
+import com.wiinvent.gami.domain.stores.user.UserProfileStorage;
 import com.wiinvent.gami.domain.stores.user.UserSegmentStorage;
 import com.wiinvent.gami.domain.stores.user.UserStorage;
 import com.wiinvent.gami.domain.utils.CacheKey;
@@ -42,11 +46,15 @@ public abstract class BaseService {
   @Autowired protected GameStorage gameStorage;
   @Autowired protected GamePackageStorage gamePackageStorage;
   @Autowired protected GameCategoryStorage gameCategoryStorage;
+  @Autowired protected PackageStorage packageStorage;
   @Autowired protected PaymentMethodStorage paymentMethodStorage;
   @Autowired protected PaymentTransactionStorage paymentTransactionStorage;
   @Autowired protected GamePaymentTransactionStorage gamePaymentTransactionStorage;
   @Autowired protected FriendStorage friendStorage;
   @Autowired protected UserNotifyStorage userNotifyStorage;
   @Autowired protected GameTypeStorage gameTypeStorage;
-
+  @Autowired protected UserProfileStorage userProfileStorage;
+  @Autowired protected CoinTransactionStorage coinTransactionStorage;
+  @Autowired protected PointTransactionStorage pointTransactionStorage;
+  @Autowired protected ExpHistoryStorage expHistoryStorage;
 }

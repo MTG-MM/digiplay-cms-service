@@ -2,12 +2,19 @@ package com.wiinvent.gami;
 
 import com.wiinvent.gami.domain.dto.*;
 import com.wiinvent.gami.domain.dto.payment.PaymentMethodCreateDto;
+import com.wiinvent.gami.domain.entities.Package;
+import com.wiinvent.gami.domain.entities.Transaction.CoinTransaction;
+import com.wiinvent.gami.domain.entities.Transaction.ExpHistory;
+import com.wiinvent.gami.domain.entities.Transaction.PointTransaction;
 import com.wiinvent.gami.domain.entities.game.Game;
 import com.wiinvent.gami.domain.entities.game.GameCategory;
 import com.wiinvent.gami.domain.entities.game.GamePackage;
 import com.wiinvent.gami.domain.entities.game.GameType;
 import com.wiinvent.gami.domain.entities.payment.PaymentMethod;
+import com.wiinvent.gami.domain.entities.payment.PaymentTransaction;
 import com.wiinvent.gami.domain.entities.reward.*;
+import com.wiinvent.gami.domain.entities.user.User;
+import com.wiinvent.gami.domain.entities.user.UserSegment;
 import com.wiinvent.gami.domain.response.*;
 import com.wiinvent.gami.domain.entities.*;
 import com.wiinvent.gami.domain.pojo.TokenInfo;
@@ -122,10 +129,14 @@ public interface ModelMapper {
 
   GamePackageResponse toGamePackageResponse(GamePackage gamePackage);
 
+  PackageResponse toPackageResponse(Package aPackage);
 
   GamePackage toGamePackage(GamePackageCreateDto gamePackageCreateDto);
 
+  Package toPackage(PackageCreateDto packageCreateDto);
+
   void mapGamePackageUpdateDtoToGamePackage(GamePackageUpdateDto dto,@MappingTarget GamePackage gamePackage);
+
 
   GameType toGameType(GameTypeCreateDto dto);
   GameTypeResponse toGameTypeResponse(GameType gameType);
@@ -144,4 +155,25 @@ public interface ModelMapper {
   default Page<GameCategoryResponse> toPageGameCategoryResponse(Page<GameCategory> gameCategories){
     return gameCategories.map(this::toGameCategoryResponse);
   }
+
+  void mapPackageUpdateDtoToPackage(PackageUpdateDto dto,@MappingTarget Package aPackage);
+
+  UserSegmentResponse toUserSegmentResponse(UserSegment userSegment);
+
+  default Page<UserSegmentResponse> toPageUserSegmentResponse(Page<UserSegment> userSegments){
+    return userSegments.map(this::toUserSegmentResponse);
+  }
+
+  UserSegment toUserSegment(UserSegmentCreateDto userSegmentCreateDto);
+
+  void mapUserSegmentDtoToUserSegment(UserSegmentUpdateDto userSegmentUpdateDto, @MappingTarget UserSegment userSegment);
+
+  List<RewardItemHistoryResponse> toListRewardItemHistoryResponse(List<RewardItemHistory> rewardItemHistories);
+  List<PaymentTransactionResponse> toPaymentTransactionResponse(List<PaymentTransaction> paymentTransactions);
+
+  List<TransactionResponse> toCoinTransactionResponse(List<CoinTransaction> coinTransactions);
+  List<TransactionResponse> toPointTransactionResponse(List<PointTransaction> pointTransactions);
+  List<TransactionResponse> toExpHistoryResponse(List<ExpHistory> expHistories);
+  List<UserResponse> toListUserResponse(List<User> users);
+  UserResponse toUserResponse(User user);
 }

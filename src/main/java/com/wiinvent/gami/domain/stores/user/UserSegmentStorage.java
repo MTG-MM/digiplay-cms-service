@@ -2,6 +2,8 @@ package com.wiinvent.gami.domain.stores.user;
 
 import com.wiinvent.gami.domain.entities.user.UserSegment;
 import com.wiinvent.gami.domain.stores.BaseStorage;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -19,5 +21,9 @@ public class UserSegmentStorage extends BaseStorage {
 
   public UserSegment findById(Long userSegmentId) {
     return userSegmentRepository.findById(userSegmentId).orElse(null);
+  }
+
+  public Page<UserSegment> findAll(Pageable pageable) {
+    return userSegmentRepository.findAll(pageable);
   }
 }

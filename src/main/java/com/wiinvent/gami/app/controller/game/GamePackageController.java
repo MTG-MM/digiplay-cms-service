@@ -21,6 +21,7 @@ public class GamePackageController extends BaseController {
   public ResponseEntity<GamePackageResponse> getGamePackageDetail(@PathVariable int id){
     return ResponseEntity.ok(gamePackageService.getPackageDetail(id));
   }
+
   @PostMapping("")
   public ResponseEntity<Boolean> createGamePackage(@RequestBody GamePackageCreateDto gamePackageCreateDto){
     gamePackageService.createGamePackage(gamePackageCreateDto);
@@ -33,4 +34,9 @@ public class GamePackageController extends BaseController {
     return ResponseEntity.ok(true);
   }
 
+  @DeleteMapping("{id}")
+  public ResponseEntity<Boolean> deleteGamePackage(@PathVariable int id){
+    gamePackageService.deleteGamePackage(id);
+    return ResponseEntity.ok(true);
+  }
 }

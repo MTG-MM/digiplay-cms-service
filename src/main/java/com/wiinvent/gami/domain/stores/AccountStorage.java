@@ -49,4 +49,11 @@ public class AccountStorage extends BaseStorage {
     };
   }
 
+  public void delete(Account account) {
+    accountRepository.delete(account);
+  }
+
+  public Account findByUserName(String username) {
+    return accountRepository.findByUsername(username);
+  }
 }

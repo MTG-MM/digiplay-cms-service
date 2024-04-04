@@ -41,6 +41,7 @@ public abstract class BaseService {
   @Autowired protected GameStarStorage gameStarStorage;
   @Autowired protected GameStorage gameStorage;
   @Autowired protected GamePackageStorage gamePackageStorage;
+  @Autowired protected GameCategoryStorage gameCategoryStorage;
   @Autowired protected PaymentMethodStorage paymentMethodStorage;
   @Autowired protected PaymentTransactionStorage paymentTransactionStorage;
   @Autowired protected GamePaymentTransactionStorage gamePaymentTransactionStorage;

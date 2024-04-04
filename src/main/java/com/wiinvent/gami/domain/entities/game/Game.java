@@ -1,6 +1,7 @@
 package com.wiinvent.gami.domain.entities.game;
 
 import com.wiinvent.gami.domain.entities.BaseEntity;
+import com.wiinvent.gami.domain.entities.type.GameStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -79,4 +80,10 @@ public class Game extends BaseEntity {
   @Column(name = "game_type_id")
   private Integer gameTypeId;
 
+  @Column(name = "status")
+  @Enumerated(EnumType.STRING)
+  private GameStatus status;
+
+  @Column(name = "is_hot")
+  private Boolean isHot;
 }

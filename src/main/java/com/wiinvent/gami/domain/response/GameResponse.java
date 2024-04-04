@@ -1,5 +1,7 @@
 package com.wiinvent.gami.domain.response;
 
+import com.wiinvent.gami.domain.entities.game.GameStar;
+import com.wiinvent.gami.domain.entities.type.GameStatus;
 import lombok.Data;
 
 import java.util.UUID;
@@ -22,6 +24,9 @@ public class GameResponse {
   private String bodyApiPayment;
   private Integer gameTypeId;
   private String description;
+  private GameStatus status;
+  private Boolean isHot;
+  private GameStar gameStar;
   private Long createdAt;
   private Long updatedAt;
 }

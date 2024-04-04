@@ -7,6 +7,7 @@ import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.exception.BadRequestException;
 import com.wiinvent.gami.domain.response.payment.PaymentMethodResponse;
 import com.wiinvent.gami.domain.utils.Constant;
+import com.wiinvent.gami.domain.utils.DateUtils;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -34,6 +35,7 @@ public class PaymentMethodService extends BaseService{
     return modelMapper.toPaymentMethodResponse(paymentMethod);
   }
 
+  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
   public boolean createPaymentMethod(PaymentMethodCreateDto dto){
     if(dto.getStatus()==null) dto.setStatus(Status.ACTIVE);
 
@@ -45,10 +47,11 @@ public class PaymentMethodService extends BaseService{
 
     PaymentMethod paymentMethod = modelMapper.toPaymentMethod(dto);
 
-    self.savePaymentMethod(paymentMethod);
+    paymentMethodStorage.save(paymentMethod);
     return true;
   }
 
+  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
   public boolean updatePaymentMethod(PaymentMethodUpdateDto dto){
     PaymentMethod paymentMethod = paymentMethodStorage.findById(dto.getId());
 
@@ -62,14 +65,9 @@ public class PaymentMethodService extends BaseService{
     ) throw new BadRequestException(Constant.PAYMENT_METHOD_EXISTS);
 
     paymentMethod.from(dto);
-
-    self.savePaymentMethod(paymentMethod);
-    return true;
-  }
-
-  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
-  public void savePaymentMethod(PaymentMethod paymentMethod){
+    paymentMethod.setUpdatedAt(DateUtils.getNowMillisAtUtc());
     paymentMethodStorage.save(paymentMethod);
+    return true;
   }
 
   @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)

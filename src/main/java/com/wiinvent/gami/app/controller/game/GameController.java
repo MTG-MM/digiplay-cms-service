@@ -5,6 +5,7 @@ import com.wiinvent.gami.domain.dto.GameCreateDto;
 import com.wiinvent.gami.domain.dto.GameTypeCreateDto;
 import com.wiinvent.gami.domain.dto.GameTypeUpdateDto;
 import com.wiinvent.gami.domain.dto.GameUpdateDto;
+import com.wiinvent.gami.domain.entities.type.GameStatus;
 import com.wiinvent.gami.domain.response.GameResponse;
 import com.wiinvent.gami.domain.response.GameTypeResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
@@ -29,8 +30,12 @@ public class GameController extends BaseController {
   public PageResponse<GameResponse> getAll(
       @RequestParam(required = false) String name,
       @RequestParam(required = false) Integer id,
+      @RequestParam(required = false) GameStatus status,
+      @RequestParam(required = false) Boolean isHot,
+      @RequestParam(required = false) Integer gameCategoryId,
+      @RequestParam(required = false) Integer gameTypeId,
       @Parameter(hidden = true) Pageable pageable) {
-    return PageResponse.createFrom(gameService.getAll(id, name, pageable));
+    return PageResponse.createFrom(gameService.getAll(id, name, status, isHot, gameCategoryId, gameTypeId, pageable));
   }
 
   @GetMapping("{id}")

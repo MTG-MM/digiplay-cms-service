@@ -3,6 +3,7 @@ package com.wiinvent.gami;
 import com.wiinvent.gami.domain.dto.*;
 import com.wiinvent.gami.domain.dto.payment.PaymentMethodCreateDto;
 import com.wiinvent.gami.domain.entities.game.Game;
+import com.wiinvent.gami.domain.entities.game.GameCategory;
 import com.wiinvent.gami.domain.entities.game.GamePackage;
 import com.wiinvent.gami.domain.entities.game.GameType;
 import com.wiinvent.gami.domain.entities.payment.PaymentMethod;
@@ -136,5 +137,11 @@ public interface ModelMapper {
   PaymentMethodResponse toPaymentMethodResponse(PaymentMethod paymentMethod);
   default Page<PaymentMethodResponse> toPagePaymentMethodResponse(Page<PaymentMethod> paymentMethods){
     return paymentMethods.map(this::toPaymentMethodResponse);
+  }
+
+  GameCategory toGameCategory(GameCategoryCreateDto dto);
+  GameCategoryResponse toGameCategoryResponse(GameCategory gameCategory);
+  default Page<GameCategoryResponse> toPageGameCategoryResponse(Page<GameCategory> gameCategories){
+    return gameCategories.map(this::toGameCategoryResponse);
   }
 }

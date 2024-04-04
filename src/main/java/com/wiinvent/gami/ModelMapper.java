@@ -12,6 +12,7 @@ import com.wiinvent.gami.domain.entities.game.GamePackage;
 import com.wiinvent.gami.domain.entities.game.GameType;
 import com.wiinvent.gami.domain.entities.payment.PaymentMethod;
 import com.wiinvent.gami.domain.entities.payment.PaymentTransaction;
+import com.wiinvent.gami.domain.entities.payment.PackageHistory;
 import com.wiinvent.gami.domain.entities.reward.*;
 import com.wiinvent.gami.domain.entities.user.User;
 import com.wiinvent.gami.domain.entities.user.UserSegment;
@@ -169,7 +170,7 @@ public interface ModelMapper {
   void mapUserSegmentDtoToUserSegment(UserSegmentUpdateDto userSegmentUpdateDto, @MappingTarget UserSegment userSegment);
 
   List<RewardItemHistoryResponse> toListRewardItemHistoryResponse(List<RewardItemHistory> rewardItemHistories);
-  List<PaymentTransactionResponse> toPaymentTransactionResponse(List<PaymentTransaction> paymentTransactions);
+  List<PackageHistoryResponse> toPackageHistoryResponse(List<PackageHistory> packageHistories);
 
   List<TransactionResponse> toCoinTransactionResponse(List<CoinTransaction> coinTransactions);
   List<TransactionResponse> toPointTransactionResponse(List<PointTransaction> pointTransactions);

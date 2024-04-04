@@ -8,5 +8,5 @@ public class PaymentMethodInfo {
   private Integer id;
   private PaymentMethodType type;
   private Long price;
-  private Long currency;
+  private String currency;
 }

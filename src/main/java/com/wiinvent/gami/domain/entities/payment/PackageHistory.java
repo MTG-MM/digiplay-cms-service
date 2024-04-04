@@ -11,8 +11,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "payment_transaction")
-public class PaymentTransaction extends BaseEntity {
+@Table(name = "package_history")
+public class PackageHistory extends BaseEntity {
   @Id
   @Size(max = 16)
   @Column(name = "id", nullable = false, length = 16)

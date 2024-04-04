@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class PaymentMethodInfo {
-  private Integer id;
+  private String imageUrl;
   private PaymentMethodType type;
   private Long price;
   private String currency;

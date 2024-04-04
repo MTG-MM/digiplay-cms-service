@@ -47,15 +47,24 @@ public class GameController extends BaseController {
   @PostMapping("")
   @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
   public ResponseEntity<Boolean> createGame(@RequestBody GameCreateDto createDto) {
-    gameService.createGames(createDto);
-    return ResponseEntity.ok(true);
+    return ResponseEntity.ok(
+        gameService.createGames(createDto)
+    );
   }
 
   @PutMapping("{id}")
   @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR') or hasRole('PUBLISHER')")
   public ResponseEntity<Boolean> updateGames(@PathVariable Integer id, @RequestBody @Valid GameUpdateDto updateDto) {
-    gameService.updateGame(id, updateDto);
-    return ResponseEntity.ok(true);
+    return ResponseEntity.ok(
+        gameService.updateGame(id, updateDto)
+    );
+  }
+
+  @DeleteMapping("{id}")
+  public ResponseEntity<Boolean> deleteGame(@PathVariable Integer id){
+    return ResponseEntity.ok(
+        gameService.deleteGame(id)
+    );
   }
 
   //======================================================= GAME TYPE ===================================================

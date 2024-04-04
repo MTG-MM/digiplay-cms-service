@@ -14,6 +14,9 @@ import com.wiinvent.gami.domain.response.GameTypeResponse;
 import com.wiinvent.gami.domain.service.BaseService;
 import com.wiinvent.gami.domain.utils.Constant;
 import com.wiinvent.gami.domain.utils.DateUtils;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -24,7 +27,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Objects;
 
 @Service
+@Log4j2
 public class GameService extends BaseService {
+  @Autowired @Lazy private  GameService self;
+
   public GameResponse getGameDetail(Integer id) {
     Game game = gameStorage.findById(id);
     if (game == null) {
@@ -39,20 +45,72 @@ public class GameService extends BaseService {
     return responses;
   }
 
-  public void createGames(GameCreateDto createDto) {
+  public boolean createGames(GameCreateDto createDto) {
     if(createDto.getStatus() == null) createDto.setStatus(GameStatus.NEW);
     if(createDto.getIsHot() == null) createDto.setIsHot(false);
 
     Game game = modelMapper.toGame(createDto);
-    gameStorage.save(game);
+    try{
+      self.save(game);
+    }catch (Exception e){
+      log.debug("==============>createGames e = {}", e.getMessage());
+      return false;
+    }
+
+    return true;
   }
 
-  public void updateGame(Integer id, GameUpdateDto updateDto) {
+  public boolean updateGame(Integer id, GameUpdateDto updateDto) {
+    //validation
     Game game = gameStorage.findById(id);
     if (game == null) {
       throw new ResourceNotFoundException(Constant.GAME_NOT_FOUND);
     }
+    //map
     modelMapper.mapGameUpdateDtoToGame(updateDto, game);
+    //save
+    try{
+      self.save(game);
+    }catch (Exception e){
+      log.debug("==============>updateGame:DB:Exception:{}", e.getMessage());
+      return false;
+    }
+    //cache
+    try{
+      remoteCache.deleteKey(cacheKey.getGameById(id));
+    }catch (Exception e){
+      log.debug("==============>updateGame:Cache:Exception:{}", e.getMessage());
+    }
+    //response
+    return true;
+  }
+
+  public boolean deleteGame(Integer id){
+    //validation
+    Game game = gameStorage.findById(id);
+    if (game == null) throw new ResourceNotFoundException(Constant.GAME_NOT_FOUND);
+    //
+    game.setStatus(GameStatus.DELETE);
+    game.setUpdatedAt(DateUtils.getNowMillisAtUtc());
+    //save
+    try{
+      self.save(game);
+    }catch (Exception e){
+      log.debug("==============>deleteGame:DB:Exception:{}", e.getMessage());
+      return false;
+    }
+    //cache
+    try{
+      remoteCache.deleteKey(cacheKey.getGameById(id));
+    }catch (Exception e){
+      log.debug("==============>deleteGame:Cache:Exception:{}", e.getMessage());
+    }
+    //response
+    return true;
+  }
+
+  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
+  public void save(Game game){
     gameStorage.save(game);
   }
 

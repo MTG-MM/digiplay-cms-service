@@ -2,6 +2,7 @@ package com.wiinvent.gami.domain.service.game;
 
 import com.wiinvent.gami.domain.dto.GamePackageCreateDto;
 import com.wiinvent.gami.domain.dto.GamePackageUpdateDto;
+import com.wiinvent.gami.domain.entities.game.Game;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.response.GamePackageResponse;
 import com.wiinvent.gami.domain.entities.game.GamePackage;
@@ -30,6 +31,12 @@ public class GamePackageService extends BaseService {
   }
 
   public void createGamePackage(GamePackageCreateDto dto) {
+    if(Objects.isNull(dto.getStatus())) dto.setStatus(Status.ACTIVE);
+
+    Game game = gameStorage.findById(dto.getGameId());
+    if(Objects.isNull(game)) throw new ResourceNotFoundException(Constant.GAME_NOT_FOUND);
+
+
     GamePackage gamePackage = modelMapper.toGamePackage(dto);
     gamePackageStorage.save(gamePackage);
   }

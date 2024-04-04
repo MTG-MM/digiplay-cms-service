@@ -12,6 +12,9 @@ public class CacheKey {
   @Value("${redis.prefix-key}")
   public String redisPrefixKey;
 
+  @Value("${redis.prefix-key-vt-game}")
+  public String redisPrefixKeyVtGame;
+
   public String getPeriodTypeByUser(UUID userId, Long rewardSegmentId, Long rewardItemId) {
     return redisPrefixKey + ":u:" + userId + ":rws:" + rewardSegmentId + ":rwi:" + rewardItemId;
   }
@@ -30,5 +33,17 @@ public class CacheKey {
 
   public String getUserByUsername(String username) {
     return redisPrefixKey + ":u:name" + username;
+  }
+
+  public String genAllPaymentMethod() {
+    return redisPrefixKeyVtGame + ":game:payment:method:all";
+  }
+
+  public String genAllGameCategories() {
+    return redisPrefixKeyVtGame + ":game:category:all";
+  }
+
+  public String getGameById(Integer gameId) {
+    return redisPrefixKeyVtGame + ":game:id:" + gameId ;
   }
 }

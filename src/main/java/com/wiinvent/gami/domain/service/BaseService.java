@@ -45,12 +45,14 @@ public abstract class BaseService {
   @Autowired protected GameStarStorage gameStarStorage;
   @Autowired protected GameStorage gameStorage;
   @Autowired protected GamePackageStorage gamePackageStorage;
+  @Autowired protected GameCategoryStorage gameCategoryStorage;
   @Autowired protected PackageStorage packageStorage;
   @Autowired protected PaymentMethodStorage paymentMethodStorage;
   @Autowired protected PackageHistoryStorage packageHistoryStorage;
   @Autowired protected GamePaymentTransactionStorage gamePaymentTransactionStorage;
   @Autowired protected FriendStorage friendStorage;
   @Autowired protected UserNotifyStorage userNotifyStorage;
+  @Autowired protected GameTypeStorage gameTypeStorage;
   @Autowired protected UserProfileStorage userProfileStorage;
   @Autowired protected CoinTransactionStorage coinTransactionStorage;
   @Autowired protected PointTransactionStorage pointTransactionStorage;

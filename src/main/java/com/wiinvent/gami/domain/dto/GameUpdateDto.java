@@ -1,5 +1,6 @@
 package com.wiinvent.gami.domain.dto;
 
+import com.wiinvent.gami.domain.entities.type.GameStatus;
 import lombok.Data;
 
 @Data
@@ -30,5 +31,11 @@ public class GameUpdateDto{
   private String apiPayment;
 
   private String bodyApiPayment;
+
+  private Integer gameTypeId;
+
+  private GameStatus status;
+
+  private Boolean isHot;
 
 }

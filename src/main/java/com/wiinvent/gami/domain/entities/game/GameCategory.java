@@ -1,5 +1,6 @@
 package com.wiinvent.gami.domain.entities.game;
 
+import com.wiinvent.gami.domain.dto.GameCategoryUpdateDto;
 import com.wiinvent.gami.domain.entities.BaseEntity;
 import com.wiinvent.gami.domain.entities.type.Status;
 import jakarta.persistence.*;
@@ -38,5 +39,13 @@ public class GameCategory extends BaseEntity {
 
   @Column(name = "coin")
   private Integer coin;
+
+  public void from(GameCategoryUpdateDto dto){
+    this.name = dto.getName();
+    this.status = dto.getStatus();
+    this.categoryType = dto.getCategoryType();
+    this.isRequireSub = dto.getIsRequireSub();
+    this.coin = dto.getCoin();
+  }
 
 }

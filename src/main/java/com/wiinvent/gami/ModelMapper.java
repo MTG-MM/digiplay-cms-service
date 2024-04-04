@@ -1,12 +1,17 @@
 package com.wiinvent.gami;
 
 import com.wiinvent.gami.domain.dto.*;
+import com.wiinvent.gami.domain.dto.payment.PaymentMethodCreateDto;
 import com.wiinvent.gami.domain.entities.Package;
 import com.wiinvent.gami.domain.entities.Transaction.CoinTransaction;
 import com.wiinvent.gami.domain.entities.Transaction.ExpHistory;
 import com.wiinvent.gami.domain.entities.Transaction.PointTransaction;
 import com.wiinvent.gami.domain.entities.game.Game;
+import com.wiinvent.gami.domain.entities.game.GameCategory;
 import com.wiinvent.gami.domain.entities.game.GamePackage;
+import com.wiinvent.gami.domain.entities.game.GameType;
+import com.wiinvent.gami.domain.entities.payment.PaymentMethod;
+import com.wiinvent.gami.domain.entities.payment.PaymentTransaction;
 import com.wiinvent.gami.domain.entities.payment.PackageHistory;
 import com.wiinvent.gami.domain.entities.reward.*;
 import com.wiinvent.gami.domain.entities.user.User;
@@ -14,6 +19,7 @@ import com.wiinvent.gami.domain.entities.user.UserSegment;
 import com.wiinvent.gami.domain.response.*;
 import com.wiinvent.gami.domain.entities.*;
 import com.wiinvent.gami.domain.pojo.TokenInfo;
+import com.wiinvent.gami.domain.response.payment.PaymentMethodResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 import org.springframework.data.domain.Page;
@@ -131,6 +137,25 @@ public interface ModelMapper {
   Package toPackage(PackageCreateDto packageCreateDto);
 
   void mapGamePackageUpdateDtoToGamePackage(GamePackageUpdateDto dto,@MappingTarget GamePackage gamePackage);
+
+
+  GameType toGameType(GameTypeCreateDto dto);
+  GameTypeResponse toGameTypeResponse(GameType gameType);
+  default Page<GameTypeResponse> toPageGameTypeResponse(Page<GameType> gameTypes) {
+    return gameTypes.map(this::toGameTypeResponse);
+  }
+
+  PaymentMethod toPaymentMethod(PaymentMethodCreateDto dto);
+  PaymentMethodResponse toPaymentMethodResponse(PaymentMethod paymentMethod);
+  default Page<PaymentMethodResponse> toPagePaymentMethodResponse(Page<PaymentMethod> paymentMethods){
+    return paymentMethods.map(this::toPaymentMethodResponse);
+  }
+
+  GameCategory toGameCategory(GameCategoryCreateDto dto);
+  GameCategoryResponse toGameCategoryResponse(GameCategory gameCategory);
+  default Page<GameCategoryResponse> toPageGameCategoryResponse(Page<GameCategory> gameCategories){
+    return gameCategories.map(this::toGameCategoryResponse);
+  }
 
   void mapPackageUpdateDtoToPackage(PackageUpdateDto dto,@MappingTarget Package aPackage);
 

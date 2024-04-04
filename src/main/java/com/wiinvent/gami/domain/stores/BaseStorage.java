@@ -56,6 +56,7 @@ public abstract class BaseStorage {
   @Autowired protected PackageHistoryRepository packageHistoryRepository;
   @Autowired protected FriendRepository friendRepository;
   @Autowired protected UserNotifyRepository userNotifyRepository;
+  @Autowired protected GameTypeRepository gameTypeRepository;
   @Autowired protected UserProfileRepository userProfileRepository;
   @Autowired protected CoinTransactionRepository coinTransactionRepository;
   @Autowired protected PointTransactionRepository pointTransactionRepository;

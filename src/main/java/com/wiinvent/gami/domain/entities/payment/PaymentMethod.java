@@ -1,5 +1,6 @@
 package com.wiinvent.gami.domain.entities.payment;
 
+import com.wiinvent.gami.domain.dto.payment.PaymentMethodUpdateDto;
 import com.wiinvent.gami.domain.entities.BaseEntity;
 import com.wiinvent.gami.domain.entities.type.PaymentMethodType;
 import com.wiinvent.gami.domain.entities.type.Status;
@@ -30,7 +31,6 @@ public class PaymentMethod extends BaseEntity {
   @Column(name = "image_url", length = 500)
   private String imageUrl;
 
-  @Size(max = 50)
   @NotNull
   @Enumerated(EnumType.STRING)
   @Column(name = "payment_method_type", nullable = false, length = 50)
@@ -77,4 +77,21 @@ public class PaymentMethod extends BaseEntity {
   @Column(name = "status")
   private Status status;
 
+  public void from(PaymentMethodUpdateDto dto){
+    this.id = dto.getId();
+    this.name = dto.getName();
+    this.priority = dto.getPriority();
+    this.imageUrl = dto.getImageUrl();
+    this.paymentMethodType = dto.getPaymentMethodType();
+    this.username = dto.getUsername();
+    this.password = dto.getPassword();
+    this.publicKey = dto.getPublicKey();
+    this.linkApiVerify = dto.getLinkApiVerify();
+    this.bodyApiVerify = dto.getBodyApiVerify();
+    this.linkApiRequestPayment = dto.getLinkApiRequestPayment();
+    this.bodyApiRequestPayment = dto.getBodyApiRequestPayment();
+    this.linkApiRequestConfirm = dto.getLinkApiRequestConfirm();
+    this.bodyApiRequestConfirm = dto.getBodyApiRequestConfirm();
+    this.status = dto.getStatus();
+  }
 }

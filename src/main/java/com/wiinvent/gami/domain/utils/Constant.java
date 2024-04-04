@@ -20,8 +20,12 @@ public class Constant {
   public static final String GAME_PACKAGE_NOT_FOUND = "Không tìm thấy gói này";
   public static final String GAME_PACKAGE_NOT_READY = "Gói hiện đã dừng bán";
   public static final String PAYMENT_METHOD_NOT_FOUND = "Không tìm thấy phương thức thanh toán này";
+  public static final String PAYMENT_METHOD_EXISTS = "phương thức thanh toán này đã tồn tại";
   public static final String PAYMENT_METHOD_NOT_READY = "Hiện không hỗ trợ phương thức thanh toán này";
   public static final String USER_WAS_SEND_INVITE_FRIEND = "Bạn đã gửi lời mời kết bạn tới người này";
   public static final String USER_WAS_RECEIVE_INVITE_FRIEND = "Người bạn đã nhận được lời mời kết bạn";
+  public static final String GAME_TYPE_NOT_FOUND = "Không tìm thấy loại game";
+  public static final String GAME_TYPE_DELETED = "loại game đã được xóa";
+  public static final String GAME_CATEGORY_NOT_FOUND = "Không tìm thấy thể loại game này";
   public static final String CREATED_AT_VARIABLE = "createdAt";
 }

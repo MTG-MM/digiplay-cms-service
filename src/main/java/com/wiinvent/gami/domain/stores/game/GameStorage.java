@@ -1,6 +1,7 @@
 package com.wiinvent.gami.domain.stores.game;
 
 import com.wiinvent.gami.domain.entities.game.Game;
+import com.wiinvent.gami.domain.entities.type.GameStatus;
 import com.wiinvent.gami.domain.stores.BaseStorage;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Component
 public class GameStorage extends BaseStorage {
@@ -22,11 +24,11 @@ public class GameStorage extends BaseStorage {
     return gameRepository.findById(id).orElse(null);
   }
 
-  public Page<Game> findAll(Integer id, String name, Pageable pageable) {
-    return gameRepository.findAll(specificationGame(id, name), pageable);
+  public Page<Game> findAll(Integer id, String name, GameStatus status, Boolean isHot, Integer gameCategoryId, Integer gameTypeId, Pageable pageable) {
+    return gameRepository.findAll(specificationGame(id, name, status, isHot, gameCategoryId, gameTypeId), pageable);
   }
 
-  private Specification<Game> specificationGame(Integer id, String name) {
+  private Specification<Game> specificationGame(Integer id, String name, GameStatus status, Boolean isHot, Integer gameCategoryId, Integer gameTypeId) {
     return (Root<Game> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) -> {
       List<Predicate> predicates = new ArrayList<>();
       if (id != null) {
@@ -35,6 +37,11 @@ public class GameStorage extends BaseStorage {
       if (name != null) {
         predicates.add(criteriaBuilder.equal(root.get("name"), name));
       }
+
+      if(Objects.nonNull(status)) predicates.add(criteriaBuilder.equal(root.get("status"), status));
+      if(Objects.nonNull(isHot)) predicates.add(criteriaBuilder.equal(root.get("isHot"), isHot));
+      if(Objects.nonNull(isHot)) predicates.add(criteriaBuilder.equal(root.get("categoryId"), gameCategoryId));
+      if(Objects.nonNull(isHot)) predicates.add(criteriaBuilder.equal(root.get("gameTypeId"), gameTypeId));
 
       return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
     };

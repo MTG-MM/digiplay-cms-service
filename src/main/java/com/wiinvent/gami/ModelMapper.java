@@ -11,7 +11,6 @@ import com.wiinvent.gami.domain.entities.game.GameCategory;
 import com.wiinvent.gami.domain.entities.game.GamePackage;
 import com.wiinvent.gami.domain.entities.game.GameType;
 import com.wiinvent.gami.domain.entities.payment.PaymentMethod;
-import com.wiinvent.gami.domain.entities.payment.PaymentTransaction;
 import com.wiinvent.gami.domain.entities.payment.PackageHistory;
 import com.wiinvent.gami.domain.entities.reward.*;
 import com.wiinvent.gami.domain.entities.user.User;

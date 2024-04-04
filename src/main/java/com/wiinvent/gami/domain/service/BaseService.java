@@ -7,7 +7,7 @@ import com.wiinvent.gami.domain.stores.Transaction.ExpHistoryStorage;
 import com.wiinvent.gami.domain.stores.Transaction.PointTransactionStorage;
 import com.wiinvent.gami.domain.stores.game.*;
 import com.wiinvent.gami.domain.stores.payment.PaymentMethodStorage;
-import com.wiinvent.gami.domain.stores.payment.PaymentTransactionStorage;
+import com.wiinvent.gami.domain.stores.payment.PackageHistoryStorage;
 import com.wiinvent.gami.domain.stores.reward.*;
 import com.wiinvent.gami.domain.stores.user.UserNotifyStorage;
 import com.wiinvent.gami.domain.stores.user.UserProfileStorage;
@@ -47,7 +47,7 @@ public abstract class BaseService {
   @Autowired protected GamePackageStorage gamePackageStorage;
   @Autowired protected PackageStorage packageStorage;
   @Autowired protected PaymentMethodStorage paymentMethodStorage;
-  @Autowired protected PaymentTransactionStorage paymentTransactionStorage;
+  @Autowired protected PackageHistoryStorage packageHistoryStorage;
   @Autowired protected GamePaymentTransactionStorage gamePaymentTransactionStorage;
   @Autowired protected FriendStorage friendStorage;
   @Autowired protected UserNotifyStorage userNotifyStorage;

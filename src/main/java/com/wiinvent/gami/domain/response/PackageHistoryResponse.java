@@ -4,7 +4,7 @@ import com.wiinvent.gami.domain.entities.type.PaymentMethodType;
 import lombok.Data;
 
 @Data
-public class PaymentTransactionResponse {
+public class PackageHistoryResponse {
   private String id;
   private String packageCode;
   private String packageInfo;

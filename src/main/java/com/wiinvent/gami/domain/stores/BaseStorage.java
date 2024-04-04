@@ -9,7 +9,7 @@ import com.wiinvent.gami.domain.repositories.game.*;
 import com.wiinvent.gami.domain.repositories.gvc.GcvHistoryRepository;
 import com.wiinvent.gami.domain.repositories.gvc.GvcPackageRepository;
 import com.wiinvent.gami.domain.repositories.payment.PaymentMethodRepository;
-import com.wiinvent.gami.domain.repositories.payment.PaymentTransactionRepository;
+import com.wiinvent.gami.domain.repositories.payment.PackageHistoryRepository;
 import com.wiinvent.gami.domain.repositories.reward.*;
 import com.wiinvent.gami.domain.repositories.user.UserNotifyRepository;
 import com.wiinvent.gami.domain.repositories.user.UserProfileRepository;
@@ -53,7 +53,7 @@ public abstract class BaseStorage {
   @Autowired protected GameLikeRepository gameLikeRepository;
   @Autowired protected GameStarRepository gameStarRepository;
   @Autowired protected GamePaymentTransactionRepository gamePaymentTransactionRepository;
-  @Autowired protected PaymentTransactionRepository paymentTransactionRepository;
+  @Autowired protected PackageHistoryRepository packageHistoryRepository;
   @Autowired protected FriendRepository friendRepository;
   @Autowired protected UserNotifyRepository userNotifyRepository;
   @Autowired protected UserProfileRepository userProfileRepository;

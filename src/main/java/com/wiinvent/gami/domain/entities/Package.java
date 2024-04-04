@@ -31,9 +31,6 @@ public class Package extends BaseEntity {
   @Column(name = "image_url", length = 500)
   private String imageUrl;
 
-  @Column(name = "price")
-  private Integer price;
-
   @NotNull
   @Column(name = "point", nullable = false)
   private Integer point;

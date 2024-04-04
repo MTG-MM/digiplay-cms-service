@@ -13,6 +13,8 @@ public class PackageResponse {
   private String code;
   private String imageUrl;
   private String thumbUrl;
+  private Integer coin;
+  private Integer point;
   private Integer daySub;
   private Status status;
   private PackageType packageType;

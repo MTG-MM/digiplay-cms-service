@@ -2,10 +2,7 @@ package com.wiinvent.gami.app.controller.user.Transaction;
 
 import com.wiinvent.gami.domain.response.PackageHistoryResponse;
 import com.wiinvent.gami.domain.response.TransactionResponse;
-import com.wiinvent.gami.domain.service.user.Transaction.CoinTransactionService;
-import com.wiinvent.gami.domain.service.user.Transaction.ExpHistoryService;
-import com.wiinvent.gami.domain.service.user.Transaction.PointTransactionService;
-import com.wiinvent.gami.domain.service.user.Transaction.PackageHistoryService;
+import com.wiinvent.gami.domain.service.user.Transaction.*;
 import com.wiinvent.gami.domain.response.base.PageCursorResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +23,7 @@ public class UserTransactionController {
   @Autowired CoinTransactionService coinTransactionService;
   @Autowired PointTransactionService pointTransactionService;
   @Autowired ExpHistoryService expHistoryService;
+  @Autowired TurnTransactionService turnTransactionService;
   @GetMapping("sub")
   public ResponseEntity<PageCursorResponse<PackageHistoryResponse>> getPackageHistory (
       @RequestParam UUID userId,
@@ -64,5 +62,15 @@ public class UserTransactionController {
       @RequestParam(required = false, defaultValue = "20") int limit
   ) {
     return ResponseEntity.ok(expHistoryService.getExpHistories(userId, next, pre, limit));
+  }
+
+  @GetMapping("turn")
+  public ResponseEntity<PageCursorResponse<TransactionResponse>> getTurnTransaction(
+      @RequestParam UUID userId,
+      @RequestParam(required = false) Long next,
+      @RequestParam(required = false) Long pre,
+      @RequestParam(required = false, defaultValue = "20") int limit
+  ) {
+    return ResponseEntity.ok(turnTransactionService.getTurnTransaction(userId, next, pre, limit));
   }
 }

@@ -49,7 +49,7 @@ public class UserStorage extends BaseStorage {
       if (next != null && pre == null) {
         conditionsList.add(criteriaBuilder.lessThanOrEqualTo(user.get(Constant.CREATED_AT_VARIABLE), next));
       } else if (pre != null && next == null) {
-        conditionsList.add(criteriaBuilder.equal(user.get(Constant.CREATED_AT_VARIABLE), pre));
+        conditionsList.add(criteriaBuilder.greaterThanOrEqualTo(user.get(Constant.CREATED_AT_VARIABLE), pre));
       } else {
         conditionsList.add(criteriaBuilder.between(user.get(Constant.CREATED_AT_VARIABLE), pre, next));
       }

@@ -5,6 +5,7 @@ import com.wiinvent.gami.domain.repositories.*;
 import com.wiinvent.gami.domain.repositories.Transaction.CoinTransactionRepository;
 import com.wiinvent.gami.domain.repositories.Transaction.ExpHistoryRepository;
 import com.wiinvent.gami.domain.repositories.Transaction.PointTransactionRepository;
+import com.wiinvent.gami.domain.repositories.Transaction.TurnTransactionRepository;
 import com.wiinvent.gami.domain.repositories.game.*;
 import com.wiinvent.gami.domain.repositories.gvc.GcvHistoryRepository;
 import com.wiinvent.gami.domain.repositories.gvc.GvcPackageRepository;
@@ -61,4 +62,5 @@ public abstract class BaseStorage {
   @Autowired protected CoinTransactionRepository coinTransactionRepository;
   @Autowired protected PointTransactionRepository pointTransactionRepository;
   @Autowired protected ExpHistoryRepository expHistoryRepository;
+  @Autowired protected TurnTransactionRepository turnTransactionRepository;
 }

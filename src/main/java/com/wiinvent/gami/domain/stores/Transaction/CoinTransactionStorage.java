@@ -29,7 +29,7 @@ public class CoinTransactionStorage extends BaseStorage {
       if (next != null && pre == null) {
         conditionsList.add(criteriaBuilder.lessThanOrEqualTo(coinTransaction.get("createdAt"), next));
       } else if (pre != null && next == null) {
-        conditionsList.add(criteriaBuilder.equal(coinTransaction.get("createdAt"), pre));
+        conditionsList.add(criteriaBuilder.greaterThanOrEqualTo(coinTransaction.get("createdAt"), pre));
       } else {
         conditionsList.add(criteriaBuilder.between(coinTransaction.get("createdAt"), pre, next));
       }

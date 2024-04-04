@@ -46,7 +46,7 @@ public class RewardItemHistoryStorage extends BaseStorage {
       if (next != null && pre == null) {
         conditionsList.add(criteriaBuilder.lessThanOrEqualTo(rwItemHistory.get("createdAt"), next));
       } else if (pre != null && next == null) {
-        conditionsList.add(criteriaBuilder.equal(rwItemHistory.get("createdAt"), pre));
+        conditionsList.add(criteriaBuilder.greaterThanOrEqualTo(rwItemHistory.get("createdAt"), pre));
       } else {
         conditionsList.add(criteriaBuilder.between(rwItemHistory.get("createdAt"), pre, next));
       }

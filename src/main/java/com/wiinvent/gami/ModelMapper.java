@@ -6,6 +6,7 @@ import com.wiinvent.gami.domain.entities.Package;
 import com.wiinvent.gami.domain.entities.Transaction.CoinTransaction;
 import com.wiinvent.gami.domain.entities.Transaction.ExpHistory;
 import com.wiinvent.gami.domain.entities.Transaction.PointTransaction;
+import com.wiinvent.gami.domain.entities.Transaction.TurnTransaction;
 import com.wiinvent.gami.domain.entities.game.Game;
 import com.wiinvent.gami.domain.entities.game.GameCategory;
 import com.wiinvent.gami.domain.entities.game.GamePackage;
@@ -174,6 +175,7 @@ public interface ModelMapper {
   List<TransactionResponse> toCoinTransactionResponse(List<CoinTransaction> coinTransactions);
   List<TransactionResponse> toPointTransactionResponse(List<PointTransaction> pointTransactions);
   List<TransactionResponse> toExpHistoryResponse(List<ExpHistory> expHistories);
+  List<TransactionResponse> toTurnTransactionResponse(List<TurnTransaction> turnTransactions);
   List<UserResponse> toListUserResponse(List<User> users);
   UserResponse toUserResponse(User user);
 }

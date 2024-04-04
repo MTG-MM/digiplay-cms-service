@@ -29,7 +29,7 @@ public class PackageHistoryStorage extends BaseStorage {
       if (next != null && pre == null) {
         conditionsList.add(criteriaBuilder.lessThanOrEqualTo(packageHistory.get("createdAt"), next));
       } else if (pre != null && next == null) {
-        conditionsList.add(criteriaBuilder.equal(packageHistory.get("createdAt"), pre));
+        conditionsList.add(criteriaBuilder.greaterThanOrEqualTo(packageHistory.get("createdAt"), pre));
       } else {
         conditionsList.add(criteriaBuilder.between(packageHistory.get("createdAt"), pre, next));
       }

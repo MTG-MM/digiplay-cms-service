@@ -6,13 +6,18 @@ import com.wiinvent.gami.domain.dto.PackageCreateDto;
 import com.wiinvent.gami.domain.dto.PackageUpdateDto;
 import com.wiinvent.gami.domain.entities.Package;
 import com.wiinvent.gami.domain.entities.game.GamePackage;
+import com.wiinvent.gami.domain.entities.game.GameTournament;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.exception.BadRequestException;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.response.GamePackageResponse;
+import com.wiinvent.gami.domain.response.GameTournamentResponse;
 import com.wiinvent.gami.domain.response.PackageResponse;
 import com.wiinvent.gami.domain.utils.Constant;
 import com.wiinvent.gami.domain.utils.JsonParser;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
@@ -21,6 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Objects;
 
 @Service
+@Log4j2
 public class PackageService extends BaseService {
   public PackageResponse getPackageDetail(int id) {
     Package aPackage = packageStorage.findById(id);
@@ -28,6 +34,11 @@ public class PackageService extends BaseService {
       throw new ResourceNotFoundException(Constant.GAME_PACKAGE_NOT_FOUND);
     }
     return modelMapper.toPackageResponse(aPackage);
+  }
+
+  public Page<PackageResponse> findAll(Pageable pageable){
+    Page<Package> packages = packageStorage.findAll(pageable);
+    return modelMapper.toPagePackageResponse(packages);
   }
 
   public void createPackage(PackageCreateDto dto) {
@@ -43,6 +54,11 @@ public class PackageService extends BaseService {
     }
     modelMapper.mapPackageUpdateDtoToPackage(dto, aPackage);
     packageStorage.save(aPackage);
+    try{
+      remoteCache.deleteKey(cacheKey.getPackageByCode(aPackage.getCode()));
+    }catch (Exception e){
+      log.debug("==============>updatePackage:Cache:Exception:{}", e.getMessage());
+    }
   }
 
   @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
@@ -53,5 +69,10 @@ public class PackageService extends BaseService {
     }
     aPackage.setStatus(Status.DELETE);
     packageStorage.save(aPackage);
+    try{
+      remoteCache.deleteKey(cacheKey.getPackageByCode(aPackage.getCode()));
+    }catch (Exception e){
+      log.debug("==============>updatePackage:Cache:Exception:{}", e.getMessage());
+    }
   }
 }

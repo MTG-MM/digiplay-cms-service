@@ -3,14 +3,18 @@ package com.wiinvent.gami.domain.service.game;
 import com.wiinvent.gami.domain.dto.GamePackageCreateDto;
 import com.wiinvent.gami.domain.dto.GamePackageUpdateDto;
 import com.wiinvent.gami.domain.entities.game.Game;
+import com.wiinvent.gami.domain.entities.game.GameTournament;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.response.GamePackageResponse;
 import com.wiinvent.gami.domain.entities.game.GamePackage;
 import com.wiinvent.gami.domain.exception.BadRequestException;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
+import com.wiinvent.gami.domain.response.GameTournamentResponse;
 import com.wiinvent.gami.domain.service.BaseService;
 import com.wiinvent.gami.domain.utils.Constant;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
@@ -28,6 +32,11 @@ public class GamePackageService extends BaseService {
       throw new ResourceNotFoundException(Constant.GAME_PACKAGE_NOT_FOUND);
     }
     return modelMapper.toGamePackageResponse(gamePackage);
+  }
+
+  public Page<GamePackageResponse> findAll(Pageable pageable){
+    Page<GamePackage> gamePackages = gamePackageStorage.findAll(pageable);
+    return modelMapper.toPageGamePackageResponse(gamePackages);
   }
 
   public void createGamePackage(GamePackageCreateDto dto) {
@@ -49,6 +58,12 @@ public class GamePackageService extends BaseService {
     }
     modelMapper.mapGamePackageUpdateDtoToGamePackage(dto, gamePackage);
     gamePackageStorage.save(gamePackage);
+    try{
+      remoteCache.deleteKey(cacheKey.genGamePackageById(id));
+      remoteCache.deleteKey(cacheKey.genGamePackageByGameId(gamePackage.getGameId()));
+    }catch (Exception e){
+      log.debug("==============>updatePackageGame:Cache:Exception:{}", e.getMessage());
+    }
   }
 
   @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
@@ -59,5 +74,11 @@ public class GamePackageService extends BaseService {
     }
     gamePackage.setStatus(Status.DELETE);
     gamePackageStorage.save(gamePackage);
+    try{
+      remoteCache.deleteKey(cacheKey.genGamePackageById(id));
+      remoteCache.deleteKey(cacheKey.genGamePackageByGameId(gamePackage.getGameId()));
+    }catch (Exception e){
+      log.debug("==============>deletePackageGame:Cache:Exception:{}", e.getMessage());
+    }
   }
 }

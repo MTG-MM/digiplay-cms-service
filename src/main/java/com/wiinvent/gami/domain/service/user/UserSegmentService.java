@@ -7,11 +7,13 @@ import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.response.UserSegmentResponse;
 import com.wiinvent.gami.domain.service.BaseService;
 import com.wiinvent.gami.domain.utils.Constant;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
+@Log4j2
 public class UserSegmentService extends BaseService {
 
 
@@ -39,5 +41,12 @@ public class UserSegmentService extends BaseService {
       throw new ResourceNotFoundException(Constant.USER_SEGMENT_NOT_FOUND);
     }
     modelMapper.mapUserSegmentDtoToUserSegment(userSegmentUpdateDto, userSegment);
+    userSegmentStorage.save(userSegment);
+    try {
+      remoteCache.deleteKey(cacheKey.genUserSegmentById(userSegment.getId()));
+      remoteCache.deleteKey(cacheKey.genUserSegmentDefault());
+    }catch (Exception e){
+      log.debug("============================> updateUserSegment:Cache:Exception:{}", e.getMessage());
+    }
   }
 }

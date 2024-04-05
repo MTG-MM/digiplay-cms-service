@@ -7,10 +7,7 @@ import com.wiinvent.gami.domain.entities.Transaction.CoinTransaction;
 import com.wiinvent.gami.domain.entities.Transaction.ExpHistory;
 import com.wiinvent.gami.domain.entities.Transaction.PointTransaction;
 import com.wiinvent.gami.domain.entities.Transaction.TurnTransaction;
-import com.wiinvent.gami.domain.entities.game.Game;
-import com.wiinvent.gami.domain.entities.game.GameCategory;
-import com.wiinvent.gami.domain.entities.game.GamePackage;
-import com.wiinvent.gami.domain.entities.game.GameType;
+import com.wiinvent.gami.domain.entities.game.*;
 import com.wiinvent.gami.domain.entities.payment.PaymentMethod;
 import com.wiinvent.gami.domain.entities.payment.PackageHistory;
 import com.wiinvent.gami.domain.entities.reward.*;
@@ -136,8 +133,18 @@ public interface ModelMapper {
 
   Package toPackage(PackageCreateDto packageCreateDto);
 
+  GameTournament toGameTournament(GameTournamentCreateDto gameTournamentCreateDto);
+
+  void mapGameTournamentUpdateDtoToGameTournament(GameTournamentUpdateDto dto,@MappingTarget GameTournament gameTournament);
+
+  default Page<GameTournamentResponse> toPageGameTournamentResponse(Page<GameTournament> gameTournaments){
+    return gameTournaments.map(this::toGameTournamentResponse);
+  }
   void mapGamePackageUpdateDtoToGamePackage(GamePackageUpdateDto dto,@MappingTarget GamePackage gamePackage);
 
+  default Page<GamePackageResponse> toPageGamePackageResponse(Page<GamePackage> gamePackages){
+    return gamePackages.map(this::toGamePackageResponse);
+  }
 
   GameType toGameType(GameTypeCreateDto dto);
   GameTypeResponse toGameTypeResponse(GameType gameType);
@@ -153,11 +160,16 @@ public interface ModelMapper {
 
   GameCategory toGameCategory(GameCategoryCreateDto dto);
   GameCategoryResponse toGameCategoryResponse(GameCategory gameCategory);
+  GameTournamentResponse toGameTournamentResponse(GameTournament gameTournament);
   default Page<GameCategoryResponse> toPageGameCategoryResponse(Page<GameCategory> gameCategories){
     return gameCategories.map(this::toGameCategoryResponse);
   }
 
   void mapPackageUpdateDtoToPackage(PackageUpdateDto dto,@MappingTarget Package aPackage);
+
+  default Page<PackageResponse> toPagePackageResponse(Page<Package> packages){
+    return packages.map(this::toPackageResponse);
+  }
 
   UserSegmentResponse toUserSegmentResponse(UserSegment userSegment);
 

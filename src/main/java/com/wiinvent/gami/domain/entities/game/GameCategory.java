@@ -8,6 +8,8 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
@@ -46,6 +48,14 @@ public class GameCategory extends BaseEntity {
     this.categoryType = dto.getCategoryType();
     this.isRequireSub = dto.getIsRequireSub();
     this.coin = dto.getCoin();
+  }
+
+  public static List<Status> getListStatusShow(){
+    return List.of(Status.ACTIVE, Status.INACTIVE);
+  }
+
+  public static List<Status> getListStatusNotShow(){
+    return List.of(Status.DELETE);
   }
 
 }

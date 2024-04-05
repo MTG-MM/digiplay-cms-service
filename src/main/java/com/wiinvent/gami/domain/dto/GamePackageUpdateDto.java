@@ -13,6 +13,8 @@ import java.util.List;
 
 @Data
 public class GamePackageUpdateDto {
+  @NotNull(message = "Không được để trống")
+  private Integer id;
 
   @NotNull(message = "Không được để trống")
   @Size(max = 50)

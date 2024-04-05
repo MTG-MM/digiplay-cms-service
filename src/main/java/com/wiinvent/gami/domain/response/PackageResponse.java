@@ -18,6 +18,6 @@ public class PackageResponse {
   private Integer daySub;
   private Status status;
   private PackageType packageType;
-  private List<PaymentMethodInfo> paymentMethodInfo;;
+  private List<PaymentMethodInfo> paymentMethodInfo;
 
 }

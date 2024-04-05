@@ -13,10 +13,10 @@ public class GameCategoryStorage extends BaseStorage {
   }
 
   public GameCategory findById(Integer id){
-    return gameCategoryRepository.findById(id).orElse(null);
+    return gameCategoryRepository.findGameCategoryByIdAndStatusIn(id, GameCategory.getListStatusShow());
   }
 
   public Page<GameCategory> findAll(Pageable pageable){
-    return gameCategoryRepository.findAll(pageable);
+    return gameCategoryRepository.findAllByStatusIn(GameCategory.getListStatusShow(), pageable);
   }
 }

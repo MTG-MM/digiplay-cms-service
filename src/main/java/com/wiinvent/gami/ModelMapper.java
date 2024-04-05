@@ -128,8 +128,14 @@ public interface ModelMapper {
   void mapGameUpdateDtoToGame(GameUpdateDto updateDto, @MappingTarget Game game);
 
   GamePackageResponse toGamePackageResponse(GamePackage gamePackage);
+  default Page<GamePackageResponse> toPageGamePackageResponse(Page<GamePackage> gamePackages){
+    return gamePackages.map(this::toGamePackageResponse);
+  }
 
   PackageResponse toPackageResponse(Package aPackage);
+  default Page<PackageResponse> toPagePackageResponse(Page<Package> packages){
+    return packages.map(this::toPackageResponse);
+  }
 
   GamePackage toGamePackage(GamePackageCreateDto gamePackageCreateDto);
 

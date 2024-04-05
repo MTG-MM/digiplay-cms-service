@@ -18,6 +18,7 @@ public class Constant {
   public static final String GAMER_USER_NOT_FOUND = "Không tìm thấy id người dùng";
   public static final String PAYMENT_ERROR = "Lỗi giao dịch";
   public static final String GAME_PACKAGE_NOT_FOUND = "Không tìm thấy gói này";
+  public static final String TOURNAMENT_NOT_FOUND = "Không tìm thấy gói này";
   public static final String GAME_PACKAGE_NOT_READY = "Gói hiện đã dừng bán";
   public static final String PAYMENT_METHOD_NOT_FOUND = "Không tìm thấy phương thức thanh toán này";
   public static final String PAYMENT_METHOD_EXISTS = "phương thức thanh toán này đã tồn tại";

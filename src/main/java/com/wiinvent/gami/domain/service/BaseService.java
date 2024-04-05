@@ -59,4 +59,5 @@ public abstract class BaseService {
   @Autowired protected PointTransactionStorage pointTransactionStorage;
   @Autowired protected ExpHistoryStorage expHistoryStorage;
   @Autowired protected TurnTransactionStorage turnTransactionStorage;
+  @Autowired protected GameTournamentStorage gameTournamentStorage;
 }

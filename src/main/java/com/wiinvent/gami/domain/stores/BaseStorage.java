@@ -63,4 +63,5 @@ public abstract class BaseStorage {
   @Autowired protected PointTransactionRepository pointTransactionRepository;
   @Autowired protected ExpHistoryRepository expHistoryRepository;
   @Autowired protected TurnTransactionRepository turnTransactionRepository;
+  @Autowired protected GameTournamentRepository gameTournamentRepository;
 }

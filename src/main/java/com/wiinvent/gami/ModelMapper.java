@@ -1,6 +1,8 @@
 package com.wiinvent.gami;
 
 import com.wiinvent.gami.domain.dto.*;
+import com.wiinvent.gami.domain.dto.gvc.GvcPackageCreateDto;
+import com.wiinvent.gami.domain.dto.gvc.GvcPackageUpdateDto;
 import com.wiinvent.gami.domain.dto.payment.PaymentMethodCreateDto;
 import com.wiinvent.gami.domain.entities.Package;
 import com.wiinvent.gami.domain.entities.Transaction.CoinTransaction;
@@ -10,6 +12,7 @@ import com.wiinvent.gami.domain.entities.game.Game;
 import com.wiinvent.gami.domain.entities.game.GameCategory;
 import com.wiinvent.gami.domain.entities.game.GamePackage;
 import com.wiinvent.gami.domain.entities.game.GameType;
+import com.wiinvent.gami.domain.entities.gvc.GvcPackage;
 import com.wiinvent.gami.domain.entities.payment.PaymentMethod;
 import com.wiinvent.gami.domain.entities.payment.PackageHistory;
 import com.wiinvent.gami.domain.entities.reward.*;
@@ -182,4 +185,11 @@ public interface ModelMapper {
   List<TransactionResponse> toExpHistoryResponse(List<ExpHistory> expHistories);
   List<UserResponse> toListUserResponse(List<User> users);
   UserResponse toUserResponse(User user);
+
+  GvcPackageResponse toGvcPackageResponse(GvcPackage gvcPackage);
+  default Page<GvcPackageResponse> toPageGvcPackageResponse(Page<GvcPackage> gvcPackages){
+    return gvcPackages.map(this::toGvcPackageResponse);
+  }
+  GvcPackage toGvcPackage(GvcPackageCreateDto dto);
+  void mapGvcPackageUpdateDtoToGvcPackage(GvcPackageUpdateDto dto, @MappingTarget GvcPackage gvcPackage);
 }

@@ -39,7 +39,7 @@ public class PackageService extends BaseService {
   public PackageResponse getPackageDetail(int id) {
     Package aPackage = packageStorage.findById(id);
     if (aPackage == null) {
-      throw new ResourceNotFoundException(Constant.GAME_PACKAGE_NOT_FOUND);
+      throw new ResourceNotFoundException(Constant.PACKAGE_NOT_FOUND);
     }
     return modelMapper.toPackageResponse(aPackage);
   }
@@ -63,7 +63,7 @@ public class PackageService extends BaseService {
     //validation
     Package aPackage = packageStorage.findById(id);
     if (aPackage == null) {
-      throw new BadRequestException(Constant.GAME_PACKAGE_NOT_FOUND);
+      throw new BadRequestException(Constant.PACKAGE_NOT_FOUND);
     }
     //map
     modelMapper.mapPackageUpdateDtoToPackage(dto, aPackage);
@@ -74,6 +74,12 @@ public class PackageService extends BaseService {
       log.debug("==============>updatePackage:DB:Exception:{}", e.getMessage());
       return false;
     }
+    //cache
+    try {
+      remoteCache.deleteKey(cacheKey.getPackageByCode(aPackage.getCode()));
+    } catch (Exception e){
+      log.debug("==============>updatePackage:Cache:Exception:{}", e.getMessage());
+    }
     return true;
   }
 
@@ -81,7 +87,7 @@ public class PackageService extends BaseService {
     //validation
     Package aPackage = packageStorage.findById(id);
     if (Objects.isNull(aPackage)) {
-      throw new BadRequestException(Constant.GAME_PACKAGE_NOT_FOUND);
+      throw new BadRequestException(Constant.PACKAGE_NOT_FOUND);
     }
     //set
     aPackage.setStatus(Status.DELETE);

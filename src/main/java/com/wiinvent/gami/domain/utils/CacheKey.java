@@ -57,4 +57,15 @@ public class CacheKey {
   public String genGamePackageByGameId(Integer gameId) {
     return redisPrefixKeyVtGame + ":game:package:gameId:" + gameId;
   }
+
+  public String getPackageByCode(String packageCode) {
+    return redisPrefixKeyVtGame + ":game:package:code:" + packageCode;
+  }
+
+  public String getGvcPackages() {
+    return redisPrefixKeyVtGame + ":game:gvc:package";
+  }
+  public String getGvcPackageByCode(String packageCode) {
+    return redisPrefixKeyVtGame + ":game:gvc:package:code" + packageCode;
+  }
 }

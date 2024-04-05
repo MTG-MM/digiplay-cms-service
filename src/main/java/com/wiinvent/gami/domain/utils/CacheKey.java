@@ -42,6 +42,10 @@ public class CacheKey {
   public String genAllGameCategories() {
     return redisPrefixKeyVtGame + ":game:category:all";
   }
+  public String getGameByCategoryId(int categoryId, int pageNumber) {
+    return redisPrefixKeyVtGame + ":game:category:id" + categoryId + ":page:" + pageNumber;
+
+  }
 
   public String getGameById(Integer gameId) {
     return redisPrefixKeyVtGame + ":game:id:" + gameId ;

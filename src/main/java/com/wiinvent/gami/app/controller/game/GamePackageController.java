@@ -3,7 +3,7 @@ package com.wiinvent.gami.app.controller.game;
 import com.wiinvent.gami.app.controller.BaseController;
 import com.wiinvent.gami.domain.dto.GamePackageCreateDto;
 import com.wiinvent.gami.domain.dto.GamePackageUpdateDto;
-import com.wiinvent.gami.domain.response.GameCategoryResponse;
+import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.response.GamePackageResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.game.GamePackageService;
@@ -17,36 +17,45 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/vt/cms/game-package")
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
 public class GamePackageController extends BaseController {
-
   @Autowired private GamePackageService gamePackageService;
 
-  @GetMapping("{id}")
-  public ResponseEntity<GamePackageResponse> getGamePackageDetail(@PathVariable int id){
-    return ResponseEntity.ok(gamePackageService.getPackageDetail(id));
+  @GetMapping("")
+  public ResponseEntity<PageResponse<GamePackageResponse>> findAll(
+      @RequestParam(value = "gameId") Integer gameId,
+      @RequestParam(required = false) Integer id,
+      @RequestParam(required = false) Status status,
+      Pageable pageable
+  ){
+    return ResponseEntity.ok(
+        PageResponse.createFrom(gamePackageService.findAll(gameId, id, status, pageable))
+    );
   }
 
-  @GetMapping("")
-  public ResponseEntity<PageResponse<GamePackageResponse>> findAll(Pageable pageable){
-    return ResponseEntity.ok(
-        PageResponse.createFrom(gamePackageService.findAll(pageable))
-    );
+  @GetMapping("{id}")
+  public ResponseEntity<GamePackageResponse> getGamePackageDetail(
+      @PathVariable(value = "id") int id
+  ){
+    return ResponseEntity.ok(gamePackageService.getPackageDetail(id));
   }
 
   @PostMapping("")
   public ResponseEntity<Boolean> createGamePackage(@RequestBody GamePackageCreateDto gamePackageCreateDto){
-    gamePackageService.createGamePackage(gamePackageCreateDto);
-    return ResponseEntity.ok(true);
+    return ResponseEntity.ok(
+        gamePackageService.createGamePackage(gamePackageCreateDto)
+    );
   }
 
-  @PutMapping("{id}")
-  public ResponseEntity<Boolean> updateGamePackage(@PathVariable int id, @RequestBody GamePackageUpdateDto dto){
-    gamePackageService.updateGamePackage(id, dto);
-    return ResponseEntity.ok(true);
+  @PutMapping("")
+  public ResponseEntity<Boolean> updateGamePackage(@RequestBody GamePackageUpdateDto dto){
+    return ResponseEntity.ok(
+        gamePackageService.updateGamePackage(dto)
+    );
   }
 
   @DeleteMapping("{id}")
   public ResponseEntity<Boolean> deleteGamePackage(@PathVariable int id){
-    gamePackageService.deleteGamePackage(id);
-    return ResponseEntity.ok(true);
+    return ResponseEntity.ok(
+        gamePackageService.deleteGamePackage(id)
+    );
   }
 }

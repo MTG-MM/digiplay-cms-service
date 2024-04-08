@@ -79,6 +79,8 @@ public class GameCategoryService extends BaseService {
     //cache
     try{
       remoteCache.deleteKey(cacheKey.genAllGameCategories());
+      if(gameCategory.getStatus().equals(Status.INACTIVE))
+        remoteCache.deleteKey(cacheKey.getGameByCategoryId(gameCategory.getId(),0));
     }catch (Exception e){
       log.debug("==================> updateGameCategory:Cache:Exception:{}", e.getMessage());
     }
@@ -103,6 +105,7 @@ public class GameCategoryService extends BaseService {
     //cache
     try{
       remoteCache.deleteKey(cacheKey.genAllGameCategories());
+      remoteCache.deleteKey(cacheKey.getGameByCategoryId(gameCategory.getId(),0));
     }catch (Exception e){
       log.debug("==================> deleteGameCategory:Cache:Exception:{}", e.getMessage());
     }

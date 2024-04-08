@@ -65,4 +65,11 @@ public class GamePackage extends BaseEntity {
   @Column(name = "payment_method_info")
   @Convert(converter = PaymentMethodInfoConverter.class)
   private List<PaymentMethodInfo> paymentMethodInfo;
+  public static List<Status> getListStatusShow(){
+    return List.of(Status.ACTIVE, Status.INACTIVE);
+  }
+
+  public static List<Status> getListStatusNotShow(){
+    return List.of(Status.DELETE);
+  }
 }

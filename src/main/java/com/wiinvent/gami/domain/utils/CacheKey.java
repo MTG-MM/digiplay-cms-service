@@ -39,18 +39,37 @@ public class CacheKey {
   public String genAllGameCategories() {
     return redisPrefixKeyVtGame + ":game:category:all";
   }
+  public String getGameByCategoryId(int categoryId, int pageNumber) {
+    return redisPrefixKeyVtGame + ":game:category:id" + categoryId + ":page:" + pageNumber;
+
+  }
 
   public String getGameById(Integer gameId) {
     return redisPrefixKeyVtGame + ":game:id:" + gameId ;
+  }
+
+  public String genGamePackageById(Integer packageId) {
+    return redisPrefixKeyVtGame + ":game:package:id:" + packageId;
+  }
+  public String genGamePackageByGameId(Integer gameId) {
+    return redisPrefixKeyVtGame + ":game:package:gameId:" + gameId;
+  }
+
+  public String getPackageByCode(String packageCode) {
+    return redisPrefixKeyVtGame + ":game:package:code:" + packageCode;
+  }
+
+  public String getGvcPackages() {
+    return redisPrefixKeyVtGame + ":game:gvc:package";
+  }
+  public String getGvcPackageByCode(String packageCode) {
+    return redisPrefixKeyVtGame + ":game:gvc:package:code" + packageCode;
   }
   public String genUserSegmentById(Long userSegmentId) {
     return redisPrefixKeyVtGame + ":user:segment:id:" + userSegmentId;
   }
   public String genUserSegmentDefault() {
     return redisPrefixKeyVtGame + ":user:segment:default";
-  }
-  public String genGamePackageByGameId(int gameId) {
-    return redisPrefixKeyVtGame + ":game:package:gameId:" + gameId;
   }
 
   public String genGameTournamentById(String id) {
@@ -59,11 +78,5 @@ public class CacheKey {
 
   public String genPaymentMethodById(Integer paymentMethodId) {
     return redisPrefixKeyVtGame + ":game:payment:method:id:" + paymentMethodId;
-  }
-  public String genGamePackageById(Integer packageId) {
-    return redisPrefixKeyVtGame + ":game:package:id:" + packageId;
-  }
-  public String getPackageByCode(String packageCode) {
-    return redisPrefixKeyVtGame + ":game:package:code:" + packageCode;
   }
 }

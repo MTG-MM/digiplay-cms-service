@@ -1,11 +1,18 @@
 package com.wiinvent.gami;
 
 import com.wiinvent.gami.domain.dto.*;
+import com.wiinvent.gami.domain.dto.gvc.GvcPackageCreateDto;
+import com.wiinvent.gami.domain.dto.gvc.GvcPackageUpdateDto;
 import com.wiinvent.gami.domain.dto.payment.PaymentMethodCreateDto;
 import com.wiinvent.gami.domain.entities.Package;
 import com.wiinvent.gami.domain.entities.Transaction.CoinTransaction;
 import com.wiinvent.gami.domain.entities.Transaction.ExpHistory;
 import com.wiinvent.gami.domain.entities.Transaction.PointTransaction;
+import com.wiinvent.gami.domain.entities.game.Game;
+import com.wiinvent.gami.domain.entities.game.GameCategory;
+import com.wiinvent.gami.domain.entities.game.GamePackage;
+import com.wiinvent.gami.domain.entities.game.GameType;
+import com.wiinvent.gami.domain.entities.gvc.GvcPackage;
 import com.wiinvent.gami.domain.entities.Transaction.TurnTransaction;
 import com.wiinvent.gami.domain.entities.game.*;
 import com.wiinvent.gami.domain.entities.payment.PaymentMethod;
@@ -126,8 +133,14 @@ public interface ModelMapper {
   void mapGameUpdateDtoToGame(GameUpdateDto updateDto, @MappingTarget Game game);
 
   GamePackageResponse toGamePackageResponse(GamePackage gamePackage);
+  default Page<GamePackageResponse> toPageGamePackageResponse(Page<GamePackage> gamePackages){
+    return gamePackages.map(this::toGamePackageResponse);
+  }
 
   PackageResponse toPackageResponse(Package aPackage);
+  default Page<PackageResponse> toPagePackageResponse(Page<Package> packages){
+    return packages.map(this::toPackageResponse);
+  }
 
   GamePackage toGamePackage(GamePackageCreateDto gamePackageCreateDto);
 
@@ -141,11 +154,6 @@ public interface ModelMapper {
     return gameTournaments.map(this::toGameTournamentResponse);
   }
   void mapGamePackageUpdateDtoToGamePackage(GamePackageUpdateDto dto,@MappingTarget GamePackage gamePackage);
-
-  default Page<GamePackageResponse> toPageGamePackageResponse(Page<GamePackage> gamePackages){
-    return gamePackages.map(this::toGamePackageResponse);
-  }
-
   GameType toGameType(GameTypeCreateDto dto);
   GameTypeResponse toGameTypeResponse(GameType gameType);
   default Page<GameTypeResponse> toPageGameTypeResponse(Page<GameType> gameTypes) {
@@ -167,10 +175,6 @@ public interface ModelMapper {
 
   void mapPackageUpdateDtoToPackage(PackageUpdateDto dto,@MappingTarget Package aPackage);
 
-  default Page<PackageResponse> toPagePackageResponse(Page<Package> packages){
-    return packages.map(this::toPackageResponse);
-  }
-
   UserSegmentResponse toUserSegmentResponse(UserSegment userSegment);
 
   default Page<UserSegmentResponse> toPageUserSegmentResponse(Page<UserSegment> userSegments){
@@ -190,4 +194,11 @@ public interface ModelMapper {
   List<TransactionResponse> toTurnTransactionResponse(List<TurnTransaction> turnTransactions);
   List<UserResponse> toListUserResponse(List<User> users);
   UserResponse toUserResponse(User user);
+
+  GvcPackageResponse toGvcPackageResponse(GvcPackage gvcPackage);
+  default Page<GvcPackageResponse> toPageGvcPackageResponse(Page<GvcPackage> gvcPackages){
+    return gvcPackages.map(this::toGvcPackageResponse);
+  }
+  GvcPackage toGvcPackage(GvcPackageCreateDto dto);
+  void mapGvcPackageUpdateDtoToGvcPackage(GvcPackageUpdateDto dto, @MappingTarget GvcPackage gvcPackage);
 }

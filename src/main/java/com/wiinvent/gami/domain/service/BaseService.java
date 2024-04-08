@@ -7,6 +7,7 @@ import com.wiinvent.gami.domain.stores.Transaction.ExpHistoryStorage;
 import com.wiinvent.gami.domain.stores.Transaction.PointTransactionStorage;
 import com.wiinvent.gami.domain.stores.Transaction.TurnTransactionStorage;
 import com.wiinvent.gami.domain.stores.game.*;
+import com.wiinvent.gami.domain.stores.gvc.GvcPackageStorage;
 import com.wiinvent.gami.domain.stores.payment.PaymentMethodStorage;
 import com.wiinvent.gami.domain.stores.payment.PackageHistoryStorage;
 import com.wiinvent.gami.domain.stores.reward.*;
@@ -60,4 +61,5 @@ public abstract class BaseService {
   @Autowired protected ExpHistoryStorage expHistoryStorage;
   @Autowired protected TurnTransactionStorage turnTransactionStorage;
   @Autowired protected GameTournamentStorage gameTournamentStorage;
+  @Autowired protected GvcPackageStorage gvcPackageStorage;
 }

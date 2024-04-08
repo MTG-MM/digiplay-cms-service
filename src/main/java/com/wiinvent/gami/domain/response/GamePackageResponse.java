@@ -34,4 +34,8 @@ public class GamePackageResponse{
   private Integer priority;
 
   private List<PaymentMethodInfo> paymentMethodInfo;
+
+  private Long createdAt;
+
+  private Long updatedAt;
 }

@@ -60,5 +60,6 @@ logging:
 
 redis:
   prefix-key-vt-game: ${REDIS_PREFIX_KEY_VT_GAME:vt}
+  prefix-key: ${REDIS_PREFIX_KEY:mos}
 server:
   port: ${PORT:8080}

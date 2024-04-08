@@ -8,6 +8,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -86,4 +87,12 @@ public class Game extends BaseEntity {
 
   @Column(name = "is_hot")
   private Boolean isHot;
+
+  public static List<GameStatus> getListStatusShow(){
+    return List.of(GameStatus.NEW, GameStatus.ACTIVE, GameStatus.INACTIVE);
+  }
+
+  public static List<GameStatus> getListStatusNotShow(){
+    return List.of(GameStatus.DELETE);
+  }
 }

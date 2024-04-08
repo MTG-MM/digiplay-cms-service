@@ -8,6 +8,8 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
@@ -38,4 +40,11 @@ public class GvcPackage extends BaseEntity {
   @Column(name = "status")
   private Status status;
 
+  public static List<Status> getListStatusShow(){
+    return List.of(Status.ACTIVE, Status.INACTIVE);
+  }
+
+  public static List<Status> getListStatusNotShow(){
+    return List.of(Status.DELETE);
+  }
 }

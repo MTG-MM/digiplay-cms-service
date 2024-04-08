@@ -21,7 +21,7 @@ public class GameStorage extends BaseStorage {
 
 
   public Game findById(Integer id) {
-    return gameRepository.findById(id).orElse(null);
+    return gameRepository.findGameByIdAndStatusIn(id, Game.getListStatusShow());
   }
 
   public Page<Game> findAll(Integer id, String name, GameStatus status, Boolean isHot, Integer gameCategoryId, Integer gameTypeId, Pageable pageable) {
@@ -39,6 +39,8 @@ public class GameStorage extends BaseStorage {
       }
 
       if(Objects.nonNull(status)) predicates.add(criteriaBuilder.equal(root.get("status"), status));
+      else predicates.add(criteriaBuilder.in(root.get("status")).value(Game.getListStatusShow()));
+
       if(Objects.nonNull(isHot)) predicates.add(criteriaBuilder.equal(root.get("isHot"), isHot));
       if(Objects.nonNull(isHot)) predicates.add(criteriaBuilder.equal(root.get("categoryId"), gameCategoryId));
       if(Objects.nonNull(isHot)) predicates.add(criteriaBuilder.equal(root.get("gameTypeId"), gameTypeId));

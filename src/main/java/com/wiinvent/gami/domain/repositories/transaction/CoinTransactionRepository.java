@@ -1,6 +1,6 @@
-package com.wiinvent.gami.domain.repositories.Transaction;
+package com.wiinvent.gami.domain.repositories.transaction;
 
-import com.wiinvent.gami.domain.entities.Transaction.CoinTransaction;
+import com.wiinvent.gami.domain.entities.transaction.CoinTransaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;

@@ -3,6 +3,7 @@ package com.wiinvent.gami.app.controller.reward;
 
 import com.wiinvent.gami.domain.dto.ChooseRewardItemSegmentDto;
 import com.wiinvent.gami.domain.dto.RewardSegmentDto;
+import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.response.RewardSegmentResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.reward.RewardSegmentService;
@@ -27,13 +28,14 @@ public class RewardSegmentController {
   private RewardSegmentService rewardSegmentService;
 
   @GetMapping("")
-  @PageableAsQueryParam
   public ResponseEntity<PageResponse<RewardSegmentResponse>> getRewardSegments(
+      @RequestParam(required = false) String code,
+      @RequestParam(required = false) Status status,
       @Parameter(hidden = true)
       @SortDefault(sort = "updatedAt", direction = Sort.Direction.DESC)
-      @PageableDefault(value = 5) final Pageable pageable
+      Pageable pageable
   ) {
-    return ResponseEntity.ok(rewardSegmentService.getAllRewardSegments(pageable));
+    return ResponseEntity.ok(rewardSegmentService.getAllRewardSegments(code, status, pageable));
   }
 
   @GetMapping("{id}")

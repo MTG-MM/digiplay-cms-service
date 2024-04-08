@@ -1,6 +1,6 @@
-package com.wiinvent.gami.domain.stores.Transaction;
+package com.wiinvent.gami.domain.stores.transaction;
 
-import com.wiinvent.gami.domain.entities.Transaction.CoinTransaction;
+import com.wiinvent.gami.domain.entities.transaction.CoinTransaction;
 import com.wiinvent.gami.domain.stores.BaseStorage;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaQuery;

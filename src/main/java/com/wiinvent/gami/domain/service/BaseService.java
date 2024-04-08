@@ -2,10 +2,10 @@ package com.wiinvent.gami.domain.service;
 
 import com.wiinvent.gami.ModelMapper;
 import com.wiinvent.gami.domain.stores.*;
-import com.wiinvent.gami.domain.stores.Transaction.CoinTransactionStorage;
-import com.wiinvent.gami.domain.stores.Transaction.ExpHistoryStorage;
-import com.wiinvent.gami.domain.stores.Transaction.PointTransactionStorage;
-import com.wiinvent.gami.domain.stores.Transaction.TurnTransactionStorage;
+import com.wiinvent.gami.domain.stores.transaction.CoinTransactionStorage;
+import com.wiinvent.gami.domain.stores.transaction.ExpHistoryStorage;
+import com.wiinvent.gami.domain.stores.transaction.PointTransactionStorage;
+import com.wiinvent.gami.domain.stores.transaction.TurnTransactionStorage;
 import com.wiinvent.gami.domain.stores.game.*;
 import com.wiinvent.gami.domain.stores.gvc.GvcPackageStorage;
 import com.wiinvent.gami.domain.stores.payment.PaymentMethodStorage;

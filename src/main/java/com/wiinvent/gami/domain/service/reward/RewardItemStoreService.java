@@ -2,6 +2,7 @@ package com.wiinvent.gami.domain.service.reward;
 
 import com.wiinvent.gami.domain.dto.RewardItemStoreCreateDto;
 import com.wiinvent.gami.domain.dto.RewardItemStoreUpdateDto;
+import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.response.RewardItemStoreResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.entities.reward.RewardItemStore;
@@ -24,8 +25,8 @@ public class RewardItemStoreService extends BaseService {
     return modelMapper.toRewardItemStoreResponse(rewardItemStore);
   }
 
-  public PageResponse<RewardItemStoreResponse> getAllRewardItemStores(Pageable pageable) {
-    Page<RewardItemStore> rewardItemStores = rewardItemStoreStorage.findAll(pageable);
+  public PageResponse<RewardItemStoreResponse> getAllRewardItemStores(StoreType type, Status status, Pageable pageable) {
+    Page<RewardItemStore> rewardItemStores = rewardItemStoreStorage.findAll(type, status, pageable);
     Page<RewardItemStoreResponse> responses = modelMapper.toPageRewardItemStoreResponse(rewardItemStores);
     return PageResponse.createFrom(responses);
   }

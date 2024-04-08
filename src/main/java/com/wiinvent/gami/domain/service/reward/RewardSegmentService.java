@@ -1,6 +1,7 @@
 package com.wiinvent.gami.domain.service.reward;
 
 import com.wiinvent.gami.domain.dto.RewardSegmentDto;
+import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.response.RewardSegmentResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.entities.reward.RewardItem;
@@ -29,8 +30,8 @@ import java.util.stream.Collectors;
 @Service
 public class RewardSegmentService extends BaseService {
 
-  public PageResponse<RewardSegmentResponse> getAllRewardSegments(Pageable pageable) {
-    Page<RewardSegment> rewardSegments = rewardSegmentStorage.findAll(pageable);
+  public PageResponse<RewardSegmentResponse> getAllRewardSegments(String code, Status status, Pageable pageable) {
+    Page<RewardSegment> rewardSegments = rewardSegmentStorage.findAll(code, status, pageable);
     Page<RewardSegmentResponse> responses = modelMapper.toPageRewardSegmentResponse(rewardSegments);
     return PageResponse.createFrom(responses);
   }

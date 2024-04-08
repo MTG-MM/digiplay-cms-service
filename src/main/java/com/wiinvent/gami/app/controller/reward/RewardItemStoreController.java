@@ -2,12 +2,15 @@ package com.wiinvent.gami.app.controller.reward;
 
 import com.wiinvent.gami.domain.dto.RewardItemStoreCreateDto;
 import com.wiinvent.gami.domain.dto.RewardItemStoreUpdateDto;
+import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.response.RewardItemStoreResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.entities.type.StoreType;
 import com.wiinvent.gami.domain.service.reward.RewardItemStoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.SortDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -19,11 +22,16 @@ import java.util.List;
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
 public class RewardItemStoreController {
 
-  @Autowired private RewardItemStoreService rewardItemStoreService;
+  @Autowired
+  private RewardItemStoreService rewardItemStoreService;
 
   @GetMapping("")
-  public ResponseEntity<PageResponse<RewardItemStoreResponse>> getRewardItemStores(Pageable pageable) {
-    return ResponseEntity.ok(rewardItemStoreService.getAllRewardItemStores(pageable));
+  public ResponseEntity<PageResponse<RewardItemStoreResponse>> getRewardItemStores(
+      @RequestParam(required = false) StoreType type,
+      @RequestParam(required = false) Status status,
+      @SortDefault(sort = "createdAt", direction = Sort.Direction.DESC)
+      Pageable pageable) {
+    return ResponseEntity.ok(rewardItemStoreService.getAllRewardItemStores(type, status, pageable));
   }
 
   @GetMapping("type/{type}")

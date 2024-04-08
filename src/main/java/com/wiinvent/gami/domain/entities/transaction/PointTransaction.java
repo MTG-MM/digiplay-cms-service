@@ -1,18 +1,16 @@
-package com.wiinvent.gami.domain.entities.Transaction;
+package com.wiinvent.gami.domain.entities.transaction;
 
-import com.wiinvent.gami.domain.entities.BaseEntity;
 import com.wiinvent.gami.domain.entities.type.TransactionType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.UUID;
-
 @Getter
 @Setter
 @Entity
-@Table(name = "turn_transaction")
-public class TurnTransaction extends BaseEntity {
+@Table(name = "point_transaction")
+public class PointTransaction {
   @Id
   @Column(columnDefinition = "BINARY(16)")
   private UUID id;

@@ -1,6 +1,6 @@
-package com.wiinvent.gami.domain.service.user.Transaction;
+package com.wiinvent.gami.domain.service.user.transaction;
 
-import com.wiinvent.gami.domain.entities.Transaction.ExpHistory;
+import com.wiinvent.gami.domain.entities.transaction.ExpHistory;
 import com.wiinvent.gami.domain.response.TransactionResponse;
 import com.wiinvent.gami.domain.response.base.PageCursorResponse;
 import com.wiinvent.gami.domain.service.BaseService;

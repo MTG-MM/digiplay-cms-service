@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface GameTournamentRepository extends JpaRepository<GameTournament, String>, JpaSpecificationExecutor<Game> {
+public interface GameTournamentRepository extends JpaRepository<GameTournament, String>, JpaSpecificationExecutor<GameTournament> {
   GameTournament findByIdAndStatusNot(String id, Status status);
 }

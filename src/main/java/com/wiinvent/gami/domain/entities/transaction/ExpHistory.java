@@ -1,4 +1,4 @@
-package com.wiinvent.gami.domain.entities.Transaction;
+package com.wiinvent.gami.domain.entities.transaction;
 
 import com.wiinvent.gami.domain.entities.BaseEntity;
 import com.wiinvent.gami.domain.entities.type.TransactionType;

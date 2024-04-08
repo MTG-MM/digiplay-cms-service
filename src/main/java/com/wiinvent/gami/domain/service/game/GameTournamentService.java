@@ -32,8 +32,8 @@ public class GameTournamentService extends BaseService {
     return modelMapper.toGameTournamentResponse(gameTournament);
   }
 
-  public Page<GameTournamentResponse> findAll(Pageable pageable){
-    Page<GameTournament> gameTournaments = gameTournamentStorage.findAll(pageable);
+  public Page<GameTournamentResponse> findAll(Integer gameID, Status status, Pageable pageable){
+    Page<GameTournament> gameTournaments = gameTournamentStorage.findAll(gameID, status, pageable);
     return modelMapper.toPageGameTournamentResponse(gameTournaments);
   }
 

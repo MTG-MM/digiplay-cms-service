@@ -15,6 +15,8 @@ import jakarta.validation.Valid;
 import org.springdoc.core.converters.models.PageableAsQueryParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.SortDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +36,9 @@ public class GameController extends BaseController {
       @RequestParam(required = false) Boolean isHot,
       @RequestParam(required = false) Integer gameCategoryId,
       @RequestParam(required = false) Integer gameTypeId,
-      @Parameter(hidden = true) Pageable pageable) {
+      @Parameter(hidden = true)
+      @SortDefault(sort = "createdAt", direction = Sort.Direction.DESC)
+      Pageable pageable) {
     return PageResponse.createFrom(gameService.getAll(id, name, status, isHot, gameCategoryId, gameTypeId, pageable));
   }
 

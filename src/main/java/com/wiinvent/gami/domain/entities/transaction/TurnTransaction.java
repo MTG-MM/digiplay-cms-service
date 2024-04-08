@@ -1,4 +1,4 @@
-package com.wiinvent.gami.domain.entities.Transaction;
+package com.wiinvent.gami.domain.entities.transaction;
 
 import com.wiinvent.gami.domain.entities.BaseEntity;
 import com.wiinvent.gami.domain.entities.type.TransactionType;
@@ -11,8 +11,8 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "coin_transaction")
-public class CoinTransaction extends BaseEntity {
+@Table(name = "turn_transaction")
+public class TurnTransaction extends BaseEntity {
   @Id
   @Column(columnDefinition = "BINARY(16)")
   private UUID id;

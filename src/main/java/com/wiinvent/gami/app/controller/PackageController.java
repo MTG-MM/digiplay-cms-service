@@ -17,6 +17,8 @@ import com.wiinvent.gami.domain.service.PackageService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.SortDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +36,7 @@ public class PackageController {
   public ResponseEntity<PageResponse<PackageResponse>> findAll(
       @RequestParam(required = false) Integer id,
       @RequestParam(required = false) PackageType type,
+      @SortDefault(sort = "createdAt", direction = Sort.Direction.DESC)
       Pageable pageable
   ){
     return ResponseEntity.ok(

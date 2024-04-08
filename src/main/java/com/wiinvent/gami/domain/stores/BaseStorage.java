@@ -2,10 +2,10 @@ package com.wiinvent.gami.domain.stores;
 
 import com.wiinvent.gami.domain.repositories.AccountRepository;
 import com.wiinvent.gami.domain.repositories.*;
-import com.wiinvent.gami.domain.repositories.Transaction.CoinTransactionRepository;
-import com.wiinvent.gami.domain.repositories.Transaction.ExpHistoryRepository;
-import com.wiinvent.gami.domain.repositories.Transaction.PointTransactionRepository;
-import com.wiinvent.gami.domain.repositories.Transaction.TurnTransactionRepository;
+import com.wiinvent.gami.domain.repositories.transaction.CoinTransactionRepository;
+import com.wiinvent.gami.domain.repositories.transaction.ExpHistoryRepository;
+import com.wiinvent.gami.domain.repositories.transaction.PointTransactionRepository;
+import com.wiinvent.gami.domain.repositories.transaction.TurnTransactionRepository;
 import com.wiinvent.gami.domain.repositories.game.*;
 import com.wiinvent.gami.domain.repositories.gvc.GcvHistoryRepository;
 import com.wiinvent.gami.domain.repositories.gvc.GvcPackageRepository;

@@ -9,6 +9,8 @@ import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.game.GamePackageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.SortDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +26,7 @@ public class GamePackageController extends BaseController {
       @RequestParam(value = "gameId") Integer gameId,
       @RequestParam(required = false) Integer id,
       @RequestParam(required = false) Status status,
+      @SortDefault(sort = "createdAt", direction = Sort.Direction.DESC)
       Pageable pageable
   ){
     return ResponseEntity.ok(

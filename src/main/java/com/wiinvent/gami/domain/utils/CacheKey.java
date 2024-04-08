@@ -9,30 +9,27 @@ import java.util.UUID;
 @Component
 public class CacheKey {
 
-  @Value("${redis.prefix-key}")
-  public String redisPrefixKey;
-
   @Value("${redis.prefix-key-vt-game}")
   public String redisPrefixKeyVtGame;
 
   public String getPeriodTypeByUser(UUID userId, Long rewardSegmentId, Long rewardItemId) {
-    return redisPrefixKey + ":u:" + userId + ":rws:" + rewardSegmentId + ":rwi:" + rewardItemId;
+    return redisPrefixKeyVtGame + ":u:" + userId + ":rws:" + rewardSegmentId + ":rwi:" + rewardItemId;
   }
 
   public String getRewardPoolItemIds(Long rewardSegmentId, Long rewardItemId) {
-    return redisPrefixKey + ":rws:" + rewardSegmentId + ":rwi:" + rewardItemId;
+    return redisPrefixKeyVtGame + ":rws:" + rewardSegmentId + ":rwi:" + rewardItemId;
   }
 
   public String getStatisticRewardPoolItemIds(LocalDate day, Long rewardSegmentId, Long rewardItemId) {
-    return redisPrefixKey + ":statistic:" + day + ":rws:" + rewardSegmentId + ":rwi:" + rewardItemId;
+    return redisPrefixKeyVtGame + ":statistic:" + day + ":rws:" + rewardSegmentId + ":rwi:" + rewardItemId;
   }
 
   public String getUserById(UUID id) {
-    return redisPrefixKey + ":u:id" + id;
+    return redisPrefixKeyVtGame + ":u:id" + id;
   }
 
   public String getUserByUsername(String username) {
-    return redisPrefixKey + ":u:name" + username;
+    return redisPrefixKeyVtGame + ":u:name" + username;
   }
 
   public String genAllPaymentMethod() {
@@ -67,5 +64,19 @@ public class CacheKey {
   }
   public String getGvcPackageByCode(String packageCode) {
     return redisPrefixKeyVtGame + ":game:gvc:package:code" + packageCode;
+  }
+  public String genUserSegmentById(Long userSegmentId) {
+    return redisPrefixKeyVtGame + ":user:segment:id:" + userSegmentId;
+  }
+  public String genUserSegmentDefault() {
+    return redisPrefixKeyVtGame + ":user:segment:default";
+  }
+
+  public String genGameTournamentById(String id) {
+    return redisPrefixKeyVtGame + ":game:tournament:gameId:" + id;
+  }
+
+  public String genPaymentMethodById(Integer paymentMethodId) {
+    return redisPrefixKeyVtGame + ":game:payment:method:id:" + paymentMethodId;
   }
 }

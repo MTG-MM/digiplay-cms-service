@@ -30,7 +30,7 @@ public class PointTransactionStorage extends BaseStorage {
       if (next != null && pre == null) {
         conditionsList.add(criteriaBuilder.lessThanOrEqualTo(pointTransaction.get("createdAt"), next));
       } else if (pre != null && next == null) {
-        conditionsList.add(criteriaBuilder.equal(pointTransaction.get("createdAt"), pre));
+        conditionsList.add(criteriaBuilder.greaterThanOrEqualTo(pointTransaction.get("createdAt"), pre));
       } else {
         conditionsList.add(criteriaBuilder.between(pointTransaction.get("createdAt"), pre, next));
       }

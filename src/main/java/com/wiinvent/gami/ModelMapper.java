@@ -13,6 +13,8 @@ import com.wiinvent.gami.domain.entities.game.GameCategory;
 import com.wiinvent.gami.domain.entities.game.GamePackage;
 import com.wiinvent.gami.domain.entities.game.GameType;
 import com.wiinvent.gami.domain.entities.gvc.GvcPackage;
+import com.wiinvent.gami.domain.entities.Transaction.TurnTransaction;
+import com.wiinvent.gami.domain.entities.game.*;
 import com.wiinvent.gami.domain.entities.payment.PaymentMethod;
 import com.wiinvent.gami.domain.entities.payment.PackageHistory;
 import com.wiinvent.gami.domain.entities.reward.*;
@@ -144,9 +146,14 @@ public interface ModelMapper {
 
   Package toPackage(PackageCreateDto packageCreateDto);
 
+  GameTournament toGameTournament(GameTournamentCreateDto gameTournamentCreateDto);
+
+  void mapGameTournamentUpdateDtoToGameTournament(GameTournamentUpdateDto dto,@MappingTarget GameTournament gameTournament);
+
+  default Page<GameTournamentResponse> toPageGameTournamentResponse(Page<GameTournament> gameTournaments){
+    return gameTournaments.map(this::toGameTournamentResponse);
+  }
   void mapGamePackageUpdateDtoToGamePackage(GamePackageUpdateDto dto,@MappingTarget GamePackage gamePackage);
-
-
   GameType toGameType(GameTypeCreateDto dto);
   GameTypeResponse toGameTypeResponse(GameType gameType);
   default Page<GameTypeResponse> toPageGameTypeResponse(Page<GameType> gameTypes) {
@@ -161,6 +168,7 @@ public interface ModelMapper {
 
   GameCategory toGameCategory(GameCategoryCreateDto dto);
   GameCategoryResponse toGameCategoryResponse(GameCategory gameCategory);
+  GameTournamentResponse toGameTournamentResponse(GameTournament gameTournament);
   default Page<GameCategoryResponse> toPageGameCategoryResponse(Page<GameCategory> gameCategories){
     return gameCategories.map(this::toGameCategoryResponse);
   }
@@ -183,6 +191,7 @@ public interface ModelMapper {
   List<TransactionResponse> toCoinTransactionResponse(List<CoinTransaction> coinTransactions);
   List<TransactionResponse> toPointTransactionResponse(List<PointTransaction> pointTransactions);
   List<TransactionResponse> toExpHistoryResponse(List<ExpHistory> expHistories);
+  List<TransactionResponse> toTurnTransactionResponse(List<TurnTransaction> turnTransactions);
   List<UserResponse> toListUserResponse(List<User> users);
   UserResponse toUserResponse(User user);
 

@@ -28,7 +28,7 @@ public class ExpHistoryStorage extends BaseStorage {
       if (next != null && pre == null){
         conditionList.add(criteriaBuilder.lessThanOrEqualTo(expHistory.get("createdAt"), next));
       }else if(next == null && pre != null){
-        conditionList.add(criteriaBuilder.equal(expHistory.get("createdAt"), pre));
+        conditionList.add(criteriaBuilder.greaterThanOrEqualTo(expHistory.get("createdAt"), pre));
       }else {
         conditionList.add(criteriaBuilder.between(expHistory.get("createdAt"), pre, next));
       }

@@ -17,11 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/vt/cms/game-package")
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
 public class GamePackageController extends BaseController {
-  private final GamePackageService gamePackageService;
-  @Autowired
-  public GamePackageController(GamePackageService gamePackageService){
-    this.gamePackageService = gamePackageService;
-  }
+  @Autowired private GamePackageService gamePackageService;
 
   @GetMapping("")
   public ResponseEntity<PageResponse<GamePackageResponse>> findAll(

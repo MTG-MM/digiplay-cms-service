@@ -1,9 +1,6 @@
 package com.wiinvent.gami.domain.stores;
 
 import com.wiinvent.gami.domain.entities.Package;
-import com.wiinvent.gami.domain.entities.game.Game;
-import com.wiinvent.gami.domain.entities.game.GamePackage;
-import com.wiinvent.gami.domain.entities.type.GameStatus;
 import com.wiinvent.gami.domain.entities.type.PackageType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import jakarta.persistence.criteria.CriteriaBuilder;

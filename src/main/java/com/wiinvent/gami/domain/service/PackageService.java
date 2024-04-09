@@ -94,6 +94,11 @@ public class PackageService extends BaseService {
       log.debug("==============>deletePackage:DB:Exception:{}", e.getMessage());
       return false;
     }
+    try {
+      remoteCache.deleteKey(cacheKey.getPackageByCode(aPackage.getCode()));
+    } catch (Exception e){
+      log.debug("==============>updatePackage:Cache:Exception:{}", e.getMessage());
+    }
     return true;
   }
 

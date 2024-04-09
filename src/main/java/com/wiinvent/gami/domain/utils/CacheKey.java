@@ -1,5 +1,6 @@
 package com.wiinvent.gami.domain.utils;
 
+import com.wiinvent.gami.domain.entities.type.ResourceType;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -78,5 +79,24 @@ public class CacheKey {
 
   public String genPaymentMethodById(Integer paymentMethodId) {
     return redisPrefixKeyVtGame + ":game:payment:method:id:" + paymentMethodId;
+  }
+
+  public String getCharacterById(Integer id) {
+    return redisPrefixKeyVtGame + ":character:id:" + id;
+  }
+
+  public String genListRewardItemByTypeAndId(ResourceType type, Long id) {
+    return redisPrefixKeyVtGame + ":rwi:type:" + type + ":id:" + id;
+  }
+
+  public String gemRewardItemById(Long id) {
+    return redisPrefixKeyVtGame + ":rwi:id:" + id;
+  }
+
+  public String genAllRewardItem() {
+    return redisPrefixKeyVtGame + ":reward:item:all";
+  }
+  public String genRewardItemStoreById(Long id) {
+    return redisPrefixKeyVtGame + ":rwi:store:id:" + id;
   }
 }

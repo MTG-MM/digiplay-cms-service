@@ -1,5 +1,6 @@
 package com.wiinvent.gami.domain.entities.transaction;
 
+import com.wiinvent.gami.domain.entities.type.ResourceType;
 import com.wiinvent.gami.domain.entities.type.TransactionType;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -29,7 +30,8 @@ public class PointTransaction {
   private String note;
 
   @Column(name = "resource_type")
-  private String resourceType;
+  @Enumerated(EnumType.STRING)
+  private ResourceType resourceType;
 
   @Column(name = "balance")
   private Long balance;

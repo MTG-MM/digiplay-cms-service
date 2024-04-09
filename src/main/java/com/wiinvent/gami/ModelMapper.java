@@ -4,6 +4,7 @@ import com.wiinvent.gami.domain.dto.*;
 import com.wiinvent.gami.domain.dto.gvc.GvcPackageCreateDto;
 import com.wiinvent.gami.domain.dto.gvc.GvcPackageUpdateDto;
 import com.wiinvent.gami.domain.dto.payment.PaymentMethodCreateDto;
+import com.wiinvent.gami.domain.entities.Character;
 import com.wiinvent.gami.domain.entities.Package;
 import com.wiinvent.gami.domain.entities.transaction.CoinTransaction;
 import com.wiinvent.gami.domain.entities.transaction.ExpHistory;
@@ -141,7 +142,6 @@ public interface ModelMapper {
   default Page<PackageResponse> toPagePackageResponse(Page<Package> packages){
     return packages.map(this::toPackageResponse);
   }
-
   GamePackage toGamePackage(GamePackageCreateDto gamePackageCreateDto);
 
   Package toPackage(PackageCreateDto packageCreateDto);
@@ -175,6 +175,7 @@ public interface ModelMapper {
 
   void mapPackageUpdateDtoToPackage(PackageUpdateDto dto,@MappingTarget Package aPackage);
 
+
   UserSegmentResponse toUserSegmentResponse(UserSegment userSegment);
 
   default Page<UserSegmentResponse> toPageUserSegmentResponse(Page<UserSegment> userSegments){
@@ -201,4 +202,14 @@ public interface ModelMapper {
   }
   GvcPackage toGvcPackage(GvcPackageCreateDto dto);
   void mapGvcPackageUpdateDtoToGvcPackage(GvcPackageUpdateDto dto, @MappingTarget GvcPackage gvcPackage);
+
+  Character toCharacter(CharacterCreateDto characterCreateDto);
+
+  void mapCharacterUpdateDtoToCharacter(CharacterUpdateDto dto,@MappingTarget Character character);
+
+  CharacterResponse toCharacterResponse(Character character);
+
+  default Page<CharacterResponse> toPageCharacterResponse(Page<Character> characters){
+    return characters.map(this::toCharacterResponse);
+  }
 }

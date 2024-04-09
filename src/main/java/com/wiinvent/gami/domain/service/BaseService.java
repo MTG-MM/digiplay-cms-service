@@ -62,4 +62,5 @@ public abstract class BaseService {
   @Autowired protected TurnTransactionStorage turnTransactionStorage;
   @Autowired protected GameTournamentStorage gameTournamentStorage;
   @Autowired protected GvcPackageStorage gvcPackageStorage;
+  @Autowired protected CharacterStorage characterStorage;
 }

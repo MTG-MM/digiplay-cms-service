@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.List;
+
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Table( name = "user_segment")
@@ -32,7 +34,7 @@ public class UserSegment extends BaseEntity {
 
   @Column(name = "reward_items")
   @Convert(converter = UserSegmentRewardItemConverter.class)
-  private UserSegmentRewardItems rewardItems;
+  private List<UserSegmentRewardItems> rewardItems;
 
   @Column(name = "require_exp")
   private Integer requireExp;
@@ -41,7 +43,7 @@ public class UserSegment extends BaseEntity {
   private Integer pointLimit;
 
   @Column(name = "point_bonus_rate")
-  private Integer pointBonusRate;
+  private Double pointBonusRate;
 
   @Column(name = "sub_bonus_rate")
   private Integer subBonusRate;

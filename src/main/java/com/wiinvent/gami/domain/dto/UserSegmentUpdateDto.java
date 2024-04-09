@@ -3,6 +3,8 @@ package com.wiinvent.gami.domain.dto;
 import com.wiinvent.gami.domain.entities.user.UserSegmentRewardItems;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class UserSegmentUpdateDto {
   private String name;
@@ -10,7 +12,7 @@ public class UserSegmentUpdateDto {
   private Long minPriority;
   private Long maxPriority;
   private Integer level;
-  private UserSegmentRewardItems rewardItems;
+  private List<UserSegmentRewardItems> rewardItems;
   private Integer requireExp;
   private Integer pointLimit;
   private Integer pointBonusRate;

@@ -12,10 +12,7 @@ import com.wiinvent.gami.domain.repositories.gvc.GvcPackageRepository;
 import com.wiinvent.gami.domain.repositories.payment.PaymentMethodRepository;
 import com.wiinvent.gami.domain.repositories.payment.PackageHistoryRepository;
 import com.wiinvent.gami.domain.repositories.reward.*;
-import com.wiinvent.gami.domain.repositories.user.UserNotifyRepository;
-import com.wiinvent.gami.domain.repositories.user.UserProfileRepository;
-import com.wiinvent.gami.domain.repositories.user.UserRepository;
-import com.wiinvent.gami.domain.repositories.user.UserSegmentRepository;
+import com.wiinvent.gami.domain.repositories.user.*;
 import com.wiinvent.gami.domain.utils.CacheKey;
 import com.wiinvent.gami.domain.utils.RemoteCache;
 import jakarta.persistence.EntityManager;
@@ -64,4 +61,6 @@ public abstract class BaseStorage {
   @Autowired protected ExpHistoryRepository expHistoryRepository;
   @Autowired protected TurnTransactionRepository turnTransactionRepository;
   @Autowired protected GameTournamentRepository gameTournamentRepository;
+  @Autowired protected CharacterRepository characterRepository;
+  @Autowired protected GameTournamentUserRepository gameTournamentUserRepository;
 }

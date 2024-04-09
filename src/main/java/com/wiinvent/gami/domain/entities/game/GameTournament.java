@@ -1,15 +1,17 @@
 package com.wiinvent.gami.domain.entities.game;
 
 import com.wiinvent.gami.domain.entities.BaseEntity;
+import com.wiinvent.gami.domain.entities.type.GameTournamentType;
 import com.wiinvent.gami.domain.entities.type.Status;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.wiinvent.gami.domain.entities.user.UserSegmentRewardItems;
+import com.wiinvent.gami.domain.utils.Converter.UserSegmentRewardItemConverter;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -39,4 +41,11 @@ public class GameTournament extends BaseEntity {
 
   @Column(name = "status")
   private Status status;
+
+  @Column(name = "type")
+  private GameTournamentType type;
+
+  @Column(name = "reward_items")
+  @Convert(converter = UserSegmentRewardItemConverter.class)
+  private List<UserSegmentRewardItems> rewardItems;
 }

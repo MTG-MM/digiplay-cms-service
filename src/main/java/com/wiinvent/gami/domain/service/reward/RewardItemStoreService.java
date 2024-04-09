@@ -9,6 +9,7 @@ import com.wiinvent.gami.domain.entities.reward.RewardItemStore;
 import com.wiinvent.gami.domain.entities.type.StoreType;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.service.BaseService;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@Log4j2
 public class RewardItemStoreService extends BaseService {
   public RewardItemStoreResponse getRewardItemStoreDetail(Long id) {
     RewardItemStore rewardItemStore = rewardItemStoreStorage.findById(id);
@@ -45,6 +47,11 @@ public class RewardItemStoreService extends BaseService {
 
     modelMapper.mapRewardItemStoreDtoToRewardItemStore(rewardItemStoreDto, rewardItemStore);
     rewardItemStoreStorage.save(rewardItemStore);
+    try {
+      remoteCache.deleteKey(cacheKey.genRewardItemStoreById(rewardItemStore.getId()));
+    } catch (Exception e){
+      log.debug("==============>updateRewardItemStores:Cache:Exception:{}", e.getMessage());
+    }
     return true;
   }
 

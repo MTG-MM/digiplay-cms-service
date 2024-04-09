@@ -19,6 +19,7 @@ import com.wiinvent.gami.domain.entities.game.*;
 import com.wiinvent.gami.domain.entities.payment.PaymentMethod;
 import com.wiinvent.gami.domain.entities.payment.PackageHistory;
 import com.wiinvent.gami.domain.entities.reward.*;
+import com.wiinvent.gami.domain.entities.user.GameTournamentUser;
 import com.wiinvent.gami.domain.entities.user.User;
 import com.wiinvent.gami.domain.entities.user.UserSegment;
 import com.wiinvent.gami.domain.response.*;
@@ -212,4 +213,6 @@ public interface ModelMapper {
   default Page<CharacterResponse> toPageCharacterResponse(Page<Character> characters){
     return characters.map(this::toCharacterResponse);
   }
+
+  List<GameTournamentUserResponse> toGameTournamentUserResponse(List<GameTournamentUser> gameTournamentUsers);
 }

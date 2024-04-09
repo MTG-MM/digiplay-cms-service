@@ -1,5 +1,6 @@
 package com.wiinvent.gami.app.controller.user.transaction;
 
+import com.wiinvent.gami.domain.response.GameTournamentUserResponse;
 import com.wiinvent.gami.domain.response.PackageHistoryResponse;
 import com.wiinvent.gami.domain.response.TransactionResponse;
 import com.wiinvent.gami.domain.service.user.transaction.*;
@@ -24,6 +25,7 @@ public class UserTransactionController {
   @Autowired PointTransactionService pointTransactionService;
   @Autowired ExpHistoryService expHistoryService;
   @Autowired TurnTransactionService turnTransactionService;
+  @Autowired GameTournamentUserService gameTournamentUserService;
   @GetMapping("sub")
   public ResponseEntity<PageCursorResponse<PackageHistoryResponse>> getPackageHistory (
       @RequestParam UUID userId,
@@ -72,5 +74,15 @@ public class UserTransactionController {
       @RequestParam(required = false, defaultValue = "20") int limit
   ) {
     return ResponseEntity.ok(turnTransactionService.getTurnTransaction(userId, next, pre, limit));
+  }
+
+  @GetMapping("game-tournament")
+  public ResponseEntity<PageCursorResponse<GameTournamentUserResponse>> getGameTournament (
+      @RequestParam UUID userId,
+      @RequestParam(required = false) Long next,
+      @RequestParam(required = false) Long pre,
+      @RequestParam(required = false, defaultValue = "20") int limit
+  ) {
+    return ResponseEntity.ok(gameTournamentUserService.getGameTournament(userId, next, pre, limit));
   }
 }

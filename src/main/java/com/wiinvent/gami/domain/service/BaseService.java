@@ -11,10 +11,7 @@ import com.wiinvent.gami.domain.stores.gvc.GvcPackageStorage;
 import com.wiinvent.gami.domain.stores.payment.PaymentMethodStorage;
 import com.wiinvent.gami.domain.stores.payment.PackageHistoryStorage;
 import com.wiinvent.gami.domain.stores.reward.*;
-import com.wiinvent.gami.domain.stores.user.UserNotifyStorage;
-import com.wiinvent.gami.domain.stores.user.UserProfileStorage;
-import com.wiinvent.gami.domain.stores.user.UserSegmentStorage;
-import com.wiinvent.gami.domain.stores.user.UserStorage;
+import com.wiinvent.gami.domain.stores.user.*;
 import com.wiinvent.gami.domain.utils.CacheKey;
 import com.wiinvent.gami.domain.utils.LockManager;
 import com.wiinvent.gami.domain.utils.RemoteCache;
@@ -63,4 +60,5 @@ public abstract class BaseService {
   @Autowired protected GameTournamentStorage gameTournamentStorage;
   @Autowired protected GvcPackageStorage gvcPackageStorage;
   @Autowired protected CharacterStorage characterStorage;
+  @Autowired protected GameTournamentUserStorage gameTournamentUserStorage;
 }

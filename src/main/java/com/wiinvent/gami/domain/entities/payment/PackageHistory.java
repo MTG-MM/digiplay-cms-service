@@ -8,6 +8,8 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @Entity
@@ -41,7 +43,7 @@ public class PackageHistory extends BaseEntity {
   @Size(max = 16)
   @NotNull
   @Column(name = "user_id", nullable = false, length = 16)
-  private String userId;
+  private UUID userId;
 
   @Column(name = "price")
   private Integer price;

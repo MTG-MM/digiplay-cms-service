@@ -216,4 +216,5 @@ public interface ModelMapper {
 
   List<GameTournamentUserResponse> toGameTournamentUserResponse(List<GameTournamentUser> gameTournamentUsers);
   List<GameTournamentEventResponse> toGameTournamentEventResponse(List<GameTournamentEvent> gameTournamentEvents);
+
 }

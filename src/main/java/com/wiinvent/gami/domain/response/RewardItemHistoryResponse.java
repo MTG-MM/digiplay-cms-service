@@ -1,5 +1,7 @@
 package com.wiinvent.gami.domain.response;
 
+import com.wiinvent.gami.domain.entities.reward.RewardItemInfo;
+import com.wiinvent.gami.domain.entities.type.ResourceType;
 import com.wiinvent.gami.domain.entities.type.RewardItemType;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -13,7 +15,7 @@ public class RewardItemHistoryResponse {
 
   private String name;
 
-  private RewardItemType type;
+  private RewardItemType rewardType;
 
   private UUID userId;
 
@@ -27,5 +29,7 @@ public class RewardItemHistoryResponse {
 
   private String note;
 
-  private String rewardInfo;
+  private ResourceType resourceType;
+
+  private RewardItemInfo rewardItemInfo;
 }

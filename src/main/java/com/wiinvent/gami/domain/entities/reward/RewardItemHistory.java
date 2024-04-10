@@ -2,8 +2,11 @@ package com.wiinvent.gami.domain.entities.reward;
 
 
 import com.wiinvent.gami.domain.entities.BaseEntity;
+import com.wiinvent.gami.domain.entities.type.ResourceType;
 import com.wiinvent.gami.domain.entities.type.RewardItemType;
+import com.wiinvent.gami.domain.utils.Converter.RewardItemInfoConverter;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.UUID;
@@ -27,7 +30,7 @@ public class RewardItemHistory extends BaseEntity {
 
   @Column(name = "reward_type")
   @Enumerated(EnumType.STRING)
-  private RewardItemType type;
+  private RewardItemType rewardType;
 
   @Column(name = "user_id", columnDefinition = "BINARY(16)")
   private UUID userId;
@@ -47,6 +50,12 @@ public class RewardItemHistory extends BaseEntity {
   @Column(name = "note")
   private String note;
 
-  @Column(name = "reward_info")
-  private String rewardInfo;
+  @Column(name = "resource_type")
+  @Enumerated(EnumType.STRING)
+  private ResourceType resourceType;
+
+  @Size(max = 2000)
+  @Column(name = "reward_info", length = 2000)
+  @Convert(converter = RewardItemInfoConverter.class)
+  private RewardItemInfo rewardItemInfo;
 }

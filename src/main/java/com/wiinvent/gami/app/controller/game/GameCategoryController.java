@@ -3,6 +3,7 @@ package com.wiinvent.gami.app.controller.game;
 import com.wiinvent.gami.app.controller.BaseController;
 import com.wiinvent.gami.domain.dto.GameCategoryCreateDto;
 import com.wiinvent.gami.domain.dto.GameCategoryUpdateDto;
+import com.wiinvent.gami.domain.dto.GameCategoryUpdateStatusDto;
 import com.wiinvent.gami.domain.response.GameCategoryResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.game.GameCategoryService;
@@ -47,6 +48,13 @@ public class GameCategoryController extends BaseController {
   public ResponseEntity<Boolean> updateGameCategory(@RequestBody @Valid GameCategoryUpdateDto dto) {
     return ResponseEntity.ok(
         gameCategoryService.updateGameCategory(dto)
+    );
+  }
+
+  @PutMapping("status")
+  public ResponseEntity<Boolean> updateStatus(@RequestBody @Valid GameCategoryUpdateStatusDto dto) {
+    return ResponseEntity.ok(
+        gameCategoryService.updateStatusGameCategory(dto)
     );
   }
 

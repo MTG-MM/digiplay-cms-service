@@ -2,7 +2,10 @@ package com.wiinvent.gami.domain.service.game;
 
 import com.wiinvent.gami.domain.dto.GameCategoryCreateDto;
 import com.wiinvent.gami.domain.dto.GameCategoryUpdateDto;
+import com.wiinvent.gami.domain.dto.GameCategoryUpdateStatusDto;
+import com.wiinvent.gami.domain.entities.game.Game;
 import com.wiinvent.gami.domain.entities.game.GameCategory;
+import com.wiinvent.gami.domain.entities.type.GameStatus;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.response.GameCategoryResponse;
@@ -19,6 +22,8 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -79,8 +84,6 @@ public class GameCategoryService extends BaseService {
     //cache
     try{
       remoteCache.deleteKey(cacheKey.genAllGameCategories());
-      if(gameCategory.getStatus().equals(Status.INACTIVE))
-        remoteCache.deleteKey(cacheKey.getGameByCategoryId(gameCategory.getId(),0));
     }catch (Exception e){
       log.debug("==================> updateGameCategory:Cache:Exception:{}", e.getMessage());
     }
@@ -113,9 +116,51 @@ public class GameCategoryService extends BaseService {
     return true;
   }
 
+  public boolean updateStatusGameCategory(GameCategoryUpdateStatusDto dto){
+    //validation
+    GameCategory gameCategory = gameCategoryStorage.findById(dto.getId());
+    if(Objects.isNull(gameCategory)) throw new ResourceNotFoundException(Constant.GAME_CATEGORY_NOT_FOUND);
+    if(dto.getStatus().equals(gameCategory.getStatus())) throw new ResourceNotFoundException(Constant.GAME_CATEGORY_STATUS_NOT_CHANGE);
+    //map
+    gameCategory.setStatus(dto.getStatus());
+    gameCategory.setUpdatedAt(DateUtils.getNowMillisAtUtc());
+    //save
+    try{
+      self.updateStatusGame(gameCategory);
+    }catch (Exception e){
+      log.debug("==================> updateStatusGameCategory:DB:Exception:{}", e.getMessage());
+      return false;
+    }
+    //cache
+    try{
+      remoteCache.deleteKey(cacheKey.genAllGameCategories());
+      remoteCache.deleteKey(cacheKey.getGameByCategoryId(gameCategory.getId(),0));
+    }catch (Exception e){
+      log.debug("==================> updateStatusGameCategory:Cache:Exception:{}", e.getMessage());
+    }
+    //response
+    return true;
+  }
+
   @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
   public void saveGameCategory(GameCategory gameCategory){
     gameCategoryStorage.save(gameCategory);
+  }
+
+  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
+  public void updateStatusGame(GameCategory gameCategory){
+    //cap nhat lai game category
+    gameCategoryStorage.save(gameCategory);
+    //cap nhat lai trang thai cua game co category nay
+//    List<Game> games = null;
+//    if(gameCategory.getStatus().equals(Status.INACTIVE)) games = gameStorage.findAllByCategoryId(gameCategory.getId(), Game.getListStatusReady());
+//    else if(gameCategory.getStatus().equals(Status.ACTIVE)) games = gameStorage.findAllByCategoryId(gameCategory.getId(), List.of(GameStatus.INACTIVE));
+//    else games = new ArrayList<>();
+//    games.forEach(g->{
+//      g.setStatus(gameCategory.getStatus().equals(Status.INACTIVE)?GameStatus.INACTIVE:GameStatus.ACTIVE);
+//      g.setUpdatedAt(DateUtils.getNowMillisAtUtc());
+//    });
+//    gameStorage.saveAll(games);
   }
 
 }

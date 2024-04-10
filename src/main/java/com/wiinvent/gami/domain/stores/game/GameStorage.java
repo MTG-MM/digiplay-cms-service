@@ -28,6 +28,10 @@ public class GameStorage extends BaseStorage {
     return gameRepository.findAll(specificationGame(id, name, status, isHot, gameCategoryId, gameTypeId), pageable);
   }
 
+  public List<Game> findAllByCategoryId(Integer categoryId, List<GameStatus> statuses){
+    return gameRepository.findAllByCategoryIdAndStatusIn(categoryId, statuses);
+  }
+
   private Specification<Game> specificationGame(Integer id, String name, GameStatus status, Boolean isHot, Integer gameCategoryId, Integer gameTypeId) {
     return (Root<Game> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) -> {
       List<Predicate> predicates = new ArrayList<>();
@@ -51,5 +55,9 @@ public class GameStorage extends BaseStorage {
 
   public void save(Game game) {
     gameRepository.save(game);
+  }
+
+  public void saveAll(List<Game> games){
+    gameRepository.saveAll(games);
   }
 }

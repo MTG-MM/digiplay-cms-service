@@ -95,4 +95,12 @@ public class Game extends BaseEntity {
   public static List<GameStatus> getListStatusNotShow(){
     return List.of(GameStatus.DELETE);
   }
+
+  public static List<GameStatus> getListStatusReady(){
+    return List.of(GameStatus.NEW, GameStatus.ACTIVE);
+  }
+
+  public static List<GameStatus> getListStatusNotReady(){
+    return List.of(GameStatus.INACTIVE, GameStatus.DELETE);
+  }
 }

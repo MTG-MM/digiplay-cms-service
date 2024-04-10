@@ -64,4 +64,5 @@ public abstract class BaseStorage {
   @Autowired protected CharacterRepository characterRepository;
   @Autowired protected GameTournamentUserRepository gameTournamentUserRepository;
   @Autowired protected GameTournamentEventRepository gameTournamentEventRepository;
+  @Autowired protected UserAccountRepository userAccountRepository;
 }

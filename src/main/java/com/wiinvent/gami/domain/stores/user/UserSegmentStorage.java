@@ -26,4 +26,8 @@ public class UserSegmentStorage extends BaseStorage {
   public Page<UserSegment> findAll(Pageable pageable) {
     return userSegmentRepository.findAll(pageable);
   }
+
+  public UserSegment findNextLevel(Integer currentLevel){
+    return userSegmentRepository.findFirstByLevelGreaterThanOrderByLevel(currentLevel);
+  }
 }

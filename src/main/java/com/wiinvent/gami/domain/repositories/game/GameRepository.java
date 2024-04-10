@@ -11,4 +11,5 @@ import java.util.List;
 @Repository
 public interface GameRepository extends JpaRepository<Game, Integer>, JpaSpecificationExecutor<Game> {
   Game findGameByIdAndStatusIn(Integer id, List<GameStatus> statuses);
+  List<Game> findAllByCategoryIdAndStatusIn(Integer categoryId, List<GameStatus> statuses);
 }

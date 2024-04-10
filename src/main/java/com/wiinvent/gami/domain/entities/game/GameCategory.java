@@ -44,7 +44,7 @@ public class GameCategory extends BaseEntity {
 
   public void from(GameCategoryUpdateDto dto){
     this.name = dto.getName();
-    this.status = dto.getStatus();
+    // this.status = dto.getStatus();
     this.categoryType = dto.getCategoryType();
     this.isRequireSub = dto.getIsRequireSub();
     this.coin = dto.getCoin();

@@ -41,4 +41,7 @@ public class UserProfile extends BaseEntity {
 
   @Column(name ="image_url")
   private String imageUrl;
+
+  @Column(name = "display_name")
+  private String displayName;
 }

@@ -38,9 +38,12 @@ public class User extends BaseEntity {
   @Column(name = "exp")
   private Long exp;
 
-  @Size(max = 50)
-  @Column(name = "level", length = 50)
-  private String level;
+  @Column(name = "turn")
+  private Integer turn;
+
+//  @Size(max = 50)
+//  @Column(name = "level", length = 50)
+//  private String level;
 
 
   public void addPointForUser(long amount){

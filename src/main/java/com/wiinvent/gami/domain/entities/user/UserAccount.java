@@ -19,9 +19,9 @@ public class UserAccount extends BaseEntity {
   @Id
   public UUID id;
 
-  @Column(name = "role")
-  @Enumerated(EnumType.STRING)
-  public UserRole role;
+//  @Column(name = "role")
+//  @Enumerated(EnumType.STRING)
+//  public UserRole role;
 
   @Column(name = "username")
   public String username;
@@ -29,9 +29,9 @@ public class UserAccount extends BaseEntity {
   @Column(name = "password")
   public String password;
 
-  @Column(name = "user_rank")
-  @Enumerated(EnumType.STRING)
-  public Rank rank;
+//  @Column(name = "user_rank")
+//  @Enumerated(EnumType.STRING)
+//  public Rank rank;
 
   @Column(name = "state")
   @Enumerated(EnumType.STRING)
@@ -41,7 +41,7 @@ public class UserAccount extends BaseEntity {
   @Enumerated(EnumType.STRING)
   private Status status;
 
-  @Column(name = "account_state")
-  @Enumerated(EnumType.STRING)
-  public NewAccountState accountState;
+//  @Column(name = "account_state")
+//  @Enumerated(EnumType.STRING)
+//  public NewAccountState accountState;
 }

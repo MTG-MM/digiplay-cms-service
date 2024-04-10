@@ -2,7 +2,9 @@ package com.wiinvent.gami.domain.stores.reward;
 
 import com.wiinvent.gami.domain.entities.reward.RewardItem;
 import com.wiinvent.gami.domain.entities.reward.RewardItemHistory;
+import com.wiinvent.gami.domain.entities.transaction.TurnTransaction;
 import com.wiinvent.gami.domain.entities.type.RewardItemType;
+import com.wiinvent.gami.domain.response.type.CursorType;
 import com.wiinvent.gami.domain.stores.BaseStorage;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -31,34 +33,23 @@ public class RewardItemHistoryStorage extends BaseStorage {
     return rewardItemHistoryRepository.countRewardItemReceivedInCreatedAtBetween(rewardSegmentId, rewardItemId, startDateAtVn, endDateAtVn);
   }
 
-  public List<RewardItemHistory> findAll(UUID userId, Long next, Long pre, int limit) {
-    return rewardItemHistoryRepository.findAll(rewardItemHistoryCondition(userId, next, pre, limit));
-  }
-
-  public Specification<RewardItemHistory> rewardItemHistoryCondition(UUID userId, Long next, Long pre, int limit) {
-    return (rwItemHistory, query, criteriaBuilder) -> {
-      List<Predicate> conditionsList = new ArrayList<>();
-
-      if (userId != null) {
-        conditionsList.add(criteriaBuilder.equal(rwItemHistory.get("userId"), userId));
-      }
-
-      if (next != null && pre == null) {
-        conditionsList.add(criteriaBuilder.lessThanOrEqualTo(rwItemHistory.get("createdAt"), next));
-      } else if (pre != null && next == null) {
-        conditionsList.add(criteriaBuilder.greaterThanOrEqualTo(rwItemHistory.get("createdAt"), pre));
-      } else {
-        conditionsList.add(criteriaBuilder.between(rwItemHistory.get("createdAt"), pre, next));
-      }
-
-      query.orderBy(criteriaBuilder.desc(rwItemHistory.get("createdAt")));
-      CriteriaQuery<RewardItemHistory> typedCriteriaQuery = criteriaBuilder.createQuery(RewardItemHistory.class);
-
-      typedCriteriaQuery.select(typedCriteriaQuery.from(RewardItemHistory.class)).where(query.getRestriction());
-      TypedQuery<RewardItemHistory> typedQuery = entityManager.createQuery(typedCriteriaQuery);
-      typedQuery.setMaxResults(limit);
-
-      return criteriaBuilder.and(conditionsList.toArray(new Predicate[0]));
-    };
+  public List<RewardItemHistory> findAll(UUID userId, Long next, Long pre, int limit, CursorType type) {
+    CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+    CriteriaQuery<RewardItemHistory> query = criteriaBuilder.createQuery(RewardItemHistory.class);
+    Root<RewardItemHistory> root = query.from(RewardItemHistory.class);
+    List<Predicate> conditionList = new ArrayList<>();
+    conditionList.add(criteriaBuilder.equal(root.get("userId"), userId));
+    conditionList.add(criteriaBuilder.and(criteriaBuilder.greaterThan(root.get("createdAt"), pre),
+        criteriaBuilder.lessThan(root.get("createdAt"), next)));
+    if (type == CursorType.NEXT || type == CursorType.FIRST) {
+      query.where(criteriaBuilder.and(conditionList.toArray(new Predicate[0])))
+          .orderBy(criteriaBuilder.desc(root.get("createdAt")));
+    } else if (type == CursorType.PRE) {
+      query.where(criteriaBuilder.and(conditionList.toArray(new Predicate[0])))
+          .orderBy(criteriaBuilder.asc(root.get("createdAt")));
+    }
+    TypedQuery<RewardItemHistory> typedQuery = entityManager.createQuery(query);
+    typedQuery.setMaxResults(limit);
+    return typedQuery.getResultList();
   }
 }

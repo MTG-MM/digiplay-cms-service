@@ -8,5 +8,6 @@ public enum ResourceType {
   TOURNAMENT,
   MANUAL,
   JACKPOT_REWARD,
-  PLACE_JACKPOT
+  PLACE_JACKPOT,
+  CHALLENGE
 }

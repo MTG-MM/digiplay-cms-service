@@ -1,5 +1,6 @@
 package com.wiinvent.gami.domain.entities.transaction;
 
+import com.wiinvent.gami.domain.entities.BaseEntity;
 import com.wiinvent.gami.domain.entities.type.ResourceType;
 import com.wiinvent.gami.domain.entities.type.TransactionType;
 import jakarta.persistence.*;
@@ -11,7 +12,7 @@ import java.util.UUID;
 @Setter
 @Entity
 @Table(name = "point_transaction")
-public class PointTransaction {
+public class PointTransaction extends BaseEntity {
   @Id
   @Column(columnDefinition = "BINARY(16)")
   private UUID id;

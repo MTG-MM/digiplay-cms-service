@@ -1,10 +1,14 @@
 package com.wiinvent.gami.domain.stores.transaction;
 
+import com.wiinvent.gami.domain.entities.transaction.PointTransaction;
 import com.wiinvent.gami.domain.entities.transaction.TurnTransaction;
+import com.wiinvent.gami.domain.response.type.CursorType;
 import com.wiinvent.gami.domain.stores.BaseStorage;
 import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
@@ -13,33 +17,23 @@ import java.util.List;
 import java.util.UUID;
 @Component
 public class TurnTransactionStorage extends BaseStorage {
-  public List<TurnTransaction> findAll(UUID userId, Long next, Long pre, int limit) {
-    return turnTransactionRepository.findAll(turnTransactionCondition(userId, next, pre, limit));
-  }
-
-  public Specification<TurnTransaction> turnTransactionCondition(UUID userId, Long next, Long pre, int limit) {
-    return (turnTransactions, query, criteriaBuilder) -> {
-      List<Predicate> conditionsList = new ArrayList<>();
-
-      if (userId != null) {
-        conditionsList.add(criteriaBuilder.equal(turnTransactions.get("userId"), userId));
-      }
-
-      if (next != null && pre == null) {
-        conditionsList.add(criteriaBuilder.lessThanOrEqualTo(turnTransactions.get("createdAt"), next));
-      } else if (pre != null && next == null) {
-        conditionsList.add(criteriaBuilder.greaterThanOrEqualTo(turnTransactions.get("createdAt"), pre));
-      } else {
-        conditionsList.add(criteriaBuilder.between(turnTransactions.get("createdAt"), pre, next));
-      }
-
-      query.orderBy(criteriaBuilder.desc(turnTransactions.get("createdAt")));
-      CriteriaQuery<TurnTransaction> typedCriteriaQuery = criteriaBuilder.createQuery(TurnTransaction.class);
-      typedCriteriaQuery.select(typedCriteriaQuery.from(TurnTransaction.class)).where(query.getRestriction());
-      TypedQuery<TurnTransaction> typedQuery = entityManager.createQuery(typedCriteriaQuery);
-      typedQuery.setMaxResults(limit);
-
-      return criteriaBuilder.and(conditionsList.toArray(new Predicate[0]));
-    };
+  public List<TurnTransaction> findAll(UUID userId, Long next, Long pre, int limit, CursorType type) {
+    CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+    CriteriaQuery<TurnTransaction> query = criteriaBuilder.createQuery(TurnTransaction.class);
+    Root<TurnTransaction> root = query.from(TurnTransaction.class);
+    List<Predicate> conditionList = new ArrayList<>();
+    conditionList.add(criteriaBuilder.equal(root.get("userId"), userId));
+    conditionList.add(criteriaBuilder.and(criteriaBuilder.greaterThan(root.get("createdAt"), pre),
+        criteriaBuilder.lessThan(root.get("createdAt"), next)));
+    if (type == CursorType.NEXT || type == CursorType.FIRST) {
+      query.where(criteriaBuilder.and(conditionList.toArray(new Predicate[0])))
+          .orderBy(criteriaBuilder.desc(root.get("createdAt")));
+    } else if (type == CursorType.PRE) {
+      query.where(criteriaBuilder.and(conditionList.toArray(new Predicate[0])))
+          .orderBy(criteriaBuilder.asc(root.get("createdAt")));
+    }
+    TypedQuery<TurnTransaction> typedQuery = entityManager.createQuery(query);
+    typedQuery.setMaxResults(limit);
+    return typedQuery.getResultList();
   }
 }

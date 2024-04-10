@@ -28,6 +28,7 @@ public class Constant {
   public static final String GAME_TYPE_NOT_FOUND = "Không tìm thấy loại game";
   public static final String GAME_TYPE_DELETED = "loại game đã được xóa";
   public static final String GAME_CATEGORY_NOT_FOUND = "Không tìm thấy thể loại game này";
+  public static final String GAME_CATEGORY_STATUS_NOT_CHANGE = "Chưa chọn trạng thái mới cân cập nhật";
   public static final String CREATED_AT_VARIABLE = "createdAt";
 
   public static final String PACKAGE_NOT_FOUND = "Không tìm thấy gói này";

@@ -1,7 +1,9 @@
 package com.wiinvent.gami.domain.service.user;
 
 import com.wiinvent.gami.domain.entities.user.User;
+import com.wiinvent.gami.domain.entities.user.UserAccount;
 import com.wiinvent.gami.domain.entities.user.UserProfile;
+import com.wiinvent.gami.domain.entities.user.UserSegment;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.response.UserResponse;
 import com.wiinvent.gami.domain.response.base.PageCursorResponse;
@@ -43,6 +45,11 @@ public class UserService extends BaseService {
     if (user == null) {
       throw new ResourceNotFoundException("User id not found");
     }
+    //segment
+    UserSegment currentUserSegment = userSegmentStorage.findById(user.getUserSegmentId());
+    //user account
+    UserAccount userAccount = userAccountStorage.findById(userId);
+    //response
     UserResponse userResponse = modelMapper.toUserResponse(user);
     UserProfile userProfile = userProfileStorage.findById(userResponse.getId());
     userResponse.setFirstName(userProfile.getFirstName());
@@ -50,6 +57,21 @@ public class UserService extends BaseService {
     userResponse.setEmail(userProfile.getEmail());
     userResponse.setPhoneNumber(userProfile.getPhoneNumber());
     userResponse.setBirth(userProfile.getBirth());
+    userResponse.setDisplayName(userProfile.getDisplayName());
+    //user account
+    if(Objects.nonNull(userAccount)){
+      userResponse.setState(userAccount.getState());
+      userResponse.setStatus(userAccount.getStatus());
+    }
+    //segment
+    if(Objects.nonNull(currentUserSegment)){
+      userResponse.setPointBonusRate(currentUserSegment.getPointBonusRate());
+      userResponse.setPointLimit(currentUserSegment.getPointLimit());
+    }
+    UserSegment nextUserSegment = userSegmentStorage.findNextLevel(currentUserSegment.getLevel());
+    if(Objects.nonNull(nextUserSegment)){
+      userResponse.setExpUpLevel(nextUserSegment.getRequireExp()-userResponse.getExp());
+    }
     return userResponse;
   }
 
@@ -76,15 +98,27 @@ public class UserService extends BaseService {
       users = users.stream().sorted(Comparator.comparingLong(User::getCreatedAt).reversed()).toList();
     }
     List<UUID> userIds = users.stream().map(User::getId).toList();
+    //profile
     List<UserProfile> userProfiles = userProfileStorage.findAllByIdIn(userIds);
     Map<UUID, UserProfile> userProfileMap = userProfiles.stream().collect(Collectors.toMap(UserProfile::getId, Function.identity()));
+    //user account
+    List<UserAccount> userAccounts = userAccountStorage.findUserAccountsByIdIn(userIds);
+    Map<UUID, UserAccount> uuidUserAccountMap = userAccounts.stream()
+        .collect(Collectors.toMap(UserAccount::getId, Function.identity()));
+    userAccounts.clear();
+    //response
     List<UserResponse> userResponses = modelMapper.toListUserResponse(users);
     userResponses.forEach(r -> {
+      //profile
       r.setFirstName(userProfileMap.get(r.getId()).getFirstName());
       r.setLastName(userProfileMap.get(r.getId()).getLastName());
       r.setEmail(userProfileMap.get(r.getId()).getEmail());
       r.setPhoneNumber(userProfileMap.get(r.getId()).getPhoneNumber());
       r.setBirth(userProfileMap.get(r.getId()).getBirth());
+      r.setDisplayName(userProfileMap.get(r.getId()).getDisplayName());
+      //user account
+      r.setState(uuidUserAccountMap.get(r.getId()).getState());
+      r.setStatus(uuidUserAccountMap.get(r.getId()).getStatus());
     });
     return new PageCursorResponse<>(userResponses, limit, next, pre, Constant.CREATED_AT_VARIABLE);
   }

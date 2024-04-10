@@ -1,5 +1,7 @@
 package com.wiinvent.gami.domain.response;
 
+import com.wiinvent.gami.domain.entities.type.State;
+import com.wiinvent.gami.domain.entities.type.Status;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import lombok.Data;
@@ -39,4 +41,25 @@ public class UserResponse {
 //  private Boolean isEmailVerify;
 
 //  private Boolean isPhoneNumberVerify;
+  private String gender;
+
+  private Integer level = 0;
+
+  private Integer turn;
+
+  private Long rank;
+
+  private Long createdAt;
+
+  private State state;
+
+  private Status status;
+
+  private Long exp;
+
+  private Double pointBonusRate;
+
+  private Integer pointLimit;
+
+  private Long expUpLevel;
 }

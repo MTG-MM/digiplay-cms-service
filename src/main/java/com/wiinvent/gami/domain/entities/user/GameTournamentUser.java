@@ -10,20 +10,19 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @Entity
 @Table(name = "game_tournament_user")
 public class GameTournamentUser extends BaseEntity {
   @Id
-  @Size(max = 80)
-  @Column(name = "id", nullable = false, length = 80)
-  private String id;
+  @Column(columnDefinition = "BINARY(16)")
+  private UUID id;
 
-  @Size(max = 16)
-  @NotNull
-  @Column(name = "user_id", nullable = false, length = 16)
-  private String userId;
+  @Column(name = "user_id", columnDefinition = "BINARY(16)")
+  private UUID userId;
 
   @Size(max = 50)
   @Column(name = "tournament_event_id", length = 50)

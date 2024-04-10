@@ -61,4 +61,5 @@ public abstract class BaseService {
   @Autowired protected GvcPackageStorage gvcPackageStorage;
   @Autowired protected CharacterStorage characterStorage;
   @Autowired protected GameTournamentUserStorage gameTournamentUserStorage;
+  @Autowired protected GameTournamentEventStorage gameTournamentEventStorage;
 }

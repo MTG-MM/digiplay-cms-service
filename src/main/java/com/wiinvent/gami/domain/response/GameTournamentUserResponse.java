@@ -6,8 +6,8 @@ import java.util.UUID;
 
 @Data
 public class GameTournamentUserResponse {
-  private UUID id;
-  private String tournamentEventId;
+  private UUID userId;
+  private String firstName;
   private Integer coin;
   private Double point;
   private Long createdAt;

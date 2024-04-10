@@ -3,6 +3,8 @@ package com.wiinvent.gami.app.controller.user.transaction;
 import com.wiinvent.gami.domain.response.GameTournamentUserResponse;
 import com.wiinvent.gami.domain.response.PackageHistoryResponse;
 import com.wiinvent.gami.domain.response.TransactionResponse;
+import com.wiinvent.gami.domain.service.user.GameTournamentUserService;
+import com.wiinvent.gami.domain.service.PackageHistoryService;
 import com.wiinvent.gami.domain.service.user.transaction.*;
 import com.wiinvent.gami.domain.response.base.PageCursorResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +21,13 @@ import java.util.UUID;
 @RequestMapping("api/vt/cms/user/transaction")
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
 public class UserTransactionController {
-  @Autowired
-  PackageHistoryService packageHistoryService;
+  @Autowired PackageHistoryService packageHistoryService;
   @Autowired CoinTransactionService coinTransactionService;
   @Autowired PointTransactionService pointTransactionService;
   @Autowired ExpHistoryService expHistoryService;
   @Autowired TurnTransactionService turnTransactionService;
   @Autowired GameTournamentUserService gameTournamentUserService;
+
   @GetMapping("sub")
   public ResponseEntity<PageCursorResponse<PackageHistoryResponse>> getPackageHistory (
       @RequestParam UUID userId,
@@ -76,13 +78,4 @@ public class UserTransactionController {
     return ResponseEntity.ok(turnTransactionService.getTurnTransaction(userId, next, pre, limit));
   }
 
-  @GetMapping("game-tournament")
-  public ResponseEntity<PageCursorResponse<GameTournamentUserResponse>> getGameTournament (
-      @RequestParam UUID userId,
-      @RequestParam(required = false) Long next,
-      @RequestParam(required = false) Long pre,
-      @RequestParam(required = false, defaultValue = "20") int limit
-  ) {
-    return ResponseEntity.ok(gameTournamentUserService.getGameTournament(userId, next, pre, limit));
-  }
 }

@@ -13,4 +13,5 @@ public class TransactionResponse {
   private String note;
   private String resourceType;
   private Long balance;
+  private Long createdAt;
 }

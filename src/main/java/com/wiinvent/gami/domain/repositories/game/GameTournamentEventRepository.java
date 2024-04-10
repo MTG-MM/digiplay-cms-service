@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface GameTournamentEventRepository extends JpaRepository<GameTournamentEvent, String> {
-  List<GameTournamentEvent> findByStartTimeLessThanEqual(LocalDateTime startAt);
+  List<GameTournamentEvent> findByGameTournamentIdAndStartTimeLessThanEqual(Integer gameId, LocalDateTime startAt);
 
-  GameTournamentEvent findByStartTimeLessThanEqualAndEndTimeGreaterThanEqual(LocalDateTime startAt, LocalDateTime endAt);
+  GameTournamentEvent findByGameTournamentIdAndStartTimeLessThanEqualAndEndTimeGreaterThanEqual(Integer gameId, LocalDateTime startAt, LocalDateTime endAt);
 }

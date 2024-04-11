@@ -14,6 +14,8 @@ import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.GvcPackageService;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.PackageService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -25,6 +27,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("api/vt/cms/package")
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
+@Tag(name = "Product", description = "Api cho gói portal")
 public class PackageController {
   @Autowired
   private PackageService packageService;
@@ -33,6 +36,7 @@ public class PackageController {
 
   //=========================================== NORMAL PACKAGE ============================================
   @GetMapping("")
+  @Operation(summary = "Lấy danh sách gói")
   public ResponseEntity<PageResponse<PackageResponse>> findAll(
       @RequestParam(required = false) Integer id,
       @RequestParam(required = false) PackageType type,
@@ -45,10 +49,12 @@ public class PackageController {
   }
 
   @GetMapping("{id}")
+  @Operation(summary = "Lấy thông tin chi tiết gói")
   public ResponseEntity<PackageResponse> getPackageDetail(@PathVariable int id){
     return ResponseEntity.ok(packageService.getPackageDetail(id));
   }
   @PostMapping("")
+  @Operation(summary = "Tạo gói")
   public ResponseEntity<Boolean> createPackage(@RequestBody PackageCreateDto packageCreateDto){
     return ResponseEntity.ok(
         packageService.createPackage(packageCreateDto)
@@ -56,6 +62,7 @@ public class PackageController {
   }
 
   @PutMapping("{id}")
+  @Operation(summary = "Cập nhật thông tin gói")
   public ResponseEntity<Boolean> updatePackage(@PathVariable int id, @RequestBody PackageUpdateDto dto){
     return ResponseEntity.ok(
         packageService.updatePackage(id, dto)
@@ -63,6 +70,7 @@ public class PackageController {
   }
 
   @DeleteMapping("{id}")
+  @Operation(summary = "Xóa gói")
   public ResponseEntity<Boolean> deletePackage(@PathVariable int id){
     return ResponseEntity.ok(
         packageService.deletePackage(id)
@@ -70,6 +78,7 @@ public class PackageController {
   }
   //==============================================  GVC PACKAGE ==============================================
   @GetMapping("/gvc")
+  @Operation(summary = "Lấy danh sách gói")
   public ResponseEntity<PageResponse<GvcPackageResponse>> findAll(Pageable pageable){
     return ResponseEntity.ok(
         PageResponse.createFrom(gvcPackageService.findAll(pageable))
@@ -77,6 +86,7 @@ public class PackageController {
   }
 
   @GetMapping("/gvc/{id}")
+  @Operation(summary = "Lấy thông tin chi tiết gói")
   public ResponseEntity<GvcPackageResponse> getDetailGvcPackage(@PathVariable Integer id){
     return ResponseEntity.ok(
       gvcPackageService.getGvcPackageDetail(id)
@@ -84,6 +94,7 @@ public class PackageController {
   }
 
   @PostMapping("/gvc")
+  @Operation(summary = "Tạo gói")
   public ResponseEntity<Boolean> createGvcPackage(@RequestBody @Valid GvcPackageCreateDto dto){
     return ResponseEntity.ok(
       gvcPackageService.createGvcPackage(dto)
@@ -91,6 +102,7 @@ public class PackageController {
   }
 
   @PutMapping("/gvc")
+  @Operation(summary = "Cập nhật thông tin gói")
   public ResponseEntity<Boolean> updateGvcPackage(@RequestBody @Valid GvcPackageUpdateDto dto){
     return ResponseEntity.ok(
         gvcPackageService.updateGvcPackage(dto)
@@ -98,6 +110,7 @@ public class PackageController {
   }
 
   @DeleteMapping("/gvc/{id}")
+  @Operation(summary = "Xóa gói")
   public ResponseEntity<Boolean> deleteGvcPackage(@PathVariable Integer id){
     return ResponseEntity.ok(
         gvcPackageService.deleteGvcPackage(id)

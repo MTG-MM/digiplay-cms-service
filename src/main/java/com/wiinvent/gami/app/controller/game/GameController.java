@@ -10,7 +10,9 @@ import com.wiinvent.gami.domain.response.GameResponse;
 import com.wiinvent.gami.domain.response.GameTypeResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.game.GameService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springdoc.core.converters.models.PageableAsQueryParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +25,14 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/vt/cms/game")
+@Tag(name = "Game", description = "Api cho danh game")
 public class GameController extends BaseController {
 
   @Autowired private GameService gameService;
   @GetMapping("")
   @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
   @PageableAsQueryParam
+  @Operation(summary = "Lấy danh sách game")
   public PageResponse<GameResponse> getAll(
       @RequestParam(required = false) String name,
       @RequestParam(required = false) Integer id,
@@ -43,6 +47,7 @@ public class GameController extends BaseController {
   }
 
   @GetMapping("{id}")
+  @Operation(summary = "Lấy thông tin chi tiết game")
   @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR') or hasRole('PUBLISHER')")
   public ResponseEntity<GameResponse> getGameDetail(@PathVariable Integer id) {
     return ResponseEntity.ok(gameService.getGameDetail(id));
@@ -50,6 +55,7 @@ public class GameController extends BaseController {
 
   @PostMapping("")
   @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
+  @Operation(summary = "Tạo game")
   public ResponseEntity<Boolean> createGame(@RequestBody GameCreateDto createDto) {
     return ResponseEntity.ok(
         gameService.createGames(createDto)
@@ -58,6 +64,7 @@ public class GameController extends BaseController {
 
   @PutMapping("{id}")
   @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR') or hasRole('PUBLISHER')")
+  @Operation(summary = "Sửa thông tin game")
   public ResponseEntity<Boolean> updateGames(@PathVariable Integer id, @RequestBody @Valid GameUpdateDto updateDto) {
     return ResponseEntity.ok(
         gameService.updateGame(id, updateDto)
@@ -65,6 +72,7 @@ public class GameController extends BaseController {
   }
 
   @DeleteMapping("{id}")
+  @Operation(summary = "Xóa game")
   public ResponseEntity<Boolean> deleteGame(@PathVariable Integer id){
     return ResponseEntity.ok(
         gameService.deleteGame(id)
@@ -73,6 +81,7 @@ public class GameController extends BaseController {
 
   //======================================================= GAME TYPE ===================================================
   @GetMapping("/type")
+  @Operation(summary = "Danh sách các loại game")
   @PageableAsQueryParam
   public ResponseEntity<PageResponse<GameTypeResponse>> getGameTypes(
       @RequestParam(required = false) String name,
@@ -84,22 +93,26 @@ public class GameController extends BaseController {
   }
 
   @GetMapping("/type/{id}")
+  @Operation(summary = "Lấy thông tin chi tiết loại game")
   public ResponseEntity<GameTypeResponse> getGameTypeDetail(@PathVariable Integer id) {
     return ResponseEntity.ok(gameService.getGameTypeDetail(id));
   }
 
 
   @PostMapping("/type")
+  @Operation(summary = "Tạo loại game")
   public ResponseEntity<Boolean> createGameType(@RequestBody @Valid GameTypeCreateDto dto){
     return ResponseEntity.ok(gameService.createGameType(dto));
   }
 
   @PutMapping("/type")
+  @Operation(summary = "Cập nhật thông tin loại game")
   public ResponseEntity<Boolean> updateGameType(@RequestBody @Valid GameTypeUpdateDto dto){
     return ResponseEntity.ok(gameService.updateGameType(dto));
   }
 
   @DeleteMapping("/type/{id}")
+  @Operation(summary = "Xóa loại game")
   public ResponseEntity<Boolean> deleteGameType(@PathVariable Integer id){
     return ResponseEntity.ok(gameService.deleteGameType(id));
   }

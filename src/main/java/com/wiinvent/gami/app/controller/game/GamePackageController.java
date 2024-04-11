@@ -7,6 +7,8 @@ import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.response.GamePackageResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.game.GamePackageService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -18,10 +20,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("api/vt/cms/game-package")
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
+@Tag(name = "Product game", description = "Api cho gói trong game")
 public class GamePackageController extends BaseController {
   @Autowired private GamePackageService gamePackageService;
 
   @GetMapping("")
+  @Operation(summary = "Lấy danh sách gói trong game")
   public ResponseEntity<PageResponse<GamePackageResponse>> findAll(
       @RequestParam(value = "gameId") Integer gameId,
       @RequestParam(required = false) Integer id,
@@ -35,6 +39,7 @@ public class GamePackageController extends BaseController {
   }
 
   @GetMapping("{id}")
+  @Operation(summary = "Lấy Thông tin chi tiết gói")
   public ResponseEntity<GamePackageResponse> getGamePackageDetail(
       @PathVariable(value = "id") int id
   ){
@@ -42,6 +47,7 @@ public class GamePackageController extends BaseController {
   }
 
   @PostMapping("")
+  @Operation(summary = "Tạo gói")
   public ResponseEntity<Boolean> createGamePackage(@RequestBody GamePackageCreateDto gamePackageCreateDto){
     return ResponseEntity.ok(
         gamePackageService.createGamePackage(gamePackageCreateDto)
@@ -49,6 +55,7 @@ public class GamePackageController extends BaseController {
   }
 
   @PutMapping("")
+  @Operation(summary = "Cập nhật thông tin gói")
   public ResponseEntity<Boolean> updateGamePackage(@RequestBody GamePackageUpdateDto dto){
     return ResponseEntity.ok(
         gamePackageService.updateGamePackage(dto)
@@ -56,6 +63,7 @@ public class GamePackageController extends BaseController {
   }
 
   @DeleteMapping("{id}")
+  @Operation(summary = "Xóa gói")
   public ResponseEntity<Boolean> deleteGamePackage(@PathVariable int id){
     return ResponseEntity.ok(
         gamePackageService.deleteGamePackage(id)

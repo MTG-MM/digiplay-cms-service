@@ -26,6 +26,10 @@ public class GameResponse {
   private String description;
   private GameStatus status;
   private Boolean isHot;
+  private Boolean isNew;
+  private Boolean isUpdate;
+  private Boolean isLock;
+  private Integer levelUnlock;
   private GameStar gameStar;
   private Long createdAt;
   private Long updatedAt;

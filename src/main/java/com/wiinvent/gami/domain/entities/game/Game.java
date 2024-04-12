@@ -88,8 +88,20 @@ public class Game extends BaseEntity {
   @Column(name = "is_hot")
   private Boolean isHot;
 
+  @Column(name = "is_new")
+  private Boolean isNew;
+
+  @Column(name = "is_lock")
+  private Boolean isLock;
+
+  @Column(name = "is_update")
+  private Boolean isUpdate;
+
+  @Column(name = "level_unlock")
+  private Integer levelUnlock;
+
   public static List<GameStatus> getListStatusShow(){
-    return List.of(GameStatus.NEW, GameStatus.ACTIVE, GameStatus.INACTIVE);
+    return List.of(GameStatus.ACTIVE, GameStatus.INACTIVE);
   }
 
   public static List<GameStatus> getListStatusNotShow(){
@@ -97,7 +109,7 @@ public class Game extends BaseEntity {
   }
 
   public static List<GameStatus> getListStatusReady(){
-    return List.of(GameStatus.NEW, GameStatus.ACTIVE);
+    return List.of(GameStatus.ACTIVE);
   }
 
   public static List<GameStatus> getListStatusNotReady(){

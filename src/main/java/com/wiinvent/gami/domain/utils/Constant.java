@@ -35,4 +35,6 @@ public class Constant {
   public static final String GVC_PACKAGE_NOT_FOUND = "Không tìm thấy gói này";
 
   public static final String CHARACTER_NOT_FOUND = "Không tìm thấy thời trang này";
+
+  public static final String FEATURE_NOT_FOUND = "Không tìm thấy tính năng";
 }

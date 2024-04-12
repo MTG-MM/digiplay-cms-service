@@ -1,6 +1,7 @@
 package com.wiinvent.gami.domain.entities.user;
 
 import com.wiinvent.gami.domain.entities.BaseEntity;
+import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.utils.Converter.UserSegmentRewardItemConverter;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -47,4 +48,8 @@ public class UserSegment extends BaseEntity {
 
   @Column(name = "sub_bonus_rate")
   private Integer subBonusRate;
+
+  @Column(name = "status")
+  @Enumerated(EnumType.STRING)
+  private Status status;
 }

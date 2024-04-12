@@ -63,4 +63,5 @@ public abstract class BaseService {
   @Autowired protected GameTournamentUserStorage gameTournamentUserStorage;
   @Autowired protected GameTournamentEventStorage gameTournamentEventStorage;
   @Autowired protected UserAccountStorage userAccountStorage;
+  @Autowired protected FeatureStorage featureStorage;
 }

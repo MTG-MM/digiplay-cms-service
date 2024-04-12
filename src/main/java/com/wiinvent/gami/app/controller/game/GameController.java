@@ -23,6 +23,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/vt/cms/game")
 @Tag(name = "Game", description = "Api cho danh game")
@@ -38,12 +40,15 @@ public class GameController extends BaseController {
       @RequestParam(required = false) Integer id,
       @RequestParam(required = false) GameStatus status,
       @RequestParam(required = false) Boolean isHot,
+      @RequestParam(required = false) Boolean isNew,
+      @RequestParam(required = false) Boolean isUpdate,
+      @RequestParam(required = false) Boolean isLock,
       @RequestParam(required = false) Integer gameCategoryId,
       @RequestParam(required = false) Integer gameTypeId,
       @Parameter(hidden = true)
       @SortDefault(sort = "createdAt", direction = Sort.Direction.DESC)
       Pageable pageable) {
-    return PageResponse.createFrom(gameService.getAll(id, name, status, isHot, gameCategoryId, gameTypeId, pageable));
+    return PageResponse.createFrom(gameService.getAll(id, name, status, isHot, isNew, isUpdate, isLock, gameCategoryId, gameTypeId, pageable));
   }
 
   @GetMapping("{id}")
@@ -76,6 +81,13 @@ public class GameController extends BaseController {
   public ResponseEntity<Boolean> deleteGame(@PathVariable Integer id){
     return ResponseEntity.ok(
         gameService.deleteGame(id)
+    );
+  }
+
+  @GetMapping("/status")
+  public ResponseEntity<List<GameStatus>> findAllGameStatus(){
+    return ResponseEntity.ok(
+        gameService.findAllGameStatus()
     );
   }
 

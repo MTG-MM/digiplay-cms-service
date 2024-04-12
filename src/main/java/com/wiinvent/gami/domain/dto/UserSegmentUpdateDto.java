@@ -1,5 +1,6 @@
 package com.wiinvent.gami.domain.dto;
 
+import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.entities.user.UserSegmentRewardItems;
 import lombok.Data;
 
@@ -17,4 +18,5 @@ public class UserSegmentUpdateDto {
   private Integer pointLimit;
   private Integer pointBonusRate;
   private Integer subBonusRate;
+  private Status status;
 }

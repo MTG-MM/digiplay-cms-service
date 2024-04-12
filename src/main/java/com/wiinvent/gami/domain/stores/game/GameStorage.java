@@ -24,15 +24,15 @@ public class GameStorage extends BaseStorage {
     return gameRepository.findGameByIdAndStatusIn(id, Game.getListStatusShow());
   }
 
-  public Page<Game> findAll(Integer id, String name, GameStatus status, Boolean isHot, Integer gameCategoryId, Integer gameTypeId, Pageable pageable) {
-    return gameRepository.findAll(specificationGame(id, name, status, isHot, gameCategoryId, gameTypeId), pageable);
+  public Page<Game> findAll(Integer id, String name, GameStatus status, Boolean isHot, Boolean isNew, Boolean isUpdate, Boolean isLock, Integer gameCategoryId, Integer gameTypeId, Pageable pageable) {
+    return gameRepository.findAll(specificationGame(id, name, status, isHot, isNew, isUpdate, isLock, gameCategoryId, gameTypeId), pageable);
   }
 
   public List<Game> findAllByCategoryId(Integer categoryId, List<GameStatus> statuses){
     return gameRepository.findAllByCategoryIdAndStatusIn(categoryId, statuses);
   }
 
-  private Specification<Game> specificationGame(Integer id, String name, GameStatus status, Boolean isHot, Integer gameCategoryId, Integer gameTypeId) {
+  private Specification<Game> specificationGame(Integer id, String name, GameStatus status, Boolean isHot, Boolean isNew, Boolean isUpdate, Boolean isLock, Integer gameCategoryId, Integer gameTypeId) {
     return (Root<Game> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) -> {
       List<Predicate> predicates = new ArrayList<>();
       if (id != null) {
@@ -46,8 +46,11 @@ public class GameStorage extends BaseStorage {
       else predicates.add(criteriaBuilder.in(root.get("status")).value(Game.getListStatusShow()));
 
       if(Objects.nonNull(isHot)) predicates.add(criteriaBuilder.equal(root.get("isHot"), isHot));
-      if(Objects.nonNull(isHot)) predicates.add(criteriaBuilder.equal(root.get("categoryId"), gameCategoryId));
-      if(Objects.nonNull(isHot)) predicates.add(criteriaBuilder.equal(root.get("gameTypeId"), gameTypeId));
+      if(Objects.nonNull(isNew)) predicates.add(criteriaBuilder.equal(root.get("isNew"), isNew));
+      if(Objects.nonNull(isUpdate)) predicates.add(criteriaBuilder.equal(root.get("isUpdate"), isUpdate));
+      if(Objects.nonNull(isLock)) predicates.add(criteriaBuilder.equal(root.get("isLock"), isLock));
+      if(Objects.nonNull(gameCategoryId)) predicates.add(criteriaBuilder.equal(root.get("categoryId"), gameCategoryId));
+      if(Objects.nonNull(gameTypeId)) predicates.add(criteriaBuilder.equal(root.get("gameTypeId"), gameTypeId));
 
       return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
     };

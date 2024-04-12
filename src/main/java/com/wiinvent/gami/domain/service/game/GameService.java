@@ -24,6 +24,8 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -39,14 +41,14 @@ public class GameService extends BaseService {
     return modelMapper.toGameResponse(game);
   }
 
-  public Page<GameResponse> getAll(Integer id, String name, GameStatus status, Boolean isHot, Integer gameCategoryId, Integer gameTypeId, Pageable pageable) {
-    Page<Game> games = gameStorage.findAll(id, name, status, isHot, gameCategoryId, gameTypeId, pageable);
+  public Page<GameResponse> getAll(Integer id, String name, GameStatus status, Boolean isHot, Boolean isNew, Boolean isUpdate, Boolean isLock, Integer gameCategoryId, Integer gameTypeId, Pageable pageable) {
+    Page<Game> games = gameStorage.findAll(id, name, status, isHot, isNew, isUpdate, isLock, gameCategoryId, gameTypeId, pageable);
     Page<GameResponse> responses = modelMapper.toPageGameResponse(games);
     return responses;
   }
 
   public boolean createGames(GameCreateDto createDto) {
-    if(createDto.getStatus() == null) createDto.setStatus(GameStatus.NEW);
+    if(createDto.getStatus() == null) createDto.setStatus(GameStatus.ACTIVE);
     if(createDto.getIsHot() == null) createDto.setIsHot(false);
 
     Game game = modelMapper.toGame(createDto);
@@ -107,6 +109,10 @@ public class GameService extends BaseService {
     }
     //response
     return true;
+  }
+
+  public List<GameStatus> findAllGameStatus(){
+    return Game.getListStatusShow();
   }
 
   @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)

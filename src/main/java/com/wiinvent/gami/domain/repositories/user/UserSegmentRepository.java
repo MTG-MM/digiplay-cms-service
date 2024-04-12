@@ -11,4 +11,5 @@ public interface UserSegmentRepository extends JpaRepository<UserSegment, Long> 
 
   List<UserSegment> findByIsDefault(Boolean isDefault);
   UserSegment findFirstByLevelGreaterThanOrderByLevel(Integer level);
+  UserSegment findUserSegmentByLevel(Integer level);
 }

@@ -23,6 +23,8 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -103,5 +105,9 @@ public class CharacterService extends BaseService{
   @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
   public void save(Character character){
     characterStorage.save(character);
+  }
+
+  public List<CharacterCategoryType> findAllCharacterType(){
+    return Arrays.asList(CharacterCategoryType.values());
   }
 }

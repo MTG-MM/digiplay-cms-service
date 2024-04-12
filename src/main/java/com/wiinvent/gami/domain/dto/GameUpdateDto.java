@@ -38,4 +38,11 @@ public class GameUpdateDto{
 
   private Boolean isHot;
 
+  private Boolean isNew;
+
+  private Boolean isUpdate;
+
+  private Boolean isLock;
+
+  private Integer levelUnlock;
 }

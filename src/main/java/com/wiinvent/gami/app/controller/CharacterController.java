@@ -11,6 +11,8 @@ import com.wiinvent.gami.domain.response.CharacterResponse;
 import com.wiinvent.gami.domain.response.PackageResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.CharacterService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -19,9 +21,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/vt/cms/character")
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
+@Tag(name = "Character", description = "Api character")
 public class CharacterController {
   @Autowired
   CharacterService characterService;
@@ -39,7 +44,7 @@ public class CharacterController {
   }
 
   @GetMapping("{id}")
-  public ResponseEntity<CharacterResponse> getPackageDetail(@PathVariable int id){
+  public ResponseEntity<CharacterResponse> getCharacterDetail(@PathVariable int id){
     return ResponseEntity.ok(characterService.getCharacterDetail(id));
   }
   @PostMapping("")
@@ -57,9 +62,17 @@ public class CharacterController {
   }
 
   @DeleteMapping("{id}")
-  public ResponseEntity<Boolean> deletePackage(@PathVariable Integer id){
+  public ResponseEntity<Boolean> deleteCharacter(@PathVariable Integer id){
     return ResponseEntity.ok(
         characterService.deleteCharacter(id)
+    );
+  }
+
+  @GetMapping("/category-type")
+  @Operation(summary = "Lấy danh sách character category", description = "ví dụ: OUTFIT, FIGURE, ...")
+  public ResponseEntity<List<CharacterCategoryType>> findAllCharacterType(){
+    return ResponseEntity.ok(
+        characterService.findAllCharacterType()
     );
   }
 }

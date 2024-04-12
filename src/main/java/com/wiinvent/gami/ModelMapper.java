@@ -19,6 +19,7 @@ import com.wiinvent.gami.domain.entities.game.*;
 import com.wiinvent.gami.domain.entities.payment.PaymentMethod;
 import com.wiinvent.gami.domain.entities.payment.PackageHistory;
 import com.wiinvent.gami.domain.entities.reward.*;
+import com.wiinvent.gami.domain.entities.user.Feature;
 import com.wiinvent.gami.domain.entities.user.GameTournamentUser;
 import com.wiinvent.gami.domain.entities.user.User;
 import com.wiinvent.gami.domain.entities.user.UserSegment;
@@ -217,4 +218,10 @@ public interface ModelMapper {
   List<GameTournamentUserResponse> toGameTournamentUserResponse(List<GameTournamentUser> gameTournamentUsers);
   List<GameTournamentEventResponse> toGameTournamentEventResponse(List<GameTournamentEvent> gameTournamentEvents);
 
+  FeatureResponse toFeatureResponse(Feature feature);
+  default Page<FeatureResponse> toPageFeatureResponse(Page<Feature> features){
+    return features.map(this::toFeatureResponse);
+  }
+  Feature toFeature(FeatureCreateDto dto);
+  void mapFeatureUpdateDtoToFeature(FeatureUpdateDto dto, @MappingTarget Feature feature);
 }

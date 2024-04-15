@@ -27,6 +27,13 @@ public class PackageStorage extends BaseStorage {
 
   public void save(Package aPackage) {
     packageRepository.save(aPackage);
+    remoteCache.del(genCacheKeys(aPackage));
+  }
+
+  public List<String> genCacheKeys(Package aPackage){
+    List<String> cacheKeys = new ArrayList<>();
+    cacheKeys.add(cacheKey.getPackageByCode(aPackage.getCode()));
+    return cacheKeys;
   }
 
 

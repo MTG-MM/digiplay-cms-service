@@ -1,14 +1,12 @@
 package com.wiinvent.gami.domain.entities;
 
-import com.wiinvent.gami.domain.entities.payment.PaymentMethodInfo;
-import com.wiinvent.gami.domain.entities.type.PackageType;
 import com.wiinvent.gami.domain.entities.type.Status;
-import com.wiinvent.gami.domain.utils.Converter.PaymentMethodInfoConverter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.util.List;
 
@@ -27,10 +25,6 @@ public class Package extends BaseEntity {
   @Column(name = "code", nullable = false, length = 50)
   private String code;
 
-  @Size(max = 500)
-  @Column(name = "image_url", length = 500)
-  private String imageUrl;
-
   @NotNull
   @Column(name = "point", nullable = false)
   private Integer point;
@@ -38,10 +32,6 @@ public class Package extends BaseEntity {
   @NotNull
   @Column(name = "coin", nullable = false)
   private Integer coin;
-
-  @Size(max = 500)
-  @Column(name = "thumb_url", length = 500)
-  private String thumbUrl;
 
   @Column(name = "day_sub")
   private Integer daySub;
@@ -51,20 +41,41 @@ public class Package extends BaseEntity {
   @Column(name = "status")
   private Status status;
 
-  @Lob
-  @Column(name = "package_type")
-  @Enumerated(EnumType.STRING)
-  private PackageType packageType;
+  @ColumnDefault("0")
+  @Column(name = "coin_daily")
+  private Integer coinDaily;
 
-  @Column(name = "payment_method_info")
-  @Convert(converter = PaymentMethodInfoConverter.class)
-  private List<PaymentMethodInfo> paymentMethodInfo;
+  @Size(max = 500)
+  @Column(name = "external_image_id", length = 500)
+  private String externalImageId;
+
+  @NotNull
+  @Column(name = "package_type_id", nullable = false)
+  private Integer packageTypeId;
+
+  @ColumnDefault("0")
+  @Column(name = "point_daily")
+  private Integer pointDaily;
+
+  @Size(max = 500)
+  @Column(name = "payment_method_info", length = 500)
+  private String paymentMethodInfo;
+
+  @Column(name = "start_time")
+  private Long startTime;
+
+  @Column(name = "end_time")
+  private Long endTime;
+
+  @ColumnDefault("0")
+  @Column(name = "point_bonus")
+  private Integer pointBonus;
+
+  @ColumnDefault("0")
+  @Column(name = "coin_bonus")
+  private Integer coinBonus;
 
   public static List<Status> getListStatusShow(){
     return List.of(Status.ACTIVE, Status.INACTIVE);
-  }
-
-  public static List<Status> getListStatusNotShow(){
-    return List.of(Status.DELETE);
   }
 }

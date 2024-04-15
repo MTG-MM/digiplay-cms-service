@@ -6,10 +6,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class GameCategoryStorage extends BaseStorage {
-  public GameCategory save(GameCategory gameCategory){
-    return gameCategoryRepository.save(gameCategory);
+  public void save(GameCategory gameCategory){
+    gameCategoryRepository.save(gameCategory);
+    remoteCache.del(genCacheKeys(gameCategory));
   }
 
   public GameCategory findById(Integer id){
@@ -18,5 +22,16 @@ public class GameCategoryStorage extends BaseStorage {
 
   public Page<GameCategory> findAll(Pageable pageable){
     return gameCategoryRepository.findAllByStatusIn(GameCategory.getListStatusShow(), pageable);
+  }
+
+  public List<String> genCacheKeys(GameCategory gameCategory){
+    List<String> cacheKeys = new ArrayList<>();
+    cacheKeys.add(cacheKey.genAllGameCategories());
+    cacheKeys.add(cacheKey.getGameByCategoryId(gameCategory.getId(),0));
+    cacheKeys.add(cacheKey.getGameByCategoryId(gameCategory.getId(),1));
+    cacheKeys.add(cacheKey.getGameByCategoryId(gameCategory.getId(),2));
+    cacheKeys.add(cacheKey.getGameByCategoryId(gameCategory.getId(),3));
+    cacheKeys.add(cacheKey.getGameByCategoryId(gameCategory.getId(),4));
+    return cacheKeys;
   }
 }

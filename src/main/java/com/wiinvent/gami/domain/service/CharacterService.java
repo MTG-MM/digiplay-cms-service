@@ -53,7 +53,7 @@ public class CharacterService extends BaseService{
     try {
       self.save(character);
     } catch (Exception e){
-      log.debug("==============>createCharacter:DB:Exception:{}", e.getMessage());
+      log.error("==============>createCharacter:DB:Exception:{}", e.getMessage());
       return false;
     }
     return true;
@@ -70,14 +70,8 @@ public class CharacterService extends BaseService{
     try {
       self.save(character);
     } catch (Exception e){
-      log.debug("==============>updateCharacter:DB:Exception:{}", e.getMessage());
+      log.error("==============>updateCharacter:DB:Exception:{}", e.getMessage());
       return false;
-    }
-    //cache
-    try {
-      remoteCache.deleteKey(cacheKey.getCharacterById(character.getId()));
-    } catch (Exception e){
-      log.debug("==============>updateCharacter:Cache:Exception:{}", e.getMessage());
     }
     return true;
   }
@@ -92,13 +86,8 @@ public class CharacterService extends BaseService{
     try {
       self.save(character);
     } catch (Exception e){
-      log.debug("==============>deleteCharacter:DB:Exception:{}", e.getMessage());
+      log.error("==============>deleteCharacter:DB:Exception:{}", e.getMessage());
       return false;
-    }
-    try {
-      remoteCache.deleteKey(cacheKey.getCharacterById(character.getId()));
-    } catch (Exception e){
-      log.debug("==============>updateCharacter:Cache:Exception:{}", e.getMessage());
     }
     return true;
   }

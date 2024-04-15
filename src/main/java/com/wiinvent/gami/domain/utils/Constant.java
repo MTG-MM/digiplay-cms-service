@@ -37,4 +37,6 @@ public class Constant {
   public static final String CHARACTER_NOT_FOUND = "Không tìm thấy thời trang này";
 
   public static final String FEATURE_NOT_FOUND = "Không tìm thấy tính năng";
+
+  public static final String PACKAGE_TYPE_NOT_FOUND = "Không tồn tại loại gói này";
 }

@@ -6,10 +6,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class GvcPackageStorage extends BaseStorage {
   public void save(GvcPackage gvcPackage){
     gvcPackageRepository.save(gvcPackage);
+    remoteCache.del(genCacheKeys(gvcPackage));
   }
 
   public GvcPackage findById(Integer id){
@@ -18,5 +22,12 @@ public class GvcPackageStorage extends BaseStorage {
 
   public Page<GvcPackage> findAll(Pageable pageable){
     return gvcPackageRepository.findAllByStatusIn(GvcPackage.getListStatusShow(), pageable);
+  }
+
+  public List<String> genCacheKeys(GvcPackage gvcPackage){
+    List<String> cacheKeys = new ArrayList<>();
+    cacheKeys.add(cacheKey.getGvcPackages());
+    cacheKeys.add(cacheKey.getGvcPackageByCode(gvcPackage.getCode()));
+    return cacheKeys;
   }
 }

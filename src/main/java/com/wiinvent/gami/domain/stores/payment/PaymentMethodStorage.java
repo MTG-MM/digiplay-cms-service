@@ -25,8 +25,9 @@ public class PaymentMethodStorage extends BaseStorage {
     return paymentMethodRepository.findAll(pageable);
   }
 
-  public PaymentMethod save(PaymentMethod paymentMethod){
-    return paymentMethodRepository.save(paymentMethod);
+  public void save(PaymentMethod paymentMethod){
+    paymentMethodRepository.save(paymentMethod);
+    remoteCache.deleteKey(cacheKey.genAllPaymentMethod());
   }
   public PaymentMethod findById(Integer id){
     return paymentMethodRepository.findById(id).orElseThrow(()->new ResourceNotFoundException(Constant.PAYMENT_METHOD_NOT_FOUND));

@@ -46,14 +46,8 @@ public class GvcPackageService extends BaseService{
     try {
       self.save(gvcPackage);
     }catch (Exception e){
-      log.debug("==============>createGvcPackage:DB:Exception:{}", e.getMessage());
+      log.error("==============>createGvcPackage:DB:Exception:{}", e.getMessage());
       return false;
-    }
-    //cache
-    try {
-      remoteCache.deleteKey(cacheKey.getGvcPackages());
-    }catch (Exception e){
-      log.debug("==============>createGvcPackage:Cache:Exception:{}", e.getMessage());
     }
     return true;
   }
@@ -69,15 +63,8 @@ public class GvcPackageService extends BaseService{
     try {
       self.save(gvcPackage);
     }catch (Exception e){
-      log.debug("==============>updateGvcPackage:DB:Exception:{}", e.getMessage());
+      log.error("==============>updateGvcPackage:DB:Exception:{}", e.getMessage());
       return false;
-    }
-    //cache
-    try {
-      remoteCache.deleteKey(cacheKey.getGvcPackages());
-      remoteCache.deleteKey(cacheKey.getGvcPackageByCode(gvcPackage.getCode()));
-    }catch (Exception e){
-      log.debug("==============>updateGvcPackage:Cache:Exception:{}", e.getMessage());
     }
     return true;
   }
@@ -93,15 +80,8 @@ public class GvcPackageService extends BaseService{
     try {
       self.save(gvcPackage);
     }catch (Exception e){
-      log.debug("==============>deleteGvcPackage:DB:Exception:{}", e.getMessage());
+      log.error("==============>deleteGvcPackage:DB:Exception:{}", e.getMessage());
       return false;
-    }
-    //cache
-    try {
-      remoteCache.deleteKey(cacheKey.getGvcPackages());
-      remoteCache.deleteKey(cacheKey.getGvcPackageByCode(gvcPackage.getCode()));
-    }catch (Exception e){
-      log.debug("==============>deleteGvcPackage:Cache:Exception:{}", e.getMessage());
     }
     return true;
   }

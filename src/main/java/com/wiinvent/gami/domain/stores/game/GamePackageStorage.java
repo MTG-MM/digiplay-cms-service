@@ -31,6 +31,14 @@ public class GamePackageStorage extends BaseStorage {
   }
   public void save(GamePackage gamePackage) {
     gamePackageRepository.save(gamePackage);
+    remoteCache.del(genCacheKeys(gamePackage));
+  }
+
+  public List<String> genCacheKeys(GamePackage gamePackage){
+    List<String> cacheKeys = new ArrayList<>();
+    cacheKeys.add(cacheKey.genGamePackageByGameId(gamePackage.getGameId()));
+    cacheKeys.add(cacheKey.genGamePackageById(gamePackage.getId()));
+    return cacheKeys;
   }
 
   private Specification<GamePackage> specificationGamePackage(Integer gameId, Integer id, List<Status> statuses) {

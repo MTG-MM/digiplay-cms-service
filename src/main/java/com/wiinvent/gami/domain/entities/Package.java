@@ -33,7 +33,7 @@ public class Package extends BaseEntity {
   @Column(name = "coin", nullable = false)
   private Integer coin;
 
-  @Column(name = "day_sub")
+  @Column(name = "day_duration")
   private Integer daySub;
 
   @Lob

@@ -45,4 +45,9 @@ public class Character extends BaseEntity {
   @Column(name = "external_id", length = 50)
   private String externalId;
 
+  @Column(name = "is_default")
+  private Boolean isDefault;
+
+  @Column(name = "is_sell")
+  private Boolean isSell;
 }

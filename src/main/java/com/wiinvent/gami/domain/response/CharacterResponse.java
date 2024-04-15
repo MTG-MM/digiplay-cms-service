@@ -14,4 +14,7 @@ public class CharacterResponse {
   private Integer coinPrice;
   private Integer pointPrice;
   private Long createdAt;
+  private Long updatedAt;
+  private Boolean isDefault;
+  private Boolean isSell;
 }

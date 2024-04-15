@@ -58,4 +58,11 @@ public class AccountController extends BaseController {
       @Parameter(hidden = true) Pageable pageable) {
     return ResponseEntity.ok(PageResponse.createFrom(accountService.getAllPage(userName, teamId, pageable)));
   }
+
+  @PutMapping("{accountId}")
+  public ResponseEntity<Boolean> updateAccount(@PathVariable UUID accountId, AccountDto dto) {
+    return ResponseEntity.ok(
+        accountService.updateAccount(accountId, dto)
+    );
+  }
 }

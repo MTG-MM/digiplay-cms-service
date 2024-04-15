@@ -14,13 +14,18 @@ import com.wiinvent.gami.domain.security.service.UserDetailsImpl;
 import com.wiinvent.gami.domain.security.service.UserSecurityService;
 import com.wiinvent.gami.domain.service.user.UserService;
 import com.wiinvent.gami.domain.utils.Constant;
+import com.wiinvent.gami.domain.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Objects;
 import java.util.UUID;
 
 @Service
@@ -109,5 +114,22 @@ public class AccountService extends BaseService {
   public Page<AccountResponse> getAllPage(String username, UUID teamId, Pageable pageable) {
     Page<Account> accounts = accountStorage.findPageAccount(username, teamId, pageable);
     return modelMapper.toPageAccountResponse(accounts);
+  }
+
+  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
+  public Boolean updateAccount(UUID accountId, AccountDto dto){
+    Account account = accountStorage.findById(accountId);
+    if(account == null){
+      throw new BadRequestException(Constant.USER_NOT_FOUND);
+    }
+
+    account.setUsername(dto.getUsername());
+    account.setPassword(userSecurityService.encode(dto.getPassword()));
+    account.setRole(dto.getRole());
+    account.setUpdatedAt(DateUtils.getNowMillisAtUtc());
+    if(Objects.nonNull(dto.getAccountState())) account.setAccountState(dto.getAccountState());
+
+    accountStorage.save(account);
+    return true;
   }
 }

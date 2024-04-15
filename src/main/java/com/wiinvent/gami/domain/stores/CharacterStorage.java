@@ -16,6 +16,7 @@ import java.util.List;
 public class CharacterStorage extends BaseStorage{
   public void save(Character character){
     characterRepository.save(character);
+    remoteCache.deleteKey(cacheKey.getCharacterById(character.getId()));
   }
 
   public Character findById(Integer id) {

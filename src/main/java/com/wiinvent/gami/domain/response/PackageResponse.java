@@ -1,23 +1,41 @@
 package com.wiinvent.gami.domain.response;
 
-import com.wiinvent.gami.domain.entities.payment.PaymentMethodInfo;
-import com.wiinvent.gami.domain.entities.type.PackageType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import lombok.Data;
-
-import java.util.List;
 
 @Data
 public class PackageResponse {
   private Integer id;
-  private String code;
-  private String imageUrl;
-  private String thumbUrl;
-  private Integer coin;
-  private Integer point;
-  private Integer daySub;
-  private Status status;
-  private PackageType packageType;
-  private List<PaymentMethodInfo> paymentMethodInfo;
 
+  private String code;
+
+  private Integer point;
+
+  private Integer coin;
+
+  private Integer daySub;
+
+  private Status status;
+
+  private Integer coinDaily;
+
+  private String externalImageId;
+
+  private Integer packageTypeId;
+
+  private Integer pointDaily;
+
+  private String paymentMethodInfo;
+
+  private Long startTime;
+
+  private Long endTime;
+
+  private Integer pointBonus;
+
+  private Integer coinBonus;
+
+  private Long createdAt;
+
+  private Long updatedAt;
 }

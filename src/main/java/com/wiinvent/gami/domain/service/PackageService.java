@@ -48,7 +48,7 @@ public class PackageService extends BaseService {
     try {
       self.save(aPackage);
     } catch (Exception e){
-      log.debug("==============>createPackage:DB:Exception:{}", e.getMessage());
+      log.error("==============>createPackage:DB:Exception:{}", e.getMessage());
       return false;
     }
     return true;
@@ -66,14 +66,8 @@ public class PackageService extends BaseService {
     try {
       self.save(aPackage);
     } catch (Exception e){
-      log.debug("==============>updatePackage:DB:Exception:{}", e.getMessage());
+      log.error("==============>updatePackage:DB:Exception:{}", e.getMessage());
       return false;
-    }
-    //cache
-    try {
-      remoteCache.deleteKey(cacheKey.getPackageByCode(aPackage.getCode()));
-    } catch (Exception e){
-      log.debug("==============>updatePackage:Cache:Exception:{}", e.getMessage());
     }
     return true;
   }
@@ -91,13 +85,8 @@ public class PackageService extends BaseService {
     try {
       self.save(aPackage);
     } catch (Exception e){
-      log.debug("==============>deletePackage:DB:Exception:{}", e.getMessage());
+      log.error("==============>deletePackage:DB:Exception:{}", e.getMessage());
       return false;
-    }
-    try {
-      remoteCache.deleteKey(cacheKey.getPackageByCode(aPackage.getCode()));
-    } catch (Exception e){
-      log.debug("==============>updatePackage:Cache:Exception:{}", e.getMessage());
     }
     return true;
   }

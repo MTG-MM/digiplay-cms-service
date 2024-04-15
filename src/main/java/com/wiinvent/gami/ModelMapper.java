@@ -224,4 +224,11 @@ public interface ModelMapper {
   }
   Feature toFeature(FeatureCreateDto dto);
   void mapFeatureUpdateDtoToFeature(FeatureUpdateDto dto, @MappingTarget Feature feature);
+
+  PackageTypeResponse toPackageTypeResponse(PackageType packageType);
+  default Page<PackageTypeResponse> toPagePackageTypeResponse(Page<PackageType> packageTypes){
+    return packageTypes.map(this::toPackageTypeResponse);
+  }
+  PackageType toPackageType(PackageTypeCreateDto dto);
+  void mapPackageTypeUpdateDtoToPackageType(PackageTypeUpdateDto dto, @MappingTarget PackageType packageType);
 }

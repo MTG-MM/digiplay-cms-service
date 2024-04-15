@@ -57,12 +57,6 @@ public class GameCategoryService extends BaseService {
       log.debug("==================> createGameCategory:DB:Exception:{}", e.getMessage());
       return false;
     }
-    //cache
-    try{
-      remoteCache.deleteKey(cacheKey.genAllGameCategories());
-    }catch (Exception e){
-      log.debug("==================> createGameCategory:Cache:Exception:{}", e.getMessage());
-    }
     //response
     return true;
   }
@@ -80,12 +74,6 @@ public class GameCategoryService extends BaseService {
     }catch (Exception e){
       log.debug("==================> updateGameCategory:DB:Exception:{}", e.getMessage());
       return false;
-    }
-    //cache
-    try{
-      remoteCache.deleteKey(cacheKey.genAllGameCategories());
-    }catch (Exception e){
-      log.debug("==================> updateGameCategory:Cache:Exception:{}", e.getMessage());
     }
     //response
     return true;
@@ -105,13 +93,6 @@ public class GameCategoryService extends BaseService {
       log.debug("==================> deleteGameCategory:DB:Exception:{}", e.getMessage());
       return false;
     }
-    //cache
-    try{
-      remoteCache.deleteKey(cacheKey.genAllGameCategories());
-      remoteCache.deleteKey(cacheKey.getGameByCategoryId(gameCategory.getId(),0));
-    }catch (Exception e){
-      log.debug("==================> deleteGameCategory:Cache:Exception:{}", e.getMessage());
-    }
     //response
     return true;
   }
@@ -130,13 +111,6 @@ public class GameCategoryService extends BaseService {
     }catch (Exception e){
       log.debug("==================> updateStatusGameCategory:DB:Exception:{}", e.getMessage());
       return false;
-    }
-    //cache
-    try{
-      remoteCache.deleteKey(cacheKey.genAllGameCategories());
-      remoteCache.deleteKey(cacheKey.getGameByCategoryId(gameCategory.getId(),0));
-    }catch (Exception e){
-      log.debug("==================> updateStatusGameCategory:Cache:Exception:{}", e.getMessage());
     }
     //response
     return true;

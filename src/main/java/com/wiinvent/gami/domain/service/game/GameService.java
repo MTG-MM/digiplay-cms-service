@@ -55,7 +55,7 @@ public class GameService extends BaseService {
     try{
       self.save(game);
     }catch (Exception e){
-      log.debug("==============>createGames e = {}", e.getMessage());
+      log.error("==============>createGames e = {}", e.getMessage());
       return false;
     }
 
@@ -74,14 +74,8 @@ public class GameService extends BaseService {
     try{
       self.save(game);
     }catch (Exception e){
-      log.debug("==============>updateGame:DB:Exception:{}", e.getMessage());
+      log.error("==============>updateGame:DB:Exception:{}", e.getMessage());
       return false;
-    }
-    //cache
-    try{
-      remoteCache.deleteKey(cacheKey.getGameById(id));
-    }catch (Exception e){
-      log.debug("==============>updateGame:Cache:Exception:{}", e.getMessage());
     }
     //response
     return true;
@@ -98,14 +92,8 @@ public class GameService extends BaseService {
     try{
       self.save(game);
     }catch (Exception e){
-      log.debug("==============>deleteGame:DB:Exception:{}", e.getMessage());
+      log.error("==============>deleteGame:DB:Exception:{}", e.getMessage());
       return false;
-    }
-    //cache
-    try{
-      remoteCache.deleteKey(cacheKey.getGameById(id));
-    }catch (Exception e){
-      log.debug("==============>deleteGame:Cache:Exception:{}", e.getMessage());
     }
     //response
     return true;

@@ -58,14 +58,8 @@ public class GamePackageService extends BaseService {
     try {
       self.save(gamePackage);
     }catch (Exception e){
-      log.debug("==============>createGamePackage:DB:Exception:{}", e.getMessage());
+      log.error("==============>createGamePackage:DB:Exception:{}", e.getMessage());
       return false;
-    }
-    //cache
-    try {
-      remoteCache.deleteKey(cacheKey.genGamePackageByGameId(game.getId()));
-    }catch (Exception e){
-      log.debug("==============>createGamePackage:Cache:Exception:{}", e.getMessage());
     }
     //response
     return true;
@@ -84,15 +78,8 @@ public class GamePackageService extends BaseService {
     try {
       self.save(gamePackage);
     }catch (Exception e){
-      log.debug("==============>updateGamePackage:DB:Exception:{}", e.getMessage());
+      log.error("==============>updateGamePackage:DB:Exception:{}", e.getMessage());
       return false;
-    }
-    //cache
-    try {
-      remoteCache.deleteKey(cacheKey.genGamePackageByGameId(gamePackage.getGameId()));
-      remoteCache.deleteKey(cacheKey.genGamePackageById(gamePackage.getId()));
-    }catch (Exception e){
-      log.debug("==============>updateGamePackage:Cache:Exception:{}", e.getMessage());
     }
     //response
     return true;
@@ -111,15 +98,8 @@ public class GamePackageService extends BaseService {
     try {
       self.save(gamePackage);
     }catch (Exception e){
-      log.debug("==============>deleteGamePackage:DB:Exception:{}", e.getMessage());
+      log.error("==============>deleteGamePackage:DB:Exception:{}", e.getMessage());
       return false;
-    }
-    //cache
-    try {
-      remoteCache.deleteKey(cacheKey.genGamePackageByGameId(gamePackage.getGameId()));
-      remoteCache.deleteKey(cacheKey.genGamePackageById(gamePackage.getId()));
-    }catch (Exception e){
-      log.debug("==============>deleteGamePackage:Cache:Exception:{}", e.getMessage());
     }
     //response
     return true;

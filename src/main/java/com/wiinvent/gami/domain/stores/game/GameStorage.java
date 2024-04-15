@@ -1,6 +1,7 @@
 package com.wiinvent.gami.domain.stores.game;
 
 import com.wiinvent.gami.domain.entities.game.Game;
+import com.wiinvent.gami.domain.entities.game.GamePackage;
 import com.wiinvent.gami.domain.entities.type.GameStatus;
 import com.wiinvent.gami.domain.stores.BaseStorage;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -58,7 +59,14 @@ public class GameStorage extends BaseStorage {
 
   public void save(Game game) {
     gameRepository.save(game);
+    remoteCache.del(genCacheKeys(game));
   }
+  public List<String> genCacheKeys(Game game){
+    List<String> cacheKeys = new ArrayList<>();
+    cacheKeys.add(cacheKey.getGameById(game.getId()));
+    return cacheKeys;
+  }
+
 
   public void saveAll(List<Game> games){
     gameRepository.saveAll(games);

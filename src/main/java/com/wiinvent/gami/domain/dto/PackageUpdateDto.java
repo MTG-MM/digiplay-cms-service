@@ -13,26 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class PackageUpdateDto {
+public class PackageUpdateDto extends PackageCreateDto{
   @NotNull(message = "Không được để trống")
-  @Size(max = 50)
-  @NotEmpty
-  @NotBlank(message = "Không được để trống")
-  String code;
-  @NotNull
-  Integer point;
-
-  @NotNull
-  Integer coin;
-
-  @Size(max = 1000)
-  String imageUrl;
-
-  @Size(max = 1000)
-  String thumbUrl;
-
-  Integer daySub;
-  Status status;
-  PackageType packageType;
-  List<PaymentMethodInfo> paymentMethodInfo = new ArrayList<>();
+  private Integer id;
 }

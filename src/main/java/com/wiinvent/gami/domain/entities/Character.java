@@ -1,6 +1,7 @@
 package com.wiinvent.gami.domain.entities;
 
 import com.wiinvent.gami.domain.entities.type.CharacterCategoryType;
+import com.wiinvent.gami.domain.entities.type.CharacterGenderType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -26,6 +27,10 @@ public class Character extends BaseEntity {
   @Column(name = "category_type")
   @Enumerated(EnumType.STRING)
   private CharacterCategoryType categoryType;
+
+  @Column(name = "gender")
+  @Enumerated(EnumType.STRING)
+  private CharacterGenderType gender;
 
   @Size(max = 50)
   @Column(name = "type", length = 50)

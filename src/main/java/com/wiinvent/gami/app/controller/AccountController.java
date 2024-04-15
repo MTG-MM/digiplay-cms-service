@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("api/vt/cms/account")
+@RequestMapping("v1/vt/cms/account")
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
 public class AccountController extends BaseController {
 

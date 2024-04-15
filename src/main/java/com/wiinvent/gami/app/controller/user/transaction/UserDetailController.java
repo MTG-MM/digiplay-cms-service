@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("api/vt/cms/user")
+@RequestMapping("v1/vt/cms/user")
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
 public class UserDetailController {
   @Autowired PackageHistoryService packageHistoryService;

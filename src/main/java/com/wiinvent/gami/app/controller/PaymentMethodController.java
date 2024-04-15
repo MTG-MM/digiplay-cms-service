@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/vt/cms/payment-method")
+@RequestMapping("/v1/vt/cms/payment-method")
 public class PaymentMethodController extends BaseController{
   @Autowired private PaymentMethodService paymentMethodService;
 

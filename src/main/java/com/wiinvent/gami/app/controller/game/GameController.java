@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/vt/cms/game")
+@RequestMapping("v1/vt/cms/game")
 @Tag(name = "Game", description = "Api cho danh game")
 public class GameController extends BaseController {
 

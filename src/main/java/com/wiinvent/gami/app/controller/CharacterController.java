@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/vt/cms/character")
+@RequestMapping("v1/vt/cms/character")
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
 @Tag(name = "Character", description = "Api character")
 public class CharacterController {

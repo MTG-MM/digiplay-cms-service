@@ -20,7 +20,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/vt/cms/reward-segment")
+@RequestMapping("v1/vt/cms/reward-segment")
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
 public class RewardSegmentController {
 

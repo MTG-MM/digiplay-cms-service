@@ -14,7 +14,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("api/vt/cms/user")
+@RequestMapping("v1/vt/cms/user")
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
 public class UserController {
 

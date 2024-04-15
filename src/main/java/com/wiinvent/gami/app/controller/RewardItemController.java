@@ -15,7 +15,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/vt/cms/reward-items")
+@RequestMapping("v1/vt/cms/reward-items")
 public class RewardItemController {
 
   @Autowired

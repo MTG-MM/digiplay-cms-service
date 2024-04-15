@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/vt/cms/package-type")
+@RequestMapping("v1/vt/cms/package-type")
 @Tag(name = "loại gói", description = "ví dụ: PREMIUM, SUB, CHARGE")
 public class PackageTypeController extends BaseController{
   @Autowired private PackageTypeService packageTypeService;

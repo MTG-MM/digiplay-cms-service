@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/vt/cms/reward-schedule")
+@RequestMapping("v1/vt/cms/reward-schedule")
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
 public class RewardScheduleController {
 

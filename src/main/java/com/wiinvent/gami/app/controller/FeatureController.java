@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/vt/cms/feature")
+@RequestMapping("v1/vt/cms/feature")
 @Tag(name = "Feature", description = "feature")
 public class FeatureController extends BaseController {
   @Autowired private FeatureService featureService;

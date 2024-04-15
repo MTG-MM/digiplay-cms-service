@@ -10,7 +10,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/vt/cms/voucher-details")
+@RequestMapping("v1/vt/cms/voucher-details")
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
 public class VoucherDetailController {
 

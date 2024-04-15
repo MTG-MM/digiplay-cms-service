@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/vt/cms/reward-types")
+@RequestMapping("v1/vt/cms/reward-types")
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
 public class RewardTypeController {
 

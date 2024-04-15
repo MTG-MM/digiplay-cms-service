@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping("/api/vt/cms/images/upload")
+@RequestMapping("/v1/vt/cms/images/upload")
 public class UploadController {
   @Autowired
   private UploadService uploadService;

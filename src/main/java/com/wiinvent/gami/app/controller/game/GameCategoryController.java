@@ -18,7 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/vt/cms/game-category")
+@RequestMapping("/v1/vt/cms/game-category")
 @Tag(name = "Game caterory", description = "Api cho danh mục game(FREE, SUB, ...)")
 public class GameCategoryController extends BaseController {
   @Autowired

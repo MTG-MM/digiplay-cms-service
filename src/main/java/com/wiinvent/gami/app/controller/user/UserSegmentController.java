@@ -16,7 +16,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/vt/cms/user-segment")
+@RequestMapping("v1/vt/cms/user-segment")
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
 @Tag(name = "Level", description = "Level")
 public class UserSegmentController {

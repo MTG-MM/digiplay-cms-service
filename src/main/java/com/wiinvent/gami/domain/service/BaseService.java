@@ -65,4 +65,5 @@ public abstract class BaseService {
   @Autowired protected UserAccountStorage userAccountStorage;
   @Autowired protected FeatureStorage featureStorage;
   @Autowired protected PackageTypeStorage packageTypeStorage;
+  @Autowired protected BannerStorage bannerStorage;
 }

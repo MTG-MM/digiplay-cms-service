@@ -231,4 +231,11 @@ public interface ModelMapper {
   }
   PackageType toPackageType(PackageTypeCreateDto dto);
   void mapPackageTypeUpdateDtoToPackageType(PackageTypeUpdateDto dto, @MappingTarget PackageType packageType);
+
+  BannerResponse toBannerResponse(Banner banner);
+  default Page<BannerResponse> toPageBannerResponse(Page<Banner> banners){
+    return banners.map(this::toBannerResponse);
+  }
+  Banner toBanner(BannerCreateDto dto);
+  void mapBannerUpdateDtoToBanner(BannerUpdateDto dto, @MappingTarget Banner banner);
 }

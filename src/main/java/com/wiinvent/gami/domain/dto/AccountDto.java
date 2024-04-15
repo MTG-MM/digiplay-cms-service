@@ -1,6 +1,7 @@
 package com.wiinvent.gami.domain.dto;
 
 import com.wiinvent.gami.domain.entities.type.AccountRole;
+import com.wiinvent.gami.domain.entities.type.AccountState;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -19,4 +20,6 @@ public class AccountDto {
   @NotNull(message = "Không được để trống")
   @Schema(description = "Vai trò tài khoản", example = "OPERATOR")
   AccountRole role;
+
+  AccountState accountState;
 }

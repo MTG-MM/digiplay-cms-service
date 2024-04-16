@@ -242,4 +242,5 @@ public interface ModelMapper {
 
   List<GameTypeResponse> toListGameTypeResponse(List<GameType> gameTypes);
   List<GameCategoryResponse> toListGameCategoryResponse(List<GameCategory> gameCategories);
+  List<UserSegmentResponse> toListUserSegmentResponse(List<UserSegment> userSegments);
 }

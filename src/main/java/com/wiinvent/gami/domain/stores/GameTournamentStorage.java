@@ -18,6 +18,7 @@ public class GameTournamentStorage extends BaseStorage{
   }
   public void save(GameTournament gameTournament){
     gameTournamentRepository.save(gameTournament);
+    remoteCache.del(genCacheKeys(gameTournament));
   }
 
   public GameTournament findByIdAndStatusNot(String id, Status status) {
@@ -41,5 +42,11 @@ public class GameTournamentStorage extends BaseStorage{
 
       return criteriaBuilder.and(conditionList.toArray(new Predicate[0]));
     };
+  }
+
+  public List<String> genCacheKeys(GameTournament gameTournament){
+    List<String> keys = new ArrayList<>();
+    keys.add(cacheKey.genGameTournamentById(gameTournament.getId()));
+    return keys;
   }
 }

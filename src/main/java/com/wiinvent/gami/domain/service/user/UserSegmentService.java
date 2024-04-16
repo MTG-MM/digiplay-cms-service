@@ -8,14 +8,21 @@ import com.wiinvent.gami.domain.response.UserSegmentResponse;
 import com.wiinvent.gami.domain.service.BaseService;
 import com.wiinvent.gami.domain.utils.Constant;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Log4j2
 public class UserSegmentService extends BaseService {
-
+  @Autowired @Lazy private UserSegmentService self;
 
   public UserSegmentResponse getUserSegmentDetail(long segmentId) {
     UserSegment userSegment = userSegmentStorage.findById(segmentId);
@@ -30,9 +37,14 @@ public class UserSegmentService extends BaseService {
     return modelMapper.toPageUserSegmentResponse(userSegments);
   }
 
+  public List<UserSegmentResponse> findAllUserSegmentActive() {
+    List<UserSegment> userSegments = userSegmentStorage.findAllUserSegmentActive();
+    return modelMapper.toListUserSegmentResponse(userSegments);
+  }
+
   public void createUserSegment(UserSegmentCreateDto userSegmentCreateDto) {
     UserSegment userSegment = modelMapper.toUserSegment(userSegmentCreateDto);
-    userSegmentStorage.save(userSegment);
+    self.save(userSegment);
   }
 
   public void updateUserSegment(long id, UserSegmentUpdateDto userSegmentUpdateDto) {
@@ -41,12 +53,11 @@ public class UserSegmentService extends BaseService {
       throw new ResourceNotFoundException(Constant.USER_SEGMENT_NOT_FOUND);
     }
     modelMapper.mapUserSegmentDtoToUserSegment(userSegmentUpdateDto, userSegment);
+    self.save(userSegment);
+  }
+
+  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
+  public void save(UserSegment userSegment){
     userSegmentStorage.save(userSegment);
-    try {
-      remoteCache.deleteKey(cacheKey.genUserSegmentById(userSegment.getId()));
-      remoteCache.deleteKey(cacheKey.genUserSegmentDefault());
-    }catch (Exception e){
-      log.debug("============================> updateUserSegment:Cache:Exception:{}", e.getMessage());
-    }
   }
 }

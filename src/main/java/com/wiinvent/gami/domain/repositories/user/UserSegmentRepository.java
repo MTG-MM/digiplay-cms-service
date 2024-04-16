@@ -1,5 +1,6 @@
 package com.wiinvent.gami.domain.repositories.user;
 
+import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.entities.user.UserSegment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -12,4 +13,5 @@ public interface UserSegmentRepository extends JpaRepository<UserSegment, Long> 
   List<UserSegment> findByIsDefault(Boolean isDefault);
   UserSegment findFirstByLevelGreaterThanOrderByLevel(Integer level);
   UserSegment findUserSegmentByLevel(Integer level);
+  List<UserSegment> findUserSegmentsByStatusIn(List<Status> statuses);
 }

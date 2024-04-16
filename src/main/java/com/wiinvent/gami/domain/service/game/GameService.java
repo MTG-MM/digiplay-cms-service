@@ -103,7 +103,7 @@ public class GameService extends BaseService {
     return Game.getListStatusShow();
   }
 
-  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
+  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
   public void save(Game game){
     gameStorage.save(game);
   }

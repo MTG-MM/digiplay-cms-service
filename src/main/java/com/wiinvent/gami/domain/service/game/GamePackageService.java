@@ -105,7 +105,7 @@ public class GamePackageService extends BaseService {
     return true;
   }
 
-  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
+  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
   public void save(GamePackage gamePackage){
     gamePackageStorage.save(gamePackage);
   }

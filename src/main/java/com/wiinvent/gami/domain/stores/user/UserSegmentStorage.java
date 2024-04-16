@@ -1,11 +1,13 @@
 package com.wiinvent.gami.domain.stores.user;
 
+import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.entities.user.UserSegment;
 import com.wiinvent.gami.domain.stores.BaseStorage;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -17,6 +19,7 @@ public class UserSegmentStorage extends BaseStorage {
 
   public void save(UserSegment userSegment) {
     userSegmentRepository.save(userSegment);
+    remoteCache.del(genCacheKeys(userSegment));
   }
 
   public UserSegment findById(Long userSegmentId) {
@@ -27,11 +30,22 @@ public class UserSegmentStorage extends BaseStorage {
     return userSegmentRepository.findAll(pageable);
   }
 
+  public List<UserSegment> findAllUserSegmentActive() {
+    return userSegmentRepository.findUserSegmentsByStatusIn(List.of(Status.ACTIVE));
+  }
+
   public UserSegment findNextLevel(Integer currentLevel){
     return userSegmentRepository.findFirstByLevelGreaterThanOrderByLevel(currentLevel);
   }
 
   public UserSegment findByLevel(Integer level){
     return userSegmentRepository.findUserSegmentByLevel(level);
+  }
+
+  public List<String> genCacheKeys(UserSegment userSegment){
+    List<String> cacheKeys = new ArrayList<>();
+    cacheKeys.add(cacheKey.genUserSegmentById(userSegment.getId()));
+    cacheKeys.add(cacheKey.genUserSegmentDefault());
+    return cacheKeys;
   }
 }

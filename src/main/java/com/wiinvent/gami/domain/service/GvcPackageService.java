@@ -87,7 +87,7 @@ public class GvcPackageService extends BaseService{
   }
 
 
-  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
+  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
   public void save(GvcPackage gvcPackage){
     gvcPackageStorage.save(gvcPackage);
   }

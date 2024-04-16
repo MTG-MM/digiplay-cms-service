@@ -92,18 +92,18 @@ public class PaymentMethodService extends BaseService{
     try{
       self.deletePaymentMethodById(paymentMethod.getId());
     }catch (Exception e){
-      log.debug("============================> createPaymentMethod:DB:Exception:{}", e.getMessage());
+      log.debug("============================> deletePaymentMethod:DB:Exception:{}", e.getMessage());
     }
     //response
     return true;
   }
 
-  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
+  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
   public void savePaymentMethod(PaymentMethod paymentMethod){
     paymentMethodStorage.save(paymentMethod);
   }
 
-  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
+  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
   public void deletePaymentMethodById(Integer id){
     paymentMethodStorage.deleteById(id);
   }

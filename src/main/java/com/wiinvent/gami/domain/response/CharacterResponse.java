@@ -1,6 +1,7 @@
 package com.wiinvent.gami.domain.response;
 
 import com.wiinvent.gami.domain.entities.type.CharacterCategoryType;
+import com.wiinvent.gami.domain.entities.type.CharacterGenderType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import lombok.Data;
 
@@ -17,4 +18,9 @@ public class CharacterResponse {
   private Long updatedAt;
   private Boolean isDefault;
   private Boolean isSell;
+  private CharacterGenderType gender;
+  private Boolean isHot;
+  private Boolean isTrend;
+  private Boolean isNew;
+  private Boolean isEvent;
 }

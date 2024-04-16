@@ -14,4 +14,8 @@ public class CharacterUpdateDto {
   private CharacterGenderType gender;
   private Boolean isDefault;
   private Boolean isSell;
+  private Boolean isHot;
+  private Boolean isTrend;
+  private Boolean isNew;
+  private Boolean isEvent;
 }

@@ -56,6 +56,15 @@ public class Character extends BaseEntity {
   @Column(name = "is_sell")
   private Boolean isSell;
 
-  @Column(name = "gender")
-  private String gender;
+  @Column(name = "is_hot")
+  private Boolean isHot;
+
+  @Column(name = "is_trend")
+  private Boolean isTrend;
+
+  @Column(name = "is_new")
+  private Boolean isNew;
+
+  @Column(name = "is_event")
+  private Boolean isEvent;
 }

@@ -1,5 +1,6 @@
 package com.wiinvent.gami.domain.dto;
 
+import com.wiinvent.gami.domain.entities.type.CharacterGenderType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import lombok.Data;
 
@@ -10,7 +11,7 @@ public class CharacterUpdateDto {
   private Integer coinPrice;
   private Integer pointPrice;
   private String externalId;
+  private CharacterGenderType gender;
   private Boolean isDefault;
   private Boolean isSell;
-  private String gender;
 }

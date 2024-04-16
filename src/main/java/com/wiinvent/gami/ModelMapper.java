@@ -28,6 +28,7 @@ import com.wiinvent.gami.domain.entities.*;
 import com.wiinvent.gami.domain.pojo.TokenInfo;
 import com.wiinvent.gami.domain.response.payment.PaymentMethodResponse;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.springframework.data.domain.Page;
 

@@ -57,10 +57,10 @@ public class SecurityConfig {
         .csrf(AbstractHttpConfigurer::disable)
         .authorizeHttpRequests()
         .requestMatchers(
-            "/v1/vt/cms/it/**",
-            "/v1/vt/cms/ext/**",
-            "/v1/vt/cms/auth/**",
-            "/v1/cms/docs/**").permitAll()
+            "v1/vt/cms/it/**",
+            "v1/vt/cms/ext/**",
+            "v1/vt/cms/auth/**",
+            "v1/cms/docs/**").permitAll()
         .and()
         .authorizeHttpRequests().anyRequest().authenticated()
         .and()

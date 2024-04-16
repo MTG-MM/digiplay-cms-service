@@ -17,7 +17,7 @@ import java.util.Objects;
 @Log4j2
 @Service
 public class UploadService {
-  private List<String> contentTypeAllowList;
+  private List<String> contentTypeAllowList = List.of("image/jpeg", "image/png");
 
   @Value("${file.dir}")
   private String fileDir;

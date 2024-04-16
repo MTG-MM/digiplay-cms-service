@@ -10,4 +10,7 @@ public class CharacterUpdateDto {
   private Integer coinPrice;
   private Integer pointPrice;
   private String externalId;
+  private Boolean isDefault;
+  private Boolean isSell;
+  private String gender;
 }

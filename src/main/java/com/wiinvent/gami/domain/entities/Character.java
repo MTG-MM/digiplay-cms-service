@@ -50,4 +50,7 @@ public class Character extends BaseEntity {
 
   @Column(name = "is_sell")
   private Boolean isSell;
+
+  @Column(name = "gender")
+  private String gender;
 }

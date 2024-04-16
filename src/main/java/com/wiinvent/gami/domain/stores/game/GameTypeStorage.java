@@ -36,6 +36,10 @@ public class GameTypeStorage extends BaseStorage {
     );
   }
 
+  public List<GameType> findGameTypesActive(){
+    return gameTypeRepository.findAllByStatusIn(List.of(GameTypeStatus.ACTIVE));
+  }
+
   public void deleteById(Integer id){
     gameTypeRepository.deleteById(id);
   }

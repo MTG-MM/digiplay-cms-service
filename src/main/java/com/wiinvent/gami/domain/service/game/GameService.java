@@ -160,4 +160,9 @@ public class GameService extends BaseService {
     gameType.setStatus(GameTypeStatus.DELETE);
     return true;
   }
+
+  public List<GameTypeResponse> findAllGameTypeActive(){
+    List<GameType> gameTypes = gameTypeStorage.findGameTypesActive();
+    return modelMapper.toListGameTypeResponse(gameTypes);
+  }
 }

@@ -17,6 +17,8 @@ import org.springframework.data.web.SortDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/v1/vt/cms/game-category")
 @Tag(name = "Game caterory", description = "Api cho danh mục game(FREE, SUB, ...)")
@@ -71,6 +73,14 @@ public class GameCategoryController extends BaseController {
   public ResponseEntity<Boolean> deleteGameCategory(@PathVariable Integer id) {
     return ResponseEntity.ok(
         gameCategoryService.deleteGameCategory(id)
+    );
+  }
+
+  @GetMapping("/active")
+  @Operation(summary = "Lấy danh sách category active")
+  public ResponseEntity<List<GameCategoryResponse>> findAllGameCategoryActive() {
+    return ResponseEntity.ok(
+      gameCategoryService.findAllGameCategoryActive()
     );
   }
 }

@@ -36,6 +36,11 @@ public class GameCategoryService extends BaseService {
     return modelMapper.toPageGameCategoryResponse(categories);
   }
 
+  public List<GameCategoryResponse> findAllGameCategoryActive(){
+    List<GameCategory> categories = gameCategoryStorage.findAllGameCategoryActive();
+    return modelMapper.toListGameCategoryResponse(categories);
+  }
+
   public GameCategoryResponse getGameCategoryDetail(Integer id){
     GameCategory gameCategory = gameCategoryStorage.findById(id);
 

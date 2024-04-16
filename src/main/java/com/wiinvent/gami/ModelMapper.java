@@ -239,4 +239,7 @@ public interface ModelMapper {
   }
   Banner toBanner(BannerCreateDto dto);
   void mapBannerUpdateDtoToBanner(BannerUpdateDto dto, @MappingTarget Banner banner);
+
+  List<GameTypeResponse> toListGameTypeResponse(List<GameType> gameTypes);
+  List<GameCategoryResponse> toListGameCategoryResponse(List<GameCategory> gameCategories);
 }

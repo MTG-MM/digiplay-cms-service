@@ -128,4 +128,12 @@ public class GameController extends BaseController {
   public ResponseEntity<Boolean> deleteGameType(@PathVariable Integer id){
     return ResponseEntity.ok(gameService.deleteGameType(id));
   }
+
+  @GetMapping("/type/active")
+  @Operation(summary = "Các thể loại game đang active")
+  public ResponseEntity<List<GameTypeResponse>> findAllGameTypeActive(){
+    return ResponseEntity.ok(
+        gameService.findAllGameTypeActive()
+    );
+  }
 }

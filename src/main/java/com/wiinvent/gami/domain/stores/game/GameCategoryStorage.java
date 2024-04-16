@@ -1,6 +1,7 @@
 package com.wiinvent.gami.domain.stores.game;
 
 import com.wiinvent.gami.domain.entities.game.GameCategory;
+import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.stores.BaseStorage;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,6 +23,10 @@ public class GameCategoryStorage extends BaseStorage {
 
   public Page<GameCategory> findAll(Pageable pageable){
     return gameCategoryRepository.findAllByStatusIn(GameCategory.getListStatusShow(), pageable);
+  }
+
+  public List<GameCategory> findAllGameCategoryActive(){
+    return gameCategoryRepository.findGameCategoryByStatusIn(List.of(Status.ACTIVE));
   }
 
   public List<String> genCacheKeys(GameCategory gameCategory){

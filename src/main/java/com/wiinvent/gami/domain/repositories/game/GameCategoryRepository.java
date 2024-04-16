@@ -13,4 +13,5 @@ import java.util.List;
 public interface GameCategoryRepository extends JpaRepository<GameCategory, Integer> {
   GameCategory findGameCategoryByIdAndStatusIn(Integer id, List<Status> statuses);
   Page<GameCategory> findAllByStatusIn(List<Status> statuses, Pageable pageable);
+  List<GameCategory> findGameCategoryByStatusIn(List<Status> statuses);
 }

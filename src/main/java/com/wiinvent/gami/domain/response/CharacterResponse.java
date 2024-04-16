@@ -23,4 +23,5 @@ public class CharacterResponse {
   private Boolean isTrend;
   private Boolean isNew;
   private Boolean isEvent;
+  private String externalId;
 }

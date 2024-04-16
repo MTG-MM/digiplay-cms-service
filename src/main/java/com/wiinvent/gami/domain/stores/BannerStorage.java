@@ -6,6 +6,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class BannerStorage extends BaseStorage{
   public Page<Banner> findAll(BannerType type, Pageable pageable) {
@@ -18,5 +21,12 @@ public class BannerStorage extends BaseStorage{
 
   public void save(Banner banner) {
     bannerRepository.save(banner);
+    remoteCache.del(genCacheKeys(banner));
+  }
+
+  public List<String> genCacheKeys(Banner banner){
+    List<String> keys = new ArrayList<>();
+    keys.add(cacheKey.genKeyListBannerByBannerType(banner.getType()));
+    return keys;
   }
 }

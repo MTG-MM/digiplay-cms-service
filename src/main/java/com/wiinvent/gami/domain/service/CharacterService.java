@@ -91,7 +91,7 @@ public class CharacterService extends BaseService{
     }
     return true;
   }
-  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
+  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
   public void save(Character character){
     characterStorage.save(character);
   }

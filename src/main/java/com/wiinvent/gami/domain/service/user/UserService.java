@@ -9,9 +9,8 @@ import com.wiinvent.gami.domain.response.UserResponse;
 import com.wiinvent.gami.domain.response.base.PageCursorResponse;
 import com.wiinvent.gami.domain.response.type.CursorType;
 import com.wiinvent.gami.domain.service.BaseService;
-import com.wiinvent.gami.domain.utils.Constant;
+import com.wiinvent.gami.domain.utils.Constants;
 import com.wiinvent.gami.domain.utils.Helper;
-import org.jboss.marshalling.TraceInformation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +36,7 @@ public class UserService extends BaseService {
   public PageCursorResponse<UserResponse> getAllUsers(UUID userId, String phoneNumber, Long next, Long pre, int limit) {
     List<User> users = userStorage.findAll(userId, phoneNumber, next, pre, limit);
     List<UserResponse> responses = modelMapper.toListUserResponse(users);
-    return new PageCursorResponse<>(responses, limit, next, pre, Constant.CREATED_AT_VARIABLE);
+    return new PageCursorResponse<>(responses, limit, next, pre, Constants.CREATED_AT_VARIABLE);
   }
 
   public UserResponse getUserDetail(UUID userId){
@@ -120,6 +119,6 @@ public class UserService extends BaseService {
       r.setState(uuidUserAccountMap.get(r.getId()).getState());
       r.setStatus(uuidUserAccountMap.get(r.getId()).getStatus());
     });
-    return new PageCursorResponse<>(userResponses, limit, next, pre, Constant.CREATED_AT_VARIABLE);
+    return new PageCursorResponse<>(userResponses, limit, next, pre, Constants.CREATED_AT_VARIABLE);
   }
 }

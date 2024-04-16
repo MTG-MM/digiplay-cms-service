@@ -1,4 +1,4 @@
-package com.wiinvent.gami.domain.exception.base;
+package com.wiinvent.gami.domain.response.base;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

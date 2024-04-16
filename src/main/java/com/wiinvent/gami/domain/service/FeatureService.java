@@ -8,7 +8,7 @@ import com.wiinvent.gami.domain.entities.user.Feature;
 import com.wiinvent.gami.domain.entities.user.UserSegment;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.response.FeatureResponse;
-import com.wiinvent.gami.domain.utils.Constant;
+import com.wiinvent.gami.domain.utils.Constants;
 import com.wiinvent.gami.domain.utils.DateUtils;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +37,7 @@ public class FeatureService extends BaseService{
 
   public FeatureResponse getFeatureDetail(Integer id){
     Feature feature = featureStorage.findById(id);
-    if(Objects.isNull(feature)) throw new ResourceNotFoundException(Constant.FEATURE_NOT_FOUND);
+    if(Objects.isNull(feature)) throw new ResourceNotFoundException(Constants.FEATURE_NOT_FOUND);
 
     return modelMapper.toFeatureResponse(feature);
   }
@@ -46,7 +46,7 @@ public class FeatureService extends BaseService{
     //validation
     if(Objects.isNull(dto.getStatus())) dto.setStatus(Status.ACTIVE);
     UserSegment userSegment = userSegmentStorage.findByLevel(dto.getLevelUnlock());
-    if(Objects.isNull(userSegment)) throw new ResourceNotFoundException(Constant.USER_SEGMENT_NOT_FOUND);
+    if(Objects.isNull(userSegment)) throw new ResourceNotFoundException(Constants.USER_SEGMENT_NOT_FOUND);
     //map
     Feature feature = modelMapper.toFeature(dto);
     //save
@@ -65,10 +65,10 @@ public class FeatureService extends BaseService{
   public Boolean updateFeature(FeatureUpdateDto dto){
     //validation
     Feature feature = featureStorage.findById(dto.getId());
-    if(Objects.isNull(feature)) throw new ResourceNotFoundException(Constant.FEATURE_NOT_FOUND);
+    if(Objects.isNull(feature)) throw new ResourceNotFoundException(Constants.FEATURE_NOT_FOUND);
     if(!feature.getLevelUnlock().equals(dto.getLevelUnlock())){
       UserSegment userSegment = userSegmentStorage.findByLevel(dto.getLevelUnlock());
-      if(Objects.isNull(userSegment)) throw new ResourceNotFoundException(Constant.USER_SEGMENT_NOT_FOUND);
+      if(Objects.isNull(userSegment)) throw new ResourceNotFoundException(Constants.USER_SEGMENT_NOT_FOUND);
     }
     //map
     modelMapper.mapFeatureUpdateDtoToFeature(dto, feature);
@@ -88,7 +88,7 @@ public class FeatureService extends BaseService{
 
   public Boolean deleteFeature(Integer id){
     Feature feature = featureStorage.findById(id);
-    if(Objects.isNull(feature)) throw new ResourceNotFoundException(Constant.FEATURE_NOT_FOUND);
+    if(Objects.isNull(feature)) throw new ResourceNotFoundException(Constants.FEATURE_NOT_FOUND);
     //map
     feature.setStatus(Status.DELETE);
     feature.setUpdatedAt(DateUtils.getNowMillisAtUtc());

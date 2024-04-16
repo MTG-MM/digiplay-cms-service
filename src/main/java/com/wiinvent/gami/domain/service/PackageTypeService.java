@@ -5,7 +5,7 @@ import com.wiinvent.gami.domain.dto.PackageTypeUpdateDto;
 import com.wiinvent.gami.domain.entities.PackageType;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.response.PackageTypeResponse;
-import com.wiinvent.gami.domain.utils.Constant;
+import com.wiinvent.gami.domain.utils.Constants;
 import com.wiinvent.gami.domain.utils.DateUtils;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class PackageTypeService extends BaseService{
 
   public PackageTypeResponse findPackageTypeDetail(Integer id){
     PackageType packageType = packageTypeStorage.findById(id);
-    if(Objects.isNull(packageType)) throw new ResourceNotFoundException(Constant.PACKAGE_TYPE_NOT_FOUND);
+    if(Objects.isNull(packageType)) throw new ResourceNotFoundException(Constants.PACKAGE_TYPE_NOT_FOUND);
 
     return modelMapper.toPackageTypeResponse(packageType);
   }
@@ -54,7 +54,7 @@ public class PackageTypeService extends BaseService{
   public Boolean updatePackageType(PackageTypeUpdateDto dto){
     //validation
     PackageType packageType = packageTypeStorage.findById(dto.getId());
-    if(Objects.isNull(packageType)) throw new ResourceNotFoundException(Constant.PACKAGE_TYPE_NOT_FOUND);
+    if(Objects.isNull(packageType)) throw new ResourceNotFoundException(Constants.PACKAGE_TYPE_NOT_FOUND);
     //map
     modelMapper.mapPackageTypeUpdateDtoToPackageType(dto, packageType);
     packageType.setUpdatedAt(DateUtils.getNowMillisAtUtc());

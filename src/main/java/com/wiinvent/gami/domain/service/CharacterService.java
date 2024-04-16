@@ -2,17 +2,12 @@ package com.wiinvent.gami.domain.service;
 
 import com.wiinvent.gami.domain.dto.CharacterCreateDto;
 import com.wiinvent.gami.domain.dto.CharacterUpdateDto;
-import com.wiinvent.gami.domain.dto.PackageCreateDto;
-import com.wiinvent.gami.domain.dto.PackageUpdateDto;
 import com.wiinvent.gami.domain.entities.Character;
-import com.wiinvent.gami.domain.entities.Package;
 import com.wiinvent.gami.domain.entities.type.CharacterCategoryType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.exception.BadRequestException;
 import com.wiinvent.gami.domain.response.CharacterResponse;
-import com.wiinvent.gami.domain.response.base.PageResponse;
-import com.wiinvent.gami.domain.utils.Constant;
-import com.wiinvent.gami.domain.utils.DateUtils;
+import com.wiinvent.gami.domain.utils.Constants;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -40,7 +35,7 @@ public class CharacterService extends BaseService{
   public CharacterResponse getCharacterDetail(Integer id){
     Character character = characterStorage.findById(id);
     if (character == null) {
-      throw new BadRequestException(Constant.CHARACTER_NOT_FOUND);
+      throw new BadRequestException(Constants.CHARACTER_NOT_FOUND);
     }
     return modelMapper.toCharacterResponse(character);
   }
@@ -63,7 +58,7 @@ public class CharacterService extends BaseService{
     //validation
     Character character = characterStorage.findById(id);
     if (character == null) {
-      throw new BadRequestException(Constant.CHARACTER_NOT_FOUND);
+      throw new BadRequestException(Constants.CHARACTER_NOT_FOUND);
     }
     modelMapper.mapCharacterUpdateDtoToCharacter(dto, character);
     //save
@@ -79,7 +74,7 @@ public class CharacterService extends BaseService{
   public boolean deleteCharacter(Integer id) {
     Character character = characterStorage.findById(id);
     if (Objects.isNull(character)) {
-      throw new BadRequestException(Constant.PACKAGE_NOT_FOUND);
+      throw new BadRequestException(Constants.PACKAGE_NOT_FOUND);
     }
     character.setStatus(Status.DELETE);
     //save

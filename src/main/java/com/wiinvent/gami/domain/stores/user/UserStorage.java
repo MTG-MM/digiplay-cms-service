@@ -1,11 +1,9 @@
 package com.wiinvent.gami.domain.stores.user;
 
 import com.wiinvent.gami.domain.entities.user.User;
-import com.wiinvent.gami.domain.response.UserResponse;
-import com.wiinvent.gami.domain.response.base.PageCursorResponse;
 import com.wiinvent.gami.domain.response.type.CursorType;
 import com.wiinvent.gami.domain.stores.BaseStorage;
-import com.wiinvent.gami.domain.utils.Constant;
+import com.wiinvent.gami.domain.utils.Constants;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -14,10 +12,8 @@ import jakarta.persistence.criteria.Root;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 @Component
@@ -47,17 +43,17 @@ public class UserStorage extends BaseStorage {
         conditionsList.add(criteriaBuilder.equal(user.get("phoneNumber"), phoneNumber));
       }
       if (next != null && pre == null) {
-        conditionsList.add(criteriaBuilder.lessThanOrEqualTo(user.get(Constant.CREATED_AT_VARIABLE), next));
+        conditionsList.add(criteriaBuilder.lessThanOrEqualTo(user.get(Constants.CREATED_AT_VARIABLE), next));
       } else if (pre != null && next == null) {
-        conditionsList.add(criteriaBuilder.greaterThanOrEqualTo(user.get(Constant.CREATED_AT_VARIABLE), pre));
+        conditionsList.add(criteriaBuilder.greaterThanOrEqualTo(user.get(Constants.CREATED_AT_VARIABLE), pre));
       } else {
-        conditionsList.add(criteriaBuilder.between(user.get(Constant.CREATED_AT_VARIABLE), pre, next));
+        conditionsList.add(criteriaBuilder.between(user.get(Constants.CREATED_AT_VARIABLE), pre, next));
       }
 
       if(pre != null){
-        query.orderBy(criteriaBuilder.desc(user.get(Constant.CREATED_AT_VARIABLE)));
+        query.orderBy(criteriaBuilder.desc(user.get(Constants.CREATED_AT_VARIABLE)));
       }else{
-        query.orderBy(criteriaBuilder.asc(user.get(Constant.CREATED_AT_VARIABLE)));
+        query.orderBy(criteriaBuilder.asc(user.get(Constants.CREATED_AT_VARIABLE)));
       }
       CriteriaQuery<User> typedCriteriaQuery = criteriaBuilder.createQuery(User.class);
 

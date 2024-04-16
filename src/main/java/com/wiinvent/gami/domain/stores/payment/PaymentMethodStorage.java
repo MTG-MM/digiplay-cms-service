@@ -1,11 +1,10 @@
 package com.wiinvent.gami.domain.stores.payment;
 
-import com.wiinvent.gami.domain.entities.game.GameType;
 import com.wiinvent.gami.domain.entities.payment.PaymentMethod;
 import com.wiinvent.gami.domain.entities.type.PaymentMethodType;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.stores.BaseStorage;
-import com.wiinvent.gami.domain.utils.Constant;
+import com.wiinvent.gami.domain.utils.Constants;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
@@ -30,7 +29,7 @@ public class PaymentMethodStorage extends BaseStorage {
     remoteCache.deleteKey(cacheKey.genAllPaymentMethod());
   }
   public PaymentMethod findById(Integer id){
-    return paymentMethodRepository.findById(id).orElseThrow(()->new ResourceNotFoundException(Constant.PAYMENT_METHOD_NOT_FOUND));
+    return paymentMethodRepository.findById(id).orElseThrow(()->new ResourceNotFoundException(Constants.PAYMENT_METHOD_NOT_FOUND));
   }
 
   public void deleteById(Integer id){
@@ -38,7 +37,7 @@ public class PaymentMethodStorage extends BaseStorage {
   }
 
   public PaymentMethod findPaymentMethodByPaymentMethodType(PaymentMethodType paymentMethodType){
-    return paymentMethodRepository.findOne(specification(null, paymentMethodType)).orElseThrow(()->new ResourceNotFoundException(Constant.PAYMENT_METHOD_NOT_FOUND));
+    return paymentMethodRepository.findOne(specification(null, paymentMethodType)).orElseThrow(()->new ResourceNotFoundException(Constants.PAYMENT_METHOD_NOT_FOUND));
   }
 
   private Specification<PaymentMethod> specification(Integer id, PaymentMethodType paymentMethodType) {

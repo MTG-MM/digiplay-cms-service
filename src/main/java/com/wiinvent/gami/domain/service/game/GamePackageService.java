@@ -9,7 +9,7 @@ import com.wiinvent.gami.domain.entities.game.GamePackage;
 import com.wiinvent.gami.domain.exception.BadRequestException;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.service.BaseService;
-import com.wiinvent.gami.domain.utils.Constant;
+import com.wiinvent.gami.domain.utils.Constants;
 import com.wiinvent.gami.domain.utils.DateUtils;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class GamePackageService extends BaseService {
   public Page<GamePackageResponse> findAll(Integer gameId, Integer id, Status status, Pageable pageable){
     //validation
     Game game = gameStorage.findById(gameId);
-    if(Objects.isNull(game)) throw new ResourceNotFoundException(Constant.GAME_NOT_FOUND);
+    if(Objects.isNull(game)) throw new ResourceNotFoundException(Constants.GAME_NOT_FOUND);
 
     Page<GamePackage> gamePackages = gamePackageStorage.findAll(gameId, id, status,pageable);
     return modelMapper.toPageGamePackageResponse(gamePackages);
@@ -39,9 +39,9 @@ public class GamePackageService extends BaseService {
   public GamePackageResponse getPackageDetail(int id) {
     //validation
     GamePackage gamePackage = gamePackageStorage.findById(id);
-    if(gamePackage == null) throw new ResourceNotFoundException(Constant.GAME_PACKAGE_NOT_FOUND);
+    if(gamePackage == null) throw new ResourceNotFoundException(Constants.GAME_PACKAGE_NOT_FOUND);
     Game game = gameStorage.findById(gamePackage.getGameId());
-    if(Objects.isNull(game)) throw new ResourceNotFoundException(Constant.GAME_NOT_FOUND);
+    if(Objects.isNull(game)) throw new ResourceNotFoundException(Constants.GAME_NOT_FOUND);
 
     return modelMapper.toGamePackageResponse(gamePackage);
   }
@@ -51,7 +51,7 @@ public class GamePackageService extends BaseService {
     if(Objects.isNull(dto.getStatus())) dto.setStatus(Status.ACTIVE);
 
     Game game = gameStorage.findById(dto.getGameId());
-    if(Objects.isNull(game)) throw new ResourceNotFoundException(Constant.GAME_NOT_FOUND);
+    if(Objects.isNull(game)) throw new ResourceNotFoundException(Constants.GAME_NOT_FOUND);
     //map
     GamePackage gamePackage = modelMapper.toGamePackage(dto);
     //save
@@ -68,9 +68,9 @@ public class GamePackageService extends BaseService {
   public boolean updateGamePackage(GamePackageUpdateDto dto) {
     //validation
     GamePackage gamePackage = gamePackageStorage.findById(dto.getId());
-    if (gamePackage == null) throw new BadRequestException(Constant.GAME_PACKAGE_NOT_FOUND);
+    if (gamePackage == null) throw new BadRequestException(Constants.GAME_PACKAGE_NOT_FOUND);
     Game game = gameStorage.findById(gamePackage.getGameId());
-    if(Objects.isNull(game)) throw new ResourceNotFoundException(Constant.GAME_NOT_FOUND);
+    if(Objects.isNull(game)) throw new ResourceNotFoundException(Constants.GAME_NOT_FOUND);
     //map
     modelMapper.mapGamePackageUpdateDtoToGamePackage(dto, gamePackage);
     gamePackage.setUpdatedAt(DateUtils.getNowMillisAtUtc());
@@ -88,9 +88,9 @@ public class GamePackageService extends BaseService {
   public boolean deleteGamePackage(Integer id) {
     //validation
     GamePackage gamePackage = gamePackageStorage.findById(id);
-    if (Objects.isNull(gamePackage)) throw new BadRequestException(Constant.GAME_PACKAGE_NOT_FOUND);
+    if (Objects.isNull(gamePackage)) throw new BadRequestException(Constants.GAME_PACKAGE_NOT_FOUND);
     Game game = gameStorage.findById(gamePackage.getGameId());
-    if(Objects.isNull(game)) throw new ResourceNotFoundException(Constant.GAME_NOT_FOUND);
+    if(Objects.isNull(game)) throw new ResourceNotFoundException(Constants.GAME_NOT_FOUND);
     //map
     gamePackage.setStatus(Status.DELETE);
     gamePackage.setUpdatedAt(DateUtils.getNowMillisAtUtc());

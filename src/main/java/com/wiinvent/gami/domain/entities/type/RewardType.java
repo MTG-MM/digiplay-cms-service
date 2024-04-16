@@ -1,8 +1,12 @@
 package com.wiinvent.gami.domain.entities.type;
 
-public enum RewardItemType {
+public enum RewardType {
   POINT,
+  CHARACTER,
   VOUCHER,
   PRODUCT,
-  PHYSICAL
+  PHYSICAL,
+  TURN,
+  COIN,
+  EXP
 }

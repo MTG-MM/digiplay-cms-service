@@ -3,14 +3,12 @@ package com.wiinvent.gami.domain.service.game;
 import com.wiinvent.gami.domain.dto.GameCategoryCreateDto;
 import com.wiinvent.gami.domain.dto.GameCategoryUpdateDto;
 import com.wiinvent.gami.domain.dto.GameCategoryUpdateStatusDto;
-import com.wiinvent.gami.domain.entities.game.Game;
 import com.wiinvent.gami.domain.entities.game.GameCategory;
-import com.wiinvent.gami.domain.entities.type.GameStatus;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.response.GameCategoryResponse;
 import com.wiinvent.gami.domain.service.BaseService;
-import com.wiinvent.gami.domain.utils.Constant;
+import com.wiinvent.gami.domain.utils.Constants;
 import com.wiinvent.gami.domain.utils.DateUtils;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +20,6 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -44,7 +41,7 @@ public class GameCategoryService extends BaseService {
   public GameCategoryResponse getGameCategoryDetail(Integer id){
     GameCategory gameCategory = gameCategoryStorage.findById(id);
 
-    if(Objects.isNull(gameCategory)) throw new ResourceNotFoundException(Constant.GAME_CATEGORY_NOT_FOUND);
+    if(Objects.isNull(gameCategory)) throw new ResourceNotFoundException(Constants.GAME_CATEGORY_NOT_FOUND);
 
     return modelMapper.toGameCategoryResponse(gameCategory);
   }
@@ -69,7 +66,7 @@ public class GameCategoryService extends BaseService {
   public boolean updateGameCategory(GameCategoryUpdateDto dto){
     //validation
     GameCategory gameCategory = gameCategoryStorage.findById(dto.getId());
-    if(Objects.isNull(gameCategory)) throw new ResourceNotFoundException(Constant.GAME_CATEGORY_NOT_FOUND);
+    if(Objects.isNull(gameCategory)) throw new ResourceNotFoundException(Constants.GAME_CATEGORY_NOT_FOUND);
     //map
     gameCategory.from(dto);
     gameCategory.setUpdatedAt(DateUtils.getNowMillisAtUtc());
@@ -87,7 +84,7 @@ public class GameCategoryService extends BaseService {
   public boolean deleteGameCategory(Integer id){
     //validation
     GameCategory gameCategory = gameCategoryStorage.findById(id);
-    if(Objects.isNull(gameCategory)) throw new ResourceNotFoundException(Constant.GAME_CATEGORY_NOT_FOUND);
+    if(Objects.isNull(gameCategory)) throw new ResourceNotFoundException(Constants.GAME_CATEGORY_NOT_FOUND);
     //map
     gameCategory.setStatus(Status.DELETE);
     gameCategory.setUpdatedAt(DateUtils.getNowMillisAtUtc());
@@ -105,8 +102,8 @@ public class GameCategoryService extends BaseService {
   public boolean updateStatusGameCategory(GameCategoryUpdateStatusDto dto){
     //validation
     GameCategory gameCategory = gameCategoryStorage.findById(dto.getId());
-    if(Objects.isNull(gameCategory)) throw new ResourceNotFoundException(Constant.GAME_CATEGORY_NOT_FOUND);
-    if(dto.getStatus().equals(gameCategory.getStatus())) throw new ResourceNotFoundException(Constant.GAME_CATEGORY_STATUS_NOT_CHANGE);
+    if(Objects.isNull(gameCategory)) throw new ResourceNotFoundException(Constants.GAME_CATEGORY_NOT_FOUND);
+    if(dto.getStatus().equals(gameCategory.getStatus())) throw new ResourceNotFoundException(Constants.GAME_CATEGORY_STATUS_NOT_CHANGE);
     //map
     gameCategory.setStatus(dto.getStatus());
     gameCategory.setUpdatedAt(DateUtils.getNowMillisAtUtc());

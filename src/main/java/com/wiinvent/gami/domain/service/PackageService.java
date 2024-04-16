@@ -8,7 +8,7 @@ import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.exception.BadRequestException;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.response.PackageResponse;
-import com.wiinvent.gami.domain.utils.Constant;
+import com.wiinvent.gami.domain.utils.Constants;
 import com.wiinvent.gami.domain.utils.DateUtils;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +34,7 @@ public class PackageService extends BaseService {
   public PackageResponse getPackageDetail(int id) {
     Package aPackage = packageStorage.findById(id);
     if (aPackage == null) {
-      throw new ResourceNotFoundException(Constant.PACKAGE_NOT_FOUND);
+      throw new ResourceNotFoundException(Constants.PACKAGE_NOT_FOUND);
     }
     return modelMapper.toPackageResponse(aPackage);
   }
@@ -58,7 +58,7 @@ public class PackageService extends BaseService {
     //validation
     Package aPackage = packageStorage.findById(id);
     if (aPackage == null) {
-      throw new BadRequestException(Constant.PACKAGE_NOT_FOUND);
+      throw new BadRequestException(Constants.PACKAGE_NOT_FOUND);
     }
     //map
     modelMapper.mapPackageUpdateDtoToPackage(dto, aPackage);
@@ -76,7 +76,7 @@ public class PackageService extends BaseService {
     //validation
     Package aPackage = packageStorage.findById(id);
     if (Objects.isNull(aPackage)) {
-      throw new BadRequestException(Constant.PACKAGE_NOT_FOUND);
+      throw new BadRequestException(Constants.PACKAGE_NOT_FOUND);
     }
     //set
     aPackage.setStatus(Status.DELETE);

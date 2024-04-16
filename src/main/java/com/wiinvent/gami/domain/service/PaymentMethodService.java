@@ -6,7 +6,7 @@ import com.wiinvent.gami.domain.entities.payment.PaymentMethod;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.exception.BadRequestException;
 import com.wiinvent.gami.domain.response.payment.PaymentMethodResponse;
-import com.wiinvent.gami.domain.utils.Constant;
+import com.wiinvent.gami.domain.utils.Constants;
 import com.wiinvent.gami.domain.utils.DateUtils;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +42,7 @@ public class PaymentMethodService extends BaseService{
     * neu payment method type da ton tai
     * */
     if(Objects.nonNull(paymentMethodStorage.findPaymentMethodByPaymentMethodType(dto.getPaymentMethodType())))
-      throw new BadRequestException(Constant.PAYMENT_METHOD_EXISTS);
+      throw new BadRequestException(Constants.PAYMENT_METHOD_EXISTS);
     //map
     PaymentMethod paymentMethod = modelMapper.toPaymentMethod(dto);
     //save
@@ -66,7 +66,7 @@ public class PaymentMethodService extends BaseService{
     if(
         !dto.getPaymentMethodType().equals(paymentMethod.getPaymentMethodType())
         && Objects.nonNull(paymentMethodStorage.findPaymentMethodByPaymentMethodType(dto.getPaymentMethodType()))
-    ) throw new BadRequestException(Constant.PAYMENT_METHOD_EXISTS);
+    ) throw new BadRequestException(Constants.PAYMENT_METHOD_EXISTS);
     //map
     paymentMethod.from(dto);
     paymentMethod.setUpdatedAt(DateUtils.getNowMillisAtUtc());
@@ -87,7 +87,7 @@ public class PaymentMethodService extends BaseService{
     /*
      * neu payment method type da ton tai
      * */
-    if(Objects.nonNull(paymentMethodStorage.findById(id))) throw new BadRequestException(Constant.PAYMENT_METHOD_EXISTS);
+    if(Objects.nonNull(paymentMethodStorage.findById(id))) throw new BadRequestException(Constants.PAYMENT_METHOD_EXISTS);
     //delete
     try{
       self.deletePaymentMethodById(paymentMethod.getId());

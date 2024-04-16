@@ -9,7 +9,7 @@ import com.wiinvent.gami.domain.entities.type.PeriodLimitType;
 import com.wiinvent.gami.domain.exception.BadRequestException;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.service.BaseService;
-import com.wiinvent.gami.domain.utils.Constant;
+import com.wiinvent.gami.domain.utils.Constants;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -31,7 +31,7 @@ public class RewardSegmentDetailService extends BaseService {
     responses.forEach(res -> {
       RewardItem rewardItem = rewardItemMap.get(res.getRewardItemId());
       if (rewardItem == null) {
-        res.setRewardName(Constant.RESOURCE_IS_DELETED);
+        res.setRewardName(Constants.RESOURCE_IS_DELETED);
       } else {
         res.setRewardName(rewardItem.getRewardName());
         res.setIsLimited(rewardItem.getIsLimited());

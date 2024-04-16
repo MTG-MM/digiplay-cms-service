@@ -36,7 +36,7 @@ public class SecurityConfig {
 
   @Bean
   public AuthedEntryPoint authEntryPoint() {
-    return new AuthedEntryPoint(globalExceptionHandler);
+    return new AuthedEntryPoint();
   }
 
   @Bean

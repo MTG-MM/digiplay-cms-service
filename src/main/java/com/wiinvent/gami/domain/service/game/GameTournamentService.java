@@ -48,11 +48,6 @@ public class GameTournamentService extends BaseService {
     }
     modelMapper.mapGameTournamentUpdateDtoToGameTournament(dto, gameTournament);
     gameTournamentStorage.save(gameTournament);
-    try{
-      remoteCache.deleteKey(cacheKey.genGameTournamentById(gameTournament.getId()));
-    }catch (Exception e){
-      log.debug("==============>updateGameTournament:Cache:Exception:{}", e.getMessage());
-    }
   }
 
   @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
@@ -63,10 +58,5 @@ public class GameTournamentService extends BaseService {
     }
     gameTournament.setStatus(Status.DELETE);
     gameTournamentStorage.save(gameTournament);
-    try{
-      remoteCache.deleteKey(cacheKey.genGameTournamentById(gameTournament.getId()));
-    }catch (Exception e){
-      log.debug("==============>deleteGameTournament:Cache:Exception:{}", e.getMessage());
-    }
   }
 }

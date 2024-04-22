@@ -15,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("v1/vt/cms/user-segment")
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
@@ -29,15 +31,15 @@ public class UserSegmentController {
   }
 
   @GetMapping("{segmentId}")
-  @Operation(summary = "Lấy danh sách level")
+  @Operation(summary = "Lấy chi tiết thông tin level")
   public ResponseEntity<UserSegmentResponse> getUserSegmentDetails(@PathVariable long segmentId) {
     return ResponseEntity.ok(userSegmentService.getUserSegmentDetail(segmentId));
   }
 
   @GetMapping("")
   @PageableAsQueryParam
-  @Operation(summary = "Lấy chi tiết thông tin level")
-  public ResponseEntity<PageResponse<UserSegmentResponse>> getUserSegmentDetails(@Parameter(hidden = true) Pageable pageable) {
+  @Operation(summary = "Lấy danh sách level")
+  public ResponseEntity<PageResponse<UserSegmentResponse>> findAll(@Parameter(hidden = true) Pageable pageable) {
     return ResponseEntity.ok(PageResponse.createFrom(userSegmentService.getPageUserSegment(pageable)));
   }
 
@@ -53,6 +55,12 @@ public class UserSegmentController {
   public ResponseEntity<Boolean> updateUserSegment(@PathVariable long segmentId, @RequestBody UserSegmentUpdateDto userSegmentUpdateDto){
     userSegmentService.updateUserSegment(segmentId, userSegmentUpdateDto);
     return ResponseEntity.ok(true);
+  }
+
+  @GetMapping("/active")
+  @Operation(summary = "Lấy danh sách level active")
+  public ResponseEntity<List<UserSegmentResponse>> findAllUserSegmentActive() {
+    return ResponseEntity.ok(userSegmentService.findAllUserSegmentActive());
   }
 
 }

@@ -1,7 +1,10 @@
 package com.wiinvent.gami.domain.dto;
 
 import com.wiinvent.gami.domain.entities.type.GameStatus;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class GameUpdateDto{
@@ -10,11 +13,16 @@ public class GameUpdateDto{
 
   private String name;
 
+  @Schema(description = "url icon game")
   private String imageUrl;
 
   private String secretKey;
 
+  @Schema(description = "url thumb game")
   private String thumbUrl;
+
+  @Schema(description = "url thumb challenge game")
+  private String thumbChallengeUrl;
 
   private String banner;
 
@@ -32,7 +40,7 @@ public class GameUpdateDto{
 
   private String bodyApiPayment;
 
-  private Integer gameTypeId;
+  private List<Integer> gameTypeId;
 
   private GameStatus status;
 

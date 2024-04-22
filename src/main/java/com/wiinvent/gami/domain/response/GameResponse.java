@@ -4,6 +4,7 @@ import com.wiinvent.gami.domain.entities.game.GameStar;
 import com.wiinvent.gami.domain.entities.type.GameStatus;
 import lombok.Data;
 
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -16,13 +17,14 @@ public class GameResponse {
   private Integer priority;
   private String imageUrl;
   private String thumbUrl;
+  private String thumbChallengeUrl;
   private String banner;
   private String navLink;
   private String apiVerifyAccount;
   private String bodyApiVerifyAccount;
   private String apiPayment;
   private String bodyApiPayment;
-  private Integer gameTypeId;
+  private List<Integer> gameTypeId;
   private String description;
   private GameStatus status;
   private Boolean isHot;

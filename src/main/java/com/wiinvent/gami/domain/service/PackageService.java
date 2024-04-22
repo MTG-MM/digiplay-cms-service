@@ -91,7 +91,7 @@ public class PackageService extends BaseService {
     return true;
   }
 
-  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
+  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
   public void save(Package aPackage){
     packageStorage.save(aPackage);
   }

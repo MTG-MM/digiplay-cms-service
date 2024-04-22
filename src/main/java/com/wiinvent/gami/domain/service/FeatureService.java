@@ -56,8 +56,6 @@ public class FeatureService extends BaseService{
       log.error("==============>createFeature:DB:Exception:{}", e.getMessage());
       return false;
     }
-    //cache
-
     //response
     return true;
   }
@@ -80,8 +78,6 @@ public class FeatureService extends BaseService{
       log.error("==============>updateFeature:DB:Exception:{}", e.getMessage());
       return false;
     }
-    //cache
-
     //response
     return true;
   }
@@ -99,8 +95,6 @@ public class FeatureService extends BaseService{
       log.error("==============>deleteFeature:DB:Exception:{}", e.getMessage());
       return false;
     }
-    //cache
-
     //response
     return true;
   }
@@ -109,7 +103,7 @@ public class FeatureService extends BaseService{
     return Arrays.stream(FeatureCode.values()).toList();
   }
 
-  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
+  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
   public void save(Feature feature){
     featureStorage.save(feature);
   }

@@ -6,7 +6,7 @@ import com.wiinvent.gami.domain.entities.gvc.GvcPackage;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.response.GvcPackageResponse;
-import com.wiinvent.gami.domain.utils.Constant;
+import com.wiinvent.gami.domain.utils.Constants;
 import com.wiinvent.gami.domain.utils.DateUtils;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +32,7 @@ public class GvcPackageService extends BaseService{
   public GvcPackageResponse getGvcPackageDetail(Integer id){
     //validation
     GvcPackage gvcPackage = gvcPackageStorage.findById(id);
-    if(Objects.isNull(gvcPackage)) throw new ResourceNotFoundException(Constant.GVC_PACKAGE_NOT_FOUND);
+    if(Objects.isNull(gvcPackage)) throw new ResourceNotFoundException(Constants.GVC_PACKAGE_NOT_FOUND);
     //response
     return modelMapper.toGvcPackageResponse(gvcPackage);
   }
@@ -55,7 +55,7 @@ public class GvcPackageService extends BaseService{
   public boolean updateGvcPackage(GvcPackageUpdateDto dto){
     //validation
     GvcPackage gvcPackage = gvcPackageStorage.findById(dto.getId());
-    if(Objects.isNull(gvcPackage)) throw new ResourceNotFoundException(Constant.GVC_PACKAGE_NOT_FOUND);
+    if(Objects.isNull(gvcPackage)) throw new ResourceNotFoundException(Constants.GVC_PACKAGE_NOT_FOUND);
     //map
     modelMapper.mapGvcPackageUpdateDtoToGvcPackage(dto, gvcPackage);
     gvcPackage.setUpdatedAt(DateUtils.getNowMillisAtUtc());
@@ -72,7 +72,7 @@ public class GvcPackageService extends BaseService{
   public boolean deleteGvcPackage(Integer id){
     //validation
     GvcPackage gvcPackage = gvcPackageStorage.findById(id);
-    if(Objects.isNull(gvcPackage)) throw new ResourceNotFoundException(Constant.GVC_PACKAGE_NOT_FOUND);
+    if(Objects.isNull(gvcPackage)) throw new ResourceNotFoundException(Constants.GVC_PACKAGE_NOT_FOUND);
     //map
     gvcPackage.setStatus(Status.DELETE);
     gvcPackage.setUpdatedAt(DateUtils.getNowMillisAtUtc());

@@ -12,7 +12,7 @@ import com.wiinvent.gami.domain.entities.game.Game;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.response.GameTypeResponse;
 import com.wiinvent.gami.domain.service.BaseService;
-import com.wiinvent.gami.domain.utils.Constant;
+import com.wiinvent.gami.domain.utils.Constants;
 import com.wiinvent.gami.domain.utils.DateUtils;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,6 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -36,7 +35,7 @@ public class GameService extends BaseService {
   public GameResponse getGameDetail(Integer id) {
     Game game = gameStorage.findById(id);
     if (game == null) {
-      throw new ResourceNotFoundException(Constant.GAME_NOT_FOUND);
+      throw new ResourceNotFoundException(Constants.GAME_NOT_FOUND);
     }
     return modelMapper.toGameResponse(game);
   }
@@ -66,7 +65,7 @@ public class GameService extends BaseService {
     //validation
     Game game = gameStorage.findById(id);
     if (game == null) {
-      throw new ResourceNotFoundException(Constant.GAME_NOT_FOUND);
+      throw new ResourceNotFoundException(Constants.GAME_NOT_FOUND);
     }
     //map
     modelMapper.mapGameUpdateDtoToGame(updateDto, game);
@@ -84,7 +83,7 @@ public class GameService extends BaseService {
   public boolean deleteGame(Integer id){
     //validation
     Game game = gameStorage.findById(id);
-    if (game == null) throw new ResourceNotFoundException(Constant.GAME_NOT_FOUND);
+    if (game == null) throw new ResourceNotFoundException(Constants.GAME_NOT_FOUND);
     //
     game.setStatus(GameStatus.DELETE);
     game.setUpdatedAt(DateUtils.getNowMillisAtUtc());
@@ -118,8 +117,8 @@ public class GameService extends BaseService {
   public GameTypeResponse getGameTypeDetail(Integer id){
     GameType gameType = gameTypeStorage.findById(id);
     //validation
-    if(Objects.isNull(gameType)) throw new ResourceNotFoundException(Constant.GAME_TYPE_NOT_FOUND);
-    if(gameType.getStatus().equals(GameTypeStatus.DELETE)) throw new ResourceNotFoundException(Constant.GAME_TYPE_DELETED);
+    if(Objects.isNull(gameType)) throw new ResourceNotFoundException(Constants.GAME_TYPE_NOT_FOUND);
+    if(gameType.getStatus().equals(GameTypeStatus.DELETE)) throw new ResourceNotFoundException(Constants.GAME_TYPE_DELETED);
 
     return modelMapper.toGameTypeResponse(gameType);
   }
@@ -139,8 +138,8 @@ public class GameService extends BaseService {
     //check not found
     GameType gameType = gameTypeStorage.findById(dto.getId());
     //validation
-    if(Objects.isNull(gameType)) throw new ResourceNotFoundException(Constant.GAME_TYPE_NOT_FOUND);
-    if(gameType.getStatus().equals(GameTypeStatus.DELETE)) throw new ResourceNotFoundException(Constant.GAME_TYPE_DELETED);
+    if(Objects.isNull(gameType)) throw new ResourceNotFoundException(Constants.GAME_TYPE_NOT_FOUND);
+    if(gameType.getStatus().equals(GameTypeStatus.DELETE)) throw new ResourceNotFoundException(Constants.GAME_TYPE_DELETED);
 
     gameType.from(dto);
     gameType.setUpdatedAt(DateUtils.getNowMillisAtUtc());
@@ -154,8 +153,8 @@ public class GameService extends BaseService {
     //check not found
     GameType gameType = gameTypeStorage.findById(id);
     //validation
-    if(Objects.isNull(gameType)) throw new ResourceNotFoundException(Constant.GAME_TYPE_NOT_FOUND);
-    if(gameType.getStatus().equals(GameTypeStatus.DELETE)) throw new ResourceNotFoundException(Constant.GAME_TYPE_DELETED);
+    if(Objects.isNull(gameType)) throw new ResourceNotFoundException(Constants.GAME_TYPE_NOT_FOUND);
+    if(gameType.getStatus().equals(GameTypeStatus.DELETE)) throw new ResourceNotFoundException(Constants.GAME_TYPE_DELETED);
 
     gameType.setStatus(GameTypeStatus.DELETE);
     return true;

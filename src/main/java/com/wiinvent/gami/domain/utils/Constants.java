@@ -1,6 +1,6 @@
 package com.wiinvent.gami.domain.utils;
 
-public class Constant {
+public class Constants {
 
   public static final  String SUCCESS = "Thành công";
   public static final  String INTERNAL_SERVER_ERROR = "Internal server error";

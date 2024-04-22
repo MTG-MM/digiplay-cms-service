@@ -2,11 +2,10 @@ package com.wiinvent.gami.domain.service.reward;
 
 import com.wiinvent.gami.domain.dto.RewardItemDto;
 import com.wiinvent.gami.domain.entities.reward.RewardItem;
-import com.wiinvent.gami.domain.entities.reward.RewardType;
 import com.wiinvent.gami.domain.response.RewardItemResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
-import com.wiinvent.gami.domain.entities.type.RewardItemType;
+import com.wiinvent.gami.domain.entities.type.RewardType;
 import com.wiinvent.gami.domain.service.BaseService;
 import com.wiinvent.gami.domain.service.ProductDetailService;
 import com.wiinvent.gami.domain.service.user.UserService;
@@ -42,14 +41,14 @@ public class RewardItemService extends BaseService {
 //  }
 
   public PageResponse<RewardItemResponse> getAll
-      (Integer id, String name, RewardItemType type, Pageable pageable) {
+      (Integer id, String name, RewardType type, Pageable pageable) {
     Page<RewardItem> rwItems = rewardItemStorage.findAll(rwItemCondition(id, name, type), pageable);
     Page<RewardItemResponse> responses = modelMapper.toPageRewardItemResponse(rwItems);
     return PageResponse.createFrom(responses);
   }
 
   public Specification<RewardItem> rwItemCondition(
-      Integer id, String name, RewardItemType type) {
+      Integer id, String name, RewardType type) {
     return (rwItem, query, criteriaBuilder) -> {
       List<Predicate> conditionsList = new ArrayList<>();
 
@@ -68,7 +67,7 @@ public class RewardItemService extends BaseService {
 
   public Long createRewardItems(RewardItemDto rewardItemDto) {
     RewardItem rewardItem = modelMapper.toRewardItem(rewardItemDto);
-    RewardType rewardType = rewardTypeStorage.findById(rewardItemDto.getRewardTypeId());
+    com.wiinvent.gami.domain.entities.reward.RewardType rewardType = rewardTypeStorage.findById(rewardItemDto.getRewardTypeId());
     if (rewardType == null) {
       throw new ResourceNotFoundException("reward type not found");
     }
@@ -82,7 +81,7 @@ public class RewardItemService extends BaseService {
     if (rewardItem == null) {
       throw new ResourceNotFoundException("item not found");
     }
-    RewardType rewardType = rewardTypeStorage.findById(rewardItemDto.getRewardTypeId());
+    com.wiinvent.gami.domain.entities.reward.RewardType rewardType = rewardTypeStorage.findById(rewardItemDto.getRewardTypeId());
     if (rewardType == null) {
       throw new ResourceNotFoundException("reward type not found");
     }

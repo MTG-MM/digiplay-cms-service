@@ -3,7 +3,7 @@ package com.wiinvent.gami.app.controller;
 import com.wiinvent.gami.domain.dto.RewardItemDto;
 import com.wiinvent.gami.domain.response.RewardItemResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
-import com.wiinvent.gami.domain.entities.type.RewardItemType;
+import com.wiinvent.gami.domain.entities.type.RewardType;
 import com.wiinvent.gami.domain.service.reward.RewardItemService;
 import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
@@ -32,7 +32,7 @@ public class RewardItemController {
   public PageResponse<RewardItemResponse> getAll(
       @RequestParam(required = false) String name,
       @RequestParam(required = false) Integer id,
-      @RequestParam(required = false) RewardItemType type,
+      @RequestParam(required = false) RewardType type,
       @Parameter(hidden = true) Pageable pageable) {
     return rewardItemService.getAll(id, name, type,pageable);
   }

@@ -6,7 +6,7 @@ import com.wiinvent.gami.domain.entities.user.UserSegment;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.response.UserSegmentResponse;
 import com.wiinvent.gami.domain.service.BaseService;
-import com.wiinvent.gami.domain.utils.Constant;
+import com.wiinvent.gami.domain.utils.Constants;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -27,7 +27,7 @@ public class UserSegmentService extends BaseService {
   public UserSegmentResponse getUserSegmentDetail(long segmentId) {
     UserSegment userSegment = userSegmentStorage.findById(segmentId);
     if (userSegment == null) {
-      throw new ResourceNotFoundException(Constant.USER_SEGMENT_NOT_FOUND);
+      throw new ResourceNotFoundException(Constants.USER_SEGMENT_NOT_FOUND);
     }
     return modelMapper.toUserSegmentResponse(userSegment);
   }
@@ -50,7 +50,7 @@ public class UserSegmentService extends BaseService {
   public void updateUserSegment(long id, UserSegmentUpdateDto userSegmentUpdateDto) {
     UserSegment userSegment = userSegmentStorage.findById(id);
     if (userSegment == null) {
-      throw new ResourceNotFoundException(Constant.USER_SEGMENT_NOT_FOUND);
+      throw new ResourceNotFoundException(Constants.USER_SEGMENT_NOT_FOUND);
     }
     modelMapper.mapUserSegmentDtoToUserSegment(userSegmentUpdateDto, userSegment);
     self.save(userSegment);

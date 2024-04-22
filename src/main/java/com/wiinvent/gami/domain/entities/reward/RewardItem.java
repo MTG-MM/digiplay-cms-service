@@ -1,6 +1,6 @@
 package com.wiinvent.gami.domain.entities.reward;
 
-import com.wiinvent.gami.domain.entities.type.RewardItemType;
+import com.wiinvent.gami.domain.entities.type.RewardType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.utils.DateUtils;
 import jakarta.persistence.*;
@@ -33,7 +33,7 @@ public class RewardItem {
 
   @Column(name = "reward_type")
   @Enumerated(EnumType.STRING)
-  private RewardItemType rewardType;
+  private RewardType rewardType;
 
   @Column(name = "reward_type_id")
   private Long rewardTypeId;

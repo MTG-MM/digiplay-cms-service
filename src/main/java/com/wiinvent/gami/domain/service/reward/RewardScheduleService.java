@@ -4,6 +4,7 @@ import com.wiinvent.gami.domain.dto.RewardScheduleDto;
 import com.wiinvent.gami.domain.dto.RewardScheduleUpdateDto;
 import com.wiinvent.gami.domain.entities.reward.*;
 import com.wiinvent.gami.domain.entities.type.*;
+import com.wiinvent.gami.domain.entities.type.RewardType;
 import com.wiinvent.gami.domain.response.RewardScheduleResponse;
 import com.wiinvent.gami.domain.entities.*;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
@@ -314,7 +315,7 @@ public class RewardScheduleService extends BaseService {
       rewardItem.setId(i);
       rewardItem.setExternalId("externalId" + i); // externalId có thể được tạo ngẫu nhiên hoặc theo logic của bạn
       rewardItem.setStatus(Status.ACTIVE);
-      rewardItem.setRewardType(i > 5 ? RewardItemType.PRODUCT : RewardItemType.VOUCHER); // Bạn có thể đặt loại tùy theo yêu cầu của mình
+      rewardItem.setRewardType(i > 5 ? RewardType.PRODUCT : RewardType.VOUCHER); // Bạn có thể đặt loại tùy theo yêu cầu của mình
       rewardItem.setCreatedAt(DateUtils.getNowMillisAtUtc());
       rewardItem.setUpdatedAt(DateUtils.getNowMillisAtUtc());
       rewardItemStorage.save(rewardItem);

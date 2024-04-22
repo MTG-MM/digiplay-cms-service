@@ -19,6 +19,8 @@ public class GameCategoryResponse {
 
   private Integer coin;
 
+  private String description;
+
   private Long createdAt;
 
   private Long updatedAt;

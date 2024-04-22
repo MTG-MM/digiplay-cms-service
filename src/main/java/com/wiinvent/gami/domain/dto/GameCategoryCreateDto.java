@@ -18,4 +18,6 @@ public class GameCategoryCreateDto {
   private Integer point;
 
   private Integer coin;
+
+  private String description;
 }

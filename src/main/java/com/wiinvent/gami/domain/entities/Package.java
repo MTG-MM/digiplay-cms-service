@@ -1,5 +1,6 @@
 package com.wiinvent.gami.domain.entities;
 
+import com.wiinvent.gami.domain.entities.type.ProductType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -74,6 +75,22 @@ public class Package extends BaseEntity {
   @ColumnDefault("0")
   @Column(name = "coin_bonus")
   private Integer coinBonus;
+
+  @Column(name = "name")
+  private String name;
+
+  @Column(name = "description")
+  private String description;
+
+  @Column(name = "type")
+  @Enumerated(EnumType.STRING)
+  private ProductType type;
+
+  @Column(name = "point_bonus_first")
+  private Integer pointBonusFirst;
+
+  @Column(name = "coin_bonus_first")
+  private Integer coinBonusFirst;
 
   public static List<Status> getListStatusShow(){
     return List.of(Status.ACTIVE, Status.INACTIVE);

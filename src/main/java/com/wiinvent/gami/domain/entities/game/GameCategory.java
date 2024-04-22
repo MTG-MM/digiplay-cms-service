@@ -42,6 +42,9 @@ public class GameCategory extends BaseEntity {
   @Column(name = "coin")
   private Integer coin;
 
+  @Column(name = "description")
+  private String description;
+
   public void from(GameCategoryUpdateDto dto){
     this.name = dto.getName();
     // this.status = dto.getStatus();

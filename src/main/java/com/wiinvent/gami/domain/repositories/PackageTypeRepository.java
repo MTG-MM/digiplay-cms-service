@@ -13,4 +13,5 @@ import java.util.List;
 public interface PackageTypeRepository extends JpaRepository<PackageType, Integer> {
   PackageType findPackageTypeByIdAndStatusIn(Integer id, List<Status> statuses);
   Page<PackageType> findAllByStatusIn(List<Status> statuses, Pageable pageable);
+  List<PackageType> findAllByStatusIn(List<Status> statuses);
 }

@@ -1,5 +1,6 @@
 package com.wiinvent.gami.domain.response;
 
+import com.wiinvent.gami.domain.entities.type.ProductType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import lombok.Data;
 
@@ -38,4 +39,14 @@ public class PackageResponse {
   private Long createdAt;
 
   private Long updatedAt;
+
+  private String name;
+
+  private String description;
+
+  private ProductType type;
+
+  private Integer pointBonusFirst;
+
+  private Integer coinBonusFirst;
 }

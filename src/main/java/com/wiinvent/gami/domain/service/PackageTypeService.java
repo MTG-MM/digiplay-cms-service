@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -71,5 +72,10 @@ public class PackageTypeService extends BaseService{
   @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
   public void save(PackageType packageType){
     packageTypeStorage.save(packageType);
+  }
+
+  public List<PackageTypeResponse> findAllPackageTypeActive(){
+    List<PackageType> packageTypes = packageTypeStorage.findAllPackageTypeActive();
+    return modelMapper.toListPackageTypeResponse(packageTypes);
   }
 }

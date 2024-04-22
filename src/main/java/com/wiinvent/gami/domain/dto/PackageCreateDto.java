@@ -1,11 +1,17 @@
 package com.wiinvent.gami.domain.dto;
 
+import com.wiinvent.gami.domain.entities.type.ProductType;
 import com.wiinvent.gami.domain.entities.type.Status;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
 public class PackageCreateDto{
+  @NotEmpty(message = "Không được để trống")
+  private String name;
+
   @NotNull(message = "Không được để trống")
   private String code;
 
@@ -13,6 +19,7 @@ public class PackageCreateDto{
 
   private Integer coin;
 
+  @Schema(description = "thời gian sử dụng của gói")
   private Integer daySub;
 
   private Status status;
@@ -35,4 +42,13 @@ public class PackageCreateDto{
   private Integer pointBonus;
 
   private Integer coinBonus;
+
+  private String description;
+
+  @NotNull(message = "Không được để trống")
+  private ProductType type;
+
+  private Integer pointBonusFirst;
+
+  private Integer coinBonusFirst;
 }

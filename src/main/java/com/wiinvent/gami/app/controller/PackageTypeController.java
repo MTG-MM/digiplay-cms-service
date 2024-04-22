@@ -12,9 +12,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("v1/vt/cms/package-type")
-@Tag(name = "loại gói", description = "ví dụ: PREMIUM, SUB, CHARGE")
+@Tag(name = "Product included(Type)", description = "ví dụ: PREMIUM, SUB, CHARGE, trong các gói này sẽ gồm nhiều package con.")
 public class PackageTypeController extends BaseController{
   @Autowired private PackageTypeService packageTypeService;
 
@@ -43,6 +45,13 @@ public class PackageTypeController extends BaseController{
   public ResponseEntity<Boolean> updatePackageType(@RequestBody @Valid PackageTypeUpdateDto dto){
     return ResponseEntity.ok(
         packageTypeService.updatePackageType(dto)
+    );
+  }
+
+  @GetMapping("active")
+  public ResponseEntity<List<PackageTypeResponse>> findAllActive(){
+    return ResponseEntity.ok(
+        packageTypeService.findAllPackageTypeActive()
     );
   }
 }

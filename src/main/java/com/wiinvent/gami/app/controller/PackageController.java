@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("v1/vt/cms/package")
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
-@Tag(name = "Product", description = "Api cho gói portal")
+@Tag(name = "Product", description = "Api cho gói portal(ví dụ: SUB_01, SUB_o2,...), các gói này là gòi con của package type(SUB, PREMIUM, ...)")
 public class PackageController {
   @Autowired
   private PackageService packageService;
@@ -39,12 +39,12 @@ public class PackageController {
   @Operation(summary = "Lấy danh sách gói")
   public ResponseEntity<PageResponse<PackageResponse>> findAll(
       @RequestParam(required = false) Integer id,
-      @RequestParam(required = false) PackageType type,
+      @RequestParam(required = false) Integer packageTypeId,
       @SortDefault(sort = "createdAt", direction = Sort.Direction.DESC)
       Pageable pageable
   ){
     return ResponseEntity.ok(
-        PageResponse.createFrom(packageService.findAll(id, type, pageable))
+        PageResponse.createFrom(packageService.findAll(id, packageTypeId, pageable))
     );
   }
 

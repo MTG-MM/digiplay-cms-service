@@ -26,8 +26,8 @@ import java.util.Objects;
 @Log4j2
 public class PackageService extends BaseService {
   @Autowired @Lazy PackageService self;
-  public Page<PackageResponse> findAll(Integer id, PackageType type, Pageable pageable){
-    Page<Package> packagePackage = packageStorage.findAll(id, type, pageable);
+  public Page<PackageResponse> findAll(Integer id, Integer packageTypeId, Pageable pageable){
+    Page<Package> packagePackage = packageStorage.findAll(id, packageTypeId, pageable);
     return modelMapper.toPagePackageResponse(packagePackage);
   }
 

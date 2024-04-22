@@ -20,4 +20,5 @@ public class UserSegmentResponse {
   private Integer pointBonusRate;
   private Integer subBonusRate;
   private Status status;
+  private Integer extendPoint;
 }

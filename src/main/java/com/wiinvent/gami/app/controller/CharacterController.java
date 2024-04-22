@@ -5,6 +5,7 @@ import com.wiinvent.gami.domain.dto.CharacterUpdateDto;
 import com.wiinvent.gami.domain.dto.PackageCreateDto;
 import com.wiinvent.gami.domain.dto.PackageUpdateDto;
 import com.wiinvent.gami.domain.entities.type.CharacterCategoryType;
+import com.wiinvent.gami.domain.entities.type.CharacterType;
 import com.wiinvent.gami.domain.entities.type.PackageType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.response.CharacterResponse;
@@ -69,10 +70,18 @@ public class CharacterController {
   }
 
   @GetMapping("/category-type")
-  @Operation(summary = "Lấy danh sách character category", description = "ví dụ: OUTFIT, FIGURE, ...")
+  @Operation(summary = "Lấy danh sách character category", description = "ví dụ: SKIN, OUTSIDE, PET, DECOR, ...")
   public ResponseEntity<List<CharacterCategoryType>> findAllCharacterType(){
     return ResponseEntity.ok(
         characterService.findAllCharacterType()
+    );
+  }
+
+  @GetMapping("/category-type/{characterCategoryType}")
+  @Operation(summary = "Lấy danh sách character type của character-category", description = "ví dụ: SKIN(TROUSER, SHIRT, ...), OUTSIDE(BACKGROUND, EFFECT, ...) ")
+  public ResponseEntity<List<CharacterType>> findAllCharacterTypeByCategory(@PathVariable CharacterCategoryType characterCategoryType){
+    return ResponseEntity.ok(
+        characterService.getCharacterTypeByCategory(characterCategoryType)
     );
   }
 }

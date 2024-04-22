@@ -49,6 +49,9 @@ public class UserSegment extends BaseEntity {
   @Column(name = "sub_bonus_rate")
   private Integer subBonusRate;
 
+  @Column(name = "extend_point")
+  private Integer extendPoint;
+
   @Column(name = "status")
   @Enumerated(EnumType.STRING)
   private Status status;

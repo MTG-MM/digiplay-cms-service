@@ -1,9 +1,11 @@
 package com.wiinvent.gami.domain.service;
 
+import com.google.common.collect.Lists;
 import com.wiinvent.gami.domain.dto.CharacterCreateDto;
 import com.wiinvent.gami.domain.dto.CharacterUpdateDto;
 import com.wiinvent.gami.domain.entities.Character;
 import com.wiinvent.gami.domain.entities.type.CharacterCategoryType;
+import com.wiinvent.gami.domain.entities.type.CharacterType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.exception.BadRequestException;
 import com.wiinvent.gami.domain.response.CharacterResponse;
@@ -93,5 +95,21 @@ public class CharacterService extends BaseService{
 
   public List<CharacterCategoryType> findAllCharacterType(){
     return Arrays.asList(CharacterCategoryType.values());
+  }
+
+  public List<CharacterType> findAllCharacterTypeByCategory(CharacterCategoryType categoryType){
+    return getCharacterTypeByCategory(categoryType);
+  }
+
+  public List<CharacterType> getCharacterTypeByCategory(CharacterCategoryType categoryType){
+    List<CharacterType> characterTypes;
+    switch (categoryType){
+      case PET -> characterTypes = CharacterCategoryType.getPetCharacterTypes();
+      case SKIN -> characterTypes = CharacterCategoryType.getSkinCharacterTypes();
+      case DECOR -> characterTypes = CharacterCategoryType.getDecorCharacterTypes();
+      case OUTSIDE -> characterTypes = CharacterCategoryType.getOutsideCharacterTypes();
+      default -> characterTypes = Lists.newArrayList();
+    }
+    return characterTypes;
   }
 }

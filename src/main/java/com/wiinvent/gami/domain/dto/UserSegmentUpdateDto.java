@@ -19,4 +19,5 @@ public class UserSegmentUpdateDto {
   private Integer pointBonusRate;
   private Integer subBonusRate;
   private Status status;
+  private Integer extendPoint;
 }

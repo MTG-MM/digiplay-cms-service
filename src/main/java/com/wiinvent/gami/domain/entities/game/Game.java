@@ -7,6 +7,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.util.List;
 import java.util.UUID;
@@ -79,7 +81,8 @@ public class Game extends BaseEntity {
   private String bodyApiPayment;
 
   @Column(name = "game_type_id")
-  private Integer gameTypeId;
+  @JdbcTypeCode(SqlTypes.JSON)
+  private List<Integer> gameTypeId;
 
   @Column(name = "status")
   @Enumerated(EnumType.STRING)
@@ -99,6 +102,9 @@ public class Game extends BaseEntity {
 
   @Column(name = "level_unlock")
   private Integer levelUnlock;
+
+  @Column(name = "thumb_challenge_url")
+  private String thumbChallengeUrl;
 
   public static List<GameStatus> getListStatusShow(){
     return List.of(GameStatus.ACTIVE, GameStatus.INACTIVE);

@@ -1,5 +1,6 @@
 package com.wiinvent.gami.app.controller.user.transaction;
 
+import com.wiinvent.gami.domain.response.CharacterUserTransactionResponse;
 import com.wiinvent.gami.domain.response.PackageHistoryResponse;
 import com.wiinvent.gami.domain.response.RewardItemHistoryResponse;
 import com.wiinvent.gami.domain.response.TransactionResponse;
@@ -27,6 +28,7 @@ public class UserDetailController {
   @Autowired ExpHistoryService expHistoryService;
   @Autowired TurnTransactionService turnTransactionService;
   @Autowired RewardItemHistoryService rewardItemHistoryService;
+  @Autowired CharacterUserTransactionService characterUserTransactionService;
 
   @GetMapping("sub")
   public ResponseEntity<PageCursorResponse<PackageHistoryResponse>> getPackageHistory (
@@ -86,5 +88,15 @@ public class UserDetailController {
       @RequestParam(required = false, defaultValue = "20") int limit
   ) {
     return ResponseEntity.ok(rewardItemHistoryService.getRewardItemHistory(userId, next, pre, limit));
+  }
+
+  @GetMapping("/transaction/user-character")
+  public ResponseEntity<PageCursorResponse<CharacterUserTransactionResponse>> getUserCharacterTransaction(
+      @RequestParam UUID userId,
+      @RequestParam(required = false) Long next,
+      @RequestParam(required = false) Long pre,
+      @RequestParam(required = false, defaultValue = "20") int limit
+  ) {
+    return ResponseEntity.ok(characterUserTransactionService.getCharacterUserTransaction(userId, next, pre, limit));
   }
 }

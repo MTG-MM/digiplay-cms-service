@@ -27,6 +27,10 @@ public class CharacterStorage extends BaseStorage{
     return characterRepository.findAll(characterCondition(name, categoryType, status), pageable);
   }
 
+  public List<Character> findAllByIdIn(List<Integer> ids){
+    return characterRepository.findAllByIdIn(ids);
+  }
+
   public Specification<Character> characterCondition(String name, CharacterCategoryType categoryType, Status status){
     return (root, query, criteriaBuilder) -> {
       List<Predicate> conditionList = new ArrayList<>();

@@ -6,15 +6,12 @@ import com.wiinvent.gami.domain.dto.gvc.GvcPackageUpdateDto;
 import com.wiinvent.gami.domain.dto.payment.PaymentMethodCreateDto;
 import com.wiinvent.gami.domain.entities.Character;
 import com.wiinvent.gami.domain.entities.Package;
-import com.wiinvent.gami.domain.entities.transaction.CoinTransaction;
-import com.wiinvent.gami.domain.entities.transaction.ExpHistory;
-import com.wiinvent.gami.domain.entities.transaction.PointTransaction;
+import com.wiinvent.gami.domain.entities.transaction.*;
 import com.wiinvent.gami.domain.entities.game.Game;
 import com.wiinvent.gami.domain.entities.game.GameCategory;
 import com.wiinvent.gami.domain.entities.game.GamePackage;
 import com.wiinvent.gami.domain.entities.game.GameType;
 import com.wiinvent.gami.domain.entities.gvc.GvcPackage;
-import com.wiinvent.gami.domain.entities.transaction.TurnTransaction;
 import com.wiinvent.gami.domain.entities.game.*;
 import com.wiinvent.gami.domain.entities.payment.PaymentMethod;
 import com.wiinvent.gami.domain.entities.payment.PackageHistory;
@@ -245,4 +242,5 @@ public interface ModelMapper {
   List<UserSegmentResponse> toListUserSegmentResponse(List<UserSegment> userSegments);
 
   List<PackageTypeResponse> toListPackageTypeResponse(List<PackageType> packageTypes);
+  List<CharacterUserTransactionResponse> toListCharacterUserTransactionResponse(List<CharacterUserTransaction> characterUserTransactions);
 }

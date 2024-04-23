@@ -16,12 +16,11 @@ import java.util.UUID;
 @Table(name = "character_user_transaction")
 public class CharacterUserTransaction extends BaseEntity {
   @Id
-  @Size(max = 16)
-  @Column(name = "id", nullable = false, length = 16)
-  private String id;
+  @Column(columnDefinition = "BINARY(16)")
+  private UUID id;
 
   @Column(name = "user_id", nullable = false)
-  private UUID user;
+  private UUID userId;
 
   @NotNull
   @Column(name = "character_id", nullable = false)

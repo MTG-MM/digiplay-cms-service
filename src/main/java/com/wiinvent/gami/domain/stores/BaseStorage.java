@@ -2,10 +2,7 @@ package com.wiinvent.gami.domain.stores;
 
 import com.wiinvent.gami.domain.repositories.AccountRepository;
 import com.wiinvent.gami.domain.repositories.*;
-import com.wiinvent.gami.domain.repositories.transaction.CoinTransactionRepository;
-import com.wiinvent.gami.domain.repositories.transaction.ExpHistoryRepository;
-import com.wiinvent.gami.domain.repositories.transaction.PointTransactionRepository;
-import com.wiinvent.gami.domain.repositories.transaction.TurnTransactionRepository;
+import com.wiinvent.gami.domain.repositories.transaction.*;
 import com.wiinvent.gami.domain.repositories.game.*;
 import com.wiinvent.gami.domain.repositories.gvc.GcvHistoryRepository;
 import com.wiinvent.gami.domain.repositories.gvc.GvcPackageRepository;
@@ -68,4 +65,5 @@ public abstract class BaseStorage {
   @Autowired protected FeatureRepository featureRepository;
   @Autowired protected PackageTypeRepository packageTypeRepository;
   @Autowired protected BannerRepository bannerRepository;
+  @Autowired protected CharacterUserTransactionRepository characterUserTransactionRepository;
 }

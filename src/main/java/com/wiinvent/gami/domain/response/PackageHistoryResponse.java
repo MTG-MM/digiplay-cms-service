@@ -1,5 +1,6 @@
 package com.wiinvent.gami.domain.response;
 
+import com.wiinvent.gami.domain.entities.game.GamePackage;
 import com.wiinvent.gami.domain.entities.type.PaymentMethodType;
 import lombok.Data;
 

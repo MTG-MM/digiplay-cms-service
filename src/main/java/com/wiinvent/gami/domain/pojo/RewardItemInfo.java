@@ -1,4 +1,4 @@
-package com.wiinvent.gami.domain.entities.reward;
+package com.wiinvent.gami.domain.pojo;
 
 import com.wiinvent.gami.domain.entities.type.RewardType;
 import lombok.Data;

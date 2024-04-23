@@ -1,7 +1,7 @@
 package com.wiinvent.gami.domain.entities.game;
 
 import com.wiinvent.gami.domain.entities.BaseEntity;
-import com.wiinvent.gami.domain.entities.reward.RewardItemInfo;
+import com.wiinvent.gami.domain.pojo.RewardItemInfo;
 import com.wiinvent.gami.domain.utils.Converter.RewardItemInfoConverter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;

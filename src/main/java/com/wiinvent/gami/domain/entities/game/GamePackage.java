@@ -1,7 +1,7 @@
 package com.wiinvent.gami.domain.entities.game;
 
 import com.wiinvent.gami.domain.entities.BaseEntity;
-import com.wiinvent.gami.domain.entities.payment.PaymentMethodInfo;
+import com.wiinvent.gami.domain.pojo.PaymentMethodInfo;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.utils.Converter.PaymentMethodInfoConverter;
 import jakarta.persistence.*;

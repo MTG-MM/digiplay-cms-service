@@ -1,6 +1,6 @@
 package com.wiinvent.gami.domain.dto;
 
-import com.wiinvent.gami.domain.entities.payment.PaymentMethodInfo;
+import com.wiinvent.gami.domain.pojo.PaymentMethodInfo;
 import com.wiinvent.gami.domain.entities.type.Status;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;

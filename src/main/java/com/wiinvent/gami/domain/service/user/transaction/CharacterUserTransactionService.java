@@ -47,6 +47,6 @@ public class CharacterUserTransactionService extends BaseService {
       r.setCoinPrice(mapCharacter.get(r.getCharacterId()).getCoinPrice());
       r.setPointPrice(mapCharacter.get(r.getCharacterId()).getPointPrice());
     });
-    return new PageCursorResponse<>(responses, limit, type, "created");
+    return new PageCursorResponse<>(responses, limit, type, "createdAt");
   }
 }

@@ -1,4 +1,4 @@
-package com.wiinvent.gami.domain.entities.payment;
+package com.wiinvent.gami.domain.pojo;
 
 import com.wiinvent.gami.domain.entities.type.PaymentMethodType;
 import lombok.Data;

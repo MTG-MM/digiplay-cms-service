@@ -2,6 +2,7 @@ package com.wiinvent.gami.domain.entities.user;
 
 import com.wiinvent.gami.domain.entities.BaseEntity;
 import com.wiinvent.gami.domain.entities.type.Status;
+import com.wiinvent.gami.domain.pojo.UserSegmentRewardItems;
 import com.wiinvent.gami.domain.utils.Converter.UserSegmentRewardItemConverter;
 import jakarta.persistence.*;
 import lombok.Data;

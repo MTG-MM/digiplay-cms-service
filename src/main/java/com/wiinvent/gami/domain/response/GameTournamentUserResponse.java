@@ -1,6 +1,6 @@
 package com.wiinvent.gami.domain.response;
 
-import com.wiinvent.gami.domain.entities.reward.RewardItemInfo;
+import com.wiinvent.gami.domain.pojo.RewardItemInfo;
 import lombok.Data;
 
 import java.util.UUID;

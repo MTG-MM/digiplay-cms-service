@@ -1,7 +1,7 @@
 package com.wiinvent.gami.domain.entities;
 
 
-import com.wiinvent.gami.domain.entities.converter.UserRewardItemConverter;
+import com.wiinvent.gami.domain.utils.Converter.UserRewardItemConverter;
 import com.wiinvent.gami.domain.entities.type.ProductPackageType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.pojo.UserRewardItems;

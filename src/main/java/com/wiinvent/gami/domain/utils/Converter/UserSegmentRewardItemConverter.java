@@ -1,6 +1,6 @@
 package com.wiinvent.gami.domain.utils.Converter;
 
-import com.wiinvent.gami.domain.entities.user.UserSegmentRewardItems;
+import com.wiinvent.gami.domain.pojo.UserSegmentRewardItems;
 import com.wiinvent.gami.domain.utils.JsonParser;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;

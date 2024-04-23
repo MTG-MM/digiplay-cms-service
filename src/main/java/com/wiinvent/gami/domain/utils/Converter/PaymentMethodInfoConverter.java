@@ -1,6 +1,6 @@
 package com.wiinvent.gami.domain.utils.Converter;
 
-import com.wiinvent.gami.domain.entities.payment.PaymentMethodInfo;
+import com.wiinvent.gami.domain.pojo.PaymentMethodInfo;
 import com.wiinvent.gami.domain.utils.JsonParser;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;

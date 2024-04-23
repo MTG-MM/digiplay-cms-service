@@ -1,7 +1,7 @@
 package com.wiinvent.gami.domain.dto;
 
 import com.wiinvent.gami.domain.entities.type.Status;
-import com.wiinvent.gami.domain.entities.user.UserSegmentRewardItems;
+import com.wiinvent.gami.domain.pojo.UserSegmentRewardItems;
 import lombok.Data;
 
 import java.util.List;

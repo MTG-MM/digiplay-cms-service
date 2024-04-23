@@ -32,6 +32,6 @@ public class PackageHistoryService extends BaseService {
       packageHistories = packageHistories.stream().sorted(Comparator.comparingLong(PackageHistory::getCreatedAt).reversed()).toList();
     }
     List<PackageHistoryResponse> responses = modelMapper.toPackageHistoryResponse(packageHistories);
-    return new PageCursorResponse<>(responses, limit, type,"created");
+    return new PageCursorResponse<>(responses, limit, type,"createdAt");
   }
 }

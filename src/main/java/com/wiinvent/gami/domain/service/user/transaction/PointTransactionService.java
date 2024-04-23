@@ -33,6 +33,6 @@ public class PointTransactionService extends BaseService {
       pointTransactions = pointTransactions.stream().sorted(Comparator.comparingLong(PointTransaction::getCreatedAt).reversed()).toList();
     }
     List<TransactionResponse> responses = modelMapper.toPointTransactionResponse(pointTransactions);
-    return new PageCursorResponse<>(responses, limit, type, "created");
+    return new PageCursorResponse<>(responses, limit, type, "createdAt");
   }
 }

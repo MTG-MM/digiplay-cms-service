@@ -1,4 +1,4 @@
-package com.wiinvent.gami.domain.entities.user;
+package com.wiinvent.gami.domain.pojo;
 
 import lombok.Data;
 

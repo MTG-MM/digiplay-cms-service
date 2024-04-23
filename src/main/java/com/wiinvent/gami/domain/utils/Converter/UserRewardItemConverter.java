@@ -1,4 +1,4 @@
-package com.wiinvent.gami.domain.entities.converter;
+package com.wiinvent.gami.domain.utils.Converter;
 
 import com.wiinvent.gami.domain.pojo.UserRewardItems;
 import com.wiinvent.gami.domain.utils.JsonParser;

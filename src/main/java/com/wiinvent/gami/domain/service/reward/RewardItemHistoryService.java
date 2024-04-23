@@ -35,6 +35,6 @@ public class RewardItemHistoryService extends BaseService {
       rewardItemHistories = rewardItemHistoryStorage.findAll(userId, next, pre, limit, type);
     }
     List<RewardItemHistoryResponse> responses = modelMapper.toListRewardItemHistoryResponse(rewardItemHistories);
-    return new PageCursorResponse<>(responses, limit, next, pre, "createdAt");
+    return new PageCursorResponse<>(responses, limit, type, "createdAt");
   }
 }

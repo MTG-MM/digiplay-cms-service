@@ -23,44 +23,41 @@ public class PageCursorResponse<T> {
     Integer pageSize = 20;
   }
 
-  public PageCursorResponse(List<T> data, Integer pageSize, Long next, Long pre, String fieldName) {
+  public PageCursorResponse(List<T> data, Integer pageSize, CursorType type, String fieldName) {
     this.data = data;
-    CursorType type = determineCursorType(next, pre);
-    setPageSize(pageSize);
-    adjustMetadata(type, fieldName);
-  }
-
-  private CursorType determineCursorType(Long next, Long pre) {
-    if (next == null && pre == null) {
-      return CursorType.FIRST;
-    } else if (next != null) {
-      return CursorType.NEXT;
-    } else {
-      return CursorType.PRE;
-    }
-  }
-
-  private void setPageSize(Integer pageSize) {
-    if (pageSize != null) {
+    if (pageSize!= null) {
       metadata.setPageSize(pageSize);
     }
-  }
+    switch (type) {
+      case FIRST:
+        type = CursorType.NEXT;
+        metadata.setHasPrePage(false);
+        break;
+      case NEXT:
+        if (data.size() < metadata.getPageSize()) {
+          metadata.setHasNextPage(false);
+        }
+        break;
+      default:
+        if (data.size() < metadata.getPageSize()) {
+          metadata.setHasPrePage(false);
+        }
+    }
 
-  private void adjustMetadata(CursorType type, String fieldName) {
     if (!data.isEmpty()) {
       try {
-        T firstObject = data.getFirst();
-        T lastObject = data.getLast();
+        T firstObject = data.get(0);
+        T lastObject = data.get(data.size() - 1);
         Field field = firstObject.getClass().getDeclaredField(fieldName);
         field.setAccessible(true);
-        if (metadata.getHasNextPage() && type.equals(CursorType.NEXT)) {
+        if (metadata.getHasNextPage()) {
           metadata.setNext((Long) field.get(lastObject));
         }
-        if (metadata.getHasPrePage() && type.equals(CursorType.PRE)) {
+        if (metadata.getHasPrePage()) {
           metadata.setPre((Long) field.get(firstObject));
         }
       } catch (Exception ex) {
-        handleException(ex);
+
       }
     } else {
       if (metadata.getHasNextPage()) {
@@ -72,7 +69,4 @@ public class PageCursorResponse<T> {
     }
   }
 
-  private void handleException(Exception ex) {
-    // Handle exception as needed, such as logging or throwing a custom exception
-  }
 }

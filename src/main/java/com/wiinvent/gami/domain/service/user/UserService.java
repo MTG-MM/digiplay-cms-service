@@ -33,11 +33,11 @@ public class UserService extends BaseService {
     user.addPointForUser(amount);
   }
 
-  public PageCursorResponse<UserResponse> getAllUsers(UUID userId, String phoneNumber, Long next, Long pre, int limit) {
-    List<User> users = userStorage.findAll(userId, phoneNumber, next, pre, limit);
-    List<UserResponse> responses = modelMapper.toListUserResponse(users);
-    return new PageCursorResponse<>(responses, limit, next, pre, Constants.CREATED_AT_VARIABLE);
-  }
+//  public PageCursorResponse<UserResponse> getAllUsers(UUID userId, String phoneNumber, Long next, Long pre, int limit) {
+//    List<User> users = userStorage.findAll(userId, phoneNumber, next, pre, limit);
+//    List<UserResponse> responses = modelMapper.toListUserResponse(users);
+//    return new PageCursorResponse<>(responses, limit, next, pre, Constants.CREATED_AT_VARIABLE);
+//  }
 
   public UserResponse getUserDetail(UUID userId){
     User user = userStorage.findById(userId);
@@ -119,6 +119,6 @@ public class UserService extends BaseService {
       r.setState(uuidUserAccountMap.get(r.getId()).getState());
       r.setStatus(uuidUserAccountMap.get(r.getId()).getStatus());
     });
-    return new PageCursorResponse<>(userResponses, limit, next, pre, Constants.CREATED_AT_VARIABLE);
+    return new PageCursorResponse<>(userResponses, limit, type, Constants.CREATED_AT_VARIABLE);
   }
 }

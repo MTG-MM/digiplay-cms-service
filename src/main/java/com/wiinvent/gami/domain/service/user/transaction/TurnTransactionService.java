@@ -31,6 +31,6 @@ public class TurnTransactionService extends BaseService {
       turnTransactions = turnTransactionStorage.findAll(userId, next, pre, limit, type);
     }
     List<TransactionResponse> responses = modelMapper.toTurnTransactionResponse(turnTransactions);
-    return new PageCursorResponse<>(responses, limit, next, pre, "createdAt");
+    return new PageCursorResponse<>(responses, limit, type, "createdAt");
   }
 }

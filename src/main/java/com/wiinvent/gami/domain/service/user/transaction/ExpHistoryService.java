@@ -33,6 +33,6 @@ public class ExpHistoryService extends BaseService {
       expHistories = expHistories.stream().sorted(Comparator.comparingLong(ExpHistory::getCreatedAt).reversed()).toList();
     }
     List<TransactionResponse> responses = modelMapper.toExpHistoryResponse(expHistories);
-    return new PageCursorResponse<>(responses, limit, next, pre, "created");
+    return new PageCursorResponse<>(responses, limit, type, "created");
   }
 }

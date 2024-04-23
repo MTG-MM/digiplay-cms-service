@@ -33,6 +33,6 @@ public class CoinTransactionService extends BaseService {
       coinTransactions = coinTransactions.stream().sorted(Comparator.comparingLong(CoinTransaction::getCreatedAt).reversed()).toList();
     }
     List<TransactionResponse> responses = modelMapper.toCoinTransactionResponse(coinTransactions);
-    return new PageCursorResponse<>(responses, limit, next, pre, "created");
+    return new PageCursorResponse<>(responses, limit, type, "created");
   }
 }

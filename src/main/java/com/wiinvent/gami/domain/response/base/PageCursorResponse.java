@@ -25,29 +25,27 @@ public class PageCursorResponse<T> {
 
   public PageCursorResponse(List<T> data, Integer pageSize, CursorType type, String fieldName) {
     this.data = data;
-    if (pageSize!= null) {
+    if (pageSize != null) {
       metadata.setPageSize(pageSize);
     }
-    switch (type) {
-      case FIRST:
-        type = CursorType.NEXT;
+    if (type.equals(CursorType.FIRST)) {
+      type = CursorType.NEXT;
+      metadata.setHasPrePage(false);
+    }
+    if (type.equals(CursorType.NEXT)) {
+      if (data.size() < metadata.getPageSize()) {
+        metadata.setHasNextPage(false);
+      }
+    } else {
+      if (data.size() < metadata.getPageSize()) {
         metadata.setHasPrePage(false);
-        break;
-      case NEXT:
-        if (data.size() < metadata.getPageSize()) {
-          metadata.setHasNextPage(false);
-        }
-        break;
-      default:
-        if (data.size() < metadata.getPageSize()) {
-          metadata.setHasPrePage(false);
-        }
+      }
     }
 
     if (!data.isEmpty()) {
       try {
-        T firstObject = data.get(0);
-        T lastObject = data.get(data.size() - 1);
+        T firstObject = data.getFirst();
+        T lastObject = data.getLast();
         Field field = firstObject.getClass().getDeclaredField(fieldName);
         field.setAccessible(true);
         if (metadata.getHasNextPage()) {

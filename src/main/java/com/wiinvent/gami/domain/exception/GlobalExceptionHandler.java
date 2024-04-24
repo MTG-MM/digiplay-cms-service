@@ -42,7 +42,7 @@ public class GlobalExceptionHandler {
   }
 
   @ExceptionHandler(value = {MethodArgumentNotValidException.class})
-  protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+  protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex) {
     BindingResult bindingResult = ex.getBindingResult();
     List<String> errorMessages = bindingResult.getFieldErrors().stream()
         .map(fieldError -> fieldError.getField() + ": " + fieldError.getDefaultMessage())

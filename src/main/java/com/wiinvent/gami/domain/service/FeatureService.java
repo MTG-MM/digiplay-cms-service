@@ -54,7 +54,7 @@ public class FeatureService extends BaseService{
       self.save(feature);
     }catch (Exception e){
       log.error("==============>createFeature:DB:Exception:{}", e.getMessage());
-      return false;
+      throw e;
     }
     //response
     return true;
@@ -76,7 +76,7 @@ public class FeatureService extends BaseService{
       self.save(feature);
     }catch (Exception e){
       log.error("==============>updateFeature:DB:Exception:{}", e.getMessage());
-      return false;
+      throw e;
     }
     //response
     return true;
@@ -93,7 +93,7 @@ public class FeatureService extends BaseService{
       self.save(feature);
     }catch (Exception e){
       log.error("==============>deleteFeature:DB:Exception:{}", e.getMessage());
-      return false;
+      throw e;
     }
     //response
     return true;

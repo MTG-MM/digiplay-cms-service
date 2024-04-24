@@ -49,7 +49,7 @@ public class PackageService extends BaseService {
       self.save(aPackage);
     } catch (Exception e){
       log.error("==============>createPackage:DB:Exception:{}", e.getMessage());
-      return false;
+      throw e;
     }
     return true;
   }
@@ -67,7 +67,7 @@ public class PackageService extends BaseService {
       self.save(aPackage);
     } catch (Exception e){
       log.error("==============>updatePackage:DB:Exception:{}", e.getMessage());
-      return false;
+      throw e;
     }
     return true;
   }
@@ -86,7 +86,7 @@ public class PackageService extends BaseService {
       self.save(aPackage);
     } catch (Exception e){
       log.error("==============>deletePackage:DB:Exception:{}", e.getMessage());
-      return false;
+      throw e;
     }
     return true;
   }

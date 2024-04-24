@@ -24,7 +24,7 @@ public class GameResponse {
   private String bodyApiVerifyAccount;
   private String apiPayment;
   private String bodyApiPayment;
-  private List<Integer> gameTypeId;
+  private List<GameTypeResponse> gameType;
   private String description;
   private GameStatus status;
   private Boolean isHot;

@@ -24,6 +24,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -37,7 +38,14 @@ public class GameService extends BaseService {
     if (game == null) {
       throw new ResourceNotFoundException(Constants.GAME_NOT_FOUND);
     }
-    return modelMapper.toGameResponse(game);
+    GameResponse gameResponse = modelMapper.toGameResponse(game);
+    if(Objects.nonNull(game.getGameTypeId())) {
+      List<GameType> gameTypes = gameTypeStorage.findGameTypesByIdIn(game.getGameTypeId());
+      gameResponse.setGameType(modelMapper.toListGameTypeResponse(gameTypes));
+    }else{
+      gameResponse.setGameType(new ArrayList<>());
+    }
+    return gameResponse;
   }
 
   public Page<GameResponse> getAll(Integer id, String name, GameStatus status, Boolean isHot, Boolean isNew, Boolean isUpdate, Boolean isLock, Integer gameCategoryId, Integer gameTypeId, Pageable pageable) {

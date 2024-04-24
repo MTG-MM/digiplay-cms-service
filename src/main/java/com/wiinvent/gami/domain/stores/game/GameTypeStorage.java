@@ -27,6 +27,10 @@ public class GameTypeStorage extends BaseStorage {
     return gameTypeRepository.findById(id).orElseThrow(null);
   }
 
+  public List<GameType> findGameTypesByIdIn(List<Integer> ids){
+    return gameTypeRepository.findGameTypesByIdIn(ids);
+  }
+
   public Page<GameType> findGameTypes(Integer id, String name, Pageable pageable){
     return gameTypeRepository.findAll(
         specification(id, name),

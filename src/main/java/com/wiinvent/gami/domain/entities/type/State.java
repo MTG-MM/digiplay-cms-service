@@ -5,5 +5,6 @@ public enum State {
   VERIFY,
   NOT_VERIFY,
   BAN,
-  NO_PASSWORD
+  NO_PASSWORD,
+  DONE
 }

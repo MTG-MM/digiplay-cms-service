@@ -51,7 +51,7 @@ public class CharacterService extends BaseService{
       self.save(character);
     } catch (Exception e){
       log.error("==============>createCharacter:DB:Exception:{}", e.getMessage());
-      return false;
+      throw e;
     }
     return true;
   }
@@ -68,7 +68,7 @@ public class CharacterService extends BaseService{
       self.save(character);
     } catch (Exception e){
       log.error("==============>updateCharacter:DB:Exception:{}", e.getMessage());
-      return false;
+      throw e;
     }
     return true;
   }
@@ -84,7 +84,7 @@ public class CharacterService extends BaseService{
       self.save(character);
     } catch (Exception e){
       log.error("==============>deleteCharacter:DB:Exception:{}", e.getMessage());
-      return false;
+      throw e;
     }
     return true;
   }

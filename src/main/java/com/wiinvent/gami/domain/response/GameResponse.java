@@ -12,6 +12,7 @@ public class GameResponse {
   private Integer id;
   private String name;
   private Integer categoryId;
+  private GameCategoryResponse category;
   private UUID teamId;
   private String secretKey;
   private Integer priority;

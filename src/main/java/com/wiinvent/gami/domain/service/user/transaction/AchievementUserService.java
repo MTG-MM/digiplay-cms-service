@@ -41,7 +41,7 @@ public class AchievementUserService extends BaseService {
     responses.forEach(r -> {
       r.setName(achievementMap.get(r.getAchievementId()).getName());
       AchievementInfo achievementInfo = achievementMap.get(r.getAchievementId()).getAchievementInfo().stream()
-          .sorted(Comparator.comparingInt(AchievementInfo::getLevel)).filter(a -> a.getMaxScore() > r.getScore())
+          .sorted(Comparator.comparingInt(AchievementInfo::getLevel).reversed()).filter(a -> a.getMinScore() <= r.getScore())
           .findFirst().orElse(new AchievementInfo());
       r.setAchievementInfo(achievementInfo);
     });

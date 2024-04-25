@@ -13,6 +13,6 @@ public class PackageHistoryResponse {
   private String packageCode;
   private PackageInfo packageInfo;
   private Integer price;
-  private PaymentMethodType paymentMethod;;
+  private PaymentMethodType paymentMethod;
   private Long createdAt;
 }

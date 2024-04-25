@@ -53,6 +53,9 @@ springdoc:
     filter: true
     tags-sorter: alpha
     operations-sorter: alpha
+gami:
+  service:
+    domain: ${GAMI_SERVICE_DOMAIN}
 logging:
   level:
     org.springframework.web: ${LOG_LEVEL:debug}

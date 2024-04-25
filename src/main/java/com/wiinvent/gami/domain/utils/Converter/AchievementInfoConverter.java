@@ -1,6 +1,5 @@
 package com.wiinvent.gami.domain.utils.Converter;
 
-import com.wiinvent.gami.domain.entities.Achievement;
 import com.wiinvent.gami.domain.pojo.AchievementInfo;
 import com.wiinvent.gami.domain.utils.JsonParser;
 import jakarta.persistence.AttributeConverter;

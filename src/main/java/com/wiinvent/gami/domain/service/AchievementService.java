@@ -2,14 +2,11 @@ package com.wiinvent.gami.domain.service;
 
 import com.wiinvent.gami.domain.dto.AchievementCreateDto;
 import com.wiinvent.gami.domain.dto.AchievementUpdateDto;
-import com.wiinvent.gami.domain.dto.CharacterUpdateDto;
 import com.wiinvent.gami.domain.entities.Achievement;
-import com.wiinvent.gami.domain.entities.Character;
 import com.wiinvent.gami.domain.entities.type.AchievementType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.exception.BadRequestException;
 import com.wiinvent.gami.domain.response.AchievementResponse;
-import com.wiinvent.gami.domain.response.CharacterResponse;
 import com.wiinvent.gami.domain.utils.Constants;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +49,7 @@ public class AchievementService extends BaseService{
       self.save(achievement);
     } catch (Exception e){
       log.error("==============>createAchievement:DB:Exception:{}", e.getMessage());
-      return false;
+      throw e;
     }
     return true;
   }
@@ -69,7 +66,7 @@ public class AchievementService extends BaseService{
       self.save(achievement);
     } catch (Exception e){
       log.error("==============>updateAchievement:DB:Exception:{}", e.getMessage());
-      return false;
+      throw e;
     }
     return true;
   }
@@ -85,7 +82,7 @@ public class AchievementService extends BaseService{
       self.save(achievement);
     } catch (Exception e){
       log.error("==============>deleteAchievement:DB:Exception:{}", e.getMessage());
-      return false;
+      throw e;
     }
     return true;
   }

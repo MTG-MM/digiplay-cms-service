@@ -1,7 +1,6 @@
 package com.wiinvent.gami.domain.stores.transaction;
 
 import com.wiinvent.gami.domain.entities.transaction.AchievementUser;
-import com.wiinvent.gami.domain.entities.transaction.CoinTransaction;
 import com.wiinvent.gami.domain.response.type.CursorType;
 import com.wiinvent.gami.domain.stores.BaseStorage;
 import jakarta.persistence.TypedQuery;

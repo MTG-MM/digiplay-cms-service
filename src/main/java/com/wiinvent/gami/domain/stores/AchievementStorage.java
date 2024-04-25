@@ -4,7 +4,6 @@ import com.wiinvent.gami.domain.entities.Achievement;
 import com.wiinvent.gami.domain.entities.type.AchievementType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import jakarta.persistence.criteria.Predicate;
-import jakarta.persistence.criteria.Root;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;

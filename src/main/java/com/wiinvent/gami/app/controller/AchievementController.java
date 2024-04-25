@@ -2,17 +2,11 @@ package com.wiinvent.gami.app.controller;
 
 import com.wiinvent.gami.domain.dto.AchievementCreateDto;
 import com.wiinvent.gami.domain.dto.AchievementUpdateDto;
-import com.wiinvent.gami.domain.dto.CharacterCreateDto;
-import com.wiinvent.gami.domain.dto.CharacterUpdateDto;
 import com.wiinvent.gami.domain.entities.type.AchievementType;
-import com.wiinvent.gami.domain.entities.type.CharacterCategoryType;
-import com.wiinvent.gami.domain.entities.type.CharacterType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.response.AchievementResponse;
-import com.wiinvent.gami.domain.response.CharacterResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.AchievementService;
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;

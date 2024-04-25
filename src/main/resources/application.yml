@@ -60,7 +60,13 @@ logging:
   level:
     org.springframework.web: ${LOG_LEVEL:debug}
     com.managersystem: ${LOG_LEVEL:debug}
-
+ok:
+  http:
+    connect-timeout: ${OKHTTP3_CONNECT_TIMEOUT:5}
+    read-timeout: ${OKHTTP3_READ_TIMEOUT:8}
+    write-timeout: ${OKHTTP3_WRITE_TIMEOUT:8}
+    max-idle-connections: ${OKHTTP3_MAX_IDLE_CONNECTIONS:200}
+    keep-alive-duration: ${OKHTTP3_KEEP_ALIVE_DURATION:300}
 redis:
   prefix-key-vt-game: ${REDIS_PREFIX_KEY_VT_GAME:vt}
   prefix-key: ${REDIS_PREFIX_KEY:mos}

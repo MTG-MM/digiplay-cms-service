@@ -41,4 +41,6 @@ public class Constants {
   public static final String PACKAGE_TYPE_NOT_FOUND = "Không tồn tại loại gói này";
 
   public static final String BANNER_NOT_FOUND = "Không tồn tại banner này";
+
+  public static final String ACHIEVEMENT_NOT_FOUND = "Không tìm thấy thành tựu này";
 }

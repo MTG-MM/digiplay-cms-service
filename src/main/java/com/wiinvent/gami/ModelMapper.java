@@ -243,4 +243,15 @@ public interface ModelMapper {
 
   List<PackageTypeResponse> toListPackageTypeResponse(List<PackageType> packageTypes);
   List<CharacterUserTransactionResponse> toListCharacterUserTransactionResponse(List<CharacterUserTransaction> characterUserTransactions);
+
+  Achievement toAchievement(AchievementCreateDto achievementCreateDto);
+
+  void mapAchievementUpdateDtoToAchievement(AchievementUpdateDto dto,@MappingTarget Achievement achievement);
+  AchievementResponse toAchievementResponse(Achievement achievement);
+
+  default Page<AchievementResponse> toPageAchievementResponse(Page<Achievement> achievements){
+    return achievements.map(this::toAchievementResponse);
+  }
+
+  List<AchievementUserResponse> toListAchievementUserResponse(List<AchievementUser> achievementUsers);
 }

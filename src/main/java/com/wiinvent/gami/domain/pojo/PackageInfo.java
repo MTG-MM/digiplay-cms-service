@@ -4,6 +4,8 @@ import com.wiinvent.gami.domain.entities.type.ProductType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class PackageInfo {
   private Integer id;
@@ -16,7 +18,7 @@ public class PackageInfo {
   private String externalImageId;
   private Integer packageTypeId;
   private Integer pointDaily;
-  private String paymentMethodInfo;
+  private List<PaymentMethodInfo> paymentMethodInfo;
   private Long startTime;
   private Long endTime;
   private Integer pointBonus;

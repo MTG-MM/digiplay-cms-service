@@ -2,6 +2,8 @@ package com.wiinvent.gami.domain.entities;
 
 import com.wiinvent.gami.domain.entities.type.ProductType;
 import com.wiinvent.gami.domain.entities.type.Status;
+import com.wiinvent.gami.domain.pojo.PaymentMethodInfo;
+import com.wiinvent.gami.domain.utils.Converter.PaymentMethodInfoConverter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -60,7 +62,8 @@ public class Package extends BaseEntity {
 
   @Size(max = 500)
   @Column(name = "payment_method_info", length = 500)
-  private String paymentMethodInfo;
+  @Convert(converter = PaymentMethodInfoConverter.class)
+  private List<PaymentMethodInfo> paymentMethodInfo;
 
   @Column(name = "start_time")
   private Long startTime;

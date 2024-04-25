@@ -66,4 +66,5 @@ public abstract class BaseStorage {
   @Autowired protected PackageTypeRepository packageTypeRepository;
   @Autowired protected BannerRepository bannerRepository;
   @Autowired protected CharacterUserTransactionRepository characterUserTransactionRepository;
+  @Autowired protected AchievementRepository achievementRepository;
 }

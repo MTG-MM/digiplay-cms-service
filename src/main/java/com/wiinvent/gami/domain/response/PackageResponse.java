@@ -2,7 +2,10 @@ package com.wiinvent.gami.domain.response;
 
 import com.wiinvent.gami.domain.entities.type.ProductType;
 import com.wiinvent.gami.domain.entities.type.Status;
+import com.wiinvent.gami.domain.pojo.PaymentMethodInfo;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class PackageResponse {
@@ -26,7 +29,7 @@ public class PackageResponse {
 
   private Integer pointDaily;
 
-  private String paymentMethodInfo;
+  private List<PaymentMethodInfo> paymentMethodInfo;
 
   private Long startTime;
 

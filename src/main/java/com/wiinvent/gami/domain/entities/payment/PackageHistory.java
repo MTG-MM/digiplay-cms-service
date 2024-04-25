@@ -2,6 +2,8 @@ package com.wiinvent.gami.domain.entities.payment;
 
 import com.wiinvent.gami.domain.entities.BaseEntity;
 import com.wiinvent.gami.domain.entities.type.PaymentMethodType;
+import com.wiinvent.gami.domain.pojo.PackageInfo;
+import com.wiinvent.gami.domain.utils.Converter.PackageInfoConverter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -37,7 +39,8 @@ public class PackageHistory extends BaseEntity {
 
   @Size(max = 500)
   @Column(name = "package_info", length = 500)
-  private String packageInfo;
+  @Convert(converter = PackageInfoConverter.class)
+  private PackageInfo packageInfo;
 
   @NotNull
   @Column(name = "user_id", columnDefinition = "BINARY(16)")

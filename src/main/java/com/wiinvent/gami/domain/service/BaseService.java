@@ -64,4 +64,6 @@ public abstract class BaseService {
   @Autowired protected PackageTypeStorage packageTypeStorage;
   @Autowired protected BannerStorage bannerStorage;
   @Autowired protected CharacterUserTransactionStorage characterUserTransactionStorage;
+  @Autowired protected AchievementStorage achievementStorage;
+  @Autowired protected AchievementUserStorage achievementUserStorage;
 }

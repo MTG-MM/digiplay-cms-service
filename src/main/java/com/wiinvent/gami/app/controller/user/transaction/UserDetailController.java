@@ -1,9 +1,6 @@
 package com.wiinvent.gami.app.controller.user.transaction;
 
-import com.wiinvent.gami.domain.response.CharacterUserTransactionResponse;
-import com.wiinvent.gami.domain.response.PackageHistoryResponse;
-import com.wiinvent.gami.domain.response.RewardItemHistoryResponse;
-import com.wiinvent.gami.domain.response.TransactionResponse;
+import com.wiinvent.gami.domain.response.*;
 import com.wiinvent.gami.domain.service.PackageHistoryService;
 import com.wiinvent.gami.domain.service.reward.RewardItemHistoryService;
 import com.wiinvent.gami.domain.service.user.transaction.*;
@@ -29,6 +26,7 @@ public class UserDetailController {
   @Autowired TurnTransactionService turnTransactionService;
   @Autowired RewardItemHistoryService rewardItemHistoryService;
   @Autowired CharacterUserTransactionService characterUserTransactionService;
+  @Autowired AchievementUserService achievementUserService;
 
   @GetMapping("sub")
   public ResponseEntity<PageCursorResponse<PackageHistoryResponse>> getPackageHistory (
@@ -98,5 +96,15 @@ public class UserDetailController {
       @RequestParam(required = false, defaultValue = "20") int limit
   ) {
     return ResponseEntity.ok(characterUserTransactionService.getCharacterUserTransaction(userId, next, pre, limit));
+  }
+
+  @GetMapping("user-achievement")
+  public ResponseEntity<PageCursorResponse<AchievementUserResponse>> getUserAchievement(
+      @RequestParam UUID userId,
+      @RequestParam(required = false) Long next,
+      @RequestParam(required = false) Long pre,
+      @RequestParam(required = false, defaultValue = "20") int limit
+  ) {
+    return ResponseEntity.ok(achievementUserService.getAchievementUser(userId, next, pre, limit));
   }
 }

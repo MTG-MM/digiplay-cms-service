@@ -4,6 +4,7 @@ import com.wiinvent.gami.domain.dto.GameCreateDto;
 import com.wiinvent.gami.domain.dto.GameTypeCreateDto;
 import com.wiinvent.gami.domain.dto.GameTypeUpdateDto;
 import com.wiinvent.gami.domain.dto.GameUpdateDto;
+import com.wiinvent.gami.domain.entities.game.GameCategory;
 import com.wiinvent.gami.domain.entities.game.GameType;
 import com.wiinvent.gami.domain.entities.type.GameStatus;
 import com.wiinvent.gami.domain.entities.type.GameTypeStatus;
@@ -26,7 +27,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 @Log4j2
@@ -39,11 +43,17 @@ public class GameService extends BaseService {
       throw new ResourceNotFoundException(Constants.GAME_NOT_FOUND);
     }
     GameResponse gameResponse = modelMapper.toGameResponse(game);
+    //game type
     if(Objects.nonNull(game.getGameTypeId())) {
       List<GameType> gameTypes = gameTypeStorage.findGameTypesByIdIn(game.getGameTypeId());
       gameResponse.setGameType(modelMapper.toListGameTypeResponse(gameTypes));
     }else{
       gameResponse.setGameType(new ArrayList<>());
+    }
+    //game category
+    if(Objects.nonNull(game.getCategoryId())){
+      GameCategory gameCategory = gameCategoryStorage.findById(game.getCategoryId());
+      if(Objects.nonNull(gameCategory)) gameResponse.setCategory(modelMapper.toGameCategoryResponse(gameCategory));
     }
     return gameResponse;
   }
@@ -51,6 +61,17 @@ public class GameService extends BaseService {
   public Page<GameResponse> getAll(Integer id, String name, GameStatus status, Boolean isHot, Boolean isNew, Boolean isUpdate, Boolean isLock, Integer gameCategoryId, Integer gameTypeId, Pageable pageable) {
     Page<Game> games = gameStorage.findAll(id, name, status, isHot, isNew, isUpdate, isLock, gameCategoryId, gameTypeId, pageable);
     Page<GameResponse> responses = modelMapper.toPageGameResponse(games);
+    //game category
+    List<Integer> gameCategoryIds = games.stream().map(Game::getCategoryId).collect(Collectors.toList());
+    List<GameCategory> gameCategories = gameCategoryStorage.findGameCategoriesByIdIn(gameCategoryIds);
+    Map<Integer, GameCategory> gameCategoryMap = gameCategories.stream().collect(Collectors.toMap(GameCategory::getId, Function.identity()));
+    gameCategoryIds.clear(); gameCategories.clear();
+    responses.forEach(gameResponse ->{
+      GameCategory gameCategory = gameCategoryMap.get(gameResponse.getCategoryId());
+      if(Objects.nonNull(gameCategory)) {
+        gameResponse.setCategory(modelMapper.toGameCategoryResponse(gameCategory));
+      }
+    });
     return responses;
   }
 
@@ -63,7 +84,7 @@ public class GameService extends BaseService {
       self.save(game);
     }catch (Exception e){
       log.error("==============>createGames e = {}", e.getMessage());
-      return false;
+      throw e;
     }
 
     return true;
@@ -82,7 +103,7 @@ public class GameService extends BaseService {
       self.save(game);
     }catch (Exception e){
       log.error("==============>updateGame:DB:Exception:{}", e.getMessage());
-      return false;
+      throw e;
     }
     //response
     return true;
@@ -100,7 +121,7 @@ public class GameService extends BaseService {
       self.save(game);
     }catch (Exception e){
       log.error("==============>deleteGame:DB:Exception:{}", e.getMessage());
-      return false;
+      throw e;
     }
     //response
     return true;

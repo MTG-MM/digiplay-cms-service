@@ -29,6 +29,10 @@ public class GameCategoryStorage extends BaseStorage {
     return gameCategoryRepository.findGameCategoryByStatusIn(List.of(Status.ACTIVE));
   }
 
+  public List<GameCategory> findGameCategoriesByIdIn(List<Integer> ids){
+    return gameCategoryRepository.findGameCategoriesByIdIn(ids);
+  }
+
   public List<String> genCacheKeys(GameCategory gameCategory){
     List<String> cacheKeys = new ArrayList<>();
     cacheKeys.add(cacheKey.genAllGameCategories());

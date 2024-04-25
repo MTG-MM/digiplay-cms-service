@@ -59,7 +59,7 @@ public class GamePackageService extends BaseService {
       self.save(gamePackage);
     }catch (Exception e){
       log.error("==============>createGamePackage:DB:Exception:{}", e.getMessage());
-      return false;
+      throw e;
     }
     //response
     return true;
@@ -79,7 +79,7 @@ public class GamePackageService extends BaseService {
       self.save(gamePackage);
     }catch (Exception e){
       log.error("==============>updateGamePackage:DB:Exception:{}", e.getMessage());
-      return false;
+      throw e;
     }
     //response
     return true;
@@ -99,7 +99,7 @@ public class GamePackageService extends BaseService {
       self.save(gamePackage);
     }catch (Exception e){
       log.error("==============>deleteGamePackage:DB:Exception:{}", e.getMessage());
-      return false;
+      throw e;
     }
     //response
     return true;

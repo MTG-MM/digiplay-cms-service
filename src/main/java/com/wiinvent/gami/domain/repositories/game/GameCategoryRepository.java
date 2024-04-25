@@ -14,4 +14,5 @@ public interface GameCategoryRepository extends JpaRepository<GameCategory, Inte
   GameCategory findGameCategoryByIdAndStatusIn(Integer id, List<Status> statuses);
   Page<GameCategory> findAllByStatusIn(List<Status> statuses, Pageable pageable);
   List<GameCategory> findGameCategoryByStatusIn(List<Status> statuses);
+  List<GameCategory> findGameCategoriesByIdIn(List<Integer> ids);
 }

@@ -57,7 +57,7 @@ public class GameCategoryService extends BaseService {
       self.saveGameCategory(gameCategory);
     }catch (Exception e){
       log.debug("==================> createGameCategory:DB:Exception:{}", e.getMessage());
-      return false;
+      throw e;
     }
     //response
     return true;
@@ -75,7 +75,7 @@ public class GameCategoryService extends BaseService {
       self.saveGameCategory(gameCategory);
     }catch (Exception e){
       log.debug("==================> updateGameCategory:DB:Exception:{}", e.getMessage());
-      return false;
+      throw e;
     }
     //response
     return true;
@@ -93,7 +93,7 @@ public class GameCategoryService extends BaseService {
       self.saveGameCategory(gameCategory);
     }catch (Exception e){
       log.debug("==================> deleteGameCategory:DB:Exception:{}", e.getMessage());
-      return false;
+      throw e;
     }
     //response
     return true;

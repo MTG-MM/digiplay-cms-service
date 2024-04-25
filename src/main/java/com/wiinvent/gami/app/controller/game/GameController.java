@@ -61,7 +61,7 @@ public class GameController extends BaseController {
   @PostMapping("")
   @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
   @Operation(summary = "Tạo game")
-  public ResponseEntity<Boolean> createGame(@RequestBody GameCreateDto createDto) {
+  public ResponseEntity<Boolean> createGame(@RequestBody @Valid GameCreateDto createDto) {
     return ResponseEntity.ok(
         gameService.createGames(createDto)
     );

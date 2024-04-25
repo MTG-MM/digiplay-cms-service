@@ -50,7 +50,7 @@ public class PaymentMethodService extends BaseService{
       self.savePaymentMethod(paymentMethod);
     }catch (Exception e){
       log.debug("============================> createPaymentMethod:DB:Exception:{}", e.getMessage());
-      return false;
+      throw e;
     }
     //response
     return true;
@@ -75,7 +75,7 @@ public class PaymentMethodService extends BaseService{
       self.savePaymentMethod(paymentMethod);
     }catch (Exception e){
       log.debug("============================> updatePaymentMethod:DB:Exception:{}", e.getMessage());
-      return false;
+      throw e;
     }
     //response
     return true;
@@ -93,6 +93,7 @@ public class PaymentMethodService extends BaseService{
       self.deletePaymentMethodById(paymentMethod.getId());
     }catch (Exception e){
       log.debug("============================> deletePaymentMethod:DB:Exception:{}", e.getMessage());
+      throw e;
     }
     //response
     return true;

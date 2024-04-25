@@ -47,7 +47,7 @@ public class PackageTypeService extends BaseService{
       self.save(packageType);
     }catch (Exception e){
       log.error("==============>createPackageType exception = {}", e.getMessage());
-      return false;
+      throw e;
     }
     return true;
   }
@@ -64,7 +64,7 @@ public class PackageTypeService extends BaseService{
       self.save(packageType);
     }catch (Exception e){
       log.error("==============>updatePackageType exception = {}", e.getMessage());
-      return false;
+      throw e;
     }
     return true;
   }

@@ -45,7 +45,7 @@ public class BannerService extends BaseService{
       self.save(banner);
     }catch (Exception e){
       log.error("==============>createBanner exception = {}", e.getMessage());
-      return false;
+      throw e;
     }
     return true;
   }
@@ -60,7 +60,7 @@ public class BannerService extends BaseService{
       self.save(banner);
     }catch (Exception e){
       log.error("==============>updateBanner exception = {}", e.getMessage());
-      return false;
+      throw e;
     }
     return true;
   }
@@ -74,7 +74,7 @@ public class BannerService extends BaseService{
       self.save(banner);
     }catch (Exception e){
       log.error("==============>deleteBanner exception = {}", e.getMessage());
-      return false;
+      throw e;
     }
     return true;
   }

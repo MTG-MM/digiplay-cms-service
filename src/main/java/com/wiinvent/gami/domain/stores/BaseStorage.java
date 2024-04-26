@@ -67,4 +67,6 @@ public abstract class BaseStorage {
   @Autowired protected BannerRepository bannerRepository;
   @Autowired protected CharacterUserTransactionRepository characterUserTransactionRepository;
   @Autowired protected AchievementRepository achievementRepository;
+  @Autowired protected SubStateRepository subStateRepository;
+  @Autowired protected PremiumStateRepository premiumStateRepository;
 }

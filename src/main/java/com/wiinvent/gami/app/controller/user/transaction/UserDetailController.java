@@ -1,5 +1,6 @@
 package com.wiinvent.gami.app.controller.user.transaction;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.wiinvent.gami.domain.response.*;
 import com.wiinvent.gami.domain.service.PackageHistoryService;
 import com.wiinvent.gami.domain.service.reward.RewardItemHistoryService;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @RestController
@@ -33,9 +35,12 @@ public class UserDetailController {
       @RequestParam UUID userId,
       @RequestParam(required = false) Long next,
       @RequestParam(required = false) Long pre,
-      @RequestParam(required = false, defaultValue = "20") int limit
+      @RequestParam(required = false) UUID transId,
+      @RequestParam(required = false, defaultValue = "20") int limit,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate gte,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte
   ) {
-    return ResponseEntity.ok(packageHistoryService.getPackageHistory(userId, next, pre, limit));
+    return ResponseEntity.ok(packageHistoryService.getPackageHistory(userId, transId, gte, lte, next, pre, limit));
   }
 
   @GetMapping("/transaction/coin")
@@ -43,9 +48,12 @@ public class UserDetailController {
       @RequestParam UUID userId,
       @RequestParam(required = false) Long next,
       @RequestParam(required = false) Long pre,
-      @RequestParam(required = false, defaultValue = "20") int limit
+      @RequestParam(required = false) UUID transId,
+      @RequestParam(required = false, defaultValue = "20") int limit,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate gte,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte
   ) {
-    return ResponseEntity.ok(coinTransactionService.getCoinTransaction(userId, next, pre, limit));
+    return ResponseEntity.ok(coinTransactionService.getCoinTransaction(userId, transId, gte, lte, next, pre, limit));
   }
 
   @GetMapping("/transaction/point")
@@ -53,9 +61,12 @@ public class UserDetailController {
       @RequestParam UUID userId,
       @RequestParam(required = false) Long next,
       @RequestParam(required = false) Long pre,
-      @RequestParam(required = false, defaultValue = "20") int limit
+      @RequestParam(required = false) UUID transId,
+      @RequestParam(required = false, defaultValue = "20") int limit,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate gte,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte
   ) {
-    return ResponseEntity.ok(pointTransactionService.getPointTransaction(userId, next, pre, limit));
+    return ResponseEntity.ok(pointTransactionService.getPointTransaction(userId, transId, gte, lte, next, pre, limit));
   }
 
   @GetMapping("/transaction/exp")
@@ -63,9 +74,12 @@ public class UserDetailController {
       @RequestParam UUID userId,
       @RequestParam(required = false) Long next,
       @RequestParam(required = false) Long pre,
-      @RequestParam(required = false, defaultValue = "20") int limit
+      @RequestParam(required = false) UUID transId,
+      @RequestParam(required = false, defaultValue = "20") int limit,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate gte,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte
   ) {
-    return ResponseEntity.ok(expHistoryService.getExpHistories(userId, next, pre, limit));
+    return ResponseEntity.ok(expHistoryService.getExpHistories(userId, transId, gte, lte, next, pre, limit));
   }
 
   @GetMapping("/transaction/turn")
@@ -73,9 +87,12 @@ public class UserDetailController {
       @RequestParam UUID userId,
       @RequestParam(required = false) Long next,
       @RequestParam(required = false) Long pre,
-      @RequestParam(required = false, defaultValue = "20") int limit
+      @RequestParam(required = false) UUID transId,
+      @RequestParam(required = false, defaultValue = "20") int limit,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate gte,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte
   ) {
-    return ResponseEntity.ok(turnTransactionService.getTurnTransaction(userId, next, pre, limit));
+    return ResponseEntity.ok(turnTransactionService.getTurnTransaction(userId, transId, gte, lte, next, pre, limit));
   }
 
   @GetMapping("reward")
@@ -83,9 +100,12 @@ public class UserDetailController {
       @RequestParam UUID userId,
       @RequestParam(required = false) Long next,
       @RequestParam(required = false) Long pre,
-      @RequestParam(required = false, defaultValue = "20") int limit
+      @RequestParam(required = false) UUID transId,
+      @RequestParam(required = false, defaultValue = "20") int limit,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate gte,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte
   ) {
-    return ResponseEntity.ok(rewardItemHistoryService.getRewardItemHistory(userId, next, pre, limit));
+    return ResponseEntity.ok(rewardItemHistoryService.getRewardItemHistory(userId, transId, gte, lte, next, pre, limit));
   }
 
   @GetMapping("/transaction/user-character")
@@ -93,9 +113,12 @@ public class UserDetailController {
       @RequestParam UUID userId,
       @RequestParam(required = false) Long next,
       @RequestParam(required = false) Long pre,
-      @RequestParam(required = false, defaultValue = "20") int limit
+      @RequestParam(required = false) UUID transId,
+      @RequestParam(required = false, defaultValue = "20") int limit,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate gte,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte
   ) {
-    return ResponseEntity.ok(characterUserTransactionService.getCharacterUserTransaction(userId, next, pre, limit));
+    return ResponseEntity.ok(characterUserTransactionService.getCharacterUserTransaction(userId, transId, gte, lte, next, pre, limit));
   }
 
   @GetMapping("user-achievement")
@@ -103,8 +126,11 @@ public class UserDetailController {
       @RequestParam UUID userId,
       @RequestParam(required = false) Long next,
       @RequestParam(required = false) Long pre,
-      @RequestParam(required = false, defaultValue = "20") int limit
+      @RequestParam(required = false) UUID transId,
+      @RequestParam(required = false, defaultValue = "20") int limit,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate gte,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte
   ) {
-    return ResponseEntity.ok(achievementUserService.getAchievementUser(userId, next, pre, limit));
+    return ResponseEntity.ok(achievementUserService.getAchievementUser(userId, transId, gte, lte, next, pre, limit));
   }
 }

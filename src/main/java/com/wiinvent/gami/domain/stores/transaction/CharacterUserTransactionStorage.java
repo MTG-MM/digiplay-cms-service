@@ -16,12 +16,19 @@ import java.util.UUID;
 
 @Component
 public class CharacterUserTransactionStorage extends BaseStorage {
-  public List<CharacterUserTransaction> findAll(UUID userId, Long next, Long pre, int limit, CursorType type) {
+  public List<CharacterUserTransaction> findAll(UUID userId, UUID transId, Long startDate, Long endDate, Long next, Long pre, int limit, CursorType type) {
     CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
     CriteriaQuery<CharacterUserTransaction> query = criteriaBuilder.createQuery(CharacterUserTransaction.class);
     Root<CharacterUserTransaction> root = query.from(CharacterUserTransaction.class);
     List<Predicate> conditionLists = new ArrayList<>();
     conditionLists.add(criteriaBuilder.equal(root.get("userId"), userId));
+    if (transId != null) {
+      conditionLists.add(criteriaBuilder.equal(root.get("id"), transId));
+    }
+    if (startDate != null & endDate != null) {
+      conditionLists.add(criteriaBuilder.and(criteriaBuilder.greaterThanOrEqualTo(root.get("createdAt"), startDate),
+          criteriaBuilder.lessThanOrEqualTo(root.get("createdAt"), endDate)));
+    }
     conditionLists.add(criteriaBuilder.and(criteriaBuilder.greaterThan(root.get("createdAt"), pre),
         criteriaBuilder.lessThan(root.get("createdAt"), next)));
     if (type == CursorType.FIRST || type == CursorType.NEXT){

@@ -1,9 +1,7 @@
 package com.wiinvent.gami.domain.service.user;
 
-import com.wiinvent.gami.domain.entities.user.User;
-import com.wiinvent.gami.domain.entities.user.UserAccount;
-import com.wiinvent.gami.domain.entities.user.UserProfile;
-import com.wiinvent.gami.domain.entities.user.UserSegment;
+import com.wiinvent.gami.domain.entities.SubState;
+import com.wiinvent.gami.domain.entities.user.*;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.response.UserResponse;
 import com.wiinvent.gami.domain.response.base.PageCursorResponse;
@@ -39,7 +37,7 @@ public class UserService extends BaseService {
 //    return new PageCursorResponse<>(responses, limit, next, pre, Constants.CREATED_AT_VARIABLE);
 //  }
 
-  public UserResponse getUserDetail(UUID userId){
+  public UserResponse getUserDetail(UUID userId) {
     User user = userStorage.findById(userId);
     if (user == null) {
       throw new ResourceNotFoundException("User id not found");
@@ -58,24 +56,24 @@ public class UserService extends BaseService {
     userResponse.setBirth(userProfile.getBirth());
     userResponse.setDisplayName(userProfile.getDisplayName());
     //user account
-    if(Objects.nonNull(userAccount)){
+    if (Objects.nonNull(userAccount)) {
       userResponse.setState(userAccount.getState());
       userResponse.setStatus(userAccount.getStatus());
     }
     //segment
-    if(Objects.nonNull(currentUserSegment)){
+    if (Objects.nonNull(currentUserSegment)) {
       userResponse.setPointBonusRate(currentUserSegment.getPointBonusRate());
       userResponse.setPointLimit(currentUserSegment.getPointLimit());
     }
     UserSegment nextUserSegment = userSegmentStorage.findNextLevel(currentUserSegment.getLevel());
-    if(Objects.nonNull(nextUserSegment)){
-      userResponse.setExpUpLevel(nextUserSegment.getRequireExp()-userResponse.getExp());
+    if (Objects.nonNull(nextUserSegment)) {
+      userResponse.setExpUpLevel(nextUserSegment.getRequireExp() - userResponse.getExp());
     }
     return userResponse;
   }
 
   public PageCursorResponse<UserResponse> getPageUser
-      (UUID userId, String phoneNumber, Long next, Long pre, Integer limit, LocalDate startDate, LocalDate endDate) {
+      (UUID userId, String phoneNumber, Integer level, Long next, Long pre, Integer limit, LocalDate startDate, LocalDate endDate) {
     Long startDateLong = null;
     Long endDateLong = null;
     if (Objects.nonNull(startDate)) startDateLong = Helper.startOfDaytoLong(startDate);
@@ -85,18 +83,21 @@ public class UserService extends BaseService {
     if (next == null && pre == null) {
       next = Helper.getNowMillisAtUtc();
       pre = 0L;
-      users = userStorage.findAllUser(userId, phoneNumber, next, pre, limit, startDateLong, endDateLong, type);
+      users = userStorage.findAllUser(userId, phoneNumber, level, next, pre, limit, startDateLong, endDateLong, type);
     } else if (pre == null) {
       type = CursorType.NEXT;
       pre = 0L;
-      users = userStorage.findAllUser(userId, phoneNumber, next, pre, limit, startDateLong, endDateLong, type);
-    }else if(next == null){
+      users = userStorage.findAllUser(userId, phoneNumber, level, next, pre, limit, startDateLong, endDateLong, type);
+    } else if (next == null) {
       type = CursorType.PRE;
       next = Helper.getNowMillisAtUtc();
-      users = userStorage.findAllUser(userId, phoneNumber, next, pre, limit, startDateLong, endDateLong, type);
+      users = userStorage.findAllUser(userId, phoneNumber, level, next, pre, limit, startDateLong, endDateLong, type);
       users = users.stream().sorted(Comparator.comparingLong(User::getCreatedAt).reversed()).toList();
     }
     List<UUID> userIds = users.stream().map(User::getId).toList();
+    List<SubState> subStates = subStateStorage.findBySubStateAndUserIdInAndEndAtGreaterThan(userIds, Helper.getNowMillisAtUtc());
+    List<PremiumState> premiumStates =
+        premiumStateStorage.findByPremiumStateAndUserIdInAndEndAtGreaterThan(userIds, Helper.getNowMillisAtUtc());
     //profile
     List<UserProfile> userProfiles = userProfileStorage.findAllByIdIn(userIds);
     Map<UUID, UserProfile> userProfileMap = userProfiles.stream().collect(Collectors.toMap(UserProfile::getId, Function.identity()));

@@ -16,12 +16,19 @@ import java.util.UUID;
 
 @Component
 public class ExpHistoryStorage extends BaseStorage {
-    public List<ExpHistory> findAll(UUID userId, Long next, Long pre, int limit, CursorType type) {
+    public List<ExpHistory> findAll(UUID userId, UUID transId, Long startDate, Long endDate, Long next, Long pre, int limit, CursorType type) {
       CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
       CriteriaQuery<ExpHistory> query = criteriaBuilder.createQuery(ExpHistory.class);
       Root<ExpHistory> root = query.from(ExpHistory.class);
       List<Predicate> conditionList = new ArrayList<>();
       conditionList.add(criteriaBuilder.equal(root.get("userId"), userId));
+      if (transId != null) {
+        conditionList.add(criteriaBuilder.equal(root.get("id"), transId));
+      }
+      if (startDate != null & endDate != null) {
+        conditionList.add(criteriaBuilder.and(criteriaBuilder.greaterThanOrEqualTo(root.get("createdAt"), startDate),
+            criteriaBuilder.lessThanOrEqualTo(root.get("createdAt"), endDate)));
+      }
       conditionList.add(criteriaBuilder.and(criteriaBuilder.greaterThan(root.get("createdAt"), pre),
           criteriaBuilder.lessThan(root.get("createdAt"), next)));
       if (type == CursorType.NEXT || type == CursorType.FIRST) {

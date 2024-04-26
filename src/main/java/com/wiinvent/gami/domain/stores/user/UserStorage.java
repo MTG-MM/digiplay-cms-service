@@ -66,7 +66,7 @@ public class UserStorage extends BaseStorage {
   }
 
   public List<User> findAllUser
-      (UUID userId, String phoneNumber, Long next, Long pre, Integer limit, Long startDate, Long endDate, CursorType type){
+      (UUID userId, String phoneNumber, Integer level, Long next, Long pre, Integer limit, Long startDate, Long endDate, CursorType type){
     CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
     CriteriaQuery<User> query = criteriaBuilder.createQuery(User.class);
     Root<User> root = query.from(User.class);
@@ -77,9 +77,12 @@ public class UserStorage extends BaseStorage {
     if (phoneNumber != null){
       conditionList.add(criteriaBuilder.equal(root.get("phoneNumber"), phoneNumber));
     }
+    if (level != null){
+      conditionList.add(criteriaBuilder.equal(root.get("userSegmentId"), level));
+    }
     if (startDate != null && endDate != null){
-      conditionList.add(criteriaBuilder.and(criteriaBuilder.greaterThan(root.get("createdAt"), startDate),
-          criteriaBuilder.lessThan(root.get("createdAt"), endDate)));
+      conditionList.add(criteriaBuilder.and(criteriaBuilder.greaterThanOrEqualTo(root.get("createdAt"), startDate),
+          criteriaBuilder.lessThanOrEqualTo(root.get("createdAt"), endDate)));
     }
 
     conditionList.add(criteriaBuilder.and(criteriaBuilder.greaterThan(root.get("createdAt"), pre),

@@ -11,6 +11,7 @@ import com.wiinvent.gami.domain.utils.Helper;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -18,21 +19,26 @@ import java.util.stream.Collectors;
 @Log4j2
 
 public class AchievementUserService extends BaseService {
-  public PageCursorResponse<AchievementUserResponse> getAchievementUser(UUID userId, Long next, Long pre, int limit) {
+  public PageCursorResponse<AchievementUserResponse> getAchievementUser
+      (UUID userId, UUID transId, LocalDate startDate, LocalDate endDate, Long next, Long pre, int limit) {
+    Long startDateLong = null;
+    Long endDateLong = null;
+    if (Objects.nonNull(startDate)) startDateLong = Helper.startOfDaytoLong(startDate);
+    if (Objects.nonNull(endDate)) endDateLong = Helper.endOfDaytoLong(endDate);
     CursorType type = CursorType.FIRST;
     List<AchievementUser> achievementUsers = new ArrayList<>();
     if (next == null && pre == null) {
       next = Helper.getNowMillisAtUtc();
       pre = 0L;
-      achievementUsers = achievementUserStorage.findAll(userId, next, pre, limit, type);
+      achievementUsers = achievementUserStorage.findAll(userId, transId, startDateLong, endDateLong, next, pre, limit, type);
     } else if (pre == null){
       type = CursorType.NEXT;
       pre = 0L;
-      achievementUsers = achievementUserStorage.findAll(userId, next, pre, limit, type);
+      achievementUsers = achievementUserStorage.findAll(userId, transId, startDateLong, endDateLong, next, pre, limit, type);
     } else if (next == null){
       type = CursorType.PRE;
       next = Helper.getNowMillisAtUtc();
-      achievementUsers = achievementUserStorage.findAll(userId, next, pre, limit, type);
+      achievementUsers = achievementUserStorage.findAll(userId, transId, startDateLong, endDateLong, next, pre, limit, type);
       achievementUsers = achievementUsers.stream().sorted(Comparator.comparingLong(AchievementUser::getCreatedAt).reversed()).toList();
     }
     List<Achievement> achievements = achievementStorage.findAllByIdIn(achievementUsers.stream().map(AchievementUser::getAchievementId).toList());

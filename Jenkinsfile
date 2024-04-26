@@ -1,29 +1,78 @@
-pipeline {
-    agent any
-    environment {
-        BRANCH_NAME = "${GIT_BRANCH.split("/")[1]}"
-        DOCKER_HUB_URL="lambro2510"
-        RESPOSITORY="lambro2510"
-        DOCKER_HUB_TOKEN=credentials("docker_hub_token")
-        NAME="mos-cms-service"
-    }
-    stages {
-        stage('Build') {
-            steps {
-                script {
-                  sh "sudo docker build -t ${RESPOSITORY}/${NAME}:${BUILD_NUMBER} ."
-                }
-            }
+#!/usr/bin/env groovy
+
+node {
+    properties([disableConcurrentBuilds()])
+
+    try {
+        project = "vna-gami-service"
+
+        if(env.BRANCH_NAME == "master") {
+          dockerRepo = "registry.wiinvent.tv"
+        } else {
+          dockerRepo = "dockerhub.infra.wiinvent.tv"
         }
-        stage('Push') {
-            steps {
-                script {
-                  sh "sudo docker login --username=${RESPOSITORY} --password=${DOCKER_HUB_TOKEN} docker.io"
-                  sh "sudo docker tag ${RESPOSITORY}/${NAME}:${BUILD_NUMBER} ${RESPOSITORY}/${NAME}:latest"
-                  sh "sudo docker push ${RESPOSITORY}/${NAME}:${BUILD_NUMBER}"
-                  sh "sudo docker push ${RESPOSITORY}/${NAME}:latest"
-                }
-            }
+
+        imagePrefix = "gami"
+        dockerFile = "Dockerfile"
+        imageName = "${dockerRepo}/${imagePrefix}/${project}"
+        buildNumber = "${env.BUILD_NUMBER}"
+        IMAGE_BUILD = "${imageName}:${env.BRANCH_NAME}-build-${buildNumber}"
+        k8sCluster = "local"
+        k8sNameSpace = "vna-gami-crm-prod"
+        k8sEnv = "production"
+
+        stage('checkout code') {
+            checkout scm
+            sh "git checkout ${env.BRANCH_NAME} && git reset --hard origin/${env.BRANCH_NAME}"
         }
+
+        stage('build') {
+            sh """
+                egrep -q '^FROM .* AS builder\$' ${dockerFile} \
+                && DOCKER_BUILDKIT=1 docker build -t ${imageName}-stage-builder --target builder -f ${dockerFile} .
+                DOCKER_BUILDKIT=1 docker build -t ${imageName}:${env.BRANCH_NAME} -f ${dockerFile} .
+            """
+        }
+        stage('push') {
+            sh """
+                docker push ${imageName}:${env.BRANCH_NAME}
+                docker tag ${imageName}:${env.BRANCH_NAME} ${imageName}:${env.BRANCH_NAME}-build-${buildNumber}
+                docker push ${imageName}:${env.BRANCH_NAME}-build-${buildNumber}
+            """
+        }
+        switch (env.BRANCH_NAME) {
+            case 'develop':
+                k8sNameSpace = "vna-gami-crm-dev"
+                k8sEnv = "development"
+                stage('deploy-prod') {
+                    sh """
+                    ## Deploy cluster LongVan
+                    /usr/local/k8s/bin/k8sctl --cluster-name=${k8sCluster} --namespace=${k8sNameSpace} --environment=${k8sEnv} --service-name=${project} --image-name=${IMAGE_BUILD}
+                  """
+                }
+                break
+            case 'master-pilot':
+                stage('deploy-pilot') {
+                    sh """
+                    ## Deploy cluster LongVan
+                    /usr/local/k8s/bin/k8sctl --cluster-name=${k8sCluster} --namespace=${k8sNameSpace} --environment=${k8sEnv} --service-name=${project} --image-name=${IMAGE_BUILD}
+                  """
+                }
+                break
+            case 'master':
+                k8sCluster = "idc"
+                k8sNameSpace = "vna-gami-crm"
+                stage('deploy-prod') {
+                    sh """
+                    ## Deploy cluster Viettel IDC
+                    /usr/local/k8s-vna/bin/k8sctl --cluster-name=${k8sCluster} --namespace=${k8sNameSpace} --environment=${k8sEnv} --service-name=${project} --image-name=${IMAGE_BUILD}
+                  """
+                }
+                break
+        }
+
+    } catch (e) {
+        currentBuild.result = "FAILED"
+        throw e
     }
 }

@@ -1,6 +1,7 @@
 package com.wiinvent.gami.domain.utils;
 
 import lombok.extern.slf4j.Slf4j;
+import org.redisson.api.RAtomicLong;
 import org.redisson.api.RDeque;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Component;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -38,9 +40,9 @@ public class RemoteCache {
     try{
       RDeque<Object> queue = redissonClient.getDeque(key);
       queue.addAsync(value);
-    }catch (Exception e){{
+    }catch (Exception e){
       log.error(e.getMessage());
-    }}
+    }
   }
 
   public void deleteKey(String key){
@@ -66,9 +68,9 @@ public class RemoteCache {
     try{
       RDeque<T> queue = redissonClient.getDeque(key);
       return queue.pollFirst();
-    }catch (Exception e){{
+    }catch (Exception e){
       log.error(e.getMessage());
-    }}
+    }
     return null;
   }
 
@@ -126,6 +128,16 @@ public class RemoteCache {
       return JsonParser.arrayList(value, tClass);
     } catch (Exception e) {
       return null;
+    }
+  }
+
+  public Long addAndGetAtomicLong(String key, long amount) {
+    try {
+      RAtomicLong rAtomicLong = redissonClient.getAtomicLong(key);
+      return rAtomicLong.addAndGet(amount);
+    } catch (Exception e) {
+      log.error(e.getMessage());
+      return 0L;
     }
   }
 

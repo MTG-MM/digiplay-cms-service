@@ -1,16 +1,20 @@
-# Build Stage
+#
+# Build stage
+#
 FROM maven:3.9.6-eclipse-temurin-21-alpine AS build
 RUN apk update && apk add gcompat
 WORKDIR /app
+ADD settings.xml /root/.m2/
 COPY pom.xml ./pom.xml
+RUN --mount=type=cache,target=/root/.m2,rw mvn dependency:go-offline -B
 COPY src ./src
-COPY .env .env
-RUN mvn clean
-RUN mvn install
-RUN mvn package
+RUN --mount=type=cache,target=/root/.m2,rw mvn -Dmaven.test.skip=true clean package
 
-RUN mkdir -p /usr/local/newrelic
-ADD ./newrelic/newrelic.jar /usr/local/newrelic/newrelic.jar
-ADD ./newrelic/newrelic.yml /usr/local/newrelic/newrelic.yml
-
-ENTRYPOINT ["java","-javaagent:/usr/local/newrelic/newrelic.jar","-jar","/app/target/mos-cms-service-0.0.1-SNAPSHOT.jar"]
+#
+# Package stage
+#
+FROM amazoncorretto:21.0.2-alpine3.19
+COPY newrelic /usr/local/lib/newrelic
+COPY --from=build /app/target/gami-service-0.0.1-SNAPSHOT.jar /usr/local/lib/vt-portal-service.jar
+EXPOSE 8081
+ENTRYPOINT ["sh", "-c", "java -Dnewrelic.environment=$ENV -javaagent:/usr/local/lib/newrelic/newrelic.jar -jar /usr/local/lib/vt-portal-service.jar"]

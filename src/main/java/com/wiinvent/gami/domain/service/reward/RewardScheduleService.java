@@ -181,14 +181,16 @@ public class RewardScheduleService extends BaseService {
       }
       log.debug("====>processUpdatePoolItem remove item: {}", numberItemRemoved);
     }
+    String keyPoll = cacheKey.getRewardPoolItemIds(rewardSegment.getRewardSegmentId(), rewardItem.getId());
     switch (rewardItem.getRewardType()) {
+
       case POINT -> {
       }
       case VOUCHER -> {
         List<VoucherDetail> voucherDetails = voucherDetailService.getVoucherDetail(Integer.parseInt(rewardItem.getExternalId()), amount, rewardSchedule, rewardSegment, newPeriod);
         if (!voucherDetails.isEmpty()) {
           voucherDetails.forEach(v ->
-              remoteCache.rDequePutId(cacheKey.getRewardPoolItemIds(rewardSegment.getRewardSegmentId(), rewardItem.getId()), v.getId())
+              remoteCache.rDequePutId(keyPoll, v.getId())
           );
         }
 
@@ -197,7 +199,7 @@ public class RewardScheduleService extends BaseService {
         List<ProductDetail> productDetails = productDetailService.getProductDetail(Integer.parseInt(rewardItem.getExternalId()), amount, rewardSchedule, rewardSegment, newPeriod);
         if (!productDetails.isEmpty()) {
           productDetails.forEach(v ->
-              remoteCache.rDequePutId(cacheKey.getRewardPoolItemIds(rewardSegment.getRewardSegmentId(), rewardItem.getId()), v.getId())
+              remoteCache.rDequePutId(keyPoll, v.getId())
           );
         }
       }

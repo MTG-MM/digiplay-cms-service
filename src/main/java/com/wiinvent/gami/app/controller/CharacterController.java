@@ -2,14 +2,10 @@ package com.wiinvent.gami.app.controller;
 
 import com.wiinvent.gami.domain.dto.CharacterCreateDto;
 import com.wiinvent.gami.domain.dto.CharacterUpdateDto;
-import com.wiinvent.gami.domain.dto.PackageCreateDto;
-import com.wiinvent.gami.domain.dto.PackageUpdateDto;
 import com.wiinvent.gami.domain.entities.type.CharacterCategoryType;
 import com.wiinvent.gami.domain.entities.type.CharacterType;
-import com.wiinvent.gami.domain.entities.type.PackageType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.response.CharacterResponse;
-import com.wiinvent.gami.domain.response.PackageResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.CharacterService;
 import io.swagger.v3.oas.annotations.Operation;

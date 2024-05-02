@@ -68,4 +68,6 @@ public abstract class BaseService {
   @Autowired protected AchievementUserStorage achievementUserStorage;
   @Autowired protected SubStateStorage subStateStorage;
   @Autowired protected PremiumStateStorage premiumStateStorage;
+  @Autowired protected ChallengeStorage challengeStorage;
+  @Autowired protected ChallengeDetailStorage challengeDetailStorage;
 }

@@ -1,18 +1,13 @@
 package com.wiinvent.gami.app.controller;
 
-import com.wiinvent.gami.domain.dto.GamePackageCreateDto;
-import com.wiinvent.gami.domain.dto.GamePackageUpdateDto;
 import com.wiinvent.gami.domain.dto.PackageCreateDto;
 import com.wiinvent.gami.domain.dto.PackageUpdateDto;
 import com.wiinvent.gami.domain.dto.gvc.GvcPackageCreateDto;
 import com.wiinvent.gami.domain.dto.gvc.GvcPackageUpdateDto;
-import com.wiinvent.gami.domain.entities.type.PackageType;
-import com.wiinvent.gami.domain.response.GamePackageResponse;
 import com.wiinvent.gami.domain.response.GvcPackageResponse;
 import com.wiinvent.gami.domain.response.PackageResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.GvcPackageService;
-import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.PackageService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

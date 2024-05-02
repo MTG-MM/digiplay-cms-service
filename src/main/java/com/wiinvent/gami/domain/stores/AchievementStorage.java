@@ -29,6 +29,14 @@ public class AchievementStorage extends BaseStorage{
 
   public void save(Achievement achievement) {
     achievementRepository.save(achievement);
+    remoteCache.del(removeCacheKeys(achievement));
+  }
+
+  public List<String> removeCacheKeys(Achievement achievement) {
+    List<String> keys = new ArrayList<>();
+    keys.add(cacheKey.genAllAchievement());
+    keys.add(cacheKey.genAchievementByType(achievement.getType()));
+    return keys;
   }
 
   private Specification<Achievement> achievementSpecification(String name, Status status, AchievementType achievementType) {

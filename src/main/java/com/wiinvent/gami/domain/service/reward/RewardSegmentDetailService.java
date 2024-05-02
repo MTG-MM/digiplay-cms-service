@@ -35,7 +35,7 @@ public class RewardSegmentDetailService extends BaseService {
       } else {
         res.setRewardName(rewardItem.getRewardName());
         res.setIsLimited(rewardItem.getIsLimited());
-        if (res.getIsLimited()) {
+        if (Boolean.TRUE.equals(res.getIsLimited())) {
           List<UUID> listIds = remoteCache.rDequeGetAll(cacheKey.getRewardPoolItemIds(res.getRewardSegmentId(), res.getRewardItemId()));
           if (listIds != null && !listIds.isEmpty()) {
             res.setQuantityInPoll(listIds.size());

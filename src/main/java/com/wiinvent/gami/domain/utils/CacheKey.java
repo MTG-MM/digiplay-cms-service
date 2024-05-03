@@ -1,5 +1,6 @@
 package com.wiinvent.gami.domain.utils;
 
+import com.wiinvent.gami.domain.entities.type.AchievementType;
 import com.wiinvent.gami.domain.entities.type.BannerType;
 import com.wiinvent.gami.domain.entities.type.ResourceType;
 import org.springframework.beans.factory.annotation.Value;
@@ -103,5 +104,25 @@ public class CacheKey {
 
   public String genKeyListBannerByBannerType(BannerType type) {
     return redisPrefixKeyVtGame + ":banner:type:" + type;
+  }
+
+  public String genAchievementByType(AchievementType achievementType) {
+    return redisPrefixKeyVtGame + ":achievement:" + achievementType;
+  }
+
+  public String genAllAchievement() {
+    return redisPrefixKeyVtGame + ":achievement:all";
+  }
+
+  public String genListAllChallenge() {
+    return redisPrefixKeyVtGame + ":challenge:all";
+  }
+
+  public String genChallengeById(Integer challengeId) {
+    return redisPrefixKeyVtGame + ":challenge:id:" + challengeId;
+  }
+
+  public String genChallengeDetailById(Integer challengeDetailId){
+    return redisPrefixKeyVtGame + ":challenge:id:" + challengeDetailId;
   }
 }

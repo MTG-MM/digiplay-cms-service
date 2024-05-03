@@ -254,4 +254,22 @@ public interface ModelMapper {
   }
 
   List<AchievementUserResponse> toListAchievementUserResponse(List<AchievementUser> achievementUsers);
+
+
+  Challenge toChallenge(ChallengeCreateDto challengeCreateDto);
+  void mapChallengeUpdateDtoToChallenge(ChallengeUpdateDto challengeUpdateDto, @MappingTarget Challenge challenge);
+  ChallengeResponse toChallengeResponse(Challenge challenge);
+
+  default Page<ChallengeResponse> toPageChallengeResponse(Page<Challenge> challenges){
+    return challenges.map(this::toChallengeResponse);
+  }
+
+
+  ChallengeDetail toChallengeDetail(ChallengeDetailCreateDto challengeDetailCreateDto);
+  void mapChallengeDetailUpdateDtoToChallengeDetail(ChallengeDetailUpdateDto challengeDetailUpdateDto, @MappingTarget ChallengeDetail challengeDetail);
+  ChallengeDetailResponse toChallengeDetailResponse(ChallengeDetail challengeDetail);
+
+  default Page<ChallengeDetailResponse> toPageChallengeDetailResponse(Page<ChallengeDetail> challengeDetails){
+    return challengeDetails.map(this::toChallengeDetailResponse);
+  }
 }

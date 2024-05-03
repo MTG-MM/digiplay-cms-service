@@ -2,11 +2,12 @@ package com.wiinvent.gami.app.controller.reward;
 
 import com.wiinvent.gami.domain.dto.RewardItemStoreCreateDto;
 import com.wiinvent.gami.domain.dto.RewardItemStoreUpdateDto;
-import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.response.RewardItemStoreResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.entities.type.StoreType;
 import com.wiinvent.gami.domain.service.reward.RewardItemStoreService;
+import io.swagger.v3.oas.annotations.Parameter;
+import org.springdoc.core.converters.models.PageableAsQueryParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -26,12 +27,14 @@ public class RewardItemStoreController {
   private RewardItemStoreService rewardItemStoreService;
 
   @GetMapping("")
+  @PageableAsQueryParam
   public ResponseEntity<PageResponse<RewardItemStoreResponse>> getRewardItemStores(
       @RequestParam(required = false) StoreType type,
-      @RequestParam(required = false) Status status,
+      @RequestParam(required = false) String name,
       @SortDefault(sort = "createdAt", direction = Sort.Direction.DESC)
+      @Parameter(hidden = true)
       Pageable pageable) {
-    return ResponseEntity.ok(rewardItemStoreService.getAllRewardItemStores(type, status, pageable));
+    return ResponseEntity.ok(rewardItemStoreService.getAllRewardItemStores(type, name, pageable));
   }
 
   @GetMapping("type/{type}")

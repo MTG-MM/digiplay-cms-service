@@ -4,7 +4,7 @@ import com.wiinvent.gami.domain.dto.RewardScheduleDto;
 import com.wiinvent.gami.domain.dto.RewardScheduleUpdateDto;
 import com.wiinvent.gami.domain.entities.reward.*;
 import com.wiinvent.gami.domain.entities.type.*;
-import com.wiinvent.gami.domain.entities.type.RewardType;
+import com.wiinvent.gami.domain.entities.type.RewardItemType;
 import com.wiinvent.gami.domain.response.RewardScheduleResponse;
 import com.wiinvent.gami.domain.entities.*;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
@@ -182,8 +182,8 @@ public class RewardScheduleService extends BaseService {
       log.debug("====>processUpdatePoolItem remove item: {}", numberItemRemoved);
     }
     String keyPoll = cacheKey.getRewardPoolItemIds(rewardSegment.getRewardSegmentId(), rewardItem.getId());
-    switch (rewardItem.getRewardType()) {
-
+    RewardType rewardType = rewardTypeStorage.findById(rewardItem.getRewardTypeId());
+    switch (rewardType.getType()) {
       case POINT -> {
       }
       case VOUCHER -> {
@@ -288,110 +288,110 @@ public class RewardScheduleService extends BaseService {
     rewardStateLogStorage.save(rewardStateLog);
   }
 
-  public Boolean initData() {
-    // Create and save RewardItemStores
-    for (long i = 1; i <= 5; i++) {
-      RewardItemStore rewardItemStore = new RewardItemStore();
-      rewardItemStore.setId(i);
-      rewardItemStore.setName("Store voucher " + i);
-      rewardItemStore.setStatus(Status.ACTIVE);
-      rewardItemStore.setType(StoreType.VOUCHER); // You can set the type according to your requirements
-      rewardItemStore.setCreatedAt(DateUtils.getNowMillisAtUtc());
-      rewardItemStore.setUpdatedAt(DateUtils.getNowMillisAtUtc());
-      rewardItemStoreStorage.save(rewardItemStore);
-    }
-
-    for (long i = 6; i <= 10; i++) {
-      RewardItemStore rewardItemStore = new RewardItemStore();
-      rewardItemStore.setId(i);
-      rewardItemStore.setName("Store product" + i);
-      rewardItemStore.setStatus(Status.ACTIVE);
-      rewardItemStore.setType(StoreType.PRODUCT); // You can set the type according to your requirements
-      rewardItemStore.setCreatedAt(DateUtils.getNowMillisAtUtc());
-      rewardItemStore.setUpdatedAt(DateUtils.getNowMillisAtUtc());
-      rewardItemStoreStorage.save(rewardItemStore);
-    }
-
-    for (long i = 1; i <= 10; i++) {
-      RewardItem rewardItem = new RewardItem();
-      rewardItem.setId(i);
-      rewardItem.setExternalId("externalId" + i); // externalId có thể được tạo ngẫu nhiên hoặc theo logic của bạn
-      rewardItem.setStatus(Status.ACTIVE);
-      rewardItem.setRewardType(i > 5 ? RewardType.PRODUCT : RewardType.VOUCHER); // Bạn có thể đặt loại tùy theo yêu cầu của mình
-      rewardItem.setCreatedAt(DateUtils.getNowMillisAtUtc());
-      rewardItem.setUpdatedAt(DateUtils.getNowMillisAtUtc());
-      rewardItemStorage.save(rewardItem);
-    }
-
-
-    // Create and save RewardItems (Vouchers)
-    for (long i = 1; i <= 100000; i++) {
-      VoucherDetail voucherDetail = new VoucherDetail();
-      voucherDetail.setStoreId(Helper.randomBetween(1,5)); // Assign store IDs cyclically
-      voucherDetail.setName("Voucher " + i);
-      voucherDetail.setCode("V" + i);
-      voucherDetail.setUserId(null);
-      voucherDetail.setGivenAt(null);
-      voucherDetail.setStatus(RewardItemStatus.NEW);
-      voucherDetail.setGivenToPool(0L);
-      voucherDetail.setRewardSegmentId(1L);
-      voucherDetail.setRewardItemId(i);
-      voucherDetail.setStartAt(0L);
-      voucherDetail.setExpireAt(DateUtils.getNowMillisAtUtc() + DateUtils.getNowMillisAtUtc());
-      voucherDetailStorage.save(voucherDetail);
-    }
-
-    // Create and save RewardItems (Products)
-    for (long i = 1; i <= 100000; i++) {
-      ProductDetail productDetail = new ProductDetail();
-      productDetail.setStoreId(Helper.randomBetween(6,10)); // Assign store IDs cyclically
-      productDetail.setName("Product " + i);
-      productDetail.setCode("P" + i);
-      productDetail.setUserId(null);
-      productDetail.setGivenAt(null);
-      productDetail.setStatus(RewardItemStatus.NEW);
-      productDetail.setGivenToPool(0L);
-      productDetail.setRewardSegmentId(1L);
-      productDetail.setRewardItemId(i);
-      productDetail.setStartAt(0L);
-      productDetail.setExpireAt(DateUtils.getNowMillisAtUtc() + DateUtils.getNowMillisAtUtc());
-      productDetailStorage.save(productDetail);
-    }
-
-    // Create and save RewardSegment
-    RewardSegment rewardSegment = new RewardSegment();
-    rewardSegment.setId(1L);
-    rewardSegment.setStatus(Status.ACTIVE);
-    rewardSegment.setName("Test segment");
-    rewardSegment.setCode("test");
-    rewardSegment.setImageUrl("imgUrl");
-    rewardSegmentStorage.save(rewardSegment);
-
-    // Create and save RewardSegmentDetails
-    for (long i = 1; i <= 100000; i++) {
-      RewardSegmentDetail rewardSegmentDetail = new RewardSegmentDetail();
-      rewardSegmentDetail.setRewardItemId(i);
-      rewardSegmentDetail.setRewardSegmentId(1L);
-      rewardSegmentDetail.setPriority(10L);
-      rewardSegmentDetail.setSegmentRate(10L);
-      rewardSegmentDetail.setPosition(i - 1);
-      rewardSegmentDetailStorage.save(rewardSegmentDetail);
-    }
-
-    // Create and save RewardSchedules
-    for (long i = 1; i <= 10; i++) {
-      RewardSchedule rewardSchedule = new RewardSchedule();
-      rewardSchedule.setId(i);
-      rewardSchedule.setRewardSegmentDetailId(i);
-      rewardSchedule.setQuantity(10L);
-      rewardSchedule.setStartAt(0L);
-      rewardSchedule.setEndAt(Long.MAX_VALUE);
-      rewardSchedule.setPeriodType(PeriodType.values()[(int) (i % PeriodType.values().length)]); // Cycle through PeriodType values
-      rewardScheduleStorage.save(rewardSchedule);
-    }
-
-    return true;
-  }
+//  public Boolean initData() {
+//    // Create and save RewardItemStores
+//    for (long i = 1; i <= 5; i++) {
+//      RewardItemStore rewardItemStore = new RewardItemStore();
+//      rewardItemStore.setId(i);
+//      rewardItemStore.setName("Store voucher " + i);
+//      rewardItemStore.setStatus(Status.ACTIVE);
+//      rewardItemStore.setType(StoreType.VOUCHER); // You can set the type according to your requirements
+//      rewardItemStore.setCreatedAt(DateUtils.getNowMillisAtUtc());
+//      rewardItemStore.setUpdatedAt(DateUtils.getNowMillisAtUtc());
+//      rewardItemStoreStorage.save(rewardItemStore);
+//    }
+//
+//    for (long i = 6; i <= 10; i++) {
+//      RewardItemStore rewardItemStore = new RewardItemStore();
+//      rewardItemStore.setId(i);
+//      rewardItemStore.setName("Store product" + i);
+//      rewardItemStore.setStatus(Status.ACTIVE);
+//      rewardItemStore.setType(StoreType.PRODUCT); // You can set the type according to your requirements
+//      rewardItemStore.setCreatedAt(DateUtils.getNowMillisAtUtc());
+//      rewardItemStore.setUpdatedAt(DateUtils.getNowMillisAtUtc());
+//      rewardItemStoreStorage.save(rewardItemStore);
+//    }
+//
+//    for (long i = 1; i <= 10; i++) {
+//      RewardItem rewardItem = new RewardItem();
+//      rewardItem.setId(i);
+//      rewardItem.setExternalId("externalId" + i); // externalId có thể được tạo ngẫu nhiên hoặc theo logic của bạn
+//      rewardItem.setStatus(Status.ACTIVE);
+//      rewardItem.setRewardItemType(i > 5 ? RewardItemType.PRODUCT : RewardItemType.VOUCHER); // Bạn có thể đặt loại tùy theo yêu cầu của mình
+//      rewardItem.setCreatedAt(DateUtils.getNowMillisAtUtc());
+//      rewardItem.setUpdatedAt(DateUtils.getNowMillisAtUtc());
+//      rewardItemStorage.save(rewardItem);
+//    }
+//
+//
+//    // Create and save RewardItems (Vouchers)
+//    for (long i = 1; i <= 100000; i++) {
+//      VoucherDetail voucherDetail = new VoucherDetail();
+//      voucherDetail.setStoreId(Helper.randomBetween(1,5)); // Assign store IDs cyclically
+//      voucherDetail.setName("Voucher " + i);
+//      voucherDetail.setCode("V" + i);
+//      voucherDetail.setUserId(null);
+//      voucherDetail.setGivenAt(null);
+//      voucherDetail.setStatus(RewardItemStatus.NEW);
+//      voucherDetail.setGivenToPool(0L);
+//      voucherDetail.setRewardSegmentId(1L);
+//      voucherDetail.setRewardItemId(i);
+//      voucherDetail.setStartAt(0L);
+//      voucherDetail.setExpireAt(DateUtils.getNowMillisAtUtc() + DateUtils.getNowMillisAtUtc());
+//      voucherDetailStorage.save(voucherDetail);
+//    }
+//
+//    // Create and save RewardItems (Products)
+//    for (long i = 1; i <= 100000; i++) {
+//      ProductDetail productDetail = new ProductDetail();
+//      productDetail.setStoreId(Helper.randomBetween(6,10)); // Assign store IDs cyclically
+//      productDetail.setName("Product " + i);
+//      productDetail.setCode("P" + i);
+//      productDetail.setUserId(null);
+//      productDetail.setGivenAt(null);
+//      productDetail.setStatus(RewardItemStatus.NEW);
+//      productDetail.setGivenToPool(0L);
+//      productDetail.setRewardSegmentId(1L);
+//      productDetail.setRewardItemId(i);
+//      productDetail.setStartAt(0L);
+//      productDetail.setExpireAt(DateUtils.getNowMillisAtUtc() + DateUtils.getNowMillisAtUtc());
+//      productDetailStorage.save(productDetail);
+//    }
+//
+//    // Create and save RewardSegment
+//    RewardSegment rewardSegment = new RewardSegment();
+//    rewardSegment.setId(1L);
+//    rewardSegment.setStatus(Status.ACTIVE);
+//    rewardSegment.setName("Test segment");
+//    rewardSegment.setCode("test");
+//    rewardSegment.setImageUrl("imgUrl");
+//    rewardSegmentStorage.save(rewardSegment);
+//
+//    // Create and save RewardSegmentDetails
+//    for (long i = 1; i <= 100000; i++) {
+//      RewardSegmentDetail rewardSegmentDetail = new RewardSegmentDetail();
+//      rewardSegmentDetail.setRewardItemId(i);
+//      rewardSegmentDetail.setRewardSegmentId(1L);
+//      rewardSegmentDetail.setPriority(10L);
+//      rewardSegmentDetail.setSegmentRate(10L);
+//      rewardSegmentDetail.setPosition(i - 1);
+//      rewardSegmentDetailStorage.save(rewardSegmentDetail);
+//    }
+//
+//    // Create and save RewardSchedules
+//    for (long i = 1; i <= 10; i++) {
+//      RewardSchedule rewardSchedule = new RewardSchedule();
+//      rewardSchedule.setId(i);
+//      rewardSchedule.setRewardSegmentDetailId(i);
+//      rewardSchedule.setQuantity(10L);
+//      rewardSchedule.setStartAt(0L);
+//      rewardSchedule.setEndAt(Long.MAX_VALUE);
+//      rewardSchedule.setPeriodType(PeriodType.values()[(int) (i % PeriodType.values().length)]); // Cycle through PeriodType values
+//      rewardScheduleStorage.save(rewardSchedule);
+//    }
+//
+//    return true;
+//  }
 
 
   public boolean pushToRDeque(String key) {

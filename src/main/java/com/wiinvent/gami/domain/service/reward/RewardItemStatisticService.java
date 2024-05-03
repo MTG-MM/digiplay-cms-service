@@ -1,12 +1,9 @@
 package com.wiinvent.gami.domain.service.reward;
 
-import com.wiinvent.gami.domain.entities.reward.RewardItem;
-import com.wiinvent.gami.domain.entities.reward.RewardItemStatistic;
-import com.wiinvent.gami.domain.entities.reward.RewardSegment;
-import com.wiinvent.gami.domain.entities.reward.RewardSegmentDetail;
+import com.wiinvent.gami.domain.entities.reward.*;
+import com.wiinvent.gami.domain.entities.type.RewardItemType;
 import com.wiinvent.gami.domain.service.BaseService;
 import com.wiinvent.gami.domain.utils.DateUtils;
-import com.wiinvent.gami.domain.entities.type.RewardType;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -50,21 +47,22 @@ public class RewardItemStatisticService extends BaseService {
     totalReceived = totalReceived == null ? 0 : totalReceived;
     int totalRemain = 0;
     RewardItem rewardItem = rewardItemMap.get(segmentDetail.getRewardItemId());
+    RewardType rewardType = rewardTypeStorage.findById(rewardItem.getRewardTypeId());
     if (rewardItem != null && rewardItem.getIsLimited()) {
-      switch (rewardItem.getRewardType()) {
-        case RewardType.POINT -> {
+      switch (rewardType.getType()) {
+        case RewardItemType.POINT -> {
         }
-        case RewardType.VOUCHER -> {
+        case RewardItemType.VOUCHER -> {
           Integer totalVoucherInPoll = voucherDetailStorage.getListInPollVoucherInGivenInPool(segmentDetail.getRewardSegmentId(), segmentDetail.getRewardItemId(), startDateAtVn, endDateAtVn);
           totalVoucherInPoll = totalVoucherInPoll == null ? 0 : totalVoucherInPoll;
           totalRemain = totalVoucherInPoll - totalReceived;
         }
-        case RewardType.PRODUCT -> {
+        case RewardItemType.PRODUCT -> {
           Integer totalProductInPoll = productDetailStorage.getListInPollProductInGivenInPool(segmentDetail.getRewardSegmentId(), segmentDetail.getRewardItemId(), startDateAtVn, endDateAtVn);
           totalProductInPoll = totalProductInPoll == null ? 0 : totalProductInPoll;
           totalRemain = totalProductInPoll - totalReceived;
         }
-        case RewardType.PHYSICAL -> {
+        case RewardItemType.PHYSICAL -> {
         }
       }
 

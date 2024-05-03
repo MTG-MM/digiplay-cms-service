@@ -14,6 +14,12 @@ public class RewardItemStoreResponse {
   @Schema(description = "Tên của cửa hàng")
   private String name;
 
+  private Long quantity;
+
+  private Long usedQuantity;
+
+  private Long totalCount;
+
   @Schema(description = "Loại cửa hàng")
   private StoreType type;
 

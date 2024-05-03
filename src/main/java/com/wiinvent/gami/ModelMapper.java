@@ -47,7 +47,7 @@ public interface ModelMapper {
 
   RewardItem toRewardItem(RewardItemDto rewardItemDto);
 
-  void mapRewardItemDtoToRewardItem(RewardItemDto rewardItemDto, @MappingTarget RewardItem rewardItem);
+  void mapRewardItemUpdateDtoToRewardItem(RewardItemUpdateDto rewardItemUpdateDto, @MappingTarget RewardItem rewardItem);
 
   RewardSegment toRewardSegment(RewardSegmentDto rewardSegmentDto);
 
@@ -102,6 +102,12 @@ public interface ModelMapper {
   }
 
   VoucherDetailResponse toVoucherDetailResponse(VoucherDetail voucherDetail);
+
+  default Page<ProductDetailResponse> toPageProductDetailResponse(Page<ProductDetail> productDetails){
+    return productDetails.map(this::toProductDetailResponse);
+  }
+
+  ProductDetailResponse toProductDetailResponse(ProductDetail productDetail);
 
   RewardItemStoreResponse toRewardItemStoreResponse(RewardItemStore rewardItemStore);
 

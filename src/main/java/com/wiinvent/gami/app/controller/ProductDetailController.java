@@ -1,37 +1,37 @@
 package com.wiinvent.gami.app.controller;
 
-import com.wiinvent.gami.domain.response.VoucherDetailResponse;
+import com.wiinvent.gami.domain.response.ProductDetailResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
-import com.wiinvent.gami.domain.service.VoucherDetailService;
+import com.wiinvent.gami.domain.service.ProductDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping("v1/vt/cms/voucher-details")
+@RequestMapping("v1/vt/cms/product-detail")
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
-public class VoucherDetailController {
-
+public class ProductDetailController {
   @Autowired
-  private VoucherDetailService voucherDetailService;
-
-  @GetMapping("{storeId}")
-  public ResponseEntity<PageResponse<VoucherDetailResponse>> getVoucherDetail(
-      @PathVariable Long storeId,
+  private ProductDetailService productDetailService;
+  @GetMapping("")
+  public ResponseEntity<PageResponse<ProductDetailResponse>> getProductDetail(
+      @RequestParam(required = false) Long storeId,
       @RequestParam(required = false) String name,
       @RequestParam(required = false) String code,
+      @PageableDefault
       Pageable pageable) {
-    return ResponseEntity.ok(voucherDetailService.getAllVoucherDetails(storeId, name, code, pageable));
+    return ResponseEntity.ok(productDetailService.getAllProductDetails(storeId, name, code, pageable));
   }
 
   @PostMapping("{storeId}/import")
   public ResponseEntity<Boolean> importVoucher(
       @RequestParam("file") MultipartFile file,
       @PathVariable Long storeId) throws Exception {
-    voucherDetailService.importVoucher(file, storeId);
+    productDetailService.importProduct(file, storeId);
     return ResponseEntity.ok(true);
   }
 }

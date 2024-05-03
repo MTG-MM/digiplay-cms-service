@@ -1,6 +1,6 @@
 package com.wiinvent.gami.domain.entities.reward;
 
-import com.wiinvent.gami.domain.entities.type.RewardType;
+import com.wiinvent.gami.domain.entities.type.RewardItemType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.utils.DateUtils;
 import jakarta.persistence.*;
@@ -31,9 +31,9 @@ public class RewardItem {
   @Column(name = "image_url")
   private String imageUrl;
 
-  @Column(name = "reward_type")
-  @Enumerated(EnumType.STRING)
-  private RewardType rewardType;
+//  @Column(name = "reward_type")
+//  @Enumerated(EnumType.STRING)
+//  private RewardItemType rewardItemType;
 
   @Column(name = "reward_type_id")
   private Long rewardTypeId;
@@ -51,8 +51,8 @@ public class RewardItem {
   @Column(name = "total_quantity")
   private Long totalQuantity;
 
-  @Column(name = "used_quantity")
-  private Long usedQuantity;
+//  @Column(name = "used_quantity")
+//  private Long usedQuantity;
 
   @Column(name = "external_id")
   private String externalId;
@@ -62,4 +62,14 @@ public class RewardItem {
 
   @Column(name = "updated_at")
   private Long updatedAt = DateUtils.getNowMillisAtUtc();
+
+  public void addQuantity(long amount) {
+    this.quantity = this.getQuantity() + amount;
+    this.totalQuantity = this.getTotalQuantity() + amount;
+  }
+
+  public void minusQuantity(long amount) {
+    this.quantity = this.getQuantity() - amount;
+    this.totalQuantity = this.getTotalQuantity() - amount;
+  }
 }

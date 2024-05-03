@@ -2,7 +2,7 @@ package com.wiinvent.gami.domain.response;
 
 import com.wiinvent.gami.domain.pojo.RewardItemInfo;
 import com.wiinvent.gami.domain.entities.type.ResourceType;
-import com.wiinvent.gami.domain.entities.type.RewardType;
+import com.wiinvent.gami.domain.entities.type.RewardItemType;
 import lombok.Data;
 
 import java.util.UUID;
@@ -14,7 +14,7 @@ public class RewardItemHistoryResponse {
 
   private String name;
 
-  private RewardType rewardType;
+  private RewardItemType rewardItemType;
 
   private Long rewardItemId; // id reward item
 

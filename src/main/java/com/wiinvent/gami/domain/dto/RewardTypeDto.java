@@ -1,5 +1,6 @@
 package com.wiinvent.gami.domain.dto;
 
+import com.wiinvent.gami.domain.entities.type.RewardItemType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
@@ -17,7 +18,7 @@ public class RewardTypeDto {
 
   @NotBlank(message = "Loại không được để trống")
   @Schema(description = "Loại", example = "Type A")
-  protected String type;
+  protected RewardItemType type;
 
   @Schema(description = "Trạng thái")
   protected Status status;

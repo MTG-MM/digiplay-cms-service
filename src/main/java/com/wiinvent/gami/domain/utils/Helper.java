@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -98,10 +99,6 @@ public class Helper {
   public static String stringFormatDay(int value) {
     if (value < 10) return "0" + value;
     return value + "";
-  }
-
-  public static LocalDateTime getNowDateTimeAtVn() {
-    return java.time.LocalDateTime.now(ZoneId.of(ZONE_DEFAULT));
   }
 
   public static LocalDateTime convertFromVnToUtc(LocalDateTime dateTimeAtVn) {

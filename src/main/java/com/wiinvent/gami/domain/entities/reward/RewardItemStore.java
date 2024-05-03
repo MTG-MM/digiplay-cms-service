@@ -28,6 +28,15 @@ public class RewardItemStore {
   @Enumerated(EnumType.STRING)
   private Status status;
 
+  @Column(name = "used_quantity")
+  private Long usedQuantity;
+
+  @Column(name = "remaining_quantity")
+  private Long quantity;
+
+  @Column(name = "total_quantity")
+  private Long totalQuantity;
+
   @Column(name = "created_at")
   private Long createdAt = DateUtils.getNowMillisAtUtc();
 

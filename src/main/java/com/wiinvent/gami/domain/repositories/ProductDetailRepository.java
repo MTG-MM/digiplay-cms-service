@@ -4,6 +4,7 @@ import com.wiinvent.gami.domain.entities.ProductDetail;
 import com.wiinvent.gami.domain.entities.type.RewardItemStatus;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface ProductDetailRepository extends JpaRepository<ProductDetail, UUID> {
+public interface ProductDetailRepository extends JpaRepository<ProductDetail, UUID>, JpaSpecificationExecutor<ProductDetail> {
 
 
   @Query("SELECT vd FROM ProductDetail vd WHERE vd.storeId = :productStoreId and vd.status = :productStatus ORDER BY vd.expireAt ASC")
@@ -42,4 +43,8 @@ public interface ProductDetailRepository extends JpaRepository<ProductDetail, UU
       @Param("startDateAtVn") long startDateAtVn,
       @Param("endDateAtVn") long endDateAtVn
   );
+
+  Long countProductDetailByStoreId(Long id);
+
+  Long countProductDetailByStoreIdAndStatus(Long id, RewardItemStatus status);
 }

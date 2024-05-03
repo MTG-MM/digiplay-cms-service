@@ -6,6 +6,7 @@ import com.wiinvent.gami.domain.response.GameTournamentEventResponse;
 import com.wiinvent.gami.domain.response.GameTournamentUserResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.BaseService;
+import com.wiinvent.gami.domain.utils.DateUtils;
 import com.wiinvent.gami.domain.utils.Helper;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
@@ -19,7 +20,7 @@ import java.util.List;
 @Service
 public class GameTournamentUserService extends BaseService {
   public List<GameTournamentEventResponse> getGameTournamentEvents(Integer gameTournamentId) {
-    LocalDateTime localDateTimeNow = Helper.getNowDateTimeAtVn();
+    LocalDateTime localDateTimeNow = DateUtils.getNowDateTimeAtVn();
     List<GameTournamentEvent> gameTournamentEvents = gameTournamentEventStorage.getGameTournamentEvents(gameTournamentId, localDateTimeNow);
     return modelMapper.toGameTournamentEventResponse(gameTournamentEvents);
   }

@@ -5,6 +5,7 @@ import com.wiinvent.gami.domain.entities.type.RewardItemStatus;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface VoucherDetailRepository extends JpaRepository<VoucherDetail, UUID> {
+public interface VoucherDetailRepository extends JpaRepository<VoucherDetail, UUID>, JpaSpecificationExecutor<VoucherDetail> {
 
 
   @Query("SELECT vd FROM VoucherDetail vd WHERE vd.storeId = :voucherStoreId and vd.status = :voucherStatus ORDER BY vd.expireAt ASC")
@@ -43,4 +44,9 @@ public interface VoucherDetailRepository extends JpaRepository<VoucherDetail, UU
       @Param("rewardSegmentId") Long rewardSegmentId,
       @Param("rewardItemId") Long rewardItemId,
       @Param("startDateAtVn") long startDateAtVn,
-      @Param("endDateAtVn") long endDateAtVn);}
+      @Param("endDateAtVn") long endDateAtVn);
+
+  Long countVoucherDetailByStoreId(Long id);
+
+  Long countVoucherDetailByStoreIdAndStatus(Long id, RewardItemStatus status);
+}

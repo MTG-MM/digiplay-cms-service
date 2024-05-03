@@ -1,5 +1,6 @@
 package com.wiinvent.gami.domain.response;
 
+import com.wiinvent.gami.domain.entities.type.RewardItemType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -17,7 +18,7 @@ public class RewardTypeResponse {
   private String description;
 
   @Schema(description = "Loại của loại phần thưởng")
-  private String type;
+  private RewardItemType type;
 
   @Schema(description = "Trạng thái của loại phần thưởng")
   private Status status;

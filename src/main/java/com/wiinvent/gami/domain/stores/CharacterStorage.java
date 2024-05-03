@@ -36,7 +36,7 @@ public class CharacterStorage extends BaseStorage{
       List<Predicate> conditionList = new ArrayList<>();
       conditionList.add(criteriaBuilder.notEqual(root.get("status"), Status.DELETE));
       if (name != null){
-        conditionList.add(criteriaBuilder.like(root.get("name"), "%" + name + "%name"));
+        conditionList.add(criteriaBuilder.like(root.get("name"), "%" + name + "%"));
       }
       if (categoryType != null){
         conditionList.add(criteriaBuilder.equal(root.get("categoryType"), categoryType));

@@ -26,10 +26,10 @@ public class HealthCheckController {
     return ResponseEntity.ok("Kết nối thành công");
   }
 
-  @PostMapping("init-data-spin-test")
-  public ResponseEntity<?> initDataSpinTest() {
-    return ResponseEntity.ok(rewardScheduleService.initData());
-  }
+//  @PostMapping("init-data-spin-test")
+//  public ResponseEntity<?> initDataSpinTest() {
+//    return ResponseEntity.ok(rewardScheduleService.initData());
+//  }
 
   @PostMapping("init-voucher-test")
   public ResponseEntity<?> initVoucherTest() {

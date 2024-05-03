@@ -4,17 +4,28 @@ import com.wiinvent.gami.domain.entities.reward.RewardItemStore;
 import com.wiinvent.gami.domain.entities.reward.RewardSchedule;
 import com.wiinvent.gami.domain.entities.reward.RewardSegmentDetail;
 import com.wiinvent.gami.domain.entities.user.User;
+import com.wiinvent.gami.domain.exception.BadRequestException;
+import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
+import com.wiinvent.gami.domain.pojo.VoucherExcelData;
 import com.wiinvent.gami.domain.response.VoucherDetailResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.entities.type.RewardItemStatus;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.entities.type.StoreType;
+import com.wiinvent.gami.domain.service.reward.RewardItemStoreService;
 import com.wiinvent.gami.domain.utils.DateUtils;
 import com.wiinvent.gami.domain.entities.*;
+import com.wiinvent.gami.domain.utils.ExcelUtils;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +34,11 @@ import java.util.UUID;
 @Service
 @Log4j2
 public class VoucherDetailService extends BaseService {
+
+  @Autowired
+  @Lazy
+  private RewardItemStoreService rewardItemStoreService;
+
   public VoucherDetail setVoucherDetailForUser(User user, UUID detailId) {
     Long now = DateUtils.getNowMillisAtUtc();
     VoucherDetail voucherDetail = voucherDetailStorage.findById(detailId);
@@ -57,7 +73,7 @@ public class VoucherDetailService extends BaseService {
     List<VoucherDetail> voucherDetails = null;
     try {
       if (newPeriod && Boolean.FALSE.equals(rewardSchedule.getIsAccumulative())) {
-        voucherDetailStorage.updateItemStatus(rewardSegmentDetail.getRewardSegmentId(), rewardSegmentDetail.getRewardItemId(),rewardSchedule.getQuantity() );
+        voucherDetailStorage.updateItemStatus(rewardSegmentDetail.getRewardSegmentId(), rewardSegmentDetail.getRewardItemId(), rewardSchedule.getQuantity());
       }
       voucherDetails = voucherDetailStorage.getListVoucherDetailByStatus(voucherStoreId, RewardItemStatus.NEW, limit);
 
@@ -95,8 +111,35 @@ public class VoucherDetailService extends BaseService {
     rewardItemStoreStorage.save(rewardItemStore);
   }
 
-  public PageResponse<VoucherDetailResponse> getAllVoucherDetails(Long storeId, Pageable pageable) {
-    Page<VoucherDetail> voucherDetails = voucherDetailStorage.findByStoreId(storeId, pageable);
+  public PageResponse<VoucherDetailResponse> getAllVoucherDetails(Long storeId, String name, String code, Pageable pageable) {
+    Page<VoucherDetail> voucherDetails = voucherDetailStorage.findAllVoucherDetails(storeId, name, code, pageable);
     return PageResponse.createFrom(modelMapper.toPageVoucherDetailResponse(voucherDetails));
+  }
+
+  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+  public void importVoucher(MultipartFile file, Long storeId) throws Exception {
+    RewardItemStore rewardItemStore = rewardItemStoreStorage.findById(storeId);
+    if (rewardItemStore == null) {
+      throw new ResourceNotFoundException("Cannot found Voucher with id: " + storeId);
+    }
+
+    List<VoucherExcelData> voucherExcelData = ExcelUtils.readExcel(file, VoucherExcelData.getHeader(), VoucherExcelData.class);
+    List<VoucherDetail> voucherDetails = new ArrayList<>();
+    for (VoucherExcelData excelData : voucherExcelData) {
+      VoucherDetail voucherDetail = toVoucherDetail(excelData, storeId);
+      voucherDetails.add(voucherDetail);
+    }
+    voucherDetailStorage.saveAll(voucherDetails);
+    rewardItemStoreService.updateVoucherAmount(storeId);
+  }
+
+  public VoucherDetail toVoucherDetail(VoucherExcelData voucherExcelData, Long storeId) {
+    VoucherDetail voucherDetail = new VoucherDetail();
+    voucherDetail.setCode(voucherExcelData.getCode());
+    voucherDetail.setName(voucherExcelData.getName());
+    voucherDetail.setStoreId(storeId);
+    voucherDetail.setStartAt(DateUtils.convertStringToLongUTC(voucherExcelData.getStartAt()));
+    voucherDetail.setExpireAt(DateUtils.convertStringToLongUTC(voucherExcelData.getExpireAt()));
+    return voucherDetail;
   }
 }

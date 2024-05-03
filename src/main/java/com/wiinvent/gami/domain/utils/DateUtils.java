@@ -1,6 +1,9 @@
 package com.wiinvent.gami.domain.utils;
 
 import java.time.*;
+import java.time.format.DateTimeFormatter;
+
+import static com.wiinvent.gami.domain.utils.Helper.ZONE_DEFAULT;
 
 public class DateUtils {
 
@@ -64,5 +67,17 @@ public class DateUtils {
 
   public static void main(String[] args) {
     System.out.println(timeToLongAtVn(LocalDateTime.now()));
+  }
+
+  public static Long convertStringToLongUTC(String time){
+    LocalDateTime localDateTime = convertFromStringToLocalDateTime(time);
+    return localDateTime.atZone(ZoneId.of(ZONE_VN))
+        .withZoneSameInstant(ZoneId.of(ZONE_UTC)).toInstant().toEpochMilli();
+  }
+
+  public static LocalDateTime convertFromStringToLocalDateTime(String time) {
+    LocalDateTime localDateTime =
+        LocalDateTime.parse(time, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+    return localDateTime;
   }
 }

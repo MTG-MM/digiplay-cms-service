@@ -27,7 +27,7 @@ import org.springframework.context.annotation.Configuration;
         description = "api mô tả"
     ),
     servers = {
-        @Server(url = "https://api.luckypresent.com.vn", description = "Production Server"),
+        @Server(url = "https://dev-wiportal-api.wiinvent.tv", description = "Production Server"),
         @Server(url = "http://localhost:8080", description = "Local Server")
     }
 

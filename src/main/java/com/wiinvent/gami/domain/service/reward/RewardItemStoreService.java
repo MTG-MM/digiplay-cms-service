@@ -24,17 +24,23 @@ import java.util.Objects;
 @Service
 @Log4j2
 public class RewardItemStoreService extends BaseService {
+
   public RewardItemStoreResponse getRewardItemStoreDetail(Long id) {
     RewardItemStore rewardItemStore = rewardItemStoreStorage.findById(id);
     if (rewardItemStore == null) {
       throw new ResourceNotFoundException("item not found");
     }
-    return modelMapper.toRewardItemStoreResponse(rewardItemStore);
+    RewardItemStoreResponse rewardItemStoreResponse = modelMapper.toRewardItemStoreResponse(rewardItemStore);
+    countItemStores(rewardItemStoreResponse);
+    return rewardItemStoreResponse;
   }
 
   public PageResponse<RewardItemStoreResponse> getAllRewardItemStores(StoreType type, String name, Pageable pageable) {
     Page<RewardItemStore> rewardItemStores = rewardItemStoreStorage.findAll(type, name, pageable);
     Page<RewardItemStoreResponse> responses = modelMapper.toPageRewardItemStoreResponse(rewardItemStores);
+    for (RewardItemStoreResponse rewardItemStoreResponse : responses.getContent()) {
+      countItemStores(rewardItemStoreResponse);
+    }
     return PageResponse.createFrom(responses);
   }
 
@@ -64,26 +70,46 @@ public class RewardItemStoreService extends BaseService {
     return modelMapper.toListRewardItemStoreResponses(rewardItemStoreStorage.findByType(type));
   }
 
-  @Transactional(propagation = Propagation.MANDATORY)
-  public void updateVoucherAmount(Long id) {
-    RewardItemStore rewardItemStore = rewardItemStoreStorage.findById(id);
-    if (rewardItemStore == null) {
-      throw new ResourceNotFoundException("Not found with Voucher with id " + id);
-    }
-    Long totalQuantity;
+  public void countItemStores(RewardItemStoreResponse rewardItemStoreResponse) {
     Long quantity;
-    if (Objects.equals(rewardItemStore.getType(), StoreType.VOUCHER)) {
-      totalQuantity = voucherDetailStorage.countVoucherDetailByStoreId(id);
-      quantity = voucherDetailStorage.countVoucherDetailByStoreIdAndStatus(id, RewardItemStatus.NEW);
-    } else if (Objects.equals(rewardItemStore.getType(), StoreType.PRODUCT)) {
-      totalQuantity = productDetailStorage.countProductDetailByStoreId(id);
-      quantity = productDetailStorage.countProductDetailByStoreIdAndStatus(id, RewardItemStatus.NEW);
+    Long totalQuantity;
+    Long usedQuantity;
+    if (Objects.equals(rewardItemStoreResponse.getType(), StoreType.VOUCHER)) {
+      totalQuantity = voucherDetailStorage.countVoucherDetailByStoreId(rewardItemStoreResponse.getId());
+      quantity = voucherDetailStorage.countVoucherDetailByStoreIdAndStatus(rewardItemStoreResponse.getId(), RewardItemStatus.NEW);
+      usedQuantity = voucherDetailStorage.countVoucherDetailByStoreIdAndStatus(rewardItemStoreResponse.getId(), RewardItemStatus.RECEIVE);
+    } else if (Objects.equals(rewardItemStoreResponse.getType(), StoreType.PRODUCT)) {
+      totalQuantity = productDetailStorage.countProductDetailByStoreId(rewardItemStoreResponse.getId());
+      quantity = productDetailStorage.countProductDetailByStoreIdAndStatus(rewardItemStoreResponse.getId(), RewardItemStatus.NEW);
+      usedQuantity = productDetailStorage.countProductDetailByStoreIdAndStatus(rewardItemStoreResponse.getId(), RewardItemStatus.RECEIVE);
     } else {
       return;
     }
-    rewardItemStore.setTotalQuantity(totalQuantity);
-    rewardItemStore.setQuantity(quantity);
-    rewardItemStoreStorage.save(rewardItemStore);
+    rewardItemStoreResponse.setQuantity(quantity);
+    rewardItemStoreResponse.setTotalQuantity(totalQuantity);
+    rewardItemStoreResponse.setUsedQuantity(usedQuantity);
   }
+
+//  @Transactional(propagation = Propagation.MANDATORY)
+//  public void updateVoucherAmount(Long id) {
+//    RewardItemStore rewardItemStore = rewardItemStoreStorage.findById(id);
+//    if (rewardItemStore == null) {
+//      throw new ResourceNotFoundException("Not found with Voucher with id " + id);
+//    }
+//    Long totalQuantity;
+//    Long quantity;
+//    if (Objects.equals(rewardItemStore.getType(), StoreType.VOUCHER)) {
+//      totalQuantity = voucherDetailStorage.countVoucherDetailByStoreId(id);
+//      quantity = voucherDetailStorage.countVoucherDetailByStoreIdAndStatus(id, RewardItemStatus.NEW);
+//    } else if (Objects.equals(rewardItemStore.getType(), StoreType.PRODUCT)) {
+//      totalQuantity = productDetailStorage.countProductDetailByStoreId(id);
+//      quantity = productDetailStorage.countProductDetailByStoreIdAndStatus(id, RewardItemStatus.NEW);
+//    } else {
+//      return;
+//    }
+//    rewardItemStore.setTotalQuantity(totalQuantity);
+//    rewardItemStore.setQuantity(quantity);
+//    rewardItemStoreStorage.save(rewardItemStore);
+//  }
 
 }

@@ -1,6 +1,7 @@
 package com.wiinvent.gami.domain.repositories.reward;
 
 import com.wiinvent.gami.domain.entities.reward.RewardItem;
+import com.wiinvent.gami.domain.entities.type.Status;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
@@ -12,4 +13,6 @@ public interface RewardItemRepository extends JpaRepository<RewardItem, Long>, J
   List<RewardItem> findAllByIdIn(List<Long> ids);
 
   List<RewardItem> findByIdIn(List<Long> ids);
+
+  List<RewardItem> findRewardItemByStatus(Status status);
 }

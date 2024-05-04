@@ -51,8 +51,8 @@ public class RewardItem {
   @Column(name = "total_quantity")
   private Long totalQuantity;
 
-//  @Column(name = "used_quantity")
-//  private Long usedQuantity;
+  @Column(name = "used_quantity")
+  private Long usedQuantity;
 
   @Column(name = "external_id")
   private String externalId;

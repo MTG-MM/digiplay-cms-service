@@ -36,10 +36,6 @@ import java.util.UUID;
 @Log4j2
 public class ProductDetailService extends BaseService {
 
-  @Autowired
-  @Lazy
-  private RewardItemStoreService rewardItemStoreService;
-
   public ProductDetail setProductDetailForUser(User user, UUID detailId) {
     Long now = DateUtils.getNowMillisAtUtc();
     ProductDetail productDetail = productDetailStorage.findById(detailId);
@@ -129,7 +125,6 @@ public class ProductDetailService extends BaseService {
      productDetails.add(productDetail);
    }
    productDetailStorage.saveAll(productDetails);
-   rewardItemStoreService.updateVoucherAmount(storeId);
    return true;
   }
 

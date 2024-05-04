@@ -1,31 +1,25 @@
-package com.wiinvent.gami.domain.stores.transaction;
+package com.wiinvent.gami.domain.stores.user;
 
-import com.wiinvent.gami.domain.entities.transaction.AchievementUser;
 import com.wiinvent.gami.domain.entities.user.UserCollection;
-import com.wiinvent.gami.domain.response.type.CursorType;
 import com.wiinvent.gami.domain.stores.BaseStorage;
-import jakarta.persistence.TypedQuery;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
-import jakarta.persistence.criteria.Root;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 @Component
-public class AchievementUserStorage extends BaseStorage {
-  public Page<AchievementUser> findAll(UUID userId, Long startDate, Long endDate, Pageable pageable) {
-    return achievementUserRepository.findAll(achievementUserSpecification(userId, startDate, endDate), pageable);
+public class UserCollectionStorage extends BaseStorage {
+
+  public Page<UserCollection> findAll(UUID userId, Long startDate, Long endDate, Pageable pageable) {
+    return userCollectionRepository.findAll(userCollectionSpecification(userId, startDate, endDate), pageable);
   }
 
-  public Specification<AchievementUser> achievementUserSpecification(UUID userId, Long startDate, Long endDate) {
+  public Specification<UserCollection> userCollectionSpecification(UUID userId, Long startDate, Long endDate) {
     return (root, query, criteriaBuilder) -> {
       List<Predicate> conditionLists = new ArrayList<>();
       conditionLists.add(criteriaBuilder.equal(root.get("userId"), userId));

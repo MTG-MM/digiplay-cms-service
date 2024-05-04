@@ -16,10 +16,7 @@ import com.wiinvent.gami.domain.entities.game.*;
 import com.wiinvent.gami.domain.entities.payment.PaymentMethod;
 import com.wiinvent.gami.domain.entities.payment.PackageHistory;
 import com.wiinvent.gami.domain.entities.reward.*;
-import com.wiinvent.gami.domain.entities.user.Feature;
-import com.wiinvent.gami.domain.entities.user.GameTournamentUser;
-import com.wiinvent.gami.domain.entities.user.User;
-import com.wiinvent.gami.domain.entities.user.UserSegment;
+import com.wiinvent.gami.domain.entities.user.*;
 import com.wiinvent.gami.domain.response.*;
 import com.wiinvent.gami.domain.entities.*;
 import com.wiinvent.gami.domain.pojo.TokenInfo;
@@ -44,6 +41,8 @@ public interface ModelMapper {
   Account toAccountEntity(TokenInfo tokenInfo);
 
   RewardItemResponse toRewardItemResponse(RewardItem rw);
+
+  List<RewardItemResponse> toRewardItemResponseList(List<RewardItem> rw);
 
   RewardItem toRewardItem(RewardItemDto rewardItemDto);
 
@@ -278,4 +277,19 @@ public interface ModelMapper {
   default Page<ChallengeDetailResponse> toPageChallengeDetailResponse(Page<ChallengeDetail> challengeDetails){
     return challengeDetails.map(this::toChallengeDetailResponse);
   }
+
+  Collection toCollection(CollectionCreateDto collectionCreateDto);
+
+  void mapCollectionUpdateDtoToCollection(CollectionUpdateDto dto,@MappingTarget Collection collection);
+  CollectionResponse toCollectionResponse(Collection collection);
+
+  default Page<CollectionResponse> toPageCollectionResponse(Page<Collection> collections){
+    return collections.map(this::toCollectionResponse);
+  }
+
+  List<CollectionResponse> toListCollectionResponse(List<Collection> collections);
+  List<TransactionResponse> toCollectionTransactionResponse(List<CollectionTransaction> collectionTransactions);
+  List<TransactionResponse> toTicketHistoryResponse(List<TicketHistory> ticketHistories);
+
+  UserCollectionResponse toUserCollectionResponse(UserCollection userCollection);
 }

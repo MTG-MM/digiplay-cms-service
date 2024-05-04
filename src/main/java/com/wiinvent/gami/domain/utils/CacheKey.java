@@ -125,4 +125,11 @@ public class CacheKey {
   public String genChallengeDetailById(Integer challengeDetailId){
     return redisPrefixKeyVtGame + ":challenge:id:" + challengeDetailId;
   }
+
+  public String genAllCollections() {
+    return redisPrefixKeyVtGame + ":collection:all";
+  }
+  public String genCollectionUserByUserId(UUID userId) {
+    return redisPrefixKeyVtGame + ":collection:user:id:" + userId;
+  }
 }

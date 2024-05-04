@@ -70,4 +70,8 @@ public abstract class BaseService {
   @Autowired protected PremiumStateStorage premiumStateStorage;
   @Autowired protected ChallengeStorage challengeStorage;
   @Autowired protected ChallengeDetailStorage challengeDetailStorage;
+  @Autowired protected CollectionStorage collectionStorage;
+  @Autowired protected CollectionTransactionStorage collectionTransactionStorage;
+  @Autowired protected TicketHistoryStorage ticketHistoryStorage;
+  @Autowired protected UserCollectionStorage userCollectionStorage;
 }

@@ -82,14 +82,6 @@ public class RewardItemService extends BaseService {
     if (rewardType == null) {
       throw new ResourceNotFoundException("reward type not found");
     }
-    if (rewardType.getType().equals(RewardItemType.PRODUCT) || rewardType.getType().equals(RewardItemType.VOUCHER)) {
-      RewardItemStore rewardItemStore = rewardItemStoreStorage.findById(rewardItem.getRewardTypeId());
-      if (rewardItemStore == null) {
-        throw new ResourceNotFoundException("Store not found");
-      }
-      rewardItem.setTotalQuantity(rewardItemStore.getTotalQuantity());
-      rewardItem.setQuantity(rewardItemStore.getQuantity());
-    }
     rewardItem.setTotalQuantity(rewardItemDto.getQuantity());
     rewardItem.setRewardTypeId(rewardType.getId());
     rewardItemStorage.save(rewardItem);
@@ -112,6 +104,11 @@ public class RewardItemService extends BaseService {
       throw new ResourceNotFoundException("item not found");
     }
     return modelMapper.toRewardItemResponse(rewardItem);
+  }
+
+  public List<RewardItemResponse> getRwItemActive() {
+    List<RewardItem> rewardItems = rewardItemStorage.findRewardItemByStatus();
+    return modelMapper.toRewardItemResponseList(rewardItems);
   }
 
   @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)

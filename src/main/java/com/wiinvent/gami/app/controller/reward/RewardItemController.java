@@ -17,6 +17,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("v1/vt/cms/reward-items")
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
@@ -56,8 +58,13 @@ public class RewardItemController {
     return ResponseEntity.ok(rewardItemService.updateRewardItems(id, rewardItemDto));
   }
 
+  @GetMapping("active")
+  public ResponseEntity<List<RewardItemResponse>> getActiveRewardItems() {
+    return ResponseEntity.ok(rewardItemService.getRwItemActive());
+  }
+
   @PutMapping("updateQuantity")
-  private ResponseEntity<Boolean> updateQuantity(@RequestBody @Valid ProcessQuantityDto dto){
+  public ResponseEntity<Boolean> updateQuantity(@RequestBody @Valid ProcessQuantityDto dto){
     return ResponseEntity.ok(rewardItemService.updateQuantity(dto));
   }
 }

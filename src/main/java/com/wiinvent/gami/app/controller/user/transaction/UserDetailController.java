@@ -2,11 +2,16 @@ package com.wiinvent.gami.app.controller.user.transaction;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.wiinvent.gami.domain.response.*;
+import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.PackageHistoryService;
 import com.wiinvent.gami.domain.service.reward.RewardItemHistoryService;
+import com.wiinvent.gami.domain.service.user.UserCollectionService;
 import com.wiinvent.gami.domain.service.user.transaction.*;
 import com.wiinvent.gami.domain.response.base.PageCursorResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.SortDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +34,9 @@ public class UserDetailController {
   @Autowired RewardItemHistoryService rewardItemHistoryService;
   @Autowired CharacterUserTransactionService characterUserTransactionService;
   @Autowired AchievementUserService achievementUserService;
+  @Autowired TicketHistoryService ticketHistoryService;
+  @Autowired CollectionTransactionService collectionTransactionService;
+  @Autowired UserCollectionService userCollectionService;
 
   @GetMapping("sub")
   public ResponseEntity<PageCursorResponse<PackageHistoryResponse>> getPackageHistory (
@@ -122,7 +130,17 @@ public class UserDetailController {
   }
 
   @GetMapping("user-achievement")
-  public ResponseEntity<PageCursorResponse<AchievementUserResponse>> getUserAchievement(
+  public ResponseEntity<PageResponse<AchievementUserResponse>> getAchievementUsers(
+      @RequestParam UUID userId,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate gte,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte,
+      @SortDefault(sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable)
+  {
+    return ResponseEntity.ok(PageResponse.createFrom(achievementUserService.getAchievementUsers(userId, gte ,lte, pageable)));
+  }
+
+  @GetMapping("ticket-history")
+  public ResponseEntity<PageCursorResponse<TransactionResponse>> getTicketHistory(
       @RequestParam UUID userId,
       @RequestParam(required = false) Long next,
       @RequestParam(required = false) Long pre,
@@ -131,6 +149,30 @@ public class UserDetailController {
       @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate gte,
       @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte
   ) {
-    return ResponseEntity.ok(achievementUserService.getAchievementUser(userId, transId, gte, lte, next, pre, limit));
+    return ResponseEntity.ok(ticketHistoryService.getTicketHistory(userId, transId, gte, lte, next, pre, limit));
+  }
+
+
+  @GetMapping("transaction/collection")
+  public ResponseEntity<PageCursorResponse<TransactionResponse>> getCollectionTransaction(
+      @RequestParam UUID userId,
+      @RequestParam(required = false) Long next,
+      @RequestParam(required = false) Long pre,
+      @RequestParam(required = false) UUID transId,
+      @RequestParam(required = false, defaultValue = "20") int limit,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate gte,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte
+  ) {
+    return ResponseEntity.ok(collectionTransactionService.getCollectionTransaction(userId, transId, gte, lte, next, pre, limit));
+  }
+
+  @GetMapping("user-collection")
+  public ResponseEntity<PageResponse<UserCollectionResponse>> getUserCollection(
+      @RequestParam UUID userId,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate gte,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte,
+      @SortDefault(sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable)
+  {
+    return ResponseEntity.ok(PageResponse.createFrom(userCollectionService.getUserCollections(userId, gte, lte, pageable)));
   }
 }

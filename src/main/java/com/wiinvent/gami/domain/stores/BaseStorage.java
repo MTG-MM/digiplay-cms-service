@@ -71,4 +71,9 @@ public abstract class BaseStorage {
   @Autowired protected PremiumStateRepository premiumStateRepository;
   @Autowired protected ChallengeRepository challengeRepository;
   @Autowired protected ChallengeDetailRepository challengeDetailRepository;
+  @Autowired protected CollectionRepository collectionRepository;
+  @Autowired protected CollectionTransactionRepository collectionTransactionRepository;
+  @Autowired protected TicketHistoryRepository ticketHistoryRepository;
+  @Autowired protected UserCollectionRepository userCollectionRepository;
+  @Autowired protected AchievementUserRepository achievementUserRepository;
 }

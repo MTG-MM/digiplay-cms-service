@@ -2,9 +2,7 @@ package com.wiinvent.gami.domain.service.user.transaction;
 
 import com.wiinvent.gami.domain.entities.Character;
 import com.wiinvent.gami.domain.entities.transaction.CharacterUserTransaction;
-import com.wiinvent.gami.domain.entities.transaction.CoinTransaction;
 import com.wiinvent.gami.domain.response.CharacterUserTransactionResponse;
-import com.wiinvent.gami.domain.response.TransactionResponse;
 import com.wiinvent.gami.domain.response.base.PageCursorResponse;
 import com.wiinvent.gami.domain.response.type.CursorType;
 import com.wiinvent.gami.domain.service.BaseService;
@@ -15,7 +13,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.function.Function;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 @Service

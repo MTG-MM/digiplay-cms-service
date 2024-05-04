@@ -1,6 +1,7 @@
 package com.wiinvent.gami.domain.stores.reward;
 
 import com.wiinvent.gami.domain.entities.reward.RewardItem;
+import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.stores.BaseStorage;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -38,5 +39,9 @@ public class RewardItemStorage extends BaseStorage {
 
   public List<RewardItem> findRewardItemByIdIn(List<Long> ids) {
     return rewardItemRepository.findAllByIdIn(ids);
+  }
+
+  public List<RewardItem> findRewardItemByStatus() {
+    return rewardItemRepository.findRewardItemByStatus(Status.ACTIVE);
   }
 }

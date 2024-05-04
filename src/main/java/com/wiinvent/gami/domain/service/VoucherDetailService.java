@@ -130,7 +130,6 @@ public class VoucherDetailService extends BaseService {
       voucherDetails.add(voucherDetail);
     }
     voucherDetailStorage.saveAll(voucherDetails);
-    rewardItemStoreService.updateVoucherAmount(storeId);
   }
 
   public VoucherDetail toVoucherDetail(VoucherExcelData voucherExcelData, Long storeId) {

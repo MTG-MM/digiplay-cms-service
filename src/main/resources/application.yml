@@ -43,9 +43,9 @@ file:
   url: ${FILE_URL:https://static.dev.wiinvent.co}
 springdoc:
   api-docs:
-    path: /v1/cms/docs/api/index.html
+    path: /v1/portal/docs/api/index.html
   swagger-ui:
-    path: /v1/cms/docs/index.html
+    path: /v1/portal/docs/index.html
     display-request-duration: true
     syntax-highlight:
       activated: true

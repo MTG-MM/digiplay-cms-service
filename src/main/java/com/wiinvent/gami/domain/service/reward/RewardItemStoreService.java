@@ -1,10 +1,8 @@
 package com.wiinvent.gami.domain.service.reward;
 
-import com.google.common.collect.Lists;
 import com.wiinvent.gami.domain.dto.RewardItemStoreCreateDto;
 import com.wiinvent.gami.domain.dto.RewardItemStoreUpdateDto;
 import com.wiinvent.gami.domain.entities.type.RewardItemStatus;
-import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.response.RewardItemStoreResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.entities.reward.RewardItemStore;
@@ -15,8 +13,6 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;

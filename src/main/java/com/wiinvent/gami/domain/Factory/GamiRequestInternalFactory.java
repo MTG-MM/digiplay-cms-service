@@ -173,6 +173,48 @@ public class GamiRequestInternalFactory {
     }
   }
 
+  public InternalRequestResponse addCollection(InternalRequestDto dto) {
+    try {
+      HttpHeaders headers = new HttpHeaders();
+      headers.setContentType(MediaType.APPLICATION_JSON);
+      HttpEntity<InternalRequestDto> requestEntity = new HttpEntity<>(dto, headers);
+      log.debug("==========addCollection: " + gamiServiceDomain + "/v1/vt/it/portal/collection/add");
+      ResponseEntity<InternalRequestResponse> response = httpRestTemplate.exchange(
+          gamiServiceDomain + "/v1/vt/it/portal/collection/add",
+          HttpMethod.PUT,
+          requestEntity,
+          InternalRequestResponse.class);
+      log.debug("=========addCollection: " + gamiServiceDomain + response.getBody());
+      if (response.getBody() == null || !response.getBody().getStatus()) {
+        throw new RequestFailedException(response.getBody().getMessage());
+      }
+      return response.getBody();
+    } catch (Exception e) {
+      throw new RequestFailedException(e.getMessage());
+    }
+  }
+
+  public InternalRequestResponse subCollection(InternalRequestDto dto) {
+    try {
+      HttpHeaders headers = new HttpHeaders();
+      headers.setContentType(MediaType.APPLICATION_JSON);
+      HttpEntity<InternalRequestDto> requestEntity = new HttpEntity<>(dto, headers);
+      log.debug("==========subCollection: " + gamiServiceDomain + "/v1/vt/it/portal/collection/subtract");
+      ResponseEntity<InternalRequestResponse> response = httpRestTemplate.exchange(
+          gamiServiceDomain + "/v1/vt/it/portal/collection/subtract",
+          HttpMethod.PUT,
+          requestEntity,
+          InternalRequestResponse.class);
+      log.debug("=========subCollection: " + gamiServiceDomain + response.getBody());
+      if (response.getBody() == null || !response.getBody().getStatus()) {
+        throw new RequestFailedException(response.getBody().getMessage());
+      }
+      return response.getBody();
+    } catch (Exception e) {
+      throw new RequestFailedException(e.getMessage());
+    }
+  }
+
   public InternalRequestResponse resetPassword(InternalResetPassDto dto) {
     try {
       HttpHeaders headers = new HttpHeaders();

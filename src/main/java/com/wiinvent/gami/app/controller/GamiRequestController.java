@@ -56,9 +56,19 @@ public class GamiRequestController {
     }
   }
 
+  @PutMapping("/collection")
+  public ResponseEntity<InternalRequestResponse> processCollection(
+      @RequestBody InternalRequestDto dto) {
+    if (Objects.equals(dto.getRequestType(), InternalRequestDto.RequestGamiType.ADD)) {
+      return ResponseEntity.ok(gamiRequestInternalFactory.addCollection(dto));
+    } else {
+      return ResponseEntity.ok(gamiRequestInternalFactory.subCollection(dto));
+    }
+  }
+
   @PutMapping("/password")
   public ResponseEntity<InternalRequestResponse> changePassword(
       @RequestBody InternalResetPassDto dto) {
-      return ResponseEntity.ok(gamiRequestInternalFactory.resetPassword(dto));
+    return ResponseEntity.ok(gamiRequestInternalFactory.resetPassword(dto));
   }
 }

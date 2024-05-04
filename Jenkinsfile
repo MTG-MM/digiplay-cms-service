@@ -4,7 +4,7 @@ node {
     properties([disableConcurrentBuilds()])
 
     try {
-        project = "vna-gami-service"
+        project = "wiportal-cms-service"
 
         if(env.BRANCH_NAME == "master") {
           dockerRepo = "registry.wiinvent.tv"
@@ -18,7 +18,7 @@ node {
         buildNumber = "${env.BUILD_NUMBER}"
         IMAGE_BUILD = "${imageName}:${env.BRANCH_NAME}-build-${buildNumber}"
         k8sCluster = "local"
-        k8sNameSpace = "vna-gami-crm-prod"
+        k8sNameSpace = "wi-game-portal"
         k8sEnv = "production"
 
         stage('checkout code') {
@@ -42,30 +42,12 @@ node {
         }
         switch (env.BRANCH_NAME) {
             case 'develop':
-                k8sNameSpace = "vna-gami-crm-dev"
+                k8sNameSpace = "wi-game-portal-dev"
                 k8sEnv = "development"
-                stage('deploy-prod') {
+                stage('deploy-develop') {
                     sh """
                     ## Deploy cluster LongVan
                     /usr/local/k8s/bin/k8sctl --cluster-name=${k8sCluster} --namespace=${k8sNameSpace} --environment=${k8sEnv} --service-name=${project} --image-name=${IMAGE_BUILD}
-                  """
-                }
-                break
-            case 'master-pilot':
-                stage('deploy-pilot') {
-                    sh """
-                    ## Deploy cluster LongVan
-                    /usr/local/k8s/bin/k8sctl --cluster-name=${k8sCluster} --namespace=${k8sNameSpace} --environment=${k8sEnv} --service-name=${project} --image-name=${IMAGE_BUILD}
-                  """
-                }
-                break
-            case 'master':
-                k8sCluster = "idc"
-                k8sNameSpace = "vna-gami-crm"
-                stage('deploy-prod') {
-                    sh """
-                    ## Deploy cluster Viettel IDC
-                    /usr/local/k8s-vna/bin/k8sctl --cluster-name=${k8sCluster} --namespace=${k8sNameSpace} --environment=${k8sEnv} --service-name=${project} --image-name=${IMAGE_BUILD}
                   """
                 }
                 break

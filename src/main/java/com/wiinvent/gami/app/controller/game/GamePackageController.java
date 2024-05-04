@@ -18,7 +18,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("v1/vt/cms/game-package")
+@RequestMapping("v1/portal/game-package")
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
 @Tag(name = "Product game", description = "Api cho gói trong game")
 public class GamePackageController extends BaseController {

@@ -20,7 +20,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 @RestController
-@RequestMapping("v1/vt/cms/package")
+@RequestMapping("v1/portal/package")
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
 @Tag(name = "Product", description = "Api cho gói portal(ví dụ: SUB_01, SUB_o2,...), các gói này là gòi con của package type(SUB, PREMIUM, ...)")
 public class PackageController {

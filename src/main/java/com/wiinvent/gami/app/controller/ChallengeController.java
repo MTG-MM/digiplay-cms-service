@@ -16,7 +16,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("v1/vt/cms/challenge")
+@RequestMapping("v1/portal/challenge")
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
 @Tag(name = "Challenge", description = "Api challenge")
 public class ChallengeController {

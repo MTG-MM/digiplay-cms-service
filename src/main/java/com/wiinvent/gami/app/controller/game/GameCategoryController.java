@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/vt/cms/game-category")
+@RequestMapping("/v1/portal/game-category")
 @Tag(name = "Game caterory", description = "Api cho danh mục game(FREE, SUB, ...)")
 public class GameCategoryController extends BaseController {
   @Autowired

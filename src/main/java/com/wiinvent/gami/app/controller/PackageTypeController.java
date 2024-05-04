@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("v1/vt/cms/package-type")
+@RequestMapping("v1/portal/package-type")
 @Tag(name = "Product included(Type)", description = "ví dụ: PREMIUM, SUB, CHARGE, trong các gói này sẽ gồm nhiều package con.")
 public class PackageTypeController extends BaseController{
   @Autowired private PackageTypeService packageTypeService;

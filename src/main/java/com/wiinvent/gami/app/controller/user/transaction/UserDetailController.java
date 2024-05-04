@@ -23,7 +23,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("v1/vt/cms/user")
+@RequestMapping("v1/portal/user")
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
 public class UserDetailController {
   @Autowired PackageHistoryService packageHistoryService;

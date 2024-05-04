@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("v1/vt/cms/banner")
+@RequestMapping("v1/portal/banner")
 public class BannerController extends BaseController{
   @Autowired private BannerService bannerService;
 

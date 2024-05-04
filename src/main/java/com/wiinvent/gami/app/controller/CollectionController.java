@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("v1/vt/cms/collection")
+@RequestMapping("v1/portal/collection")
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
 @Tag(name = "Collection", description = "Api collection")
 public class CollectionController {

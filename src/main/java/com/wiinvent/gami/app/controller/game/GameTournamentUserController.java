@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("v1/vt/cms/game-tournament/leaderboard")
+@RequestMapping("v1/portal/game-tournament/leaderboard")
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
 public class GameTournamentUserController {
   @Autowired

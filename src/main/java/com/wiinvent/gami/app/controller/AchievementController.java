@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("v1/vt/cms/achievement")
+@RequestMapping("v1/portal/achievement")
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
 @Tag(name = "Achievement", description = "Api achievement")
 public class AchievementController {

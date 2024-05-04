@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("v1/vt/cms/cms")
+@RequestMapping("v1/portal/cms")
 public class HealthCheckController {
 
   @Autowired

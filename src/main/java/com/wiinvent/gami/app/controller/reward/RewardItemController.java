@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("v1/vt/cms/reward-items")
+@RequestMapping("v1/portal/reward-items")
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
 public class RewardItemController {
 

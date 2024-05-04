@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping("v1/vt/cms/voucher-details")
+@RequestMapping("v1/portal/voucher-details")
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
 public class VoucherDetailController {
 

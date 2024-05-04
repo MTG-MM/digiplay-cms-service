@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping("v1/vt/cms/product-detail")
+@RequestMapping("v1/portal/product-detail")
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
 public class ProductDetailController {
   @Autowired

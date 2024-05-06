@@ -2,6 +2,7 @@ package com.wiinvent.gami.domain.entities.type;
 
 public enum ResourceType {
   SPIN,
+  UNBOX,
   BUY_PRODUCT_PACKAGE,
   LEVEL_UP,
   BUY_GVC_PACKAGE,
@@ -14,5 +15,7 @@ public enum ResourceType {
   FREE_CHARACTER,
   BUY_CHALLENGE,
   INVITE_FRIEND,
-  COMPLETE_ACHIEVEMENT
+  COMPLETE_ACHIEVEMENT,
+  EXCHANGE_PIECE,
+  REWARD_COLLECTION
 }

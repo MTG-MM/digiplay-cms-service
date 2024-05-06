@@ -1,5 +1,6 @@
 package com.wiinvent.gami.domain.entities.reward;
 
+import com.wiinvent.gami.domain.response.StatisticResponse;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,7 +37,15 @@ public class RewardItemStatistic {
   @Column(name = "total_reward_remain") // So qua con lại trong kho
   private Integer totalRewardRemain; // Khong duoc cap nhat khi chạy lại thống kê
 
-
-
+  public StatisticResponse convertToStatisticResponse(){
+    StatisticResponse statisticResponse = new StatisticResponse();
+    statisticResponse.setRewardItemId(rewardItemId);
+    statisticResponse.setRewardSegmentId(rewardSegmentId);
+    statisticResponse.setTotalRewardReceived(totalRewardReceived);
+    statisticResponse.setTotalRewardRemain(totalRewardRemain);
+    statisticResponse.setTotalUser(totalUser);
+    statisticResponse.setDaily(date);
+    return statisticResponse;
+  }
 
 }

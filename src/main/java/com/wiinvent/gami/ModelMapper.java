@@ -292,4 +292,12 @@ public interface ModelMapper {
   List<TransactionResponse> toTicketHistoryResponse(List<TicketHistory> ticketHistories);
 
   UserCollectionResponse toUserCollectionResponse(UserCollection userCollection);
+
+  ExchangeItemStoreResponse toExchangeItemStoreResponse(ExchangeItemStore exchangeItemStore);
+  ExchangeItemStore toExchangeItemStore(ExchangeItemStoreCreateDto exchangeItemStoreCreateDto);
+  void mapExchangeItemStoreUpdateDtoToExchangeItemStore(ExchangeItemStoreUpdateDto dto
+      , @MappingTarget ExchangeItemStore exchangeItemStore);
+  default Page<ExchangeItemStoreResponse> toPageExchangeItemStoreResponse(Page<ExchangeItemStore> exchangeItems){
+    return exchangeItems.map(this::toExchangeItemStoreResponse);
+  }
 }

@@ -56,4 +56,9 @@ public class RewardItemStoreController {
   public ResponseEntity<Boolean> updateRewardItemStores(@PathVariable Long id, @RequestBody RewardItemStoreUpdateDto rewardItemStoreDto) {
     return ResponseEntity.ok(rewardItemStoreService.updateRewardItemStores(id, rewardItemStoreDto));
   }
+
+  @DeleteMapping("{id}")
+  public ResponseEntity<Boolean> deleteRewardItemStores(@PathVariable Long id) {
+    return ResponseEntity.ok(rewardItemStoreService.deleteRewardItemStore(id));
+  }
 }

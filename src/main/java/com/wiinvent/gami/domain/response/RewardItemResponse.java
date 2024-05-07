@@ -14,6 +14,8 @@ public class RewardItemResponse {
   @Schema(description = "ID của loại phần thưởng")
   private Long rewardTypeId;
 
+  private RewardItemType rewardItemType;
+
   @Schema(description = "Tên phần thưởng")
   private String rewardName;
 

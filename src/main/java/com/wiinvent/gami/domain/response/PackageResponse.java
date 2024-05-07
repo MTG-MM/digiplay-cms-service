@@ -48,8 +48,4 @@ public class PackageResponse {
   private String description;
 
   private ProductType type;
-
-  private Integer pointBonusFirst;
-
-  private Integer coinBonusFirst;
 }

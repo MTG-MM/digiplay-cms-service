@@ -11,6 +11,7 @@ import lombok.Data;
 @Table(name = "challenge")
 public class Challenge extends BaseEntity {
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id", nullable = false)
   private Integer id;
 
@@ -25,6 +26,7 @@ public class Challenge extends BaseEntity {
   @Size(max = 500)
   @Column(name = "image_url", length = 500)
   private String imageUrl;
+
   @Size(max = 500)
   @Column(name = "thumb_url", length = 500)
   private String thumbUrl;

@@ -50,8 +50,4 @@ public class PackageCreateDto{
 
   @NotNull(message = "Không được để trống")
   private ProductType type;
-
-  private Integer pointBonusFirst;
-
-  private Integer coinBonusFirst;
 }

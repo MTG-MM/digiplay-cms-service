@@ -7,6 +7,7 @@ public enum RewardItemType {
   PRODUCT,
   PHYSICAL,
   TURN,
+  TICKET,
   COIN,
   EXP
 }

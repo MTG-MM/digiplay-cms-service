@@ -74,4 +74,5 @@ public abstract class BaseService {
   @Autowired protected CollectionTransactionStorage collectionTransactionStorage;
   @Autowired protected TicketHistoryStorage ticketHistoryStorage;
   @Autowired protected UserCollectionStorage userCollectionStorage;
+  @Autowired protected ExchangeItemStoreStorage exchangeItemStoreStorage;
 }

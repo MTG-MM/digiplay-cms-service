@@ -31,9 +31,9 @@ public class RewardItem {
   @Column(name = "image_url")
   private String imageUrl;
 
-//  @Column(name = "reward_type")
-//  @Enumerated(EnumType.STRING)
-//  private RewardItemType rewardItemType;
+  @Column(name = "reward_type")
+  @Enumerated(EnumType.STRING)
+  private RewardItemType rewardItemType;
 
   @Column(name = "reward_type_id")
   private Long rewardTypeId;
@@ -46,10 +46,10 @@ public class RewardItem {
   private Boolean isLimited;
 
   @Column(name = "remaining_quantity")
-  private Long quantity;
+  private Long quantity = 0L;
 
   @Column(name = "total_quantity")
-  private Long totalQuantity;
+  private Long totalQuantity = 0L;
 
   @Column(name = "used_quantity")
   private Long usedQuantity;
@@ -65,11 +65,9 @@ public class RewardItem {
 
   public void addQuantity(long amount) {
     this.quantity = this.getQuantity() + amount;
-    this.totalQuantity = this.getTotalQuantity() + amount;
   }
 
   public void minusQuantity(long amount) {
     this.quantity = this.getQuantity() - amount;
-    this.totalQuantity = this.getTotalQuantity() - amount;
   }
 }

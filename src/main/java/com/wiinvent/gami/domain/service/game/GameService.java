@@ -131,6 +131,11 @@ public class GameService extends BaseService {
     return Game.getListStatusShow();
   }
 
+  public List<GameResponse> findAllGameActive(){
+    List<Game> games = gameStorage.findAllByStatus(GameStatus.ACTIVE);
+    return modelMapper.toListGameResponse(games);
+  }
+
   @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
   public void save(Game game){
     gameStorage.save(game);

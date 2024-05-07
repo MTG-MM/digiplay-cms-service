@@ -2,14 +2,11 @@ package com.wiinvent.gami.domain.service;
 
 import com.wiinvent.gami.domain.dto.ChallengeDetailCreateDto;
 import com.wiinvent.gami.domain.dto.ChallengeDetailUpdateDto;
-import com.wiinvent.gami.domain.dto.ChallengeUpdateDto;
-import com.wiinvent.gami.domain.entities.Challenge;
 import com.wiinvent.gami.domain.entities.ChallengeDetail;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.exception.BadRequestException;
 import com.wiinvent.gami.domain.response.ChallengeDetailResponse;
 import com.wiinvent.gami.domain.utils.Constants;
-import jdk.jfr.Label;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -30,8 +27,8 @@ public class ChallengeDetailService extends BaseService{
   @Lazy
   private ChallengeDetailService self;
 
-  public Page<ChallengeDetailResponse> findAll(Integer level, Status status, Pageable pageable) {
-    Page<ChallengeDetail> challengeDetails = challengeDetailStorage.findAll(level, status, pageable);
+  public Page<ChallengeDetailResponse> findAll(Integer challengeId, Integer level, Status status, Pageable pageable) {
+    Page<ChallengeDetail> challengeDetails = challengeDetailStorage.findAll(challengeId, level, status, pageable);
     return modelMapper.toPageChallengeDetailResponse(challengeDetails);
   }
 
@@ -45,7 +42,6 @@ public class ChallengeDetailService extends BaseService{
 
   public boolean createChallengeDetail(ChallengeDetailCreateDto dto) {
     if(Objects.isNull(dto.getStatus())) dto.setStatus(Status.ACTIVE);
-
     ChallengeDetail challengeDetail = modelMapper.toChallengeDetail(dto);
     try {
       self.save(challengeDetail);

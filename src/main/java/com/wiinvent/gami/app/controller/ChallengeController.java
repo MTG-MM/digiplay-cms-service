@@ -38,6 +38,7 @@ public class ChallengeController {
   public ResponseEntity<ChallengeResponse> getChallengeDetail(@PathVariable Integer id){
     return ResponseEntity.ok(challengeService.getChallengeDetails(id));
   }
+
   @PostMapping("")
   public ResponseEntity<Boolean> createChallenge(@RequestBody ChallengeCreateDto dto){
     return ResponseEntity.ok(

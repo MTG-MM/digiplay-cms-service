@@ -300,4 +300,6 @@ public interface ModelMapper {
   default Page<ExchangeItemStoreResponse> toPageExchangeItemStoreResponse(Page<ExchangeItemStore> exchangeItems){
     return exchangeItems.map(this::toExchangeItemStoreResponse);
   }
+
+  List<GameResponse> toListGameResponse(List<Game> games);
 }

@@ -22,13 +22,14 @@ public class ChallengeDetailStorage extends BaseStorage{
     remoteCache.del(cacheKey.genChallengeDetailById(challengeDetail.getId()));
   }
 
-  public Page<ChallengeDetail> findAll(Integer level, Status status, Pageable pageable){
-    return challengeDetailRepository.findAll(challengeDetailSpecification(level, status), pageable);
+  public Page<ChallengeDetail> findAll(Integer challengeId, Integer level, Status status, Pageable pageable){
+    return challengeDetailRepository.findAll(challengeDetailSpecification(challengeId, level, status), pageable);
   }
 
-  public Specification<ChallengeDetail> challengeDetailSpecification(Integer level, Status status){
+  public Specification<ChallengeDetail> challengeDetailSpecification(Integer challengeId, Integer level, Status status){
     return (root, query, criteriaBuilder) -> {
       List<Predicate> conditionLists = new ArrayList<>();
+      conditionLists.add(criteriaBuilder.equal(root.get("challengeId"), challengeId));
       conditionLists.add(criteriaBuilder.notEqual(root.get("status"), Status.DELETE));
       if(level != null){
         conditionLists.add(criteriaBuilder.equal(root.get("level"), level));

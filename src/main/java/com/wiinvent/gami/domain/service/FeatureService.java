@@ -29,8 +29,8 @@ import java.util.Objects;
 public class FeatureService extends BaseService{
   @Autowired @Lazy private  FeatureService self;
 
-  public Page<FeatureResponse> findAll(Pageable pageable){
-    Page<Feature> features = featureStorage.findAll(pageable);
+  public Page<FeatureResponse> findAll(String name, FeatureCode featureCode, Pageable pageable){
+    Page<Feature> features = featureStorage.findAll(name, featureCode, pageable);
 
     return modelMapper.toPageFeatureResponse(features);
   }

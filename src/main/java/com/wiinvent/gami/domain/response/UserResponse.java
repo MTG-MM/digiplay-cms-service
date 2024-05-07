@@ -59,6 +59,10 @@ public class UserResponse {
 
   private Double pointBonusRate;
 
+  private Integer ticket;
+
+  private Integer luckyPoint;
+
   private Integer pointLimit;
 
   private Long expUpLevel;

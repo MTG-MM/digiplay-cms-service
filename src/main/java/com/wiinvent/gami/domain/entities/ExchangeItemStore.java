@@ -62,6 +62,6 @@ public class ExchangeItemStore extends BaseEntity {
   }
 
   public void minusQuantity(long amount) {
-    this.quantity = this.getQuantity() - amount;
+    this.quantity = Math.max(this.getQuantity() - amount, 0);
   }
 }

@@ -2,7 +2,9 @@ package com.wiinvent.gami.app.controller;
 
 import com.wiinvent.gami.domain.dto.FeatureCreateDto;
 import com.wiinvent.gami.domain.dto.FeatureUpdateDto;
+import com.wiinvent.gami.domain.entities.type.CharacterCategoryType;
 import com.wiinvent.gami.domain.entities.type.FeatureCode;
+import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.response.FeatureResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.FeatureService;
@@ -11,6 +13,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.SortDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,9 +28,13 @@ public class FeatureController extends BaseController {
 
   @GetMapping("")
   @Operation(summary = "Lấy danh sách tính năng")
-  public ResponseEntity<PageResponse<FeatureResponse>> findAll(Pageable pageable){
+  public ResponseEntity<PageResponse<FeatureResponse>> findAll(
+      @RequestParam(required = false) String name,
+      @RequestParam(required = false) FeatureCode code,
+      @SortDefault(sort = "createdAt", direction = Sort.Direction.DESC)
+      Pageable pageable){
     return ResponseEntity.ok(
-        PageResponse.createFrom(featureService.findAll(pageable))
+        PageResponse.createFrom(featureService.findAll(name, code, pageable))
     );
   }
 

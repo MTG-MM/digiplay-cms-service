@@ -11,43 +11,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class PackageCreateDto{
-  @NotEmpty(message = "Không được để trống")
-  private String name;
-
-  @NotNull(message = "Không được để trống")
-  private String code;
-
-  private Integer point;
-
-  private Integer coin;
-
-  @Schema(description = "thời gian sử dụng của gói")
-  private Integer daySub;
-
-  private Status status;
-
-  private Integer coinDaily;
-
-  private String externalImageId;
-
+public class PackageCreateDto extends PackageUpdateDto{
   @NotNull(message = "Không được để trống")
   private Integer packageTypeId;
-
-  private Integer pointDaily;
-
-  private List<PaymentMethodInfo> paymentMethodInfo;
-
-  private Long startTime;
-
-  private Long endTime;
-
-  private Integer pointBonus;
-
-  private Integer coinBonus;
-
-  private String description;
-
-  @NotNull(message = "Không được để trống")
-  private ProductType type;
 }

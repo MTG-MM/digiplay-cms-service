@@ -29,11 +29,11 @@ public class GvcPackage extends BaseEntity {
   @Column(name = "code", length = 50)
   private String code;
 
-  @Column(name = "gvc1_amount")
-  private Integer gvc1Amount;
+  @Column(name = "point")
+  private Integer point;
 
-  @Column(name = "gvc2_amount")
-  private Integer gvc2Amount;
+  @Column(name = "coin")
+  private Integer coin;
 
   @Lob
   @Enumerated(EnumType.STRING)

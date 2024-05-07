@@ -68,6 +68,6 @@ public class RewardItem {
   }
 
   public void minusQuantity(long amount) {
-    this.quantity = this.getQuantity() - amount;
+    this.quantity = Math.max(this.quantity - amount, 0);
   }
 }

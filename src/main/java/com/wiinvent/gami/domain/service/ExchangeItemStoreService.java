@@ -75,7 +75,7 @@ public class ExchangeItemStoreService extends BaseService {
     exchangeItemStore.setStatus(Status.DELETE);
     try {
       self.save(exchangeItemStore);
-    } catch (Exception e){
+    } catch (Exception e) {
       log.error("==============>deleteExchangeItemStores:DB:Exception:{}", e.getMessage());
       throw e;
     }
@@ -83,18 +83,29 @@ public class ExchangeItemStoreService extends BaseService {
   }
 
   @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
-  public Boolean changeQuantity(ProcessQuantityDto dto){
+  public Boolean changeQuantity(ProcessQuantityDto dto) {
     ExchangeItemStore exchangeItemStore = exchangeItemStoreStorage.findById(dto.getId());
     if (exchangeItemStore == null) {
       throw new ResourceNotFoundException("Exchange item not found");
     }
     RewardItem rewardItem = rewardItemStorage.findById(exchangeItemStore.getRewardItemId());
 
-    if (rewardItem.getQuantity() < dto.getQuantity() - exchangeItemStore.getQuantity()){
+    if (rewardItem.getQuantity() < dto.getQuantity() - exchangeItemStore.getQuantity()) {
       throw new BadRequestException("Quantity of Reward Item is not enough");
     }
 
-
+    if (dto.getType().equals(ProcessQuantityDto.ProcessQuantityType.ADD)) {
+      rewardItem.minusQuantity(dto.getQuantity());
+      exchangeItemStore.addQuantity(dto.getQuantity());
+    } else {
+      if (exchangeItemStore.getQuantity() < dto.getQuantity()) {
+        throw new BadRequestException("Quantity need to be greater than 0");
+      }
+      rewardItem.addQuantity(dto.getQuantity());
+      exchangeItemStore.minusQuantity(dto.getQuantity());
+    }
+    rewardItemStorage.save(rewardItem);
+    exchangeItemStoreStorage.save(exchangeItemStore);
     return true;
   }
 

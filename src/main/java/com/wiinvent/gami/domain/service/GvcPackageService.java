@@ -2,6 +2,7 @@ package com.wiinvent.gami.domain.service;
 
 import com.wiinvent.gami.domain.dto.gvc.GvcPackageCreateDto;
 import com.wiinvent.gami.domain.dto.gvc.GvcPackageUpdateDto;
+import com.wiinvent.gami.domain.entities.game.Game;
 import com.wiinvent.gami.domain.entities.gvc.GvcPackage;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
@@ -34,6 +35,11 @@ public class GvcPackageService extends BaseService{
     GvcPackage gvcPackage = gvcPackageStorage.findById(id);
     if(Objects.isNull(gvcPackage)) throw new ResourceNotFoundException(Constants.GVC_PACKAGE_NOT_FOUND);
     //response
+    GvcPackageResponse gvcPackageResponse = modelMapper.toGvcPackageResponse(gvcPackage);
+    Game game = gameStorage.findById(gvcPackage.getGameId());
+    if (Objects.nonNull(game)) {
+      gvcPackageResponse.setGameName(game.getName());
+    }
     return modelMapper.toGvcPackageResponse(gvcPackage);
   }
 
@@ -52,9 +58,9 @@ public class GvcPackageService extends BaseService{
     return true;
   }
 
-  public boolean updateGvcPackage(GvcPackageUpdateDto dto){
+  public boolean updateGvcPackage(Integer id, GvcPackageUpdateDto dto){
     //validation
-    GvcPackage gvcPackage = gvcPackageStorage.findById(dto.getId());
+    GvcPackage gvcPackage = gvcPackageStorage.findById(id);
     if(Objects.isNull(gvcPackage)) throw new ResourceNotFoundException(Constants.GVC_PACKAGE_NOT_FOUND);
     //map
     modelMapper.mapGvcPackageUpdateDtoToGvcPackage(dto, gvcPackage);

@@ -9,11 +9,13 @@ public class GvcPackageResponse {
 
   private Integer gameId;
 
+  private String gameName;
+
   private String code;
 
-  private Integer gvc1Amount;
+  private Integer point;
 
-  private Integer gvc2Amount;
+  private Integer coin;
 
   private Status status;
 

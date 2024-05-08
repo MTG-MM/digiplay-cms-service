@@ -23,6 +23,8 @@ public class RewardItemUpdateDto {
   @Schema(description = "Trạng thái")
   private Status status;
 
+  private Long value;
+
   @NotNull(message = "Có giới hạn không được để trống")
   @Schema(description = "Có giới hạn")
   private Boolean isLimited;

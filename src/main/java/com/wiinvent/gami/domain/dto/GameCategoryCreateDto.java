@@ -15,8 +15,10 @@ public class GameCategoryCreateDto {
 
   private Boolean isRequireSub;
 
+  @NotNull
   private Integer point;
 
+  @NotNull
   private Integer coin;
 
   private String description;

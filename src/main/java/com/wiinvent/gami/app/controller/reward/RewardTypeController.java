@@ -2,6 +2,7 @@ package com.wiinvent.gami.app.controller.reward;
 
 import com.wiinvent.gami.domain.dto.RewardTypeDto;
 import com.wiinvent.gami.domain.dto.RewardTypeUpdateDto;
+import com.wiinvent.gami.domain.response.RewardItemResponse;
 import com.wiinvent.gami.domain.response.RewardTypeResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.reward.RewardTypeService;
@@ -50,5 +51,10 @@ public class RewardTypeController {
   @DeleteMapping("{id}")
   public ResponseEntity<Boolean> deleteRewardTypes(@PathVariable Long id) {
     return ResponseEntity.ok(rewardTypeService.deleteRewardType(id));
+  }
+
+  @GetMapping("active")
+  public ResponseEntity<List<RewardTypeResponse>> getActiveRewardType() {
+    return ResponseEntity.ok(rewardTypeService.getRwTypeActive());
   }
 }

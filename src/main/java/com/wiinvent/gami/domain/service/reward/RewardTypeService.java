@@ -6,6 +6,7 @@ import com.wiinvent.gami.domain.entities.ChallengeDetail;
 import com.wiinvent.gami.domain.entities.reward.RewardItem;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.exception.BadRequestException;
+import com.wiinvent.gami.domain.response.RewardItemResponse;
 import com.wiinvent.gami.domain.response.RewardTypeResponse;
 import com.wiinvent.gami.domain.entities.reward.RewardType;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
@@ -83,6 +84,11 @@ public class RewardTypeService extends BaseService {
       throw e;
     }
     return true;
+  }
+
+  public List<RewardTypeResponse> getRwTypeActive() {
+    List<RewardType> rewardTypes = rewardTypeStorage.findRewardTypeByStatus();
+    return modelMapper.toRewardTypeResponseList(rewardTypes);
   }
 
   @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})

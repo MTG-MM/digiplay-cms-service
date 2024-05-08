@@ -43,4 +43,8 @@ public class RewardTypeStorage extends BaseStorage {
   public RewardType findById(Long id) {
     return rewardTypeRepository.findById(id).orElse(null);
   }
+
+  public List<RewardType> findRewardTypeByStatus() {
+    return rewardTypeRepository.findRewardTypeByStatus(Status.ACTIVE);
+  }
 }

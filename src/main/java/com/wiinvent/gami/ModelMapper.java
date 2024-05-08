@@ -43,6 +43,7 @@ public interface ModelMapper {
   RewardItemResponse toRewardItemResponse(RewardItem rw);
 
   List<RewardItemResponse> toRewardItemResponseList(List<RewardItem> rw);
+  List<RewardTypeResponse> toRewardTypeResponseList(List<RewardType> rwType);
 
   RewardItem toRewardItem(RewardItemDto rewardItemDto);
 

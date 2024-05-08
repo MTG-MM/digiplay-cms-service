@@ -43,4 +43,5 @@ public class RewardItemResponse {
   @Schema(description = "ID ngoài")
   private String externalId;
 
+  private Long value;
 }

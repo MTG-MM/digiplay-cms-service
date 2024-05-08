@@ -18,19 +18,24 @@ public class PackageUpdateDto {
   @NotNull(message = "Không được để trống")
   private String code;
 
+  @NotNull(message = "Không được để trống")
   private Integer point;
 
+  @NotNull(message = "Không được để trống")
   private Integer coin;
 
   @Schema(description = "thời gian sử dụng của gói")
   private Integer daySub;
 
+  @NotNull(message = "Không được để trống")
   private Status status;
 
+  @NotNull(message = "Không được để trống")
   private Integer coinDaily;
 
   private String externalImageId;
 
+  @NotNull(message = "Không được để trống")
   private Integer pointDaily;
 
   private List<PaymentMethodInfo> paymentMethodInfo;

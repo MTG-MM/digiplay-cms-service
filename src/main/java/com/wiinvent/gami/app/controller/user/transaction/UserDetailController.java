@@ -37,6 +37,7 @@ public class UserDetailController {
   @Autowired TicketHistoryService ticketHistoryService;
   @Autowired CollectionTransactionService collectionTransactionService;
   @Autowired UserCollectionService userCollectionService;
+  @Autowired LuckyPointTransactionService luckyPointTransactionService;
 
   @GetMapping("sub")
   public ResponseEntity<PageCursorResponse<PackageHistoryResponse>> getPackageHistory (
@@ -174,5 +175,18 @@ public class UserDetailController {
       @SortDefault(sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable)
   {
     return ResponseEntity.ok(PageResponse.createFrom(userCollectionService.getUserCollections(userId, gte, lte, pageable)));
+  }
+
+  @GetMapping("transaction/lucky-point")
+  public ResponseEntity<PageCursorResponse<TransactionResponse>> getLuckyPointTransaction(
+      @RequestParam UUID userId,
+      @RequestParam(required = false) UUID transId,
+      @RequestParam(required = false) Long next,
+      @RequestParam(required = false) Long pre,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate gte,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte,
+      @RequestParam(required = false, defaultValue = "20") int limit)
+  {
+    return ResponseEntity.ok((luckyPointTransactionService.getLuckyPointTransaction(userId, transId, gte, lte, next, pre, limit)));
   }
 }

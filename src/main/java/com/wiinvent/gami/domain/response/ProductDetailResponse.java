@@ -27,4 +27,7 @@ public class ProductDetailResponse {
   private Long startAt;
 
   private Long expireAt;
+
+  private Long createdAt;
+
 }

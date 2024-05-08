@@ -48,6 +48,7 @@ public class ExchangeItemStoreService extends BaseService {
       self.save(exchangeItemStore);
     } catch (Exception e) {
       log.debug("==============>createExchangeItemStores:DB:Exception:{}", e.getMessage());
+      throw e;
     }
     return true;
   }
@@ -63,6 +64,7 @@ public class ExchangeItemStoreService extends BaseService {
       self.save(exchangeItemStore);
     } catch (Exception e) {
       log.debug("==============>updateExchangeItemStores:DB:Exception:{}", e.getMessage());
+      throw e;
     }
     return true;
   }

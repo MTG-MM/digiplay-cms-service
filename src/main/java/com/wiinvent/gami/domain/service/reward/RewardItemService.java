@@ -93,6 +93,7 @@ public class RewardItemService extends BaseService {
       self.save(rewardItem);
     } catch (Exception e) {
       log.debug("==============>createRewardItem:DB:Exception:{}", e.getMessage());
+      throw e;
     }
     return true;
   }
@@ -107,6 +108,7 @@ public class RewardItemService extends BaseService {
       self.save(rewardItem);
     } catch (Exception e) {
       log.debug("==============>updateRewardItem:DB:Exception:{}", e.getMessage());
+      throw e;
     }
     return true;
   }

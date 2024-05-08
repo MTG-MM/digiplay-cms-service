@@ -1,6 +1,7 @@
 package com.wiinvent.gami.domain.stores;
 
 import com.wiinvent.gami.domain.entities.Account;
+import com.wiinvent.gami.domain.entities.type.AccountRole;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
@@ -32,6 +33,10 @@ public class AccountStorage extends BaseStorage {
 
   public Page<Account> findPageAccount(String username, UUID teamId, Pageable pageable) {
     return accountRepository.findAll(specificationAccount(username, teamId), pageable);
+  }
+
+  public List<Account> findAccountByAccountRole() {
+    return accountRepository.findAccountByAccountRole(AccountRole.PUBLISHER);
   }
 
   private Specification<Account> specificationAccount(String username, UUID teamId) {

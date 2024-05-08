@@ -5,6 +5,8 @@ import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.VoucherDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.SortDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +25,7 @@ public class VoucherDetailController {
       @PathVariable Long storeId,
       @RequestParam(required = false) String name,
       @RequestParam(required = false) String code,
+      @SortDefault(sort = "createdAt", direction = Sort.Direction.DESC)
       Pageable pageable) {
     return ResponseEntity.ok(voucherDetailService.getAllVoucherDetails(storeId, name, code, pageable));
   }

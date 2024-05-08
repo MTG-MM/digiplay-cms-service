@@ -38,4 +38,8 @@ public class VoucherDetailResponse {
 
   @Schema(description = "Thời điểm kết thúc hiệu lực của voucher")
   private Long expireAt;
+
+  private Long createdAt;
+
+
 }

@@ -25,7 +25,6 @@ public class GvcHistory extends BaseEntity {
   @Column(name = "partner_transaction_id", length = 50)
   private String partnerTransactionId;
 
-  @Size(max = 16)
   @Column(name = "user_id", nullable = false)
   private UUID userId;
 

@@ -18,7 +18,6 @@ public class UserCollection extends BaseEntity {
   @Column(name = "collection_id")
   private Long collectionId;
 
-  @Size(max = 16)
   @Column(name = "user_id", length = 16)
   private UUID userId;
 

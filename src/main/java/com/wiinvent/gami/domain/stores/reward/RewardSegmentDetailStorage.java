@@ -6,6 +6,7 @@ import com.wiinvent.gami.domain.stores.BaseStorage;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -17,6 +18,7 @@ public class RewardSegmentDetailStorage extends BaseStorage {
 
   public void save(RewardSegmentDetail rewardSegmentDetail) {
     rewardSegmentDetailRepository.save(rewardSegmentDetail);
+    remoteCache.del(removeCacheKey(rewardSegmentDetail));
   }
 
   public RewardSegmentDetail findById(Long id) {
@@ -58,14 +60,20 @@ public class RewardSegmentDetailStorage extends BaseStorage {
 
   public void saveAll(List<RewardSegmentDetail> rewardSegmentDetails) {
     rewardSegmentDetailRepository.saveAll(rewardSegmentDetails);
+    rewardSegmentDetails.forEach(r -> remoteCache.del(removeCacheKey(r)));
   }
 
   public List<RewardSegmentDetail> findByIdIn(Long rewardSegmentId, List<Long> rwItemIds) {
     return rewardSegmentDetailRepository.findByRewardSegmentIdAndRewardItemIdIn(rewardSegmentId, rwItemIds);
   }
 
-
   public void deleteAllById(List<Long> removeIds) {
     rewardSegmentDetailRepository.deleteAllById(removeIds);
+  }
+
+  public List<String> removeCacheKey(RewardSegmentDetail rewardSegmentDetail){
+    List<String> removeList = new ArrayList<>();
+    removeList.add(cacheKey.genListRewardSegmentDetailByRewardSegmentId(rewardSegmentDetail.getRewardSegmentId()));
+    return removeList;
   }
 }

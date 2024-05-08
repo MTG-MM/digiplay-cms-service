@@ -19,7 +19,6 @@ public class Feature extends BaseEntity {
   @Column(name = "id", nullable = false)
   private Integer id;
 
-  @Size(max = 30)
   @Column(name = "name", length = 30)
   private String name;
 

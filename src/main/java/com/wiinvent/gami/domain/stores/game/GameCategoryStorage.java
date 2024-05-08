@@ -14,7 +14,7 @@ import java.util.List;
 public class GameCategoryStorage extends BaseStorage {
   public void save(GameCategory gameCategory){
     gameCategoryRepository.save(gameCategory);
-    remoteCache.del(genCacheKeys(gameCategory));
+    remoteCache.del(genCacheKeys());
   }
 
   public GameCategory findById(Integer id){
@@ -33,14 +33,9 @@ public class GameCategoryStorage extends BaseStorage {
     return gameCategoryRepository.findGameCategoriesByIdIn(ids);
   }
 
-  public List<String> genCacheKeys(GameCategory gameCategory){
+  public List<String> genCacheKeys(){
     List<String> cacheKeys = new ArrayList<>();
     cacheKeys.add(cacheKey.genAllGameCategories());
-    cacheKeys.add(cacheKey.getGameByCategoryId(gameCategory.getId(),0));
-    cacheKeys.add(cacheKey.getGameByCategoryId(gameCategory.getId(),1));
-    cacheKeys.add(cacheKey.getGameByCategoryId(gameCategory.getId(),2));
-    cacheKeys.add(cacheKey.getGameByCategoryId(gameCategory.getId(),3));
-    cacheKeys.add(cacheKey.getGameByCategoryId(gameCategory.getId(),4));
     return cacheKeys;
   }
 }

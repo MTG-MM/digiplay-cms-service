@@ -3,6 +3,7 @@ package com.wiinvent.gami.domain.service;
 import com.wiinvent.gami.domain.dto.PackageTypeCreateDto;
 import com.wiinvent.gami.domain.dto.PackageTypeUpdateDto;
 import com.wiinvent.gami.domain.entities.PackageType;
+import com.wiinvent.gami.domain.entities.type.ProductPackageType;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.response.PackageTypeResponse;
 import com.wiinvent.gami.domain.utils.Constants;
@@ -24,8 +25,8 @@ import java.util.Objects;
 @Log4j2
 public class PackageTypeService extends BaseService{
   @Autowired @Lazy private PackageTypeService self;
-  public Page<PackageTypeResponse> findAll(Pageable pageable){
-    Page<PackageType> packageTypes = packageTypeStorage.findAll(pageable);
+  public Page<PackageTypeResponse> findAll(ProductPackageType type, Pageable pageable){
+    Page<PackageType> packageTypes = packageTypeStorage.findAll(type, pageable);
 
     return modelMapper.toPagePackageTypeResponse(packageTypes);
   }

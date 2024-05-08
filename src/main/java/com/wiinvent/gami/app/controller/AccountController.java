@@ -14,6 +14,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -57,6 +58,12 @@ public class AccountController extends BaseController {
       @RequestParam(required = false) UUID teamId,
       @Parameter(hidden = true) Pageable pageable) {
     return ResponseEntity.ok(PageResponse.createFrom(accountService.getAllPage(userName, teamId, pageable)));
+  }
+
+  @GetMapping("publisher")
+  @PageableAsQueryParam
+  public ResponseEntity<List<AccountResponse>> getAllAccount() {
+    return ResponseEntity.ok((accountService.getAllAccountList()));
   }
 
   @PutMapping("{accountId}")

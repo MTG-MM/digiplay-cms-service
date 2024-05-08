@@ -17,5 +17,5 @@ public interface AccountRepository extends JpaRepository<Account, UUID>, JpaSpec
 
   Account findByUsername(String username);
 
-  List<Account> findAccountByAccountRole(AccountRole accountRole);
+  List<Account> findAccountByRole(AccountRole accountRole);
 }

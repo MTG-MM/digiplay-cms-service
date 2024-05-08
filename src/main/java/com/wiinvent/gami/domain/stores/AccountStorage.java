@@ -36,7 +36,7 @@ public class AccountStorage extends BaseStorage {
   }
 
   public List<Account> findAccountByAccountRole() {
-    return accountRepository.findAccountByAccountRole(AccountRole.PUBLISHER);
+    return accountRepository.findAccountByRole(AccountRole.PUBLISHER);
   }
 
   private Specification<Account> specificationAccount(String username, UUID teamId) {

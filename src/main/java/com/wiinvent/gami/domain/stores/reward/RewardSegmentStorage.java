@@ -21,6 +21,7 @@ public class RewardSegmentStorage extends BaseStorage {
 
   public void save(RewardSegment rewardSegment) {
     rewardSegmentRepository.save(rewardSegment);
+    remoteCache.del(cacheKey.genRewardSegmentByCode(rewardSegment.getCode()));
   }
 
   public RewardSegment findById(Long id) {

@@ -77,7 +77,7 @@ public class ChallengeDetailService extends BaseService{
     try {
       self.save(challengeDetail);
     } catch (Exception e){
-      log.error("==============>deleteAchievement:DB:Exception:{}", e.getMessage());
+      log.error("==============>deleteChallengeDetail:DB:Exception:{}", e.getMessage());
       throw e;
     }
     return true;

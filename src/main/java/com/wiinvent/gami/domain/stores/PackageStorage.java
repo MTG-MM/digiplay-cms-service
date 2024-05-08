@@ -33,6 +33,17 @@ public class PackageStorage extends BaseStorage {
   public List<String> genCacheKeys(Package aPackage){
     List<String> cacheKeys = new ArrayList<>();
     cacheKeys.add(cacheKey.getPackageByCode(aPackage.getCode()));
+    cacheKeys.add(cacheKey.getPackageById(aPackage.getId()));
+    cacheKeys.add(cacheKey.getPortalPackages(0));
+    cacheKeys.add(cacheKey.getPortalPackages(1));
+    cacheKeys.add(cacheKey.getPortalPackages(2));
+    cacheKeys.add(cacheKey.getPortalPackages(3));
+    cacheKeys.add(cacheKey.getPortalPackages(4));
+    cacheKeys.add(cacheKey.getPortalPackagesByTypeId(aPackage.getPackageTypeId(),0));
+    cacheKeys.add(cacheKey.getPortalPackagesByTypeId(aPackage.getPackageTypeId(),1));
+    cacheKeys.add(cacheKey.getPortalPackagesByTypeId(aPackage.getPackageTypeId(),2));
+    cacheKeys.add(cacheKey.getPortalPackagesByTypeId(aPackage.getPackageTypeId(),3));
+    cacheKeys.add(cacheKey.getPortalPackagesByTypeId(aPackage.getPackageTypeId(),4));
     return cacheKeys;
   }
 

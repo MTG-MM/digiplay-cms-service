@@ -19,8 +19,9 @@ import java.util.Objects;
 
 @Component
 public class GameTypeStorage extends BaseStorage {
-  public GameType save(GameType gameType){
-    return gameTypeRepository.save(gameType);
+  public void save(GameType gameType){
+    gameTypeRepository.save(gameType);
+    remoteCache.del(cacheKey.genAllGameTypes());
   }
 
   public GameType findById(Integer id){

@@ -5,7 +5,9 @@ import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.ProductDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.SortDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +21,10 @@ public class ProductDetailController {
   private ProductDetailService productDetailService;
   @GetMapping("")
   public ResponseEntity<PageResponse<ProductDetailResponse>> getProductDetail(
-      @RequestParam(required = false) Long storeId,
+      @RequestParam Long storeId,
       @RequestParam(required = false) String name,
       @RequestParam(required = false) String code,
+      @SortDefault(sort = "createdAt", direction = Sort.Direction.DESC)
       @PageableDefault
       Pageable pageable) {
     return ResponseEntity.ok(productDetailService.getAllProductDetails(storeId, name, code, pageable));

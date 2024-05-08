@@ -2,6 +2,7 @@ package com.wiinvent.gami.domain.response;
 
 import com.wiinvent.gami.domain.entities.type.RewardItemType;
 import com.wiinvent.gami.domain.entities.type.Status;
+import com.wiinvent.gami.domain.utils.DateUtils;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
@@ -23,4 +24,5 @@ public class RewardTypeResponse {
   @Schema(description = "Trạng thái của loại phần thưởng")
   private Status status;
 
+  private Long createdAt;
 }

@@ -58,6 +58,7 @@ public class RewardItemStoreService extends BaseService {
       self.save(rewardItemStore);
     } catch (Exception e) {
       log.debug("==============>createRewardItemStores:DB:Exception:{}", e.getMessage());
+      throw e;
     }
     return true;
   }
@@ -73,6 +74,7 @@ public class RewardItemStoreService extends BaseService {
       self.save(rewardItemStore);
     } catch (Exception e) {
       log.debug("==============>updateRewardItemStores:DB:Exception:{}", e.getMessage());
+      throw e;
     }
     return true;
   }

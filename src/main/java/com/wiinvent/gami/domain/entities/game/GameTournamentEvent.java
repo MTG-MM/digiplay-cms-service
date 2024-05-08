@@ -26,11 +26,9 @@ public class GameTournamentEvent extends BaseEntity {
   @Column(name = "game_tournament_id", nullable = false)
   private Integer gameTournamentId;
 
-  @Size(max = 20)
   @Column(name = "start_time", length = 20)
   private LocalDateTime startTime;
 
-  @Size(max = 20)
   @Column(name = "end_time", length = 20)
   private LocalDateTime endTime;
 

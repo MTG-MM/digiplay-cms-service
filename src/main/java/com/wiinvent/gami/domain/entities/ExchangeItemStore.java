@@ -21,8 +21,8 @@ public class ExchangeItemStore extends BaseEntity {
   @Column(name = "name", length = 100)
   private String name;
 
-  @Size(max = 30)
   @Column(name = "store_type", length = 30)
+  @Enumerated(EnumType.STRING)
   private ExchangeStoreType storeType;
 
   @NotNull

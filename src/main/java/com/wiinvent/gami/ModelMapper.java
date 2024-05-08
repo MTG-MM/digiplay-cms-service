@@ -88,8 +88,9 @@ public interface ModelMapper {
 
   void mapRewardScheduleUpdateDtoToRewardSchedule(RewardScheduleUpdateDto rewardScheduleDto,@MappingTarget RewardSchedule rewardSchedule);
 
-  List<RewardTypeResponse> toPageRewardTypeResponse(List<RewardType> rewardItems);
-
+  default Page<RewardTypeResponse> toPageRewardTypeResponse(Page<RewardType> rewardTypes){
+    return rewardTypes.map(this::toRewardTypeResponse);
+  }
   RewardType toRewardType(RewardTypeDto rewardTypeDto);
 
   void mapRewardTypeDtoToRewardType(RewardTypeUpdateDto rewardTypeDto,@MappingTarget RewardType rewardType);
@@ -290,6 +291,7 @@ public interface ModelMapper {
   List<CollectionResponse> toListCollectionResponse(List<Collection> collections);
   List<TransactionResponse> toCollectionTransactionResponse(List<CollectionTransaction> collectionTransactions);
   List<TransactionResponse> toTicketHistoryResponse(List<TicketHistory> ticketHistories);
+  List<TransactionResponse> toLuckyPointTransactionResponse(List<LuckyPointTransaction> luckyPointTransactions);
 
   UserCollectionResponse toUserCollectionResponse(UserCollection userCollection);
 
@@ -302,4 +304,7 @@ public interface ModelMapper {
   }
 
   List<GameResponse> toListGameResponse(List<Game> games);
+
+  Config toConfig(ConfigDto dto);
+  void mapConfigDtoToConfig(ConfigDto dto, @MappingTarget Config config);
 }

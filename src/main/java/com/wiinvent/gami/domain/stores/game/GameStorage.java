@@ -68,11 +68,27 @@ public class GameStorage extends BaseStorage {
   public List<String> genCacheKeys(Game game){
     List<String> cacheKeys = new ArrayList<>();
     cacheKeys.add(cacheKey.getGameById(game.getId()));
-    return cacheKeys;
+    cacheKeys.add(cacheKey.getGamesByIdIn(List.of(game.getId())));
+    cacheKeys.add(cacheKey.getGamesInIds());
+    cacheKeys.add(cacheKey.getGameByCategoryId(game.getCategoryId(),0));
+    cacheKeys.add(cacheKey.getGameByCategoryId(game.getCategoryId(),1));
+    cacheKeys.add(cacheKey.getGameByCategoryId(game.getCategoryId(),2));
+    cacheKeys.add(cacheKey.getGameByCategoryId(game.getCategoryId(),3));
+    cacheKeys.add(cacheKey.getGameByCategoryId(game.getCategoryId(),4));
+    if (game.getGameTypeId() != null) {
+      game.getGameTypeId().forEach(typeId -> {
+        cacheKeys.add(cacheKey.getTopChartGame(typeId, 0));
+        cacheKeys.add(cacheKey.getTopChartGame(typeId, 1));
+        cacheKeys.add(cacheKey.getTopChartGame(typeId, 2));
+        cacheKeys.add(cacheKey.getTopChartGame(typeId, 3));
+        cacheKeys.add(cacheKey.getTopChartGame(typeId, 4));
+      });
+    }    return cacheKeys;
   }
 
 
   public void saveAll(List<Game> games){
     gameRepository.saveAll(games);
+    games.forEach(g -> remoteCache.del(genCacheKeys(g)));
   }
 }

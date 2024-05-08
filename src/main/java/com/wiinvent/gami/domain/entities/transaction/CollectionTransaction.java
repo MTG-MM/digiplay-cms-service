@@ -18,7 +18,6 @@ public class CollectionTransaction extends BaseEntity {
   @Column(name = "id", nullable = false)
   private UUID id;
 
-  @Size(max = 16)
   @NotNull
   @Column(name = "user_id", nullable = false)
   private UUID userId;

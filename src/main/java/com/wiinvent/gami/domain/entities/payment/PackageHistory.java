@@ -21,18 +21,15 @@ public class PackageHistory extends BaseEntity {
   @Column(columnDefinition = "BINARY(16)")
   private UUID id;
 
-  @Size(max = 20)
   @NotNull
   @Enumerated(EnumType.STRING)
   @Column(name = "payment_method", nullable = false, length = 20)
   private PaymentMethodType paymentMethod;
 
-  @Size(max = 20)
   @NotNull
   @Column(name = "payment_partner_transaction_id", nullable = false, length = 20)
   private String paymentPartnerTransactionId;
 
-  @Size(max = 20)
   @NotNull
   @Column(name = "package_code", nullable = false, length = 20)
   private String packageCode;

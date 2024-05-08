@@ -17,7 +17,7 @@ public class UserSegmentResponse {
   private List<UserSegmentRewardItems> rewardItems;
   private Integer requireExp;
   private Integer pointLimit;
-  private Integer pointBonusRate;
+  private Double pointBonusRate;
   private Integer subBonusRate;
   private Status status;
   private Integer extendPoint;

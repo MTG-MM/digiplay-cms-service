@@ -14,6 +14,4 @@ public class RewardItemDto extends RewardItemUpdateDto {
 
   @Schema(description = "ID loại phần thưởng")
   private Long rewardTypeId;
-
-  private Long quantity;
 }

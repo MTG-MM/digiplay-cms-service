@@ -2,17 +2,27 @@ package com.wiinvent.gami.domain.service.reward;
 
 import com.wiinvent.gami.domain.dto.RewardItemStoreCreateDto;
 import com.wiinvent.gami.domain.dto.RewardItemStoreUpdateDto;
+import com.wiinvent.gami.domain.entities.Achievement;
+import com.wiinvent.gami.domain.entities.ExchangeItemStore;
 import com.wiinvent.gami.domain.entities.type.RewardItemStatus;
+import com.wiinvent.gami.domain.entities.type.Status;
+import com.wiinvent.gami.domain.exception.BadRequestException;
 import com.wiinvent.gami.domain.response.RewardItemStoreResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.entities.reward.RewardItemStore;
 import com.wiinvent.gami.domain.entities.type.StoreType;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.service.BaseService;
+import com.wiinvent.gami.domain.utils.Constants;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
@@ -20,7 +30,9 @@ import java.util.Objects;
 @Service
 @Log4j2
 public class RewardItemStoreService extends BaseService {
-
+  @Autowired
+  @Lazy
+  private RewardItemStoreService self;
   public RewardItemStoreResponse getRewardItemStoreDetail(Long id) {
     RewardItemStore rewardItemStore = rewardItemStoreStorage.findById(id);
     if (rewardItemStore == null) {
@@ -42,7 +54,11 @@ public class RewardItemStoreService extends BaseService {
 
   public Boolean createRewardItemStores(RewardItemStoreCreateDto rewardItemStoreDto) {
     RewardItemStore rewardItemStore = modelMapper.toRewardItemStore(rewardItemStoreDto);
-    rewardItemStoreStorage.save(rewardItemStore);
+    try {
+      self.save(rewardItemStore);
+    } catch (Exception e) {
+      log.debug("==============>createRewardItemStores:DB:Exception:{}", e.getMessage());
+    }
     return true;
   }
 
@@ -53,11 +69,25 @@ public class RewardItemStoreService extends BaseService {
     }
 
     modelMapper.mapRewardItemStoreDtoToRewardItemStore(rewardItemStoreDto, rewardItemStore);
-    rewardItemStoreStorage.save(rewardItemStore);
     try {
-      remoteCache.deleteKey(cacheKey.genRewardItemStoreById(rewardItemStore.getId()));
+      self.save(rewardItemStore);
     } catch (Exception e) {
-      log.debug("==============>updateRewardItemStores:Cache:Exception:{}", e.getMessage());
+      log.debug("==============>updateRewardItemStores:DB:Exception:{}", e.getMessage());
+    }
+    return true;
+  }
+
+  public boolean deleteRewardItemStore(Long id) {
+    RewardItemStore rewardItemStore = rewardItemStoreStorage.findById(id);
+    if (rewardItemStore == null) {
+      throw new ResourceNotFoundException("item not found");
+    }
+    rewardItemStore.setStatus(Status.DELETE);
+    try {
+      self.save(rewardItemStore);
+    } catch (Exception e){
+      log.error("==============>deleteRewardItemStores:DB:Exception:{}", e.getMessage());
+      throw e;
     }
     return true;
   }
@@ -84,6 +114,11 @@ public class RewardItemStoreService extends BaseService {
     rewardItemStoreResponse.setQuantity(quantity);
     rewardItemStoreResponse.setTotalQuantity(totalQuantity);
     rewardItemStoreResponse.setUsedQuantity(usedQuantity);
+  }
+
+  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
+  public void save(RewardItemStore rewardItemStore){
+    rewardItemStoreStorage.save(rewardItemStore);
   }
 
 //  @Transactional(propagation = Propagation.MANDATORY)

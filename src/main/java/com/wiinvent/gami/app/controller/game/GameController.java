@@ -91,6 +91,11 @@ public class GameController extends BaseController {
     );
   }
 
+  @GetMapping("/active")
+  public ResponseEntity<List<GameResponse>> findAllActiveGames(){
+    return ResponseEntity.ok(gameService.findAllGameActive());
+  }
+
   //======================================================= GAME TYPE ===================================================
   @GetMapping("/type")
   @Operation(summary = "Danh sách các loại game")

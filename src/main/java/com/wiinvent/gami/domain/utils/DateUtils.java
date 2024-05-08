@@ -2,6 +2,10 @@ package com.wiinvent.gami.domain.utils;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static com.wiinvent.gami.domain.utils.Helper.ZONE_DEFAULT;
 
@@ -79,5 +83,12 @@ public class DateUtils {
     LocalDateTime localDateTime =
         LocalDateTime.parse(time, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
     return localDateTime;
+  }
+
+  public static List<LocalDate> getDatesBetween(LocalDate startDate, LocalDate endDate) {
+
+    return Stream.iterate(startDate, date -> date.plusDays(1))
+        .limit(ChronoUnit.DAYS.between(startDate, endDate) + 1)
+        .collect(Collectors.toList());
   }
 }

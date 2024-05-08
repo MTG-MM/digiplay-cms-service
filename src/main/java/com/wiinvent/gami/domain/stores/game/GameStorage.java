@@ -33,6 +33,10 @@ public class GameStorage extends BaseStorage {
     return gameRepository.findAllByCategoryIdAndStatusIn(categoryId, statuses);
   }
 
+  public List<Game> findAllByStatus(GameStatus status){
+    return gameRepository.findAllByStatus(status);
+  }
+
   private Specification<Game> specificationGame(Integer id, String name, GameStatus status, Boolean isHot, Boolean isNew, Boolean isUpdate, Boolean isLock, Integer gameCategoryId, Integer gameTypeId) {
     return (Root<Game> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) -> {
       List<Predicate> predicates = new ArrayList<>();

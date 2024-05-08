@@ -4,14 +4,6 @@ import com.wiinvent.gami.domain.entities.type.Status;
 import lombok.Data;
 
 @Data
-public class GvcPackageCreateDto {
+public class GvcPackageCreateDto extends GvcPackageUpdateDto{
   private Integer gameId;
-
-  private String code;
-
-  private Integer gvc1Amount;
-
-  private Integer gvc2Amount;
-
-  private Status status;
 }

@@ -2,13 +2,19 @@ package com.wiinvent.gami.domain.service.reward;
 
 import com.wiinvent.gami.domain.entities.reward.*;
 import com.wiinvent.gami.domain.entities.type.RewardItemType;
+import com.wiinvent.gami.domain.response.ListRwItemStatisticResponse;
+import com.wiinvent.gami.domain.response.ListRwSegmentStatisticResponse;
+import com.wiinvent.gami.domain.response.StatisticResponse;
 import com.wiinvent.gami.domain.service.BaseService;
 import com.wiinvent.gami.domain.utils.DateUtils;
+import com.wiinvent.gami.domain.utils.Helper;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
@@ -48,7 +54,7 @@ public class RewardItemStatisticService extends BaseService {
     int totalRemain = 0;
     RewardItem rewardItem = rewardItemMap.get(segmentDetail.getRewardItemId());
     RewardType rewardType = rewardTypeStorage.findById(rewardItem.getRewardTypeId());
-    if (rewardItem != null && rewardItem.getIsLimited()) {
+    if (rewardItem.getIsLimited()) {
       switch (rewardType.getType()) {
         case RewardItemType.POINT -> {
         }
@@ -72,5 +78,58 @@ public class RewardItemStatisticService extends BaseService {
     rewardItemStatistic.setTotalRewardReceived(totalReceived);
     rewardItemStatistic.setTotalRewardRemain(totalRemain);
     rewardItemStatisticStorage.save(rewardItemStatistic);
+  }
+
+  public List<ListRwSegmentStatisticResponse> statisticTotal(LocalDate gte, LocalDate lte) {
+    List<ListRwSegmentStatisticResponse> rwSegmentStatisticResponses = new ArrayList<>();
+
+    List<RewardItemStatistic> rewardItemStatistics = rewardItemStatisticStorage.findByGteAndLte(gte, lte);
+
+    Map<Long, List<RewardItemStatistic>> groupRwSegmentMap = rewardItemStatistics.stream().collect
+        (Collectors.groupingBy(RewardItemStatistic::getRewardSegmentId));
+
+    for (Map.Entry<Long, List<RewardItemStatistic>> segmentEntry : groupRwSegmentMap.entrySet()) {
+      ListRwSegmentStatisticResponse statisticResponse = new ListRwSegmentStatisticResponse();
+      statisticResponse.setRwSegmentId(segmentEntry.getKey());
+      statisticResponse.setRwItemList(getRewardItemStatistic(segmentEntry.getKey(), gte, lte));
+      rwSegmentStatisticResponses.add(statisticResponse);
+    }
+    return rwSegmentStatisticResponses;
+  }
+
+  public List<ListRwItemStatisticResponse> getRewardItemStatistic(Long rewardSegmentId, LocalDate startDate, LocalDate endDate) {
+    List<ListRwItemStatisticResponse> dataResponse = new ArrayList<>();
+    List<RewardItemStatistic> rewardItemStatistics = rewardItemStatisticStorage.findByRewardSegmentIdAndDateBetween(rewardSegmentId, startDate, endDate);
+    Map<Long, List<RewardItemStatistic>> mapRwItemId = rewardItemStatistics.stream().collect(Collectors.groupingBy(RewardItemStatistic::getRewardItemId));
+    for (Map.Entry<Long, List<RewardItemStatistic>> itemStatistic : mapRwItemId.entrySet()) {
+      List<StatisticResponse> statisticResponses = new ArrayList<>();
+      Map<LocalDate, RewardItemStatistic> localDateRewardItemStatisticMap = itemStatistic.getValue()
+          .stream().collect(Collectors.toMap(RewardItemStatistic::getDate, Function.identity()));
+
+      ListRwItemStatisticResponse listRewardItemStatisticResponse = new ListRwItemStatisticResponse();
+      listRewardItemStatisticResponse.setRewardItemId(itemStatistic.getKey());
+
+      List<LocalDate> localDates = DateUtils.getDatesBetween(startDate, endDate);
+      for (LocalDate current : localDates) {
+        RewardItemStatistic rewardItemStatistic = localDateRewardItemStatisticMap.get(current);
+
+        if (rewardItemStatistic == null) {
+          rewardItemStatistic = new RewardItemStatistic();
+          rewardItemStatistic.setRewardItemId(mapRwItemId.get(itemStatistic.getKey()).getFirst().getRewardItemId());
+          rewardItemStatistic.setDate(current);
+        }
+        StatisticResponse statisticResponse = rewardItemStatistic.convertToStatisticResponse();
+        statisticResponses.add(statisticResponse);
+      }
+      List<Long> rwItemIds = statisticResponses.stream().map(StatisticResponse::getRewardItemId).toList();
+      Map<Long, RewardItem> rewardItemMap = rewardItemStorage.findRewardItemByIdIn(rwItemIds).stream()
+          .collect(Collectors.toMap(RewardItem::getId, Function.identity()));
+      for (StatisticResponse statisticResponse : statisticResponses) {
+        statisticResponse.setRewardItemName(rewardItemMap.get(statisticResponse.getRewardItemId()).getRewardName());
+      }
+      listRewardItemStatisticResponse.setStatisticResponseList(statisticResponses);
+      dataResponse.add(listRewardItemStatisticResponse);
+    }
+    return dataResponse;
   }
 }

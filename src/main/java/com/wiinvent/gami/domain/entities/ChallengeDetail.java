@@ -19,6 +19,7 @@ import java.util.List;
 public class ChallengeDetail extends BaseEntity {
   @Id
   @Column(name = "id", nullable = false)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
   @NotNull

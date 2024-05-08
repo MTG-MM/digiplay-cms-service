@@ -76,4 +76,5 @@ public abstract class BaseStorage {
   @Autowired protected TicketHistoryRepository ticketHistoryRepository;
   @Autowired protected UserCollectionRepository userCollectionRepository;
   @Autowired protected AchievementUserRepository achievementUserRepository;
+  @Autowired protected ExchangeItemStoreRepository exchangeItemStoreRepository;
 }

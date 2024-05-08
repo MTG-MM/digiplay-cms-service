@@ -25,7 +25,7 @@ public class RewardItemStoreStorage extends BaseStorage {
     removeCache(rewardItemStore);
   }
 
-  public void save(List<RewardItemStore> rewardItemStores) {
+  public void saveAll(List<RewardItemStore> rewardItemStores) {
     rewardItemStoreRepository.saveAll(rewardItemStores);
     rewardItemStores.forEach(this::removeCache);
   }
@@ -60,7 +60,4 @@ public class RewardItemStoreStorage extends BaseStorage {
     remoteCache.del(cacheKey.genRewardItemStoreById(rewardItemStore.getId()));
   }
 
-  public void saveAll(List<RewardItemStore> rewardItemStores) {
-    rewardItemStoreRepository.saveAll(rewardItemStores);
-  }
 }

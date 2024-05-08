@@ -25,6 +25,7 @@ import java.util.List;
 public class CollectionController {
   @Autowired
   private CollectionService collectionService;
+
   @GetMapping("")
   public ResponseEntity<PageResponse<CollectionResponse>> findAll(
       @RequestParam(required = false) CollectionType type,
@@ -42,7 +43,7 @@ public class CollectionController {
     return ResponseEntity.ok(collectionService.getCollectionDetail(id));
   }
 
-  @GetMapping("collection")
+  @GetMapping("type/collect")
   private ResponseEntity<List<CollectionResponse>> findCollectionInTypeCollection(){
     return ResponseEntity.ok(collectionService.getCollectionsInTypeCollection());
   }

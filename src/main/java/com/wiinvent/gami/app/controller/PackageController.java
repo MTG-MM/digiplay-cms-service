@@ -96,11 +96,13 @@ public class PackageController {
     );
   }
 
-  @PutMapping("/gvc")
+  @PutMapping("/gvc/{id}")
   @Operation(summary = "Cập nhật thông tin gói")
-  public ResponseEntity<Boolean> updateGvcPackage(@RequestBody @Valid GvcPackageUpdateDto dto){
+  public ResponseEntity<Boolean> updateGvcPackage(
+      @PathVariable Integer id,
+      @RequestBody @Valid GvcPackageUpdateDto dto){
     return ResponseEntity.ok(
-        gvcPackageService.updateGvcPackage(dto)
+        gvcPackageService.updateGvcPackage(id, dto)
     );
   }
 

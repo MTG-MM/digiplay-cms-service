@@ -24,6 +24,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -113,6 +114,11 @@ public class AccountService extends BaseService {
   public Page<AccountResponse> getAllPage(String username, UUID teamId, Pageable pageable) {
     Page<Account> accounts = accountStorage.findPageAccount(username, teamId, pageable);
     return modelMapper.toPageAccountResponse(accounts);
+  }
+
+  public List<AccountResponse> getAllAccountList() {
+    List<Account> accounts = accountStorage.findAccountByAccountRole();
+    return modelMapper.toListAccountResponse(accounts);
   }
 
   @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)

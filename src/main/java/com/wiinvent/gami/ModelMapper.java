@@ -130,6 +130,8 @@ public interface ModelMapper {
     return accounts.map(this::toAccountResponse);
   }
 
+  List<AccountResponse> toListAccountResponse(List<Account> accounts);
+
   GameResponse toGameResponse(Game game);
 
   default Page<GameResponse> toPageGameResponse(Page<Game> games) {

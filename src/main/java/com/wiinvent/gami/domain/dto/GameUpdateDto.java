@@ -59,4 +59,6 @@ public class GameUpdateDto{
   private Boolean isLock;
 
   private Integer levelUnlock;
+
+  private String linkAds;
 }

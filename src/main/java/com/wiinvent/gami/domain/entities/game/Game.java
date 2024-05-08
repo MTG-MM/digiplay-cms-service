@@ -106,6 +106,9 @@ public class Game extends BaseEntity {
   @Column(name = "thumb_challenge_url")
   private String thumbChallengeUrl;
 
+  @Column(name = "link_ads")
+  private String linkAds;
+
   public static List<GameStatus> getListStatusShow(){
     return List.of(GameStatus.ACTIVE, GameStatus.INACTIVE);
   }

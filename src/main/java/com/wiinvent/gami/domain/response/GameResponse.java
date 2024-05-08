@@ -36,4 +36,5 @@ public class GameResponse {
   private GameStar gameStar;
   private Long createdAt;
   private Long updatedAt;
+  private String linkAds;
 }

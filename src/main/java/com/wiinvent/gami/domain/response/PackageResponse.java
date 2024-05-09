@@ -48,4 +48,6 @@ public class PackageResponse {
   private String description;
 
   private ProductType type;
+
+  private String imageUrl;
 }

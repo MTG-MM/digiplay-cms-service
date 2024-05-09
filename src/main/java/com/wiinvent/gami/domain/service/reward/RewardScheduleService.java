@@ -44,12 +44,13 @@ public class RewardScheduleService extends BaseService {
     return modelMapper.toListRewardScheduleResponse(rewardScheduleStorage.findByRewardSegmentDetailId(rewardSegmentId));
   }
 
-  public boolean createRewardSchedules(RewardScheduleDto rewardScheduleDto) {
+  public Boolean createRewardSchedules(RewardScheduleDto rewardScheduleDto) {
     RewardSchedule rewardSchedule = modelMapper.toRewardSchedule(rewardScheduleDto);
     rewardScheduleStorage.save(rewardSchedule);
     return true;
   }
 
+  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
   public Boolean updateRewardSchedules(Long id, RewardScheduleUpdateDto rewardScheduleDto) {
     RewardSchedule rewardSchedule = rewardScheduleStorage.findById(id);
     if (rewardSchedule == null) {

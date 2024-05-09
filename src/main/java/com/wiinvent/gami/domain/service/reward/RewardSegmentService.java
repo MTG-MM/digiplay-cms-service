@@ -36,12 +36,13 @@ public class RewardSegmentService extends BaseService {
     return PageResponse.createFrom(responses);
   }
 
-  public Long createRewardSegments(RewardSegmentDto rewardSegmentDto) {
+  public Boolean createRewardSegments(RewardSegmentDto rewardSegmentDto) {
     RewardSegment rewardSegment = modelMapper.toRewardSegment(rewardSegmentDto);
     rewardSegmentStorage.save(rewardSegment);
-    return rewardSegment.getId();
+    return true;
   }
 
+  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
   public Boolean updateRewardSegments(Long id, RewardSegmentDto rewardSegmentDto) {
     RewardSegment rewardSegment = rewardSegmentStorage.findById(id);
     if (rewardSegment == null){

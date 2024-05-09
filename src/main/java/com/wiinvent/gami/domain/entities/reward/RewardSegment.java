@@ -1,9 +1,15 @@
 package com.wiinvent.gami.domain.entities.reward;
 
+import com.wiinvent.gami.domain.entities.BaseEntity;
+import com.wiinvent.gami.domain.entities.type.PeriodType;
+import com.wiinvent.gami.domain.entities.type.ResourceType;
 import com.wiinvent.gami.domain.entities.type.Status;
-import com.wiinvent.gami.domain.utils.DateUtils;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
+import java.util.List;
 
 @Table(name = "reward_segment")
 @Getter
@@ -12,7 +18,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class RewardSegment {
+public class RewardSegment extends BaseEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +33,15 @@ public class RewardSegment {
   @Column(name = "image_url")
   private String imageUrl;
 
+  @Column(name = "point_require")
+  private Integer pointRequirement;
+
+  @Column(name = "coin_require")
+  private Integer coinRequirement;
+
+  @Column(name = "turn_require")
+  private Integer turnRequirement;
+
   @Column(name = "is_accumulative_priority", columnDefinition = "BIT")
   private Boolean isAccumulativePriority; //Có tích lũy vào quà default nếu quà không hợp lệ không
 
@@ -34,9 +49,20 @@ public class RewardSegment {
   @Enumerated(EnumType.STRING)
   private Status status;
 
-  @Column(name = "created_at")
-  private Long createdAt = DateUtils.getNowMillisAtUtc();
+  @Lob
+  @Column(name = "resource_type")
+  @Enumerated(EnumType.STRING)
+  private ResourceType resourceType;
 
-  @Column(name = "updated_at")
-  private Long updatedAt = DateUtils.getNowMillisAtUtc();
+  @Column(name = "lucky_point")
+  private Long luckyPoint;
+
+  @Lob
+  @Column(name = "period_type")
+  @Enumerated(EnumType.STRING)
+  private PeriodType periodType;
+
+  @Column(name = "period_value")
+  @JdbcTypeCode(SqlTypes.JSON)
+  private List<Integer> periodValue;
 }

@@ -1,8 +1,13 @@
 package com.wiinvent.gami.domain.response;
 
+import com.wiinvent.gami.domain.entities.type.PeriodType;
+import com.wiinvent.gami.domain.entities.type.ResourceType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.Column;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class RewardSegmentResponse {
@@ -19,9 +24,19 @@ public class RewardSegmentResponse {
   @Schema(description = "URL hình ảnh của đoạn phần thưởng")
   private String imageUrl;
 
+  private Integer pointRequirement;
+
+  private Integer coinRequirement;
+
+  private Integer turnRequirement;
+
   @Schema(description = "Có tích luỹ ưu tiên hay không")
   private Boolean isAccumulativePriority;
 
   @Schema(description = "Trạng thái của đoạn phần thưởng")
   private Status status;
+  private ResourceType resourceType;
+  private Long luckyPoint;
+  private PeriodType periodType;
+  private List<Integer> periodValue;
 }

@@ -13,6 +13,9 @@ import com.wiinvent.gami.domain.utils.Constants;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 import java.util.function.Function;
@@ -62,6 +65,7 @@ public class RewardSegmentDetailService extends BaseService {
     };
   }
 
+  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
   public Boolean updateRewardSegmentDetails(Long rwSegmentId, List<RewardSegmentDetailDto> dtos) {
     if (dtos.stream().noneMatch(RewardSegmentDetailDto::getIsDefault)) {
       throw new BadRequestException("No default Reward Item found");
@@ -120,6 +124,7 @@ public class RewardSegmentDetailService extends BaseService {
     return modelMapper.toRewardSegmentDetailResponse(rewardSegmentDetail);
   }
 
+  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
   public Boolean publishRewardSegmentDetails(Long rewardSegmentId, List<RewardSegmentDetailsUpdateDto> detailsUpdateDtos) {
     List<RewardSegmentDetail> oldSegmentDetails = rewardSegmentDetailStorage.findByRewardSegmentId(rewardSegmentId);
     List<RewardSegmentDetail> rewardSegmentDetails = rewardSegmentDetailStorage.findByIdIn(rewardSegmentId, detailsUpdateDtos.stream().map(RewardSegmentDetailsUpdateDto::getRewardItemId).toList());

@@ -36,6 +36,10 @@ public class Package extends BaseEntity {
   @Column(name = "coin", nullable = false)
   private Integer coin;
 
+  @NotNull
+  @Column(name = "ticket", nullable = false)
+  private Integer ticket;
+
   @Column(name = "day_duration")
   private Integer daySub;
 
@@ -47,10 +51,6 @@ public class Package extends BaseEntity {
   @ColumnDefault("0")
   @Column(name = "coin_daily")
   private Integer coinDaily;
-
-  @Size(max = 500)
-  @Column(name = "external_image_id", length = 500)
-  private String externalImageId;
 
   @NotNull
   @Column(name = "package_type_id", nullable = false)

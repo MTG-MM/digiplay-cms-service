@@ -17,13 +17,13 @@ public class PackageResponse {
 
   private Integer coin;
 
+  private Integer ticket;
+
   private Integer daySub;
 
   private Status status;
 
   private Integer coinDaily;
-
-  private String externalImageId;
 
   private Integer packageTypeId;
 

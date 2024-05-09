@@ -1,7 +1,6 @@
 package com.wiinvent.gami.domain.stores;
 
 import com.wiinvent.gami.domain.entities.Package;
-import com.wiinvent.gami.domain.entities.type.PackageType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;

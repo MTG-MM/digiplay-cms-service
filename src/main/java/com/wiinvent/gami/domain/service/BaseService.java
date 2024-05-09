@@ -76,4 +76,6 @@ public abstract class BaseService {
   @Autowired protected UserCollectionStorage userCollectionStorage;
   @Autowired protected ExchangeItemStoreStorage exchangeItemStoreStorage;
   @Autowired protected LuckyPointTransactionStorage luckyPointTransactionStorage;
+  @Autowired protected QuestStorage questStorage;
+  @Autowired protected QuestTurnStorage questTurnStorage;
 }

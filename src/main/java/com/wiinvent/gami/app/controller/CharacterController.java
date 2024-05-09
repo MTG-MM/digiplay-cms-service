@@ -27,6 +27,7 @@ import java.util.List;
 public class CharacterController {
   @Autowired
   CharacterService characterService;
+
   @GetMapping("")
   public ResponseEntity<PageResponse<CharacterResponse>> findAll(
       @RequestParam(required = false) String name,
@@ -34,40 +35,48 @@ public class CharacterController {
       @RequestParam(required = false) Status status,
       @SortDefault(sort = "createdAt", direction = Sort.Direction.DESC)
       Pageable pageable
-  ){
+  ) {
     return ResponseEntity.ok(
         PageResponse.createFrom(characterService.findAll(name, categoryType, status, pageable))
     );
   }
 
   @GetMapping("{id}")
-  public ResponseEntity<CharacterResponse> getCharacterDetail(@PathVariable int id){
+  public ResponseEntity<CharacterResponse> getCharacterDetail(@PathVariable int id) {
     return ResponseEntity.ok(characterService.getCharacterDetail(id));
   }
+
   @PostMapping("")
-  public ResponseEntity<Boolean> createCharacter(@RequestBody CharacterCreateDto characterCreateDto){
+  public ResponseEntity<Boolean> createCharacter(@RequestBody CharacterCreateDto characterCreateDto) {
     return ResponseEntity.ok(
         characterService.createCharacter(characterCreateDto)
     );
   }
 
   @PutMapping("{id}")
-  public ResponseEntity<Boolean> updateCharacter(@PathVariable Integer id, @RequestBody CharacterUpdateDto dto){
+  public ResponseEntity<Boolean> updateCharacter(@PathVariable Integer id, @RequestBody CharacterUpdateDto dto) {
     return ResponseEntity.ok(
         characterService.updateCharacter(id, dto)
     );
   }
 
   @DeleteMapping("{id}")
-  public ResponseEntity<Boolean> deleteCharacter(@PathVariable Integer id){
+  public ResponseEntity<Boolean> deleteCharacter(@PathVariable Integer id) {
     return ResponseEntity.ok(
         characterService.deleteCharacter(id)
     );
   }
 
+  @GetMapping("active")
+  public ResponseEntity<List<CharacterResponse>> getActiveCharacters(
+      @RequestParam(required = false) CharacterCategoryType type
+  ) {
+    return ResponseEntity.ok(characterService.getCharactersActive(type));
+  }
+
   @GetMapping("/category-type")
   @Operation(summary = "Lấy danh sách character category", description = "ví dụ: SKIN, OUTSIDE, PET, DECOR, ...")
-  public ResponseEntity<List<CharacterCategoryType>> findAllCharacterType(){
+  public ResponseEntity<List<CharacterCategoryType>> findAllCharacterType() {
     return ResponseEntity.ok(
         characterService.findAllCharacterType()
     );
@@ -75,7 +84,7 @@ public class CharacterController {
 
   @GetMapping("/category-type/{characterCategoryType}")
   @Operation(summary = "Lấy danh sách character type của character-category", description = "ví dụ: SKIN(TROUSER, SHIRT, ...), OUTSIDE(BACKGROUND, EFFECT, ...) ")
-  public ResponseEntity<List<CharacterType>> findAllCharacterTypeByCategory(@PathVariable CharacterCategoryType characterCategoryType){
+  public ResponseEntity<List<CharacterType>> findAllCharacterTypeByCategory(@PathVariable CharacterCategoryType characterCategoryType) {
     return ResponseEntity.ok(
         characterService.getCharacterTypeByCategory(characterCategoryType)
     );

@@ -222,6 +222,8 @@ public interface ModelMapper {
     return characters.map(this::toCharacterResponse);
   }
 
+  List<CharacterResponse> toListCharacterResponse(List<Character> characters);
+
   List<GameTournamentUserResponse> toGameTournamentUserResponse(List<GameTournamentUser> gameTournamentUsers);
   List<GameTournamentEventResponse> toGameTournamentEventResponse(List<GameTournamentEvent> gameTournamentEvents);
 
@@ -310,4 +312,20 @@ public interface ModelMapper {
 
   Config toConfig(ConfigDto dto);
   void mapConfigDtoToConfig(ConfigDto dto, @MappingTarget Config config);
+
+  Quest toQuest(QuestCreateDto questCreateDto);
+  void mapQuestUpdateDtoToQuest(QuestUpdateDto questUpdateDto, @MappingTarget Quest quest);
+  QuestResponse toQuestResponse(Quest quest);
+
+  default Page<QuestResponse> toPageQuestResponse(Page<Quest> quests){
+    return quests.map(this::toQuestResponse);
+  }
+
+  QuestTurn toQuestTurn(QuestTurnCreateDto questTurnCreateDto);
+  void mapQuestTurnUpdateDtoToQuestTurn(QuestTurnUpdateDto questTurnUpdateDto, @MappingTarget QuestTurn questTurn);
+  QuestTurnResponse toQuestTurnResponse(QuestTurn questTurn);
+
+  default Page<QuestTurnResponse> toPageQuestTurnResponse(Page<QuestTurn> questTurns){
+    return questTurns.map(this::toQuestTurnResponse);
+  }
 }

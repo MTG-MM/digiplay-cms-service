@@ -3,8 +3,10 @@ package com.wiinvent.gami.domain.stores.reward;
 import com.wiinvent.gami.domain.entities.reward.RewardItem;
 import com.wiinvent.gami.domain.entities.reward.RewardSegment;
 import com.wiinvent.gami.domain.entities.type.ResourceType;
+import com.wiinvent.gami.domain.entities.type.RewardItemType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.stores.BaseStorage;
+import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -31,6 +33,24 @@ public class RewardItemStorage extends BaseStorage {
 
   public Page<RewardItem> findAll(Specification<RewardItem> rwItemCondition, Pageable pageable) {
     return rewardItemRepository.findAll(rwItemCondition, pageable);
+  }
+
+  public List<RewardItem> findAllListRwItem(String name, RewardItemType type) {
+    return rewardItemRepository.findAll(rwItemCondition(name, type));
+  }
+
+  public Specification<RewardItem> rwItemCondition(String name, RewardItemType type) {
+    return (rwItem, query, criteriaBuilder) -> {
+      List<Predicate> conditionsList = new ArrayList<>();
+      conditionsList.add(criteriaBuilder.equal(rwItem.get("status"), Status.ACTIVE));
+      if (name != null) {
+        conditionsList.add(criteriaBuilder.like(rwItem.get("rewardName"), "%" + name + "%"));
+      }
+      if (type != null) {
+        conditionsList.add(criteriaBuilder.equal(rwItem.get("rewardType"), type));
+      }
+      return criteriaBuilder.and(conditionsList.toArray(new Predicate[0]));
+    };
   }
 
   List<String> getRemoveKeys(RewardItem rewardItem) {

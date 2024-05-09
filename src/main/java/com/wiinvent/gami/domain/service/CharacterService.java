@@ -88,6 +88,12 @@ public class CharacterService extends BaseService{
     }
     return true;
   }
+
+  public List<CharacterResponse> getCharactersActive(CharacterCategoryType categoryType){
+    List<Character> characters = characterStorage.findAllCharacter(categoryType);
+    return modelMapper.toListCharacterResponse(characters);
+  }
+
   @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
   public void save(Character character){
     characterStorage.save(character);

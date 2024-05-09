@@ -45,4 +45,5 @@ public class Constants {
   public static final String ACHIEVEMENT_NOT_FOUND = "Không tìm thấy thành tựu này";
   public static final String CHALLENGE_NOT_FOUND = "Không tìm thấy thử thách này";
   public static final String COLLECTION_NOT_FOUND = "Không tìm thấy bộ sưu tập này";
+  public static final String QUEST_NOT_FOUND = "Không tìm thấy nhiệm vụ này";
 }

@@ -77,4 +77,6 @@ public abstract class BaseStorage {
   @Autowired protected UserCollectionRepository userCollectionRepository;
   @Autowired protected AchievementUserRepository achievementUserRepository;
   @Autowired protected ExchangeItemStoreRepository exchangeItemStoreRepository;
+  @Autowired protected QuestRepository questRepository;
+  @Autowired protected QuestTurnRepository questTurnRepository;
 }

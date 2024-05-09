@@ -1,11 +1,13 @@
 package com.wiinvent.gami.app.controller;
 
 import com.wiinvent.gami.domain.dto.AccountDto;
+import com.wiinvent.gami.domain.dto.AccountStateDto;
 import com.wiinvent.gami.domain.response.AccountResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.security.service.UserDetailsImpl;
 import com.wiinvent.gami.domain.service.AccountService;
 import io.swagger.v3.oas.annotations.Parameter;
+import jakarta.validation.Valid;
 import org.springdoc.core.converters.models.PageableAsQueryParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -67,7 +69,8 @@ public class AccountController extends BaseController {
   }
 
   @PutMapping("{accountId}")
-  public ResponseEntity<Boolean> updateAccount(@PathVariable UUID accountId, AccountDto dto) {
+  public ResponseEntity<Boolean> updateAccount(@PathVariable UUID accountId,
+                                               @RequestBody @Valid AccountStateDto dto) {
     return ResponseEntity.ok(
         accountService.updateAccount(accountId, dto)
     );

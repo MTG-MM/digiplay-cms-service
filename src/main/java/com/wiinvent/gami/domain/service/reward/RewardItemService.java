@@ -10,6 +10,7 @@ import com.wiinvent.gami.domain.entities.reward.RewardItemStore;
 import com.wiinvent.gami.domain.entities.reward.RewardType;
 import com.wiinvent.gami.domain.entities.type.RewardItemStatus;
 import com.wiinvent.gami.domain.entities.type.RewardItemType;
+import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.entities.type.StoreType;
 import com.wiinvent.gami.domain.exception.BadRequestException;
 import com.wiinvent.gami.domain.response.RewardItemResponse;
@@ -67,7 +68,7 @@ public class RewardItemService extends BaseService {
       Integer id, String name, RewardItemType type) {
     return (rwItem, query, criteriaBuilder) -> {
       List<Predicate> conditionsList = new ArrayList<>();
-
+      conditionsList.add(criteriaBuilder.notEqual(rwItem.get("status"), Status.DELETE));
       if (id != null) {
         conditionsList.add(criteriaBuilder.equal(rwItem.get("id"), id));
       }
@@ -121,8 +122,8 @@ public class RewardItemService extends BaseService {
     return modelMapper.toRewardItemResponse(rewardItem);
   }
 
-  public List<RewardItemResponse> getRwItemActive() {
-    List<RewardItem> rewardItems = rewardItemStorage.findRewardItemByStatus();
+  public List<RewardItemResponse> getRwItemActive(String name, RewardItemType type) {
+    List<RewardItem> rewardItems = rewardItemStorage.findAllListRwItem(name, type);
     return modelMapper.toRewardItemResponseList(rewardItems);
   }
 

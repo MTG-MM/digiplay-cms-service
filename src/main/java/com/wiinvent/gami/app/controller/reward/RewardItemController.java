@@ -2,6 +2,7 @@ package com.wiinvent.gami.app.controller.reward;
 
 import com.wiinvent.gami.domain.dto.ProcessQuantityDto;
 import com.wiinvent.gami.domain.dto.RewardItemDto;
+import com.wiinvent.gami.domain.dto.RewardItemUpdateDto;
 import com.wiinvent.gami.domain.entities.type.RewardItemType;
 import com.wiinvent.gami.domain.response.RewardItemResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
@@ -54,13 +55,16 @@ public class RewardItemController {
   }
 
   @PutMapping("{id}")
-  public ResponseEntity<Boolean> updateRewardItems(@PathVariable Long id, @RequestBody @Valid RewardItemDto rewardItemDto) {
-    return ResponseEntity.ok(rewardItemService.updateRewardItems(id, rewardItemDto));
+  public ResponseEntity<Boolean> updateRewardItems(@PathVariable Long id, @RequestBody @Valid RewardItemUpdateDto dto) {
+    return ResponseEntity.ok(rewardItemService.updateRewardItems(id, dto));
   }
 
   @GetMapping("active")
-  public ResponseEntity<List<RewardItemResponse>> getActiveRewardItems() {
-    return ResponseEntity.ok(rewardItemService.getRwItemActive());
+  public ResponseEntity<List<RewardItemResponse>> getActiveRewardItems(
+      @RequestParam(required = false) String name,
+      @RequestParam(required = false) RewardItemType type
+  ) {
+    return ResponseEntity.ok(rewardItemService.getRwItemActive(name, type));
   }
 
   @PutMapping("updateQuantity")

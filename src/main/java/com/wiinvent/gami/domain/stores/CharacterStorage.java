@@ -31,6 +31,21 @@ public class CharacterStorage extends BaseStorage{
     return characterRepository.findAllByIdIn(ids);
   }
 
+  public List<Character> findAllCharacter(CharacterCategoryType categoryType){
+    return characterRepository.findAll(characterActiveCondition(categoryType));
+  }
+
+  public Specification<Character> characterActiveCondition(CharacterCategoryType categoryType){
+    return (root, query, criteriaBuilder) -> {
+      List<Predicate> conditionList = new ArrayList<>();
+      conditionList.add(criteriaBuilder.equal(root.get("status"), Status.ACTIVE));
+      if (categoryType != null){
+        conditionList.add(criteriaBuilder.equal(root.get("categoryType"), categoryType));
+      }
+      return criteriaBuilder.and(conditionList.toArray(new Predicate[0]));
+    };
+  }
+
   public Specification<Character> characterCondition(String name, CharacterCategoryType categoryType, Status status){
     return (root, query, criteriaBuilder) -> {
       List<Predicate> conditionList = new ArrayList<>();

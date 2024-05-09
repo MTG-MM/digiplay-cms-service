@@ -1,6 +1,7 @@
 package com.wiinvent.gami.domain.service;
 
 import com.wiinvent.gami.domain.dto.AccountDto;
+import com.wiinvent.gami.domain.dto.AccountStateDto;
 import com.wiinvent.gami.domain.dto.LoginDto;
 import com.wiinvent.gami.domain.response.AccountResponse;
 import com.wiinvent.gami.domain.response.TokenResponse;
@@ -122,18 +123,14 @@ public class AccountService extends BaseService {
   }
 
   @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
-  public Boolean updateAccount(UUID accountId, AccountDto dto){
+  public Boolean updateAccount(UUID accountId, AccountStateDto dto){
     Account account = accountStorage.findById(accountId);
     if(account == null){
       throw new BadRequestException(Constants.USER_NOT_FOUND);
     }
 
-    account.setUsername(dto.getUsername());
-    account.setPassword(userSecurityService.encode(dto.getPassword()));
-    account.setRole(dto.getRole());
+    account.setAccountState(dto.getAccountState());
     account.setUpdatedAt(DateUtils.getNowMillisAtUtc());
-    if(Objects.nonNull(dto.getAccountState())) account.setAccountState(dto.getAccountState());
-
     accountStorage.save(account);
     return true;
   }

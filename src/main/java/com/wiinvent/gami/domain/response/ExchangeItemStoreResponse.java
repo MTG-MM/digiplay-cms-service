@@ -1,7 +1,7 @@
 package com.wiinvent.gami.domain.response;
 
+import com.wiinvent.gami.domain.entities.type.ExchangeStoreType;
 import com.wiinvent.gami.domain.entities.type.Status;
-import com.wiinvent.gami.domain.entities.type.StoreType;
 import lombok.Data;
 
 @Data
@@ -12,10 +12,12 @@ public class ExchangeItemStoreResponse {
   private Integer pointPrice;
   private Integer ticketPrice;
   private Long quantity;
-  private ExchangeItemStoreResponse storeType;
+  private ExchangeStoreType storeType;
   private Long rewardItemId;
   private String rewardItemName;
   private Status status;
+  private Long startAt;
+  private Long endAt;
   private Long limitExchange;
   private Long createdAt;
 }

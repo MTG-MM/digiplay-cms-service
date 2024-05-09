@@ -53,8 +53,20 @@ public class RewardItemStoreStorage extends BaseStorage {
   }
 
   public List<RewardItemStore> findByType(StoreType type) {
-    return rewardItemStoreRepository.findByType(type);
+    return rewardItemStoreRepository.findAll(itemStoreActiveSpecification(type));
   }
+
+  public Specification<RewardItemStore> itemStoreActiveSpecification(StoreType type) {
+    return (root, query, criteriaBuilder) -> {
+      List<Predicate> conditionList = new ArrayList<>();
+      conditionList.add(criteriaBuilder.equal(root.get("status"), Status.ACTIVE));
+      if (type != null) {
+        conditionList.add(criteriaBuilder.equal(root.get("type"), type));
+      }
+      return criteriaBuilder.and(conditionList.toArray(new Predicate[0]));
+    };
+  }
+
 
   public void removeCache(RewardItemStore rewardItemStore) {
     remoteCache.del(cacheKey.genRewardItemStoreById(rewardItemStore.getId()));

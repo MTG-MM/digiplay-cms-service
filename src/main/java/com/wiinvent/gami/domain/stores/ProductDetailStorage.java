@@ -3,6 +3,7 @@ package com.wiinvent.gami.domain.stores;
 import com.wiinvent.gami.domain.entities.ProductDetail;
 import com.wiinvent.gami.domain.entities.VoucherDetail;
 import com.wiinvent.gami.domain.entities.type.RewardItemStatus;
+import com.wiinvent.gami.domain.entities.type.StoreType;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -58,7 +59,7 @@ public class ProductDetailStorage extends BaseStorage {
     return productDetailRepository.countProductDetailByStoreIdAndStatus(id, status);
   }
 
-  public Page<ProductDetail> findAlProductDetails(Long storeId, String name, String code, Pageable pageable) {
+  public Page<ProductDetail> findAlProductDetails(Long storeId ,String name, String code, Pageable pageable) {
     return productDetailRepository.findAll(productDetailSpecification(storeId, name, code), pageable);
   }
 

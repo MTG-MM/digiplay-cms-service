@@ -11,15 +11,11 @@ import com.wiinvent.gami.domain.entities.user.User;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.pojo.ProductExcelData;
 import com.wiinvent.gami.domain.pojo.VoucherExcelData;
-import com.wiinvent.gami.domain.response.ProductDetailResponse;
-import com.wiinvent.gami.domain.response.VoucherDetailResponse;
+import com.wiinvent.gami.domain.response.RwItemStoreDetailResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
-import com.wiinvent.gami.domain.service.reward.RewardItemStoreService;
 import com.wiinvent.gami.domain.utils.DateUtils;
 import com.wiinvent.gami.domain.utils.ExcelUtils;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -34,7 +30,7 @@ import java.util.UUID;
 
 @Service
 @Log4j2
-public class ProductDetailService extends BaseService {
+public class RwItemStoreDetailService extends BaseService {
 
   public ProductDetail setProductDetailForUser(User user, UUID detailId) {
     Long now = DateUtils.getNowMillisAtUtc();
@@ -108,24 +104,64 @@ public class ProductDetailService extends BaseService {
     rewardItemStoreStorage.save(rewardItemStore);
   }
 
-  public PageResponse<ProductDetailResponse> getAllProductDetails(Long storeId, String name, String code, Pageable pageable) {
-    Page<ProductDetail> productDetails = productDetailStorage.findAlProductDetails(storeId, name, code, pageable);
-    return PageResponse.createFrom(modelMapper.toPageProductDetailResponse(productDetails));
+  public PageResponse<RwItemStoreDetailResponse> getAllRwItemStoreDetails(Long storeId, String name, String code, Pageable pageable) {
+    RewardItemStore rewardItemStore = rewardItemStoreStorage.findById(storeId);
+    if(rewardItemStore == null){
+      throw new ResourceNotFoundException("Item not found");
+    }
+
+    switch (rewardItemStore.getType()) {
+      case PRODUCT:
+        Page<ProductDetail> productDetails = productDetailStorage.findAlProductDetails(storeId, name, code, pageable);
+        return PageResponse.createFrom(modelMapper.toPageProductDetailResponse(productDetails));
+      case VOUCHER:
+        Page<VoucherDetail> voucherDetails = voucherDetailStorage.findAllVoucherDetails(storeId, name, code, pageable);
+        return PageResponse.createFrom(modelMapper.toPageVoucherDetailResponse(voucherDetails));
+      default:
+        return null;
+    }
   }
 
-  public Boolean importProduct(MultipartFile file, Long storeId) throws IOException {
+  public Boolean importRwItemStoreDetail(MultipartFile file, Long storeId) throws IOException {
    RewardItemStore rewardItemStore = rewardItemStoreStorage.findById(storeId);
    if(rewardItemStore == null){
      throw new ResourceNotFoundException("Cannot found Product with id: " + storeId);
    }
-   List<ProductExcelData> productExcelData = ExcelUtils.readExcel(file, ProductExcelData.getHeader(), ProductExcelData.class);
-   List<ProductDetail> productDetails = new ArrayList<>();
-   for (ProductExcelData excelData : productExcelData) {
-     ProductDetail productDetail = toProductDetail(excelData, storeId);
-     productDetails.add(productDetail);
+   switch (rewardItemStore.getType()) {
+     case PRODUCT:
+       List<ProductExcelData> productExcelData = ExcelUtils.readExcel(file, ProductExcelData.getHeader(), ProductExcelData.class);
+       List<ProductDetail> productDetails = new ArrayList<>();
+       for (ProductExcelData excelData : productExcelData) {
+         ProductDetail productDetail = toProductDetail(excelData, storeId);
+         productDetails.add(productDetail);
+       }
+       productDetailStorage.saveAll(productDetails);
+       return true;
+
+     case VOUCHER:
+       List<VoucherExcelData> voucherExcelData = ExcelUtils.readExcel(file, VoucherExcelData.getHeader(), VoucherExcelData.class);
+       List<VoucherDetail> voucherDetails = new ArrayList<>();
+       for (VoucherExcelData excelData : voucherExcelData) {
+         VoucherDetail voucherDetail = toVoucherDetail(excelData, storeId);
+         voucherDetails.add(voucherDetail);
+       }
+       voucherDetailStorage.saveAll(voucherDetails);
+       return true;
+     default:{
+       return false;
+     }
    }
-   productDetailStorage.saveAll(productDetails);
-   return true;
+  }
+
+
+  public VoucherDetail toVoucherDetail(VoucherExcelData voucherExcelData, Long storeId) {
+    VoucherDetail voucherDetail = new VoucherDetail();
+    voucherDetail.setCode(voucherExcelData.getCode());
+    voucherDetail.setName(voucherExcelData.getName());
+    voucherDetail.setStoreId(storeId);
+    voucherDetail.setStartAt(DateUtils.convertStringToLongUTC(voucherExcelData.getStartAt()));
+    voucherDetail.setExpireAt(DateUtils.convertStringToLongUTC(voucherExcelData.getExpireAt()));
+    return voucherDetail;
   }
 
   public ProductDetail toProductDetail(ProductExcelData productExcelData, Long storeId) {

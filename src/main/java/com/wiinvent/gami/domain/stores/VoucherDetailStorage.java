@@ -2,6 +2,7 @@ package com.wiinvent.gami.domain.stores;
 
 import com.wiinvent.gami.domain.entities.VoucherDetail;
 import com.wiinvent.gami.domain.entities.type.RewardItemStatus;
+import com.wiinvent.gami.domain.entities.type.StoreType;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

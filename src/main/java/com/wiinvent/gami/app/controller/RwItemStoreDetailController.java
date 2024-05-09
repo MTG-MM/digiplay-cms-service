@@ -1,8 +1,8 @@
 package com.wiinvent.gami.app.controller;
 
-import com.wiinvent.gami.domain.response.VoucherDetailResponse;
+import com.wiinvent.gami.domain.response.RwItemStoreDetailResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
-import com.wiinvent.gami.domain.service.VoucherDetailService;
+import com.wiinvent.gami.domain.service.RwItemStoreDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -13,28 +13,27 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping("v1/portal/voucher-details")
+@RequestMapping("v1/portal/reward-item-stores/detail")
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
-public class VoucherDetailController {
-
+public class RwItemStoreDetailController {
   @Autowired
-  private VoucherDetailService voucherDetailService;
+  private RwItemStoreDetailService rwItemStoreDetailService;
 
   @GetMapping("{storeId}")
-  public ResponseEntity<PageResponse<VoucherDetailResponse>> getVoucherDetail(
+  public ResponseEntity<PageResponse<RwItemStoreDetailResponse>> getAllRwItemStoreDetails(
       @PathVariable Long storeId,
       @RequestParam(required = false) String name,
       @RequestParam(required = false) String code,
       @SortDefault(sort = "createdAt", direction = Sort.Direction.DESC)
       Pageable pageable) {
-    return ResponseEntity.ok(voucherDetailService.getAllVoucherDetails(storeId, name, code, pageable));
+    return ResponseEntity.ok(rwItemStoreDetailService.getAllRwItemStoreDetails(storeId, name, code, pageable));
   }
 
   @PostMapping("{storeId}/import")
   public ResponseEntity<Boolean> importVoucher(
       @RequestParam("file") MultipartFile file,
       @PathVariable Long storeId) throws Exception {
-    voucherDetailService.importVoucher(file, storeId);
+    rwItemStoreDetailService.importRwItemStoreDetail(file, storeId);
     return ResponseEntity.ok(true);
   }
 }

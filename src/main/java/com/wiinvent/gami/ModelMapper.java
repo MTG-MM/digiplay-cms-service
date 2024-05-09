@@ -22,7 +22,6 @@ import com.wiinvent.gami.domain.entities.*;
 import com.wiinvent.gami.domain.pojo.TokenInfo;
 import com.wiinvent.gami.domain.response.payment.PaymentMethodResponse;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.springframework.data.domain.Page;
 
@@ -98,17 +97,15 @@ public interface ModelMapper {
 
   RewardTypeResponse toRewardTypeResponse(RewardType rewardType);
 
-  default Page<VoucherDetailResponse> toPageVoucherDetailResponse(Page<VoucherDetail> voucherDetails){
+  default Page<RwItemStoreDetailResponse> toPageVoucherDetailResponse(Page<VoucherDetail> voucherDetails){
     return voucherDetails.map(this::toVoucherDetailResponse);
   }
-
-  VoucherDetailResponse toVoucherDetailResponse(VoucherDetail voucherDetail);
-
-  default Page<ProductDetailResponse> toPageProductDetailResponse(Page<ProductDetail> productDetails){
+  default Page<RwItemStoreDetailResponse> toPageProductDetailResponse(Page<ProductDetail> productDetails){
     return productDetails.map(this::toProductDetailResponse);
   }
+  RwItemStoreDetailResponse toVoucherDetailResponse(VoucherDetail voucherDetail);
 
-  ProductDetailResponse toProductDetailResponse(ProductDetail productDetail);
+  RwItemStoreDetailResponse toProductDetailResponse(ProductDetail productDetail);
 
   RewardItemStoreResponse toRewardItemStoreResponse(RewardItemStore rewardItemStore);
 

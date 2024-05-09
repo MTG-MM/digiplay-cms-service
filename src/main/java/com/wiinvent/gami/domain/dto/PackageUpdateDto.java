@@ -24,7 +24,7 @@ public class PackageUpdateDto {
   @NotNull(message = "Không được để trống")
   private Integer coin;
 
-  @NotNull
+  @NotNull(message = "Không được để trống")
   private Integer ticket;
 
   @Schema(description = "thời gian sử dụng của gói")

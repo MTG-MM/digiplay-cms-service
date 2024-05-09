@@ -3,24 +3,16 @@ package com.wiinvent.gami.domain.service.reward;
 import com.wiinvent.gami.domain.dto.ProcessQuantityDto;
 import com.wiinvent.gami.domain.dto.RewardItemDto;
 import com.wiinvent.gami.domain.dto.RewardItemUpdateDto;
-import com.wiinvent.gami.domain.entities.ExchangeItemStore;
-import com.wiinvent.gami.domain.entities.ProductDetail;
 import com.wiinvent.gami.domain.entities.reward.RewardItem;
-import com.wiinvent.gami.domain.entities.reward.RewardItemStore;
 import com.wiinvent.gami.domain.entities.reward.RewardType;
 import com.wiinvent.gami.domain.entities.type.RewardItemStatus;
 import com.wiinvent.gami.domain.entities.type.RewardItemType;
 import com.wiinvent.gami.domain.entities.type.Status;
-import com.wiinvent.gami.domain.entities.type.StoreType;
 import com.wiinvent.gami.domain.exception.BadRequestException;
 import com.wiinvent.gami.domain.response.RewardItemResponse;
-import com.wiinvent.gami.domain.response.RewardItemStoreResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.service.BaseService;
-import com.wiinvent.gami.domain.service.ProductDetailService;
-import com.wiinvent.gami.domain.service.user.UserService;
-import com.wiinvent.gami.domain.service.VoucherDetailService;
 import jakarta.persistence.criteria.Predicate;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +28,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 @Service
 @Log4j2

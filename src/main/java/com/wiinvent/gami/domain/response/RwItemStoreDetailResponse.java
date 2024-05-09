@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.UUID;
 
 @Data
-public class VoucherDetailResponse {
+public class RwItemStoreDetailResponse {
 
   @Schema(description = "ID của voucher")
   private UUID id;

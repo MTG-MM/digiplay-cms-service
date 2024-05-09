@@ -4,12 +4,11 @@ import com.wiinvent.gami.domain.dto.RewardScheduleDto;
 import com.wiinvent.gami.domain.dto.RewardScheduleUpdateDto;
 import com.wiinvent.gami.domain.entities.reward.*;
 import com.wiinvent.gami.domain.entities.type.*;
-import com.wiinvent.gami.domain.entities.type.RewardItemType;
 import com.wiinvent.gami.domain.response.RewardScheduleResponse;
 import com.wiinvent.gami.domain.entities.*;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.service.BaseService;
-import com.wiinvent.gami.domain.service.ProductDetailService;
+import com.wiinvent.gami.domain.service.RwItemStoreDetailService;
 import com.wiinvent.gami.domain.service.VoucherDetailService;
 import com.wiinvent.gami.domain.utils.DateUtils;
 import com.wiinvent.gami.domain.utils.Helper;
@@ -35,7 +34,7 @@ public class RewardScheduleService extends BaseService {
   @Autowired
   VoucherDetailService voucherDetailService;
   @Autowired
-  ProductDetailService productDetailService;
+  RwItemStoreDetailService rwItemStoreDetailService;
   @Autowired
   @Lazy
   RewardScheduleService self;
@@ -197,7 +196,7 @@ public class RewardScheduleService extends BaseService {
 
       }
       case PRODUCT -> {
-        List<ProductDetail> productDetails = productDetailService.getProductDetail(Integer.parseInt(rewardItem.getExternalId()), amount, rewardSchedule, rewardSegment, newPeriod);
+        List<ProductDetail> productDetails = rwItemStoreDetailService.getProductDetail(Integer.parseInt(rewardItem.getExternalId()), amount, rewardSchedule, rewardSegment, newPeriod);
         if (!productDetails.isEmpty()) {
           productDetails.forEach(v ->
               remoteCache.rDequePutId(keyPoll, v.getId())

@@ -1,7 +1,7 @@
 package com.wiinvent.gami.app.controller;
 
 import com.wiinvent.gami.domain.service.AccountService;
-import com.wiinvent.gami.domain.service.ProductDetailService;
+import com.wiinvent.gami.domain.service.RwItemStoreDetailService;
 import com.wiinvent.gami.domain.service.reward.RewardScheduleService;
 import com.wiinvent.gami.domain.service.VoucherDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ public class HealthCheckController {
   @Autowired
   VoucherDetailService voucherDetailService;
   @Autowired
-  ProductDetailService productDetailService;
+  RwItemStoreDetailService rwItemStoreDetailService;
 
   @GetMapping("")
   public ResponseEntity<?> healthCheck() {
@@ -39,7 +39,7 @@ public class HealthCheckController {
 
   @PostMapping("init-product-test")
   public ResponseEntity<?> initProductTest() {
-    productDetailService.initRandomProductDetail();
+    rwItemStoreDetailService.initRandomProductDetail();
     return ResponseEntity.ok(true);
   }
 

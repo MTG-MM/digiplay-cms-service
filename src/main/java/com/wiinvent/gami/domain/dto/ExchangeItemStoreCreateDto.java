@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 public class ExchangeItemStoreCreateDto extends ExchangeItemStoreUpdateDto {
-  private Long rewardItemId;
+  private Long rewardItems;
   private ExchangeStoreType storeType;
 }

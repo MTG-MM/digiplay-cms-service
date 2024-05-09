@@ -4,6 +4,8 @@ import com.wiinvent.gami.domain.entities.type.ExchangeStoreType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class ExchangeItemStoreResponse {
   private Long id;
@@ -13,7 +15,7 @@ public class ExchangeItemStoreResponse {
   private Integer ticketPrice;
   private Long quantity;
   private ExchangeStoreType storeType;
-  private Long rewardItemId;
+  private Long rewardItems;
   private String rewardItemName;
   private Status status;
   private Long startAt;

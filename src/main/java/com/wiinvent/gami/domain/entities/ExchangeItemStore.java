@@ -2,11 +2,17 @@ package com.wiinvent.gami.domain.entities;
 
 import com.wiinvent.gami.domain.entities.type.ExchangeStoreType;
 import com.wiinvent.gami.domain.entities.type.Status;
+import com.wiinvent.gami.domain.entities.type.UserType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -26,8 +32,9 @@ public class ExchangeItemStore extends BaseEntity {
   private ExchangeStoreType storeType;
 
   @NotNull
-  @Column(name = "reward_item_id", nullable = false)
-  private Long rewardItemId;
+  @Column(name = "reward_items")
+  @JdbcTypeCode(SqlTypes.JSON)
+  private Long rewardItems;
 
   @Lob
   @Enumerated(EnumType.STRING)

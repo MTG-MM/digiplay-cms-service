@@ -16,7 +16,7 @@ public class RewardItemStoreUpdateDto {
   private String name;
 
   @NotNull(message = "Loại cửa hàng không được để trống")
-  @Schema(description = "Loại cửa hàng", example = "PHYSICAL_STORE")
+  @Schema(description = "Loại cửa hàng", example = "VOUCHER/PRODUCT")
   private StoreType type;
 
   @NotNull(message = "Trạng thái không được để trống")

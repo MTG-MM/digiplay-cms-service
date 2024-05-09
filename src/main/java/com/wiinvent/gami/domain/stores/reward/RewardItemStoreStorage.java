@@ -37,7 +37,7 @@ public class RewardItemStoreStorage extends BaseStorage {
   public Specification<RewardItemStore> itemStoreSpecification(StoreType type, String name) {
     return (root, query, criteriaBuilder) -> {
       List<Predicate> conditionList = new ArrayList<>();
-      conditionList.add(criteriaBuilder.notEqual(root.get("state"), Status.DELETE));
+      conditionList.add(criteriaBuilder.notEqual(root.get("status"), Status.DELETE));
       if (type != null) {
         conditionList.add(criteriaBuilder.equal(root.get("type"), type));
       }

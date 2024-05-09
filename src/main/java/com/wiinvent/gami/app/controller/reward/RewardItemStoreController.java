@@ -37,7 +37,7 @@ public class RewardItemStoreController {
     return ResponseEntity.ok(rewardItemStoreService.getAllRewardItemStores(type, name, pageable));
   }
 
-  @GetMapping("type/{type}")
+  @GetMapping("active/{type}")
   public ResponseEntity<List<RewardItemStoreResponse>> getAllRewardItemStores(@PathVariable StoreType type) {
     return ResponseEntity.ok(rewardItemStoreService.getAllRewardItemStores(type));
   }

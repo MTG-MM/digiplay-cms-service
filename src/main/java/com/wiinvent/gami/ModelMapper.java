@@ -331,5 +331,11 @@ public interface ModelMapper {
   @Mapping(target = "rewardItemId", source = "id")
   UserRewardItems toUserRewardItems(RewardItemSelect rewardItemSelect);
 
+  @Mapping(target = "id", source = "rewardItemId")
+  RewardItemSelect toUserRewardItemSelect(UserRewardItems rewardItemSelect);
+
   List<UserRewardItems> toListUserRewardItems(List<RewardItemSelect> rewardItemSelectList);
+
+  List<RewardItemSelect> toListUserRewardItemSelect(List<UserRewardItems> rewardItemSelectList);
+
 }

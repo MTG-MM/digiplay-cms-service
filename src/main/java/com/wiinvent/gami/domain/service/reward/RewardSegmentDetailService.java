@@ -160,4 +160,5 @@ public class RewardSegmentDetailService extends BaseService {
     rewardSegmentDetailStorage.saveAll(updateRwSegment);
     return true;
   }
+
 }

@@ -1,6 +1,7 @@
 package com.wiinvent.gami.app.controller.reward;
 
 
+import com.wiinvent.gami.domain.dto.ProcessQuantityDto;
 import com.wiinvent.gami.domain.dto.RewardSegmentDetailDto;
 import com.wiinvent.gami.domain.dto.RewardSegmentDetailsUpdateDto;
 import com.wiinvent.gami.domain.response.RewardSegmentDetailResponse;

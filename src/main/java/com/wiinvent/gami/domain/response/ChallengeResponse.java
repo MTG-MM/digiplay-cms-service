@@ -8,6 +8,7 @@ public class ChallengeResponse {
   private Integer gameId;
   private String name;
   private String imageUrl;
+  private String status;
   private String thumbUrl;
   private Long createdAt;
 }

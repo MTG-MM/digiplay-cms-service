@@ -3,6 +3,7 @@ package com.wiinvent.gami.domain.entities;
 import com.wiinvent.gami.domain.entities.type.ExchangeStoreType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.entities.type.UserType;
+import com.wiinvent.gami.domain.pojo.UserRewardItems;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -34,7 +35,7 @@ public class ExchangeItemStore extends BaseEntity {
   @NotNull
   @Column(name = "reward_items")
   @JdbcTypeCode(SqlTypes.JSON)
-  private Long rewardItems;
+  private List<UserRewardItems> rewardItems;
 
   @Lob
   @Enumerated(EnumType.STRING)

@@ -15,7 +15,7 @@ public class ExchangeItemStoreResponse {
   private Integer ticketPrice;
   private Long quantity;
   private ExchangeStoreType storeType;
-  private Long rewardItems;
+  private List<RewardItemSelect> rewardItems;
   private String rewardItemName;
   private Status status;
   private Long startAt;

@@ -1,6 +1,6 @@
 package com.wiinvent.gami.app.controller;
 
-import com.wiinvent.gami.domain.Factory.GamiRequestInternalFactory;
+import com.wiinvent.gami.domain.factory.GamiRequestInternalFactory;
 import com.wiinvent.gami.domain.dto.InternalRequestDto;
 import com.wiinvent.gami.domain.dto.InternalResetPassDto;
 import com.wiinvent.gami.domain.dto.InternalSubRequestDto;

@@ -17,11 +17,13 @@ import com.wiinvent.gami.domain.entities.payment.PaymentMethod;
 import com.wiinvent.gami.domain.entities.payment.PackageHistory;
 import com.wiinvent.gami.domain.entities.reward.*;
 import com.wiinvent.gami.domain.entities.user.*;
+import com.wiinvent.gami.domain.pojo.UserRewardItems;
 import com.wiinvent.gami.domain.response.*;
 import com.wiinvent.gami.domain.entities.*;
 import com.wiinvent.gami.domain.pojo.TokenInfo;
 import com.wiinvent.gami.domain.response.payment.PaymentMethodResponse;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.springframework.data.domain.Page;
 
@@ -325,4 +327,9 @@ public interface ModelMapper {
   default Page<QuestTurnResponse> toPageQuestTurnResponse(Page<QuestTurn> questTurns){
     return questTurns.map(this::toQuestTurnResponse);
   }
+
+  @Mapping(target = "rewardItemId", source = "id")
+  UserRewardItems toUserRewardItems(RewardItemSelect rewardItemSelect);
+
+  List<UserRewardItems> toListUserRewardItems(List<RewardItemSelect> rewardItemSelectList);
 }

@@ -9,6 +9,7 @@ import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.entities.type.StoreType;
 import com.wiinvent.gami.domain.exception.BadRequestException;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
+import com.wiinvent.gami.domain.pojo.UserRewardItems;
 import com.wiinvent.gami.domain.response.ExchangeItemStoreResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import lombok.extern.log4j.Log4j2;
@@ -20,6 +21,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Log4j2
 @Service
@@ -90,7 +93,11 @@ public class ExchangeItemStoreService extends BaseService {
     if (exchangeItemStore == null) {
       throw new ResourceNotFoundException("Exchange item not found");
     }
-    RewardItem rewardItem = rewardItemStorage.findById(exchangeItemStore.getRewardItems());
+    if(exchangeItemStore.getRewardItems() == null || exchangeItemStore.getRewardItems().isEmpty()) {
+      throw new ResourceNotFoundException("Exchange item not found");
+    }
+
+    RewardItem rewardItem = rewardItemStorage.findById(exchangeItemStore.getRewardItems().getFirst().getRewardItemId());
 
     if (rewardItem.getQuantity() < dto.getQuantity() - exchangeItemStore.getQuantity()) {
       throw new BadRequestException("Quantity of Reward Item is not enough");

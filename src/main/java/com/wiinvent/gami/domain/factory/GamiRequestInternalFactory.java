@@ -1,4 +1,4 @@
-package com.wiinvent.gami.domain.Factory;
+package com.wiinvent.gami.domain.factory;
 
 import com.wiinvent.gami.domain.dto.InternalRequestDto;
 import com.wiinvent.gami.domain.dto.InternalResetPassDto;

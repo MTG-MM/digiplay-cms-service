@@ -7,6 +7,7 @@ import com.wiinvent.gami.domain.response.ExchangeItemStoreResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.ExchangeItemStoreService;
 import io.swagger.v3.oas.annotations.Parameter;
+import jakarta.validation.Valid;
 import org.springdoc.core.converters.models.PageableAsQueryParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -40,12 +41,12 @@ public class ExchangeItemStoreController {
   }
 
   @PostMapping("")
-  public ResponseEntity<Boolean> createRewardItemStores(@RequestBody ExchangeItemStoreCreateDto createDto) {
+  public ResponseEntity<Boolean> createRewardItemStores(@RequestBody @Valid ExchangeItemStoreCreateDto createDto) {
     return ResponseEntity.ok(exchangeItemStoreService.createExchangeItemStore(createDto));
   }
 
   @PutMapping("{id}")
-  public ResponseEntity<Boolean> updateRewardItemStores(@PathVariable Long id, @RequestBody ExchangeItemStoreUpdateDto updateDto) {
+  public ResponseEntity<Boolean> updateRewardItemStores(@PathVariable Long id, @RequestBody @Valid  ExchangeItemStoreUpdateDto updateDto) {
     return ResponseEntity.ok(exchangeItemStoreService.updateExchangeItemStore(id, updateDto));
   }
 

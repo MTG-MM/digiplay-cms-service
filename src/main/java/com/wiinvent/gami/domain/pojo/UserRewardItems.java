@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class UserRewardItems {
   private Long rewardItemId;
-  private Integer position;
-  private Integer rank;
+  private Integer position = 0;
+  private Integer rank = 0;
 }

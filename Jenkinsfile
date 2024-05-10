@@ -4,7 +4,7 @@ node {
     properties([disableConcurrentBuilds()])
 
     try {
-        project = "digiplay-cms-service"
+        project = "wiportal-cms-service"
 
         if(env.BRANCH_NAME == "master") {
           dockerRepo = "registry.wiinvent.tv"

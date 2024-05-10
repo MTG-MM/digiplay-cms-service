@@ -34,6 +34,8 @@ public class RewardSegmentDetailResponse {
   @Schema(description = "Số quà tối đa người dùng có thể nhận trong khoảng thời gian")
   private Long periodValue = 1L;
 
+  private Boolean isDefault = false;
+
   @Schema(description = "Số lượng trong danh sách bầu chọn")
   private Integer quantityInPoll = 0;
 

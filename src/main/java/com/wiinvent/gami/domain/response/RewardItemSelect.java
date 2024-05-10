@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class RewardItemSelect {
   Integer id;
-  String name;
+  String rewardName;
 }

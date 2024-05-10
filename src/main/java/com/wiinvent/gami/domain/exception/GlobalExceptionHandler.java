@@ -35,7 +35,7 @@ public class GlobalExceptionHandler {
     return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ErrorResponse(401, Constants.INVALID_TOKEN));
   }
 
-  @ExceptionHandler(value = {ExecutionControl.InternalException.class, Exception.class})
+  @ExceptionHandler(value = {Exception.class})
   public ResponseEntity<ErrorResponse> internalServerException(Exception ex, HttpServletResponse response) {
     log.error("=====>internalServerException: ", ex);
     return ResponseEntity.internalServerError().body(new ErrorResponse(500, Constants.INTERNAL_SERVER_ERROR));

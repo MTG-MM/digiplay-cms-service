@@ -97,7 +97,7 @@ public class ExchangeItemStoreService extends BaseService {
       throw new ResourceNotFoundException("Exchange item not found");
     }
 
-    RewardItem rewardItem = rewardItemStorage.findById(exchangeItemStore.getRewardItems().getFirst().getRewardItemId());
+    RewardItem rewardItem = rewardItemStorage.findById(exchangeItemStore.getRewardItems().getFirst().getId());
 
     if (rewardItem.getQuantity() < dto.getQuantity() - exchangeItemStore.getQuantity()) {
       throw new BadRequestException("Quantity of Reward Item is not enough");

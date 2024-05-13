@@ -2,6 +2,7 @@ package com.wiinvent.gami.domain.response;
 
 import com.wiinvent.gami.domain.entities.type.ExchangeStoreType;
 import com.wiinvent.gami.domain.entities.type.Status;
+import com.wiinvent.gami.domain.pojo.UserRewardItems;
 import lombok.Data;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public class ExchangeItemStoreResponse {
   private Integer ticketPrice;
   private Long quantity;
   private ExchangeStoreType storeType;
-  private List<RewardItemSelect> rewardItems;
+  private List<UserRewardItems> rewardItems;
   private String rewardItemName;
   private Status status;
   private Long startAt;

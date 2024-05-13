@@ -328,10 +328,8 @@ public interface ModelMapper {
     return questTurns.map(this::toQuestTurnResponse);
   }
 
-  @Mapping(target = "rewardItemId", source = "id")
   UserRewardItems toUserRewardItems(RewardItemSelect rewardItemSelect);
 
-  @Mapping(target = "id", source = "rewardItemId")
   RewardItemSelect toUserRewardItemSelect(UserRewardItems rewardItemSelect);
 
   List<UserRewardItems> toListUserRewardItems(List<RewardItemSelect> rewardItemSelectList);

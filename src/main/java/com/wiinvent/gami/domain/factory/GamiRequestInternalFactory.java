@@ -27,14 +27,14 @@ public class GamiRequestInternalFactory {
       headers.setContentType(MediaType.APPLICATION_JSON);
 
       HttpEntity<InternalSubRequestDto> requestEntity = new HttpEntity<>(dto, headers);
-      log.debug("=========addPackage: " + gamiServiceDomain + "/v1/portal/game/it/portal/package/add");
+      log.debug("=========addPackage: " + gamiServiceDomain + "/v1/game/it/portal/package/add");
       ResponseEntity<InternalRequestResponse> response = httpRestTemplate.exchange(
-          gamiServiceDomain + "/v1/portal/game/it/portal/package/add",
+          gamiServiceDomain + "/v1/game/it/portal/package/add",
           HttpMethod.PUT,
           requestEntity,
           InternalRequestResponse.class);
       log.debug("=========addPackage: " + gamiServiceDomain + response.getBody());
-      if (response.getBody() == null || !response.getBody().getStatus()) {
+      if (response.getBody() == null || !response.getBody().getSuccess()) {
         throw new RequestFailedException(response.getBody().getMessage());
       }
       return response.getBody();
@@ -49,14 +49,14 @@ public class GamiRequestInternalFactory {
       headers.setContentType(MediaType.APPLICATION_JSON);
 
       HttpEntity<InternalRequestDto> requestEntity = new HttpEntity<>(dto, headers);
-      log.debug("=========addCoin: " + gamiServiceDomain + "/v1/portal/game/it/portal/coin/add");
+      log.debug("=========addCoin: " + gamiServiceDomain + "/v1/game/it/portal/coin/add");
       ResponseEntity<InternalRequestResponse> response = httpRestTemplate.exchange(
-          gamiServiceDomain + "/v1/portal/game/it/portal/coin/add",
+          gamiServiceDomain + "/v1/game/it/portal/coin/add",
           HttpMethod.PUT,
           requestEntity,
           InternalRequestResponse.class);
       log.debug("=========addCoin: " + gamiServiceDomain + response.getBody());
-      if (response.getBody() == null || !response.getBody().getStatus()) {
+      if (response.getBody() == null || !response.getBody().getSuccess()) {
         throw new RequestFailedException(response.getBody().getMessage());
       }
       return response.getBody();
@@ -71,14 +71,14 @@ public class GamiRequestInternalFactory {
       headers.setContentType(MediaType.APPLICATION_JSON);
 
       HttpEntity<InternalRequestDto> requestEntity = new HttpEntity<>(dto, headers);
-      log.debug("=========subCoin: " + gamiServiceDomain + "/v1/portal/game/it/portal/coin/subtract");
+      log.debug("=========subCoin: " + gamiServiceDomain + "v1/game/it/portal/coin/subtract");
       ResponseEntity<InternalRequestResponse> response = httpRestTemplate.exchange(
-          gamiServiceDomain + "/v1/portal/game/it/portal/coin/subtract",
+          gamiServiceDomain + "/v1/game/it/portal/coin/subtract",
           HttpMethod.PUT,
           requestEntity,
           InternalRequestResponse.class);
       log.debug("=========subCoin: " + gamiServiceDomain + response.getBody());
-      if (response.getBody() == null || !response.getBody().getStatus()) {
+      if (response.getBody() == null || !response.getBody().getSuccess()) {
         throw new RequestFailedException(response.getBody().getMessage());
       }
       return response.getBody();
@@ -93,14 +93,14 @@ public class GamiRequestInternalFactory {
       headers.setContentType(MediaType.APPLICATION_JSON);
 
       HttpEntity<InternalRequestDto> requestEntity = new HttpEntity<>(dto, headers);
-      log.debug("=========addPoint: " + gamiServiceDomain + "/v1/portal/game/it/portal/point/add");
+      log.debug("=========addPoint: " + gamiServiceDomain + "/v1/game/it/portal/point/add");
       ResponseEntity<InternalRequestResponse> response = httpRestTemplate.exchange(
-          gamiServiceDomain + "/v1/portal/game/it/portal/point/add",
+          gamiServiceDomain + "/v1/game/it/portal/point/add",
           HttpMethod.PUT,
           requestEntity,
           InternalRequestResponse.class);
       log.debug("=========addPoint: " + gamiServiceDomain + response.getBody());
-      if (response.getBody() == null || !response.getBody().getStatus()) {
+      if (response.getBody() == null || !response.getBody().getSuccess()) {
         throw new RequestFailedException(response.getBody().getMessage());
       }
       return response.getBody();
@@ -115,14 +115,14 @@ public class GamiRequestInternalFactory {
       headers.setContentType(MediaType.APPLICATION_JSON);
 
       HttpEntity<InternalRequestDto> requestEntity = new HttpEntity<>(dto, headers);
-      log.debug("=========subPoint: " + gamiServiceDomain + "/v1/portal/game/it/portal/point/subtract");
+      log.debug("=========subPoint: " + gamiServiceDomain + "/v1/game/it/portal/point/subtract");
       ResponseEntity<InternalRequestResponse> response = httpRestTemplate.exchange(
-          gamiServiceDomain + "/v1/portal/game/it/portal/point/subtract",
+          gamiServiceDomain + "/v1/game/it/portal/point/subtract",
           HttpMethod.PUT,
           requestEntity,
           InternalRequestResponse.class);
       log.debug("=========subPoint: " + gamiServiceDomain + response.getBody());
-      if (response.getBody() == null || !response.getBody().getStatus()) {
+      if (response.getBody() == null || !response.getBody().getSuccess()) {
         throw new RequestFailedException(response.getBody().getMessage());
       }
       return response.getBody();
@@ -136,14 +136,14 @@ public class GamiRequestInternalFactory {
       HttpHeaders headers = new HttpHeaders();
       headers.setContentType(MediaType.APPLICATION_JSON);
       HttpEntity<InternalRequestDto> requestEntity = new HttpEntity<>(dto, headers);
-      log.debug("==========addExp: " + gamiServiceDomain + "/v1/portal/game/it/portal/exp/add");
+      log.debug("==========addExp: " + gamiServiceDomain + "/v1/game/it/portal/exp/add");
       ResponseEntity<InternalRequestResponse> response = httpRestTemplate.exchange(
-          gamiServiceDomain + "/v1/portal/game/it/portal/exp/add",
+          gamiServiceDomain + "/v1/game/it/portal/exp/add",
           HttpMethod.PUT,
           requestEntity,
           InternalRequestResponse.class);
       log.debug("=========addExp: " + gamiServiceDomain + response.getBody());
-      if (response.getBody() == null || !response.getBody().getStatus()) {
+      if (response.getBody() == null || !response.getBody().getSuccess()) {
         throw new RequestFailedException(response.getBody().getMessage());
       }
       return response.getBody();
@@ -157,14 +157,98 @@ public class GamiRequestInternalFactory {
       HttpHeaders headers = new HttpHeaders();
       headers.setContentType(MediaType.APPLICATION_JSON);
       HttpEntity<InternalRequestDto> requestEntity = new HttpEntity<>(dto, headers);
-      log.debug("==========subExp: " + gamiServiceDomain + "/v1/portal/game/it/portal/exp/subtract");
+      log.debug("==========subExp: " + gamiServiceDomain + "/v1/game/it/portal/exp/subtract");
       ResponseEntity<InternalRequestResponse> response = httpRestTemplate.exchange(
-          gamiServiceDomain + "/v1/portal/game/it/portal/exp/subtract",
+          gamiServiceDomain + "/v1/game/it/portal/exp/subtract",
           HttpMethod.PUT,
           requestEntity,
           InternalRequestResponse.class);
       log.debug("=========subExp: " + gamiServiceDomain + response.getBody());
-      if (response.getBody() == null || !response.getBody().getStatus()) {
+      if (response.getBody() == null || !response.getBody().getSuccess()) {
+        throw new RequestFailedException(response.getBody().getMessage());
+      }
+      return response.getBody();
+    } catch (Exception e) {
+      throw new RequestFailedException(e.getMessage());
+    }
+  }
+
+  public InternalRequestResponse addTurn(InternalRequestDto dto) {
+    try {
+      HttpHeaders headers = new HttpHeaders();
+      headers.setContentType(MediaType.APPLICATION_JSON);
+      HttpEntity<InternalRequestDto> requestEntity = new HttpEntity<>(dto, headers);
+      log.debug("==========addTurn: " + gamiServiceDomain + "/v1/game/it/portal/turn/add");
+      ResponseEntity<InternalRequestResponse> response = httpRestTemplate.exchange(
+          gamiServiceDomain + "/v1/game/it/portal/turn/add",
+          HttpMethod.PUT,
+          requestEntity,
+          InternalRequestResponse.class);
+      log.debug("=========addTurn: " + gamiServiceDomain + response.getBody());
+      if (response.getBody() == null || !response.getBody().getSuccess()) {
+        throw new RequestFailedException(response.getBody().getMessage());
+      }
+      return response.getBody();
+    } catch (Exception e) {
+      throw new RequestFailedException(e.getMessage());
+    }
+  }
+
+  public InternalRequestResponse subTurn(InternalRequestDto dto) {
+    try {
+      HttpHeaders headers = new HttpHeaders();
+      headers.setContentType(MediaType.APPLICATION_JSON);
+      HttpEntity<InternalRequestDto> requestEntity = new HttpEntity<>(dto, headers);
+      log.debug("==========subTurn: " + gamiServiceDomain + "/v1/game/it/portal/turn/subtract");
+      ResponseEntity<InternalRequestResponse> response = httpRestTemplate.exchange(
+          gamiServiceDomain + "/v1/game/it/portal/turn/subtract",
+          HttpMethod.PUT,
+          requestEntity,
+          InternalRequestResponse.class);
+      log.debug("=========subTurn: " + gamiServiceDomain + response.getBody());
+      if (response.getBody() == null || !response.getBody().getSuccess()) {
+        throw new RequestFailedException(response.getBody().getMessage());
+      }
+      return response.getBody();
+    } catch (Exception e) {
+      throw new RequestFailedException(e.getMessage());
+    }
+  }
+
+  public InternalRequestResponse addTicket(InternalRequestDto dto) {
+    try {
+      HttpHeaders headers = new HttpHeaders();
+      headers.setContentType(MediaType.APPLICATION_JSON);
+      HttpEntity<InternalRequestDto> requestEntity = new HttpEntity<>(dto, headers);
+      log.debug("==========addTicket: " + gamiServiceDomain + "/v1/game/it/portal/ticket/add");
+      ResponseEntity<InternalRequestResponse> response = httpRestTemplate.exchange(
+          gamiServiceDomain + "/v1/game/it/portal/ticket/add",
+          HttpMethod.PUT,
+          requestEntity,
+          InternalRequestResponse.class);
+      log.debug("=========addTicket: " + gamiServiceDomain + response.getBody());
+      if (response.getBody() == null || !response.getBody().getSuccess()) {
+        throw new RequestFailedException(response.getBody().getMessage());
+      }
+      return response.getBody();
+    } catch (Exception e) {
+      throw new RequestFailedException(e.getMessage());
+    }
+  }
+
+  public InternalRequestResponse subTicket(InternalRequestDto dto) {
+    try {
+      HttpHeaders headers = new HttpHeaders();
+      headers.setContentType(MediaType.APPLICATION_JSON);
+      HttpEntity<InternalRequestDto> requestEntity = new HttpEntity<>(dto, headers);
+      log.debug("==========subTicket: " + gamiServiceDomain + "/v1/game/it/portal/ticket/subtract");
+      ResponseEntity<InternalRequestResponse> response = httpRestTemplate.exchange(
+          gamiServiceDomain + "/v1/game/it/portal/ticket/subtract",
+          HttpMethod.PUT,
+          requestEntity,
+          InternalRequestResponse.class);
+      log.debug("=========subTicket: " + gamiServiceDomain + response.getBody());
+      if (response.getBody() == null || !response.getBody().getSuccess()) {
         throw new RequestFailedException(response.getBody().getMessage());
       }
       return response.getBody();
@@ -178,14 +262,14 @@ public class GamiRequestInternalFactory {
       HttpHeaders headers = new HttpHeaders();
       headers.setContentType(MediaType.APPLICATION_JSON);
       HttpEntity<InternalRequestDto> requestEntity = new HttpEntity<>(dto, headers);
-      log.debug("==========addCollection: " + gamiServiceDomain + "/v1/portal/game/it/portal/collection/add");
+      log.debug("==========addCollection: " + gamiServiceDomain + "/v1/game/it/portal/collection/add");
       ResponseEntity<InternalRequestResponse> response = httpRestTemplate.exchange(
-          gamiServiceDomain + "/v1/portal/game/it/portal/collection/add",
+          gamiServiceDomain + "/v1/game/it/portal/collection/add",
           HttpMethod.PUT,
           requestEntity,
           InternalRequestResponse.class);
       log.debug("=========addCollection: " + gamiServiceDomain + response.getBody());
-      if (response.getBody() == null || !response.getBody().getStatus()) {
+      if (response.getBody() == null || !response.getBody().getSuccess()) {
         throw new RequestFailedException(response.getBody().getMessage());
       }
       return response.getBody();
@@ -199,14 +283,14 @@ public class GamiRequestInternalFactory {
       HttpHeaders headers = new HttpHeaders();
       headers.setContentType(MediaType.APPLICATION_JSON);
       HttpEntity<InternalRequestDto> requestEntity = new HttpEntity<>(dto, headers);
-      log.debug("==========subCollection: " + gamiServiceDomain + "/v1/portal/game/it/portal/collection/subtract");
+      log.debug("==========subCollection: " + gamiServiceDomain + "/v1/game/it/portal/collection/subtract");
       ResponseEntity<InternalRequestResponse> response = httpRestTemplate.exchange(
-          gamiServiceDomain + "/v1/portal/game/it/portal/collection/subtract",
+          gamiServiceDomain + "/v1/game/it/portal/collection/subtract",
           HttpMethod.PUT,
           requestEntity,
           InternalRequestResponse.class);
       log.debug("=========subCollection: " + gamiServiceDomain + response.getBody());
-      if (response.getBody() == null || !response.getBody().getStatus()) {
+      if (response.getBody() == null || !response.getBody().getSuccess()) {
         throw new RequestFailedException(response.getBody().getMessage());
       }
       return response.getBody();
@@ -220,15 +304,15 @@ public class GamiRequestInternalFactory {
       HttpHeaders headers = new HttpHeaders();
       headers.setContentType(MediaType.APPLICATION_JSON);
       HttpEntity<InternalResetPassDto> requestEntity = new HttpEntity<>(dto, headers);
-      log.debug("==========resetPass: " + gamiServiceDomain + "/v1/portal/game/it/portal/user/reset-password");
+      log.debug("==========resetPass: " + gamiServiceDomain + "/v1/game/it/portal/user/reset-password");
       ResponseEntity<InternalRequestResponse> response = httpRestTemplate.exchange(
-          gamiServiceDomain + "/v1/it/portal/user/reset-password",
+          gamiServiceDomain + "/v1/game/it/portal/user/reset-password",
           HttpMethod.PUT,
           requestEntity,
           InternalRequestResponse.class
       );
       log.debug("=========resetPass: " + gamiServiceDomain + response.getBody());
-      if (response.getBody() == null || !response.getBody().getStatus()) {
+      if (response.getBody() == null || !response.getBody().getSuccess()) {
         throw new RequestFailedException(response.getBody().getMessage());
       }
       return response.getBody();

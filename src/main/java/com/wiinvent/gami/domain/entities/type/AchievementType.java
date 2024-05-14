@@ -1,6 +1,13 @@
 package com.wiinvent.gami.domain.entities.type;
 
 public enum AchievementType {
-  LOGIN,
-  POINT_ACCUMULATE
+  QUEST_COMPLETED,
+  POINT_COLLECTED,
+  INVITED_FRIEND,
+  PLAYED_SPIN,
+  COIN_COLLECTED,
+  MINUTE_LOGIN,
+  PLAYED_JACKPOT,
+  COMPLETED_FINAL_CHALLENGE,
+  COMPLETED_BATTLE_PASS
 }

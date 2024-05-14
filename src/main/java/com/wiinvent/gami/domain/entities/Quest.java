@@ -37,6 +37,7 @@ public class Quest extends BaseEntity{
   private Integer gameId;
 
   @Column(name = "status")
+  @Enumerated(EnumType.STRING)
   private Status status;
 
   @Column(name = "reward_items")

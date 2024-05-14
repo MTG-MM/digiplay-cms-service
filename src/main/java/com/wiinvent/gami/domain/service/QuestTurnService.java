@@ -2,8 +2,6 @@ package com.wiinvent.gami.domain.service;
 
 import com.wiinvent.gami.domain.dto.QuestTurnCreateDto;
 import com.wiinvent.gami.domain.dto.QuestTurnUpdateDto;
-import com.wiinvent.gami.domain.dto.QuestUpdateDto;
-import com.wiinvent.gami.domain.entities.Quest;
 import com.wiinvent.gami.domain.entities.QuestTurn;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.exception.BadRequestException;

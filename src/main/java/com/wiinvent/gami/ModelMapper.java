@@ -328,6 +328,14 @@ public interface ModelMapper {
     return questTurns.map(this::toQuestTurnResponse);
   }
 
+  Task toTask(TaskCreateDto taskCreateDto);
+  void mapTaskUpdateDtoToTask(TaskUpdateDto taskUpdateDto, @MappingTarget Task task);
+  TaskResponse toTaskResponse(Task task);
+
+  default Page<TaskResponse> toPageTaskResponse(Page<Task> tasks){
+    return tasks.map(this::toTaskResponse);
+  }
+
   UserRewardItems toUserRewardItems(RewardItemSelect rewardItemSelect);
 
   RewardItemSelect toUserRewardItemSelect(UserRewardItems rewardItemSelect);

@@ -60,6 +60,7 @@ public class QuestTurn extends BaseEntity {
 
   @Lob
   @Column(name = "status")
+  @Enumerated(EnumType.STRING)
   private Status status;
 
   @Column(name = "active_for_user")

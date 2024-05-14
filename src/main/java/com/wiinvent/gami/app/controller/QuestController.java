@@ -52,7 +52,7 @@ public class QuestController {
   }
 
   @DeleteMapping("{id}")
-  public ResponseEntity<Boolean> deleteCharacter(@PathVariable Long id) {
+  public ResponseEntity<Boolean> deleteQuest(@PathVariable Long id) {
     return ResponseEntity.ok(
         questService.deleteQuest(id)
     );

@@ -56,6 +56,26 @@ public class GamiRequestController {
     }
   }
 
+  @PutMapping("/ticket")
+  public ResponseEntity<InternalRequestResponse> processTicket(
+      @RequestBody InternalRequestDto dto) {
+    if (Objects.equals(dto.getRequestType(), InternalRequestDto.RequestGamiType.ADD)) {
+      return ResponseEntity.ok(gamiRequestInternalFactory.addTicket(dto));
+    } else {
+      return ResponseEntity.ok(gamiRequestInternalFactory.subTicket(dto));
+    }
+  }
+
+  @PutMapping("/turn")
+  public ResponseEntity<InternalRequestResponse> processTurn(
+      @RequestBody InternalRequestDto dto) {
+    if (Objects.equals(dto.getRequestType(), InternalRequestDto.RequestGamiType.ADD)) {
+      return ResponseEntity.ok(gamiRequestInternalFactory.addTurn(dto));
+    } else {
+      return ResponseEntity.ok(gamiRequestInternalFactory.subTurn(dto));
+    }
+  }
+
   @PutMapping("/collection")
   public ResponseEntity<InternalRequestResponse> processCollection(
       @RequestBody InternalRequestDto dto) {

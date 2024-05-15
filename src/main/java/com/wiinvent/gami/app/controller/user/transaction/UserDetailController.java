@@ -1,6 +1,7 @@
 package com.wiinvent.gami.app.controller.user.transaction;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.wiinvent.gami.domain.entities.type.QuestStatusType;
 import com.wiinvent.gami.domain.response.*;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.PackageHistoryService;
@@ -38,6 +39,7 @@ public class UserDetailController {
   @Autowired CollectionTransactionService collectionTransactionService;
   @Autowired UserCollectionService userCollectionService;
   @Autowired LuckyPointTransactionService luckyPointTransactionService;
+  @Autowired QuestUserHistoryService questUserHistoryService;
 
   @GetMapping("sub")
   public ResponseEntity<PageCursorResponse<PackageHistoryResponse>> getPackageHistory (
@@ -188,5 +190,19 @@ public class UserDetailController {
       @RequestParam(required = false, defaultValue = "20") int limit)
   {
     return ResponseEntity.ok((luckyPointTransactionService.getLuckyPointTransaction(userId, transId, gte, lte, next, pre, limit)));
+  }
+
+  @GetMapping("quest-history")
+  public ResponseEntity<PageCursorResponse<QuestUserHistoryResponse>> getQuestHistory(
+      @RequestParam UUID userId,
+      @RequestParam(required = false) Long next,
+      @RequestParam(required = false) Long pre,
+      @RequestParam(required = false) UUID transId,
+      @RequestParam(required = false) QuestStatusType type,
+      @RequestParam(required = false, defaultValue = "20") int limit,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate gte,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte
+  ) {
+    return ResponseEntity.ok(questUserHistoryService.getQuestHistory(userId, transId, type, gte, lte, next, pre, limit));
   }
 }

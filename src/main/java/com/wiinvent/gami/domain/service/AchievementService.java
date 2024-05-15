@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -69,6 +70,11 @@ public class AchievementService extends BaseService{
       throw e;
     }
     return true;
+  }
+
+  public List<AchievementResponse> findAchievementActive() {
+    List<Achievement> achievements = achievementStorage.findAllByStatus();
+    return modelMapper.toListAchievementResponse(achievements);
   }
 
   public boolean deleteAchievement(Integer id) {

@@ -1,5 +1,6 @@
 package com.wiinvent.gami.app.controller;
 
+import com.wiinvent.gami.domain.dto.InternalAchievementRequestDto;
 import com.wiinvent.gami.domain.factory.GamiRequestInternalFactory;
 import com.wiinvent.gami.domain.dto.InternalRequestDto;
 import com.wiinvent.gami.domain.dto.InternalResetPassDto;
@@ -24,6 +25,12 @@ public class GamiRequestController {
   public ResponseEntity<InternalRequestResponse> processPackage(
       @RequestBody InternalSubRequestDto dto) {
     return ResponseEntity.ok(gamiRequestInternalFactory.addSub(dto));
+  }
+
+  @PutMapping("/achievement")
+  public ResponseEntity<InternalRequestResponse> processAchievement(
+      @RequestBody InternalAchievementRequestDto dto) {
+    return ResponseEntity.ok(gamiRequestInternalFactory.addAchievement(dto));
   }
 
   @PutMapping("/coin")
@@ -75,6 +82,17 @@ public class GamiRequestController {
       return ResponseEntity.ok(gamiRequestInternalFactory.subTurn(dto));
     }
   }
+
+  @PutMapping("/lucky-point")
+  public ResponseEntity<InternalRequestResponse> processLuckyPoint(
+      @RequestBody InternalRequestDto dto) {
+    if (Objects.equals(dto.getRequestType(), InternalRequestDto.RequestGamiType.ADD)) {
+      return ResponseEntity.ok(gamiRequestInternalFactory.addLuckyPoint(dto));
+    } else {
+      return ResponseEntity.ok(gamiRequestInternalFactory.subLuckyPoint(dto));
+    }
+  }
+
 
   @PutMapping("/collection")
   public ResponseEntity<InternalRequestResponse> processCollection(

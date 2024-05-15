@@ -336,6 +336,11 @@ public interface ModelMapper {
     return tasks.map(this::toTaskResponse);
   }
 
+  List<AchievementResponse> toListAchievementResponse(List<Achievement> achievements);
+
+  List<QuestUserHistoryResponse> toListQuestUserHistoryResponse(List<QuestUserHistory> questUserHistories);
+
+
   UserRewardItems toUserRewardItems(RewardItemSelect rewardItemSelect);
 
   RewardItemSelect toUserRewardItemSelect(UserRewardItems rewardItemSelect);

@@ -159,6 +159,7 @@ public class RwItemStoreDetailService extends BaseService {
     voucherDetail.setCode(voucherExcelData.getCode());
     voucherDetail.setName(voucherExcelData.getName());
     voucherDetail.setStoreId(storeId);
+    voucherDetail.setStatus(RewardItemStatus.NEW);
     voucherDetail.setStartAt(DateUtils.convertStringToLongUTC(voucherExcelData.getStartAt()));
     voucherDetail.setExpireAt(DateUtils.convertStringToLongUTC(voucherExcelData.getExpireAt()));
     return voucherDetail;
@@ -169,6 +170,7 @@ public class RwItemStoreDetailService extends BaseService {
     productDetail.setCode(productExcelData.getCode());
     productDetail.setName(productExcelData.getName());
     productDetail.setStoreId(storeId);
+    productDetail.setStatus(RewardItemStatus.NEW);
     productDetail.setStartAt(DateUtils.convertStringToLongUTC(productExcelData.getStartAt()));
     productDetail.setExpireAt(DateUtils.convertStringToLongUTC(productExcelData.getExpireAt()));
     return productDetail;

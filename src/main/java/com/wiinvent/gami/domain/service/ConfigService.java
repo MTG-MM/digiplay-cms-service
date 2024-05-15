@@ -13,8 +13,6 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.IOException;
-
 @Service
 @Log4j2
 public class ConfigService extends BaseService{
@@ -27,7 +25,7 @@ public class ConfigService extends BaseService{
     try {
       configStorage.save(config);
     } catch (Exception e) {
-      log.error("==> Rollback: createConfig" + e);
+      log.error("==> Rollback: createConfig{}", e);
       throw new RollbackException(e.getMessage());
     }
     return config.getId();
@@ -46,7 +44,7 @@ public class ConfigService extends BaseService{
   }
 
   @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
-  public Boolean update(Integer id, ConfigDto configDto) throws IOException {
+  public Boolean update(Integer id, ConfigDto configDto){
     Config config = configStorage.findById(id);
     if (config == null) {
       throw new ResourceNotFoundException("Config id " + id + " not found");
@@ -55,7 +53,7 @@ public class ConfigService extends BaseService{
     try {
       configStorage.save(config);
     } catch (Exception e) {
-      log.error("==> Rollback: updateConfig" + e);
+      log.error("==> Rollback: updateConfig{}", e);
       throw new RollbackException(e.getMessage());
     }
     return true;
@@ -70,7 +68,7 @@ public class ConfigService extends BaseService{
     try {
       configStorage.delete(config);
     } catch (Exception e) {
-      log.error("==> Rollback: deleteConfig" + e);
+      log.error("==> Rollback: deleteConfig{}", e);
       throw new RollbackException(e.getMessage());
     }
     return true;

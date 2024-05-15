@@ -1,15 +1,11 @@
 package com.wiinvent.gami.domain.service;
 
-import com.wiinvent.gami.domain.dto.QuestCreateDto;
-import com.wiinvent.gami.domain.dto.QuestUpdateDto;
 import com.wiinvent.gami.domain.dto.TaskCreateDto;
 import com.wiinvent.gami.domain.dto.TaskUpdateDto;
-import com.wiinvent.gami.domain.entities.Quest;
 import com.wiinvent.gami.domain.entities.Task;
 import com.wiinvent.gami.domain.entities.type.DailyTaskType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.exception.BadRequestException;
-import com.wiinvent.gami.domain.response.QuestResponse;
 import com.wiinvent.gami.domain.response.TaskResponse;
 import com.wiinvent.gami.domain.utils.Constants;
 import lombok.extern.log4j.Log4j2;

@@ -44,7 +44,7 @@ public class CollectionController {
   }
 
   @GetMapping("type/collect")
-  private ResponseEntity<List<CollectionResponse>> findCollectionInTypeCollection(){
+  public ResponseEntity<List<CollectionResponse>> findCollectionInTypeCollection(){
     return ResponseEntity.ok(collectionService.getCollectionsInTypeCollection());
   }
 

@@ -79,4 +79,5 @@ public abstract class BaseService {
   @Autowired protected QuestStorage questStorage;
   @Autowired protected QuestTurnStorage questTurnStorage;
   @Autowired protected TaskStorage taskStorage;
+  @Autowired protected QuestUserHistoryStorage questUserHistoryStorage;
 }

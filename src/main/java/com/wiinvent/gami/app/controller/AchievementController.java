@@ -16,6 +16,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("v1/portal/achievement")
@@ -41,6 +43,11 @@ public class AchievementController {
   @GetMapping("{id}")
   public ResponseEntity<AchievementResponse> getAchievementDetail(@PathVariable int id) {
     return ResponseEntity.ok(achievementService.getAchievementDetail(id));
+  }
+
+  @GetMapping("active")
+  public ResponseEntity<List<AchievementResponse>> getActiveAchievements() {
+    return ResponseEntity.ok(achievementService.findAchievementActive());
   }
 
   @PostMapping("")

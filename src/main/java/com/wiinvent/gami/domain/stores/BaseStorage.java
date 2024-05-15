@@ -80,4 +80,5 @@ public abstract class BaseStorage {
   @Autowired protected QuestRepository questRepository;
   @Autowired protected QuestTurnRepository questTurnRepository;
   @Autowired protected TaskRepository taskRepository;
+  @Autowired protected QuestUserHistoryRepository questUserHistoryRepository;
 }

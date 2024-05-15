@@ -2,6 +2,7 @@ package com.wiinvent.gami.app.controller;
 
 import com.wiinvent.gami.domain.dto.ExchangeItemStoreCreateDto;
 import com.wiinvent.gami.domain.dto.ExchangeItemStoreUpdateDto;
+import com.wiinvent.gami.domain.dto.ProcessQuantityDto;
 import com.wiinvent.gami.domain.entities.type.StoreType;
 import com.wiinvent.gami.domain.response.ExchangeItemStoreResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
@@ -48,6 +49,11 @@ public class ExchangeItemStoreController {
   @PutMapping("{id}")
   public ResponseEntity<Boolean> updateRewardItemStores(@PathVariable Long id, @RequestBody @Valid  ExchangeItemStoreUpdateDto updateDto) {
     return ResponseEntity.ok(exchangeItemStoreService.updateExchangeItemStore(id, updateDto));
+  }
+
+  @PutMapping("{changeQuantity}")
+  public ResponseEntity<Boolean> changeQuantity(@RequestBody @Valid ProcessQuantityDto dto) {
+    return ResponseEntity.ok(exchangeItemStoreService.changeQuantity(dto));
   }
 
   @DeleteMapping("{id}")

@@ -24,8 +24,8 @@ public class Task extends BaseEntity{
   @Column(name = "name", length = 100)
   private String name;
 
-  @Size(max = 50)
-  @Column(name = "type", length = 50)
+  @Column(name = "type")
+  @Enumerated(EnumType.STRING)
   private DailyTaskType type;
 
   @Size(max = 1000)

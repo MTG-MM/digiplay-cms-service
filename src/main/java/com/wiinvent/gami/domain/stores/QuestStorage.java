@@ -19,6 +19,10 @@ public class QuestStorage extends BaseStorage{
     questRepository.save(quest);
   }
 
+  public List<Quest> findAllByIdIn(List<Long> ids){
+    return questRepository.findAllByIdIn(ids);
+  }
+
   public Quest findById(Long id) {
     return questRepository.findById(id).orElse(null);
   }

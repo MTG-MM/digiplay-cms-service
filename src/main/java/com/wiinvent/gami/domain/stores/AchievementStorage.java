@@ -27,6 +27,10 @@ public class AchievementStorage extends BaseStorage{
    return achievementRepository.findAllByIdIn(ids);
   }
 
+  public List<Achievement> findAllByStatus() {
+    return achievementRepository.findAllByStatus(Status.ACTIVE);
+  }
+
   public void save(Achievement achievement) {
     achievementRepository.save(achievement);
     remoteCache.del(removeCacheKeys(achievement));

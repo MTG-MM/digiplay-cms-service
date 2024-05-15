@@ -1,6 +1,5 @@
 package com.wiinvent.gami.domain.pojo;
 
-import com.wiinvent.gami.domain.response.RewardItemSelect;
 import lombok.Data;
 
 import java.util.List;

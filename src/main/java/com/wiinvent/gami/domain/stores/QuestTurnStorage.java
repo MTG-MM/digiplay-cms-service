@@ -40,4 +40,8 @@ public class QuestTurnStorage extends BaseStorage{
       return criteriaBuilder.and(conditionList.toArray(new Predicate[0]));
     };
   }
+
+  public List<QuestTurn> findAllByIdIn(List<Long> ids) {
+    return questTurnRepository.findAllByIdIn(ids);
+  }
 }

@@ -3,6 +3,7 @@ package com.wiinvent.gami.domain.service;
 import com.wiinvent.gami.domain.dto.QuestCreateDto;
 import com.wiinvent.gami.domain.dto.QuestUpdateDto;
 import com.wiinvent.gami.domain.entities.Quest;
+import com.wiinvent.gami.domain.entities.game.Game;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.exception.BadRequestException;
 import com.wiinvent.gami.domain.response.QuestResponse;
@@ -28,7 +29,14 @@ public class QuestService extends BaseService {
 
   public Page<QuestResponse> findAll(String code, String name, Integer gameId, Pageable pageable){
     Page<Quest> quests = questStorage.findAll(code, name, gameId, pageable);
-    return modelMapper.toPageQuestResponse(quests);
+    Page<QuestResponse> questResponses = modelMapper.toPageQuestResponse(quests);
+    for (QuestResponse questResponse : questResponses.getContent()) {
+      Game game = gameStorage.findById(questResponse.getGameId());
+      if (game != null) {
+        questResponse.setGameName(game.getName());
+      }
+    }
+    return questResponses;
   }
 
   public QuestResponse getQuestDetail(Long id){
@@ -36,7 +44,12 @@ public class QuestService extends BaseService {
     if (quest == null) {
       throw new BadRequestException(Constants.QUEST_NOT_FOUND);
     }
-    return modelMapper.toQuestResponse(quest);
+    QuestResponse questResponse = modelMapper.toQuestResponse(quest);
+    Game game = gameStorage.findById(quest.getGameId());
+    if (game != null) {
+      questResponse.setGameName(game.getName());
+    }
+    return questResponse;
   }
 
   public boolean createQuest(QuestCreateDto dto) {

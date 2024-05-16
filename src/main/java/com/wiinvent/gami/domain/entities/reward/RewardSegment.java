@@ -9,6 +9,7 @@ import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Table(name = "reward_segment")
@@ -34,16 +35,16 @@ public class RewardSegment extends BaseEntity {
   private String imageUrl;
 
   @Column(name = "point_require")
-  private Integer pointRequirement;
+  private Integer pointRequirement= 0;
 
   @Column(name = "coin_require")
-  private Integer coinRequirement;
+  private Integer coinRequirement= 0;
 
   @Column(name = "turn_require")
-  private Integer turnRequirement;
+  private Integer turnRequirement = 0;
 
   @Column(name = "is_accumulative_priority", columnDefinition = "BIT")
-  private Boolean isAccumulativePriority; //Có tích lũy vào quà default nếu quà không hợp lệ không
+  private Boolean isAccumulativePriority = true; //Có tích lũy vào quà default nếu quà không hợp lệ không
 
   @Column(name = "status")
   @Enumerated(EnumType.STRING)
@@ -55,14 +56,14 @@ public class RewardSegment extends BaseEntity {
   private ResourceType resourceType;
 
   @Column(name = "lucky_point")
-  private Long luckyPoint;
+  private Long luckyPoint= 0L;
 
   @Lob
   @Column(name = "period_type")
   @Enumerated(EnumType.STRING)
-  private PeriodType periodType;
+  private PeriodType periodType = PeriodType.ALL;
 
   @Column(name = "period_value")
   @JdbcTypeCode(SqlTypes.JSON)
-  private List<Integer> periodValue;
+  private List<Integer> periodValue = new ArrayList<>();
 }

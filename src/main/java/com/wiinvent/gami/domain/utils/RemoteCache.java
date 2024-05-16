@@ -1,8 +1,10 @@
 package com.wiinvent.gami.domain.utils;
 
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RAtomicLong;
 import org.redisson.api.RDeque;
+import org.redisson.api.RHyperLogLog;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -35,6 +37,22 @@ public class RemoteCache {
   @Qualifier("redisson")
   private RedissonClient redissonClient;
 
+  public long pfMergeCount(List<String> keys){
+    try{
+      if(!keys.isEmpty()){
+        RHyperLogLog<String> hp = redissonClient.getHyperLogLog(keys.getFirst());
+        for(String key : keys){
+          RHyperLogLog<String> mergeKey = redissonClient.getHyperLogLog(key);
+          hp.mergeWith(mergeKey.getName());
+        }
+        return hp.count();
+      }
+    }catch (Exception e){
+      log.error(e.getMessage());
+      return 0;
+    }
+    return 0;
+  }
 
   public void rDequePutId(String key, Object value){
     try{

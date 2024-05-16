@@ -62,6 +62,9 @@ public class CollectionService extends BaseService{
   }
 
   public List<UserRewardItems> getRewardItemInfo(Collection collection){
+    if(collection.getExternalId() == null){
+      return null;
+    }
     List<UserRewardItems> userRewardItems = new ArrayList<>();
     UserRewardItems userRewardItem = new UserRewardItems();
     if (collection.getType() == CollectionType.PIECE) {

@@ -15,7 +15,7 @@ public class CollectionResponse {
   private String imageUrl;
   private CollectionType type;
   private Status status;
-  private UserRewardItems rewardItems;
+  private List<UserRewardItems> rewardItems;
   private Long pieceNumber;
   private Long luckyPoint;
 }

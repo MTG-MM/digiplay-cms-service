@@ -38,7 +38,7 @@ public class CollectionService extends BaseService{
     Page<CollectionResponse> collectionResponses = modelMapper.toPageCollectionResponse(collections);
     List<CollectionResponse> result = new ArrayList<>();
     for (Collection collection : collections.getContent()) {
-      UserRewardItems userRewardItem = getRewardItemInfo(collection);
+      List<UserRewardItems> userRewardItem = getRewardItemInfo(collection);
       CollectionResponse collectionResponse = collectionResponses.getContent().stream()
           .filter(c -> c.getId().equals(collection.getId()))
           .findFirst()
@@ -54,22 +54,25 @@ public class CollectionService extends BaseService{
     if (collection == null) {
       throw new BadRequestException(Constants.COLLECTION_NOT_FOUND);
     }
-    UserRewardItems userRewardItems = getRewardItemInfo(collection);
+    List<UserRewardItems> userRewardItems = getRewardItemInfo(collection);
     CollectionResponse collectionResponse = modelMapper.toCollectionResponse(collection);
     collectionResponse.setRewardItems(userRewardItems);
     return collectionResponse;
   }
 
-  public UserRewardItems getRewardItemInfo(Collection collection){
-    UserRewardItems userRewardItems = new UserRewardItems();
+  public List<UserRewardItems> getRewardItemInfo(Collection collection){
+    List<UserRewardItems> userRewardItems = new ArrayList<>();
+    UserRewardItems userRewardItem = new UserRewardItems();
     if (collection.getType() == CollectionType.PIECE) {
       Collection collectionPiece = collectionStorage.findCollectionById(collection.getExternalId());
-      userRewardItems.setId(collectionPiece.getId());
-      userRewardItems.setRewardName(collectionPiece.getName());
+      userRewardItem.setId(collectionPiece.getId());
+      userRewardItem.setRewardName(collectionPiece.getName());
+      userRewardItems.add(userRewardItem);
     }else {
       RewardItem rewardItem = rewardItemStorage.findById(collection.getExternalId());
-      userRewardItems.setId(rewardItem.getId());
-      userRewardItems.setRewardName(rewardItem.getRewardName());
+      userRewardItem.setId(rewardItem.getId());
+      userRewardItem.setRewardName(rewardItem.getRewardName());
+      userRewardItems.add(userRewardItem);
     }
     return userRewardItems;
   }

@@ -74,6 +74,9 @@ public class CollectionService extends BaseService{
       userRewardItems.add(userRewardItem);
     }else {
       RewardItem rewardItem = rewardItemStorage.findById(collection.getExternalId());
+      if(rewardItem == null){
+        return null;
+      }
       userRewardItem.setId(rewardItem.getId());
       userRewardItem.setRewardName(rewardItem.getRewardName());
       userRewardItems.add(userRewardItem);

@@ -69,4 +69,9 @@ public class Character extends BaseEntity {
 
   @Column(name = "is_event")
   private Boolean isEvent;
+  @Column(name = "is_expire")
+  private Boolean isExpire;
+
+  @Column(name = "minute_duration")
+  private Long duration;
 }

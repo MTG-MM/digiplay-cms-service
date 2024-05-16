@@ -16,6 +16,7 @@ public class CharacterResponse {
   private Integer pointPrice;
   private Long createdAt;
   private Long updatedAt;
+  private Long duration;
   private Boolean isDefault;
   private Boolean isSell;
   private CharacterGenderType gender;
@@ -23,5 +24,6 @@ public class CharacterResponse {
   private Boolean isTrend;
   private Boolean isNew;
   private Boolean isEvent;
+  private Boolean isExpire = false;
   private String externalId;
 }

@@ -98,7 +98,9 @@ public class CollectionService extends BaseService{
   public boolean createCollection(CollectionCreateDto dto) {
     if(Objects.isNull(dto.getStatus())) dto.setStatus(Status.ACTIVE);
     Collection collection = modelMapper.toCollection(dto);
-    collection.setExternalId(dto.getRewardItems().getFirst().getId());
+    if(dto.getRewardItems() != null && !dto.getRewardItems().isEmpty()) {
+      collection.setExternalId(dto.getRewardItems().getFirst().getId());
+    }
     //save
     try {
       self.save(collection);

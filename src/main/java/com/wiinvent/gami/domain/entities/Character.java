@@ -36,7 +36,7 @@ public class Character extends BaseEntity {
   @Lob
   @Enumerated(EnumType.STRING)
   @Column(name = "type")
-  private CharacterType characterType;
+  private CharacterType type;
 
   @Column(name = "status")
   @Enumerated(EnumType.STRING)

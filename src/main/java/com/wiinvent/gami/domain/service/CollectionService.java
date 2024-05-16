@@ -10,6 +10,7 @@ import com.wiinvent.gami.domain.exception.BadRequestException;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.pojo.UserRewardItems;
 import com.wiinvent.gami.domain.response.CollectionResponse;
+import com.wiinvent.gami.domain.response.CollectionInTypeResponse;
 import com.wiinvent.gami.domain.utils.Constants;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,9 +78,15 @@ public class CollectionService extends BaseService{
     return userRewardItems;
   }
 
-  public List<CollectionResponse> getCollectionsInTypeCollection() {
+  public List<CollectionInTypeResponse> getCollectionsInTypeCollection() {
     List<Collection> collections = collectionStorage.findCollectionByType();
-    return modelMapper.toListCollectionResponse(collections);
+    List<CollectionInTypeResponse> collectionInTypeResponses = new ArrayList<>();
+    for (Collection collection : collections) {
+      CollectionInTypeResponse collectionInTypeResponse = new CollectionInTypeResponse();
+      collectionInTypeResponse.toResponse(collection);
+      collectionInTypeResponses.add(collectionInTypeResponse);
+    }
+    return collectionInTypeResponses;
   }
 
   public boolean createCollection(CollectionCreateDto dto) {

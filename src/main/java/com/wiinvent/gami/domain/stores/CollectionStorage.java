@@ -29,7 +29,7 @@ public class CollectionStorage extends BaseStorage {
   }
 
   public List<Collection> findCollectionByType() {
-    return collectionRepository.findCollectionByType(CollectionType.COLLECTION);
+    return collectionRepository.findCollectionByTypeAndStatus(CollectionType.COLLECTION, Status.ACTIVE);
   }
 
   public List<Collection> findAllCollectionByIdIn(List<Long> ids){

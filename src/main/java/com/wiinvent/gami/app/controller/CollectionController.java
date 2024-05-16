@@ -4,6 +4,7 @@ import com.wiinvent.gami.domain.dto.CollectionCreateDto;
 import com.wiinvent.gami.domain.dto.CollectionUpdateDto;
 import com.wiinvent.gami.domain.entities.type.CollectionType;
 import com.wiinvent.gami.domain.entities.type.Status;
+import com.wiinvent.gami.domain.response.CollectionInTypeResponse;
 import com.wiinvent.gami.domain.response.CollectionResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.CollectionService;
@@ -44,7 +45,7 @@ public class CollectionController {
   }
 
   @GetMapping("type/collect")
-  public ResponseEntity<List<CollectionResponse>> findCollectionInTypeCollection(){
+  public ResponseEntity<List<CollectionInTypeResponse>> findCollectionInTypeCollection(){
     return ResponseEntity.ok(collectionService.getCollectionsInTypeCollection());
   }
 

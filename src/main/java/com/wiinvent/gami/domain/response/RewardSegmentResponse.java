@@ -5,9 +5,12 @@ import com.wiinvent.gami.domain.entities.type.ResourceType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 public class RewardSegmentResponse {
@@ -38,5 +41,17 @@ public class RewardSegmentResponse {
   private ResourceType resourceType;
   private Long luckyPoint;
   private PeriodType periodType;
+
+  @Getter(AccessLevel.NONE)
   private List<Integer> periodValue;
+
+  public String getPeriodValue() {
+    if (periodValue!= null) {
+      return periodValue.stream()
+          .map(String::valueOf)
+          .collect(Collectors.joining(", "));
+    } else {
+      return null;
+    }
+  }
 }

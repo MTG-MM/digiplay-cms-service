@@ -38,10 +38,10 @@ public class RewardItemController {
   public PageResponse<RewardItemResponse> getAll(
       @RequestParam(required = false) String name,
       @RequestParam(required = false) Integer id,
-      @RequestParam(required = false) RewardItemType type,
+      @RequestParam(required = false) Integer rewardTypeId,
       @SortDefault(sort = "createdAt", direction = Sort.Direction.DESC)
       @Parameter(hidden = true) Pageable pageable) {
-    return rewardItemService.getAll(id, name, type,pageable);
+    return rewardItemService.getAll(id, name, rewardTypeId,pageable);
   }
 
   @GetMapping("{id}")

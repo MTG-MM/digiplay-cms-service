@@ -43,8 +43,8 @@ public class RewardItemService extends BaseService {
 //  }
 
   public PageResponse<RewardItemResponse> getAll
-      (Integer id, String name, RewardItemType type, Pageable pageable) {
-    Page<RewardItem> rwItems = rewardItemStorage.findAll(rwItemCondition(id, name, type), pageable);
+      (Integer id, String name, Integer rewardTypeId, Pageable pageable) {
+    Page<RewardItem> rwItems = rewardItemStorage.findAll(rwItemCondition(id, name, rewardTypeId), pageable);
     Page<RewardItemResponse> responses = modelMapper.toPageRewardItemResponse(rwItems);
     for (RewardItemResponse rewardItemResponse : responses.getContent()) {
       if (rewardItemResponse.getRewardItemType().equals(RewardItemType.PRODUCT) ||
@@ -56,7 +56,7 @@ public class RewardItemService extends BaseService {
   }
 
   public Specification<RewardItem> rwItemCondition(
-      Integer id, String name, RewardItemType type) {
+      Integer id, String name, Integer rewardTypeId) {
     return (rwItem, query, criteriaBuilder) -> {
       List<Predicate> conditionsList = new ArrayList<>();
       conditionsList.add(criteriaBuilder.notEqual(rwItem.get("status"), Status.DELETE));
@@ -66,8 +66,8 @@ public class RewardItemService extends BaseService {
       if (name != null) {
         conditionsList.add(criteriaBuilder.like(rwItem.get("rewardName"), "%" + name + "%"));
       }
-      if (type != null) {
-        conditionsList.add(criteriaBuilder.equal(rwItem.get("rewardType"), type));
+      if (rewardTypeId != null) {
+        conditionsList.add(criteriaBuilder.equal(rwItem.get("rewardTypeId"), rewardTypeId));
       }
       return criteriaBuilder.and(conditionsList.toArray(new Predicate[0]));
     };

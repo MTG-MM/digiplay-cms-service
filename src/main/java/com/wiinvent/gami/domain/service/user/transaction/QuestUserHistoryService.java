@@ -48,8 +48,10 @@ public class QuestUserHistoryService extends BaseService {
     Map<Long, QuestTurn> questTurnMap = questTurns.stream().collect(Collectors.toMap(QuestTurn::getId, Function.identity()));
     List<QuestUserHistoryResponse> responses = modelMapper.toListQuestUserHistoryResponse(questUserHistories);
     responses.forEach(r -> {
-      r.setQuestName(questMap.get(r.getQuestId()).getName());
-      r.setQuestTurnName(questTurnMap.get(r.getQuestTurnId()).getName());
+      Quest quest = questMap.getOrDefault(r.getQuestId(), null);
+      QuestTurn questTurn = questTurnMap.getOrDefault(r.getQuestTurnId(), null);
+      r.setQuestName(quest != null ? quest.getName() : null);
+      r.setQuestTurnName(questTurn != null ? questTurn.getName() : null);
     });
     return new PageCursorResponse<>(responses, limit, type, "createdAt");
   }

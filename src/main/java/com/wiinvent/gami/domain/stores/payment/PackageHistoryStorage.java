@@ -42,4 +42,8 @@ public class PackageHistoryStorage extends BaseStorage {
     typedQuery.setMaxResults(limit);
     return typedQuery.getResultList();
   }
+
+  public PackageHistory findById(UUID id) {
+    return packageHistoryRepository.findPackageHistoryById(id);
+  }
 }

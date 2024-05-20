@@ -12,10 +12,11 @@ public class PackageInfo {
   private String code;
   private Integer point;
   private Integer coin;
-  private Integer daySub;
+  private Integer ticket;
+  private Integer dayDuration;
   private Status status;
   private Integer coinDaily;
-  private String externalImageId;
+  private String imageUrl;
   private Integer packageTypeId;
   private Integer pointDaily;
   private List<PaymentMethodInfo> paymentMethodInfo;

@@ -125,7 +125,8 @@ public class RewardItemStatisticService extends BaseService {
       Map<Long, RewardItem> rewardItemMap = rewardItemStorage.findRewardItemByIdIn(rwItemIds).stream()
           .collect(Collectors.toMap(RewardItem::getId, Function.identity()));
       for (StatisticResponse statisticResponse : statisticResponses) {
-        statisticResponse.setRewardItemName(rewardItemMap.get(statisticResponse.getRewardItemId()).getRewardName());
+        RewardItem rewardItem = rewardItemMap.get(statisticResponse.getRewardItemId());
+        statisticResponse.setRewardItemName(rewardItem != null ? rewardItem.getRewardName() : null);
       }
       listRewardItemStatisticResponse.setStatisticResponseList(statisticResponses);
       dataResponse.add(listRewardItemStatisticResponse);

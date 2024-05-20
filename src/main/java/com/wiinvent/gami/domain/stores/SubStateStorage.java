@@ -12,4 +12,8 @@ public class SubStateStorage extends BaseStorage{
   public List<SubState> findBySubStateAndUserIdInAndEndAtGreaterThan(List<UUID> userId, Long endAtNow){
     return subStateRepository.findBySubStateAndUserIdInAndEndAtGreaterThan(PackageStateType.ACTIVE, userId, endAtNow);
   }
+
+  public SubState findByPackageId(Integer id){
+    return subStateRepository.findSubStateByPackageId(id);
+  }
 }

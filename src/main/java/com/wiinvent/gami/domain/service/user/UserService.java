@@ -1,5 +1,6 @@
 package com.wiinvent.gami.domain.service.user;
 
+import com.wiinvent.gami.domain.entities.PremiumState;
 import com.wiinvent.gami.domain.entities.SubState;
 import com.wiinvent.gami.domain.entities.user.*;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;

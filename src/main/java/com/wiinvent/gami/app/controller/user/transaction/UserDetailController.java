@@ -51,7 +51,7 @@ public class UserDetailController {
     return ResponseEntity.ok(packageHistoryService.getPackageHistory(userId, transId, gte, lte, next, pre, limit));
   }
 
-  @PostMapping("cancel")
+  @PutMapping("cancel")
   public ResponseEntity<Boolean> changeSubStatus(
       @RequestParam UUID id) {
     return ResponseEntity.ok(packageHistoryService.changePackageStatus(id));

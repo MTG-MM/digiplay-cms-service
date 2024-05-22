@@ -34,8 +34,8 @@ public class RewardScheduleController {
     return ResponseEntity.ok(rewardScheduleService.createRewardSchedules(rewardScheduleDto));
   }
 
-  @PutMapping("{id}")
-  public ResponseEntity<Boolean> updateRewardSchedules(@PathVariable Long id, @RequestBody RewardScheduleUpdateDto rewardScheduleDto) {
-    return ResponseEntity.ok(rewardScheduleService.updateRewardSchedules(id, rewardScheduleDto));
+  @PutMapping("{rewardSegmentDetailId}")
+  public ResponseEntity<Boolean> updateRewardSchedules(@PathVariable Long rewardSegmentDetailId, @RequestBody List<RewardScheduleUpdateDto> rewardScheduleUpdateDtos) {
+    return ResponseEntity.ok(rewardScheduleService.updateRewardSchedules(rewardSegmentDetailId, rewardScheduleUpdateDtos));
   }
 }

@@ -28,4 +28,7 @@ public class RewardScheduleStorage extends BaseStorage {
   public List<RewardSchedule> findByRewardSegmentDetailId(Long rewardSegmentId) {
     return rewardScheduleRepository.findByRewardSegmentDetailId(rewardSegmentId);
   }
+
+  public void saveAll(List<RewardSchedule> rewardSchedules) {
+  }
 }

@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -50,14 +51,20 @@ public class RewardScheduleService extends BaseService {
   }
 
   @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
-  public Boolean updateRewardSchedules(Long id, RewardScheduleUpdateDto rewardScheduleDto) {
-    RewardSchedule rewardSchedule = rewardScheduleStorage.findById(id);
-    if (rewardSchedule == null) {
-      throw new ResourceNotFoundException("item not found");
-    }
-
-    modelMapper.mapRewardScheduleUpdateDtoToRewardSchedule(rewardScheduleDto, rewardSchedule);
-    rewardScheduleStorage.save(rewardSchedule);
+  public Boolean updateRewardSchedules(Long rewardSegmentDetailId, List<RewardScheduleUpdateDto> rewardScheduleDto) {
+    List<RewardSchedule> rewardSchedules = new ArrayList<>();
+    rewardScheduleDto.forEach(rs -> {
+      RewardSchedule rewardSchedule;
+      if(rs.getId() == null) {
+        rewardSchedule = new RewardSchedule();
+        modelMapper.mapToRewardSchedule(rs, rewardSchedule);
+      }else{
+        rewardSchedule = modelMapper.toRewardSchedule(rs);
+        rewardSchedule.setRewardSegmentDetailId(rewardSegmentDetailId);
+      }
+      rewardSchedules.add(rewardSchedule);
+    });
+    rewardScheduleStorage.saveAll(rewardSchedules);
     return true;
   }
 

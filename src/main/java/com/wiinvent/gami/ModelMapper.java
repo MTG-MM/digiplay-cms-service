@@ -348,4 +348,7 @@ public interface ModelMapper {
 
   List<RewardItemSelect> toListUserRewardItemSelect(List<UserRewardItems> rewardItemSelectList);
 
+  void mapToRewardSchedule(RewardScheduleUpdateDto rs, @MappingTarget RewardSchedule rewardScheduleEntity);
+
+  RewardSchedule toRewardSchedule(RewardScheduleUpdateDto rs);
 }

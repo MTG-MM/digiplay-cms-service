@@ -8,6 +8,9 @@ import lombok.Data;
 @Data
 public class RewardScheduleUpdateDto {
 
+  @Schema(description = "id")
+  private Integer id;
+
   @NotNull(message = "Loại khoảng thời gian không được để trống")
   @Schema(description = "Loại khoảng thời gian")
   private PeriodType periodType;

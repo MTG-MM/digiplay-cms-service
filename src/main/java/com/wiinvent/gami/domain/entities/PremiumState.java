@@ -1,6 +1,5 @@
-package com.wiinvent.gami.domain.entities.user;
+package com.wiinvent.gami.domain.entities;
 
-import com.wiinvent.gami.domain.entities.BaseEntity;
 import com.wiinvent.gami.domain.entities.type.PackageStateType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

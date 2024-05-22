@@ -46,9 +46,10 @@ public class CharacterUserTransactionService extends BaseService {
     List<CharacterUserTransactionResponse> responses = modelMapper.toListCharacterUserTransactionResponse(characterUserTransactions);
     responses.forEach(r ->
     {
-      r.setName(mapCharacter.get(r.getCharacterId()).getName());
-      r.setCoinPrice(mapCharacter.get(r.getCharacterId()).getCoinPrice());
-      r.setPointPrice(mapCharacter.get(r.getCharacterId()).getPointPrice());
+      Character character = mapCharacter.get(r.getCharacterId());
+      r.setName(character != null ? character.getName() : null);
+      r.setCoinPrice(character != null ? character.getCoinPrice() : null);
+      r.setPointPrice(character != null ? character.getPointPrice() : null);
     });
     return new PageCursorResponse<>(responses, limit, type, "createdAt");
   }

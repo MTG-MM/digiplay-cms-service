@@ -15,10 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.SortDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -52,6 +49,12 @@ public class UserDetailController {
       @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte
   ) {
     return ResponseEntity.ok(packageHistoryService.getPackageHistory(userId, transId, gte, lte, next, pre, limit));
+  }
+
+  @PutMapping("cancel")
+  public ResponseEntity<Boolean> changeSubStatus(
+      @RequestParam UUID id) {
+    return ResponseEntity.ok(packageHistoryService.changePackageStatus(id));
   }
 
   @GetMapping("/transaction/coin")

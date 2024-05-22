@@ -38,6 +38,7 @@ public class AchievementStorage extends BaseStorage{
 
   public List<String> removeCacheKeys(Achievement achievement) {
     List<String> keys = new ArrayList<>();
+    keys.add(cacheKey.genAchievementById(achievement.getId()));
     keys.add(cacheKey.genAllAchievement());
     keys.add(cacheKey.genAchievementByType(achievement.getType()));
     return keys;

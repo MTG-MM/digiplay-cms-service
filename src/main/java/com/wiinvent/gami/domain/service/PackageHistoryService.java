@@ -1,6 +1,10 @@
 package com.wiinvent.gami.domain.service;
 
+import com.wiinvent.gami.domain.entities.PremiumState;
+import com.wiinvent.gami.domain.entities.SubState;
 import com.wiinvent.gami.domain.entities.payment.PackageHistory;
+import com.wiinvent.gami.domain.entities.type.PackageStateType;
+import com.wiinvent.gami.domain.exception.BadRequestException;
 import com.wiinvent.gami.domain.response.PackageHistoryResponse;
 import com.wiinvent.gami.domain.response.base.PageCursorResponse;
 import com.wiinvent.gami.domain.response.type.CursorType;
@@ -37,7 +41,18 @@ public class PackageHistoryService extends BaseService {
     return new PageCursorResponse<>(responses, limit, type,"createdAt");
   }
 
-//  public Boolean changePackageStatus(UUID id) {
-//
-//  }
+  public Boolean changePackageStatus(UUID id) {
+    PackageHistory packageHistory = packageHistoryStorage.findById(id);
+    SubState subState = subStateStorage.findByPackageId(packageHistory.getPackageInfo().getId());
+    if (Objects.isNull(subState)) {
+      PremiumState premiumState = premiumStateStorage.findByPackageId(packageHistory.getPackageInfo().getId());
+      if (Objects.isNull(premiumState)) {
+        throw new BadRequestException("Cannot find any package state");
+      }
+      premiumState.setPremiumState(PackageStateType.CANCEL);
+    } else {
+      subState.setSubState(PackageStateType.CANCEL);
+    }
+    return true;
+  }
 }

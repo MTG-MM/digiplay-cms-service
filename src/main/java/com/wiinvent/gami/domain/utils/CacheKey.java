@@ -130,6 +130,11 @@ public class CacheKey {
     return redisPrefixKeyVtGame + ":achievement:" + achievementType;
   }
 
+  public String genAchievementById(Integer achievementId) {
+    return redisPrefixKeyVtGame + ":achievement:id" + achievementId;
+  }
+
+
   public String genAllAchievement() {
     return redisPrefixKeyVtGame + ":achievement:all";
   }

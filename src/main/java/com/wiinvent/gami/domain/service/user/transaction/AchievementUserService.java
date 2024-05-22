@@ -16,6 +16,7 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+
 @Service
 @Log4j2
 
@@ -69,8 +70,13 @@ public class AchievementUserService extends BaseService {
 
     List<AchievementUserResponse> userCollectionResponses = modelMapper.toListAchievementUserResponse(achievementUsers.toList());
     userCollectionResponses.forEach(r -> {
-      r.setName(achievementMap.get(r.getAchievementId()).getName());
-      AchievementInfo achievementInfo = achievementMap.get(r.getAchievementId()).getAchievementInfo().stream()
+//      Achievement achievement = achievementMap.getOrDefault(r.getAchievementId(), null);
+//      r.setName(achievement != null ? achievement.getName() : null);
+      Optional<Achievement> achievement = Optional.ofNullable(achievementMap.get(r.getAchievementId()));
+      achievement.ifPresent(a -> r.setName(a.getName()));
+      AchievementInfo achievementInfo = achievement.map(Achievement::getAchievementInfo)
+          .orElse(Collections.emptyList())
+          .stream()
           .sorted(Comparator.comparingInt(AchievementInfo::getLevel).reversed()).filter(a -> a.getMinScore() <= r.getScore())
           .findFirst().orElse(new AchievementInfo());
       r.setAchievementInfo(achievementInfo);

@@ -44,12 +44,12 @@ public class RewardSegmentController {
   }
 
   @PostMapping("")
-  public ResponseEntity<Boolean> createRewardSegments(@RequestBody RewardSegmentDto rewardSegmentDto) {
+  public ResponseEntity<Boolean> createRewardSegments(@RequestBody @Valid RewardSegmentDto rewardSegmentDto) {
     return ResponseEntity.ok(rewardSegmentService.createRewardSegments(rewardSegmentDto));
   }
 
   @PutMapping("{id}")
-  public ResponseEntity<Boolean> updateRewardSegments(@PathVariable Long id, @RequestBody RewardSegmentDto rewardSegmentDto) {
+  public ResponseEntity<Boolean> updateRewardSegments(@PathVariable Long id, @RequestBody @Valid RewardSegmentDto rewardSegmentDto) {
     return ResponseEntity.ok(rewardSegmentService.updateRewardSegments(id, rewardSegmentDto));
   }
 

@@ -22,4 +22,7 @@ public class RewardItemStoreUpdateDto {
   @NotNull(message = "Trạng thái không được để trống")
   @Schema(description = "Trạng thái cửa hàng", example = "ACTIVE")
   private Status status;
+
+  private String imageUrl;
+
 }

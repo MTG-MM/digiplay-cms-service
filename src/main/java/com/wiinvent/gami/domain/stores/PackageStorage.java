@@ -1,6 +1,9 @@
 package com.wiinvent.gami.domain.stores;
 
+import com.wiinvent.gami.domain.entities.Character;
 import com.wiinvent.gami.domain.entities.Package;
+import com.wiinvent.gami.domain.entities.type.CharacterCategoryType;
+import com.wiinvent.gami.domain.entities.type.ProductType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -44,6 +47,21 @@ public class PackageStorage extends BaseStorage {
     cacheKeys.add(cacheKey.getPortalPackagesByTypeId(aPackage.getPackageTypeId(),3));
     cacheKeys.add(cacheKey.getPortalPackagesByTypeId(aPackage.getPackageTypeId(),4));
     return cacheKeys;
+  }
+
+  public List<Package> findAllPackageActive(ProductType productType){
+    return packageRepository.findAll(packageActiveCondition(productType));
+  }
+
+  public Specification<Package> packageActiveCondition(ProductType productType){
+    return (root, query, criteriaBuilder) -> {
+      List<Predicate> conditionList = new ArrayList<>();
+      conditionList.add(criteriaBuilder.equal(root.get("status"), Status.ACTIVE));
+      if (productType != null){
+        conditionList.add(criteriaBuilder.equal(root.get("type"), productType));
+      }
+      return criteriaBuilder.and(conditionList.toArray(new Predicate[0]));
+    };
   }
 
 

@@ -6,6 +6,7 @@ import com.wiinvent.gami.domain.entities.type.DailyTaskType;
 import com.wiinvent.gami.domain.response.TaskResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.TaskService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -38,14 +39,14 @@ public class TaskController {
   }
 
   @PostMapping("")
-  public ResponseEntity<Boolean> createTask(@RequestBody TaskCreateDto taskCreateDto) {
+  public ResponseEntity<Boolean> createTask(@RequestBody @Valid TaskCreateDto taskCreateDto) {
     return ResponseEntity.ok(
         taskService.createTask(taskCreateDto)
     );
   }
 
   @PutMapping("{id}")
-  public ResponseEntity<Boolean> updateTask(@PathVariable Integer id, @RequestBody TaskUpdateDto dto) {
+  public ResponseEntity<Boolean> updateTask(@PathVariable Integer id, @RequestBody @Valid TaskUpdateDto dto) {
     return ResponseEntity.ok(
         taskService.updateTask(id, dto)
     );

@@ -36,7 +36,7 @@ public class RewardSegmentDetailController {
   }
 
   @PostMapping("")
-  public ResponseEntity<Boolean> createRewardSegmentDetails(@RequestBody RewardSegmentDetailDto rewardSegmentDetailDto) {
+  public ResponseEntity<Boolean> createRewardSegmentDetails(@RequestBody @Valid RewardSegmentDetailDto rewardSegmentDetailDto) {
     return ResponseEntity.ok(rewardSegmentDetailService.createRewardSegmentDetails(rewardSegmentDetailDto));
   }
 

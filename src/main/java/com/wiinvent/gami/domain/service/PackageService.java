@@ -2,11 +2,15 @@ package com.wiinvent.gami.domain.service;
 
 import com.wiinvent.gami.domain.dto.PackageCreateDto;
 import com.wiinvent.gami.domain.dto.PackageUpdateDto;
+import com.wiinvent.gami.domain.entities.Character;
 import com.wiinvent.gami.domain.entities.Package;
+import com.wiinvent.gami.domain.entities.type.CharacterCategoryType;
 import com.wiinvent.gami.domain.entities.type.PackageType;
+import com.wiinvent.gami.domain.entities.type.ProductType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.exception.BadRequestException;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
+import com.wiinvent.gami.domain.response.CharacterResponse;
 import com.wiinvent.gami.domain.response.PackageResponse;
 import com.wiinvent.gami.domain.utils.Constants;
 import com.wiinvent.gami.domain.utils.DateUtils;
@@ -20,6 +24,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -96,4 +101,8 @@ public class PackageService extends BaseService {
     packageStorage.save(aPackage);
   }
 
+  public List<PackageResponse> getPackagesActive(ProductType productType){
+    List<Package> packages = packageStorage.findAllPackageActive(productType);
+    return modelMapper.toListPackageResponse(packages);
+  }
 }

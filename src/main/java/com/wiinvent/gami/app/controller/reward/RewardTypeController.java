@@ -39,7 +39,7 @@ public class RewardTypeController {
   }
 
   @PostMapping("")
-  public ResponseEntity<Long> createRewardTypes(@RequestBody RewardTypeDto rewardTypeDto) {
+  public ResponseEntity<Long> createRewardTypes(@RequestBody @Valid RewardTypeDto rewardTypeDto) {
     return ResponseEntity.ok(rewardTypeService.createRewardTypes(rewardTypeDto));
   }
 

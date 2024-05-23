@@ -29,6 +29,9 @@ public class RewardItemStore {
   @Enumerated(EnumType.STRING)
   private Status status;
 
+  @Column(name = "image_url")
+  private String imageUrl;
+
   @Column(name = "created_at")
   private Long createdAt = DateUtils.getNowMillisAtUtc();
 

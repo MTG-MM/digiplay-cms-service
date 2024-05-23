@@ -8,6 +8,7 @@ import com.wiinvent.gami.domain.response.AchievementResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.AchievementService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -51,14 +52,14 @@ public class AchievementController {
   }
 
   @PostMapping("")
-  public ResponseEntity<Boolean> createAchievement(@RequestBody AchievementCreateDto achievementCreateDto) {
+  public ResponseEntity<Boolean> createAchievement(@RequestBody @Valid AchievementCreateDto achievementCreateDto) {
     return ResponseEntity.ok(
         achievementService.createAchievement(achievementCreateDto)
     );
   }
 
   @PutMapping("{id}")
-  public ResponseEntity<Boolean> updateAchievement(@PathVariable Integer id, @RequestBody AchievementUpdateDto dto) {
+  public ResponseEntity<Boolean> updateAchievement(@PathVariable Integer id, @RequestBody @Valid AchievementUpdateDto dto) {
     return ResponseEntity.ok(
         achievementService.updateAchievement(id, dto)
     );

@@ -154,6 +154,8 @@ public interface ModelMapper {
 
   Package toPackage(PackageCreateDto packageCreateDto);
 
+  List<PackageResponse> toListPackageResponse(List<Package> packages);
+
   GameTournament toGameTournament(GameTournamentCreateDto gameTournamentCreateDto);
 
   void mapGameTournamentUpdateDtoToGameTournament(GameTournamentUpdateDto dto,@MappingTarget GameTournament gameTournament);

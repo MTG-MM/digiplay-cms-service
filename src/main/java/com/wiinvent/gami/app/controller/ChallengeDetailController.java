@@ -7,6 +7,7 @@ import com.wiinvent.gami.domain.response.ChallengeDetailResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.ChallengeDetailService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -42,7 +43,7 @@ public class ChallengeDetailController {
   }
 
   @PostMapping("")
-  public ResponseEntity<Boolean> createChallengeDetail(@RequestBody ChallengeDetailCreateDto dto) {
+  public ResponseEntity<Boolean> createChallengeDetail(@RequestBody @Valid ChallengeDetailCreateDto dto) {
     return ResponseEntity.ok(
         challengeDetailService.createChallengeDetail(dto)
     );

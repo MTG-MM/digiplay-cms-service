@@ -13,13 +13,13 @@ public class ChallengeDetailUpdateDto {
   private String name;
   private String code;
   @NotNull
-  private Integer coinPrice = 0;
+  private Integer coinPrice;
   @NotNull
-  private Integer pointPrice= 0;
+  private Integer pointPrice;
   @NotNull
   private Integer level = 1;
   @NotNull
-  private Status status = Status.ACTIVE;
+  private Status status;
   private List<UserRewardItems> rewardItems = new ArrayList<>();
   private List<UserRewardItems> rewardItemSpecial = new ArrayList<>();;
   private Integer duration = 0;

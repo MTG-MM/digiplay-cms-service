@@ -6,12 +6,15 @@ import com.wiinvent.gami.domain.pojo.UserRewardItems;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
 public class QuestTurnUpdateDto {
   private String name;
   private Integer questNumber;
+
+  @NotNull
   private Integer turn;
   @NotNull
   private Integer pointPrice;
@@ -23,6 +26,7 @@ public class QuestTurnUpdateDto {
   private Integer viewAdsSkipDuration;
 
   private Integer coinSkipCdPrice;
+
   @NotNull
   private Integer duration;
 
@@ -32,9 +36,9 @@ public class QuestTurnUpdateDto {
   @NotNull
   private Status status;
 
-  private List<UserType> activeForUser;
+  private List<UserType> activeForUser = new ArrayList<>();
 
-  private List<UserType> freeForUser;
+  private List<UserType> freeForUser = new ArrayList<>();
 
-  private List<UserRewardItems> rewardItems;
+  private List<UserRewardItems> rewardItems = new ArrayList<>();
 }

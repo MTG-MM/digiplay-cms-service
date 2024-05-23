@@ -9,6 +9,7 @@ import com.wiinvent.gami.domain.response.CollectionResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.CollectionService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -50,14 +51,14 @@ public class CollectionController {
   }
 
   @PostMapping("")
-  public ResponseEntity<Boolean> createCollection(@RequestBody CollectionCreateDto collectionCreateDto) {
+  public ResponseEntity<Boolean> createCollection(@RequestBody @Valid CollectionCreateDto collectionCreateDto) {
     return ResponseEntity.ok(
         collectionService.createCollection(collectionCreateDto)
     );
   }
 
   @PutMapping("{id}")
-  public ResponseEntity<Boolean> updateCollection(@PathVariable Long id, @RequestBody CollectionUpdateDto dto) {
+  public ResponseEntity<Boolean> updateCollection(@PathVariable Long id, @RequestBody @Valid CollectionUpdateDto dto) {
     return ResponseEntity.ok(
         collectionService.updateCollection(id, dto)
     );

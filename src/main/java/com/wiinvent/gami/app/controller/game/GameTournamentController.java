@@ -6,6 +6,7 @@ import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.response.GameTournamentResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.game.GameTournamentService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -34,13 +35,13 @@ public class GameTournamentController {
   }
 
   @PostMapping("")
-  public ResponseEntity<Boolean> createGameTournament(@RequestBody GameTournamentCreateDto dto){
+  public ResponseEntity<Boolean> createGameTournament(@RequestBody @Valid GameTournamentCreateDto dto){
     gameTournamentService.createGameTournament(dto);
     return ResponseEntity.ok(true);
   }
 
   @PutMapping("{id}")
-  public ResponseEntity<Boolean> updateGameTournament(@PathVariable String id, @RequestBody GameTournamentUpdateDto dto){
+  public ResponseEntity<Boolean> updateGameTournament(@PathVariable String id, @RequestBody @Valid GameTournamentUpdateDto dto){
     gameTournamentService.updateGameTournament(id, dto);
     return ResponseEntity.ok(true);
   }

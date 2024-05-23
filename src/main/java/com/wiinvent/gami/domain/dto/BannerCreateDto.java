@@ -10,12 +10,12 @@ public class BannerCreateDto {
   @NotNull(message = "Không được để trống")
   private BannerType type;
 
-  @NotNull(message = "Không được để trống")
   private String imageUrl;
 
   private String linkTo;
 
   private String linkTracking;
 
+  @NotNull(message = "Không được để trống")
   private Status status;
 }

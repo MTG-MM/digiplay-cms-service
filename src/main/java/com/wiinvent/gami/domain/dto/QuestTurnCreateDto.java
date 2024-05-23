@@ -4,5 +4,4 @@ import lombok.Data;
 
 @Data
 public class QuestTurnCreateDto extends QuestTurnUpdateDto{
-  private Integer questNumber;
 }

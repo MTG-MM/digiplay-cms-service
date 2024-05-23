@@ -15,7 +15,7 @@ import java.util.Objects;
 
 @CrossOrigin(origins = "*", maxAge = 86400)
 @RestController
-@RequestMapping("v1/gami/portal/user/change")
+@RequestMapping("v1/portal/user/change")
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
 public class GamiRequestController {
   @Autowired

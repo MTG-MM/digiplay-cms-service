@@ -10,6 +10,7 @@ import java.util.List;
 @Data
 public class QuestUpdateDto {
   private String name;
+  private Integer gameId;
   private String description;
   private String imageUrl;
   @NotNull

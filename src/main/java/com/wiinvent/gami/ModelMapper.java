@@ -146,7 +146,7 @@ public interface ModelMapper {
     return gamePackages.map(this::toGamePackageResponse);
   }
 
-  PackageResponse toPackageResponse(Package aPackage);
+  PackageResponse toPackageResponse(Package productPackage);
   default Page<PackageResponse> toPagePackageResponse(Page<Package> packages){
     return packages.map(this::toPackageResponse);
   }
@@ -183,7 +183,7 @@ public interface ModelMapper {
     return gameCategories.map(this::toGameCategoryResponse);
   }
 
-  void mapPackageUpdateDtoToPackage(PackageUpdateDto dto,@MappingTarget Package aPackage);
+  void mapPackageUpdateDtoToPackage(PackageUpdateDto dto,@MappingTarget Package productPackage);
 
 
   UserSegmentResponse toUserSegmentResponse(UserSegment userSegment);

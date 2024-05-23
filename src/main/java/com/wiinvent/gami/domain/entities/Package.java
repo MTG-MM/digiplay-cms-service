@@ -85,10 +85,6 @@ public class Package extends BaseEntity {
   @Column(name = "description")
   private String description;
 
-  @Column(name = "type")
-  @Enumerated(EnumType.STRING)
-  private ProductType type;
-
   @Column(name = "image_url")
   private String imageUrl;
 

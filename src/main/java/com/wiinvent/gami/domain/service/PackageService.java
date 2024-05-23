@@ -4,8 +4,8 @@ import com.wiinvent.gami.domain.dto.PackageCreateDto;
 import com.wiinvent.gami.domain.dto.PackageUpdateDto;
 import com.wiinvent.gami.domain.entities.Character;
 import com.wiinvent.gami.domain.entities.Package;
+import com.wiinvent.gami.domain.entities.PackageType;
 import com.wiinvent.gami.domain.entities.type.CharacterCategoryType;
-import com.wiinvent.gami.domain.entities.type.PackageType;
 import com.wiinvent.gami.domain.entities.type.ProductType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.exception.BadRequestException;
@@ -37,21 +37,21 @@ public class PackageService extends BaseService {
   }
 
   public PackageResponse getPackageDetail(int id) {
-    Package aPackage = packageStorage.findById(id);
-    if (aPackage == null) {
+    Package productPackage = packageStorage.findById(id);
+    if (productPackage == null) {
       throw new ResourceNotFoundException(Constants.PACKAGE_NOT_FOUND);
     }
-    return modelMapper.toPackageResponse(aPackage);
+    return modelMapper.toPackageResponse(productPackage);
   }
 
   public boolean createPackage(PackageCreateDto dto) {
     //validation
     if(Objects.isNull(dto.getStatus())) dto.setStatus(Status.ACTIVE);
     //map
-    Package aPackage = modelMapper.toPackage(dto);
+    Package productPackage = modelMapper.toPackage(dto);
     //save
     try {
-      self.save(aPackage);
+      self.save(productPackage);
     } catch (Exception e){
       log.error("==============>createPackage:DB:Exception:{}", e.getMessage());
       throw e;
@@ -61,15 +61,15 @@ public class PackageService extends BaseService {
 
   public boolean updatePackage(Integer id, PackageUpdateDto dto) {
     //validation
-    Package aPackage = packageStorage.findById(id);
-    if (aPackage == null) {
+    Package productPackage = packageStorage.findById(id);
+    if (productPackage == null) {
       throw new BadRequestException(Constants.PACKAGE_NOT_FOUND);
     }
     //map
-    modelMapper.mapPackageUpdateDtoToPackage(dto, aPackage);
+    modelMapper.mapPackageUpdateDtoToPackage(dto, productPackage);
     //save
     try {
-      self.save(aPackage);
+      self.save(productPackage);
     } catch (Exception e){
       log.error("==============>updatePackage:DB:Exception:{}", e.getMessage());
       throw e;
@@ -79,16 +79,16 @@ public class PackageService extends BaseService {
 
   public boolean deletePackage(Integer id) {
     //validation
-    Package aPackage = packageStorage.findById(id);
-    if (Objects.isNull(aPackage)) {
+    Package productPackage = packageStorage.findById(id);
+    if (Objects.isNull(productPackage)) {
       throw new BadRequestException(Constants.PACKAGE_NOT_FOUND);
     }
     //set
-    aPackage.setStatus(Status.DELETE);
-    aPackage.setUpdatedAt(DateUtils.getNowMillisAtUtc());
+    productPackage.setStatus(Status.DELETE);
+    productPackage.setUpdatedAt(DateUtils.getNowMillisAtUtc());
     //save
     try {
-      self.save(aPackage);
+      self.save(productPackage);
     } catch (Exception e){
       log.error("==============>deletePackage:DB:Exception:{}", e.getMessage());
       throw e;
@@ -97,12 +97,12 @@ public class PackageService extends BaseService {
   }
 
   @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
-  public void save(Package aPackage){
-    packageStorage.save(aPackage);
+  public void save(Package productPackage){
+    packageStorage.save(productPackage);
   }
 
-  public List<PackageResponse> getPackagesActive(ProductType productType){
-    List<Package> packages = packageStorage.findAllPackageActive(productType);
+  public List<PackageResponse> getPackagesActive(Integer typeId){
+    List<Package> packages = packageStorage.findAllPackageActive(typeId);
     return modelMapper.toListPackageResponse(packages);
   }
 }

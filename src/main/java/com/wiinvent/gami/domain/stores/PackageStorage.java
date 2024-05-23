@@ -27,38 +27,37 @@ public class PackageStorage extends BaseStorage {
     return packageRepository.findPackageByIdAndStatusIn(id, Package.getListStatusShow());
   }
 
-  public void save(Package aPackage) {
-    packageRepository.save(aPackage);
-    remoteCache.del(genCacheKeys(aPackage));
+  public void save(Package productPackage) {
+    packageRepository.save(productPackage);
+    remoteCache.del(genCacheKeys(productPackage));
   }
 
-  public List<String> genCacheKeys(Package aPackage){
+  public List<String> genCacheKeys(Package productPackage){
     List<String> cacheKeys = new ArrayList<>();
-    cacheKeys.add(cacheKey.getPackageByCode(aPackage.getCode()));
-    cacheKeys.add(cacheKey.getPackageById(aPackage.getId()));
+    cacheKeys.add(cacheKey.getPackageByCode(productPackage.getCode()));
+    cacheKeys.add(cacheKey.getPackageById(productPackage.getId()));
     cacheKeys.add(cacheKey.getPortalPackages(0));
     cacheKeys.add(cacheKey.getPortalPackages(1));
     cacheKeys.add(cacheKey.getPortalPackages(2));
     cacheKeys.add(cacheKey.getPortalPackages(3));
     cacheKeys.add(cacheKey.getPortalPackages(4));
-    cacheKeys.add(cacheKey.getPortalPackagesByTypeId(aPackage.getPackageTypeId(),0));
-    cacheKeys.add(cacheKey.getPortalPackagesByTypeId(aPackage.getPackageTypeId(),1));
-    cacheKeys.add(cacheKey.getPortalPackagesByTypeId(aPackage.getPackageTypeId(),2));
-    cacheKeys.add(cacheKey.getPortalPackagesByTypeId(aPackage.getPackageTypeId(),3));
-    cacheKeys.add(cacheKey.getPortalPackagesByTypeId(aPackage.getPackageTypeId(),4));
+    cacheKeys.add(cacheKey.getPortalPackagesByTypeId(productPackage.getPackageTypeId(),0));
+    cacheKeys.add(cacheKey.getPortalPackagesByTypeId(productPackage.getPackageTypeId(),1));
+    cacheKeys.add(cacheKey.getPortalPackagesByTypeId(productPackage.getPackageTypeId(),2));
+    cacheKeys.add(cacheKey.getPortalPackagesByTypeId(productPackage.getPackageTypeId(),3));
+    cacheKeys.add(cacheKey.getPortalPackagesByTypeId(productPackage.getPackageTypeId(),4));
     return cacheKeys;
   }
 
-  public List<Package> findAllPackageActive(ProductType productType){
-    return packageRepository.findAll(packageActiveCondition(productType));
+  public List<Package> findAllPackageActive(Integer typeId){
+    return packageRepository.findAll(packageActiveCondition(typeId));
   }
 
-  public Specification<Package> packageActiveCondition(ProductType productType){
+  public Specification<Package> packageActiveCondition(Integer typeId){
     return (root, query, criteriaBuilder) -> {
       List<Predicate> conditionList = new ArrayList<>();
-      conditionList.add(criteriaBuilder.equal(root.get("status"), Status.ACTIVE));
-      if (productType != null){
-        conditionList.add(criteriaBuilder.equal(root.get("type"), productType));
+      if (typeId != null){
+        conditionList.add(criteriaBuilder.equal(root.get("packageTypeId"), typeId));
       }
       return criteriaBuilder.and(conditionList.toArray(new Predicate[0]));
     };

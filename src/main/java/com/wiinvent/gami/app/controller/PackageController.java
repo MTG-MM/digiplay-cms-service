@@ -80,11 +80,11 @@ public class PackageController {
     );
   }
 
-  @GetMapping("active")
-  public ResponseEntity<List<PackageResponse>> getActivePackages(
-      @RequestParam(required = false) ProductType type
+  @GetMapping("all")
+  public ResponseEntity<List<PackageResponse>> getAllPackages(
+      @RequestParam(required = false) Integer typeId
   ) {
-    return ResponseEntity.ok(packageService.getPackagesActive(type));
+    return ResponseEntity.ok(packageService.getPackagesActive(typeId));
   }
 
   //==============================================  GVC PACKAGE ==============================================

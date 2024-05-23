@@ -9,6 +9,7 @@ import java.util.List;
 @Data
 public class GameTournamentUpdateDto {
   private String name;
+  private Integer gameId;
   private Long startAt;
   private Long endAt;
   private Long duration;

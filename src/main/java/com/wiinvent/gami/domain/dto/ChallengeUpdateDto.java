@@ -10,6 +10,7 @@ import java.util.List;
 @Data
 public class ChallengeUpdateDto {
   private String name;
+  private Integer gameId;
   private String imageUrl;
   private String thumbUrl;
   @NotNull

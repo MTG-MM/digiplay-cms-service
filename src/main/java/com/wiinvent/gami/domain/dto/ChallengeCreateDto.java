@@ -4,5 +4,4 @@ import lombok.Data;
 
 @Data
 public class ChallengeCreateDto extends ChallengeUpdateDto {
-  private Integer gameId;
 }

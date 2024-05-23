@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 public class QuestTurnUpdateDto {
   private String name;
-
+  private Integer questNumber;
   private Integer turn;
   @NotNull
   private Integer pointPrice;

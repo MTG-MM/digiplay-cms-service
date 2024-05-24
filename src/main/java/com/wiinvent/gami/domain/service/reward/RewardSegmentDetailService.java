@@ -2,12 +2,12 @@ package com.wiinvent.gami.domain.service.reward;
 
 import com.wiinvent.gami.domain.dto.RewardSegmentDetailDto;
 import com.wiinvent.gami.domain.dto.RewardSegmentDetailsUpdateDto;
-import com.wiinvent.gami.domain.response.RewardSegmentDetailResponse;
 import com.wiinvent.gami.domain.entities.reward.RewardItem;
 import com.wiinvent.gami.domain.entities.reward.RewardSegmentDetail;
 import com.wiinvent.gami.domain.entities.type.PeriodLimitType;
 import com.wiinvent.gami.domain.exception.BadRequestException;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
+import com.wiinvent.gami.domain.response.RewardSegmentDetailResponse;
 import com.wiinvent.gami.domain.service.BaseService;
 import com.wiinvent.gami.domain.utils.Constants;
 import jakarta.persistence.criteria.Predicate;
@@ -24,6 +24,8 @@ import java.util.stream.Collectors;
 @Service
 public class RewardSegmentDetailService extends BaseService {
 
+  private List<UUID> listIds;
+
   //  public List<RewardSegmentDetailResponse> getAllRewardSegmentDetails(Long id) {
 //    return modelMapper.toRewardSegmentDetailResponses(rewardSegmentDetailStorage.findByRewardSegmentId(id));
 //  }
@@ -38,11 +40,9 @@ public class RewardSegmentDetailService extends BaseService {
       } else {
         res.setRewardName(rewardItem.getRewardName());
         res.setIsLimited(rewardItem.getIsLimited());
-        if (Boolean.TRUE.equals(res.getIsLimited())) {
-          List<UUID> listIds = remoteCache.rDequeGetAll(cacheKey.getRewardPoolItemIds(res.getRewardSegmentId(), res.getRewardItemId()));
-          if (listIds != null && !listIds.isEmpty()) {
-            res.setQuantityInPoll(listIds.size());
-          }
+        List<UUID> listIds = remoteCache.rDequeGetAll(cacheKey.getRewardPoolItemIds(res.getRewardSegmentId(), res.getRewardItemId()));
+        if (listIds != null && !listIds.isEmpty()) {
+          res.setQuantityInPoll(listIds.size());
         }
       }
     });

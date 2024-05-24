@@ -68,7 +68,7 @@ ok:
     max-idle-connections: ${OKHTTP3_MAX_IDLE_CONNECTIONS:200}
     keep-alive-duration: ${OKHTTP3_KEEP_ALIVE_DURATION:300}
 redis:
-  prefix-key-vt-game: ${REDIS_PREFIX_KEY_VT_GAME:vt}
+  prefix-key-vt-game: ${REDIS_PREFIX_KEY_VT_GAME:wiiportal}
   prefix-key: ${REDIS_PREFIX_KEY:mos}
 server:
   port: ${PORT:8080}

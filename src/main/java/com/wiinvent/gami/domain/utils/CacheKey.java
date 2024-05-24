@@ -14,175 +14,175 @@ import java.util.UUID;
 public class CacheKey {
 
   @Value("${redis.prefix-key-vt-game}")
-  public String redisPrefixKeyVtGame;
+  public String redisPrefixKey;
 
   public String getPeriodTypeByUser(UUID userId, Long rewardSegmentId, Long rewardItemId) {
-    return redisPrefixKeyVtGame + ":u:" + userId + ":rws:" + rewardSegmentId + ":rwi:" + rewardItemId;
+    return redisPrefixKey + ":u:" + userId + ":rws:" + rewardSegmentId + ":rwi:" + rewardItemId;
   }
 
   public String getRewardPoolItemIds(Long rewardSegmentId, Long rewardItemId) {
-    return redisPrefixKeyVtGame + ":rws:" + rewardSegmentId + ":rwi:" + rewardItemId;
+    return redisPrefixKey + ":rws:id:" + rewardSegmentId + ":rwi:" + rewardItemId;
   }
 
   public String getStatisticRewardPoolItemIds(LocalDate day, Long rewardSegmentId, Long rewardItemId) {
-    return redisPrefixKeyVtGame + ":statistic:" + day + ":rws:" + rewardSegmentId + ":rwi:" + rewardItemId;
+    return redisPrefixKey + ":statistic:" + day + ":rws:" + rewardSegmentId + ":rwi:" + rewardItemId;
   }
 
   public String getUserById(UUID id) {
-    return redisPrefixKeyVtGame + ":u:id" + id;
+    return redisPrefixKey + ":u:id" + id;
   }
 
   public String getUserByUsername(String username) {
-    return redisPrefixKeyVtGame + ":u:name" + username;
+    return redisPrefixKey + ":u:name" + username;
   }
 
   public String genAllPaymentMethod() {
-    return redisPrefixKeyVtGame + ":game:payment:method:all";
+    return redisPrefixKey + ":game:payment:method:all";
   }
 
   public String genAllGameCategories() {
-    return redisPrefixKeyVtGame + ":game:category:all";
+    return redisPrefixKey + ":game:category:all";
   }
   public String getGameByCategoryId(int categoryId, int pageNumber) {
-    return redisPrefixKeyVtGame + ":game:category:id" + categoryId + ":page:" + pageNumber;
+    return redisPrefixKey + ":game:category:id" + categoryId + ":page:" + pageNumber;
   }
 
   public String getGameById(Integer gameId) {
-    return redisPrefixKeyVtGame + ":game:id:" + gameId ;
+    return redisPrefixKey + ":game:id:" + gameId ;
   }
 
   public String genGamePackageById(Integer packageId) {
-    return redisPrefixKeyVtGame + ":game:package:id:" + packageId;
+    return redisPrefixKey + ":game:package:id:" + packageId;
   }
   public String genGamePackageByGameId(Integer gameId) {
-    return redisPrefixKeyVtGame + ":game:package:gameId:" + gameId;
+    return redisPrefixKey + ":game:package:gameId:" + gameId;
   }
 
   public String genAllGameTypes() {
-    return redisPrefixKeyVtGame + ":game:type:all";
+    return redisPrefixKey + ":game:type:all";
   }
 
   public String getPackageByCode(String packageCode) {
-    return redisPrefixKeyVtGame + ":game:package:code:" + packageCode;
+    return redisPrefixKey + ":game:package:code:" + packageCode;
   }
 
   public String getPackageById(Integer packageId) {
-    return redisPrefixKeyVtGame + ":package:id:" + packageId;
+    return redisPrefixKey + ":package:id:" + packageId;
   }
 
   public String getPortalPackages(int pageNumber) {
-    return redisPrefixKeyVtGame + ":portal:package:page:" + pageNumber;
+    return redisPrefixKey + ":portal:package:page:" + pageNumber;
   }
 
   public String getPortalPackagesByTypeId(int typeId, int pageNumber) {
-    return redisPrefixKeyVtGame + ":portal:package:type:" + typeId + ":" + pageNumber;
+    return redisPrefixKey + ":portal:package:type:" + typeId + ":" + pageNumber;
   }
 
   public String genPackageTypeById(Integer id) {
-    return redisPrefixKeyVtGame + ":package:type:id:" + id;
+    return redisPrefixKey + ":package:type:id:" + id;
   }
 
   public String getGvcPackages() {
-    return redisPrefixKeyVtGame + ":game:gvc:package";
+    return redisPrefixKey + ":game:gvc:package";
   }
   public String getGvcPackageByCode(String packageCode) {
-    return redisPrefixKeyVtGame + ":game:gvc:package:code" + packageCode;
+    return redisPrefixKey + ":game:gvc:package:code" + packageCode;
   }
   public String genUserSegmentById(Long userSegmentId) {
-    return redisPrefixKeyVtGame + ":user:segment:id:" + userSegmentId;
+    return redisPrefixKey + ":user:segment:id:" + userSegmentId;
   }
   public String genUserSegmentDefault() {
-    return redisPrefixKeyVtGame + ":user:segment:default";
+    return redisPrefixKey + ":user:segment:default";
   }
 
   public String genGameTournamentById(String id) {
-    return redisPrefixKeyVtGame + ":game:tournament:gameId:" + id;
+    return redisPrefixKey + ":game:tournament:gameId:" + id;
   }
 
   public String genPaymentMethodById(Integer paymentMethodId) {
-    return redisPrefixKeyVtGame + ":game:payment:method:id:" + paymentMethodId;
+    return redisPrefixKey + ":game:payment:method:id:" + paymentMethodId;
   }
 
   public String getCharacterById(Integer id) {
-    return redisPrefixKeyVtGame + ":character:id:" + id;
+    return redisPrefixKey + ":character:id:" + id;
   }
 
   public String genListRewardItemByTypeAndId(ResourceType type, Long id) {
-    return redisPrefixKeyVtGame + ":rwi:type:" + type + ":id:" + id;
+    return redisPrefixKey + ":rwi:type:" + type + ":id:" + id;
   }
 
   public String gemRewardItemById(Long id) {
-    return redisPrefixKeyVtGame + ":rwi:id:" + id;
+    return redisPrefixKey + ":rwi:id:" + id;
   }
 
   public String genAllRewardItem() {
-    return redisPrefixKeyVtGame + ":reward:item:all";
+    return redisPrefixKey + ":reward:item:all";
   }
   public String genRewardItemStoreById(Long id) {
-    return redisPrefixKeyVtGame + ":rwi:store:id:" + id;
+    return redisPrefixKey + ":rwi:store:id:" + id;
   }
 
   public String genKeyListBannerByBannerType(BannerType type) {
-    return redisPrefixKeyVtGame + ":banner:type:" + type;
+    return redisPrefixKey + ":banner:type:" + type;
   }
 
   public String genAchievementByType(AchievementType achievementType) {
-    return redisPrefixKeyVtGame + ":achievement:" + achievementType;
+    return redisPrefixKey + ":achievement:" + achievementType;
   }
 
   public String genAchievementById(Integer achievementId) {
-    return redisPrefixKeyVtGame + ":achievement:id" + achievementId;
+    return redisPrefixKey + ":achievement:id" + achievementId;
   }
 
 
   public String genAllAchievement() {
-    return redisPrefixKeyVtGame + ":achievement:all";
+    return redisPrefixKey + ":achievement:all";
   }
 
   public String genListAllChallenge() {
-    return redisPrefixKeyVtGame + ":challenge:all";
+    return redisPrefixKey + ":challenge:all";
   }
 
   public String genChallengeById(Integer challengeId) {
-    return redisPrefixKeyVtGame + ":challenge:id:" + challengeId;
+    return redisPrefixKey + ":challenge:id:" + challengeId;
   }
 
   public String genChallengeDetailById(Integer challengeDetailId){
-    return redisPrefixKeyVtGame + ":challenge:id:" + challengeDetailId;
+    return redisPrefixKey + ":challenge:id:" + challengeDetailId;
   }
 
   public String genAllCollections() {
-    return redisPrefixKeyVtGame + ":collection:all";
+    return redisPrefixKey + ":collection:all";
   }
   public String genCollectionUserByUserId(UUID userId) {
-    return redisPrefixKeyVtGame + ":collection:user:id:" + userId;
+    return redisPrefixKey + ":collection:user:id:" + userId;
   }
 
   public String genConfigKey(String key) {
-    return redisPrefixKeyVtGame.trim() + ":cf:" + key;
+    return redisPrefixKey.trim() + ":cf:" + key;
   }
 
   public String getTopChartGame(Integer typeId, int pageNumber) {
-    return redisPrefixKeyVtGame + ":top:chart:type:id:" + typeId + ":page:" + pageNumber;
+    return redisPrefixKey + ":top:chart:type:id:" + typeId + ":page:" + pageNumber;
   }
 
   public String getGamesByIdIn(List<Integer> ids) {
-    return redisPrefixKeyVtGame + "game:ids" + ids;
+    return redisPrefixKey + "game:ids" + ids;
   }
 
   public String getGamesInIds() {
-    return redisPrefixKeyVtGame + "game:remove:ids";
+    return redisPrefixKey + "game:remove:ids";
   }
 
   public String genRewardTypeById(Long id) {
-    return redisPrefixKeyVtGame + ":reward:type:id:" + id;
+    return redisPrefixKey + ":reward:type:id:" + id;
   }
 
   public String genRewardSegmentByCode(String code) {
-    return redisPrefixKeyVtGame + ":rws:code:" + code;
+    return redisPrefixKey + ":rws:code:" + code;
   }
 
   public String genListRewardSegmentDetailByRewardSegmentId(Long rewardSegmentId) {
-    return redisPrefixKeyVtGame + ":rws:detail:" + rewardSegmentId;
+    return redisPrefixKey + ":rws:detail:" + rewardSegmentId;
   }
 }

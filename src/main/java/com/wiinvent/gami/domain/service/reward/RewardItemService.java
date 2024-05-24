@@ -81,6 +81,9 @@ public class RewardItemService extends BaseService {
     }
     rewardItem.setRewardTypeId(rewardType.getId());
     rewardItem.setRewardItemType(rewardType.getType());
+    if(!rewardItem.getIsLimited() && RewardItemType.isLimitType(rewardItem.getRewardItemType())) {
+      throw new BadRequestException("Item yêu cầu giới hạn số lượng");
+    }
     try {
       self.save(rewardItem);
     } catch (Exception e) {
@@ -96,6 +99,9 @@ public class RewardItemService extends BaseService {
       throw new ResourceNotFoundException("item not found");
     }
     modelMapper.mapRewardItemUpdateDtoToRewardItem(rewardItemUpdateDto, rewardItem);
+    if(!rewardItem.getIsLimited() && RewardItemType.isLimitType(rewardItem.getRewardItemType())) {
+      throw new BadRequestException("Item yêu cầu giới hạn số lượng");
+    }
     try {
       self.save(rewardItem);
     } catch (Exception e) {

@@ -7,6 +7,7 @@ import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.entities.type.StoreType;
 import com.wiinvent.gami.domain.service.reward.RewardItemStoreService;
 import io.swagger.v3.oas.annotations.Parameter;
+import jakarta.validation.Valid;
 import org.springdoc.core.converters.models.PageableAsQueryParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -53,7 +54,8 @@ public class RewardItemStoreController {
   }
 
   @PutMapping("{id}")
-  public ResponseEntity<Boolean> updateRewardItemStores(@PathVariable Long id, @RequestBody RewardItemStoreUpdateDto rewardItemStoreDto) {
+  public ResponseEntity<Boolean> updateRewardItemStores(@PathVariable Long id
+      ,@Valid @RequestBody RewardItemStoreUpdateDto rewardItemStoreDto) {
     return ResponseEntity.ok(rewardItemStoreService.updateRewardItemStores(id, rewardItemStoreDto));
   }
 

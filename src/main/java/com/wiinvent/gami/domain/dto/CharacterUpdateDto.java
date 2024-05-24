@@ -17,11 +17,11 @@ public class CharacterUpdateDto {
   private String externalId;
   private CharacterGenderType gender;
   private Boolean isDefault = false;
-  private Boolean isSell = false;;
-  private Boolean isHot = false;;
-  private Boolean isTrend = false;;
-  private Boolean isNew = false;;
-  private Boolean isEvent = false;;
-  private Boolean isExpire = false;;
+  private Boolean isSell = false;
+  private Boolean isHot = false;
+  private Boolean isTrend = false;
+  private Boolean isNew = false;
+  private Boolean isEvent = false;
+  private Boolean isExpire = false;
   private Long duration;
 }

@@ -10,6 +10,7 @@ import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.CharacterService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -47,14 +48,14 @@ public class CharacterController {
   }
 
   @PostMapping("")
-  public ResponseEntity<Boolean> createCharacter(@RequestBody CharacterCreateDto characterCreateDto) {
+  public ResponseEntity<Boolean> createCharacter(@RequestBody @Valid CharacterCreateDto characterCreateDto) {
     return ResponseEntity.ok(
         characterService.createCharacter(characterCreateDto)
     );
   }
 
   @PutMapping("{id}")
-  public ResponseEntity<Boolean> updateCharacter(@PathVariable Integer id, @RequestBody CharacterUpdateDto dto) {
+  public ResponseEntity<Boolean> updateCharacter(@PathVariable Integer id, @RequestBody @Valid CharacterUpdateDto dto) {
     return ResponseEntity.ok(
         characterService.updateCharacter(id, dto)
     );

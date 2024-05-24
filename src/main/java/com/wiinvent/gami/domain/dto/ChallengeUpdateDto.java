@@ -5,6 +5,7 @@ import com.wiinvent.gami.domain.response.RewardItemSelect;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -15,5 +16,5 @@ public class ChallengeUpdateDto {
   private String thumbUrl;
   @NotNull
   private Status status;
-  private List<RewardItemSelect> rewardItems;
+  private List<RewardItemSelect> rewardItems = new ArrayList<>();
 }

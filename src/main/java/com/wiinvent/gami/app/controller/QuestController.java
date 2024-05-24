@@ -5,6 +5,7 @@ import com.wiinvent.gami.domain.dto.QuestUpdateDto;
 import com.wiinvent.gami.domain.response.QuestResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.QuestService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -38,14 +39,14 @@ public class QuestController {
   }
 
   @PostMapping("")
-  public ResponseEntity<Boolean> createQuest(@RequestBody QuestCreateDto questCreateDto) {
+  public ResponseEntity<Boolean> createQuest(@RequestBody @Valid QuestCreateDto questCreateDto) {
     return ResponseEntity.ok(
         questService.createQuest(questCreateDto)
     );
   }
 
   @PutMapping("{id}")
-  public ResponseEntity<Boolean> updateQuest(@PathVariable Long id, @RequestBody QuestUpdateDto dto) {
+  public ResponseEntity<Boolean> updateQuest(@PathVariable Long id, @RequestBody @Valid QuestUpdateDto dto) {
     return ResponseEntity.ok(
         questService.updateQuest(id, dto)
     );

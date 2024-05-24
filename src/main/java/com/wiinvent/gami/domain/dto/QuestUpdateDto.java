@@ -5,6 +5,7 @@ import com.wiinvent.gami.domain.pojo.UserRewardItems;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -17,5 +18,5 @@ public class QuestUpdateDto {
   private String code;
   @NotNull
   private Status status;
-  private List<UserRewardItems> rewardItems;
+  private List<UserRewardItems> rewardItems = new ArrayList<>();
 }

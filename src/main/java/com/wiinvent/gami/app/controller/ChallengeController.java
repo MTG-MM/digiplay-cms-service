@@ -7,6 +7,7 @@ import com.wiinvent.gami.domain.response.ChallengeResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.ChallengeService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -40,14 +41,14 @@ public class ChallengeController {
   }
 
   @PostMapping("")
-  public ResponseEntity<Boolean> createChallenge(@RequestBody ChallengeCreateDto dto){
+  public ResponseEntity<Boolean> createChallenge(@RequestBody @Valid ChallengeCreateDto dto){
     return ResponseEntity.ok(
         challengeService.createChallenge(dto)
     );
   }
 
   @PutMapping("{id}")
-  public ResponseEntity<Boolean> updateChallenge(@PathVariable Integer id, @RequestBody ChallengeUpdateDto dto){
+  public ResponseEntity<Boolean> updateChallenge(@PathVariable Integer id, @RequestBody @Valid ChallengeUpdateDto dto){
     return ResponseEntity.ok(
         challengeService.updateChallenge(id, dto)
     );

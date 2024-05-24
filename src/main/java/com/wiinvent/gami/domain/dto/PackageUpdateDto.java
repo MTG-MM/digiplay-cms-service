@@ -51,8 +51,5 @@ public class PackageUpdateDto {
 
   private String description;
 
-  @NotNull(message = "Không được để trống")
-  private ProductType type;
-
   private String imageUrl;
 }

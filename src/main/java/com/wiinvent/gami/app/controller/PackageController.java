@@ -4,6 +4,9 @@ import com.wiinvent.gami.domain.dto.PackageCreateDto;
 import com.wiinvent.gami.domain.dto.PackageUpdateDto;
 import com.wiinvent.gami.domain.dto.gvc.GvcPackageCreateDto;
 import com.wiinvent.gami.domain.dto.gvc.GvcPackageUpdateDto;
+import com.wiinvent.gami.domain.entities.type.CharacterCategoryType;
+import com.wiinvent.gami.domain.entities.type.ProductType;
+import com.wiinvent.gami.domain.response.CharacterResponse;
 import com.wiinvent.gami.domain.response.GvcPackageResponse;
 import com.wiinvent.gami.domain.response.PackageResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
@@ -19,6 +22,9 @@ import org.springframework.data.web.SortDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 @RestController
 @RequestMapping("v1/portal/package")
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
@@ -48,9 +54,10 @@ public class PackageController {
   public ResponseEntity<PackageResponse> getPackageDetail(@PathVariable int id){
     return ResponseEntity.ok(packageService.getPackageDetail(id));
   }
+
   @PostMapping("")
   @Operation(summary = "Tạo gói")
-  public ResponseEntity<Boolean> createPackage(@RequestBody PackageCreateDto packageCreateDto){
+  public ResponseEntity<Boolean> createPackage(@RequestBody @Valid PackageCreateDto packageCreateDto){
     return ResponseEntity.ok(
         packageService.createPackage(packageCreateDto)
     );
@@ -58,11 +65,12 @@ public class PackageController {
 
   @PutMapping("{id}")
   @Operation(summary = "Cập nhật thông tin gói")
-  public ResponseEntity<Boolean> updatePackage(@PathVariable int id, @RequestBody PackageUpdateDto dto){
+  public ResponseEntity<Boolean> updatePackage(@PathVariable int id, @RequestBody @Valid PackageUpdateDto dto){
     return ResponseEntity.ok(
         packageService.updatePackage(id, dto)
     );
   }
+
 
   @DeleteMapping("{id}")
   @Operation(summary = "Xóa gói")
@@ -71,6 +79,14 @@ public class PackageController {
         packageService.deletePackage(id)
     );
   }
+
+  @GetMapping("all")
+  public ResponseEntity<List<PackageResponse>> getAllPackages(
+      @RequestParam(required = false) Integer typeId
+  ) {
+    return ResponseEntity.ok(packageService.getPackagesActive(typeId));
+  }
+
   //==============================================  GVC PACKAGE ==============================================
   @GetMapping("/gvc")
   @Operation(summary = "Lấy danh sách gói")

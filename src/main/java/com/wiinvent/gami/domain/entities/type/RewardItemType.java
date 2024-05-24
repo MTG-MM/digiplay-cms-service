@@ -9,11 +9,12 @@ public enum RewardItemType {
   TURN,
   TICKET,
   COIN,
+  COLLECTION,
   EXP;
 
   public static boolean isLimitType(RewardItemType type) {
     return switch (type) {
-      case TURN, TICKET, COIN, EXP, POINT, CHARACTER -> false;
+      case TURN, TICKET, COIN, EXP, POINT, CHARACTER, COLLECTION -> false;
       default -> true;
     };
   }

@@ -16,7 +16,6 @@ public class RewardTypeDto {
   @Schema(description = "Mô tả")
   protected String description;
 
-  @NotBlank(message = "Loại không được để trống")
   @Schema(description = "Loại", example = "Type A")
   protected RewardItemType type;
 

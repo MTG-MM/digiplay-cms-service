@@ -17,6 +17,7 @@ import java.util.List;
 public class QuestStorage extends BaseStorage{
   public void save(Quest quest){
     questRepository.save(quest);
+    remoteCache.del(removeCacheKey(quest));
   }
 
   public List<Quest> findAllByIdIn(List<Long> ids){
@@ -46,5 +47,12 @@ public class QuestStorage extends BaseStorage{
       }
       return criteriaBuilder.and(conditionList.toArray(new Predicate[0]));
     };
+  }
+
+  List<String> removeCacheKey(Quest quest) {
+    List<String> removeCacheKey = new ArrayList<>();
+    removeCacheKey.add(cacheKey.genAllQuest(quest.getStatus()));
+    removeCacheKey.add(cacheKey.genQuestByCode(quest.getCode()));
+    return removeCacheKey;
   }
 }

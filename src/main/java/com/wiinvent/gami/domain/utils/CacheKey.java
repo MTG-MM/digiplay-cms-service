@@ -3,6 +3,7 @@ package com.wiinvent.gami.domain.utils;
 import com.wiinvent.gami.domain.entities.type.AchievementType;
 import com.wiinvent.gami.domain.entities.type.BannerType;
 import com.wiinvent.gami.domain.entities.type.ResourceType;
+import com.wiinvent.gami.domain.entities.type.Status;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -185,4 +186,15 @@ public class CacheKey {
   public String genListRewardSegmentDetailByRewardSegmentId(Long rewardSegmentId) {
     return redisPrefixKey + ":rws:detail:" + rewardSegmentId;
   }
+
+  public String genAllQuestTurn() {
+    return redisPrefixKey + ":quest:turn:all";
+  }
+  public String genAllQuest(Status status) {
+    return redisPrefixKey + ":quest:all:status:" + status;
+  }
+  public String genQuestByCode(String code) {
+    return redisPrefixKey + ":quest:code:" + code;
+  }
+
 }

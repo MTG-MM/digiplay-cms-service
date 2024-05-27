@@ -147,7 +147,9 @@ public class CacheKey {
   public String genChallengeById(Integer challengeId) {
     return redisPrefixKey + ":challenge:id:" + challengeId;
   }
-
+  public String genPageActiveChallenge(int pageNumber) {
+    return redisPrefixKey + ":challenge:user:id:" + pageNumber;
+  }
   public String genChallengeDetailById(Integer challengeDetailId){
     return redisPrefixKey + ":challenge:id:" + challengeDetailId;
   }

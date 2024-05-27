@@ -31,6 +31,8 @@ public class ChallengeStorage extends BaseStorage{
     List<String> keys = new ArrayList<>();
     keys.add(cacheKey.genListAllChallenge());
     keys.add(cacheKey.genChallengeById(challenge.getId()));
+    keys.add(cacheKey.genPageActiveChallenge(0));
+    keys.add(cacheKey.genPageActiveChallenge(0));
     return keys;
   }
 

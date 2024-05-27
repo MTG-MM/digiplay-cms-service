@@ -4,6 +4,7 @@ import com.wiinvent.gami.domain.dto.RewardScheduleDto;
 import com.wiinvent.gami.domain.dto.RewardScheduleUpdateDto;
 import com.wiinvent.gami.domain.response.RewardScheduleResponse;
 import com.wiinvent.gami.domain.service.reward.RewardScheduleService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -35,7 +36,7 @@ public class RewardScheduleController {
   }
 
   @PutMapping("{rewardSegmentDetailId}")
-  public ResponseEntity<Boolean> updateRewardSchedules(@PathVariable Long rewardSegmentDetailId, @RequestBody List<RewardScheduleUpdateDto> rewardScheduleUpdateDtos) {
+  public ResponseEntity<Boolean> updateRewardSchedules(@PathVariable Long rewardSegmentDetailId, @RequestBody @Valid List<RewardScheduleUpdateDto> rewardScheduleUpdateDtos) {
     return ResponseEntity.ok(rewardScheduleService.updateRewardSchedules(rewardSegmentDetailId, rewardScheduleUpdateDtos));
   }
 }

@@ -1,6 +1,7 @@
 package com.wiinvent.gami.domain.response;
 
 import com.wiinvent.gami.domain.entities.type.PeriodType;
+import com.wiinvent.gami.domain.entities.type.Status;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
@@ -18,6 +19,9 @@ public class RewardScheduleResponse {
 
   @Schema(description = "Có tích luỹ hay không")
   private Boolean isAccumulative;
+
+  @Schema(description = "Có kích hoạt")
+  private Status status = Status.ACTIVE;
 
   @Schema(description = "Số lượng")
   private Long quantity;

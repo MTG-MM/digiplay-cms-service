@@ -16,4 +16,5 @@ public class GameStarStorage extends BaseStorage {
   public void saveAll(List<GameStar> gameStars) {
     gameStarRepository.saveAll(gameStars);
   }
+
 }

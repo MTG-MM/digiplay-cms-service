@@ -42,8 +42,6 @@ public class CharacterService extends BaseService{
     return modelMapper.toCharacterResponse(character);
   }
   public boolean createCharacter(CharacterCreateDto dto) {
-    //validation
-    if(Objects.isNull(dto.getStatus())) dto.setStatus(Status.ACTIVE);
     //map
     Character character = modelMapper.toCharacter(dto);
     //save

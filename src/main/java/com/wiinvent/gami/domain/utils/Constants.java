@@ -46,4 +46,7 @@ public class Constants {
   public static final String CHALLENGE_NOT_FOUND = "Không tìm thấy thử thách này";
   public static final String COLLECTION_NOT_FOUND = "Không tìm thấy bộ sưu tập này";
   public static final String QUEST_NOT_FOUND = "Không tìm thấy nhiệm vụ này";
+  public static final String STATISTIC_USER_CHECK_POINT_ID = "statistic_user_check_point_id";
+  public static final String STATISTIC_REVENUE_CHECK_POINT_ID = "statistic_revenue_check_point_id";
+  public static final String STATISTIC_SUB_CHECK_POINT_ID = "statistic_sub_check_point_id";
 }

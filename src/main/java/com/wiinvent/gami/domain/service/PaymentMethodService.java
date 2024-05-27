@@ -36,8 +36,6 @@ public class PaymentMethodService extends BaseService{
   }
 
   public boolean createPaymentMethod(PaymentMethodCreateDto dto){
-    //validation
-    if(dto.getStatus()==null) dto.setStatus(Status.ACTIVE);
     /*
     * neu payment method type da ton tai
     * */

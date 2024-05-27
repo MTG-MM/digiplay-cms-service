@@ -3,6 +3,7 @@ package com.wiinvent.gami.domain.utils;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -17,6 +18,10 @@ public class DateUtils {
 
   public static Long getNowMillisAtUtc() {
     return LocalDateTime.now(ZoneId.of(ZONE_UTC)).toInstant(ZoneOffset.UTC).toEpochMilli();
+  }
+
+  public static LocalDate nowDate() {
+    return LocalDate.now(ZoneId.of(ZONE_VN));
   }
 
   public static LocalDateTime getNowDateTimeAtUtc() {
@@ -85,10 +90,18 @@ public class DateUtils {
     return localDateTime;
   }
 
+  public static LocalDate convertStringToLocalDate(String date) {
+    return LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+  }
+
   public static List<LocalDate> getDatesBetween(LocalDate startDate, LocalDate endDate) {
 
     return Stream.iterate(startDate, date -> date.plusDays(1))
         .limit(ChronoUnit.DAYS.between(startDate, endDate) + 1)
         .collect(Collectors.toList());
+  }
+
+  public static LocalDate getFirstDayOfMonth(LocalDate dateNow) {
+    return dateNow.with(TemporalAdjusters.firstDayOfMonth());
   }
 }

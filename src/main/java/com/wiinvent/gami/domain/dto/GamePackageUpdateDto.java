@@ -40,6 +40,7 @@ public class GamePackageUpdateDto {
   @Size(max = 1000)
   String description;
 
+  @NotNull
   Status status;
 
   Integer priority;

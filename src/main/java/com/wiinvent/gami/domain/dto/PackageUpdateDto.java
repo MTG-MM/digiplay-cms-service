@@ -1,6 +1,5 @@
 package com.wiinvent.gami.domain.dto;
 
-import com.wiinvent.gami.domain.entities.type.ProductType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.pojo.PaymentMethodInfo;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -45,9 +44,9 @@ public class PackageUpdateDto {
 
   private Long endTime;
 
-  private Integer pointBonus;
+  private Integer pointBonus = 0;
 
-  private Integer coinBonus;
+  private Integer coinBonus = 0;
 
   private String description;
 

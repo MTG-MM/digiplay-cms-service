@@ -44,8 +44,6 @@ public class GvcPackageService extends BaseService{
   }
 
   public boolean createGvcPackage(GvcPackageCreateDto dto){
-    //validation
-    if(Objects.isNull(dto.getStatus())) dto.setStatus(Status.ACTIVE);
     //map
     GvcPackage gvcPackage = modelMapper.toGvcPackage(dto);
     //save

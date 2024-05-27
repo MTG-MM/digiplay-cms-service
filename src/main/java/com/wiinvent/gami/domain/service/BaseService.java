@@ -2,6 +2,10 @@ package com.wiinvent.gami.domain.service;
 
 import com.wiinvent.gami.ModelMapper;
 import com.wiinvent.gami.domain.stores.*;
+import com.wiinvent.gami.domain.stores.statistic.StatisticCheckpointStorage;
+import com.wiinvent.gami.domain.stores.statistic.StatisticRevenueStorage;
+import com.wiinvent.gami.domain.stores.statistic.StatisticSubStorage;
+import com.wiinvent.gami.domain.stores.statistic.StatisticUserStorage;
 import com.wiinvent.gami.domain.stores.transaction.*;
 import com.wiinvent.gami.domain.stores.game.*;
 import com.wiinvent.gami.domain.stores.gvc.GvcPackageStorage;
@@ -80,4 +84,8 @@ public abstract class BaseService {
   @Autowired protected QuestTurnStorage questTurnStorage;
   @Autowired protected TaskStorage taskStorage;
   @Autowired protected QuestUserHistoryStorage questUserHistoryStorage;
+  @Autowired protected StatisticRevenueStorage statisticRevenueStorage;
+  @Autowired protected StatisticSubStorage statisticSubStorage;
+  @Autowired protected StatisticUserStorage statisticUserStorage;
+  @Autowired protected StatisticCheckpointStorage statisticCheckpointStorage;
 }

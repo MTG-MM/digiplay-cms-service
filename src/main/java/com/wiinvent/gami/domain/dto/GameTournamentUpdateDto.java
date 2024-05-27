@@ -5,6 +5,7 @@ import com.wiinvent.gami.domain.pojo.UserSegmentRewardItems;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -14,7 +15,7 @@ public class GameTournamentUpdateDto {
   private Long startAt;
   private Long endAt;
   private Long duration;
-  private List<UserSegmentRewardItems> rewardItems;
+  private List<UserSegmentRewardItems> rewardItems = new ArrayList<>();
   @NotNull
   private Status status;
 }

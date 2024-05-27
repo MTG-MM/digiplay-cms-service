@@ -47,9 +47,6 @@ public class GamePackageService extends BaseService {
   }
 
   public boolean createGamePackage(GamePackageCreateDto dto) {
-    //validation
-    if(Objects.isNull(dto.getStatus())) dto.setStatus(Status.ACTIVE);
-
     Game game = gameStorage.findById(dto.getGameId());
     if(Objects.isNull(game)) throw new ResourceNotFoundException(Constants.GAME_NOT_FOUND);
     //map

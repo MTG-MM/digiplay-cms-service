@@ -40,7 +40,6 @@ public class BannerService extends BaseService{
 
   public Boolean createBanner(BannerCreateDto dto){
     Banner banner = modelMapper.toBanner(dto);
-    if(Objects.isNull(banner.getStatus())) banner.setStatus(Status.ACTIVE);
     try {
       self.save(banner);
     }catch (Exception e){

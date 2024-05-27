@@ -41,7 +41,6 @@ public class ChallengeDetailService extends BaseService{
   }
 
   public boolean createChallengeDetail(ChallengeDetailCreateDto dto) {
-    if(Objects.isNull(dto.getStatus())) dto.setStatus(Status.ACTIVE);
     ChallengeDetail challengeDetail = modelMapper.toChallengeDetail(dto);
     try {
       self.save(challengeDetail);

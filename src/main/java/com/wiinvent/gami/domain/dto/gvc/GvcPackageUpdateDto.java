@@ -14,5 +14,6 @@ public class GvcPackageUpdateDto{
   @NotNull
   private Integer point;
 
+  @NotNull
   private Status status;
 }

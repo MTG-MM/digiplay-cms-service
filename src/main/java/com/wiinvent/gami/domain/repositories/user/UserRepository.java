@@ -9,4 +9,7 @@ import java.util.UUID;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, UUID>, JpaSpecificationExecutor<User> {
+  Integer countUserByCreatedAtBetween(long start, long end);
+
+  Integer countUserByLastLoginBetween(long start, long end);
 }

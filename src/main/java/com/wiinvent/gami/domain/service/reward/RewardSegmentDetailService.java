@@ -75,7 +75,7 @@ public class RewardSegmentDetailService extends BaseService {
       throw new BadRequestException("Number default is exceed the amount");
     }
 
-    RewardSegmentDetailDto rewardSegmentDetailDtoDefault = dtos.stream().filter(RewardSegmentDetailDto::getIsDefault).toList().get(0);
+    RewardSegmentDetailDto rewardSegmentDetailDtoDefault = dtos.stream().filter(RewardSegmentDetailDto::getIsDefault).toList().getFirst();
     if (!rewardSegmentDetailDtoDefault.getPeriodType().equals(PeriodLimitType.UNLIMITED)) {
       throw new BadRequestException("PeriodType of default item must be unlimited");
     }

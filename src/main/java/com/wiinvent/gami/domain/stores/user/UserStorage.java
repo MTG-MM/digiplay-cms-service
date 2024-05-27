@@ -4,6 +4,7 @@ import com.wiinvent.gami.domain.entities.user.User;
 import com.wiinvent.gami.domain.response.type.CursorType;
 import com.wiinvent.gami.domain.stores.BaseStorage;
 import com.wiinvent.gami.domain.utils.Constants;
+import com.wiinvent.gami.domain.utils.DateUtils;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -12,6 +13,8 @@ import jakarta.persistence.criteria.Root;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -97,5 +100,24 @@ public class UserStorage extends BaseStorage {
     TypedQuery<User> typedQuery = entityManager.createQuery(query);
     typedQuery.setMaxResults(limit);
     return typedQuery.getResultList();
+  }
+
+  public Integer countNewRegisterUser(Long start, Long end) {
+    return userRepository.countUserByCreatedAtBetween(start, end);
+  }
+
+  public Integer countDailyActiveUser(Long start, Long end) {
+    return userRepository.countUserByLastLoginBetween(start, end);
+  }
+
+  public Integer countMonthlyActiveUser(LocalDate dateNow) {
+    LocalDate firstDayOfMonth = DateUtils.getFirstDayOfMonth(dateNow);
+    Integer countUser = 0;
+    for (LocalDate date = firstDayOfMonth; !date.isAfter(dateNow); date = date.plusDays(1)) {
+      Long start = DateUtils.getStartOfDay(date);
+      Long end = DateUtils.getEndOfDay(date);
+      countUser += userRepository.countUserByLastLoginBetween(start, end);
+    }
+    return countUser;
   }
 }

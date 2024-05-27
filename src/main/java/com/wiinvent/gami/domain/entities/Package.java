@@ -1,6 +1,6 @@
 package com.wiinvent.gami.domain.entities;
 
-import com.wiinvent.gami.domain.entities.type.ProductType;
+import com.wiinvent.gami.domain.entities.type.ProductPackageType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.pojo.PaymentMethodInfo;
 import com.wiinvent.gami.domain.utils.Converter.PaymentMethodInfoConverter;
@@ -87,6 +87,9 @@ public class Package extends BaseEntity {
 
   @Column(name = "image_url")
   private String imageUrl;
+
+  @Column(name = "type")
+  private ProductPackageType type;
 
   public static List<Status> getListStatusShow(){
     return List.of(Status.ACTIVE, Status.INACTIVE);

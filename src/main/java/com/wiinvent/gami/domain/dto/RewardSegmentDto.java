@@ -9,6 +9,7 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,11 +27,11 @@ public class RewardSegmentDto {
   @Schema(description = "URL hình ảnh")
   private String imageUrl;
 
-  private Integer pointRequirement;
+  private Integer pointRequirement = 0;
 
-  private Integer coinRequirement;
+  private Integer coinRequirement = 0;
 
-  private Integer turnRequirement;
+  private Integer turnRequirement = 0;
 
   @Schema(description = "Có tích luỹ ưu tiên hay không")
   private Boolean isAccumulativePriority;
@@ -39,10 +40,10 @@ public class RewardSegmentDto {
   private Status status;
 
   private ResourceType resourceType;
-  private Long luckyPoint;
+  private Long luckyPoint = 0L;
   private PeriodType periodType;
   @Setter(AccessLevel.NONE)
-  private List<Integer> periodValue;
+  private List<Integer> periodValue = new ArrayList<>();
 
   public void setPeriodValue(String periodValue) {
     if (periodValue != null) {

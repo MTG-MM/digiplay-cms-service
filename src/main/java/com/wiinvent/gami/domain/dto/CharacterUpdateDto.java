@@ -23,5 +23,5 @@ public class CharacterUpdateDto {
   private Boolean isNew = false;
   private Boolean isEvent = false;
   private Boolean isExpire = false;
-  private Long duration;
+  private Long duration = 0L;
 }

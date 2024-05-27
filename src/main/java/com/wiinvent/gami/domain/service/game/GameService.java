@@ -76,8 +76,6 @@ public class GameService extends BaseService {
   }
 
   public boolean createGames(GameCreateDto createDto) {
-    if(createDto.getStatus() == null) createDto.setStatus(GameStatus.ACTIVE);
-    if(createDto.getIsHot() == null) createDto.setIsHot(false);
 
     Game game = modelMapper.toGame(createDto);
     try{
@@ -159,8 +157,6 @@ public class GameService extends BaseService {
   //create
   @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
   public boolean createGameType(GameTypeCreateDto dto){
-    if(dto.getStatus() == null) dto.setStatus(GameTypeStatus.ACTIVE);
-
     GameType gameType = modelMapper.toGameType(dto);
 
     gameTypeStorage.save(gameType);

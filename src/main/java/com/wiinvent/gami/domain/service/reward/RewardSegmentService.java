@@ -71,16 +71,14 @@ public class RewardSegmentService extends BaseService {
       List<RewardSegmentDetail> rewardSegmentDetails = new ArrayList<>();
       List<RewardSegmentDetail> rewardSegmentDetailList = rewardSegmentDetailStorage.findByRewardSegmentId(rewardSegmentId);
 
-      // delete uncheck reward
       List<RewardSegmentDetail> rewardSegmentDetailsRemove = rewardSegmentDetailList.stream()
           .filter(rw -> !ids.contains(rw.getRewardItemId()))
           .toList();
       rewardSegmentDetailStorage.deleteList(rewardSegmentDetailsRemove);
-
+      long position = 0;
       for (Long id : ids) {
         RewardSegmentDetail rewardSegmentDetail = rewardSegmentDetailStorage.findBySegmentIdAndRwItemId(rewardSegmentId, id);
 
-        // check whether checked reward was added to the db or not
         if (rewardSegmentDetail == null) {
           RewardItem rewardItem = rwItemMap.get(id);
           if (rewardItem == null) {
@@ -90,6 +88,7 @@ public class RewardSegmentService extends BaseService {
           rewardSegmentDetailNew.setRewardItemId(id);
           rewardSegmentDetailNew.setRewardSegmentId(rewardSegmentId);
           rewardSegmentDetailNew.setIsDefault(false);
+          rewardSegmentDetailNew.setPosition(position);
           rewardSegmentDetailNew.setCreatedAt(DateUtils.getNowMillisAtUtc());
           rewardSegmentDetails.add(rewardSegmentDetailNew);
 
@@ -97,11 +96,12 @@ public class RewardSegmentService extends BaseService {
           rewardSegmentDetail.setUpdatedAt(DateUtils.getNowMillisAtUtc());
           rewardSegmentDetails.add(rewardSegmentDetail);
         }
+        position++;
       }
 
       if(rewardSegmentDetails.stream().filter(RewardSegmentDetail::getIsDefault).toList().isEmpty()){
-        rewardSegmentDetails.get(0).setIsDefault(true);
-        rewardSegmentDetails.get(0).setPeriodType(PeriodLimitType.UNLIMITED);
+        rewardSegmentDetails.getFirst().setIsDefault(true);
+        rewardSegmentDetails.getFirst().setPeriodType(PeriodLimitType.UNLIMITED);
       }
       rewardSegmentDetailStorage.saveAll(rewardSegmentDetails);
 

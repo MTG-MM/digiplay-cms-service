@@ -52,19 +52,17 @@ public class RewardScheduleService extends BaseService {
 
   @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
   public Boolean updateRewardSchedules(Long rewardSegmentDetailId, List<RewardScheduleUpdateDto> rewardScheduleDto) {
-    List<RewardSchedule> rewardSchedules = new ArrayList<>();
     rewardScheduleDto.forEach(rs -> {
       RewardSchedule rewardSchedule;
       if(rs.getId() == null) {
-        rewardSchedule = new RewardSchedule();
-        modelMapper.mapToRewardSchedule(rs, rewardSchedule);
-      }else{
         rewardSchedule = modelMapper.toRewardSchedule(rs);
-        rewardSchedule.setRewardSegmentDetailId(rewardSegmentDetailId);
+      }else{
+        rewardSchedule = rewardScheduleStorage.findById(rs.getId());
+        modelMapper.mapToRewardSchedule(rs, rewardSchedule);
       }
-      rewardSchedules.add(rewardSchedule);
+      rewardSchedule.setRewardSegmentDetailId(rewardSegmentDetailId);
+      rewardScheduleStorage.save(rewardSchedule);
     });
-    rewardScheduleStorage.saveAll(rewardSchedules);
     return true;
   }
 

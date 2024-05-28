@@ -50,7 +50,7 @@ public class CollectionService extends BaseService {
           .findFirst()
           .orElseThrow(() -> new ResourceNotFoundException("CollectionResponse not found for Collection id: " + collection.getId()));
       collectionResponse.setRewardItems(userRewardItem);
-      collectionResponse.setCollectionPiece(getCollectionPiece(collection.getCollectionPiece(), pieceCollectionMap));
+      collectionResponse.setCollectionPiece(getCollectionPiece(collection.getCollectionPieces(), pieceCollectionMap));
       result.add(collectionResponse);
     }
 
@@ -85,7 +85,7 @@ public class CollectionService extends BaseService {
     List<UserRewardItems> userRewardItems = getRewardItemInfo(collection);
     CollectionResponse collectionResponse = modelMapper.toCollectionResponse(collection);
     collectionResponse.setRewardItems(userRewardItems);
-    collectionResponse.setCollectionPiece(getCollectionPiece(collection.getCollectionPiece(), pieceCollectionMap));
+    collectionResponse.setCollectionPiece(getCollectionPiece(collection.getCollectionPieces(), pieceCollectionMap));
     return collectionResponse;
   }
 
@@ -159,7 +159,7 @@ public class CollectionService extends BaseService {
     }
     if(dto.getCollectionPiece() != null && !dto.getCollectionPiece().isEmpty()) {
       List<Long> listCollectionPiece = dto.getCollectionPiece().stream().map(UserRewardItems::getId).toList();
-      collection.setCollectionPiece(listCollectionPiece);
+      collection.setCollectionPieces(listCollectionPiece);
     }
   }
 

@@ -9,8 +9,8 @@ import java.util.UUID;
 
 @Component
 public class PremiumStateStorage extends BaseStorage {
-  public List<PremiumState> findByPremiumStateAndUserIdInAndEndAtGreaterThan(List<UUID> userIds, Long endAtNow){
-    return premiumStateRepository.findByPremiumStateAndUserIdInAndEndAtGreaterThan(PackageStateType.ACTIVE, userIds, endAtNow);
+  public PremiumState findByPremiumStateAndUserIdAndEndAtGreaterThan(UUID userId, Long endAtNow){
+    return premiumStateRepository.findByPremiumStateAndUserIdAndEndAtGreaterThan(PackageStateType.ACTIVE, userId, endAtNow);
   }
 
   public PremiumState findByPackageId(Integer id) {

@@ -29,7 +29,7 @@ import java.util.Objects;
 
 @Service
 @Log4j2
-public class CollectionService extends BaseService{
+public class CollectionService extends BaseService {
   @Autowired
   @Lazy
   CollectionService self;
@@ -50,7 +50,7 @@ public class CollectionService extends BaseService{
     return new PageImpl<>(result, pageable, collectionResponses.getTotalElements());
   }
 
-  public CollectionResponse getCollectionDetail(Long id){
+  public CollectionResponse getCollectionDetail(Long id) {
     Collection collection = collectionStorage.findCollectionById(id);
     if (collection == null) {
       throw new BadRequestException(Constants.COLLECTION_NOT_FOUND);
@@ -61,8 +61,8 @@ public class CollectionService extends BaseService{
     return collectionResponse;
   }
 
-  public List<UserRewardItems> getRewardItemInfo(Collection collection){
-    if(collection.getExternalId() == null){
+  public List<UserRewardItems> getRewardItemInfo(Collection collection) {
+    if (collection.getExternalId() == null) {
       return null;
     }
     List<UserRewardItems> userRewardItems = new ArrayList<>();
@@ -72,9 +72,9 @@ public class CollectionService extends BaseService{
       userRewardItem.setId(collectionPiece.getId());
       userRewardItem.setRewardName(collectionPiece.getName());
       userRewardItems.add(userRewardItem);
-    }else {
+    } else {
       RewardItem rewardItem = rewardItemStorage.findById(collection.getExternalId());
-      if(rewardItem == null){
+      if (rewardItem == null) {
         return null;
       }
       userRewardItem.setId(rewardItem.getId());
@@ -96,15 +96,14 @@ public class CollectionService extends BaseService{
   }
 
   public boolean createCollection(CollectionCreateDto dto) {
-    if(Objects.isNull(dto.getStatus())) dto.setStatus(Status.ACTIVE);
     Collection collection = modelMapper.toCollection(dto);
-    if(dto.getRewardItems() != null && !dto.getRewardItems().isEmpty()) {
+    if (dto.getRewardItems() != null && !dto.getRewardItems().isEmpty()) {
       collection.setExternalId(dto.getRewardItems().getFirst().getId());
     }
     //save
     try {
       self.save(collection);
-    } catch (Exception e){
+    } catch (Exception e) {
       log.error("==============>createCollection:DB:Exception:{}", e.getMessage());
       throw e;
     }
@@ -117,10 +116,13 @@ public class CollectionService extends BaseService{
       throw new BadRequestException(Constants.COLLECTION_NOT_FOUND);
     }
     modelMapper.mapCollectionUpdateDtoToCollection(dto, collection);
+    if (dto.getRewardItems() != null && !dto.getRewardItems().isEmpty()) {
+      collection.setExternalId(dto.getRewardItems().getFirst().getId());
+    }
     //save
     try {
       self.save(collection);
-    } catch (Exception e){
+    } catch (Exception e) {
       log.error("==============>updateCollection:DB:Exception:{}", e.getMessage());
       throw e;
     }
@@ -136,7 +138,7 @@ public class CollectionService extends BaseService{
     //save
     try {
       self.save(collection);
-    } catch (Exception e){
+    } catch (Exception e) {
       log.error("==============>deleteCollection:DB:Exception:{}", e.getMessage());
       throw e;
     }
@@ -144,7 +146,7 @@ public class CollectionService extends BaseService{
   }
 
   @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
-  public void save(Collection collection){
+  public void save(Collection collection) {
     collectionStorage.save(collection);
   }
 }

@@ -47,9 +47,6 @@ public class GameCategoryService extends BaseService {
   }
 
   public boolean createGameCategory(GameCategoryCreateDto dto){
-    //validation
-    if(Objects.isNull(dto.getStatus())) dto.setStatus(Status.ACTIVE);
-    if(Objects.isNull(dto.getIsRequireSub())) dto.setIsRequireSub(false);
     //map
     GameCategory gameCategory = modelMapper.toGameCategory(dto);
     //save

@@ -4,5 +4,6 @@ public enum QuestStatusType {
   COMPLETE,
   NOT_COMPLETE,
   EXPIRE,
-  PROCESSING
+  PROCESSING,
+  REWARD
 }

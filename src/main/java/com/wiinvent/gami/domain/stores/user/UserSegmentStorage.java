@@ -35,7 +35,7 @@ public class UserSegmentStorage extends BaseStorage {
   }
 
   public UserSegment findNextLevel(Integer currentLevel){
-    return userSegmentRepository.findFirstByLevelGreaterThanOrderByLevel(currentLevel);
+    return userSegmentRepository.findFirstByLevelGreaterThanOrderByLevelAsc(currentLevel);
   }
 
   public UserSegment findByLevel(Integer level){

@@ -9,11 +9,12 @@ public class GameCategoryCreateDto {
   @NotNull(message = "không được để trống")
   private String name;
 
+  @NotNull
   private Status status;
 
   private String categoryType;
 
-  private Boolean isRequireSub;
+  private Boolean isRequireSub = false;
 
   @NotNull
   private Integer point;

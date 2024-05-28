@@ -46,4 +46,32 @@ public class PackageHistoryStorage extends BaseStorage {
   public PackageHistory findById(UUID id) {
     return packageHistoryRepository.findPackageHistoryById(id);
   }
+
+  public Long countTotalRevenue(Long start, Long end) {
+    return packageHistoryRepository.countTotalRevenue(start, end);
+  }
+
+  public Integer countTotalPaidUser(Long start, Long end) {
+    return packageHistoryRepository.countTotalPaidUser(start, end);
+  }
+
+  public Long countRevenueByPackageCode(Long start, Long end, List<String> packageCode) {
+    return packageHistoryRepository.countRevenueByPackageCode(start, end, packageCode);
+  }
+
+  public Integer countPackagePyPackageCode(Long start, Long end, List<String> packageCode) {
+    return packageHistoryRepository.countPackageByPackageCode(start, end, packageCode);
+  }
+
+  public Integer countUserSubByPackageCode(Long start, Long end, List<String> packageCode) {
+    return packageHistoryRepository.countUserSubByPackageCode(start, end, packageCode);
+  }
+
+  public Integer countNewSub(Long start, Long end, List<String> code) {
+    return packageHistoryRepository.countNewSub(start, end, code);
+  }
+
+  public Long countTotalRevenueSub(Long start, Long end, List<String> code) {
+    return packageHistoryRepository.countTotalRevenueSub(start, end, code);
+  }
 }

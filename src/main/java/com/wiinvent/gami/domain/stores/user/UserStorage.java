@@ -3,7 +3,9 @@ package com.wiinvent.gami.domain.stores.user;
 import com.wiinvent.gami.domain.entities.user.User;
 import com.wiinvent.gami.domain.response.type.CursorType;
 import com.wiinvent.gami.domain.stores.BaseStorage;
+import com.wiinvent.gami.domain.utils.CacheKey;
 import com.wiinvent.gami.domain.utils.Constants;
+import com.wiinvent.gami.domain.utils.DateUtils;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -12,6 +14,8 @@ import jakarta.persistence.criteria.Root;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -97,5 +101,22 @@ public class UserStorage extends BaseStorage {
     TypedQuery<User> typedQuery = entityManager.createQuery(query);
     typedQuery.setMaxResults(limit);
     return typedQuery.getResultList();
+  }
+
+  public Integer countNewRegisterUser(Long start, Long end) {
+    return userRepository.countUserByCreatedAtBetween(start, end);
+  }
+
+  public Integer countDailyActiveUser(LocalDate dateNow) {
+    return Math.toIntExact(remoteCache.pfCount(cacheKey.genDallyLoginUser(dateNow)));
+  }
+
+  public Integer countMonthlyActiveUser(LocalDate dateNow) {
+    LocalDate firstDayOfMonth = DateUtils.getFirstDayOfMonth(dateNow);
+    List<String> keys = new ArrayList<>();
+    for (LocalDate date = firstDayOfMonth; !date.isAfter(dateNow); date = date.plusDays(1)) {
+      keys.add(cacheKey.genDallyLoginUser(date));
+    }
+    return Math.toIntExact(remoteCache.pfMergeCount(keys));
   }
 }

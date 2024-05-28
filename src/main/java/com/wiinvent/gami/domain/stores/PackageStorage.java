@@ -1,9 +1,7 @@
 package com.wiinvent.gami.domain.stores;
 
-import com.wiinvent.gami.domain.entities.Character;
 import com.wiinvent.gami.domain.entities.Package;
-import com.wiinvent.gami.domain.entities.type.CharacterCategoryType;
-import com.wiinvent.gami.domain.entities.type.ProductType;
+import com.wiinvent.gami.domain.entities.type.ProductPackageType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -76,4 +74,19 @@ public class PackageStorage extends BaseStorage {
     };
   }
 
+  public List<Package> findPackagesByType(ProductPackageType type){
+    return packageRepository.findPackagesByType(type);
+  }
+
+  public List<Package> findPackagesByDaySub(Integer daySub) {
+    if (daySub == 1) {
+      return packageRepository.findPackagesByDaySub(1);
+    } else if (daySub == 7) {
+      return packageRepository.findPackagesByDaySub(7);
+    } else if (daySub == 30) {
+      return packageRepository.findByDaySubGreaterThanEqual(30);
+    } else {
+      return new ArrayList<>();
+    }
+  }
 }

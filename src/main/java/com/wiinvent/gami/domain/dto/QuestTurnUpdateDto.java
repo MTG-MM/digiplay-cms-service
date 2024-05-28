@@ -21,18 +21,18 @@ public class QuestTurnUpdateDto {
   @NotNull
   private Integer coinPrice;
 
-  private Integer questCd;
+  private Integer questCd = 0;
 
-  private Integer viewAdsSkipDuration;
+  private Integer viewAdsSkipDuration = 0;
 
-  private Integer coinSkipCdPrice;
+  private Integer coinSkipCdPrice = 0;
 
   @NotNull
   private Integer duration;
 
-  private Integer durationBonus;
+  private Integer durationBonus = 0;
 
-  private Integer durationBonusPrice;
+  private Integer durationBonusPrice = 0;
   @NotNull
   private Status status;
 

@@ -41,7 +41,6 @@ public class TaskService extends BaseService{
   }
 
   public boolean createTask(TaskCreateDto dto) {
-    if(Objects.isNull(dto.getStatus())) dto.setStatus(Status.ACTIVE);
     Task task = modelMapper.toTask(dto);
     try {
       self.save(task);

@@ -16,5 +16,6 @@ public class FeatureCreateDto {
   @NotNull(message = "Không được để trống")
   private FeatureCode code;
 
+  @NotNull
   private Status status;
 }

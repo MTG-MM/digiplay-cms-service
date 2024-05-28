@@ -50,14 +50,15 @@ public class GameUpdateDto{
   @NotNull(message = "Không được để trống")
   private GameStatus status;
 
-  private Boolean isHot;
+  private Boolean isHot = false;
 
-  private Boolean isNew;
+  private Boolean isNew = false;
 
-  private Boolean isUpdate;
+  private Boolean isUpdate = false;
 
-  private Boolean isLock;
+  private Boolean isLock = false;
 
+  @NotNull
   private Integer levelUnlock;
 
   private String linkAds;

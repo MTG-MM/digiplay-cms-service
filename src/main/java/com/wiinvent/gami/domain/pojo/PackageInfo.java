@@ -1,6 +1,6 @@
 package com.wiinvent.gami.domain.pojo;
 
-import com.wiinvent.gami.domain.entities.type.ProductType;
+import com.wiinvent.gami.domain.entities.type.ProductPackageType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import lombok.Data;
 
@@ -26,5 +26,5 @@ public class PackageInfo {
   private Integer coinBonus;
   private String name;
   private String description;
-  private ProductType type;
+  private ProductPackageType type;
 }

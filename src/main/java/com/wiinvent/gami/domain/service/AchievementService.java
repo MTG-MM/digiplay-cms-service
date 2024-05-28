@@ -42,7 +42,6 @@ public class AchievementService extends BaseService{
   }
 
   public boolean createAchievement(AchievementCreateDto dto) {
-    if(Objects.isNull(dto.getStatus())) dto.setStatus(Status.ACTIVE);
     //map
     Achievement achievement = modelMapper.toAchievement(dto);
     //save

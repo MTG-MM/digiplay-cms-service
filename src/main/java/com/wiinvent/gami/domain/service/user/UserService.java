@@ -1,14 +1,17 @@
 package com.wiinvent.gami.domain.service.user;
 
+import com.wiinvent.gami.domain.entities.PackageType;
 import com.wiinvent.gami.domain.entities.PremiumState;
 import com.wiinvent.gami.domain.entities.SubState;
 import com.wiinvent.gami.domain.entities.user.*;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
+import com.wiinvent.gami.domain.pojo.UserSubStatusInfo;
 import com.wiinvent.gami.domain.response.UserResponse;
 import com.wiinvent.gami.domain.response.base.PageCursorResponse;
 import com.wiinvent.gami.domain.response.type.CursorType;
 import com.wiinvent.gami.domain.service.BaseService;
 import com.wiinvent.gami.domain.utils.Constants;
+import com.wiinvent.gami.domain.utils.DateUtils;
 import com.wiinvent.gami.domain.utils.Helper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -63,14 +66,33 @@ public class UserService extends BaseService {
     }
     //segment
     if (Objects.nonNull(currentUserSegment)) {
+      userResponse.setLevel(currentUserSegment.getLevel());
       userResponse.setPointBonusRate(currentUserSegment.getPointBonusRate());
       userResponse.setPointLimit(currentUserSegment.getPointLimit());
     }
+    UserSubStatusInfo statusInfo = checkSubStatus(user, currentUserSegment);
+    int limitPoint = currentUserSegment.getPointLimit();
+    if (Boolean.TRUE.equals(statusInfo.getIsPremium())){
+      limitPoint = currentUserSegment.getPointLimit() + currentUserSegment.getExtendPoint();
+    }
+    if (Boolean.TRUE.equals(statusInfo.getIsSub())){
+      limitPoint = limitPoint + (limitPoint * currentUserSegment.getSubBonusRate()) / 100;
+    }
+    userResponse.setPointRemained(Math.max(limitPoint - userResponse.getPoint(), 0));
     UserSegment nextUserSegment = userSegmentStorage.findNextLevel(currentUserSegment.getLevel());
     if (Objects.nonNull(nextUserSegment)) {
       userResponse.setExpUpLevel(nextUserSegment.getRequireExp() - userResponse.getExp());
     }
     return userResponse;
+  }
+
+  public UserSubStatusInfo checkSubStatus(User user, UserSegment userSegment) {
+    Long nowAtUtc = DateUtils.getNowMillisAtUtc();
+    PremiumState premiumState;
+    SubState subState;
+    premiumState = premiumStateStorage.findByPremiumStateAndUserIdAndEndAtGreaterThan(user.getId(), nowAtUtc);
+    subState = subStateStorage.findBySubStateAndUserIdAndEndAtGreaterThan(user.getId(), nowAtUtc);
+    return new UserSubStatusInfo(premiumState, subState);
   }
 
   public PageCursorResponse<UserResponse> getPageUser
@@ -96,9 +118,6 @@ public class UserService extends BaseService {
       users = users.stream().sorted(Comparator.comparingLong(User::getCreatedAt).reversed()).toList();
     }
     List<UUID> userIds = users.stream().map(User::getId).toList();
-    List<SubState> subStates = subStateStorage.findBySubStateAndUserIdInAndEndAtGreaterThan(userIds, Helper.getNowMillisAtUtc());
-    List<PremiumState> premiumStates =
-        premiumStateStorage.findByPremiumStateAndUserIdInAndEndAtGreaterThan(userIds, Helper.getNowMillisAtUtc());
     //profile
     List<UserProfile> userProfiles = userProfileStorage.findAllByIdIn(userIds);
     Map<UUID, UserProfile> userProfileMap = userProfiles.stream().collect(Collectors.toMap(UserProfile::getId, Function.identity()));

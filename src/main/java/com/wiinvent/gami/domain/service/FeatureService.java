@@ -43,8 +43,6 @@ public class FeatureService extends BaseService{
   }
 
   public Boolean createFeature(FeatureCreateDto dto){
-    //validation
-    if(Objects.isNull(dto.getStatus())) dto.setStatus(Status.ACTIVE);
     UserSegment userSegment = userSegmentStorage.findByLevel(dto.getLevelUnlock());
     if(Objects.isNull(userSegment)) throw new ResourceNotFoundException(Constants.USER_SEGMENT_NOT_FOUND);
     //map

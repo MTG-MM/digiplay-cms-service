@@ -1,6 +1,6 @@
 package com.wiinvent.gami.domain.response;
 
-import com.wiinvent.gami.domain.entities.type.ProductType;
+import com.wiinvent.gami.domain.entities.type.ProductPackageType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.pojo.PaymentMethodInfo;
 import lombok.Data;
@@ -47,7 +47,7 @@ public class PackageResponse {
 
   private String description;
 
-  private ProductType type;
+  private ProductPackageType type;
 
   private String imageUrl;
 }

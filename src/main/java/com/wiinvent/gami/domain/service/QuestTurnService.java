@@ -41,7 +41,6 @@ public class QuestTurnService extends BaseService{
   }
 
   public boolean createQuestTurn(QuestTurnCreateDto dto) {
-    if(Objects.isNull(dto.getStatus())) dto.setStatus(Status.ACTIVE);
     QuestTurn questTurn = modelMapper.toQuestTurn(dto);
     try {
       self.save(questTurn);

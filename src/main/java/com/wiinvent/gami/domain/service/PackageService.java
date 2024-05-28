@@ -2,15 +2,11 @@ package com.wiinvent.gami.domain.service;
 
 import com.wiinvent.gami.domain.dto.PackageCreateDto;
 import com.wiinvent.gami.domain.dto.PackageUpdateDto;
-import com.wiinvent.gami.domain.entities.Character;
 import com.wiinvent.gami.domain.entities.Package;
 import com.wiinvent.gami.domain.entities.PackageType;
-import com.wiinvent.gami.domain.entities.type.CharacterCategoryType;
-import com.wiinvent.gami.domain.entities.type.ProductType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.exception.BadRequestException;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
-import com.wiinvent.gami.domain.response.CharacterResponse;
 import com.wiinvent.gami.domain.response.PackageResponse;
 import com.wiinvent.gami.domain.utils.Constants;
 import com.wiinvent.gami.domain.utils.DateUtils;
@@ -45,10 +41,13 @@ public class PackageService extends BaseService {
   }
 
   public boolean createPackage(PackageCreateDto dto) {
-    //validation
-    if(Objects.isNull(dto.getStatus())) dto.setStatus(Status.ACTIVE);
+
     //map
     Package productPackage = modelMapper.toPackage(dto);
+    PackageType packageType = packageTypeStorage.findById(dto.getPackageTypeId());
+    if (Objects.nonNull(packageType)) {
+      productPackage.setType(packageType.getType());
+    }
     //save
     try {
       self.save(productPackage);

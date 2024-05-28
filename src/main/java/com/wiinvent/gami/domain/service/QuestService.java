@@ -53,7 +53,6 @@ public class QuestService extends BaseService {
   }
 
   public boolean createQuest(QuestCreateDto dto) {
-    if(Objects.isNull(dto.getStatus())) dto.setStatus(Status.ACTIVE);
     Quest quest = modelMapper.toQuest(dto);
     try {
       self.save(quest);

@@ -2,7 +2,10 @@ package com.wiinvent.gami.domain.service.user;
 
 import com.wiinvent.gami.domain.dto.UserSegmentCreateDto;
 import com.wiinvent.gami.domain.dto.UserSegmentUpdateDto;
+import com.wiinvent.gami.domain.entities.Achievement;
+import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.entities.user.UserSegment;
+import com.wiinvent.gami.domain.exception.BadRequestException;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.response.UserSegmentResponse;
 import com.wiinvent.gami.domain.service.BaseService;
@@ -56,6 +59,21 @@ public class UserSegmentService extends BaseService {
     self.save(userSegment);
   }
 
+  public boolean deleteUserSegment(long id) {
+    UserSegment userSegment = userSegmentStorage.findById(id);
+    if (userSegment == null) {
+      throw new ResourceNotFoundException(Constants.USER_SEGMENT_NOT_FOUND);
+    }
+    userSegment.setStatus(Status.DELETE);
+    //save
+    try {
+      self.save(userSegment);
+    } catch (Exception e){
+      log.error("==============>deleteUserSegment:DB:Exception:{}", e.getMessage());
+      throw e;
+    }
+    return true;
+  }
   @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
   public void save(UserSegment userSegment){
     userSegmentStorage.save(userSegment);

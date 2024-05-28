@@ -1,6 +1,7 @@
 package com.wiinvent.gami.domain.stores;
 
 import com.wiinvent.gami.domain.entities.ExchangeItemStore;
+import com.wiinvent.gami.domain.entities.type.ExchangeStoreType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.entities.type.StoreType;
 import jakarta.persistence.criteria.Predicate;
@@ -20,10 +21,12 @@ public class ExchangeItemStoreStorage extends BaseStorage {
 
   public void save(ExchangeItemStore exchangeItemStore) {
     exchangeItemStoreRepository.save(exchangeItemStore);
+    remoteCache.del(removeCacheKeys(exchangeItemStore.getStoreType()));
   }
 
   public void saveAll(List<ExchangeItemStore> exchangeItemStores) {
     exchangeItemStoreRepository.saveAll(exchangeItemStores);
+    exchangeItemStores.forEach(exchangeItemStore -> remoteCache.del(removeCacheKeys(exchangeItemStore.getStoreType())));
   }
 
   public Page<ExchangeItemStore> findAll(StoreType type, String name, Pageable pageable) {
@@ -48,8 +51,13 @@ public class ExchangeItemStoreStorage extends BaseStorage {
     return exchangeItemStoreRepository.findById(id).orElse(null);
   }
 
-//  public void removeCache(RewardItemStore rewardItemStore) {
-//    remoteCache.del(cacheKey.genRewardItemStoreById(rewardItemStore.getId()));
-//  }
-
+  public List<String> removeCacheKeys(ExchangeStoreType type) {
+    List<String> keys = new ArrayList<>();
+    keys.add(cacheKey.genPageExchangeItemStoreByType(type, 0));
+    keys.add(cacheKey.genPageExchangeItemStoreByType(type, 1));
+    keys.add(cacheKey.genPageExchangeItemStoreByType(type, 2));
+    keys.add(cacheKey.genPageExchangeItemStoreByType(type, 3));
+    keys.add(cacheKey.genPageExchangeItemStoreByType(type, 4));
+    return keys;
+  }
 }

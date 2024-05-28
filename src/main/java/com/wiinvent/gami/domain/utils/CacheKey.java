@@ -45,17 +45,19 @@ public class CacheKey {
   public String genAllGameCategories() {
     return redisPrefixKey + ":game:category:all";
   }
+
   public String getGameByCategoryId(int categoryId, int pageNumber) {
     return redisPrefixKey + ":game:category:id" + categoryId + ":page:" + pageNumber;
   }
 
   public String getGameById(Integer gameId) {
-    return redisPrefixKey + ":game:id:" + gameId ;
+    return redisPrefixKey + ":game:id:" + gameId;
   }
 
   public String genGamePackageById(Integer packageId) {
     return redisPrefixKey + ":game:package:id:" + packageId;
   }
+
   public String genGamePackageByGameId(Integer gameId) {
     return redisPrefixKey + ":game:package:gameId:" + gameId;
   }
@@ -87,12 +89,15 @@ public class CacheKey {
   public String getGvcPackages() {
     return redisPrefixKey + ":game:gvc:package";
   }
+
   public String getGvcPackageByCode(String packageCode) {
     return redisPrefixKey + ":game:gvc:package:code" + packageCode;
   }
+
   public String genUserSegmentById(Long userSegmentId) {
     return redisPrefixKey + ":user:segment:id:" + userSegmentId;
   }
+
   public String genUserSegmentDefault() {
     return redisPrefixKey + ":user:segment:default";
   }
@@ -105,8 +110,16 @@ public class CacheKey {
     return redisPrefixKey + ":game:payment:method:id:" + paymentMethodId;
   }
 
-  public String getCharacterById(Integer id) {
-    return redisPrefixKey + ":character:id:" + id;
+  public String genKeyPageCharacterByUserId(UUID userId) {
+    return redisPrefixKey + ":character:user:id" + userId;
+  }
+
+  public String genCharacterByUserId(UUID userId) {
+    return redisPrefixKey + ":character:user:id:" + userId;
+  }
+
+  public String genCharacterUserByUserIdAndCharacterId(UUID userId, Integer characterId) {
+    return redisPrefixKey + ":character:user:id:" + userId + ":character:id:" + characterId;
   }
 
   public String genListRewardItemByTypeAndId(ResourceType type, Long id) {
@@ -120,6 +133,7 @@ public class CacheKey {
   public String genAllRewardItem() {
     return redisPrefixKey + ":reward:item:all";
   }
+
   public String genRewardItemStoreById(Long id) {
     return redisPrefixKey + ":rwi:store:id:" + id;
   }
@@ -149,24 +163,31 @@ public class CacheKey {
   public String genPageActiveChallenge(int pageNumber) {
     return redisPrefixKey + ":challenge:user:id:" + pageNumber;
   }
+
   public String genChallengeUserHistoryByUserIdAndDateAndChallengeId(UUID userId, LocalDate nowAtVn, Integer challengeId) {
     return redisPrefixKey + ":challenge:user:id:" + userId + ":date:" + nowAtVn + ":challenge:id:" + challengeId;
   }
+
   public String genListAllChallengeDetailActive() {
     return redisPrefixKey + ":challenge:detail:all:active";
   }
+
   public String genChallengeDetailById(Integer challengeDetailId) {
     return redisPrefixKey + ":challenge:id:" + challengeDetailId;
   }
+
   public String genListChallengeDetailByStatusOrderByPriority(Status status) {
     return redisPrefixKey + ":challenge:detail:status:" + status;
   }
+
   public String genChallengeById(Integer challengeId) {
     return redisPrefixKey + ":challenge:id:" + challengeId;
   }
+
   public String genChallengeDetailByCode(String code) {
     return redisPrefixKey + ":challenge:detail:code:" + code;
   }
+
   public String genChallengeDetailByChallengeId(Integer challengeId) {
     return redisPrefixKey + ":challenge:detail:challenge:id:" + challengeId;
   }
@@ -194,6 +215,7 @@ public class CacheKey {
   public String genListRewardCollectionByUser(UUID userId) {
     return redisPrefixKey + "collection:user:id:" + userId;
   }
+
   public String genCollectionUserByUserId(UUID userId) {
     return redisPrefixKey + ":collection:user:id:" + userId;
   }
@@ -229,11 +251,47 @@ public class CacheKey {
   public String genAllQuestTurn() {
     return redisPrefixKey + ":quest:turn:all";
   }
+
+  public String genQuestTurnById(Long questTurnId) {
+    return redisPrefixKey + ":quest:turn:id:" + questTurnId;
+  }
+
   public String genAllQuest(Status status) {
     return redisPrefixKey + ":quest:all:status:" + status;
   }
+
   public String genQuestByCode(String code) {
     return redisPrefixKey + ":quest:code:" + code;
   }
+  public String genTaskById(Integer taskId) {
+    return redisPrefixKey + ":task:id:" + taskId;
+  }
 
+  public String findAllTaskByStatus(Status status) {
+    return redisPrefixKey + ":task:status:" + status;
+  }
+
+  public String genPageExchangeItemStoreByType(ExchangeStoreType type, int pageNumber) {
+    return redisPrefixKey + ":exchange:item:store:type:" + type + ":page:" + pageNumber;
+  }
+
+  public String genKeyCharacterByCharacterId(Integer characterId) {
+    return redisPrefixKey + ":character:id:" + characterId;
+  }
+
+  public String genALlDefaultCharacter() {
+    return redisPrefixKey + ":character:all:default";
+  }
+
+  public String genALlCharacter() {
+    return redisPrefixKey + ":character:all";
+  }
+
+  public String genCharacterByExternalId(String externalImageId) {
+    return redisPrefixKey + ":character:external:id:" + externalImageId;
+  }
+
+  public String genKeyPageCharacterByPageNumber(int pageNumber, CharacterCategoryType categoryType, CharacterType characterType, CharacterGenderType gender) {
+    return redisPrefixKey + ":character:" + pageNumber + ":type:" + categoryType + ":" + characterType + ":" + gender;
+  }
 }

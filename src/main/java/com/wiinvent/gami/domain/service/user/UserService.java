@@ -69,7 +69,7 @@ public class UserService extends BaseService {
       userResponse.setPointBonusRate(currentUserSegment.getPointBonusRate());
       userResponse.setPointLimit(currentUserSegment.getPointLimit());
     }
-    UserSubStatusInfo statusInfo = checkSubStatus(user);
+    UserSubStatusInfo statusInfo = checkSubStatus(userResponse);
     int limitPoint = currentUserSegment.getPointLimit();
     if (Boolean.TRUE.equals(statusInfo.getIsPremium())){
       limitPoint = currentUserSegment.getPointLimit() + currentUserSegment.getExtendPoint();
@@ -86,35 +86,64 @@ public class UserService extends BaseService {
     return userResponse;
   }
 
-  public UserSubStatusInfo checkSubStatus(User user) {
+  public UserSubStatusInfo checkSubStatus(UserResponse userResponse) {
     Long nowAtUtc = DateUtils.getNowMillisAtUtc();
     PremiumState premiumState;
     SubState subState;
-    premiumState = premiumStateStorage.findByPremiumStateAndUserIdAndEndAtGreaterThan(user.getId(), nowAtUtc);
-    subState = subStateStorage.findBySubStateAndUserIdAndEndAtGreaterThan(user.getId(), nowAtUtc);
+    premiumState = premiumStateStorage.findByPremiumStateAndUserIdAndEndAtGreaterThan(userResponse.getId(), nowAtUtc);
+    subState = subStateStorage.findBySubStateAndUserIdAndEndAtGreaterThan(userResponse.getId(), nowAtUtc);
     return new UserSubStatusInfo(premiumState, subState);
   }
 
+  public UUID checkUserId(UUID userId, String displayName, String phoneNumber) {
+    if (Objects.nonNull(displayName)) {
+      UserProfile userProfile = userProfileStorage.findByDisplayName(displayName);
+      if (Objects.nonNull(userProfile)) {
+        userId = userProfile.getId();
+      }
+    }
+    if (Objects.nonNull(phoneNumber)) {
+      UserProfile userProfile = userProfileStorage.findByPhoneNumber(phoneNumber);
+      if (Objects.nonNull(userProfile)) {
+        userId = userProfile.getId();
+      }
+    }
+    return userId;
+  }
+
+  public Long checkSegmentId(Integer level) {
+    Long segmentId = null;
+    if (Objects.nonNull(level)) {
+      UserSegment userSegment = userSegmentStorage.findByLevel(level);
+      if (Objects.nonNull(userSegment)) {
+        segmentId = userSegment.getId();
+      }
+    }
+    return segmentId;
+  }
+
   public PageCursorResponse<UserResponse> getPageUser
-      (UUID userId, String phoneNumber, Integer level, Long next, Long pre, Integer limit, LocalDate startDate, LocalDate endDate) {
+      (UUID userId, String displayName, String phoneNumber, Integer level, Long next, Long pre, Integer limit, LocalDate startDate, LocalDate endDate) {
     Long startDateLong = null;
     Long endDateLong = null;
     if (Objects.nonNull(startDate)) startDateLong = Helper.startOfDaytoLong(startDate);
     if (Objects.nonNull(endDate)) endDateLong = Helper.endOfDaytoLong(endDate);
     List<User> users = new ArrayList<>();
+    userId = checkUserId(userId, displayName, phoneNumber);
+    long segmentId = checkSegmentId(level);
     CursorType type = CursorType.FIRST;
     if (next == null && pre == null) {
       next = Helper.getNowMillisAtUtc();
       pre = 0L;
-      users = userStorage.findAllUser(userId, phoneNumber, level, next, pre, limit, startDateLong, endDateLong, type);
+      users = userStorage.findAllUser(userId, segmentId, next, pre, limit, startDateLong, endDateLong, type);
     } else if (pre == null) {
       type = CursorType.NEXT;
       pre = 0L;
-      users = userStorage.findAllUser(userId, phoneNumber, level, next, pre, limit, startDateLong, endDateLong, type);
+      users = userStorage.findAllUser(userId, segmentId, next, pre, limit, startDateLong, endDateLong, type);
     } else if (next == null) {
       type = CursorType.PRE;
       next = Helper.getNowMillisAtUtc();
-      users = userStorage.findAllUser(userId, phoneNumber, level, next, pre, limit, startDateLong, endDateLong, type);
+      users = userStorage.findAllUser(userId, segmentId, next, pre, limit, startDateLong, endDateLong, type);
       users = users.stream().sorted(Comparator.comparingLong(User::getCreatedAt).reversed()).toList();
     }
     List<UUID> userIds = users.stream().map(User::getId).toList();
@@ -139,6 +168,7 @@ public class UserService extends BaseService {
       //user account
       r.setState(uuidUserAccountMap.get(r.getId()).getState());
       r.setStatus(uuidUserAccountMap.get(r.getId()).getStatus());
+      r.setUserTypes(checkSubStatus(r).getUserTypes());
     });
     return new PageCursorResponse<>(userResponses, limit, type, Constants.CREATED_AT_VARIABLE);
   }

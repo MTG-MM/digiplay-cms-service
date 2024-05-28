@@ -15,4 +15,12 @@ public class UserProfileStorage extends BaseStorage {
   public List<UserProfile> findAllByIdIn(List<UUID> ids){
     return userProfileRepository.findAllByIdIn(ids);
   }
+
+  public UserProfile findByDisplayName(String displayName){
+    return userProfileRepository.findByDisplayName(displayName);
+  }
+
+  public UserProfile findByPhoneNumber(String phoneNumber){
+    return userProfileRepository.findByPhoneNumber(phoneNumber);
+  }
 }

@@ -16,6 +16,8 @@ import java.util.List;
 public class TaskStorage extends BaseStorage {
   public void save(Task task) {
     taskRepository.save(task);
+    remoteCache.del(cacheKey.genTaskById(task.getId()));
+    remoteCache.del(cacheKey.findAllTaskByStatus(task.getStatus()));
   }
 
   public Task findById(Integer id) {

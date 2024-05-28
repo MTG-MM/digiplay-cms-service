@@ -28,6 +28,7 @@ public class UserController {
   @GetMapping("")
   public ResponseEntity<PageCursorResponse<UserResponse>> getAllUsers(
       @RequestParam(required = false) UUID userId,
+      @RequestParam(required = false) String displayName,
       @RequestParam(required = false) String phoneNumber,
       @RequestParam(required = false) Integer level,
       @RequestParam(required = false) Long next,
@@ -36,7 +37,7 @@ public class UserController {
       @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate gte,
       @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte
   ) {
-    return ResponseEntity.ok(userService.getPageUser(userId, phoneNumber, level, next, pre, limit, gte, lte));
+    return ResponseEntity.ok(userService.getPageUser(userId, displayName, phoneNumber, level, next, pre, limit, gte, lte));
   }
 
 }

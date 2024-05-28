@@ -63,4 +63,10 @@ public class UserSegmentController {
     return ResponseEntity.ok(userSegmentService.findAllUserSegmentActive());
   }
 
+  @DeleteMapping("{segmentId}")
+  public ResponseEntity<Boolean> deleteAchievement(@PathVariable long segmentId) {
+    return ResponseEntity.ok(
+        userSegmentService.deleteUserSegment(segmentId)
+    );
+  }
 }

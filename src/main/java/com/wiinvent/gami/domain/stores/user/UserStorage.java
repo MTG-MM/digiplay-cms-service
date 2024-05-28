@@ -1,6 +1,7 @@
 package com.wiinvent.gami.domain.stores.user;
 
 import com.wiinvent.gami.domain.entities.user.User;
+import com.wiinvent.gami.domain.entities.user.UserProfile;
 import com.wiinvent.gami.domain.response.type.CursorType;
 import com.wiinvent.gami.domain.stores.BaseStorage;
 import com.wiinvent.gami.domain.utils.CacheKey;
@@ -70,7 +71,7 @@ public class UserStorage extends BaseStorage {
   }
 
   public List<User> findAllUser
-      (UUID userId, String phoneNumber, Integer level, Long next, Long pre, Integer limit, Long startDate, Long endDate, CursorType type){
+      (UUID userId, Long segmentId, Long next, Long pre, Integer limit, Long startDate, Long endDate, CursorType type){
     CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
     CriteriaQuery<User> query = criteriaBuilder.createQuery(User.class);
     Root<User> root = query.from(User.class);
@@ -78,11 +79,8 @@ public class UserStorage extends BaseStorage {
     if (userId != null){
       conditionList.add(criteriaBuilder.equal(root.get("id"), userId));
     }
-    if (phoneNumber != null){
-      conditionList.add(criteriaBuilder.equal(root.get("phoneNumber"), phoneNumber));
-    }
-    if (level != null){
-      conditionList.add(criteriaBuilder.equal(root.get("userSegmentId"), level));
+    if (segmentId != null){
+      conditionList.add(criteriaBuilder.equal(root.get("userSegmentId"), segmentId));
     }
     if (startDate != null && endDate != null){
       conditionList.add(criteriaBuilder.and(criteriaBuilder.greaterThanOrEqualTo(root.get("createdAt"), startDate),

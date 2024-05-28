@@ -1,6 +1,5 @@
 package com.wiinvent.gami.domain.stores;
 
-import com.wiinvent.gami.domain.entities.Quest;
 import com.wiinvent.gami.domain.entities.QuestTurn;
 import com.wiinvent.gami.domain.entities.type.Status;
 import jakarta.persistence.criteria.Predicate;
@@ -16,6 +15,8 @@ import java.util.List;
 public class QuestTurnStorage extends BaseStorage{
   public void save(QuestTurn questTurn){
     questTurnRepository.save(questTurn);
+    remoteCache.del(cacheKey.genAllQuestTurn());
+    remoteCache.del(cacheKey.genQuestTurnById(questTurn.getId()));
   }
 
   public QuestTurn findById(Long id) {

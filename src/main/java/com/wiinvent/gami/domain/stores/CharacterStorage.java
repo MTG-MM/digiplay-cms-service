@@ -16,7 +16,21 @@ import java.util.List;
 public class CharacterStorage extends BaseStorage{
   public void save(Character character){
     characterRepository.save(character);
-    remoteCache.deleteKey(cacheKey.getCharacterById(character.getId()));
+    remoteCache.del(removeCacheKey(character));
+  }
+
+  List<String> removeCacheKey(Character character) {
+    List<String> removeKeys = new ArrayList<>();
+    removeKeys.add(cacheKey.genKeyCharacterByCharacterId(character.getId()));
+    removeKeys.add(cacheKey.genALlDefaultCharacter());
+    removeKeys.add(cacheKey.genALlCharacter());
+    removeKeys.add(cacheKey.genCharacterByExternalId(character.getExternalId()));
+    removeKeys.add(cacheKey.genKeyPageCharacterByPageNumber(0, character.getCategoryType(), character.getType(), character.getGender()));
+    removeKeys.add(cacheKey.genKeyPageCharacterByPageNumber(1, character.getCategoryType(), character.getType(), character.getGender()));
+    removeKeys.add(cacheKey.genKeyPageCharacterByPageNumber(2, character.getCategoryType(), character.getType(), character.getGender()));
+    removeKeys.add(cacheKey.genKeyPageCharacterByPageNumber(3, character.getCategoryType(), character.getType(), character.getGender()));
+    removeKeys.add(cacheKey.genKeyPageCharacterByPageNumber(4, character.getCategoryType(), character.getType(), character.getGender()));
+    return removeKeys;
   }
 
   public Character findById(Integer id) {

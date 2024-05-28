@@ -53,6 +53,6 @@ public class Collection extends BaseEntity{
 
   @Column(name = "collection_piece")
   @JdbcTypeCode(SqlTypes.JSON)
-  private List<Long> collectionPiece;
+  private List<Long> collectionPieces;
 
 }

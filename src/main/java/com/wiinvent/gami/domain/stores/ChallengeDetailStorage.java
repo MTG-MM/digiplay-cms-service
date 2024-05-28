@@ -19,7 +19,7 @@ public class ChallengeDetailStorage extends BaseStorage{
 
   public void save(ChallengeDetail challengeDetail){
     challengeDetailRepository.save(challengeDetail);
-    remoteCache.del(cacheKey.genChallengeDetailById(challengeDetail.getId()));
+    remoteCache.del(removeCacheKey(challengeDetail));
   }
 
   public Page<ChallengeDetail> findAll(Integer challengeId, Integer level, Status status, Pageable pageable){
@@ -39,5 +39,17 @@ public class ChallengeDetailStorage extends BaseStorage{
       }
       return criteriaBuilder.and(conditionLists.toArray(new Predicate[0]));
     };
+  }
+
+  public List<String> removeCacheKey(ChallengeDetail challengeDetail) {
+    List<String> removeKey = new ArrayList<>();
+    removeKey.add(cacheKey.genChallengeDetailById(challengeDetail.getId()));
+    removeKey.add(cacheKey.genListAllChallengeDetailActive());
+    removeKey.add(cacheKey.genChallengeDetailByChallengeId(challengeDetail.getChallengeId()));
+    removeKey.add(cacheKey.genListChallengeDetailByStatusOrderByPriority(Status.ACTIVE));
+    removeKey.add(cacheKey.genListChallengeDetailByStatusOrderByPriority(Status.INACTIVE));
+    removeKey.add(cacheKey.genListChallengeDetailByStatusOrderByPriority(Status.DELETE));
+    removeKey.add(cacheKey.genChallengeDetailByCode(challengeDetail.getCode()));
+    return removeKey;
   }
 }

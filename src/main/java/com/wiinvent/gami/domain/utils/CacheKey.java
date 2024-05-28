@@ -145,14 +145,30 @@ public class CacheKey {
     return redisPrefixKey + ":challenge:all";
   }
 
-  public String genChallengeById(Integer challengeId) {
-    return redisPrefixKey + ":challenge:id:" + challengeId;
-  }
+
   public String genPageActiveChallenge(int pageNumber) {
     return redisPrefixKey + ":challenge:user:id:" + pageNumber;
   }
-  public String genChallengeDetailById(Integer challengeDetailId){
+  public String genChallengeUserHistoryByUserIdAndDateAndChallengeId(UUID userId, LocalDate nowAtVn, Integer challengeId) {
+    return redisPrefixKey + ":challenge:user:id:" + userId + ":date:" + nowAtVn + ":challenge:id:" + challengeId;
+  }
+  public String genListAllChallengeDetailActive() {
+    return redisPrefixKey + ":challenge:detail:all:active";
+  }
+  public String genChallengeDetailById(Integer challengeDetailId) {
     return redisPrefixKey + ":challenge:id:" + challengeDetailId;
+  }
+  public String genListChallengeDetailByStatusOrderByPriority(Status status) {
+    return redisPrefixKey + ":challenge:detail:status:" + status;
+  }
+  public String genChallengeById(Integer challengeId) {
+    return redisPrefixKey + ":challenge:id:" + challengeId;
+  }
+  public String genChallengeDetailByCode(String code) {
+    return redisPrefixKey + ":challenge:detail:code:" + code;
+  }
+  public String genChallengeDetailByChallengeId(Integer challengeId) {
+    return redisPrefixKey + ":challenge:detail:challenge:id:" + challengeId;
   }
 
   public String genAllCollections() {

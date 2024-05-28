@@ -32,7 +32,11 @@ public class ChallengeStorage extends BaseStorage{
     keys.add(cacheKey.genListAllChallenge());
     keys.add(cacheKey.genChallengeById(challenge.getId()));
     keys.add(cacheKey.genPageActiveChallenge(0));
-    keys.add(cacheKey.genPageActiveChallenge(0));
+    keys.add(cacheKey.genPageActiveChallenge(1));
+    keys.add(cacheKey.genPageActiveChallenge(2));
+    keys.add(cacheKey.genPageActiveChallenge(3));
+    keys.add(cacheKey.genPageActiveChallenge(4));
+    keys.add(cacheKey.genPageActiveChallenge(5));
     return keys;
   }
 

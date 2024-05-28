@@ -125,13 +125,7 @@ public class CollectionService extends BaseService {
 
   public boolean createCollection(CollectionCreateDto dto) {
     Collection collection = modelMapper.toCollection(dto);
-    if (dto.getRewardItems() != null && !dto.getRewardItems().isEmpty()) {
-      collection.setExternalId(dto.getRewardItems().getFirst().getId());
-    }
-    if(dto.getCollectionPiece() != null && !dto.getCollectionPiece().isEmpty()) {
-      List<Long> listCollectionPiece = dto.getCollectionPiece().stream().map(UserRewardItems::getId).toList();
-      collection.setCollectionPiece(listCollectionPiece);
-    }
+    setRewardItemInCollection(dto, collection);
     //save
     try {
       self.save(collection);
@@ -148,9 +142,7 @@ public class CollectionService extends BaseService {
       throw new BadRequestException(Constants.COLLECTION_NOT_FOUND);
     }
     modelMapper.mapCollectionUpdateDtoToCollection(dto, collection);
-    if (dto.getRewardItems() != null && !dto.getRewardItems().isEmpty()) {
-      collection.setExternalId(dto.getRewardItems().getFirst().getId());
-    }
+    setRewardItemInCollection(dto, collection);
     //save
     try {
       self.save(collection);
@@ -159,6 +151,16 @@ public class CollectionService extends BaseService {
       throw e;
     }
     return true;
+  }
+
+  private void setRewardItemInCollection(CollectionUpdateDto dto, Collection collection) {
+    if (dto.getRewardItems() != null && !dto.getRewardItems().isEmpty()) {
+      collection.setExternalId(dto.getRewardItems().getFirst().getId());
+    }
+    if(dto.getCollectionPiece() != null && !dto.getCollectionPiece().isEmpty()) {
+      List<Long> listCollectionPiece = dto.getCollectionPiece().stream().map(UserRewardItems::getId).toList();
+      collection.setCollectionPiece(listCollectionPiece);
+    }
   }
 
   public boolean deleteCollection(Long id) {

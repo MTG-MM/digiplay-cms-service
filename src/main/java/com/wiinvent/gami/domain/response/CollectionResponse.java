@@ -16,6 +16,7 @@ public class CollectionResponse {
   private CollectionType type;
   private Status status;
   private List<UserRewardItems> rewardItems;
+  private List<UserRewardItems> collectionPiece;
   private Long pieceNumber;
   private Long luckyPoint;
 }

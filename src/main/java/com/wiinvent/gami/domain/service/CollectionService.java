@@ -9,8 +9,8 @@ import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.exception.BadRequestException;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.pojo.UserRewardItems;
-import com.wiinvent.gami.domain.response.CollectionResponse;
 import com.wiinvent.gami.domain.response.CollectionInTypeResponse;
+import com.wiinvent.gami.domain.response.CollectionResponse;
 import com.wiinvent.gami.domain.utils.Constants;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +24,11 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 @Log4j2
@@ -37,6 +40,8 @@ public class CollectionService extends BaseService {
   public Page<CollectionResponse> getCollection(CollectionType collectionType, Status status, Pageable pageable) {
     Page<Collection> collections = collectionStorage.findAll(collectionType, status, pageable);
     Page<CollectionResponse> collectionResponses = modelMapper.toPageCollectionResponse(collections);
+    List<Collection> allCollection = collectionStorage.findCollectionByType(CollectionType.PIECE);
+    Map<Long, Collection> pieceCollectionMap = allCollection.stream().collect(Collectors.toMap(Collection::getId, Function.identity()));
     List<CollectionResponse> result = new ArrayList<>();
     for (Collection collection : collections.getContent()) {
       List<UserRewardItems> userRewardItem = getRewardItemInfo(collection);
@@ -45,12 +50,34 @@ public class CollectionService extends BaseService {
           .findFirst()
           .orElseThrow(() -> new ResourceNotFoundException("CollectionResponse not found for Collection id: " + collection.getId()));
       collectionResponse.setRewardItems(userRewardItem);
+      collectionResponse.setCollectionPiece(getCollectionPiece(collection.getCollectionPiece(), pieceCollectionMap));
       result.add(collectionResponse);
     }
+
     return new PageImpl<>(result, pageable, collectionResponses.getTotalElements());
   }
 
+  public List<UserRewardItems> getCollectionPiece(List<Long> collectionPieceIds, Map<Long, Collection> pieceCollectionMap) {
+    List<UserRewardItems> userRewardItems = new ArrayList<>();
+    if(collectionPieceIds == null) {
+      return new ArrayList<>();
+    }
+    for (Long collectionPieceId : collectionPieceIds) {
+      UserRewardItems userRewardItem = new UserRewardItems();
+      Collection collectionPiece = pieceCollectionMap.get(collectionPieceId);
+      if (collectionPiece == null) {
+        continue;
+      }
+      userRewardItem.setId(collectionPiece.getId());
+      userRewardItem.setRewardName(collectionPiece.getName());
+      userRewardItems.add(userRewardItem);
+    }
+    return userRewardItems;
+  }
+
   public CollectionResponse getCollectionDetail(Long id) {
+    List<Collection> allCollection = collectionStorage.findCollectionByType(CollectionType.PIECE);
+    Map<Long, Collection> pieceCollectionMap = allCollection.stream().collect(Collectors.toMap(Collection::getId, Function.identity()));
     Collection collection = collectionStorage.findCollectionById(id);
     if (collection == null) {
       throw new BadRequestException(Constants.COLLECTION_NOT_FOUND);
@@ -58,12 +85,13 @@ public class CollectionService extends BaseService {
     List<UserRewardItems> userRewardItems = getRewardItemInfo(collection);
     CollectionResponse collectionResponse = modelMapper.toCollectionResponse(collection);
     collectionResponse.setRewardItems(userRewardItems);
+    collectionResponse.setCollectionPiece(getCollectionPiece(collection.getCollectionPiece(), pieceCollectionMap));
     return collectionResponse;
   }
 
   public List<UserRewardItems> getRewardItemInfo(Collection collection) {
     if (collection.getExternalId() == null) {
-      return null;
+      return Collections.emptyList();
     }
     List<UserRewardItems> userRewardItems = new ArrayList<>();
     UserRewardItems userRewardItem = new UserRewardItems();
@@ -75,7 +103,7 @@ public class CollectionService extends BaseService {
     } else {
       RewardItem rewardItem = rewardItemStorage.findById(collection.getExternalId());
       if (rewardItem == null) {
-        return null;
+        return Collections.emptyList();
       }
       userRewardItem.setId(rewardItem.getId());
       userRewardItem.setRewardName(rewardItem.getRewardName());
@@ -85,7 +113,7 @@ public class CollectionService extends BaseService {
   }
 
   public List<CollectionInTypeResponse> getCollectionsInTypeCollection() {
-    List<Collection> collections = collectionStorage.findCollectionByType();
+    List<Collection> collections = collectionStorage.findCollectionByType(CollectionType.COLLECTION);
     List<CollectionInTypeResponse> collectionInTypeResponses = new ArrayList<>();
     for (Collection collection : collections) {
       CollectionInTypeResponse collectionInTypeResponse = new CollectionInTypeResponse();
@@ -99,6 +127,10 @@ public class CollectionService extends BaseService {
     Collection collection = modelMapper.toCollection(dto);
     if (dto.getRewardItems() != null && !dto.getRewardItems().isEmpty()) {
       collection.setExternalId(dto.getRewardItems().getFirst().getId());
+    }
+    if(dto.getCollectionPiece() != null && !dto.getCollectionPiece().isEmpty()) {
+      List<Long> listCollectionPiece = dto.getCollectionPiece().stream().map(UserRewardItems::getId).toList();
+      collection.setCollectionPiece(listCollectionPiece);
     }
     //save
     try {

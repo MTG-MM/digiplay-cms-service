@@ -21,4 +21,7 @@ public class CollectionUpdateDto {
   @NotNull
   @Size(max = 1, min = 1)
   private List<UserRewardItems> rewardItems;
+  @NotNull
+  private List<UserRewardItems> collectionPiece;
+
 }

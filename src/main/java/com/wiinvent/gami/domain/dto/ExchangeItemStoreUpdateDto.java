@@ -34,12 +34,8 @@ public class ExchangeItemStoreUpdateDto {
   private Status status;
   private Long limitExchange;
 
-  public Long getEndAt() {
-    return DateUtils.timeToLongAtUtc(endAt);
-  }
+  public Long getEndAt() {return DateUtils.timeToLongAtVn(endAt);}
 
-  public Long getStartAt() {
-    return DateUtils.timeToLongAtUtc(startAt);
-  }
+  public Long getStartAt() {return DateUtils.timeToLongAtVn(startAt);}
 
 }

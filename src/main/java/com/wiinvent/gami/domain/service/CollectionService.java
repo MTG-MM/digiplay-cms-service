@@ -112,8 +112,8 @@ public class CollectionService extends BaseService {
     return userRewardItems;
   }
 
-  public List<CollectionInTypeResponse> getCollectionsInTypeCollection() {
-    List<Collection> collections = collectionStorage.findCollectionByType(CollectionType.COLLECTION);
+  public List<CollectionInTypeResponse> getCollectionsInTypeCollection(CollectionType collectionType) {
+    List<Collection> collections = collectionStorage.findCollectionByType(collectionType);
     List<CollectionInTypeResponse> collectionInTypeResponses = new ArrayList<>();
     for (Collection collection : collections) {
       CollectionInTypeResponse collectionInTypeResponse = new CollectionInTypeResponse();

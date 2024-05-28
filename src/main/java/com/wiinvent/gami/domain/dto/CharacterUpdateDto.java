@@ -2,6 +2,7 @@ package com.wiinvent.gami.domain.dto;
 
 import com.wiinvent.gami.domain.entities.type.CharacterGenderType;
 import com.wiinvent.gami.domain.entities.type.Status;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -11,8 +12,10 @@ public class CharacterUpdateDto {
   @NotNull
   private Status status;
   @NotNull
+  @Min(0)
   private Integer coinPrice;
   @NotNull
+  @Min(0)
   private Integer pointPrice;
   private String externalId;
   private CharacterGenderType gender;

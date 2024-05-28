@@ -1,6 +1,5 @@
 package com.wiinvent.gami.domain.stores;
 
-import com.wiinvent.gami.domain.entities.Challenge;
 import com.wiinvent.gami.domain.entities.Collection;
 import com.wiinvent.gami.domain.entities.type.CollectionType;
 import com.wiinvent.gami.domain.entities.type.Status;
@@ -21,23 +20,26 @@ public class CollectionStorage extends BaseStorage {
 
   public void save(Collection collection) {
     collectionRepository.save(collection);
-    remoteCache.del(removeCacheKeys());
+    remoteCache.del(removeCacheKeys(collection));
   }
 
   public Page<Collection> findAll(CollectionType type, Status status, Pageable pageable) {
     return collectionRepository.findAll(collectionSpecification(type, status), pageable);
   }
 
-  public List<Collection> findCollectionByType() {
-    return collectionRepository.findCollectionByTypeAndStatus(CollectionType.COLLECTION, Status.ACTIVE);
+  public List<Collection> findCollectionByType(CollectionType collectionType) {
+    return collectionRepository.findCollectionByTypeAndStatus(collectionType, Status.ACTIVE);
   }
 
   public List<Collection> findAllCollectionByIdIn(List<Long> ids){
     return collectionRepository.findAllCollectionByIdIn(ids);
   }
-  public List<String> removeCacheKeys() {
+  public List<String> removeCacheKeys(Collection collection) {
     List<String> keys = new ArrayList<>();
     keys.add(cacheKey.genAllCollections());
+    keys.add(cacheKey.genCollectionById(collection.getId()));
+    keys.add(cacheKey.genListCollectionByTypeAndExternalId(collection.getType(), collection.getExternalId()));
+    keys.add(cacheKey.genListCollectionRemoveFindIn());
     return keys;
   }
 

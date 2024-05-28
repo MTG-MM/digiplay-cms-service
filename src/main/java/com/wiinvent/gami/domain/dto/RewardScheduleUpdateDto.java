@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 public class RewardScheduleUpdateDto {
 
   @Schema(description = "id")
-  private Integer id;
+  private Long id;
 
   @NotNull(message = "Loại khoảng thời gian không được để trống")
   @Schema(description = "Loại khoảng thời gian")

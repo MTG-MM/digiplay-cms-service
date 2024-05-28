@@ -1,9 +1,6 @@
 package com.wiinvent.gami.domain.utils;
 
-import com.wiinvent.gami.domain.entities.type.AchievementType;
-import com.wiinvent.gami.domain.entities.type.BannerType;
-import com.wiinvent.gami.domain.entities.type.ResourceType;
-import com.wiinvent.gami.domain.entities.type.Status;
+import com.wiinvent.gami.domain.entities.type.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -160,6 +157,26 @@ public class CacheKey {
 
   public String genAllCollections() {
     return redisPrefixKey + ":collection:all";
+  }
+
+  public String genCollectionById(Long id) {
+    return redisPrefixKey + ":collection:id:" + id;
+  }
+
+  public String genListCollectionByTypeAndExternalId(CollectionType collectionType, Long id) {
+    return redisPrefixKey + ":collection:type:" + collectionType + ":external:id:" + id;
+  }
+
+  public String genListCollectionByIdInAndType(List<Long> id, CollectionType collectionType) {
+    return redisPrefixKey + ":collection:id:" + id + ":type:" + collectionType;
+  }
+
+  public String genListCollectionRemoveFindIn() {
+    return redisPrefixKey + ":collection:remove:find:in";
+  }
+
+  public String genListRewardCollectionByUser(UUID userId) {
+    return redisPrefixKey + "collection:user:id:" + userId;
   }
   public String genCollectionUserByUserId(UUID userId) {
     return redisPrefixKey + ":collection:user:id:" + userId;

@@ -5,6 +5,11 @@ import com.wiinvent.gami.domain.entities.type.Status;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
+import java.util.List;
+import java.util.Map;
 
 @Entity
 @Table(name = "collection")
@@ -45,4 +50,9 @@ public class Collection extends BaseEntity{
 
   @Column(name = "lucky_point")
   private Long luckyPoint;
+
+  @Column(name = "collection_piece")
+  @JdbcTypeCode(SqlTypes.JSON)
+  private List<Long> collectionPieces;
+
 }

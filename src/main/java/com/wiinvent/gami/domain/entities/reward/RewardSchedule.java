@@ -1,8 +1,10 @@
 package com.wiinvent.gami.domain.entities.reward;
 
 import com.wiinvent.gami.domain.entities.type.PeriodType;
+import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.utils.DateUtils;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 @Table(name = "reward_schedule")
@@ -41,4 +43,9 @@ public class RewardSchedule {
 
   @Column(name = "updated_at")
   private Long updatedAt = DateUtils.getNowMillisAtUtc();
+
+  @Enumerated(EnumType.STRING)
+  @Column(name = "status", length = 30)
+  private Status status;
+
 }

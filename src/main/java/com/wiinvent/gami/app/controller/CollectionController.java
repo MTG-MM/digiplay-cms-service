@@ -45,9 +45,9 @@ public class CollectionController {
     return ResponseEntity.ok(collectionService.getCollectionDetail(id));
   }
 
-  @GetMapping("type/collect")
-  public ResponseEntity<List<CollectionInTypeResponse>> findCollectionInTypeCollection(){
-    return ResponseEntity.ok(collectionService.getCollectionsInTypeCollection());
+  @GetMapping("type/{type}")
+  public ResponseEntity<List<CollectionInTypeResponse>> findCollectionInTypeCollection(@PathVariable CollectionType type){
+    return ResponseEntity.ok(collectionService.getCollectionsInTypeCollection(type));
   }
 
   @PostMapping("")

@@ -2,11 +2,11 @@
 <Configuration>
   <Appenders>
     <Console name="Console" target="SYSTEM_OUT">
-      <PatternLayout pattern="%style{%d{dd/MM/yy HH:mm:ss}}{yellow} | %highlight{%-5level}{FATAL=bg_red, ERROR=red, WARN=yellow, INFO=green} | wiportal-cms-service | %replace{%mdc{userId}}{^$}{00000000-0000-0000-0000-000000000000} | %replace{%mdc{traceId}}{^$}{empty} | %replace{%mdc{spanId}}{^$}{empty} | %replace{%mdc{duration}}{^$}{0} | %style{%F}{blue}: %m%n"/>
+      <PatternLayout pattern="%style{%d{dd/MM/yy HH:mm:ss}}{yellow} | %highlight{%-5level}{FATAL=bg_red, ERROR=red, WARN=yellow, INFO=green} | wiportal_cms_service | %replace{%mdc{userId}}{^$}{00000000000000000000000000000000} | %replace{%mdc{traceId}}{^$}{empty} | %replace{%mdc{spanId}}{^$}{empty} | %replace{%mdc{duration}}{^$}{0} | %style{%F}{blue}: %m%n"/>
     </Console>
     <Socket name="Remote" host="${env:LOG_IP}" port="${env:LOG_PORT}" protocol="UDP">
       <PatternLayout
-              pattern="%d{dd/MM/yy HH:mm:ss} | %level | wiportal-cms-service | %replace{%mdc{userId}}{^$}{00000000-0000-0000-0000-000000000000} | %replace{%mdc{traceId}}{^$}{empty} | %replace{%mdc{spanId}}{^$}{empty} | %replace{%mdc{duration}}{^$}{0} | %F: %m"/>
+              pattern="%d{dd/MM/yy HH:mm:ss} | %level | wiportal_cms_service | %replace{%mdc{userId}}{^$}{00000000000000000000000000000000} | %replace{%mdc{traceId}}{^$}{empty} | %replace{%mdc{spanId}}{^$}{empty} | %replace{%mdc{duration}}{^$}{0} | %F: %m"/>
     </Socket>
   </Appenders>
   <Loggers>

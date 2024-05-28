@@ -47,10 +47,10 @@ public class RewardScheduleUpdateDto {
   private LocalDateTime endAt;
 
   public Long getEndAt() {
-    return DateUtils.timeToLongAtUtc(endAt);
+    return DateUtils.timeToLongAtVn(endAt);
   }
 
   public Long getStartAt() {
-    return DateUtils.timeToLongAtUtc(startAt);
+    return DateUtils.timeToLongAtVn(startAt);
   }
 }

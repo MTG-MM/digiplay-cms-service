@@ -18,8 +18,8 @@ public class CollectionUpdateDto {
   private Status status;
   @NotNull
   private Long luckyPoint;
-  @NotNull
-  @Size(max = 1, min = 1)
+//  @NotNull
+//  @Size(max = 1, min = 1)
   private List<UserRewardItems> rewardItems;
   @NotNull
   private List<UserRewardItems> collectionPiece;

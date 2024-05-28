@@ -11,7 +11,7 @@ import java.io.IOException;
 @Component
 @Log4j2
 public class ConfigStorage extends BaseStorage {
-  public void save(Config config) throws IOException {
+  public void save(Config config) {
     configRepository.save(config);
     remoteCache.put(cacheKey.genConfigKey(config.getKey()), config, Integer.MAX_VALUE);
   }

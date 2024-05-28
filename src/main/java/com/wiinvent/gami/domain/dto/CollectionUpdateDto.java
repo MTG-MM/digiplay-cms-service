@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -20,8 +21,8 @@ public class CollectionUpdateDto {
   private Long luckyPoint;
 //  @NotNull
 //  @Size(max = 1, min = 1)
-  private List<UserRewardItems> rewardItems;
-  @NotNull
-  private List<UserRewardItems> collectionPiece;
+  private List<UserRewardItems> rewardItems = new ArrayList<>();
+//  @NotNull
+  private List<UserRewardItems> collectionPiece = new ArrayList<>();
 
 }

@@ -2,10 +2,10 @@ package com.wiinvent.gami.domain.response;
 
 import com.wiinvent.gami.domain.entities.type.State;
 import com.wiinvent.gami.domain.entities.type.Status;
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
+import com.wiinvent.gami.domain.entities.type.UserType;
 import lombok.Data;
 
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -65,5 +65,7 @@ public class UserResponse {
 
   private Long expUpLevel;
 
-  private Long pointRemained;
+  private Long pointUpLevel;
+
+  private List<UserType> userTypes;
 }

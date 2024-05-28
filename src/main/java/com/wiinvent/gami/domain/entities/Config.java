@@ -15,12 +15,10 @@ public class Config extends BaseEntity {
   @Column(name = "id", nullable = false)
   private Integer id;
 
-  @Size(max = 50)
-  @Column(name = "key", length = 50)
+  @Column(name = "config_key")
   private String key;
 
-  @Size(max = 1000)
-  @Column(name = "value", length = 1000)
+  @Column(name = "value")
   private String value;
 
 }

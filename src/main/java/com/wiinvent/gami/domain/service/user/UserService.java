@@ -1,6 +1,5 @@
 package com.wiinvent.gami.domain.service.user;
 
-import com.wiinvent.gami.domain.entities.PackageType;
 import com.wiinvent.gami.domain.entities.PremiumState;
 import com.wiinvent.gami.domain.entities.SubState;
 import com.wiinvent.gami.domain.entities.user.*;
@@ -70,7 +69,7 @@ public class UserService extends BaseService {
       userResponse.setPointBonusRate(currentUserSegment.getPointBonusRate());
       userResponse.setPointLimit(currentUserSegment.getPointLimit());
     }
-    UserSubStatusInfo statusInfo = checkSubStatus(user, currentUserSegment);
+    UserSubStatusInfo statusInfo = checkSubStatus(user);
     int limitPoint = currentUserSegment.getPointLimit();
     if (Boolean.TRUE.equals(statusInfo.getIsPremium())){
       limitPoint = currentUserSegment.getPointLimit() + currentUserSegment.getExtendPoint();
@@ -78,7 +77,8 @@ public class UserService extends BaseService {
     if (Boolean.TRUE.equals(statusInfo.getIsSub())){
       limitPoint = limitPoint + (limitPoint * currentUserSegment.getSubBonusRate()) / 100;
     }
-    userResponse.setPointRemained(Math.max(limitPoint - userResponse.getPoint(), 0));
+    userResponse.setPointUpLevel(Math.max(limitPoint - userResponse.getPoint(), 0));
+    userResponse.setUserTypes(statusInfo.getUserTypes());
     UserSegment nextUserSegment = userSegmentStorage.findNextLevel(currentUserSegment.getLevel());
     if (Objects.nonNull(nextUserSegment)) {
       userResponse.setExpUpLevel(nextUserSegment.getRequireExp() - userResponse.getExp());
@@ -86,7 +86,7 @@ public class UserService extends BaseService {
     return userResponse;
   }
 
-  public UserSubStatusInfo checkSubStatus(User user, UserSegment userSegment) {
+  public UserSubStatusInfo checkSubStatus(User user) {
     Long nowAtUtc = DateUtils.getNowMillisAtUtc();
     PremiumState premiumState;
     SubState subState;

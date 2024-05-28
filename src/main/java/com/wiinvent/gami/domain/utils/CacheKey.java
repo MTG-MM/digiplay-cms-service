@@ -199,7 +199,7 @@ public class CacheKey {
   }
 
   public String genConfigKey(String key) {
-    return redisPrefixKey.trim() + ":cf:" + key;
+    return redisPrefixKey.trim() + ":config:" + key;
   }
 
   public String getTopChartGame(Integer typeId, int pageNumber) {

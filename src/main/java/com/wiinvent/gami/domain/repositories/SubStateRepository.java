@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 @Repository
 public interface SubStateRepository extends JpaRepository<SubState, UUID> {
-  List<SubState> findBySubStateAndUserIdInAndEndAtGreaterThan(PackageStateType type, List<UUID> userId, Long endAtNow);
+  SubState findBySubStateAndUserIdAndEndAtGreaterThan(PackageStateType type, UUID userId, Long endAtNow);
 
   SubState findSubStateByPackageId(Integer id);
 }

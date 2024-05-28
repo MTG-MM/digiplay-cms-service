@@ -28,7 +28,7 @@ public class StatisticUserResponse {
       }
       daily = statisticUser.getDate().toString();
       dailyActiveUser = statisticUser.getDailyActiveUser();
-      monthlyActiveUser = statisticUser.getMonthActiveUser();
+      monthlyActiveUser = statisticUser.getMonthlyActiveUser();
       newRegisterUser = statisticUser.getNewRegisterUser();
       revenuePerUser = statisticUser.getRevenuePerUser();
       revenuePerPaidUser = statisticUser.getRevenuePerPaidUser();
@@ -48,7 +48,9 @@ public class StatisticUserResponse {
 
   public void addStatistic(StatisticDaily statisticDaily) {
     statisticTotal.dailyActiveUser += statisticDaily.getDailyActiveUser();
-    statisticTotal.monthlyActiveUser += statisticDaily.getMonthlyActiveUser();
+    if (statisticDaily.monthlyActiveUser > statisticTotal.monthlyActiveUser) {
+      statisticTotal.monthlyActiveUser = statisticDaily.monthlyActiveUser;
+    }
     statisticTotal.newRegisterUser += statisticDaily.getNewRegisterUser();
     statisticTotal.revenuePerUser += statisticDaily.getRevenuePerUser();
     statisticTotal.revenuePerPaidUser += statisticDaily.getRevenuePerPaidUser();

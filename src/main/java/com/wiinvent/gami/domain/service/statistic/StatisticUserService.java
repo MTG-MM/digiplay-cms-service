@@ -40,7 +40,7 @@ public class StatisticUserService extends BaseService {
     }
 
     Integer nru = userStorage.countNewRegisterUser(millisStartToday, millisEndToday);
-    Integer dau = userStorage.countDailyActiveUser(millisStartToday, millisEndToday);
+    Integer dau = userStorage.countDailyActiveUser(dateNow);
     Integer mau = userStorage.countMonthlyActiveUser(dateNow);
     Integer paidUser = packageHistoryStorage.countTotalPaidUser(millisStartToday, millisEndToday);
     Long totalRevenue = packageHistoryStorage.countTotalRevenue(millisStartToday, millisEndToday);
@@ -49,7 +49,7 @@ public class StatisticUserService extends BaseService {
 
     statisticUser.setNewRegisterUser(nru == null ? 0 : nru);
     statisticUser.setDailyActiveUser(dau);
-    statisticUser.setMonthActiveUser(mau == null ? 0 : mau);
+    statisticUser.setMonthlyActiveUser(mau == null ? 0 : mau);
     statisticUser.setPaidUser(paidUser);
     statisticUser.setRevenuePerUser(revenuePerUser);
     statisticUser.setRevenuePerPaidUser(revenuePerPaidUser);
@@ -74,7 +74,7 @@ public class StatisticUserService extends BaseService {
       }
 
       Integer nru = userStorage.countNewRegisterUser(millisStartToday, millisEndToday);
-      Integer dau = userStorage.countDailyActiveUser(millisStartToday, millisEndToday);
+      Integer dau = userStorage.countDailyActiveUser(dateNow);
       Integer mau = userStorage.countMonthlyActiveUser(dateNow);
       Integer paidUser = packageHistoryStorage.countTotalPaidUser(millisStartToday, millisEndToday);
       Long totalRevenue = packageHistoryStorage.countTotalRevenue(millisStartToday, millisEndToday);
@@ -83,7 +83,7 @@ public class StatisticUserService extends BaseService {
 
       statisticUser.setNewRegisterUser(nru == null ? 0 : nru);
       statisticUser.setDailyActiveUser(dau);
-      statisticUser.setMonthActiveUser(mau == null ? 0 : mau);
+      statisticUser.setMonthlyActiveUser(mau == null ? 0 : mau);
       statisticUser.setPaidUser(paidUser);
       statisticUser.setRevenuePerUser(revenuePerUser);
       statisticUser.setRevenuePerPaidUser(revenuePerPaidUser);

@@ -43,11 +43,9 @@ public class UserResponse {
 //  private Boolean isPhoneNumberVerify;
   private String gender;
 
-  private Integer level = 0;
+  private Integer level;
 
   private Integer turn;
-
-  private Long rank;
 
   private Long createdAt;
 
@@ -66,4 +64,6 @@ public class UserResponse {
   private Integer pointLimit;
 
   private Long expUpLevel;
+
+  private Long pointRemained;
 }

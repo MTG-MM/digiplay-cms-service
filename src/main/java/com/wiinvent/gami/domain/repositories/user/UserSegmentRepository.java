@@ -11,7 +11,7 @@ import java.util.List;
 public interface UserSegmentRepository extends JpaRepository<UserSegment, Long> {
 
   List<UserSegment> findByIsDefault(Boolean isDefault);
-  UserSegment findFirstByLevelGreaterThanOrderByLevel(Integer level);
+  UserSegment findFirstByLevelGreaterThanOrderByLevelAsc(Integer level);
   UserSegment findUserSegmentByLevel(Integer level);
   List<UserSegment> findUserSegmentsByStatusIn(List<Status> statuses);
 }

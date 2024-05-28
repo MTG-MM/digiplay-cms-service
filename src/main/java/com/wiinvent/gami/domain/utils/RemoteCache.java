@@ -37,6 +37,16 @@ public class RemoteCache {
   @Qualifier("redisson")
   private RedissonClient redissonClient;
 
+  public long pfCount(String key){
+    try{
+      RHyperLogLog<String> hp = redissonClient.getHyperLogLog(key);
+      return hp.count();
+    }catch (Exception e){
+      log.error(e.getMessage());
+      return 0;
+    }
+  }
+
   public long pfMergeCount(List<String> keys){
     try{
       if(!keys.isEmpty()){

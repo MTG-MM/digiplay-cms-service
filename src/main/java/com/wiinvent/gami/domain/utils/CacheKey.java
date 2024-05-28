@@ -17,6 +17,10 @@ public class CacheKey {
   @Value("${redis.prefix-key-vt-game}")
   public String redisPrefixKey;
 
+  public String genDallyLoginUser(LocalDate localDate) {
+    return redisPrefixKey + ":user:daily:login:" + localDate;
+  }
+
   public String getPeriodTypeByUser(UUID userId, Long rewardSegmentId, Long rewardItemId) {
     return redisPrefixKey + ":u:" + userId + ":rws:" + rewardSegmentId + ":rwi:" + rewardItemId;
   }

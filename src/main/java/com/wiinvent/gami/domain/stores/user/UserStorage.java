@@ -3,6 +3,7 @@ package com.wiinvent.gami.domain.stores.user;
 import com.wiinvent.gami.domain.entities.user.User;
 import com.wiinvent.gami.domain.response.type.CursorType;
 import com.wiinvent.gami.domain.stores.BaseStorage;
+import com.wiinvent.gami.domain.utils.CacheKey;
 import com.wiinvent.gami.domain.utils.Constants;
 import com.wiinvent.gami.domain.utils.DateUtils;
 import jakarta.persistence.TypedQuery;
@@ -106,18 +107,16 @@ public class UserStorage extends BaseStorage {
     return userRepository.countUserByCreatedAtBetween(start, end);
   }
 
-  public Integer countDailyActiveUser(Long start, Long end) {
-    return userRepository.countUserByLastLoginBetween(start, end);
+  public Integer countDailyActiveUser(LocalDate dateNow) {
+    return Math.toIntExact(remoteCache.pfCount(cacheKey.genDallyLoginUser(dateNow)));
   }
 
   public Integer countMonthlyActiveUser(LocalDate dateNow) {
     LocalDate firstDayOfMonth = DateUtils.getFirstDayOfMonth(dateNow);
-    Integer countUser = 0;
+    List<String> keys = new ArrayList<>();
     for (LocalDate date = firstDayOfMonth; !date.isAfter(dateNow); date = date.plusDays(1)) {
-      Long start = DateUtils.getStartOfDay(date);
-      Long end = DateUtils.getEndOfDay(date);
-      countUser += userRepository.countUserByLastLoginBetween(start, end);
+      keys.add(cacheKey.genDallyLoginUser(date));
     }
-    return countUser;
+    return Math.toIntExact(remoteCache.pfMergeCount(keys));
   }
 }

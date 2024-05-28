@@ -22,8 +22,8 @@ public class StatisticUser extends BaseEntity {
   @Column(name = "daily_active_user")
   private Integer dailyActiveUser;
 
-  @Column(name = "month_active_user")
-  private Integer monthActiveUser;
+  @Column(name = "monthly_active_user")
+  private Integer monthlyActiveUser;
 
   @Column(name = "new_register_user")
   private Integer newRegisterUser;

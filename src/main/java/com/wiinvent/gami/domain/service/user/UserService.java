@@ -2,6 +2,7 @@ package com.wiinvent.gami.domain.service.user;
 
 import com.wiinvent.gami.domain.entities.PremiumState;
 import com.wiinvent.gami.domain.entities.SubState;
+import com.wiinvent.gami.domain.entities.type.ProductPackageType;
 import com.wiinvent.gami.domain.entities.user.*;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.pojo.UserSubStatusInfo;
@@ -71,10 +72,10 @@ public class UserService extends BaseService {
     }
     UserSubStatusInfo statusInfo = checkSubStatus(userResponse);
     int limitPoint = currentUserSegment.getPointLimit();
-    if (Boolean.TRUE.equals(statusInfo.getIsPremium())){
+    if (Boolean.TRUE.equals(statusInfo.getIsPremium())) {
       limitPoint = currentUserSegment.getPointLimit() + currentUserSegment.getExtendPoint();
     }
-    if (Boolean.TRUE.equals(statusInfo.getIsSub())){
+    if (Boolean.TRUE.equals(statusInfo.getIsSub())) {
       limitPoint = limitPoint + (limitPoint * currentUserSegment.getSubBonusRate()) / 100;
     }
     userResponse.setPointUpLevel(Math.max(limitPoint - userResponse.getPoint(), 0));
@@ -123,27 +124,34 @@ public class UserService extends BaseService {
   }
 
   public PageCursorResponse<UserResponse> getPageUser
-      (UUID userId, String displayName, String phoneNumber, Integer level, Long next, Long pre, Integer limit, LocalDate startDate, LocalDate endDate) {
+      (UUID userId, String displayName, String phoneNumber, Integer level, ProductPackageType packageType, Long next, Long pre, Integer limit, LocalDate startDate, LocalDate endDate) {
     Long startDateLong = null;
     Long endDateLong = null;
     if (Objects.nonNull(startDate)) startDateLong = Helper.startOfDaytoLong(startDate);
     if (Objects.nonNull(endDate)) endDateLong = Helper.endOfDaytoLong(endDate);
-    List<User> users = new ArrayList<>();
     userId = checkUserId(userId, displayName, phoneNumber);
     long segmentId = checkSegmentId(level);
+    Long endSub = null;
+    Long endPremium = null;
+    if (Objects.equals(packageType, ProductPackageType.SUB)) {
+      endSub = DateUtils.getNowMillisAtVn();
+    } else if (Objects.equals(packageType, ProductPackageType.PREMIUM)) {
+      endPremium = DateUtils.getNowMillisAtVn();
+    }
+    List<User> users = new ArrayList<>();
     CursorType type = CursorType.FIRST;
     if (next == null && pre == null) {
       next = Helper.getNowMillisAtUtc();
       pre = 0L;
-      users = userStorage.findAllUser(userId, segmentId, next, pre, limit, startDateLong, endDateLong, type);
+      users = userStorage.findAllUser(userId, segmentId, endSub, endPremium, next, pre, limit, startDateLong, endDateLong, type);
     } else if (pre == null) {
       type = CursorType.NEXT;
       pre = 0L;
-      users = userStorage.findAllUser(userId, segmentId, next, pre, limit, startDateLong, endDateLong, type);
+      users = userStorage.findAllUser(userId, segmentId, endSub, endPremium, next, pre, limit, startDateLong, endDateLong, type);
     } else if (next == null) {
       type = CursorType.PRE;
       next = Helper.getNowMillisAtUtc();
-      users = userStorage.findAllUser(userId, segmentId, next, pre, limit, startDateLong, endDateLong, type);
+      users = userStorage.findAllUser(userId, segmentId, endSub, endPremium, next, pre, limit, startDateLong, endDateLong, type);
       users = users.stream().sorted(Comparator.comparingLong(User::getCreatedAt).reversed()).toList();
     }
     List<UUID> userIds = users.stream().map(User::getId).toList();

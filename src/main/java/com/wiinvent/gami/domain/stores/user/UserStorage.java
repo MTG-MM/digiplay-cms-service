@@ -71,7 +71,7 @@ public class UserStorage extends BaseStorage {
   }
 
   public List<User> findAllUser
-      (UUID userId, Long segmentId, Long next, Long pre, Integer limit, Long startDate, Long endDate, CursorType type){
+      (UUID userId, Long segmentId, Long endSub, Long endPremium, Long next, Long pre, Integer limit, Long startDate, Long endDate, CursorType type){
     CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
     CriteriaQuery<User> query = criteriaBuilder.createQuery(User.class);
     Root<User> root = query.from(User.class);
@@ -81,6 +81,12 @@ public class UserStorage extends BaseStorage {
     }
     if (segmentId != null){
       conditionList.add(criteriaBuilder.equal(root.get("userSegmentId"), segmentId));
+    }
+    if (endSub != null){
+      conditionList.add(criteriaBuilder.lessThan(root.get("endSub"), endSub));
+    }
+    if (endPremium != null){
+      conditionList.add(criteriaBuilder.lessThan(root.get("endPremium"), endSub));
     }
     if (startDate != null && endDate != null){
       conditionList.add(criteriaBuilder.and(criteriaBuilder.greaterThanOrEqualTo(root.get("createdAt"), startDate),

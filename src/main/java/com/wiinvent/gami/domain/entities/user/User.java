@@ -47,6 +47,12 @@ public class User extends BaseEntity {
   @Column(name = "lucky_point")
   private Integer luckyPoint;
 
+  @Column(name = "end_sub")
+  private Long endSub;
+
+  @Column(name = "end_premium")
+  private Long endPremium;
+
 //  @Size(max = 50)
 //  @Column(name = "level", length = 50)
 //  private String level;

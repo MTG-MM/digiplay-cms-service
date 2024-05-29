@@ -16,7 +16,7 @@ public class UserProfileStorage extends BaseStorage {
     return userProfileRepository.findAllByIdIn(ids);
   }
 
-  public UserProfile findByDisplayName(String displayName){
+  public List<UserProfile> findByDisplayName(String displayName){
     return userProfileRepository.findByDisplayName(displayName);
   }
 

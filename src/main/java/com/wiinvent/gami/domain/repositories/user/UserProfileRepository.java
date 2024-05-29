@@ -11,7 +11,7 @@ import java.util.UUID;
 public interface UserProfileRepository extends JpaRepository<UserProfile, UUID> {
   List<UserProfile> findAllByIdIn(List<UUID> ids);
 
-  UserProfile findByDisplayName(String displayName);
+  List<UserProfile> findByDisplayName(String displayName);
 
   UserProfile findByPhoneNumber(String phoneNumber);
 }

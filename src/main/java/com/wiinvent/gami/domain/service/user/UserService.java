@@ -98,9 +98,9 @@ public class UserService extends BaseService {
 
   public UUID checkUserId(UUID userId, String displayName, String phoneNumber) {
     if (Objects.nonNull(displayName)) {
-      UserProfile userProfile = userProfileStorage.findByDisplayName(displayName);
+      List<UserProfile> userProfile = userProfileStorage.findByDisplayName(displayName);
       if (Objects.nonNull(userProfile)) {
-        userId = userProfile.getId();
+        userId = userProfile.getFirst().getId();
       }
     }
     if (Objects.nonNull(phoneNumber)) {
@@ -130,7 +130,7 @@ public class UserService extends BaseService {
     if (Objects.nonNull(startDate)) startDateLong = Helper.startOfDaytoLong(startDate);
     if (Objects.nonNull(endDate)) endDateLong = Helper.endOfDaytoLong(endDate);
     userId = checkUserId(userId, displayName, phoneNumber);
-    long segmentId = checkSegmentId(level);
+    Long segmentId = checkSegmentId(level);
     Long endSub = null;
     Long endPremium = null;
     if (Objects.equals(packageType, ProductPackageType.SUB)) {

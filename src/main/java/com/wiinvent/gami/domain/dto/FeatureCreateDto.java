@@ -2,6 +2,7 @@ package com.wiinvent.gami.domain.dto;
 
 import com.wiinvent.gami.domain.entities.type.FeatureCode;
 import com.wiinvent.gami.domain.entities.type.Status;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -11,6 +12,7 @@ public class FeatureCreateDto {
   private String name;
 
   @NotNull(message = "Không được để trống")
+  @Min(0)
   private Integer levelUnlock;
 
   @NotNull(message = "Không được để trống")

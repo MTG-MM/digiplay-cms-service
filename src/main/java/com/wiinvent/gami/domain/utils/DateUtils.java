@@ -20,10 +20,6 @@ public class DateUtils {
     return LocalDateTime.now(ZoneId.of(ZONE_UTC)).toInstant(ZoneOffset.UTC).toEpochMilli();
   }
 
-  public static Long getNowMillisAtVn() {
-    return LocalDateTime.now(ZoneId.of(ZONE_VN)).toInstant(ZoneOffset.ofHours(7)).toEpochMilli();
-  }
-
   public static LocalDate nowDate() {
     return LocalDate.now(ZoneId.of(ZONE_VN));
   }

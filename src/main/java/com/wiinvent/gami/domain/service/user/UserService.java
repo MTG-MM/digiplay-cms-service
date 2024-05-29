@@ -134,9 +134,9 @@ public class UserService extends BaseService {
     Long endSub = null;
     Long endPremium = null;
     if (Objects.equals(packageType, ProductPackageType.SUB)) {
-      endSub = DateUtils.getNowMillisAtVn();
+      endSub = DateUtils.getNowMillisAtUtc();
     } else if (Objects.equals(packageType, ProductPackageType.PREMIUM)) {
-      endPremium = DateUtils.getNowMillisAtVn();
+      endPremium = DateUtils.getNowMillisAtUtc();
     }
     List<User> users = new ArrayList<>();
     CursorType type = CursorType.FIRST;

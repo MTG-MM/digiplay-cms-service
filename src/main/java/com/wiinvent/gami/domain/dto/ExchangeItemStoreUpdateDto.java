@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.utils.DateUtils;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -16,10 +17,13 @@ import java.time.LocalDateTime;
 public class ExchangeItemStoreUpdateDto {
   private String name;
   @NotNull
+  @Min(0)
   private Integer coinPrice;
   @NotNull
+  @Min(0)
   private Integer pointPrice;
   @NotNull
+  @Min(0)
   private Integer ticketPrice;
   @Getter(AccessLevel.NONE)
   @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -32,6 +36,7 @@ public class ExchangeItemStoreUpdateDto {
   private LocalDateTime endAt;
   @NotNull
   private Status status;
+  @Min(0)
   private Long limitExchange;
 
   public Long getEndAt() {return DateUtils.timeToLongAtVn(endAt);}

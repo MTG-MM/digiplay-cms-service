@@ -33,6 +33,8 @@ public class RewardSegmentResponse {
 
   private Integer turnRequirement;
 
+  private Integer totalRequirement;
+
   @Schema(description = "Có tích luỹ ưu tiên hay không")
   private Boolean isAccumulativePriority;
 

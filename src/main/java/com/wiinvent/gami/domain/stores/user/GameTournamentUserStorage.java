@@ -6,8 +6,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @Component
 public class GameTournamentUserStorage extends BaseStorage {
   public Page<GameTournamentUserResponse> getAllOrderByCoin(String id, String name, Pageable pageable){

@@ -44,9 +44,18 @@ public class StatisticUserService extends BaseService {
     Integer mau = userStorage.countMonthlyActiveUser(dateNow);
     Integer paidUser = packageHistoryStorage.countTotalPaidUser(millisStartToday, millisEndToday);
     Long totalRevenue = packageHistoryStorage.countTotalRevenue(millisStartToday, millisEndToday);
-    Long revenuePerUser = totalRevenue % dau;
-    Long revenuePerPaidUser = totalRevenue % paidUser;
+    paidUser = (paidUser != null) ? paidUser : 1;
+    totalRevenue = (totalRevenue != null) ? totalRevenue : 0L;
 
+    long revenuePerUser = 0L;
+    long revenuePerPaidUser = 0L;
+
+    if (dau != 0) {
+      revenuePerUser = totalRevenue / dau;
+    }
+    if (paidUser != 0) {
+      revenuePerPaidUser = totalRevenue / paidUser;
+    }
     statisticUser.setNewRegisterUser(nru == null ? 0 : nru);
     statisticUser.setDailyActiveUser(dau);
     statisticUser.setMonthlyActiveUser(mau == null ? 0 : mau);
@@ -78,8 +87,18 @@ public class StatisticUserService extends BaseService {
       Integer mau = userStorage.countMonthlyActiveUser(dateNow);
       Integer paidUser = packageHistoryStorage.countTotalPaidUser(millisStartToday, millisEndToday);
       Long totalRevenue = packageHistoryStorage.countTotalRevenue(millisStartToday, millisEndToday);
-      Long revenuePerUser = totalRevenue % dau;
-      Long revenuePerPaidUser = totalRevenue % paidUser;
+      paidUser = (paidUser != null) ? paidUser : 1;
+      totalRevenue = (totalRevenue != null) ? totalRevenue : 0L;
+
+      long revenuePerUser = 0L;
+      long revenuePerPaidUser = 0L;
+
+      if (dau != 0) {
+        revenuePerUser = totalRevenue / dau;
+      }
+      if (paidUser != 0) {
+        revenuePerPaidUser = totalRevenue / paidUser;
+      }
 
       statisticUser.setNewRegisterUser(nru == null ? 0 : nru);
       statisticUser.setDailyActiveUser(dau);

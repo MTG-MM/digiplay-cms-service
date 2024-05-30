@@ -30,7 +30,9 @@ public class RewardSegmentDto {
 
   @Min(0)
   private Integer pointRequirement = 0;
-  private Integer ticketRequirement;
+
+  @Min(0)
+  private Integer ticketRequirement = 0;
 
 
   @Min(0)

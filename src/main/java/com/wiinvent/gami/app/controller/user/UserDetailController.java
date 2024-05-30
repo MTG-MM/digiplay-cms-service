@@ -1,4 +1,4 @@
-package com.wiinvent.gami.app.controller.user.transaction;
+package com.wiinvent.gami.app.controller.user;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.wiinvent.gami.domain.entities.type.QuestStatusType;

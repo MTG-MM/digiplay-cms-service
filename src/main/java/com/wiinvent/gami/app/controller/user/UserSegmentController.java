@@ -8,6 +8,7 @@ import com.wiinvent.gami.domain.service.user.UserSegmentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springdoc.core.converters.models.PageableAsQueryParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -52,7 +53,7 @@ public class UserSegmentController {
 
   @PutMapping("{segmentId}")
   @Operation(summary = "Sửa level")
-  public ResponseEntity<Boolean> updateUserSegment(@PathVariable long segmentId, @RequestBody UserSegmentUpdateDto userSegmentUpdateDto){
+  public ResponseEntity<Boolean> updateUserSegment(@PathVariable long segmentId, @RequestBody @Valid UserSegmentUpdateDto userSegmentUpdateDto){
     userSegmentService.updateUserSegment(segmentId, userSegmentUpdateDto);
     return ResponseEntity.ok(true);
   }

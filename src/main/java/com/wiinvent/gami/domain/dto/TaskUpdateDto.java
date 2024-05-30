@@ -6,7 +6,6 @@ import com.wiinvent.gami.domain.pojo.UserRewardItems;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import lombok.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;

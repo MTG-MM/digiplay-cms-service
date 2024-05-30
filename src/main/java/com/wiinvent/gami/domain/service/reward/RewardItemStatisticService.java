@@ -80,10 +80,12 @@ public class RewardItemStatisticService extends BaseService {
     rewardItemStatisticStorage.save(rewardItemStatistic);
   }
 
-  public List<ListRwSegmentStatisticResponse> statisticTotal(LocalDate gte, LocalDate lte) {
+  public List<ListRwSegmentStatisticResponse> statisticTotal(String startDate, String endDate) {
+    LocalDate start = DateUtils.convertStringToLocalDate(startDate);
+    LocalDate end = DateUtils.convertStringToLocalDate(endDate);
     List<ListRwSegmentStatisticResponse> rwSegmentStatisticResponses = new ArrayList<>();
 
-    List<RewardItemStatistic> rewardItemStatistics = rewardItemStatisticStorage.findByGteAndLte(gte, lte);
+    List<RewardItemStatistic> rewardItemStatistics = rewardItemStatisticStorage.findByGteAndLte(start, end);
 
     Map<Long, List<RewardItemStatistic>> groupRwSegmentMap = rewardItemStatistics.stream().collect
         (Collectors.groupingBy(RewardItemStatistic::getRewardSegmentId));
@@ -91,7 +93,7 @@ public class RewardItemStatisticService extends BaseService {
     for (Map.Entry<Long, List<RewardItemStatistic>> segmentEntry : groupRwSegmentMap.entrySet()) {
       ListRwSegmentStatisticResponse statisticResponse = new ListRwSegmentStatisticResponse();
       statisticResponse.setRwSegmentId(segmentEntry.getKey());
-      statisticResponse.setRwItemList(getRewardItemStatistic(segmentEntry.getKey(), gte, lte));
+      statisticResponse.setRwItemList(getRewardItemStatistic(segmentEntry.getKey(), start, end));
       rwSegmentStatisticResponses.add(statisticResponse);
     }
     return rwSegmentStatisticResponses;

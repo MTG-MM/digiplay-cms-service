@@ -89,4 +89,6 @@ public abstract class BaseStorage {
   @Autowired protected StatisticUserRepository statisticUserRepository;
   @Autowired protected StatisticSubRepository statisticSubRepository;
   @Autowired protected StatisticCheckpointRepository statisticCheckpointRepository;
+  @Autowired protected UserGoldPigRepository userGoldPigRepository;
+  @Autowired protected TaskUserRepository taskUserRepository;
 }

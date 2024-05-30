@@ -34,8 +34,7 @@ public class PackageHistory extends BaseEntity {
   @Column(name = "package_code", nullable = false, length = 20)
   private String packageCode;
 
-  @Size(max = 500)
-  @Column(name = "package_info", length = 500)
+  @Column(name = "package_info")
   @Convert(converter = PackageInfoConverter.class)
   private PackageInfo packageInfo;
 

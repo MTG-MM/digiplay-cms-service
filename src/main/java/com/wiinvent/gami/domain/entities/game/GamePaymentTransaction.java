@@ -2,6 +2,9 @@ package com.wiinvent.gami.domain.entities.game;
 
 import com.wiinvent.gami.domain.entities.BaseEntity;
 import com.wiinvent.gami.domain.entities.type.PaymentStatusType;
+import com.wiinvent.gami.domain.pojo.GamePackageInfo;
+import com.wiinvent.gami.domain.utils.Converter.GamePackageInfoConverter;
+import com.wiinvent.gami.domain.utils.Converter.PackageInfoConverter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -49,9 +52,9 @@ public class GamePaymentTransaction extends BaseEntity {
   @Column(name = "payment_status")
   private PaymentStatusType paymentStatus;
 
-  @Size(max = 500)
-  @Column(name = "package_info", length = 500)
-  private String packageInfo;
+  @Column(name = "package_info")
+  @Convert(converter = GamePackageInfoConverter.class)
+  private GamePackageInfo packageInfo;
 
   @Column(name = "price")
   private Integer price;

@@ -2,8 +2,8 @@ package com.wiinvent.gami.domain.entities.user;
 
 import com.wiinvent.gami.domain.entities.BaseEntity;
 import com.wiinvent.gami.domain.entities.type.Status;
-import com.wiinvent.gami.domain.pojo.UserSegmentRewardItems;
-import com.wiinvent.gami.domain.utils.Converter.UserSegmentRewardItemConverter;
+import com.wiinvent.gami.domain.pojo.UserRewardItems;
+import com.wiinvent.gami.domain.utils.Converter.UserRewardItemConverter;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -35,8 +35,8 @@ public class UserSegment extends BaseEntity {
   private Integer level;
 
   @Column(name = "reward_items")
-  @Convert(converter = UserSegmentRewardItemConverter.class)
-  private List<UserSegmentRewardItems> rewardItems;
+  @Convert(converter = UserRewardItemConverter.class)
+  private List<UserRewardItems> rewardItems;
 
   @Column(name = "require_exp")
   private Integer requireExp;

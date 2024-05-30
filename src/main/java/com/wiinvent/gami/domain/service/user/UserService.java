@@ -2,7 +2,7 @@ package com.wiinvent.gami.domain.service.user;
 
 import com.wiinvent.gami.domain.entities.PremiumState;
 import com.wiinvent.gami.domain.entities.SubState;
-import com.wiinvent.gami.domain.entities.type.ProductPackageType;
+import com.wiinvent.gami.domain.entities.type.UserType;
 import com.wiinvent.gami.domain.entities.user.*;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.pojo.UserSubStatusInfo;
@@ -67,6 +67,7 @@ public class UserService extends BaseService {
     //segment
     if (Objects.nonNull(currentUserSegment)) {
       userResponse.setLevel(currentUserSegment.getLevel());
+      userResponse.setLevelName(currentUserSegment.getName());
       userResponse.setPointBonusRate(currentUserSegment.getPointBonusRate());
       userResponse.setPointLimit(currentUserSegment.getPointLimit());
     }
@@ -127,7 +128,7 @@ public class UserService extends BaseService {
   }
 
   public PageCursorResponse<UserResponse> getPageUser
-      (UUID userId, String displayName, String phoneNumber, Integer level, ProductPackageType packageType, Long next, Long pre, Integer limit, LocalDate startDate, LocalDate endDate) {
+      (UUID userId, String displayName, String phoneNumber, Integer level, UserType userType, Long next, Long pre, Integer limit, LocalDate startDate, LocalDate endDate) {
     Long startDateLong = null;
     Long endDateLong = null;
     List<UUID> userIds = new ArrayList<>();
@@ -140,9 +141,9 @@ public class UserService extends BaseService {
     Long segmentId = checkSegmentId(level);
     Long endSub = null;
     Long endPremium = null;
-    if (Objects.equals(packageType, ProductPackageType.SUB)) {
+    if (Objects.equals(userType, UserType.SUB)) {
       endSub = DateUtils.getNowMillisAtUtc();
-    } else if (Objects.equals(packageType, ProductPackageType.PREMIUM)) {
+    } else if (Objects.equals(userType, UserType.PREMIUM)) {
       endPremium = DateUtils.getNowMillisAtUtc();
     }
     List<User> users = new ArrayList<>();
@@ -165,11 +166,15 @@ public class UserService extends BaseService {
     //profile
     List<UserProfile> userProfiles = userProfileStorage.findAllByIdIn(userIdList);
     Map<UUID, UserProfile> userProfileMap = userProfiles.stream().collect(Collectors.toMap(UserProfile::getId, Function.identity()));
+
+    List<UserSegment> userSegments = userSegmentStorage.findByIdIn(users.stream().map(User::getUserSegmentId).toList());
+    Map<Long, UserSegment> userSegmentMap = userSegments.stream().collect(Collectors.toMap(UserSegment::getId, Function.identity()));
     //user account
     List<UserAccount> userAccounts = userAccountStorage.findUserAccountsByIdIn(userIdList);
     Map<UUID, UserAccount> uuidUserAccountMap = userAccounts.stream()
         .collect(Collectors.toMap(UserAccount::getId, Function.identity()));
     userAccounts.clear();
+
     //response
     List<UserResponse> userResponses = modelMapper.toListUserResponse(users);
     userResponses.forEach(r -> {
@@ -184,6 +189,9 @@ public class UserService extends BaseService {
       r.setState(uuidUserAccountMap.get(r.getId()).getState());
       r.setStatus(uuidUserAccountMap.get(r.getId()).getStatus());
       r.setUserTypes(checkSubStatus(r).getUserTypes());
+
+      r.setLevel(userSegmentMap.get(r.getUserSegmentId()).getLevel());
+      r.setLevelName(userSegmentMap.get(r.getUserSegmentId()).getName());
     });
     return new PageCursorResponse<>(userResponses, limit, type, Constants.CREATED_AT_VARIABLE);
   }

@@ -11,5 +11,4 @@ public class InternalSubRequestDto {
   private String packageCode;
   private String transactionId;
   private Long startAt;
-  private Long endAt;
 }

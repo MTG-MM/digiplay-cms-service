@@ -14,4 +14,6 @@ public interface UserSegmentRepository extends JpaRepository<UserSegment, Long> 
   UserSegment findFirstByLevelGreaterThanOrderByLevelAsc(Integer level);
   UserSegment findUserSegmentByLevel(Integer level);
   List<UserSegment> findUserSegmentsByStatusIn(List<Status> statuses);
+
+  List<UserSegment> findByIdIn(List<Long> ids);
 }

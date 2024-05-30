@@ -26,6 +26,9 @@ public class UserSegmentStorage extends BaseStorage {
     return userSegmentRepository.findById(userSegmentId).orElse(null);
   }
 
+  public List<UserSegment> findByIdIn(List<Long> ids) {
+    return userSegmentRepository.findByIdIn(ids);
+  }
   public Page<UserSegment> findAll(Pageable pageable) {
     return userSegmentRepository.findAll(pageable);
   }

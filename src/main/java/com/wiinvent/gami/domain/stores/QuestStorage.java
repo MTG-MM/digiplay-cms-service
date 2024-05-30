@@ -32,6 +32,10 @@ public class QuestStorage extends BaseStorage{
     return questRepository.findAll(questSpecification(code, name, gameId), pageable);
   }
 
+  public List<Quest> findAllQuestActive() {
+    return questRepository.findAllByStatus(Status.ACTIVE);
+  }
+
   public Specification<Quest> questSpecification(String code, String name, Integer gameId){
     return (root, query, criteriaBuilder) -> {
       List<Predicate> conditionList = new ArrayList<>();

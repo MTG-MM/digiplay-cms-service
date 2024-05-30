@@ -1,8 +1,7 @@
 package com.wiinvent.gami.app.controller.user;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.wiinvent.gami.domain.entities.PackageType;
-import com.wiinvent.gami.domain.entities.type.ProductPackageType;
+import com.wiinvent.gami.domain.entities.type.UserType;
 import com.wiinvent.gami.domain.response.UserResponse;
 import com.wiinvent.gami.domain.response.base.PageCursorResponse;
 import com.wiinvent.gami.domain.service.user.UserService;
@@ -33,7 +32,7 @@ public class UserController {
       @RequestParam(required = false) String displayName,
       @RequestParam(required = false) String phoneNumber,
       @RequestParam(required = false) Integer level,
-      @RequestParam(required = false) ProductPackageType type,
+      @RequestParam(required = false) UserType type,
       @RequestParam(required = false) Long next,
       @RequestParam(required = false) Long pre,
       @RequestParam(required = false, defaultValue = "20") Integer limit,

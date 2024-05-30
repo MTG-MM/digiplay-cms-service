@@ -25,4 +25,7 @@ public class RewardItemStoreResponse {
 
   @Schema(description = "Trạng thái của cửa hàng")
   private Status status;
+
+  private String imageUrl;
+
 }

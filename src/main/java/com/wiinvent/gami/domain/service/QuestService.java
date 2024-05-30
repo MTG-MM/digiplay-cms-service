@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -91,6 +92,11 @@ public class QuestService extends BaseService {
       throw e;
     }
     return true;
+  }
+
+  public List<QuestResponse> getAllQuest(){
+    List<Quest> quests = questStorage.findAllQuestActive();
+    return modelMapper.toListQuestResponse(quests);
   }
 
   @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})

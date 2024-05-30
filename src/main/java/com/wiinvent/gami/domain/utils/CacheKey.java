@@ -203,7 +203,9 @@ public class CacheKey {
   public String genListCollectionByTypeAndExternalId(CollectionType collectionType, Long id) {
     return redisPrefixKey + ":collection:type:" + collectionType + ":external:id:" + id;
   }
-
+  public String genAllFeature() {
+    return redisPrefixKey + ":feature:all";
+  }
   public String genListCollectionByIdInAndType(List<Long> id, CollectionType collectionType) {
     return redisPrefixKey + ":collection:id:" + id + ":type:" + collectionType;
   }

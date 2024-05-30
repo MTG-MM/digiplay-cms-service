@@ -37,7 +37,14 @@ public class FeatureStorage extends BaseStorage {
     return featureRepository.findById(id).orElse(null);
   }
 
-  public Feature save(Feature feature){
-    return featureRepository.save(feature);
+  public void save(Feature feature){
+    featureRepository.save(feature);
+    removeCacheKey(feature);
+  }
+
+  List<String> removeCacheKey (Feature feature) {
+    List<String> removeKey = new ArrayList<>();
+    removeKey.add(cacheKey.genAllFeature());
+    return removeKey;
   }
 }

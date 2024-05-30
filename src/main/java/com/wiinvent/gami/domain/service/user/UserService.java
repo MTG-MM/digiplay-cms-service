@@ -96,20 +96,23 @@ public class UserService extends BaseService {
     return new UserSubStatusInfo(premiumState, subState);
   }
 
-  public UUID checkUserId(UUID userId, String displayName, String phoneNumber) {
+  public List<UUID> checkUserId(List<UUID> userIds, String displayName, String phoneNumber) {
+
     if (Objects.nonNull(displayName)) {
-      List<UserProfile> userProfile = userProfileStorage.findByDisplayName(displayName);
-      if (Objects.nonNull(userProfile)) {
-        userId = userProfile.getFirst().getId();
+      List<UserProfile> userProfiles = userProfileStorage.findByDisplayName(displayName);
+      if (Objects.nonNull(userProfiles) && !userProfiles.isEmpty()) {
+        for (UserProfile userProfile : userProfiles) {
+          userIds.add(userProfile.getId());
+        }
       }
     }
     if (Objects.nonNull(phoneNumber)) {
       UserProfile userProfile = userProfileStorage.findByPhoneNumber(phoneNumber);
       if (Objects.nonNull(userProfile)) {
-        userId = userProfile.getId();
+        userIds.add(userProfile.getId());
       }
     }
-    return userId;
+    return userIds;
   }
 
   public Long checkSegmentId(Integer level) {
@@ -127,9 +130,13 @@ public class UserService extends BaseService {
       (UUID userId, String displayName, String phoneNumber, Integer level, ProductPackageType packageType, Long next, Long pre, Integer limit, LocalDate startDate, LocalDate endDate) {
     Long startDateLong = null;
     Long endDateLong = null;
+    List<UUID> userIds = new ArrayList<>();
+    if (Objects.nonNull(userId)) {
+      userIds.add(userId);
+    }
+    userIds = checkUserId(userIds, displayName, phoneNumber);
     if (Objects.nonNull(startDate)) startDateLong = Helper.startOfDaytoLong(startDate);
     if (Objects.nonNull(endDate)) endDateLong = Helper.endOfDaytoLong(endDate);
-    userId = checkUserId(userId, displayName, phoneNumber);
     Long segmentId = checkSegmentId(level);
     Long endSub = null;
     Long endPremium = null;
@@ -143,23 +150,23 @@ public class UserService extends BaseService {
     if (next == null && pre == null) {
       next = Helper.getNowMillisAtUtc();
       pre = 0L;
-      users = userStorage.findAllUser(userId, segmentId, endSub, endPremium, next, pre, limit, startDateLong, endDateLong, type);
+      users = userStorage.findAllUser(userIds, segmentId, endSub, endPremium, next, pre, limit, startDateLong, endDateLong, type);
     } else if (pre == null) {
       type = CursorType.NEXT;
       pre = 0L;
-      users = userStorage.findAllUser(userId, segmentId, endSub, endPremium, next, pre, limit, startDateLong, endDateLong, type);
+      users = userStorage.findAllUser(userIds, segmentId, endSub, endPremium, next, pre, limit, startDateLong, endDateLong, type);
     } else if (next == null) {
       type = CursorType.PRE;
       next = Helper.getNowMillisAtUtc();
-      users = userStorage.findAllUser(userId, segmentId, endSub, endPremium, next, pre, limit, startDateLong, endDateLong, type);
+      users = userStorage.findAllUser(userIds, segmentId, endSub, endPremium, next, pre, limit, startDateLong, endDateLong, type);
       users = users.stream().sorted(Comparator.comparingLong(User::getCreatedAt).reversed()).toList();
     }
-    List<UUID> userIds = users.stream().map(User::getId).toList();
+    List<UUID> userIdList = users.stream().map(User::getId).toList();
     //profile
-    List<UserProfile> userProfiles = userProfileStorage.findAllByIdIn(userIds);
+    List<UserProfile> userProfiles = userProfileStorage.findAllByIdIn(userIdList);
     Map<UUID, UserProfile> userProfileMap = userProfiles.stream().collect(Collectors.toMap(UserProfile::getId, Function.identity()));
     //user account
-    List<UserAccount> userAccounts = userAccountStorage.findUserAccountsByIdIn(userIds);
+    List<UserAccount> userAccounts = userAccountStorage.findUserAccountsByIdIn(userIdList);
     Map<UUID, UserAccount> uuidUserAccountMap = userAccounts.stream()
         .collect(Collectors.toMap(UserAccount::getId, Function.identity()));
     userAccounts.clear();

@@ -1,9 +1,6 @@
 package com.wiinvent.gami.domain.factory;
 
-import com.wiinvent.gami.domain.dto.InternalAchievementRequestDto;
-import com.wiinvent.gami.domain.dto.InternalRequestDto;
-import com.wiinvent.gami.domain.dto.InternalResetPassDto;
-import com.wiinvent.gami.domain.dto.InternalSubRequestDto;
+import com.wiinvent.gami.domain.dto.*;
 import com.wiinvent.gami.domain.exception.RequestFailedException;
 import com.wiinvent.gami.domain.response.InternalRequestResponse;
 import lombok.extern.log4j.Log4j2;
@@ -50,13 +47,35 @@ public class GamiRequestInternalFactory {
       headers.setContentType(MediaType.APPLICATION_JSON);
 
       HttpEntity<InternalAchievementRequestDto> requestEntity = new HttpEntity<>(dto, headers);
-      log.debug("=========addAchievement: {}/v1/game/it/portal/package/add", gamiServiceDomain);
+      log.debug("=========addAchievement: {}/v1/game/it/portal/achievement/add", gamiServiceDomain);
       ResponseEntity<InternalRequestResponse> response = httpRestTemplate.exchange(
           gamiServiceDomain + "/v1/game/it/portal/achievement/add",
           HttpMethod.PUT,
           requestEntity,
           InternalRequestResponse.class);
       log.debug("=========addAchievement: {}{}", gamiServiceDomain, response.getBody());
+      if (response.getBody() == null || !response.getBody().getSuccess()) {
+        throw new RequestFailedException(response.getBody().getMessage());
+      }
+      return response.getBody();
+    } catch (Exception e) {
+      throw new RequestFailedException(e.getMessage());
+    }
+  }
+
+  public InternalRequestResponse addQuest(InternalQuestRequestDto dto) {
+    try {
+      HttpHeaders headers = new HttpHeaders();
+      headers.setContentType(MediaType.APPLICATION_JSON);
+
+      HttpEntity<InternalQuestRequestDto> requestEntity = new HttpEntity<>(dto, headers);
+      log.debug("=========addQuest: {}/v1/game/it/portal/quest/add", gamiServiceDomain);
+      ResponseEntity<InternalRequestResponse> response = httpRestTemplate.exchange(
+          gamiServiceDomain + "/v1/game/it/portal/quest/add",
+          HttpMethod.PUT,
+          requestEntity,
+          InternalRequestResponse.class);
+      log.debug("=========addQuest: {}{}", gamiServiceDomain, response.getBody());
       if (response.getBody() == null || !response.getBody().getSuccess()) {
         throw new RequestFailedException(response.getBody().getMessage());
       }

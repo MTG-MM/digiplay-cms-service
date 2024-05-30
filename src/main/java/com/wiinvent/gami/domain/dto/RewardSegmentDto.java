@@ -4,6 +4,7 @@ import com.wiinvent.gami.domain.entities.type.PeriodType;
 import com.wiinvent.gami.domain.entities.type.ResourceType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -27,12 +28,15 @@ public class RewardSegmentDto {
   @Schema(description = "URL hình ảnh")
   private String imageUrl;
 
+  @Min(0)
   private Integer pointRequirement = 0;
   private Integer ticketRequirement;
 
 
+  @Min(0)
   private Integer coinRequirement = 0;
 
+  @Min(0)
   private Integer turnRequirement = 0;
 
   @Schema(description = "Có tích luỹ ưu tiên hay không")
@@ -42,6 +46,8 @@ public class RewardSegmentDto {
   private Status status;
 
   private ResourceType resourceType;
+
+  @Min(0)
   private Long luckyPoint = 0L;
   private PeriodType periodType;
   @Setter(AccessLevel.NONE)

@@ -53,11 +53,7 @@ public class ExchangeItemStoreStorage extends BaseStorage {
 
   public List<String> removeCacheKeys(ExchangeStoreType type) {
     List<String> keys = new ArrayList<>();
-    keys.add(cacheKey.genPageExchangeItemStoreByType(type, 0));
-    keys.add(cacheKey.genPageExchangeItemStoreByType(type, 1));
-    keys.add(cacheKey.genPageExchangeItemStoreByType(type, 2));
-    keys.add(cacheKey.genPageExchangeItemStoreByType(type, 3));
-    keys.add(cacheKey.genPageExchangeItemStoreByType(type, 4));
+    keys.add(cacheKey.genListExchangeItemStoreByType(type));
     return keys;
   }
 }

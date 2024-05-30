@@ -1,10 +1,7 @@
 package com.wiinvent.gami.app.controller;
 
-import com.wiinvent.gami.domain.dto.InternalAchievementRequestDto;
+import com.wiinvent.gami.domain.dto.*;
 import com.wiinvent.gami.domain.factory.GamiRequestInternalFactory;
-import com.wiinvent.gami.domain.dto.InternalRequestDto;
-import com.wiinvent.gami.domain.dto.InternalResetPassDto;
-import com.wiinvent.gami.domain.dto.InternalSubRequestDto;
 import com.wiinvent.gami.domain.response.InternalRequestResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +28,12 @@ public class GamiRequestController {
   public ResponseEntity<InternalRequestResponse> processAchievement(
       @RequestBody InternalAchievementRequestDto dto) {
     return ResponseEntity.ok(gamiRequestInternalFactory.addAchievement(dto));
+  }
+
+  @PutMapping("/quest")
+  public ResponseEntity<InternalRequestResponse> processQuest(
+      @RequestBody InternalQuestRequestDto dto) {
+    return ResponseEntity.ok(gamiRequestInternalFactory.addQuest(dto));
   }
 
   @PutMapping("/coin")

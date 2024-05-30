@@ -2,10 +2,7 @@ package com.wiinvent.gami.domain.dto;
 
 import com.wiinvent.gami.domain.pojo.PaymentMethodInfo;
 import com.wiinvent.gami.domain.entities.type.Status;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -20,30 +17,34 @@ public class GamePackageUpdateDto {
   @Size(max = 50)
   @NotEmpty
   @NotBlank(message = "Không được để trống")
-  String code;
+  private String code;
 
   @NotNull
-  Integer point;
+  @Min(0)
+  private Integer point;
 
   @NotNull
-  Integer coin;
+  @Min(0)
+  private Integer coin;
 
   @NotNull
-  Integer price;
+  @Min(0)
+  private Integer price;
 
   @Size(max = 1000)
-  String imageUrl;
+  private String imageUrl;
 
   @Size(max = 1000)
-  String thumbUrl;
+  private String thumbUrl;
 
   @Size(max = 1000)
-  String description;
+  private String description;
 
   @NotNull
-  Status status;
+  private Status status;
 
-  Integer priority;
+  @Min(0)
+  private Integer priority;
 
   List<PaymentMethodInfo> paymentMethodInfo = new ArrayList<>();
 }

@@ -5,6 +5,7 @@ import com.wiinvent.gami.domain.entities.type.PeriodType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.utils.DateUtils;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -28,6 +29,7 @@ public class RewardScheduleUpdateDto {
 
   @NotNull(message = "Số lượng không được để trống")
   @Schema(description = "Số lượng")
+  @Min(0)
   private Long quantity;
 
   @NotNull(message = "Trạng thái không được để trống")

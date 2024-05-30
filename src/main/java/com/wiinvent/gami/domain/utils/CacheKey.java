@@ -271,8 +271,8 @@ public class CacheKey {
     return redisPrefixKey + ":task:status:" + status;
   }
 
-  public String genPageExchangeItemStoreByType(ExchangeStoreType type, int pageNumber) {
-    return redisPrefixKey + ":exchange:item:store:type:" + type + ":page:" + pageNumber;
+  public String genListExchangeItemStoreByType(ExchangeStoreType type) {
+    return redisPrefixKey + ":exchange:item:store:type:" + type;
   }
 
   public String genKeyCharacterByCharacterId(Integer characterId) {

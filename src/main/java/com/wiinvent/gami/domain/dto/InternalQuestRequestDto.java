@@ -5,8 +5,8 @@ import lombok.Data;
 import java.util.UUID;
 
 @Data
-public class InternalAchievementRequestDto {
+public class InternalQuestRequestDto {
   private Integer id;
   private UUID userId;
-  private Double score;
+  private Integer score;
 }

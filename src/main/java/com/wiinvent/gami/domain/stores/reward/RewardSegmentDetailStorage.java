@@ -13,7 +13,7 @@ import java.util.List;
 public class RewardSegmentDetailStorage extends BaseStorage {
 
   public List<RewardSegmentDetail> findByRewardSegmentId(Long rewardSegmentId) {
-    return rewardSegmentDetailRepository.findByRewardSegmentId(rewardSegmentId);
+    return rewardSegmentDetailRepository.findByRewardSegmentIdOrderByPositionAsc(rewardSegmentId);
   }
 
   public void save(RewardSegmentDetail rewardSegmentDetail) {

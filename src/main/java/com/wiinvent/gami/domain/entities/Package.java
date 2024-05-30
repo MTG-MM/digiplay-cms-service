@@ -89,6 +89,7 @@ public class Package extends BaseEntity {
   private String imageUrl;
 
   @Column(name = "type")
+  @Enumerated(EnumType.STRING)
   private ProductPackageType type;
 
   public static List<Status> getListStatusShow(){

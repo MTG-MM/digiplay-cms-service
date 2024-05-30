@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface RewardSegmentDetailRepository extends JpaRepository<RewardSegmentDetail, Long>,
     JpaSpecificationExecutor<RewardSegmentDetail> {
-  List<RewardSegmentDetail> findByRewardSegmentId(Long rewardSegmentId);
+  List<RewardSegmentDetail> findByRewardSegmentIdOrderByPositionAsc(Long rewardSegmentId);
 
   List<RewardSegmentDetail> findByRewardSegmentIdAndRewardItemIdIn(Long rwSegmentId, List<Long> ids);
 

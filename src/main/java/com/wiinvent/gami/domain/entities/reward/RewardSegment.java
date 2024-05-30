@@ -43,6 +43,9 @@ public class RewardSegment extends BaseEntity {
   @Column(name = "turn_require")
   private Integer turnRequirement = 0;
 
+  @Column(name = "ticket_require")
+  private Integer ticketRequirement;
+
   @Column(name = "is_accumulative_priority", columnDefinition = "BIT")
   private Boolean isAccumulativePriority = true; //Có tích lũy vào quà default nếu quà không hợp lệ không
 
@@ -66,4 +69,6 @@ public class RewardSegment extends BaseEntity {
   @Column(name = "period_value")
   @JdbcTypeCode(SqlTypes.JSON)
   private List<Integer> periodValue = new ArrayList<>();
+
+
 }

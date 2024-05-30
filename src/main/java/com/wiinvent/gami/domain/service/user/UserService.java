@@ -1,8 +1,13 @@
 package com.wiinvent.gami.domain.service.user;
 
+import com.wiinvent.gami.domain.entities.PackageType;
 import com.wiinvent.gami.domain.entities.PremiumState;
 import com.wiinvent.gami.domain.entities.SubState;
-import com.wiinvent.gami.domain.entities.user.*;
+import com.wiinvent.gami.domain.entities.type.ProductPackageType;
+import com.wiinvent.gami.domain.entities.user.User;
+import com.wiinvent.gami.domain.entities.user.UserAccount;
+import com.wiinvent.gami.domain.entities.user.UserProfile;
+import com.wiinvent.gami.domain.entities.user.UserSegment;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.pojo.UserSubStatusInfo;
 import com.wiinvent.gami.domain.response.UserResponse;
@@ -172,4 +177,5 @@ public class UserService extends BaseService {
     });
     return new PageCursorResponse<>(userResponses, limit, type, Constants.CREATED_AT_VARIABLE);
   }
+
 }

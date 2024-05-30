@@ -28,6 +28,8 @@ public class RewardSegmentDto {
   private String imageUrl;
 
   private Integer pointRequirement = 0;
+  private Integer ticketRequirement;
+
 
   private Integer coinRequirement = 0;
 

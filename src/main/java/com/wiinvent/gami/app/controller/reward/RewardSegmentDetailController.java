@@ -25,6 +25,7 @@ public class RewardSegmentDetailController {
     return ResponseEntity.ok(rewardSegmentDetailService.getAllRewardSegmentDetails(rewardSegmentId));
   }
 
+//  Không dùng api này
   @PutMapping("update")
   public ResponseEntity<Boolean> update(@RequestParam Long rwSegmentId, @RequestBody List<@Valid RewardSegmentDetailDto> rewardPoolDetailDtos){
     return ResponseEntity.ok(rewardSegmentDetailService.updateRewardSegmentDetails(rwSegmentId, rewardPoolDetailDtos));

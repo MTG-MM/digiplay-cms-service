@@ -54,7 +54,7 @@ public class PackageTypeController extends BaseController{
     );
   }
 
-  @GetMapping("active")
+  @GetMapping("all")
   public ResponseEntity<List<PackageTypeResponse>> findAllActive(){
     return ResponseEntity.ok(
         packageTypeService.findAllPackageTypeActive()

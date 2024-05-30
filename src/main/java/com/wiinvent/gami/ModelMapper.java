@@ -341,6 +341,7 @@ public interface ModelMapper {
 
   List<QuestUserHistoryResponse> toListQuestUserHistoryResponse(List<QuestUserHistory> questUserHistories);
 
+  List<QuestResponse> toListQuestResponse(List<Quest> quests);
 
   UserRewardItems toUserRewardItems(RewardItemSelect rewardItemSelect);
 

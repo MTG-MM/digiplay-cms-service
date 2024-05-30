@@ -2,6 +2,7 @@ package com.wiinvent.gami.app.controller;
 
 import com.wiinvent.gami.domain.dto.QuestCreateDto;
 import com.wiinvent.gami.domain.dto.QuestUpdateDto;
+import com.wiinvent.gami.domain.response.PackageResponse;
 import com.wiinvent.gami.domain.response.QuestResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.QuestService;
@@ -13,6 +14,8 @@ import org.springframework.data.web.SortDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("v1/portal/quest")
@@ -57,5 +60,10 @@ public class QuestController {
     return ResponseEntity.ok(
         questService.deleteQuest(id)
     );
+  }
+
+  @GetMapping("all")
+  public ResponseEntity<List<QuestResponse>> getAllPackages() {
+    return ResponseEntity.ok(questService.getAllQuest());
   }
 }

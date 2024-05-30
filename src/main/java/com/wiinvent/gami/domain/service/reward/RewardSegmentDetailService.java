@@ -24,13 +24,10 @@ import java.util.stream.Collectors;
 @Service
 public class RewardSegmentDetailService extends BaseService {
 
-  private List<UUID> listIds;
 
-  //  public List<RewardSegmentDetailResponse> getAllRewardSegmentDetails(Long id) {
-//    return modelMapper.toRewardSegmentDetailResponses(rewardSegmentDetailStorage.findByRewardSegmentId(id));
-//  }
   public List<RewardSegmentDetailResponse> getAllRewardSegmentDetails(Long id) {
-    List<RewardSegmentDetailResponse> responses = modelMapper.toRewardSegmentDetailResponses(rewardSegmentDetailStorage.findByRewardSegmentId(id));
+    List<RewardSegmentDetail> rewardSegmentDetails = rewardSegmentDetailStorage.findByRewardSegmentId(id);
+    List<RewardSegmentDetailResponse> responses = modelMapper.toRewardSegmentDetailResponses(rewardSegmentDetails);
     List<RewardItem> rewardItems = rewardItemStorage.findByIdIn(responses.stream().map(RewardSegmentDetailResponse::getRewardItemId).toList());
     Map<Long, RewardItem> rewardItemMap = rewardItems.stream().collect(Collectors.toMap(RewardItem::getId, Function.identity()));
     responses.forEach(res -> {
@@ -65,6 +62,7 @@ public class RewardSegmentDetailService extends BaseService {
     };
   }
 
+//  Không dùng hàm này
   @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
   public Boolean updateRewardSegmentDetails(Long rwSegmentId, List<RewardSegmentDetailDto> dtos) {
     if (dtos.stream().noneMatch(RewardSegmentDetailDto::getIsDefault)) {

@@ -54,7 +54,7 @@ public class StatisticController {
   }
 
   @GetMapping("rw-item")
-  public ResponseEntity<?> statisticReport(
+  public ResponseEntity<?> statisticRewardItem(
       @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate gte,
       @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte
   ) {

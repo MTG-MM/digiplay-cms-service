@@ -45,6 +45,8 @@ public class UserResponse {
 
   private Integer level;
 
+  private String levelName;
+
   private Integer turn;
 
   private Long createdAt;

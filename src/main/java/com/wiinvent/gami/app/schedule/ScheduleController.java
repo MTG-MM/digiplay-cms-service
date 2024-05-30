@@ -29,14 +29,16 @@ public class ScheduleController {
     this.statisticSubService = statisticSubService;
   }
 
-  @GetMapping("statistic/today")
-  public void processTodayStatistic(){
+  @PostMapping("statistic/today")
+  public ResponseEntity<?> processTodayStatistic(){
     rewardItemStatisticService.processStatisticToday();
+    return ResponseEntity.ok(true);
   }
 
-  @GetMapping("reward/process-quantity")
-  public void processRewardSchedule() {
+  @PostMapping("reward/process-quantity")
+  public ResponseEntity<?> processRewardSchedule() {
     rewardScheduleService.addRewardSegmentQuantity();
+    return ResponseEntity.ok(true);
   }
 
   @PostMapping("statistic-user/current")

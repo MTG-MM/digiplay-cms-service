@@ -2,7 +2,6 @@ package com.wiinvent.gami.domain.stores;
 
 import com.wiinvent.gami.domain.entities.VoucherDetail;
 import com.wiinvent.gami.domain.entities.type.RewardItemStatus;
-import com.wiinvent.gami.domain.entities.type.StoreType;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -46,7 +45,7 @@ public class VoucherDetailStorage extends BaseStorage {
     voucherDetailRepository.updateItemStatus(rewardSegmentId, rewardItemId, limit);
   }
 
-  public Page<VoucherDetail> findByStoreId(Long storeId, Pageable pageable) {
+  public Page<VoucherDetail> findLimitByStoreId(Long storeId, Pageable pageable) {
     return voucherDetailRepository.findByStoreId(storeId, pageable);
   }
 
@@ -78,5 +77,9 @@ public class VoucherDetailStorage extends BaseStorage {
 
   public Long countVoucherDetailByStoreIdAndStatus(Long id, RewardItemStatus status){
     return voucherDetailRepository.countVoucherDetailByStoreIdAndStatus(id, status);
+  }
+
+  public List<VoucherDetail> findLimitByStoreId(Long storeId, Long limit, RewardItemStatus status) {
+    return voucherDetailRepository.findLimitByStoreId(storeId, limit, status.name());
   }
 }

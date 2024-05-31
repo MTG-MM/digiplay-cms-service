@@ -75,4 +75,9 @@ public class ProductDetailStorage extends BaseStorage {
       }
       return criteriaBuilder.and(conditionLists.toArray(new Predicate[0]));
     };
-  }}
+  }
+
+  public List<VoucherDetail> findLimitByStoreId(Long storeId,long limit, RewardItemStatus status) {
+    return productDetailRepository.findLimitByStoreId(storeId, limit, status.name());
+  }
+}

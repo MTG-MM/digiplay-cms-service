@@ -1,6 +1,7 @@
 package com.wiinvent.gami.domain.repositories;
 
 import com.wiinvent.gami.domain.entities.ProductDetail;
+import com.wiinvent.gami.domain.entities.VoucherDetail;
 import com.wiinvent.gami.domain.entities.type.RewardItemStatus;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -47,4 +48,11 @@ public interface ProductDetailRepository extends JpaRepository<ProductDetail, UU
   Long countProductDetailByStoreId(Long id);
 
   Long countProductDetailByStoreIdAndStatus(Long id, RewardItemStatus status);
+  @Query(nativeQuery = true,
+      value = "SELECT * FROM product_detail " +
+          "where store_id = :storeId and product_status = :status limit :limit  ")
+  List<VoucherDetail> findLimitByStoreId(
+      @Param("storeId") Long storeId,
+      @Param("limit") long limit,
+      @Param("status") String status);
 }

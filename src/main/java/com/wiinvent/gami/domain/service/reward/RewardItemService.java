@@ -3,15 +3,16 @@ package com.wiinvent.gami.domain.service.reward;
 import com.wiinvent.gami.domain.dto.ProcessQuantityDto;
 import com.wiinvent.gami.domain.dto.RewardItemDto;
 import com.wiinvent.gami.domain.dto.RewardItemUpdateDto;
+import com.wiinvent.gami.domain.entities.VoucherDetail;
 import com.wiinvent.gami.domain.entities.reward.RewardItem;
 import com.wiinvent.gami.domain.entities.reward.RewardType;
 import com.wiinvent.gami.domain.entities.type.RewardItemStatus;
 import com.wiinvent.gami.domain.entities.type.RewardItemType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.exception.BadRequestException;
+import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.response.RewardItemResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
-import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.service.BaseService;
 import jakarta.persistence.criteria.Predicate;
 import lombok.extern.log4j.Log4j2;
@@ -132,8 +133,8 @@ public class RewardItemService extends BaseService {
     }
 
     RewardType rewardType = rewardTypeStorage.findById(rewardItem.getRewardTypeId());
-    if (rewardType.getType().equals(RewardItemType.PRODUCT) || rewardType.getType().equals(RewardItemType.VOUCHER)) {
-      throw new BadRequestException("Can't change quantity of product or voucher");
+    if (rewardType == null) {
+      throw new ResourceNotFoundException("Type not found");
     }
     if (Objects.equals(dto.getType(), ProcessQuantityDto.ProcessQuantityType.ADD)) {
       rewardItem.addQuantity(dto.getQuantity());
@@ -143,6 +144,36 @@ public class RewardItemService extends BaseService {
       }
       rewardItem.minusQuantity(dto.getQuantity());
     }
+    if(rewardType.getType() == RewardItemType.VOUCHER ) {
+      List<VoucherDetail> voucherDetails = new ArrayList<>();
+      if (dto.getType() == ProcessQuantityDto.ProcessQuantityType.ADD) {
+        voucherDetails = voucherDetailStorage.findLimitByStoreId(Long.valueOf(rewardItem.getExternalId()), dto.getQuantity(), RewardItemStatus.NEW);
+        voucherDetails.forEach(v -> v.setStatus(RewardItemStatus.READY_TO_USE));
+        rewardItem.addQuantity(voucherDetails.size());
+      } else if (dto.getType() == ProcessQuantityDto.ProcessQuantityType.MINUS) {
+        voucherDetails = voucherDetailStorage.findLimitByStoreId(Long.valueOf(rewardItem.getExternalId()), dto.getQuantity(), RewardItemStatus.READY_TO_USE);
+        voucherDetails.forEach(v -> v.setStatus(RewardItemStatus.NEW));
+        rewardItem.minusQuantity(voucherDetails.size());
+      }
+      if(voucherDetails.isEmpty()) {
+        throw new BadRequestException("Voucher not enough quantity");
+      }else{
+        voucherDetailStorage.saveAll(voucherDetails);
+      }
+    }
+    if (rewardType.getType() == RewardItemType.PRODUCT) {
+      if (dto.getType() == ProcessQuantityDto.ProcessQuantityType.ADD) {
+        List<VoucherDetail> voucherDetails = productDetailStorage.findLimitByStoreId(Long.valueOf(rewardItem.getExternalId()), dto.getQuantity(), RewardItemStatus.NEW);
+        voucherDetails.forEach(v -> v.setStatus(RewardItemStatus.READY_TO_USE));
+        rewardItem.addQuantity(voucherDetails.size());
+      } else if (dto.getType() == ProcessQuantityDto.ProcessQuantityType.MINUS) {
+        List<VoucherDetail> voucherDetails = productDetailStorage.findLimitByStoreId(Long.valueOf(rewardItem.getExternalId()), dto.getQuantity(), RewardItemStatus.READY_TO_USE);
+        voucherDetails.forEach(v -> v.setStatus(RewardItemStatus.NEW));
+        rewardItem.minusQuantity(voucherDetails.size());
+      }
+    }
+
+
     rewardItemStorage.save(rewardItem);
     return true;
   }

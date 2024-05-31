@@ -49,4 +49,12 @@ public interface VoucherDetailRepository extends JpaRepository<VoucherDetail, UU
   Long countVoucherDetailByStoreId(Long id);
 
   Long countVoucherDetailByStoreIdAndStatus(Long id, RewardItemStatus status);
+
+  @Query(nativeQuery = true,
+      value = "SELECT * FROM voucher_detail " +
+          "where store_id = :storeId and voucher_status = :status limit :limit ")
+  List<VoucherDetail> findLimitByStoreId(
+      @Param("storeId") Long storeId,
+      @Param("limit") Long limit,
+      @Param("status") String status);
 }

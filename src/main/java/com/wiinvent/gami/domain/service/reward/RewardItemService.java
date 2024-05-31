@@ -3,6 +3,7 @@ package com.wiinvent.gami.domain.service.reward;
 import com.wiinvent.gami.domain.dto.ProcessQuantityDto;
 import com.wiinvent.gami.domain.dto.RewardItemDto;
 import com.wiinvent.gami.domain.dto.RewardItemUpdateDto;
+import com.wiinvent.gami.domain.entities.ProductDetail;
 import com.wiinvent.gami.domain.entities.VoucherDetail;
 import com.wiinvent.gami.domain.entities.reward.RewardItem;
 import com.wiinvent.gami.domain.entities.reward.RewardType;
@@ -163,13 +164,13 @@ public class RewardItemService extends BaseService {
     }
     if (rewardType.getType() == RewardItemType.PRODUCT) {
       if (dto.getType() == ProcessQuantityDto.ProcessQuantityType.ADD) {
-        List<VoucherDetail> voucherDetails = productDetailStorage.findLimitByStoreId(Long.valueOf(rewardItem.getExternalId()), dto.getQuantity(), RewardItemStatus.NEW);
-        voucherDetails.forEach(v -> v.setStatus(RewardItemStatus.READY_TO_USE));
-        rewardItem.addQuantity(voucherDetails.size());
+        List<ProductDetail> productDetails = productDetailStorage.findLimitByStoreId(Long.valueOf(rewardItem.getExternalId()), dto.getQuantity(), RewardItemStatus.NEW);
+        productDetails.forEach(v -> v.setStatus(RewardItemStatus.READY_TO_USE));
+        rewardItem.addQuantity(productDetails.size());
       } else if (dto.getType() == ProcessQuantityDto.ProcessQuantityType.MINUS) {
-        List<VoucherDetail> voucherDetails = productDetailStorage.findLimitByStoreId(Long.valueOf(rewardItem.getExternalId()), dto.getQuantity(), RewardItemStatus.READY_TO_USE);
-        voucherDetails.forEach(v -> v.setStatus(RewardItemStatus.NEW));
-        rewardItem.minusQuantity(voucherDetails.size());
+        List<ProductDetail> productDetails = productDetailStorage.findLimitByStoreId(Long.valueOf(rewardItem.getExternalId()), dto.getQuantity(), RewardItemStatus.READY_TO_USE);
+        productDetails.forEach(v -> v.setStatus(RewardItemStatus.NEW));
+        rewardItem.minusQuantity(productDetails.size());
       }
     }
 

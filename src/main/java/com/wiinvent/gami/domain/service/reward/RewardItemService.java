@@ -48,12 +48,6 @@ public class RewardItemService extends BaseService {
       (Integer id, String name, Integer rewardTypeId, Pageable pageable) {
     Page<RewardItem> rwItems = rewardItemStorage.findAll(rwItemCondition(id, name, rewardTypeId), pageable);
     Page<RewardItemResponse> responses = modelMapper.toPageRewardItemResponse(rwItems);
-    for (RewardItemResponse rewardItemResponse : responses.getContent()) {
-      if (rewardItemResponse.getRewardItemType().equals(RewardItemType.PRODUCT) ||
-          rewardItemResponse.getRewardItemType().equals(RewardItemType.VOUCHER)) {
-        countRewardItems(rewardItemResponse);
-      }
-    }
     return PageResponse.createFrom(responses);
   }
 

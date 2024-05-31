@@ -65,9 +65,11 @@ public class RewardItem {
 
   public void addQuantity(long amount) {
     this.quantity = this.getQuantity() + amount;
+    this.totalQuantity += amount;
   }
 
   public void minusQuantity(long amount) {
     this.quantity = Math.max(this.quantity - amount, 0);
+    this.totalQuantity = Math.max(this.totalQuantity - amount, 0);
   }
 }

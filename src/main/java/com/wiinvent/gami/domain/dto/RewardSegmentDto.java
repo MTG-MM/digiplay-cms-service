@@ -6,6 +6,7 @@ import com.wiinvent.gami.domain.entities.type.Status;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
@@ -29,22 +30,27 @@ public class RewardSegmentDto {
   private String imageUrl;
 
   @Min(0)
+  @NotNull
   private Integer pointRequirement = 0;
 
   @Min(0)
+  @NotNull
   private Integer ticketRequirement = 0;
 
 
   @Min(0)
+  @NotNull
   private Integer coinRequirement = 0;
 
   @Min(0)
+  @NotNull
   private Integer turnRequirement = 0;
 
   @Schema(description = "Có tích luỹ ưu tiên hay không")
   private Boolean isAccumulativePriority;
 
   @Schema(description = "Trạng thái")
+  @NotNull
   private Status status;
 
   private ResourceType resourceType;

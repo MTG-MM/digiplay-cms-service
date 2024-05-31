@@ -37,6 +37,8 @@ public class UserDetailController {
   @Autowired UserCollectionService userCollectionService;
   @Autowired LuckyPointTransactionService luckyPointTransactionService;
   @Autowired QuestUserHistoryService questUserHistoryService;
+  @Autowired TaskUserService taskUserService;
+  @Autowired UserGoldPigService userGoldPigService;
 
   @GetMapping("sub")
   public ResponseEntity<PageCursorResponse<PackageHistoryResponse>> getPackageHistory (
@@ -207,5 +209,31 @@ public class UserDetailController {
       @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte
   ) {
     return ResponseEntity.ok(questUserHistoryService.getQuestHistory(userId, transId, type, gte, lte, next, pre, limit));
+  }
+
+  @GetMapping("task")
+  public ResponseEntity<PageCursorResponse<TaskUserResponse>> getTaskUser(
+      @RequestParam UUID userId,
+      @RequestParam(required = false) Long next,
+      @RequestParam(required = false) Long pre,
+      @RequestParam(required = false) UUID transId,
+      @RequestParam(required = false, defaultValue = "20") int limit,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate gte,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte
+  ) {
+    return ResponseEntity.ok(taskUserService.getTaskUser(userId, transId, gte, lte, next, pre, limit));
+  }
+
+  @GetMapping("gold-pig")
+  public ResponseEntity<PageCursorResponse<UserGoldPigResponse>> getUserGoldPig(
+      @RequestParam UUID userId,
+      @RequestParam(required = false) Long next,
+      @RequestParam(required = false) Long pre,
+      @RequestParam(required = false) UUID transId,
+      @RequestParam(required = false, defaultValue = "20") int limit,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate gte,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte
+  ) {
+    return ResponseEntity.ok(userGoldPigService.getUserGoldPig(userId, transId, gte, lte, next, pre, limit));
   }
 }

@@ -54,11 +54,19 @@ public class StatisticRevenueService extends BaseService {
         (millisStartToday, millisEndToday, weekPackages.stream().map(Package::getCode).toList());
     Long registerSubMonthRevenue = packageHistoryStorage.countRevenueByPackageCode
         (millisStartToday, millisEndToday, monthPackages.stream().map(Package::getCode).toList());
-
+    Long feeSubDayRevenue = 0L;
+    Long feeSubWeekRevenue = 0L;
+    Long feeSubMonthRevenue = 0L;
+    Long totalRevenue = 0L;
     statisticRevenue.setRegisterSubDayRevenue(registerSubDayRevenue == null ? 0 : registerSubDayRevenue);
     statisticRevenue.setRegisterSubWeekRevenue(registerSubWeekRevenue == null ? 0 : registerSubWeekRevenue);
     statisticRevenue.setRegisterSubMonthRevenue(registerSubMonthRevenue == null ? 0 : registerSubMonthRevenue);
     statisticRevenue.setBuyPackageRevenue(buyPackageRevenue == null ? 0 : buyPackageRevenue);
+    statisticRevenue.setFeeSubDayRevenue(feeSubDayRevenue == null ? 0 : feeSubDayRevenue);
+    statisticRevenue.setFeeSubWeekRevenue(feeSubWeekRevenue == null ? 0 : feeSubWeekRevenue);
+    statisticRevenue.setFeeSubMonthRevenue(feeSubMonthRevenue == null ? 0 : feeSubMonthRevenue);
+    statisticRevenue.setTotalRevenue(totalRevenue == null ? 0 : totalRevenue);
+
     statisticRevenueStorage.save(statisticRevenue);
   }
 
@@ -91,11 +99,18 @@ public class StatisticRevenueService extends BaseService {
           (millisStartToday, millisEndToday, weekPackages.stream().map(Package::getCode).toList());
       Long registerSubMonthRevenue = packageHistoryStorage.countRevenueByPackageCode
           (millisStartToday, millisEndToday, monthPackages.stream().map(Package::getCode).toList());
-
+      Long feeSubDayRevenue = 0L;
+      Long feeSubWeekRevenue = 0L;
+      Long feeSubMonthRevenue = 0L;
+      Long totalRevenue = 0L;
       statisticRevenue.setRegisterSubDayRevenue(registerSubDayRevenue == null ? 0 : registerSubDayRevenue);
       statisticRevenue.setRegisterSubWeekRevenue(registerSubWeekRevenue == null ? 0 : registerSubWeekRevenue);
       statisticRevenue.setRegisterSubMonthRevenue(registerSubMonthRevenue == null ? 0 : registerSubMonthRevenue);
       statisticRevenue.setBuyPackageRevenue(buyPackageRevenue == null ? 0 : buyPackageRevenue);
+      statisticRevenue.setFeeSubDayRevenue(feeSubDayRevenue == null ? 0 : feeSubDayRevenue);
+      statisticRevenue.setFeeSubWeekRevenue(feeSubWeekRevenue == null ? 0 : feeSubWeekRevenue);
+      statisticRevenue.setFeeSubMonthRevenue(feeSubMonthRevenue == null ? 0 : feeSubMonthRevenue);
+      statisticRevenue.setTotalRevenue(totalRevenue == null ? 0 : totalRevenue);
       statisticRevenueStorage.save(statisticRevenue);
       statisticCheckpointStorage.save(statisticCheckpoint);
     }

@@ -11,7 +11,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "user_gold_pig")
+@Table(name = "task_user")
 public class TaskUser extends BaseEntity {
   @Id
   @Column(name = "id", nullable = false, length = 16)

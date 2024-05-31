@@ -203,6 +203,8 @@ public interface ModelMapper {
   List<TransactionResponse> toPointTransactionResponse(List<PointTransaction> pointTransactions);
   List<TransactionResponse> toExpHistoryResponse(List<ExpHistory> expHistories);
   List<TransactionResponse> toTurnTransactionResponse(List<TurnTransaction> turnTransactions);
+  List<TaskUserResponse> toTaskUserResponse(List<TaskUser> taskUsers);
+  List<UserGoldPigResponse> toUserGoldPigResponse(List<UserGoldPig> userGoldPigs);
   List<UserResponse> toListUserResponse(List<User> users);
   UserResponse toUserResponse(User user);
 

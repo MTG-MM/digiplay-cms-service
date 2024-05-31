@@ -22,7 +22,14 @@ public class StatisticSubResponse {
     private Integer subDayUser = 0;
     private Integer subWeekUser = 0;
     private Integer subMonthUser = 0;
+    private Integer unsubDayUser = 0;
+    private Integer unsubWeekUser = 0;
+    private Integer unsubMonthUser = 0;
+    private Integer unsubDayExpired = 0;
+    private Integer unsubWeekExpired = 0;
+    private Integer unsubMonthExpired = 0;
     private Integer totalSub = 0;
+    private Integer totalUnsub = 0;
     private Long subRevenue = 0L;
 
     public StatisticDaily(String date, StatisticSub statisticSub) {
@@ -38,7 +45,14 @@ public class StatisticSubResponse {
       subDayUser = statisticSub.getSubDayUser();
       subWeekUser = statisticSub.getSubWeekUser();
       subMonthUser = statisticSub.getSubMonthUser();
+      unsubDayUser = statisticSub.getUnsubDayUser();
+      unsubWeekUser = statisticSub.getUnsubWeekUser();
+      unsubMonthUser = statisticSub.getUnsubMonthUser();
+      unsubDayExpired = statisticSub.getUnsubDayExpired();
+      unsubWeekExpired = statisticSub.getUnsubWeekExpired();
+      unsubMonthExpired = statisticSub.getUnsubMonthExpired();
       totalSub = statisticSub.getTotalSub();
+      totalUnsub = statisticSub.getTotalUnsub();
       subRevenue = statisticSub.getSubRevenue();
     }
   }
@@ -52,7 +66,14 @@ public class StatisticSubResponse {
     private Integer subDayUser = 0;
     private Integer subWeekUser = 0;
     private Integer subMonthUser = 0;
+    private Integer unsubDayUser = 0;
+    private Integer unsubWeekUser = 0;
+    private Integer unsubMonthUser = 0;
+    private Integer unsubDayExpired = 0;
+    private Integer unsubWeekExpired = 0;
+    private Integer unsubMonthExpired = 0;
     private Integer totalSub = 0;
+    private Integer totalUnsub = 0;
     private Long subRevenue = 0L;
   }
 
@@ -64,7 +85,14 @@ public class StatisticSubResponse {
     statisticTotal.subDayUser += statisticDaily.getSubDayUser();
     statisticTotal.subWeekUser += statisticDaily.getSubWeekUser();
     statisticTotal.subMonthUser += statisticDaily.getSubMonthUser();
+    statisticTotal.unsubDayUser += statisticDaily.getUnsubDayUser();
+    statisticTotal.unsubWeekUser += statisticDaily.getUnsubWeekUser();
+    statisticTotal.unsubMonthUser += statisticDaily.getUnsubMonthUser();
+    statisticTotal.unsubDayExpired += statisticDaily.getUnsubDayExpired();
+    statisticTotal.unsubWeekExpired += statisticDaily.getUnsubWeekExpired();
+    statisticTotal.unsubMonthExpired += statisticDaily.getUnsubMonthExpired();
     statisticTotal.totalSub += statisticDaily.getTotalSub();
+    statisticTotal.totalUnsub += statisticDaily.getTotalUnsub();
     statisticTotal.subRevenue += statisticDaily.getSubRevenue();
   }
 }

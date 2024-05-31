@@ -63,6 +63,14 @@ public class StatisticSubService extends BaseService {
         , dayPackages.stream().map(Package::getCode).toList());
     Integer userSubMonth = packageHistoryStorage.countUserSubByPackageCode(millisStartToday, millisEndToday
         , dayPackages.stream().map(Package::getCode).toList());
+    Integer unsubDayUser = 0;
+    Integer unsubWeekUser = 0;
+    Integer unsubMonthUser = 0;
+    Integer unsubDayExpired = 0;
+    Integer unsubWeekExpired = 0;
+    Integer unsubMonthExpired = 0;
+    Integer totalSub = 0;
+    Integer totalUnsub = 0;
     statisticSub.setNewSub(newSub == null ? 0 : newSub);
     statisticSub.setSubRevenue(subRevenue == null ? 0 : subRevenue);
     statisticSub.setSubDay(subDay == null ? 0 : subDay);
@@ -71,6 +79,14 @@ public class StatisticSubService extends BaseService {
     statisticSub.setSubDayUser(userSubDay == null ? 0 : userSubDay);
     statisticSub.setSubWeekUser(userSubWeek == null ? 0 : userSubWeek);
     statisticSub.setSubMonthUser(userSubMonth == null ? 0 : userSubMonth);
+    statisticSub.setUnsubDayUser(unsubDayUser == null ? 0 : unsubDayUser);
+    statisticSub.setUnsubWeekUser(unsubWeekUser == null ? 0 : unsubWeekUser);
+    statisticSub.setUnsubMonthUser(unsubMonthUser == null ? 0 : unsubMonthUser);
+    statisticSub.setUnsubDayExpired(unsubDayExpired == null ? 0 : unsubDayExpired);
+    statisticSub.setUnsubWeekExpired(unsubWeekExpired == null ? 0 : unsubWeekExpired);
+    statisticSub.setUnsubMonthExpired(unsubMonthExpired == null ? 0 : unsubMonthExpired);
+    statisticSub.setTotalSub(totalSub == null ? 0 : totalSub);
+    statisticSub.setTotalUnsub(totalUnsub == null ? 0 : totalUnsub);
     statisticSubStorage.save(statisticSub);
   }
 
@@ -110,6 +126,14 @@ public class StatisticSubService extends BaseService {
           , dayPackages.stream().map(Package::getCode).toList());
       Integer userSubMonth = packageHistoryStorage.countUserSubByPackageCode(millisStartToday, millisEndToday
           , dayPackages.stream().map(Package::getCode).toList());
+      Integer unsubDayUser = 0;
+      Integer unsubWeekUser = 0;
+      Integer unsubMonthUser = 0;
+      Integer unsubDayExpired = 0;
+      Integer unsubWeekExpired = 0;
+      Integer unsubMonthExpired = 0;
+      Integer totalSub = 0;
+      Integer totalUnsub = 0;
       statisticSub.setNewSub(newSub == null ? 0 : newSub);
       statisticSub.setSubRevenue(subRevenue == null ? 0 : subRevenue);
       statisticSub.setSubDay(subDay == null ? 0 : subDay);
@@ -118,6 +142,14 @@ public class StatisticSubService extends BaseService {
       statisticSub.setSubDayUser(userSubDay == null ? 0 : userSubDay);
       statisticSub.setSubWeekUser(userSubWeek == null ? 0 : userSubWeek);
       statisticSub.setSubMonthUser(userSubMonth == null ? 0 : userSubMonth);
+      statisticSub.setUnsubDayUser(unsubDayUser == null ? 0 : unsubDayUser);
+      statisticSub.setUnsubWeekUser(unsubWeekUser == null ? 0 : unsubWeekUser);
+      statisticSub.setUnsubMonthUser(unsubMonthUser == null ? 0 : unsubMonthUser);
+      statisticSub.setUnsubDayExpired(unsubDayExpired == null ? 0 : unsubDayExpired);
+      statisticSub.setUnsubWeekExpired(unsubWeekExpired == null ? 0 : unsubWeekExpired);
+      statisticSub.setUnsubMonthExpired(unsubMonthExpired == null ? 0 : unsubMonthExpired);
+      statisticSub.setTotalSub(totalSub == null ? 0 : totalSub);
+      statisticSub.setTotalUnsub(totalUnsub == null ? 0 : totalUnsub);
       statisticSubStorage.save(statisticSub);
       statisticCheckpointStorage.save(statisticCheckpoint);
     }

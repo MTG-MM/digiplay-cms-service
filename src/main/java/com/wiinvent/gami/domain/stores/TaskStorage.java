@@ -24,6 +24,10 @@ public class TaskStorage extends BaseStorage {
     return taskRepository.findById(id).orElse(null);
   }
 
+  public List<Task> findAllByIdIn(List<Integer> ids) {
+    return taskRepository.findAllByIdIn(ids);
+  }
+
   public Page<Task> findAll(String name, DailyTaskType type, Pageable pageable) {
     return taskRepository.findAll(taskSpecification(name, type), pageable);
   }

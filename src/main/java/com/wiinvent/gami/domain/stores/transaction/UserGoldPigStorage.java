@@ -1,6 +1,7 @@
 package com.wiinvent.gami.domain.stores.transaction;
 
-import com.wiinvent.gami.domain.entities.transaction.TaskUser;
+import com.wiinvent.gami.domain.entities.transaction.UserGoldPig;
+import com.wiinvent.gami.domain.response.UserGoldPigResponse;
 import com.wiinvent.gami.domain.response.type.CursorType;
 import com.wiinvent.gami.domain.stores.BaseStorage;
 import jakarta.persistence.TypedQuery;
@@ -15,11 +16,11 @@ import java.util.List;
 import java.util.UUID;
 
 @Component
-public class TaskUserStorage extends BaseStorage {
-  public List<TaskUser> findAll(UUID userId, UUID transId, Long startDate, Long endDate, Long next, Long pre, int limit, CursorType type) {
+public class UserGoldPigStorage extends BaseStorage {
+  public List<UserGoldPig> findAll(UUID userId, UUID transId, Long startDate, Long endDate, Long next, Long pre, int limit, CursorType type) {
     CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-    CriteriaQuery<TaskUser> query = criteriaBuilder.createQuery(TaskUser.class);
-    Root<TaskUser> root = query.from(TaskUser.class);
+    CriteriaQuery<UserGoldPig> query = criteriaBuilder.createQuery(UserGoldPig.class);
+    Root<UserGoldPig> root = query.from(UserGoldPig.class);
     List<Predicate> conditionList = new ArrayList<>();
     conditionList.add(criteriaBuilder.equal(root.get("userId"), userId));
     if (transId != null) {
@@ -38,7 +39,7 @@ public class TaskUserStorage extends BaseStorage {
       query.where(criteriaBuilder.and(conditionList.toArray(new Predicate[0])))
           .orderBy(criteriaBuilder.asc(root.get("createdAt")));
     }
-    TypedQuery<TaskUser> typedQuery = entityManager.createQuery(query);
+    TypedQuery<UserGoldPig> typedQuery = entityManager.createQuery(query);
     typedQuery.setMaxResults(limit);
     return typedQuery.getResultList();
   }

@@ -50,7 +50,7 @@ public class ChallengeDetailController {
   }
 
   @PutMapping("{id}")
-  public ResponseEntity<Boolean> updateChallengeDetail(@PathVariable Integer id, @RequestBody ChallengeDetailUpdateDto dto) {
+  public ResponseEntity<Boolean> updateChallengeDetail(@PathVariable Integer id, @RequestBody @Valid ChallengeDetailUpdateDto dto) {
     return ResponseEntity.ok(
         challengeDetailService.updateChallengeDetail(id, dto));
   }

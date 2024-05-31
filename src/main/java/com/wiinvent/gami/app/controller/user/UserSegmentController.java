@@ -46,7 +46,7 @@ public class UserSegmentController {
 
   @PostMapping("")
   @Operation(summary = "Tạo level")
-  public ResponseEntity<Boolean> createUserSegment(@RequestBody UserSegmentCreateDto userSegmentCreateDto){
+  public ResponseEntity<Boolean> createUserSegment(@RequestBody @Valid UserSegmentCreateDto userSegmentCreateDto){
     userSegmentService.createUserSegment(userSegmentCreateDto);
     return ResponseEntity.ok(true);
   }

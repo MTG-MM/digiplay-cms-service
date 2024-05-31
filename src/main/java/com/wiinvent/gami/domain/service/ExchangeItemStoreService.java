@@ -105,12 +105,14 @@ public class ExchangeItemStoreService extends BaseService {
 
     if (dto.getType().equals(ProcessQuantityDto.ProcessQuantityType.ADD)) {
       rewardItem.minusQuantity(dto.getQuantity());
+      rewardItem.setUsedQuantity(rewardItem.getUsedQuantity() + dto.getQuantity());
       exchangeItemStore.addQuantity(dto.getQuantity());
     } else {
       if (exchangeItemStore.getQuantity() < dto.getQuantity()) {
         throw new BadRequestException("Quantity need to be greater than 0");
       }
       rewardItem.addQuantity(dto.getQuantity());
+      rewardItem.setUsedQuantity(rewardItem.getUsedQuantity() - dto.getQuantity());
       exchangeItemStore.minusQuantity(dto.getQuantity());
     }
     rewardItemStorage.save(rewardItem);

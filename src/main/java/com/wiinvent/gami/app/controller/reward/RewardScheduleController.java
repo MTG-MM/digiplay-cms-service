@@ -31,7 +31,7 @@ public class RewardScheduleController {
   }
 
   @PostMapping("")
-  public ResponseEntity<Boolean> createRewardSchedules(@RequestBody RewardScheduleDto rewardScheduleDto) {
+  public ResponseEntity<Boolean> createRewardSchedules(@RequestBody @Valid RewardScheduleDto rewardScheduleDto) {
     return ResponseEntity.ok(rewardScheduleService.createRewardSchedules(rewardScheduleDto));
   }
 

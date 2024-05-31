@@ -50,7 +50,7 @@ public class RewardItemController {
   }
 
   @PostMapping("")
-  public ResponseEntity<Boolean> createRewardItems(@RequestBody RewardItemDto rewardItemDto) {
+  public ResponseEntity<Boolean> createRewardItems(@RequestBody @Valid RewardItemDto rewardItemDto) {
     return ResponseEntity.ok(rewardItemService.createRewardItems(rewardItemDto));
   }
 

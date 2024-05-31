@@ -23,11 +23,4 @@ public class UserCollection extends BaseEntity {
 
   @Column(name = "quantity")
   private Integer quantity;
-
-  public void addQuantity(int amount) {
-    this.quantity += amount;
-  }
-  public void minusQuantity(int amount) {
-    this.quantity = Math.min(this.quantity - amount, 0);
-  }
 }

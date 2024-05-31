@@ -51,7 +51,7 @@ public class ExchangeItemStoreController {
     return ResponseEntity.ok(exchangeItemStoreService.updateExchangeItemStore(id, updateDto));
   }
 
-  @PutMapping("{changeQuantity}")
+  @PutMapping("changeQuantity")
   public ResponseEntity<Boolean> changeQuantity(@RequestBody @Valid ProcessQuantityDto dto) {
     return ResponseEntity.ok(exchangeItemStoreService.changeQuantity(dto));
   }

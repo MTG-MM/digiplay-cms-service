@@ -64,7 +64,7 @@ public class RewardItem {
   private Long updatedAt = DateUtils.getNowMillisAtUtc();
 
   public void addQuantity(long amount) {
-    this.quantity = this.getQuantity() + amount;
+    this.quantity += amount;
     this.totalQuantity += amount;
   }
 

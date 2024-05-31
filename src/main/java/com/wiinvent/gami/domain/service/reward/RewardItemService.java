@@ -131,14 +131,6 @@ public class RewardItemService extends BaseService {
     if (rewardType == null) {
       throw new ResourceNotFoundException("Type not found");
     }
-    if (Objects.equals(dto.getType(), ProcessQuantityDto.ProcessQuantityType.ADD)) {
-      rewardItem.addQuantity(dto.getQuantity());
-    } else {
-      if (rewardItem.getQuantity() < dto.getQuantity()) {
-        throw new BadRequestException("Quantity need to be greater than 0");
-      }
-      rewardItem.minusQuantity(dto.getQuantity());
-    }
     if(rewardType.getType() == RewardItemType.VOUCHER ) {
       List<VoucherDetail> voucherDetails = new ArrayList<>();
       if (dto.getType() == ProcessQuantityDto.ProcessQuantityType.ADD) {
@@ -155,8 +147,7 @@ public class RewardItemService extends BaseService {
       }else{
         voucherDetailStorage.saveAll(voucherDetails);
       }
-    }
-    if (rewardType.getType() == RewardItemType.PRODUCT) {
+    } else if (rewardType.getType() == RewardItemType.PRODUCT) {
       List<ProductDetail> productDetails = new ArrayList<>();
       if (dto.getType() == ProcessQuantityDto.ProcessQuantityType.ADD) {
         productDetails = productDetailStorage.findLimitByStoreId(Long.valueOf(rewardItem.getExternalId()), dto.getQuantity(), RewardItemStatus.NEW);
@@ -171,6 +162,16 @@ public class RewardItemService extends BaseService {
         throw new BadRequestException("Voucher not enough quantity");
       }else{
         productDetailStorage.saveAll(productDetails);
+      }
+    } else {
+      if (Objects.equals(dto.getType(), ProcessQuantityDto.ProcessQuantityType.ADD)) {
+        rewardItem.addQuantity(dto.getQuantity());
+      }
+      if (Objects.equals(dto.getType(), ProcessQuantityDto.ProcessQuantityType.MINUS)) {
+        if (rewardItem.getQuantity() < dto.getQuantity()) {
+          throw new BadRequestException("Quantity need to be greater than 0");
+        }
+        rewardItem.minusQuantity(dto.getQuantity());
       }
     }
 

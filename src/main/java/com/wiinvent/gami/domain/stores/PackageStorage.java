@@ -28,24 +28,18 @@ public class PackageStorage extends BaseStorage {
 
   public void save(Package productPackage) {
     packageRepository.save(productPackage);
-    remoteCache.del(genCacheKeys(productPackage));
+    remoteCache.del(removeCache(productPackage));
   }
 
-  public List<String> genCacheKeys(Package productPackage) {
-    List<String> cacheKeys = new ArrayList<>();
-    cacheKeys.add(cacheKey.getPackageByCode(productPackage.getCode()));
-    cacheKeys.add(cacheKey.getPackageById(productPackage.getId()));
-    cacheKeys.add(cacheKey.getPortalPackages(0));
-    cacheKeys.add(cacheKey.getPortalPackages(1));
-    cacheKeys.add(cacheKey.getPortalPackages(2));
-    cacheKeys.add(cacheKey.getPortalPackages(3));
-    cacheKeys.add(cacheKey.getPortalPackages(4));
-    cacheKeys.add(cacheKey.getPortalPackagesByTypeId(productPackage.getPackageTypeId(), 0));
-    cacheKeys.add(cacheKey.getPortalPackagesByTypeId(productPackage.getPackageTypeId(), 1));
-    cacheKeys.add(cacheKey.getPortalPackagesByTypeId(productPackage.getPackageTypeId(), 2));
-    cacheKeys.add(cacheKey.getPortalPackagesByTypeId(productPackage.getPackageTypeId(), 3));
-    cacheKeys.add(cacheKey.getPortalPackagesByTypeId(productPackage.getPackageTypeId(), 4));
-    return cacheKeys;
+  private List<String> removeCache(Package portalPackage) {
+    List<String> removeCaches = new ArrayList<>();
+    for(int page = 0; page < 100 ; page++) {
+      removeCaches.add(cacheKey.getPortalPackagesByTypeId(portalPackage.getPackageTypeId(), page));
+      removeCaches.add(cacheKey.getPortalPackages(page));
+    }
+    removeCaches.add(cacheKey.getPackageById(portalPackage.getId()));
+    removeCaches.add(cacheKey.getPackageByCode(portalPackage.getCode()));
+    return removeCaches;
   }
 
   public List<Package> findAllPackageActive(Integer typeId) {

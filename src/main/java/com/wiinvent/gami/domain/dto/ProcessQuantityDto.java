@@ -15,6 +15,6 @@ public class ProcessQuantityDto {
 
   public enum ProcessQuantityType {
     ADD,
-    MINUS
+    SUBTRACT
   }
 }

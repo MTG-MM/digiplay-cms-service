@@ -137,7 +137,7 @@ public class RewardItemService extends BaseService {
         voucherDetails = voucherDetailStorage.findVoucherByStoreIdAndLimit(Long.valueOf(rewardItem.getExternalId()), dto.getQuantity(), RewardItemStatus.NEW);
         voucherDetails.forEach(v -> v.setStatus(RewardItemStatus.READY_TO_USE));
         rewardItem.addQuantity(voucherDetails.size());
-      } else if (dto.getType() == ProcessQuantityDto.ProcessQuantityType.MINUS) {
+      } else if (dto.getType() == ProcessQuantityDto.ProcessQuantityType.SUBTRACT) {
         voucherDetails = voucherDetailStorage.findVoucherByStoreIdAndLimit(Long.valueOf(rewardItem.getExternalId()), dto.getQuantity(), RewardItemStatus.READY_TO_USE);
         voucherDetails.forEach(v -> v.setStatus(RewardItemStatus.NEW));
         rewardItem.minusQuantity(voucherDetails.size());
@@ -153,7 +153,7 @@ public class RewardItemService extends BaseService {
         productDetails = productDetailStorage.findProductByStoreIdAndLimit(Long.valueOf(rewardItem.getExternalId()), dto.getQuantity(), RewardItemStatus.NEW);
         productDetails.forEach(v -> v.setStatus(RewardItemStatus.READY_TO_USE));
         rewardItem.addQuantity(productDetails.size());
-      } else if (dto.getType() == ProcessQuantityDto.ProcessQuantityType.MINUS) {
+      } else if (dto.getType() == ProcessQuantityDto.ProcessQuantityType.SUBTRACT) {
         productDetails = productDetailStorage.findProductByStoreIdAndLimit(Long.valueOf(rewardItem.getExternalId()), dto.getQuantity(), RewardItemStatus.READY_TO_USE);
         productDetails.forEach(v -> v.setStatus(RewardItemStatus.NEW));
         rewardItem.minusQuantity(productDetails.size());
@@ -167,7 +167,7 @@ public class RewardItemService extends BaseService {
       if (Objects.equals(dto.getType(), ProcessQuantityDto.ProcessQuantityType.ADD)) {
         rewardItem.addQuantity(dto.getQuantity());
       }
-      if (Objects.equals(dto.getType(), ProcessQuantityDto.ProcessQuantityType.MINUS)) {
+      if (Objects.equals(dto.getType(), ProcessQuantityDto.ProcessQuantityType.SUBTRACT)) {
         if (rewardItem.getQuantity() < dto.getQuantity()) {
           throw new BadRequestException("Quantity need to be greater than 0");
         }

@@ -1,9 +1,7 @@
 package com.wiinvent.gami.domain.stores;
 
 import com.wiinvent.gami.domain.entities.ProductDetail;
-import com.wiinvent.gami.domain.entities.VoucherDetail;
 import com.wiinvent.gami.domain.entities.type.RewardItemStatus;
-import com.wiinvent.gami.domain.entities.type.StoreType;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -77,7 +75,7 @@ public class ProductDetailStorage extends BaseStorage {
     };
   }
 
-  public List<ProductDetail> findLimitByStoreId(Long storeId,long limit, RewardItemStatus status) {
-    return productDetailRepository.findLimitByStoreId(storeId, limit, status.name());
+  public List<ProductDetail> findProductByStoreIdAndLimit(Long storeId, long limit, RewardItemStatus status) {
+    return productDetailRepository.findByStoreIdAndLimit(storeId, limit, status.name());
   }
 }

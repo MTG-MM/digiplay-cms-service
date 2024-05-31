@@ -134,11 +134,11 @@ public class RewardItemService extends BaseService {
     if(rewardType.getType() == RewardItemType.VOUCHER ) {
       List<VoucherDetail> voucherDetails = new ArrayList<>();
       if (dto.getType() == ProcessQuantityDto.ProcessQuantityType.ADD) {
-        voucherDetails = voucherDetailStorage.findLimitByStoreId(Long.valueOf(rewardItem.getExternalId()), dto.getQuantity(), RewardItemStatus.NEW);
+        voucherDetails = voucherDetailStorage.findVoucherByStoreIdAndLimit(Long.valueOf(rewardItem.getExternalId()), dto.getQuantity(), RewardItemStatus.NEW);
         voucherDetails.forEach(v -> v.setStatus(RewardItemStatus.READY_TO_USE));
         rewardItem.addQuantity(voucherDetails.size());
       } else if (dto.getType() == ProcessQuantityDto.ProcessQuantityType.MINUS) {
-        voucherDetails = voucherDetailStorage.findLimitByStoreId(Long.valueOf(rewardItem.getExternalId()), dto.getQuantity(), RewardItemStatus.READY_TO_USE);
+        voucherDetails = voucherDetailStorage.findVoucherByStoreIdAndLimit(Long.valueOf(rewardItem.getExternalId()), dto.getQuantity(), RewardItemStatus.READY_TO_USE);
         voucherDetails.forEach(v -> v.setStatus(RewardItemStatus.NEW));
         rewardItem.minusQuantity(voucherDetails.size());
       }
@@ -150,11 +150,11 @@ public class RewardItemService extends BaseService {
     } else if (rewardType.getType() == RewardItemType.PRODUCT) {
       List<ProductDetail> productDetails = new ArrayList<>();
       if (dto.getType() == ProcessQuantityDto.ProcessQuantityType.ADD) {
-        productDetails = productDetailStorage.findLimitByStoreId(Long.valueOf(rewardItem.getExternalId()), dto.getQuantity(), RewardItemStatus.NEW);
+        productDetails = productDetailStorage.findProductByStoreIdAndLimit(Long.valueOf(rewardItem.getExternalId()), dto.getQuantity(), RewardItemStatus.NEW);
         productDetails.forEach(v -> v.setStatus(RewardItemStatus.READY_TO_USE));
         rewardItem.addQuantity(productDetails.size());
       } else if (dto.getType() == ProcessQuantityDto.ProcessQuantityType.MINUS) {
-        productDetails = productDetailStorage.findLimitByStoreId(Long.valueOf(rewardItem.getExternalId()), dto.getQuantity(), RewardItemStatus.READY_TO_USE);
+        productDetails = productDetailStorage.findProductByStoreIdAndLimit(Long.valueOf(rewardItem.getExternalId()), dto.getQuantity(), RewardItemStatus.READY_TO_USE);
         productDetails.forEach(v -> v.setStatus(RewardItemStatus.NEW));
         rewardItem.minusQuantity(productDetails.size());
       }

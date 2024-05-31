@@ -45,7 +45,7 @@ public class VoucherDetailStorage extends BaseStorage {
     voucherDetailRepository.updateItemStatus(rewardSegmentId, rewardItemId, limit);
   }
 
-  public Page<VoucherDetail> findLimitByStoreId(Long storeId, Pageable pageable) {
+  public Page<VoucherDetail> findVoucherByStoreIdAndLimit(Long storeId, Pageable pageable) {
     return voucherDetailRepository.findByStoreId(storeId, pageable);
   }
 
@@ -79,7 +79,7 @@ public class VoucherDetailStorage extends BaseStorage {
     return voucherDetailRepository.countVoucherDetailByStoreIdAndStatus(id, status);
   }
 
-  public List<VoucherDetail> findLimitByStoreId(Long storeId, Long limit, RewardItemStatus status) {
-    return voucherDetailRepository.findLimitByStoreId(storeId, limit, status.name());
+  public List<VoucherDetail> findVoucherByStoreIdAndLimit(Long storeId, Long limit, RewardItemStatus status) {
+    return voucherDetailRepository.findByStoreIdAndLimit(storeId, limit, status.name());
   }
 }

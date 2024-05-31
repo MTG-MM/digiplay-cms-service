@@ -50,8 +50,8 @@ public interface ProductDetailRepository extends JpaRepository<ProductDetail, UU
   Long countProductDetailByStoreIdAndStatus(Long id, RewardItemStatus status);
   @Query(nativeQuery = true,
       value = "SELECT * FROM product_detail " +
-          "where store_id = :storeId and product_status = :status limit :limit  ")
-  List<ProductDetail> findLimitByStoreId(
+          "where store_id = :storeId and product_status = :status and limit :limit  ")
+  List<ProductDetail> findByStoreIdAndLimit(
       @Param("storeId") Long storeId,
       @Param("limit") long limit,
       @Param("status") String status);

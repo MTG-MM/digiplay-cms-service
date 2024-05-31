@@ -1,7 +1,5 @@
 package com.wiinvent.gami.domain.stores.user;
 
-import com.wiinvent.gami.domain.entities.Character;
-import com.wiinvent.gami.domain.entities.type.CharacterCategoryType;
 import com.wiinvent.gami.domain.entities.type.FeatureCode;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.entities.user.Feature;
@@ -39,7 +37,7 @@ public class FeatureStorage extends BaseStorage {
 
   public void save(Feature feature){
     featureRepository.save(feature);
-    removeCacheKey(feature);
+    remoteCache.del(removeCacheKey(feature));
   }
 
   List<String> removeCacheKey (Feature feature) {

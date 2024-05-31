@@ -21,19 +21,23 @@ import java.util.UUID;
 
 @Component
 public class AchievementUserStorage extends BaseStorage {
-  public Page<AchievementUser> findAll(UUID userId, Long startDate, Long endDate, Pageable pageable) {
-    return achievementUserRepository.findAll(achievementUserSpecification(userId, startDate, endDate), pageable);
+  public List<AchievementUser> findAll(UUID userId, UUID transId, Long startDate, Long endDate) {
+    return achievementUserRepository.findAll(achievementUserSpecification(userId, transId, startDate, endDate));
   }
 
-  public Specification<AchievementUser> achievementUserSpecification(UUID userId, Long startDate, Long endDate) {
+  public Specification<AchievementUser> achievementUserSpecification(UUID userId, UUID transId, Long startDate, Long endDate) {
     return (root, query, criteriaBuilder) -> {
       List<Predicate> conditionLists = new ArrayList<>();
       conditionLists.add(criteriaBuilder.equal(root.get("userId"), userId));
-
+      if (transId != null) {
+        conditionLists.add(criteriaBuilder.equal(root.get("id"), transId));
+      }
       if (startDate != null && endDate != null) {
         conditionLists.add(criteriaBuilder.and(criteriaBuilder.greaterThanOrEqualTo(root.get("createdAt"), startDate),
             criteriaBuilder.lessThanOrEqualTo(root.get("createdAt"), endDate)));
       }
+      query.where(criteriaBuilder.and(conditionLists.toArray(new Predicate[0])))
+          .orderBy(criteriaBuilder.desc(root.get("createdAt")));
       return criteriaBuilder.and(conditionLists.toArray(new Predicate[0]));
     };
   }

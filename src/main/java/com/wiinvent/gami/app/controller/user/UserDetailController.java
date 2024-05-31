@@ -18,6 +18,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -138,13 +139,13 @@ public class UserDetailController {
   }
 
   @GetMapping("user-achievement")
-  public ResponseEntity<PageResponse<AchievementUserResponse>> getAchievementUsers(
+  public ResponseEntity<List<AchievementUserResponse>> getAchievementUsers(
       @RequestParam UUID userId,
+      @RequestParam(required = false) UUID transId,
       @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate gte,
-      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte,
-      @SortDefault(sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable)
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte)
   {
-    return ResponseEntity.ok(PageResponse.createFrom(achievementUserService.getAchievementUsers(userId, gte ,lte, pageable)));
+    return ResponseEntity.ok(achievementUserService.getAchievementUsers(userId, transId, gte ,lte));
   }
 
   @GetMapping("ticket-history")
@@ -175,13 +176,13 @@ public class UserDetailController {
   }
 
   @GetMapping("user-collection")
-  public ResponseEntity<PageResponse<UserCollectionResponse>> getUserCollection(
+  public ResponseEntity<List<UserCollectionResponse>> getUserCollection(
       @RequestParam UUID userId,
+      @RequestParam(required = false) UUID transId,
       @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate gte,
-      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte,
-      @SortDefault(sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable)
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte)
   {
-    return ResponseEntity.ok(PageResponse.createFrom(userCollectionService.getUserCollections(userId, gte, lte, pageable)));
+    return ResponseEntity.ok(userCollectionService.getUserCollections(userId, transId, gte, lte));
   }
 
   @GetMapping("transaction/lucky-point")
@@ -225,15 +226,12 @@ public class UserDetailController {
   }
 
   @GetMapping("gold-pig")
-  public ResponseEntity<PageCursorResponse<UserGoldPigResponse>> getUserGoldPig(
+  public ResponseEntity<List<UserGoldPigResponse>> getUserGoldPig(
       @RequestParam UUID userId,
-      @RequestParam(required = false) Long next,
-      @RequestParam(required = false) Long pre,
       @RequestParam(required = false) UUID transId,
-      @RequestParam(required = false, defaultValue = "20") int limit,
       @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate gte,
-      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte
-  ) {
-    return ResponseEntity.ok(userGoldPigService.getUserGoldPig(userId, transId, gte, lte, next, pre, limit));
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte)
+  {
+    return ResponseEntity.ok(userGoldPigService.getUserGoldPig(userId, transId, gte, lte));
   }
 }

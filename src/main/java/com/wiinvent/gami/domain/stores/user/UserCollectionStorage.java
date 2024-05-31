@@ -15,19 +15,23 @@ import java.util.UUID;
 @Component
 public class UserCollectionStorage extends BaseStorage {
 
-  public Page<UserCollection> findAll(UUID userId, Long startDate, Long endDate, Pageable pageable) {
-    return userCollectionRepository.findAll(userCollectionSpecification(userId, startDate, endDate), pageable);
+  public List<UserCollection> findAll(UUID userId, UUID transId, Long startDate, Long endDate) {
+    return userCollectionRepository.findAll(userCollectionSpecification(userId, transId, startDate, endDate));
   }
 
-  public Specification<UserCollection> userCollectionSpecification(UUID userId, Long startDate, Long endDate) {
+  public Specification<UserCollection> userCollectionSpecification(UUID userId, UUID transId, Long startDate, Long endDate) {
     return (root, query, criteriaBuilder) -> {
       List<Predicate> conditionLists = new ArrayList<>();
       conditionLists.add(criteriaBuilder.equal(root.get("userId"), userId));
-
+      if (transId != null) {
+        conditionLists.add(criteriaBuilder.equal(root.get("id"), transId));
+      }
       if (startDate != null && endDate != null) {
         conditionLists.add(criteriaBuilder.and(criteriaBuilder.greaterThanOrEqualTo(root.get("createdAt"), startDate),
             criteriaBuilder.lessThanOrEqualTo(root.get("createdAt"), endDate)));
       }
+      query.where(criteriaBuilder.and(conditionLists.toArray(new Predicate[0])))
+          .orderBy(criteriaBuilder.desc(root.get("createdAt")));
       return criteriaBuilder.and(conditionLists.toArray(new Predicate[0]));
     };
   }

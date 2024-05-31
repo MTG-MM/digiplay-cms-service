@@ -19,18 +19,18 @@ import java.util.stream.Collectors;
 @Service
 @Log4j2
 public class UserCollectionService extends BaseService {
-  public Page<UserCollectionResponse> getUserCollections
-      (UUID userId, LocalDate startDate, LocalDate endDate, Pageable pageable) {
+  public List<UserCollectionResponse> getUserCollections
+      (UUID userId, UUID transId, LocalDate startDate, LocalDate endDate) {
     Long startDateLong = null;
     Long endDateLong = null;
     if (Objects.nonNull(startDate)) startDateLong = Helper.startOfDaytoLong(startDate);
     if (Objects.nonNull(endDate)) endDateLong = Helper.endOfDaytoLong(endDate);
-    Page<UserCollection> userCollections = userCollectionStorage.findAll(userId, startDateLong, endDateLong, pageable);
-    List<Long> collectionIds = userCollections.getContent().stream().map(UserCollection::getCollectionId).toList();
+    List<UserCollection> userCollections = userCollectionStorage.findAll(userId, transId, startDateLong, endDateLong);
+    List<Long> collectionIds = userCollections.stream().map(UserCollection::getCollectionId).toList();
     Map<Long, Collection> userCollectionMap = collectionStorage.findAllCollectionByIdIn(collectionIds).stream()
         .collect(Collectors.toMap(Collection::getId, Function.identity()));
     List<UserCollectionResponse> userCollectionResponses = new ArrayList<>();
-    for (UserCollection userCollection : userCollections.getContent()) {
+    for (UserCollection userCollection : userCollections) {
       UserCollectionResponse collectionResponse = modelMapper.toUserCollectionResponse(userCollection);
       Collection collection = userCollectionMap.get(userCollection.getCollectionId());
       if (collection == null){
@@ -40,6 +40,6 @@ public class UserCollectionService extends BaseService {
       }
       userCollectionResponses.add(collectionResponse);
     }
-    return new PageImpl<>(userCollectionResponses, pageable, userCollections.getTotalElements());
+    return userCollectionResponses;
   }
 }

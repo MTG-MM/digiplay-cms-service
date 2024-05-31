@@ -57,18 +57,18 @@ public class AchievementUserService extends BaseService {
 //    return new PageCursorResponse<>(responses, limit, type, "createdAt");
 //  }
 
-  public Page<AchievementUserResponse> getAchievementUsers
-      (UUID userId, LocalDate startDate, LocalDate endDate, Pageable pageable) {
+  public List<AchievementUserResponse> getAchievementUsers
+      (UUID userId, UUID transId, LocalDate startDate, LocalDate endDate) {
     Long startDateLong = null;
     Long endDateLong = null;
     if (Objects.nonNull(startDate)) startDateLong = Helper.startOfDaytoLong(startDate);
     if (Objects.nonNull(endDate)) endDateLong = Helper.endOfDaytoLong(endDate);
-    Page<AchievementUser> achievementUsers = achievementUserStorage.findAll(userId, startDateLong, endDateLong, pageable);
-    List<Integer> achievementIds = achievementUsers.getContent().stream().map(AchievementUser::getAchievementId).toList();
+    List<AchievementUser> achievementUsers = achievementUserStorage.findAll(userId, transId, startDateLong, endDateLong);
+    List<Integer> achievementIds = achievementUsers.stream().map(AchievementUser::getAchievementId).toList();
     Map<Integer, Achievement> achievementMap = achievementStorage.findAllByIdIn(achievementIds).stream()
         .collect(Collectors.toMap(Achievement::getId, Function.identity()));
 
-    List<AchievementUserResponse> userCollectionResponses = modelMapper.toListAchievementUserResponse(achievementUsers.toList());
+    List<AchievementUserResponse> userCollectionResponses = modelMapper.toListAchievementUserResponse(achievementUsers);
     userCollectionResponses.forEach(r -> {
 //      Achievement achievement = achievementMap.getOrDefault(r.getAchievementId(), null);
 //      r.setName(achievement != null ? achievement.getName() : null);
@@ -81,6 +81,6 @@ public class AchievementUserService extends BaseService {
           .findFirst().orElse(new AchievementInfo());
       r.setAchievementInfo(achievementInfo);
     });
-    return new PageImpl<>(userCollectionResponses, pageable, achievementUsers.getTotalElements());
+    return userCollectionResponses;
   }
 }

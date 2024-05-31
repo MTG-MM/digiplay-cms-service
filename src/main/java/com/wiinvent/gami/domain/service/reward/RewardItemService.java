@@ -163,14 +163,20 @@ public class RewardItemService extends BaseService {
       }
     }
     if (rewardType.getType() == RewardItemType.PRODUCT) {
+      List<ProductDetail> productDetails = new ArrayList<>();
       if (dto.getType() == ProcessQuantityDto.ProcessQuantityType.ADD) {
-        List<ProductDetail> productDetails = productDetailStorage.findLimitByStoreId(Long.valueOf(rewardItem.getExternalId()), dto.getQuantity(), RewardItemStatus.NEW);
+        productDetails = productDetailStorage.findLimitByStoreId(Long.valueOf(rewardItem.getExternalId()), dto.getQuantity(), RewardItemStatus.NEW);
         productDetails.forEach(v -> v.setStatus(RewardItemStatus.READY_TO_USE));
         rewardItem.addQuantity(productDetails.size());
       } else if (dto.getType() == ProcessQuantityDto.ProcessQuantityType.MINUS) {
-        List<ProductDetail> productDetails = productDetailStorage.findLimitByStoreId(Long.valueOf(rewardItem.getExternalId()), dto.getQuantity(), RewardItemStatus.READY_TO_USE);
+        productDetails = productDetailStorage.findLimitByStoreId(Long.valueOf(rewardItem.getExternalId()), dto.getQuantity(), RewardItemStatus.READY_TO_USE);
         productDetails.forEach(v -> v.setStatus(RewardItemStatus.NEW));
         rewardItem.minusQuantity(productDetails.size());
+      }
+      if(productDetails.isEmpty()) {
+        throw new BadRequestException("Voucher not enough quantity");
+      }else{
+        productDetailStorage.saveAll(productDetails);
       }
     }
 

@@ -350,6 +350,8 @@ public interface ModelMapper {
 
   List<QuestResponse> toListQuestResponse(List<Quest> quests);
 
+  List<TaskResponse> toListTaskResponse(List<Task> tasks);
+
   UserRewardItems toUserRewardItems(RewardItemSelect rewardItemSelect);
 
   RewardItemSelect toUserRewardItemSelect(UserRewardItems rewardItemSelect);

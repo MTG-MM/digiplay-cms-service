@@ -13,8 +13,10 @@ public class InternalRequestDto {
   @NotNull
   @Min(0)
   private Double amount;
-  private String note;
   private Long itemId;
+  private Integer score;
+  private String note;
+
   private RequestGamiType requestType;
 
   public enum RequestGamiType {

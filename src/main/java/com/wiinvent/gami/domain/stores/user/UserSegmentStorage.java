@@ -1,10 +1,14 @@
 package com.wiinvent.gami.domain.stores.user;
 
+import com.wiinvent.gami.domain.entities.Achievement;
+import com.wiinvent.gami.domain.entities.type.AchievementType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.entities.user.UserSegment;
 import com.wiinvent.gami.domain.stores.BaseStorage;
+import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -29,8 +33,23 @@ public class UserSegmentStorage extends BaseStorage {
   public List<UserSegment> findByIdIn(List<Long> ids) {
     return userSegmentRepository.findByIdIn(ids);
   }
-  public Page<UserSegment> findAll(Pageable pageable) {
-    return userSegmentRepository.findAll(pageable);
+
+  public Page<UserSegment> findAll(String name, Status status, Pageable pageable) {
+    return userSegmentRepository.findAll(userSegmentSpecification(name, status), pageable);
+  }
+
+  private Specification<UserSegment> userSegmentSpecification(String name, Status status) {
+    return (root, query, criteriaBuilder) -> {
+      List<Predicate> conditionLists = new ArrayList<>();
+      conditionLists.add(criteriaBuilder.notEqual(root.get("status"), Status.DELETE));
+      if (name != null) {
+        conditionLists.add(criteriaBuilder.equal(root.get("name"), "%" + name + "%"));
+      }
+      if (status != null) {
+        conditionLists.add(criteriaBuilder.equal(root.get("status"), status));
+      }
+      return criteriaBuilder.and(conditionLists.toArray(new Predicate[0]));
+    };
   }
 
   public List<UserSegment> findAllUserSegmentActive() {

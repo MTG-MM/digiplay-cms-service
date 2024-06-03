@@ -18,4 +18,5 @@ public class QuestUserHistoryResponse {
   private LocalDate date;
   private Integer score;
   private QuestStatusType questState;
+  private Long createdAt;
 }

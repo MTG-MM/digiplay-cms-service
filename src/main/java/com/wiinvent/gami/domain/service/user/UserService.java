@@ -59,6 +59,7 @@ public class UserService extends BaseService {
     userResponse.setPhoneNumber(userProfile.getPhoneNumber());
     userResponse.setBirth(userProfile.getBirth());
     userResponse.setDisplayName(userProfile.getDisplayName());
+    userResponse.setGender(userProfile.getGender());
     //user account
     if (Objects.nonNull(userAccount)) {
       userResponse.setState(userAccount.getState());

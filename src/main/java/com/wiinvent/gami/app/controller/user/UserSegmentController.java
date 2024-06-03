@@ -2,6 +2,7 @@ package com.wiinvent.gami.app.controller.user;
 
 import com.wiinvent.gami.domain.dto.UserSegmentCreateDto;
 import com.wiinvent.gami.domain.dto.UserSegmentUpdateDto;
+import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.response.UserSegmentResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.service.user.UserSegmentService;
@@ -40,8 +41,11 @@ public class UserSegmentController {
   @GetMapping("")
   @PageableAsQueryParam
   @Operation(summary = "Lấy danh sách level")
-  public ResponseEntity<PageResponse<UserSegmentResponse>> findAll(@Parameter(hidden = true) Pageable pageable) {
-    return ResponseEntity.ok(PageResponse.createFrom(userSegmentService.getPageUserSegment(pageable)));
+  public ResponseEntity<PageResponse<UserSegmentResponse>> findAll(
+      @RequestParam(required = false) String name,
+      @RequestParam(required = false) Status status,
+      @Parameter(hidden = true) Pageable pageable) {
+    return ResponseEntity.ok(PageResponse.createFrom(userSegmentService.getPageUserSegment(name, status, pageable)));
   }
 
   @PostMapping("")

@@ -44,4 +44,7 @@ public class UserProfile extends BaseEntity {
 
   @Column(name = "display_name")
   private String displayName;
+
+  @Column(name = "gender")
+  private String gender;
 }

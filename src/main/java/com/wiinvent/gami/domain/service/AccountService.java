@@ -91,10 +91,12 @@ public class AccountService extends BaseService {
     if (account == null) {
       throw new BadRequestException(Constants.USER_NOT_FOUND);
     }
-    String currentPassword = account.getPassword();
-    if (!userSecurityService.decode(dto.getOldPassword(), currentPassword)) {
-      throw new BadRequestException("Old password does not match the current password");
-    }
+
+//    String currentPassword = account.getPassword();
+//    if (!userSecurityService.decode(dto.getOldPassword(), currentPassword)) {
+//      throw new BadRequestException("Old password does not match the current password");
+//    }
+
     account.setPassword(userSecurityService.encode(dto.getNewPassword()));
     accountStorage.save(account);
     return true;

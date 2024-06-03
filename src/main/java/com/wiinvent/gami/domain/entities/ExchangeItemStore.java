@@ -41,26 +41,26 @@ public class ExchangeItemStore extends BaseEntity {
 
   @ColumnDefault("0")
   @Column(name = "coin_price")
-  private Integer coinPrice = 0;
+  private Integer coinPrice;
 
   @ColumnDefault("0")
   @Column(name = "point_price")
-  private Integer pointPrice = 0;
+  private Integer pointPrice;
 
   @Column(name = "ticket_price")
-  private Integer ticketPrice = 0;
+  private Integer ticketPrice;
 
   @Column(name = "start_at")
-  private Long startAt = 0L;
+  private Long startAt;
 
   @Column(name = "end_at")
-  private Long endAt = 0L;
+  private Long endAt;
 
   @Column(name = "quantity")
   private Long quantity = 0L;
 
   @Column(name = "limit_exchange")
-  private Long limitExchange = 0L;
+  private Long limitExchange;
 
   public void addQuantity(long amount) {
     this.quantity = this.getQuantity() + amount;

@@ -204,7 +204,11 @@ public interface ModelMapper {
   List<TransactionResponse> toExpHistoryResponse(List<ExpHistory> expHistories);
   List<TransactionResponse> toTurnTransactionResponse(List<TurnTransaction> turnTransactions);
   List<TaskUserResponse> toTaskUserResponse(List<TaskUser> taskUsers);
-  List<UserGoldPigResponse> toUserGoldPigResponse(List<UserGoldPig> userGoldPigs);
+
+  UserGoldPigResponse toUserGoldPigResponse(UserGoldPig userGoldPig);
+  default Page<UserGoldPigResponse> toPageUserGoldPigResponse(Page<UserGoldPig> userGoldPigs){
+    return userGoldPigs.map(this::toUserGoldPigResponse);
+  }
   List<UserResponse> toListUserResponse(List<User> users);
   UserResponse toUserResponse(User user);
 
@@ -269,6 +273,7 @@ public interface ModelMapper {
 
   List<AchievementUserResponse> toListAchievementUserResponse(List<AchievementUser> achievementUsers);
 
+  List<CharacterUserResponse> toListCharacterUserResponse(List<CharacterUser> characterUsers);
 
   Challenge toChallenge(ChallengeCreateDto challengeCreateDto);
   void mapChallengeUpdateDtoToChallenge(ChallengeUpdateDto challengeUpdateDto, @MappingTarget Challenge challenge);

@@ -2,6 +2,7 @@ package com.wiinvent.gami.app.controller;
 
 import com.wiinvent.gami.domain.dto.AccountDto;
 import com.wiinvent.gami.domain.dto.AccountStateDto;
+import com.wiinvent.gami.domain.dto.ChangePasswordDto;
 import com.wiinvent.gami.domain.response.AccountResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import com.wiinvent.gami.domain.security.service.UserDetailsImpl;
@@ -27,7 +28,7 @@ public class AccountController extends BaseController {
   @Autowired AccountService accountService;
 
   @PostMapping("")
-  @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR') or hasRole('PUBLISHER')" )
+  @PreAuthorize("hasRole('ADMIN')" )
   public ResponseEntity<?> createAccount(Authentication authentication, @RequestBody AccountDto dto) {
     UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
     accountService.createAccount(userDetails, userDetails.getAccountRole(), dto);
@@ -47,10 +48,17 @@ public class AccountController extends BaseController {
     return ResponseEntity.ok(accountService.getAccountDetail(userDetails.getId()));
   }
 
-  @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR') or hasRole('PUBLISHER') or hasRole('READ_PUBLISHER')" )
+  @PreAuthorize("hasRole('ADMIN')" )
   @DeleteMapping("/accounts/{username}")
   public ResponseEntity<Boolean> deleteAccount(@PathVariable String username) {
     return ResponseEntity.ok(accountService.delete(username));
+  }
+
+  @PreAuthorize("hasRole('ADMIN')")
+  @PutMapping("changePassword")
+  public ResponseEntity<Boolean> changePassword(Authentication authentication, @Valid @RequestBody ChangePasswordDto dto) {
+    UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+    return ResponseEntity.ok(accountService.changePassword(userDetails, dto));
   }
 
   @GetMapping("")

@@ -1,6 +1,7 @@
 package com.wiinvent.gami.app.controller;
 
 import com.wiinvent.gami.domain.dto.*;
+import com.wiinvent.gami.domain.entities.type.RequestGamiType;
 import com.wiinvent.gami.domain.factory.GamiRequestInternalFactory;
 import com.wiinvent.gami.domain.response.InternalRequestResponse;
 import jakarta.validation.Valid;
@@ -40,7 +41,7 @@ public class GamiRequestController {
   @PutMapping("/coin")
   public ResponseEntity<InternalRequestResponse> processCoin(
       @RequestBody @Valid InternalRequestDto dto) {
-    if (Objects.equals(dto.getRequestType(), InternalRequestDto.RequestGamiType.ADD)) {
+    if (Objects.equals(dto.getRequestType(), RequestGamiType.ADD)) {
       return ResponseEntity.ok(gamiRequestInternalFactory.addCoin(dto));
     } else {
       return ResponseEntity.ok(gamiRequestInternalFactory.subCoin(dto));
@@ -50,7 +51,7 @@ public class GamiRequestController {
   @PutMapping("/point")
   public ResponseEntity<InternalRequestResponse> processPoint(
       @RequestBody @Valid InternalRequestDto dto) {
-    if (Objects.equals(dto.getRequestType(), InternalRequestDto.RequestGamiType.ADD)) {
+    if (Objects.equals(dto.getRequestType(), RequestGamiType.ADD)) {
       return ResponseEntity.ok(gamiRequestInternalFactory.addPoint(dto));
     } else {
       return ResponseEntity.ok(gamiRequestInternalFactory.subPoint(dto));
@@ -60,7 +61,7 @@ public class GamiRequestController {
   @PutMapping("/exp")
   public ResponseEntity<InternalRequestResponse> processExp(
       @RequestBody @Valid InternalRequestDto dto) {
-    if (Objects.equals(dto.getRequestType(), InternalRequestDto.RequestGamiType.ADD)) {
+    if (Objects.equals(dto.getRequestType(), RequestGamiType.ADD)) {
       return ResponseEntity.ok(gamiRequestInternalFactory.addExp(dto));
     } else {
       return ResponseEntity.ok(gamiRequestInternalFactory.subExp(dto));
@@ -70,7 +71,7 @@ public class GamiRequestController {
   @PutMapping("/ticket")
   public ResponseEntity<InternalRequestResponse> processTicket(
       @RequestBody @Valid InternalRequestDto dto) {
-    if (Objects.equals(dto.getRequestType(), InternalRequestDto.RequestGamiType.ADD)) {
+    if (Objects.equals(dto.getRequestType(), RequestGamiType.ADD)) {
       return ResponseEntity.ok(gamiRequestInternalFactory.addTicket(dto));
     } else {
       return ResponseEntity.ok(gamiRequestInternalFactory.subTicket(dto));
@@ -80,7 +81,7 @@ public class GamiRequestController {
   @PutMapping("/turn")
   public ResponseEntity<InternalRequestResponse> processTurn(
       @RequestBody @Valid InternalRequestDto dto) {
-    if (Objects.equals(dto.getRequestType(), InternalRequestDto.RequestGamiType.ADD)) {
+    if (Objects.equals(dto.getRequestType(), RequestGamiType.ADD)) {
       return ResponseEntity.ok(gamiRequestInternalFactory.addTurn(dto));
     } else {
       return ResponseEntity.ok(gamiRequestInternalFactory.subTurn(dto));
@@ -90,7 +91,7 @@ public class GamiRequestController {
   @PutMapping("/lucky-point")
   public ResponseEntity<InternalRequestResponse> processLuckyPoint(
       @RequestBody @Valid InternalRequestDto dto) {
-    if (Objects.equals(dto.getRequestType(), InternalRequestDto.RequestGamiType.ADD)) {
+    if (Objects.equals(dto.getRequestType(), RequestGamiType.ADD)) {
       return ResponseEntity.ok(gamiRequestInternalFactory.addLuckyPoint(dto));
     } else {
       return ResponseEntity.ok(gamiRequestInternalFactory.subLuckyPoint(dto));
@@ -100,7 +101,7 @@ public class GamiRequestController {
   @PutMapping("/gold-pig")
   public ResponseEntity<InternalRequestResponse> processGoldPigPoint(
       @RequestBody @Valid InternalRequestDto dto) {
-    if (Objects.equals(dto.getRequestType(), InternalRequestDto.RequestGamiType.ADD)) {
+    if (Objects.equals(dto.getRequestType(), RequestGamiType.ADD)) {
       return ResponseEntity.ok(gamiRequestInternalFactory.addGoldPigPoint(dto));
     } else {
       return ResponseEntity.ok(gamiRequestInternalFactory.subGoldPigPoint(dto));
@@ -111,7 +112,7 @@ public class GamiRequestController {
   @PutMapping("/collection")
   public ResponseEntity<InternalRequestResponse> processCollection(
       @RequestBody @Valid InternalRequestDto dto) {
-    if (Objects.equals(dto.getRequestType(), InternalRequestDto.RequestGamiType.ADD)) {
+    if (Objects.equals(dto.getRequestType(), RequestGamiType.ADD)) {
       return ResponseEntity.ok(gamiRequestInternalFactory.addCollection(dto));
     } else {
       return ResponseEntity.ok(gamiRequestInternalFactory.subCollection(dto));
@@ -121,7 +122,7 @@ public class GamiRequestController {
   @PutMapping("/character")
   public ResponseEntity<InternalRequestResponse> processCharacter(
       @RequestBody @Valid InternalRequestDto dto) {
-    if (Objects.equals(dto.getRequestType(), InternalRequestDto.RequestGamiType.ADD)) {
+    if (Objects.equals(dto.getRequestType(), RequestGamiType.ADD)) {
       return ResponseEntity.ok(gamiRequestInternalFactory.addCharacter(dto));
     } else {
       return ResponseEntity.ok(gamiRequestInternalFactory.subCharacter(dto));

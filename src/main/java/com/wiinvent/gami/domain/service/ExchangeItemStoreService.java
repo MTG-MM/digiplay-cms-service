@@ -91,7 +91,7 @@ public class ExchangeItemStoreService extends BaseService {
   }
 
   @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
-  public Boolean changeQuantity(ProcessQuantityDto dto) {
+  public Boolean updateQuantity(ProcessQuantityDto dto) {
     ExchangeItemStore exchangeItemStore = exchangeItemStoreStorage.findById(dto.getId());
     if (exchangeItemStore == null) {
       throw new ResourceNotFoundException("Exchange item not found");
@@ -134,7 +134,7 @@ public class ExchangeItemStoreService extends BaseService {
   private void handleVoucherDetails(ProcessQuantityDto dto, RewardItem rewardItem, ExchangeItemStore exchangeItemStore) {
     List<VoucherDetail> voucherDetails = new ArrayList<>();
     if (dto.getType() == ProcessQuantityDto.ProcessQuantityType.ADD) {
-      if (rewardItem.getQuantity() < dto.getQuantity() - exchangeItemStore.getQuantity()) {
+      if (rewardItem.getQuantity() < dto.getQuantity()) {
         throw new BadRequestException("Quantity of Reward Item is not enough");
       }
       voucherDetails = voucherDetailStorage.findVoucherByStoreIdAndLimit(Long.valueOf(rewardItem.getExternalId()), dto.getQuantity(), RewardItemStatus.READY_TO_USE);
@@ -157,7 +157,7 @@ public class ExchangeItemStoreService extends BaseService {
   private void handleProductDetails(ProcessQuantityDto dto, RewardItem rewardItem, ExchangeItemStore exchangeItemStore) {
     List<ProductDetail> productDetails = new ArrayList<>();
     if (dto.getType() == ProcessQuantityDto.ProcessQuantityType.ADD) {
-      if (rewardItem.getQuantity() < dto.getQuantity() - exchangeItemStore.getQuantity()) {
+      if (rewardItem.getQuantity() < dto.getQuantity()) {
         throw new BadRequestException("Quantity of Reward Item is not enough");
       }
       productDetails = productDetailStorage.findProductByStoreIdAndLimit(Long.valueOf(rewardItem.getExternalId()), dto.getQuantity(), RewardItemStatus.READY_TO_USE);

@@ -41,6 +41,28 @@ public class GamiRequestInternalFactory {
     }
   }
 
+  public InternalRequestResponse addTask(InternalTaskRequestDto dto) {
+    try {
+      HttpHeaders headers = new HttpHeaders();
+      headers.setContentType(MediaType.APPLICATION_JSON);
+
+      HttpEntity<InternalTaskRequestDto> requestEntity = new HttpEntity<>(dto, headers);
+      log.debug("=========addTask: {}/v1/game/it/portal/task/complete", gamiServiceDomain);
+      ResponseEntity<InternalRequestResponse> response = httpRestTemplate.exchange(
+          gamiServiceDomain + "/v1/game/it/portal/task/complete",
+          HttpMethod.PUT,
+          requestEntity,
+          InternalRequestResponse.class);
+      log.debug("=========addTask: {}{}", gamiServiceDomain, response.getBody());
+      if (response.getBody() == null || !response.getBody().getSuccess()) {
+        throw new RequestFailedException(response.getBody().getMessage());
+      }
+      return response.getBody();
+    } catch (Exception e) {
+      throw new RequestFailedException(e.getMessage());
+    }
+  }
+
   public InternalRequestResponse addAchievement(InternalRequestDto dto) {
     try {
       HttpHeaders headers = new HttpHeaders();

@@ -6,8 +6,6 @@ import lombok.Data;
 import java.util.UUID;
 @Data
 public class InternalQuestRequestDto {
-  private Integer questId;
-  private UUID userId;
-  private Integer score;
+  private UUID questHistoryId;
   private QuestStatusType questState;
 }

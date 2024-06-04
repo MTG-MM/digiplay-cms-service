@@ -25,8 +25,6 @@ public class QuestTurnResponse {
 
   private Integer viewAdsSkipDuration;
 
-  private Integer coinSkipCdPrice;
-
   private Integer duration;
 
   private Integer durationBonus;
@@ -37,7 +35,9 @@ public class QuestTurnResponse {
 
   private List<UserType> activeForUser;
 
-  private List<UserType> freeForUser;
+  private List<UserType> freePointForUser;
+
+  private List<UserType> freeCoinForUser;
 
   private List<UserRewardItems> rewardItems;
 }

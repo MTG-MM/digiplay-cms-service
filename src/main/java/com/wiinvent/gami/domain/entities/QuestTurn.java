@@ -46,9 +46,6 @@ public class QuestTurn extends BaseEntity {
   @Column(name = "view_ads_skip_duration")
   private Integer viewAdsSkipDuration;
 
-  @Column(name = "coin_skip_cd_price")
-  private Integer coinSkipCdPrice;
-
   @Column(name = "duration")
   private Integer duration;
 
@@ -67,9 +64,13 @@ public class QuestTurn extends BaseEntity {
   @JdbcTypeCode(SqlTypes.JSON)
   private List<UserType> activeForUser;
 
-  @Column(name = "free_for_user")
+  @Column(name = "free_point_for_user")
   @JdbcTypeCode(SqlTypes.JSON)
-  private List<UserType> freeForUser;
+  private List<UserType> freePointForUser;
+
+  @Column(name = "free_coin_for_user")
+  @JdbcTypeCode(SqlTypes.JSON)
+  private List<UserType> freeCoinForUser;
 
   @Column(name = "reward_items")
   @Convert(converter = UserRewardItemConverter.class)

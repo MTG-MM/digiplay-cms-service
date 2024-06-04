@@ -92,6 +92,12 @@ public class Package extends BaseEntity {
   @Enumerated(EnumType.STRING)
   private ProductPackageType type;
 
+  @Column(name = "second_bonus_point")
+  private Integer secondBonusPoint;
+
+  @Column(name = "second_bonus_coin")
+  private Integer secondBonusCoin;
+
   public static List<Status> getListStatusShow(){
     return List.of(Status.ACTIVE, Status.INACTIVE);
   }

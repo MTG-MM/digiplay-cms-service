@@ -3,10 +3,11 @@ package com.wiinvent.gami.domain.entities.user;
 import com.wiinvent.gami.domain.entities.BaseEntity;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.pojo.UserRewardItems;
-import com.wiinvent.gami.domain.utils.Converter.UserRewardItemConverter;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.util.List;
 
@@ -35,7 +36,8 @@ public class UserSegment extends BaseEntity {
   private Integer level;
 
   @Column(name = "reward_items")
-  @Convert(converter = UserRewardItemConverter.class)
+  @JdbcTypeCode(SqlTypes.JSON)
+//  @Convert(converter = UserRewardItemConverter.class)
   private List<UserRewardItems> rewardItems;
 
   @Column(name = "require_exp")

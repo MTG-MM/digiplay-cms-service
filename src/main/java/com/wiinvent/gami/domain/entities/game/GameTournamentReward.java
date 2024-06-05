@@ -2,11 +2,12 @@ package com.wiinvent.gami.domain.entities.game;
 
 import com.wiinvent.gami.domain.entities.BaseEntity;
 import com.wiinvent.gami.domain.pojo.RewardItemInfo;
-import com.wiinvent.gami.domain.utils.Converter.RewardItemInfoConverter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.util.UUID;
 
@@ -34,6 +35,7 @@ public class GameTournamentReward extends BaseEntity {
 
   @Size(max = 2000)
   @Column(name = "reward_item_info", length = 2000)
-  @Convert(converter = RewardItemInfoConverter.class)
+  @JdbcTypeCode(SqlTypes.JSON)
+//  @Convert(converter = RewardItemInfoConverter.class)
   private RewardItemInfo rewardItemInfo;
 }

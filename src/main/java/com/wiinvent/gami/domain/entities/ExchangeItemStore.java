@@ -3,12 +3,13 @@ package com.wiinvent.gami.domain.entities;
 import com.wiinvent.gami.domain.entities.type.ExchangeStoreType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.pojo.UserRewardItems;
-import com.wiinvent.gami.domain.utils.Converter.UserRewardItemConverter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.util.List;
 
@@ -31,7 +32,8 @@ public class ExchangeItemStore extends BaseEntity {
 
   @NotNull
   @Column(name = "reward_items")
-  @Convert(converter = UserRewardItemConverter.class)
+  @JdbcTypeCode(SqlTypes.JSON)
+//  @Convert(converter = UserRewardItemConverter.class)
   private List<UserRewardItems> rewardItems;
 
   @Lob

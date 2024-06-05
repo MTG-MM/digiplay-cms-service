@@ -11,7 +11,6 @@ import com.wiinvent.gami.domain.entities.reward.RewardType;
 import com.wiinvent.gami.domain.entities.type.*;
 import com.wiinvent.gami.domain.exception.BadRequestException;
 import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
-import com.wiinvent.gami.domain.pojo.UserRewardItems;
 import com.wiinvent.gami.domain.response.ExchangeItemStoreResponse;
 import com.wiinvent.gami.domain.response.base.PageResponse;
 import lombok.extern.log4j.Log4j2;

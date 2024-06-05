@@ -2,16 +2,19 @@ package com.wiinvent.gami.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.wiinvent.gami.domain.entities.type.Status;
+import com.wiinvent.gami.domain.pojo.UserRewardItems;
 import com.wiinvent.gami.domain.utils.DateUtils;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 public class ExchangeItemStoreUpdateDto {
@@ -38,6 +41,9 @@ public class ExchangeItemStoreUpdateDto {
   private Status status;
   @Min(0)
   private Long limitExchange;
+
+  @Size(max = 1, min = 1)
+  private List<UserRewardItems> rewardItems;
 
   public Long getEndAt() {return DateUtils.timeToLongAtVn(endAt);}
 

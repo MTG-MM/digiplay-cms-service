@@ -3,13 +3,14 @@ package com.wiinvent.gami.domain.entities;
 import com.wiinvent.gami.domain.entities.type.ProductPackageType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.pojo.PaymentMethodInfo;
-import com.wiinvent.gami.domain.utils.Converter.PaymentMethodInfoConverter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.util.List;
 
@@ -62,7 +63,8 @@ public class Package extends BaseEntity {
 
   @Size(max = 500)
   @Column(name = "payment_method_info", length = 500)
-  @Convert(converter = PaymentMethodInfoConverter.class)
+  @JdbcTypeCode(SqlTypes.JSON)
+//  @Convert(converter = PaymentMethodInfoConverter.class)
   private List<PaymentMethodInfo> paymentMethodInfo;
 
   @Column(name = "start_time")

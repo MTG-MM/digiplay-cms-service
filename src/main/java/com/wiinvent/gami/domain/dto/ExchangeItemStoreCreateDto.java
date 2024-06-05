@@ -10,7 +10,5 @@ import java.util.List;
 
 @Data
 public class ExchangeItemStoreCreateDto extends ExchangeItemStoreUpdateDto {
-  @Size(max = 1, min = 1)
-  private List<UserRewardItems> rewardItems;
   private ExchangeStoreType storeType;
 }

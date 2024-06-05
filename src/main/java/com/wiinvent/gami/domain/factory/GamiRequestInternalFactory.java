@@ -10,6 +10,8 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.UUID;
+
 @Component
 @Log4j2
 public class GamiRequestInternalFactory {
@@ -32,6 +34,28 @@ public class GamiRequestInternalFactory {
           requestEntity,
           InternalRequestResponse.class);
       log.debug("=========addPackage: {}{}", gamiServiceDomain, response.getBody());
+      if (response.getBody() == null || !response.getBody().getSuccess()) {
+        throw new RequestFailedException(response.getBody().getMessage());
+      }
+      return response.getBody();
+    } catch (Exception e) {
+      throw new RequestFailedException(e.getMessage());
+    }
+  }
+
+  public InternalRequestResponse processReward(UUID id) {
+    try {
+      HttpHeaders headers = new HttpHeaders();
+      headers.setContentType(MediaType.APPLICATION_JSON);
+
+      HttpEntity<UUID> requestEntity = new HttpEntity<>(id, headers);
+      log.debug("=========processReward: {}/v1/game/it/portal/reward/process", gamiServiceDomain);
+      ResponseEntity<InternalRequestResponse> response = httpRestTemplate.exchange(
+          gamiServiceDomain + "/v1/game/it/portal/reward/process",
+          HttpMethod.PUT,
+          requestEntity,
+          InternalRequestResponse.class);
+      log.debug("=========processReward: {}{}", gamiServiceDomain, response.getBody());
       if (response.getBody() == null || !response.getBody().getSuccess()) {
         throw new RequestFailedException(response.getBody().getMessage());
       }

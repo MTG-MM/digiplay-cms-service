@@ -1,5 +1,6 @@
 package com.wiinvent.gami.domain.response;
 
+import com.wiinvent.gami.domain.entities.type.RewardStateType;
 import com.wiinvent.gami.domain.pojo.RewardItemInfo;
 import com.wiinvent.gami.domain.entities.type.ResourceType;
 import com.wiinvent.gami.domain.entities.type.RewardItemType;
@@ -25,6 +26,8 @@ public class RewardItemHistoryResponse {
   private ResourceType resourceType;
 
   private RewardItemInfo rewardItemInfo;
+
+  private RewardStateType rewardState;
 
   private Long createdAt;
 

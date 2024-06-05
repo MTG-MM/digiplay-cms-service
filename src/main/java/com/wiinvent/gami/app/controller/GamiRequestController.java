@@ -11,6 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
+import java.util.UUID;
 
 @CrossOrigin(origins = "*", maxAge = 86400)
 @RestController
@@ -24,6 +25,18 @@ public class GamiRequestController {
   public ResponseEntity<InternalRequestResponse> processPackage(
       @RequestBody @Valid InternalSubRequestDto dto) {
     return ResponseEntity.ok(gamiRequestInternalFactory.addSub(dto));
+  }
+
+  @PutMapping("/process/reward")
+  public ResponseEntity<InternalRequestResponse> processReward(
+      @RequestParam UUID id) {
+    return ResponseEntity.ok(gamiRequestInternalFactory.processReward(id));
+  }
+
+  @PutMapping("/task")
+  public ResponseEntity<InternalRequestResponse> processTask(
+      @RequestBody @Valid InternalTaskRequestDto dto) {
+    return ResponseEntity.ok(gamiRequestInternalFactory.addTask(dto));
   }
 
   @PutMapping("/achievement")

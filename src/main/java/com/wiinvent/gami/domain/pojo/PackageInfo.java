@@ -1,5 +1,6 @@
 package com.wiinvent.gami.domain.pojo;
 
+import com.wiinvent.gami.domain.entities.type.ProductPackageType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import lombok.Data;
 
@@ -17,6 +18,7 @@ public class PackageInfo {
   private Integer coinDaily;
   private String imageUrl;
   private Integer packageTypeId;
+  private ProductPackageType type;
   private Integer pointDaily;
   private List<PaymentMethodInfo> paymentMethodInfo;
   private Long startTime;
@@ -25,6 +27,8 @@ public class PackageInfo {
   private Integer coinBonus;
   private String name;
   private String description;
+  private Integer secondBonusPoint;
+  private Integer secondBonusCoin;
   private Long createdAt;
   private Long updatedAt;
 }

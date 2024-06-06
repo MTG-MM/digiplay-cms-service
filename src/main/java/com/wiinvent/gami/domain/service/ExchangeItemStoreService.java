@@ -25,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Log4j2
 @Service
@@ -109,10 +110,10 @@ public class ExchangeItemStoreService extends BaseService {
       throw new ResourceNotFoundException("Type not found");
     }
 
-    if (rewardType.getType() == RewardItemType.VOUCHER) {
+    if (Objects.equals(rewardType.getType(), RewardItemType.VOUCHER)) {
       handleVoucherDetails(dto, rewardItem, exchangeItemStore);
     }
-    else if (rewardType.getType() == RewardItemType.PRODUCT) {
+    else if (Objects.equals(rewardType.getType(), RewardItemType.PRODUCT)) {
       handleProductDetails(dto, rewardItem, exchangeItemStore);
     }
     else {
@@ -132,14 +133,14 @@ public class ExchangeItemStoreService extends BaseService {
 
   private void handleVoucherDetails(ProcessQuantityDto dto, RewardItem rewardItem, ExchangeItemStore exchangeItemStore) {
     List<VoucherDetail> voucherDetails = new ArrayList<>();
-    if (dto.getType() == ProcessQuantityDto.ProcessQuantityType.ADD) {
+    if (Objects.equals(dto.getType(), ProcessQuantityDto.ProcessQuantityType.ADD)) {
       if (rewardItem.getQuantity() < dto.getQuantity()) {
         throw new BadRequestException("Quantity of Reward Item is not enough");
       }
       voucherDetails = voucherDetailStorage.findVoucherByStoreIdAndLimit(Long.valueOf(rewardItem.getExternalId()), dto.getQuantity(), RewardItemStatus.READY_TO_USE);
       voucherDetails.forEach(v -> v.setStatus(RewardItemStatus.IN_STORE));
       addQuantities(rewardItem, exchangeItemStore, voucherDetails.size());
-    } else if (dto.getType() == ProcessQuantityDto.ProcessQuantityType.SUBTRACT) {
+    } else if (Objects.equals(dto.getType(), ProcessQuantityDto.ProcessQuantityType.SUBTRACT)) {
       if (exchangeItemStore.getQuantity() < dto.getQuantity()) {
         throw new BadRequestException("Quantity is not enough");
       }
@@ -155,14 +156,14 @@ public class ExchangeItemStoreService extends BaseService {
 
   private void handleProductDetails(ProcessQuantityDto dto, RewardItem rewardItem, ExchangeItemStore exchangeItemStore) {
     List<ProductDetail> productDetails = new ArrayList<>();
-    if (dto.getType() == ProcessQuantityDto.ProcessQuantityType.ADD) {
+    if (Objects.equals(dto.getType(), ProcessQuantityDto.ProcessQuantityType.ADD)) {
       if (rewardItem.getQuantity() < dto.getQuantity()) {
         throw new BadRequestException("Quantity of Reward Item is not enough");
       }
       productDetails = productDetailStorage.findProductByStoreIdAndLimit(Long.valueOf(rewardItem.getExternalId()), dto.getQuantity(), RewardItemStatus.READY_TO_USE);
       productDetails.forEach(v -> v.setStatus(RewardItemStatus.IN_STORE));
       addQuantities(rewardItem, exchangeItemStore, productDetails.size());
-    } else if (dto.getType() == ProcessQuantityDto.ProcessQuantityType.SUBTRACT) {
+    } else if (Objects.equals(dto.getType(), ProcessQuantityDto.ProcessQuantityType.SUBTRACT)) {
       if (exchangeItemStore.getQuantity() < dto.getQuantity()) {
         throw new BadRequestException("Quantity is not enough");
       }

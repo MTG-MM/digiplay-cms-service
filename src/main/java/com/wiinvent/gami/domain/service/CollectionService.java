@@ -23,10 +23,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -95,7 +92,7 @@ public class CollectionService extends BaseService {
     }
     List<UserRewardItems> userRewardItems = new ArrayList<>();
     UserRewardItems userRewardItem = new UserRewardItems();
-    if (collection.getType() == CollectionType.PIECE) {
+    if (Objects.equals(collection.getType(), CollectionType.PIECE)) {
       Collection collectionPiece = collectionStorage.findCollectionById(collection.getExternalId());
       userRewardItem.setId(collectionPiece.getId());
       userRewardItem.setRewardName(collectionPiece.getName());

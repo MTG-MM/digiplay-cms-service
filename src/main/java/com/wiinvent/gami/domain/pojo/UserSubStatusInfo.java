@@ -24,5 +24,8 @@ public class UserSubStatusInfo {
       isSub = true;
       userTypes.add(UserType.SUB);
     }
+    if (isPremium || isSub) {
+      userTypes.remove(UserType.FREE);
+    }
   }
 }

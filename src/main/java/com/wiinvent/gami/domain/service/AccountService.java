@@ -66,9 +66,9 @@ public class AccountService extends BaseService {
     newAccount.setRole(dto.getRole());
     newAccount.setPassword(userSecurityService.encode(dto.getPassword()));
 
-    if (role == AccountRole.ADMIN || role == AccountRole.OPERATOR) {
+    if (Objects.equals(role, AccountRole.ADMIN) || Objects.equals(role, AccountRole.OPERATOR)) {
       newAccount.setTeamId(newAccount.getId());
-    } else if (role == AccountRole.PUBLISHER) {
+    } else if (Objects.equals(role, AccountRole.PUBLISHER)) {
       if (dto.getRole() != AccountRole.READ_PUBLISHER) {
         throw new AccessDeniedException(Constants.INVALID_PERMISSION);
       }

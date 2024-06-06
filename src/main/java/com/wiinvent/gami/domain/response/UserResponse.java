@@ -36,7 +36,7 @@ public class UserResponse {
 //
 //  private String invitedCode; // Mã mời bản thân đã nhập
 
-  public Long lastLogin;
+  private Long lastLogin;
 
 //  private Boolean isEmailVerify;
 

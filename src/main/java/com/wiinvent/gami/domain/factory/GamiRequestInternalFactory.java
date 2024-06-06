@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.UUID;
 
@@ -47,11 +48,13 @@ public class GamiRequestInternalFactory {
     try {
       HttpHeaders headers = new HttpHeaders();
       headers.setContentType(MediaType.APPLICATION_JSON);
-
-      HttpEntity<UUID> requestEntity = new HttpEntity<>(id, headers);
-      log.debug("=========processReward: {}/v1/game/it/portal/reward/process", gamiServiceDomain);
+      String url = UriComponentsBuilder.fromHttpUrl(gamiServiceDomain + "/v1/game/it/portal/reward/process")
+          .queryParam("id", id.toString())
+          .toUriString();
+      log.debug("=========processReward URL: {}", url);
+      HttpEntity<Void> requestEntity = new HttpEntity<>(headers);
       ResponseEntity<InternalRequestResponse> response = httpRestTemplate.exchange(
-          gamiServiceDomain + "/v1/game/it/portal/reward/process",
+          url,
           HttpMethod.PUT,
           requestEntity,
           InternalRequestResponse.class);

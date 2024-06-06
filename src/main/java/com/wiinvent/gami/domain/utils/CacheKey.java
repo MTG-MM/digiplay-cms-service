@@ -151,8 +151,8 @@ public class CacheKey {
   }
 
 
-  public String genAllAchievement() {
-    return redisPrefixKey + ":achievement:all";
+  public String genAllAchievementActive() {
+    return redisPrefixKey + ":achievement:all:active";
   }
 
   public String genListAllChallenge() {

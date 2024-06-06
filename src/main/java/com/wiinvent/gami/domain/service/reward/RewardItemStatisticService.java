@@ -68,8 +68,6 @@ public class RewardItemStatisticService extends BaseService {
           totalProductInPoll = totalProductInPoll == null ? 0 : totalProductInPoll;
           totalRemain = totalProductInPoll - totalReceived;
         }
-        case RewardItemType.PHYSICAL -> {
-        }
       }
 
     }

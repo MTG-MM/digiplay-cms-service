@@ -5,7 +5,6 @@ public enum RewardItemType {
   CHARACTER,
   VOUCHER,
   PRODUCT,
-  PHYSICAL,
   TURN,
   TICKET,
   COIN,

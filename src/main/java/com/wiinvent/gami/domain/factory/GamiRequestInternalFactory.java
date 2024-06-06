@@ -10,6 +10,8 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.UUID;
+
 @Component
 @Log4j2
 public class GamiRequestInternalFactory {
@@ -41,12 +43,56 @@ public class GamiRequestInternalFactory {
     }
   }
 
-  public InternalRequestResponse addAchievement(InternalAchievementRequestDto dto) {
+  public InternalRequestResponse processReward(UUID id) {
     try {
       HttpHeaders headers = new HttpHeaders();
       headers.setContentType(MediaType.APPLICATION_JSON);
 
-      HttpEntity<InternalAchievementRequestDto> requestEntity = new HttpEntity<>(dto, headers);
+      HttpEntity<UUID> requestEntity = new HttpEntity<>(id, headers);
+      log.debug("=========processReward: {}/v1/game/it/portal/reward/process", gamiServiceDomain);
+      ResponseEntity<InternalRequestResponse> response = httpRestTemplate.exchange(
+          gamiServiceDomain + "/v1/game/it/portal/reward/process",
+          HttpMethod.PUT,
+          requestEntity,
+          InternalRequestResponse.class);
+      log.debug("=========processReward: {}{}", gamiServiceDomain, response.getBody());
+      if (response.getBody() == null || !response.getBody().getSuccess()) {
+        throw new RequestFailedException(response.getBody().getMessage());
+      }
+      return response.getBody();
+    } catch (Exception e) {
+      throw new RequestFailedException(e.getMessage());
+    }
+  }
+
+  public InternalRequestResponse addTask(InternalTaskRequestDto dto) {
+    try {
+      HttpHeaders headers = new HttpHeaders();
+      headers.setContentType(MediaType.APPLICATION_JSON);
+
+      HttpEntity<InternalTaskRequestDto> requestEntity = new HttpEntity<>(dto, headers);
+      log.debug("=========addTask: {}/v1/game/it/portal/task/complete", gamiServiceDomain);
+      ResponseEntity<InternalRequestResponse> response = httpRestTemplate.exchange(
+          gamiServiceDomain + "/v1/game/it/portal/task/complete",
+          HttpMethod.PUT,
+          requestEntity,
+          InternalRequestResponse.class);
+      log.debug("=========addTask: {}{}", gamiServiceDomain, response.getBody());
+      if (response.getBody() == null || !response.getBody().getSuccess()) {
+        throw new RequestFailedException(response.getBody().getMessage());
+      }
+      return response.getBody();
+    } catch (Exception e) {
+      throw new RequestFailedException(e.getMessage());
+    }
+  }
+
+  public InternalRequestResponse addAchievement(InternalRequestDto dto) {
+    try {
+      HttpHeaders headers = new HttpHeaders();
+      headers.setContentType(MediaType.APPLICATION_JSON);
+
+      HttpEntity<InternalRequestDto> requestEntity = new HttpEntity<>(dto, headers);
       log.debug("=========addAchievement: {}/v1/game/it/portal/achievement/add", gamiServiceDomain);
       ResponseEntity<InternalRequestResponse> response = httpRestTemplate.exchange(
           gamiServiceDomain + "/v1/game/it/portal/achievement/add",
@@ -69,9 +115,9 @@ public class GamiRequestInternalFactory {
       headers.setContentType(MediaType.APPLICATION_JSON);
 
       HttpEntity<InternalQuestRequestDto> requestEntity = new HttpEntity<>(dto, headers);
-      log.debug("=========addQuest: {}/v1/game/it/portal/quest/add", gamiServiceDomain);
+      log.debug("=========addQuest: {}/v1/game/it/portal/quest/complete", gamiServiceDomain);
       ResponseEntity<InternalRequestResponse> response = httpRestTemplate.exchange(
-          gamiServiceDomain + "/v1/game/it/portal/quest/add",
+          gamiServiceDomain + "/v1/game/it/portal/quest/complete",
           HttpMethod.PUT,
           requestEntity,
           InternalRequestResponse.class);
@@ -341,6 +387,48 @@ public class GamiRequestInternalFactory {
     }
   }
 
+  public InternalRequestResponse addGoldPigPoint(InternalRequestDto dto) {
+    try {
+      HttpHeaders headers = new HttpHeaders();
+      headers.setContentType(MediaType.APPLICATION_JSON);
+      HttpEntity<InternalRequestDto> requestEntity = new HttpEntity<>(dto, headers);
+      log.debug("==========addGoldPig: {}/v1/game/it/portal/gold-pig/add", gamiServiceDomain);
+      ResponseEntity<InternalRequestResponse> response = httpRestTemplate.exchange(
+          gamiServiceDomain + "/v1/game/it/portal/gold-pig/add",
+          HttpMethod.PUT,
+          requestEntity,
+          InternalRequestResponse.class);
+      log.debug("=========addGoldPig: {}{}", gamiServiceDomain, response.getBody());
+      if (response.getBody() == null || !response.getBody().getSuccess()) {
+        throw new RequestFailedException(response.getBody().getMessage());
+      }
+      return response.getBody();
+    } catch (Exception e) {
+      throw new RequestFailedException(e.getMessage());
+    }
+  }
+
+  public InternalRequestResponse subGoldPigPoint(InternalRequestDto dto) {
+    try {
+      HttpHeaders headers = new HttpHeaders();
+      headers.setContentType(MediaType.APPLICATION_JSON);
+      HttpEntity<InternalRequestDto> requestEntity = new HttpEntity<>(dto, headers);
+      log.debug("==========subGoldPig: {}/v1/game/it/portal/gold-pig/subtract", gamiServiceDomain);
+      ResponseEntity<InternalRequestResponse> response = httpRestTemplate.exchange(
+          gamiServiceDomain + "/v1/game/it/portal/gold-pig/subtract",
+          HttpMethod.PUT,
+          requestEntity,
+          InternalRequestResponse.class);
+      log.debug("=========subGoldPig: {}{}", gamiServiceDomain, response.getBody());
+      if (response.getBody() == null || !response.getBody().getSuccess()) {
+        throw new RequestFailedException(response.getBody().getMessage());
+      }
+      return response.getBody();
+    } catch (Exception e) {
+      throw new RequestFailedException(e.getMessage());
+    }
+  }
+
   public InternalRequestResponse addCollection(InternalRequestDto dto) {
     try {
       HttpHeaders headers = new HttpHeaders();
@@ -383,6 +471,47 @@ public class GamiRequestInternalFactory {
     }
   }
 
+  public InternalRequestResponse addCharacter(InternalRequestDto dto) {
+    try {
+      HttpHeaders headers = new HttpHeaders();
+      headers.setContentType(MediaType.APPLICATION_JSON);
+      HttpEntity<InternalRequestDto> requestEntity = new HttpEntity<>(dto, headers);
+      log.debug("==========addCharacter: {}/v1/game/it/portal/character/add", gamiServiceDomain);
+      ResponseEntity<InternalRequestResponse> response = httpRestTemplate.exchange(
+          gamiServiceDomain + "/v1/game/it/portal/character/add",
+          HttpMethod.PUT,
+          requestEntity,
+          InternalRequestResponse.class);
+      log.debug("=========addCharacter: {}{}", gamiServiceDomain, response.getBody());
+      if (response.getBody() == null || !response.getBody().getSuccess()) {
+        throw new RequestFailedException(response.getBody().getMessage());
+      }
+      return response.getBody();
+    } catch (Exception e) {
+      throw new RequestFailedException(e.getMessage());
+    }
+  }
+
+  public InternalRequestResponse subCharacter(InternalRequestDto dto) {
+    try {
+      HttpHeaders headers = new HttpHeaders();
+      headers.setContentType(MediaType.APPLICATION_JSON);
+      HttpEntity<InternalRequestDto> requestEntity = new HttpEntity<>(dto, headers);
+      log.debug("==========subCharacter: {}/v1/game/it/portal/character/subtract", gamiServiceDomain);
+      ResponseEntity<InternalRequestResponse> response = httpRestTemplate.exchange(
+          gamiServiceDomain + "/v1/game/it/portal/character/subtract",
+          HttpMethod.PUT,
+          requestEntity,
+          InternalRequestResponse.class);
+      log.debug("=========subCharacter: {}{}", gamiServiceDomain, response.getBody());
+      if (response.getBody() == null || !response.getBody().getSuccess()) {
+        throw new RequestFailedException(response.getBody().getMessage());
+      }
+      return response.getBody();
+    } catch (Exception e) {
+      throw new RequestFailedException(e.getMessage());
+    }
+  }
   public InternalRequestResponse resetPassword(InternalResetPassDto dto) {
     try {
       HttpHeaders headers = new HttpHeaders();

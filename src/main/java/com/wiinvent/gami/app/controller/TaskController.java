@@ -15,12 +15,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("v1/portal/task")
 @PreAuthorize("hasRole('ADMIN') or hasRole('OPERATOR')")
 public class TaskController {
   @Autowired
   private TaskService taskService;
+
   @GetMapping("")
   public ResponseEntity<PageResponse<TaskResponse>> findAll(
       @RequestParam(required = false) String name,
@@ -50,6 +53,11 @@ public class TaskController {
     return ResponseEntity.ok(
         taskService.updateTask(id, dto)
     );
+  }
+
+  @GetMapping("all")
+  public ResponseEntity<List<TaskResponse>> getAllTasks() {
+    return ResponseEntity.ok(taskService.getAllTask());
   }
 
   @DeleteMapping("{id}")

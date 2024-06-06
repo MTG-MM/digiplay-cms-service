@@ -40,6 +40,7 @@ public class UserDetailController {
   @Autowired QuestUserHistoryService questUserHistoryService;
   @Autowired TaskUserService taskUserService;
   @Autowired UserGoldPigService userGoldPigService;
+  @Autowired CharacterUserService characterUserService;
 
   @GetMapping("sub")
   public ResponseEntity<PageCursorResponse<PackageHistoryResponse>> getPackageHistory (
@@ -54,7 +55,7 @@ public class UserDetailController {
     return ResponseEntity.ok(packageHistoryService.getPackageHistory(userId, transId, gte, lte, next, pre, limit));
   }
 
-  @PutMapping("cancel")
+  @PutMapping("sub/cancel")
   public ResponseEntity<Boolean> changeSubStatus(
       @RequestParam UUID id) {
     return ResponseEntity.ok(packageHistoryService.changePackageStatus(id));
@@ -138,14 +139,26 @@ public class UserDetailController {
     return ResponseEntity.ok(characterUserTransactionService.getCharacterUserTransaction(userId, transId, gte, lte, next, pre, limit));
   }
 
-  @GetMapping("user-achievement")
-  public ResponseEntity<List<AchievementUserResponse>> getAchievementUsers(
+  @GetMapping("user-character")
+  public ResponseEntity<PageResponse<CharacterUserResponse>> getUserCharacter(
       @RequestParam UUID userId,
       @RequestParam(required = false) UUID transId,
       @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate gte,
-      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte)
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte,
+      Pageable pageable)
   {
-    return ResponseEntity.ok(achievementUserService.getAchievementUsers(userId, transId, gte ,lte));
+    return ResponseEntity.ok(PageResponse.createFrom(characterUserService.getCharacterUsers(userId, transId, gte, lte, pageable)));
+  }
+
+  @GetMapping("user-achievement")
+  public ResponseEntity<PageResponse<AchievementUserResponse>> getAchievementUsers(
+      @RequestParam UUID userId,
+      @RequestParam(required = false) UUID transId,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate gte,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte,
+      Pageable pageable)
+  {
+    return ResponseEntity.ok(PageResponse.createFrom(achievementUserService.getAchievementUsers(userId, transId, gte ,lte, pageable)));
   }
 
   @GetMapping("ticket-history")
@@ -176,13 +189,14 @@ public class UserDetailController {
   }
 
   @GetMapping("user-collection")
-  public ResponseEntity<List<UserCollectionResponse>> getUserCollection(
+  public ResponseEntity<PageResponse<UserCollectionResponse>> getUserCollection(
       @RequestParam UUID userId,
       @RequestParam(required = false) UUID transId,
       @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate gte,
-      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte)
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte,
+      Pageable pageable)
   {
-    return ResponseEntity.ok(userCollectionService.getUserCollections(userId, transId, gte, lte));
+    return ResponseEntity.ok(PageResponse.createFrom(userCollectionService.getUserCollections(userId, transId, gte, lte, pageable)));
   }
 
   @GetMapping("transaction/lucky-point")
@@ -226,12 +240,13 @@ public class UserDetailController {
   }
 
   @GetMapping("gold-pig")
-  public ResponseEntity<List<UserGoldPigResponse>> getUserGoldPig(
+  public ResponseEntity<PageResponse<UserGoldPigResponse>> getUserGoldPig(
       @RequestParam UUID userId,
       @RequestParam(required = false) UUID transId,
       @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate gte,
-      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte)
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte,
+      Pageable pageable)
   {
-    return ResponseEntity.ok(userGoldPigService.getUserGoldPig(userId, transId, gte, lte));
+    return ResponseEntity.ok(PageResponse.createFrom(userGoldPigService.getUserGoldPig(userId, transId, gte, lte, pageable)));
   }
 }

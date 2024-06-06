@@ -55,6 +55,10 @@ public class PackageUpdateDto {
   private Integer pointBonus = 0;
   @Min(0)
   private Integer coinBonus = 0;
+  @Min(0)
+  private Integer secondBonusPoint = 0;
+  @Min(0)
+  private Integer secondBonusCoin = 0;
 
   private String description;
 

@@ -45,4 +45,8 @@ public class TaskStorage extends BaseStorage {
       return criteriaBuilder.and(conditionList.toArray(new Predicate[0]));
     };
   }
+
+  public List<Task> findAllByStatus() {
+    return taskRepository.findAllByStatus(Status.ACTIVE);
+  }
 }

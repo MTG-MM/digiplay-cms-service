@@ -3,10 +3,11 @@ package com.wiinvent.gami.domain.entities;
 import com.wiinvent.gami.domain.entities.type.DailyTaskType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.pojo.UserRewardItems;
-import com.wiinvent.gami.domain.utils.Converter.UserRewardItemConverter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.util.List;
 
@@ -43,6 +44,7 @@ public class Task extends BaseEntity{
   private Status status;
 
   @Column(name = "reward_items")
-  @Convert(converter = UserRewardItemConverter.class)
+  @JdbcTypeCode(SqlTypes.JSON)
+//  @Convert(converter = UserRewardItemConverter.class)
   private List<UserRewardItems> rewardItems;
 }

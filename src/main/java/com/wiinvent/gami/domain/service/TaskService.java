@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Objects;
+import java.util.List;
 
 @Service
 @Log4j2
@@ -64,6 +64,12 @@ public class TaskService extends BaseService{
       throw e;
     }
     return true;
+  }
+
+
+  public List<TaskResponse> getAllTask(){
+    List<Task> tasks = taskStorage.findAllByStatus();
+    return modelMapper.toListTaskResponse(tasks);
   }
 
   public boolean deleteTask(Integer id) {

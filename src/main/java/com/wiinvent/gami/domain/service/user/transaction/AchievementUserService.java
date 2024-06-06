@@ -57,18 +57,18 @@ public class AchievementUserService extends BaseService {
 //    return new PageCursorResponse<>(responses, limit, type, "createdAt");
 //  }
 
-  public List<AchievementUserResponse> getAchievementUsers
-      (UUID userId, UUID transId, LocalDate startDate, LocalDate endDate) {
+  public Page<AchievementUserResponse> getAchievementUsers
+      (UUID userId, UUID transId, LocalDate startDate, LocalDate endDate, Pageable pageable) {
     Long startDateLong = null;
     Long endDateLong = null;
     if (Objects.nonNull(startDate)) startDateLong = Helper.startOfDaytoLong(startDate);
     if (Objects.nonNull(endDate)) endDateLong = Helper.endOfDaytoLong(endDate);
-    List<AchievementUser> achievementUsers = achievementUserStorage.findAll(userId, transId, startDateLong, endDateLong);
+    Page<AchievementUser> achievementUsers = achievementUserStorage.findAll(userId, transId, startDateLong, endDateLong, pageable);
     List<Integer> achievementIds = achievementUsers.stream().map(AchievementUser::getAchievementId).toList();
     Map<Integer, Achievement> achievementMap = achievementStorage.findAllByIdIn(achievementIds).stream()
         .collect(Collectors.toMap(Achievement::getId, Function.identity()));
 
-    List<AchievementUserResponse> userCollectionResponses = modelMapper.toListAchievementUserResponse(achievementUsers);
+    List<AchievementUserResponse> userCollectionResponses = modelMapper.toListAchievementUserResponse(achievementUsers.toList());
     userCollectionResponses.forEach(r -> {
 //      Achievement achievement = achievementMap.getOrDefault(r.getAchievementId(), null);
 //      r.setName(achievement != null ? achievement.getName() : null);
@@ -81,6 +81,6 @@ public class AchievementUserService extends BaseService {
           .findFirst().orElse(new AchievementInfo());
       r.setAchievementInfo(achievementInfo);
     });
-    return userCollectionResponses;
+    return new PageImpl<>(userCollectionResponses, pageable, achievementUsers.getTotalElements());
   }
 }

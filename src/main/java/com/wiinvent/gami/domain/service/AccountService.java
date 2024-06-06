@@ -2,6 +2,7 @@ package com.wiinvent.gami.domain.service;
 
 import com.wiinvent.gami.domain.dto.AccountDto;
 import com.wiinvent.gami.domain.dto.AccountStateDto;
+import com.wiinvent.gami.domain.dto.ChangePasswordDto;
 import com.wiinvent.gami.domain.dto.LoginDto;
 import com.wiinvent.gami.domain.response.AccountResponse;
 import com.wiinvent.gami.domain.response.TokenResponse;
@@ -83,6 +84,22 @@ public class AccountService extends BaseService {
       throw new BadRequestException(Constants.USER_NOT_FOUND);
     }
     return modelMapper.toAccountResponse(account);
+  }
+
+  public Boolean changePassword(UserDetailsImpl userDetails, ChangePasswordDto dto){
+    Account account = accountStorage.findByUsername(userDetails.getUsername());
+    if (account == null) {
+      throw new BadRequestException(Constants.USER_NOT_FOUND);
+    }
+
+//    String currentPassword = account.getPassword();
+//    if (!userSecurityService.decode(dto.getOldPassword(), currentPassword)) {
+//      throw new BadRequestException("Old password does not match the current password");
+//    }
+
+    account.setPassword(userSecurityService.encode(dto.getNewPassword()));
+    accountStorage.save(account);
+    return true;
   }
 
   public Boolean delete(String username) {

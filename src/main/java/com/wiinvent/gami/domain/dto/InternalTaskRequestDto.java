@@ -1,21 +1,17 @@
 package com.wiinvent.gami.domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.wiinvent.gami.domain.entities.type.RequestGamiType;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.UUID;
-
 @Data
-public class InternalRequestDto {
-  @NotNull
+public class InternalTaskRequestDto {
   private UUID userId;
-  @NotNull
-  @Min(0)
-  private Double amount;
-  private Long itemId;
+  private Integer itemId;
   private Integer score;
-  private String note;
+  @JsonFormat(pattern = "yyyy-MM-dd")
+  private LocalDate date;
   private RequestGamiType requestType;
 }

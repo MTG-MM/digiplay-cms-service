@@ -1,8 +1,8 @@
 package com.wiinvent.gami.domain.entities.reward;
 
+import com.wiinvent.gami.domain.entities.BaseEntity;
 import com.wiinvent.gami.domain.entities.type.RewardItemType;
 import com.wiinvent.gami.domain.entities.type.Status;
-import com.wiinvent.gami.domain.utils.DateUtils;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,7 +13,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class RewardItem {
+public class RewardItem extends BaseEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,12 +57,6 @@ public class RewardItem {
   @Column(name = "external_id")
   private String externalId;
 
-  @Column(name = "created_at")
-  private Long createdAt = DateUtils.getNowMillisAtUtc();
-
-  @Column(name = "updated_at")
-  private Long updatedAt = DateUtils.getNowMillisAtUtc();
-
   public void addQuantity(long amount) {
     this.quantity += amount;
     this.totalQuantity += amount;
@@ -70,6 +64,5 @@ public class RewardItem {
 
   public void minusQuantity(long amount) {
     this.quantity = Math.max(this.quantity - amount, 0);
-    this.totalQuantity = Math.max(this.totalQuantity - amount, 0);
   }
 }

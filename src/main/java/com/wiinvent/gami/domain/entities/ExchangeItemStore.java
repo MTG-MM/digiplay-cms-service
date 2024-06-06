@@ -3,12 +3,13 @@ package com.wiinvent.gami.domain.entities;
 import com.wiinvent.gami.domain.entities.type.ExchangeStoreType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.pojo.UserRewardItems;
-import com.wiinvent.gami.domain.utils.Converter.UserRewardItemConverter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.util.List;
 
@@ -31,7 +32,8 @@ public class ExchangeItemStore extends BaseEntity {
 
   @NotNull
   @Column(name = "reward_items")
-  @Convert(converter = UserRewardItemConverter.class)
+  @JdbcTypeCode(SqlTypes.JSON)
+//  @Convert(converter = UserRewardItemConverter.class)
   private List<UserRewardItems> rewardItems;
 
   @Lob
@@ -41,26 +43,26 @@ public class ExchangeItemStore extends BaseEntity {
 
   @ColumnDefault("0")
   @Column(name = "coin_price")
-  private Integer coinPrice = 0;
+  private Integer coinPrice;
 
   @ColumnDefault("0")
   @Column(name = "point_price")
-  private Integer pointPrice = 0;
+  private Integer pointPrice;
 
   @Column(name = "ticket_price")
-  private Integer ticketPrice = 0;
+  private Integer ticketPrice;
 
   @Column(name = "start_at")
-  private Long startAt = 0L;
+  private Long startAt;
 
   @Column(name = "end_at")
-  private Long endAt = 0L;
+  private Long endAt;
 
   @Column(name = "quantity")
   private Long quantity = 0L;
 
   @Column(name = "limit_exchange")
-  private Long limitExchange = 0L;
+  private Long limitExchange;
 
   public void addQuantity(long amount) {
     this.quantity = this.getQuantity() + amount;

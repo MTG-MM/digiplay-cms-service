@@ -90,4 +90,5 @@ public abstract class BaseService {
   @Autowired protected StatisticCheckpointStorage statisticCheckpointStorage;
   @Autowired protected TaskUserStorage taskUserStorage;
   @Autowired protected UserGoldPigStorage userGoldPigStorage;
+  @Autowired protected CharacterUserStorage characterUserStorage;
 }

@@ -1,6 +1,6 @@
-package com.wiinvent.gami.domain.stores.user;
+package com.wiinvent.gami.domain.stores.transaction;
 
-import com.wiinvent.gami.domain.entities.user.UserCollection;
+import com.wiinvent.gami.domain.entities.transaction.CharacterUser;
 import com.wiinvent.gami.domain.stores.BaseStorage;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.domain.Page;
@@ -13,13 +13,12 @@ import java.util.List;
 import java.util.UUID;
 
 @Component
-public class UserCollectionStorage extends BaseStorage {
-
-  public Page<UserCollection> findAll(UUID userId, UUID transId, Long startDate, Long endDate, Pageable pageable) {
-    return userCollectionRepository.findAll(userCollectionSpecification(userId, transId, startDate, endDate), pageable);
+public class CharacterUserStorage extends BaseStorage {
+  public Page<CharacterUser> findAll(UUID userId, UUID transId, Long startDate, Long endDate, Pageable pageable) {
+    return characterUserRepository.findAll(characterUserSpecification(userId, transId, startDate, endDate), pageable);
   }
 
-  public Specification<UserCollection> userCollectionSpecification(UUID userId, UUID transId, Long startDate, Long endDate) {
+  public Specification<CharacterUser> characterUserSpecification(UUID userId, UUID transId, Long startDate, Long endDate) {
     return (root, query, criteriaBuilder) -> {
       List<Predicate> conditionLists = new ArrayList<>();
       conditionLists.add(criteriaBuilder.equal(root.get("userId"), userId));

@@ -39,6 +39,10 @@ public class PackageResponse {
 
   private Integer coinBonus;
 
+  private Integer secondBonusPoint;
+
+  private Integer secondBonusCoin;
+
   private Long createdAt;
 
   private Long updatedAt;

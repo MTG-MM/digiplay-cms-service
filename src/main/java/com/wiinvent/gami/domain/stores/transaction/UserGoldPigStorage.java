@@ -3,6 +3,8 @@ package com.wiinvent.gami.domain.stores.transaction;
 import com.wiinvent.gami.domain.entities.transaction.UserGoldPig;
 import com.wiinvent.gami.domain.stores.BaseStorage;
 import jakarta.persistence.criteria.Predicate;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
@@ -12,8 +14,8 @@ import java.util.UUID;
 
 @Component
 public class UserGoldPigStorage extends BaseStorage {
-  public List<UserGoldPig> findAll(UUID userId, UUID transId,Long startDate, Long endDate) {
-    return userGoldPigRepository.findAll(userGoldPigSpecification(userId, transId, startDate, endDate));
+  public Page<UserGoldPig> findAll(UUID userId, UUID transId, Long startDate, Long endDate, Pageable pageable) {
+    return userGoldPigRepository.findAll(userGoldPigSpecification(userId, transId, startDate, endDate), pageable);
   }
 
   public Specification<UserGoldPig> userGoldPigSpecification(UUID userId, UUID transId, Long startDate, Long endDate) {

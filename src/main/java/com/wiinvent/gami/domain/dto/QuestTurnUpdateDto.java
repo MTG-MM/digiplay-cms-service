@@ -29,8 +29,6 @@ public class QuestTurnUpdateDto {
   @Min(0)
   private Integer viewAdsSkipDuration = 0;
   @Min(0)
-  private Integer coinSkipCdPrice = 0;
-  @Min(0)
   @NotNull
   private Integer duration;
   @Min(0)
@@ -42,7 +40,9 @@ public class QuestTurnUpdateDto {
 
   private List<UserType> activeForUser = new ArrayList<>();
 
-  private List<UserType> freeForUser = new ArrayList<>();
+  private List<UserType> freePointForUser = new ArrayList<>();
+
+  private List<UserType> freeCoinForUser = new ArrayList<>();
 
   private List<UserRewardItems> rewardItems = new ArrayList<>();
 }

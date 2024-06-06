@@ -21,8 +21,8 @@ import java.util.UUID;
 
 @Component
 public class AchievementUserStorage extends BaseStorage {
-  public List<AchievementUser> findAll(UUID userId, UUID transId, Long startDate, Long endDate) {
-    return achievementUserRepository.findAll(achievementUserSpecification(userId, transId, startDate, endDate));
+  public Page<AchievementUser> findAll(UUID userId, UUID transId, Long startDate, Long endDate, Pageable pageable) {
+    return achievementUserRepository.findAll(achievementUserSpecification(userId, transId, startDate, endDate), pageable);
   }
 
   public Specification<AchievementUser> achievementUserSpecification(UUID userId, UUID transId, Long startDate, Long endDate) {

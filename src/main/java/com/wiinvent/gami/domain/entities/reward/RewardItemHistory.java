@@ -4,6 +4,7 @@ package com.wiinvent.gami.domain.entities.reward;
 import com.wiinvent.gami.domain.entities.BaseEntity;
 import com.wiinvent.gami.domain.entities.type.ResourceType;
 import com.wiinvent.gami.domain.entities.type.RewardItemType;
+import com.wiinvent.gami.domain.entities.type.RewardStateType;
 import com.wiinvent.gami.domain.pojo.RewardItemInfo;
 import com.wiinvent.gami.domain.utils.Converter.RewardItemInfoConverter;
 import jakarta.persistence.*;
@@ -59,4 +60,8 @@ public class RewardItemHistory extends BaseEntity {
   @Column(name = "reward_info", length = 2000)
   @Convert(converter = RewardItemInfoConverter.class)
   private RewardItemInfo rewardItemInfo;
+
+  @Column(name = "reward_state")
+  @Enumerated(EnumType.STRING)
+  private RewardStateType rewardState;
 }

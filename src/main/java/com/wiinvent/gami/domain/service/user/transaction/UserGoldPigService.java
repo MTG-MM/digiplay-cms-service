@@ -4,6 +4,9 @@ import com.wiinvent.gami.domain.entities.transaction.UserGoldPig;
 import com.wiinvent.gami.domain.response.UserGoldPigResponse;
 import com.wiinvent.gami.domain.service.BaseService;
 import com.wiinvent.gami.domain.utils.Helper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -12,13 +15,13 @@ import java.util.*;
 @Service
 public class UserGoldPigService extends BaseService {
 
-  public List<UserGoldPigResponse> getUserGoldPig (UUID userId, UUID transId, LocalDate startDate, LocalDate endDate) {
+  public Page<UserGoldPigResponse> getUserGoldPig (UUID userId, UUID transId, LocalDate startDate, LocalDate endDate, Pageable pageable) {
     Long startDateLong = null;
     Long endDateLong = null;
     if (Objects.nonNull(startDate)) startDateLong = Helper.startOfDaytoLong(startDate);
     if (Objects.nonNull(endDate)) endDateLong = Helper.endOfDaytoLong(endDate);
-    List<UserGoldPig> userGoldPigs = userGoldPigStorage.findAll(userId, transId, startDateLong, endDateLong);
-    return modelMapper.toUserGoldPigResponse(userGoldPigs);
+    Page<UserGoldPig> userGoldPigs = userGoldPigStorage.findAll(userId, transId, startDateLong, endDateLong, pageable);
+    return modelMapper.toPageUserGoldPigResponse(userGoldPigs);
   }
 
 

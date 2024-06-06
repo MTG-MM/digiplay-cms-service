@@ -3,7 +3,6 @@ package com.wiinvent.gami.domain.service;
 import com.wiinvent.gami.domain.dto.payment.PaymentMethodCreateDto;
 import com.wiinvent.gami.domain.dto.payment.PaymentMethodUpdateDto;
 import com.wiinvent.gami.domain.entities.payment.PaymentMethod;
-import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.exception.BadRequestException;
 import com.wiinvent.gami.domain.response.payment.PaymentMethodResponse;
 import com.wiinvent.gami.domain.utils.Constants;

@@ -3,12 +3,13 @@ package com.wiinvent.gami.domain.entities.game;
 import com.wiinvent.gami.domain.entities.BaseEntity;
 import com.wiinvent.gami.domain.pojo.PaymentMethodInfo;
 import com.wiinvent.gami.domain.entities.type.Status;
-import com.wiinvent.gami.domain.utils.Converter.PaymentMethodInfoConverter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.util.List;
 
@@ -63,7 +64,8 @@ public class GamePackage extends BaseEntity {
   private Integer priority;
 
   @Column(name = "payment_method_info")
-  @Convert(converter = PaymentMethodInfoConverter.class)
+  @JdbcTypeCode(SqlTypes.JSON)
+//  @Convert(converter = PaymentMethodInfoConverter.class)
   private List<PaymentMethodInfo> paymentMethodInfo;
   public static List<Status> getListStatusShow(){
     return List.of(Status.ACTIVE, Status.INACTIVE);

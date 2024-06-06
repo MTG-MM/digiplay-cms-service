@@ -3,13 +3,14 @@ package com.wiinvent.gami.domain.entities;
 import com.wiinvent.gami.domain.entities.type.AchievementType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.pojo.AchievementInfo;
-import com.wiinvent.gami.domain.utils.Converter.AchievementInfoConverter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.util.List;
 
@@ -38,8 +39,8 @@ public class Achievement extends BaseEntity{
   private Status status;
 
   @Column(name = "achievement_info")
-//  @JdbcTypeCode(SqlTypes.JSON)
-  @Convert(converter = AchievementInfoConverter.class)
+  @JdbcTypeCode(SqlTypes.JSON)
+//  @Convert(converter = AchievementInfoConverter.class)
   private List<AchievementInfo> achievementInfo;
 
   @NotNull

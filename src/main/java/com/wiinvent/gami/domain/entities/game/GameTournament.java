@@ -4,12 +4,13 @@ import com.wiinvent.gami.domain.entities.BaseEntity;
 import com.wiinvent.gami.domain.entities.type.GameTournamentType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.pojo.UserRewardItems;
-import com.wiinvent.gami.domain.utils.Converter.UserRewardItemConverter;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.util.List;
 
@@ -46,6 +47,7 @@ public class GameTournament extends BaseEntity {
   private GameTournamentType type;
 
   @Column(name = "reward_items")
-  @Convert(converter = UserRewardItemConverter.class)
+  @JdbcTypeCode(SqlTypes.JSON)
+//  @Convert(converter = UserRewardItemConverter.class)
   private List<UserRewardItems> rewardItems;
 }

@@ -176,7 +176,7 @@ public class UserDetailController {
 
 
   @GetMapping("transaction/collection")
-  public ResponseEntity<PageCursorResponse<TransactionResponse>> getCollectionTransaction(
+  public ResponseEntity<PageCursorResponse<CollectionTransactionResponse>> getCollectionTransaction(
       @RequestParam UUID userId,
       @RequestParam(required = false) Long next,
       @RequestParam(required = false) Long pre,

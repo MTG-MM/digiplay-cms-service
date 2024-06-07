@@ -28,6 +28,9 @@ public class CollectionTransaction extends BaseEntity {
   @Column(name = "balance")
   private Integer balance;
 
+  @Column(name = "collection_id")
+  private Long collectionId;
+
   @Lob
   @Enumerated(EnumType.STRING)
   @Column(name = "resource_type")

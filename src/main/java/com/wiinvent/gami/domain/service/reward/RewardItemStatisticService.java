@@ -23,21 +23,21 @@ public class RewardItemStatisticService extends BaseService {
   public void processStatisticToday() {
     LocalDate nowDateAtVn = DateUtils.getNowDateAtVn();
     List<RewardSegment> rewardSegments = rewardSegmentStorage.findAll();
-    rewardSegments.forEach(rewardSegment -> processStatisticInRewardSegment(rewardSegment.getId(),nowDateAtVn));
+    rewardSegments.forEach(rewardSegment -> processStatisticInRewardSegment(rewardSegment.getId(), nowDateAtVn));
   }
 
   private void processStatisticInRewardSegment(Long rewardSegmentId, LocalDate nowDateAtVn) {
     List<RewardSegmentDetail> rewardSegmentDetails = rewardSegmentDetailStorage.findByRewardSegmentId(rewardSegmentId);
     List<RewardItem> rewardItems = rewardItemStorage.findRewardItemByIdIn(rewardSegmentDetails.stream().map(RewardSegmentDetail::getRewardItemId).toList());
-    Map<Long,RewardItem> rewardItemMap = rewardItems.stream().collect(Collectors.toMap(RewardItem::getId, item -> item));
-    rewardSegmentDetails.forEach(rewardSegmentDetail -> processStatisticInRewardSegmentDetail(rewardSegmentDetail,rewardItemMap, nowDateAtVn));
+    Map<Long, RewardItem> rewardItemMap = rewardItems.stream().collect(Collectors.toMap(RewardItem::getId, item -> item));
+    rewardSegmentDetails.forEach(rewardSegmentDetail -> processStatisticInRewardSegmentDetail(rewardSegmentDetail, rewardItemMap, nowDateAtVn));
   }
 
-  private void processStatisticInRewardSegmentDetail(RewardSegmentDetail segmentDetail,Map<Long,RewardItem> rewardItemMap, LocalDate nowDateAtVn) {
+  private void processStatisticInRewardSegmentDetail(RewardSegmentDetail segmentDetail, Map<Long, RewardItem> rewardItemMap, LocalDate nowDateAtVn) {
     long startDateAtVn = DateUtils.getStartOfDay(nowDateAtVn);
     long endDateAtVn = DateUtils.getEndOfDay(nowDateAtVn);
     RewardItemStatistic rewardItemStatistic = rewardItemStatisticStorage.findByDateAndRewardSegmentIdAndRewardItemId(nowDateAtVn, segmentDetail.getRewardSegmentId(), segmentDetail.getRewardItemId());
-    if(rewardItemStatistic == null) {
+    if (rewardItemStatistic == null) {
       rewardItemStatistic = new RewardItemStatistic();
       rewardItemStatistic.setDate(nowDateAtVn);
       rewardItemStatistic.setRewardItemId(segmentDetail.getRewardItemId());
@@ -47,26 +47,29 @@ public class RewardItemStatisticService extends BaseService {
       rewardItemStatistic.setTotalUser(0);
     }
 
-    Integer totalUser = rewardItemHistoryStorage.countUsersInCreatedAtBetween(segmentDetail.getRewardSegmentId(), segmentDetail.getRewardItemId(), startDateAtVn, endDateAtVn );
-    Integer totalReceived = rewardItemHistoryStorage.countRewardItemReceivedInCreatedAtBetween(segmentDetail.getRewardSegmentId(), segmentDetail.getRewardItemId(), startDateAtVn, endDateAtVn );
+    Integer totalUser = rewardItemHistoryStorage.countUsersInCreatedAtBetween(segmentDetail.getRewardSegmentId(), segmentDetail.getRewardItemId(), startDateAtVn, endDateAtVn);
+    Integer totalReceived = rewardItemHistoryStorage.countRewardItemReceivedInCreatedAtBetween(segmentDetail.getRewardSegmentId(), segmentDetail.getRewardItemId(), startDateAtVn, endDateAtVn);
     totalUser = totalUser == null ? 0 : totalUser;
     totalReceived = totalReceived == null ? 0 : totalReceived;
     int totalRemain = 0;
     RewardItem rewardItem = rewardItemMap.get(segmentDetail.getRewardItemId());
     RewardType rewardType = rewardTypeStorage.findById(rewardItem.getRewardTypeId());
-    if (rewardItem.getIsLimited()) {
+    if (Boolean.TRUE.equals(rewardItem.getIsLimited())) {
       switch (rewardType.getType()) {
         case RewardItemType.POINT -> {
         }
         case RewardItemType.VOUCHER -> {
           Integer totalVoucherInPoll = voucherDetailStorage.getListInPollVoucherInGivenInPool(segmentDetail.getRewardSegmentId(), segmentDetail.getRewardItemId(), startDateAtVn, endDateAtVn);
           totalVoucherInPoll = totalVoucherInPoll == null ? 0 : totalVoucherInPoll;
-          totalRemain = totalVoucherInPoll - totalReceived;
+          totalRemain = Math.max(totalVoucherInPoll - totalReceived, 0);
         }
         case RewardItemType.PRODUCT -> {
           Integer totalProductInPoll = productDetailStorage.getListInPollProductInGivenInPool(segmentDetail.getRewardSegmentId(), segmentDetail.getRewardItemId(), startDateAtVn, endDateAtVn);
           totalProductInPoll = totalProductInPoll == null ? 0 : totalProductInPoll;
-          totalRemain = totalProductInPoll - totalReceived;
+          totalRemain = Math.max(totalProductInPoll - totalReceived, 0);
+        }
+        default -> {
+
         }
       }
 

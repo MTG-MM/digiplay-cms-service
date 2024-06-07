@@ -3,6 +3,7 @@ package com.wiinvent.gami.domain.service;
 import com.wiinvent.gami.domain.dto.CollectionCreateDto;
 import com.wiinvent.gami.domain.dto.CollectionUpdateDto;
 import com.wiinvent.gami.domain.entities.Collection;
+import com.wiinvent.gami.domain.entities.Quest;
 import com.wiinvent.gami.domain.entities.reward.RewardItem;
 import com.wiinvent.gami.domain.entities.type.CollectionType;
 import com.wiinvent.gami.domain.entities.type.Status;
@@ -11,6 +12,7 @@ import com.wiinvent.gami.domain.exception.base.ResourceNotFoundException;
 import com.wiinvent.gami.domain.pojo.UserRewardItems;
 import com.wiinvent.gami.domain.response.CollectionInTypeResponse;
 import com.wiinvent.gami.domain.response.CollectionResponse;
+import com.wiinvent.gami.domain.response.QuestResponse;
 import com.wiinvent.gami.domain.utils.Constants;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -118,6 +120,11 @@ public class CollectionService extends BaseService {
       collectionInTypeResponses.add(collectionInTypeResponse);
     }
     return collectionInTypeResponses;
+  }
+
+  public List<CollectionResponse> getAllCollectionActive(){
+    List<Collection> collections = collectionStorage.findCollectionActive();
+    return modelMapper.toListCollectionResponse(collections);
   }
 
   public boolean createCollection(CollectionCreateDto dto) {

@@ -300,7 +300,7 @@ public interface ModelMapper {
   default Page<CollectionResponse> toPageCollectionResponse(Page<Collection> collections){
     return collections.map(this::toCollectionResponse);
   }
-
+  List<CollectionResponse> toListCollectionResponse(List<Collection> collections);
   List<TransactionResponse> toCollectionTransactionResponse(List<CollectionTransaction> collectionTransactions);
   List<TransactionResponse> toTicketHistoryResponse(List<TicketHistory> ticketHistories);
   List<TransactionResponse> toLuckyPointTransactionResponse(List<LuckyPointTransaction> luckyPointTransactions);

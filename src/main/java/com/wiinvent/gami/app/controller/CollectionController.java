@@ -50,6 +50,11 @@ public class CollectionController {
     return ResponseEntity.ok(collectionService.getCollectionsInTypeCollection(type));
   }
 
+  @GetMapping("all")
+  public ResponseEntity<List<CollectionResponse>> findAllCollectionActive(){
+    return ResponseEntity.ok(collectionService.getAllCollectionActive());
+  }
+
   @PostMapping("")
   public ResponseEntity<Boolean> createCollection(@RequestBody @Valid CollectionCreateDto collectionCreateDto) {
     return ResponseEntity.ok(

@@ -14,4 +14,6 @@ public interface CollectionRepository extends JpaRepository<Collection, Long>, J
   List<Collection> findCollectionByTypeAndStatus(CollectionType collectionType, Status status);
 
   List<Collection> findAllCollectionByIdIn(List<Long> ids);
+
+  List<Collection> findCollectionByStatus(Status status);
 }

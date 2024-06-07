@@ -1,5 +1,6 @@
 package com.wiinvent.gami.domain.entities.transaction;
 
+import com.wiinvent.gami.domain.entities.BaseEntity;
 import com.wiinvent.gami.domain.entities.type.QualifyRewardStatus;
 import com.wiinvent.gami.domain.entities.type.Status;
 import com.wiinvent.gami.domain.service.BaseService;
@@ -15,7 +16,7 @@ import java.util.UUID;
 @Setter
 @Entity
 @Table(name = "user_gold_pig")
-public class UserGoldPig extends BaseService {
+public class UserGoldPig extends BaseEntity {
   @Id
   @Column(name = "id", nullable = false)
   @GeneratedValue(strategy = GenerationType.UUID)

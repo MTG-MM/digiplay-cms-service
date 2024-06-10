@@ -2,6 +2,7 @@ package com.wiinvent.gami.domain.entities.game;
 
 import com.wiinvent.gami.domain.dto.GameCategoryUpdateDto;
 import com.wiinvent.gami.domain.entities.BaseEntity;
+import com.wiinvent.gami.domain.entities.type.GameType;
 import com.wiinvent.gami.domain.entities.type.Status;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
@@ -31,7 +32,7 @@ public class GameCategory extends BaseEntity {
 
   @Lob
   @Column(name = "category_type")
-  private String categoryType;
+  private GameType categoryType;
 
   @Column(name = "is_require_sub")
   private Boolean isRequireSub;

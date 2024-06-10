@@ -94,5 +94,6 @@ public class StatisticSubResponse {
     statisticTotal.totalSub += statisticDaily.getTotalSub();
     statisticTotal.totalUnsub += statisticDaily.getTotalUnsub();
     statisticTotal.subRevenue += statisticDaily.getSubRevenue();
+    statisticDailies.add(statisticDaily);
   }
 }

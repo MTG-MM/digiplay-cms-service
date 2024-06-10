@@ -35,8 +35,8 @@ public class UserSegmentService extends BaseService {
     return modelMapper.toUserSegmentResponse(userSegment);
   }
 
-  public Page<UserSegmentResponse> getPageUserSegment(String name, Status status, Pageable pageable) {
-    Page<UserSegment> userSegments = userSegmentStorage.findAll(name, status, pageable);
+  public Page<UserSegmentResponse> getPageUserSegment(Long id, String name, Status status, Pageable pageable) {
+    Page<UserSegment> userSegments = userSegmentStorage.findAll(id, name, status, pageable);
     return modelMapper.toPageUserSegmentResponse(userSegments);
   }
 

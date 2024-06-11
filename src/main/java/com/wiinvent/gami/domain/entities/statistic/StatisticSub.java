@@ -63,6 +63,15 @@ public class StatisticSub extends BaseEntity {
   @Column(name = "unsub_month_expired")
   private Integer unsubMonthExpired;
 
+  @Column(name = "unsub_day_manual")
+  private Integer unsubDayManual;
+
+  @Column(name = "unsub_week_manual")
+  private Integer unsubWeekManual;
+
+  @Column(name = "unsub_month_manual")
+  private Integer unsubMonthManual;
+
   @Column(name = "total_unsub")
   private Integer totalUnsub;
 }

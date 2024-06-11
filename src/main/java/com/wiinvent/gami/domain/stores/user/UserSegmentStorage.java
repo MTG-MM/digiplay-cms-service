@@ -46,7 +46,7 @@ public class UserSegmentStorage extends BaseStorage {
         conditionLists.add(criteriaBuilder.equal(root.get("id"), id));
       }
       if (name != null) {
-        conditionLists.add(criteriaBuilder.equal(root.get("name"), "%" + name + "%"));
+        conditionLists.add(criteriaBuilder.equal(root.get("name"), name));
       }
       if (status != null) {
         conditionLists.add(criteriaBuilder.equal(root.get("status"), status));

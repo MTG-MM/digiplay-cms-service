@@ -22,6 +22,7 @@ public class StatisticRevenueResponse {
     private Long feeSubDayRevenue = 0L;
     private Long feeSubWeekRevenue = 0L;
     private Long feeSubMonthRevenue = 0L;
+    private Long adsRevenue = 0L;
     private Long totalRevenue = 0L;
 
     public StatisticDaily(String date, StatisticRevenue statisticRevenue) {
@@ -37,6 +38,7 @@ public class StatisticRevenueResponse {
       feeSubDayRevenue = statisticRevenue.getFeeSubDayRevenue();
       feeSubWeekRevenue = statisticRevenue.getFeeSubWeekRevenue();
       feeSubMonthRevenue = statisticRevenue.getFeeSubMonthRevenue();
+      adsRevenue = statisticRevenue.getAdsRevenue();
       totalRevenue = statisticRevenue.getTotalRevenue();
     }
   }
@@ -50,6 +52,7 @@ public class StatisticRevenueResponse {
     private Long feeSubDayRevenue = 0L;
     private Long feeSubWeekRevenue = 0L;
     private Long feeSubMonthRevenue = 0L;
+    private Long adsRevenue = 0L;
     private Long totalRevenue = 0L;
   }
 
@@ -61,6 +64,7 @@ public class StatisticRevenueResponse {
     statisticTotal.feeSubDayRevenue += statisticDaily.getFeeSubDayRevenue();
     statisticTotal.feeSubWeekRevenue += statisticDaily.getFeeSubWeekRevenue();
     statisticTotal.feeSubMonthRevenue += statisticDaily.getFeeSubMonthRevenue();
+    statisticTotal.adsRevenue += statisticDaily.getAdsRevenue();
     statisticTotal.totalRevenue += statisticDaily.getTotalRevenue();
     statisticDailies.add(statisticDaily);
   }

@@ -26,12 +26,13 @@ public class ChallengeController {
   @GetMapping("")
   public ResponseEntity<PageResponse<ChallengeResponse>> findAll(
       @RequestParam(required = false) Integer gameId,
+      @RequestParam(required = false) String name,
       @RequestParam(required = false) Status status,
       @SortDefault(sort = "createdAt", direction = Sort.Direction.DESC)
       Pageable pageable
   ){
     return ResponseEntity.ok(
-        PageResponse.createFrom(challengeService.findAll(gameId, status, pageable))
+        PageResponse.createFrom(challengeService.findAll(gameId, name, status, pageable))
     );
   }
 

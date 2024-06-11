@@ -57,6 +57,7 @@ public class StatisticRevenueService extends BaseService {
     Long feeSubDayRevenue = 0L;
     Long feeSubWeekRevenue = 0L;
     Long feeSubMonthRevenue = 0L;
+    Long adsRevenue = 0L;
     Long totalRevenue = 0L;
     statisticRevenue.setRegisterSubDayRevenue(registerSubDayRevenue == null ? 0 : registerSubDayRevenue);
     statisticRevenue.setRegisterSubWeekRevenue(registerSubWeekRevenue == null ? 0 : registerSubWeekRevenue);
@@ -65,6 +66,7 @@ public class StatisticRevenueService extends BaseService {
     statisticRevenue.setFeeSubDayRevenue(feeSubDayRevenue == null ? 0 : feeSubDayRevenue);
     statisticRevenue.setFeeSubWeekRevenue(feeSubWeekRevenue == null ? 0 : feeSubWeekRevenue);
     statisticRevenue.setFeeSubMonthRevenue(feeSubMonthRevenue == null ? 0 : feeSubMonthRevenue);
+    statisticRevenue.setAdsRevenue(adsRevenue == null ? 0 : adsRevenue);
     statisticRevenue.setTotalRevenue(totalRevenue == null ? 0 : totalRevenue);
 
     statisticRevenueStorage.save(statisticRevenue);
@@ -103,6 +105,7 @@ public class StatisticRevenueService extends BaseService {
       Long feeSubWeekRevenue = 0L;
       Long feeSubMonthRevenue = 0L;
       Long totalRevenue = 0L;
+      Long adsRevenue = 0L;
       statisticRevenue.setRegisterSubDayRevenue(registerSubDayRevenue == null ? 0 : registerSubDayRevenue);
       statisticRevenue.setRegisterSubWeekRevenue(registerSubWeekRevenue == null ? 0 : registerSubWeekRevenue);
       statisticRevenue.setRegisterSubMonthRevenue(registerSubMonthRevenue == null ? 0 : registerSubMonthRevenue);
@@ -110,6 +113,7 @@ public class StatisticRevenueService extends BaseService {
       statisticRevenue.setFeeSubDayRevenue(feeSubDayRevenue == null ? 0 : feeSubDayRevenue);
       statisticRevenue.setFeeSubWeekRevenue(feeSubWeekRevenue == null ? 0 : feeSubWeekRevenue);
       statisticRevenue.setFeeSubMonthRevenue(feeSubMonthRevenue == null ? 0 : feeSubMonthRevenue);
+      statisticRevenue.setAdsRevenue(adsRevenue == null ? 0 : adsRevenue);
       statisticRevenue.setTotalRevenue(totalRevenue == null ? 0 : totalRevenue);
       statisticRevenueStorage.save(statisticRevenue);
       statisticCheckpointStorage.save(statisticCheckpoint);

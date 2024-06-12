@@ -77,6 +77,7 @@ public class StatisticRevenueService extends BaseService {
     StatisticCheckpoint statisticCheckpoint = statisticCheckpointStorage.findById(Constants.STATISTIC_REVENUE_CHECK_POINT_ID);
     if (statisticCheckpoint == null) {
       statisticCheckpoint = new StatisticCheckpoint();
+      statisticCheckpoint.setId(Constants.STATISTIC_REVENUE_CHECK_POINT_ID);
       statisticCheckpoint.setCheckPoint(dateNow.minusDays(30));
     }
 

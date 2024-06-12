@@ -125,6 +125,7 @@ public class StatisticSubService extends BaseService {
     List<Package> dayPackages = packageStorage.findPackagesByDaySub(1);
     List<Package> weekPackages = packageStorage.findPackagesByDaySub(7);
     List<Package> monthPackages = packageStorage.findPackagesByDaySub(30);
+
     List<Package> chargePackages = packageStorage.findPackagesByType(ProductPackageType.CHARGE);
     Integer newSub = packageHistoryStorage.countNewSub(millisStartToday, millisEndToday, chargePackages.stream().map(Package::getCode).toList());
     Long subRevenue = packageHistoryStorage.countTotalRevenueSub(millisStartToday, millisEndToday
@@ -138,9 +139,9 @@ public class StatisticSubService extends BaseService {
     Integer userSubDay = packageHistoryStorage.countUserSubByPackageCode(millisStartToday, millisEndToday
         , dayPackages.stream().map(Package::getCode).toList());
     Integer userSubWeek = packageHistoryStorage.countUserSubByPackageCode(millisStartToday, millisEndToday
-        , dayPackages.stream().map(Package::getCode).toList());
+        , weekPackages.stream().map(Package::getCode).toList());
     Integer userSubMonth = packageHistoryStorage.countUserSubByPackageCode(millisStartToday, millisEndToday
-        , dayPackages.stream().map(Package::getCode).toList());
+        , monthPackages.stream().map(Package::getCode).toList());
     Integer unsubDayUser = 0;
     Integer unsubWeekUser = 0;
     Integer unsubMonthUser = 0;
@@ -179,6 +180,7 @@ public class StatisticSubService extends BaseService {
     StatisticCheckpoint statisticCheckpoint = statisticCheckpointStorage.findById(Constants.STATISTIC_SUB_CHECK_POINT_ID);
     if (statisticCheckpoint == null) {
       statisticCheckpoint = new StatisticCheckpoint();
+      statisticCheckpoint.setId(Constants.STATISTIC_SUB_CHECK_POINT_ID);
       statisticCheckpoint.setCheckPoint(dateNow.minusDays(30));
     }
 

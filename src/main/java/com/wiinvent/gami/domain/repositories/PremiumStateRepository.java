@@ -12,5 +12,5 @@ import java.util.UUID;
 public interface PremiumStateRepository extends JpaRepository<PremiumState, UUID> {
   PremiumState findByPremiumStateAndUserIdAndEndAtGreaterThan(PackageStateType type, UUID userId, Long endAtNow);
 
-  PremiumState findPremiumStateByPackageId(Integer id);
+  PremiumState findPremiumStateById(UUID id);
 }

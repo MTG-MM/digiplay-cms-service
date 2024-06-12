@@ -2,6 +2,7 @@ package com.wiinvent.gami.domain.entities.payment;
 
 import com.wiinvent.gami.domain.entities.BaseEntity;
 import com.wiinvent.gami.domain.entities.type.PaymentMethodType;
+import com.wiinvent.gami.domain.entities.type.ProductPackageType;
 import com.wiinvent.gami.domain.pojo.PackageInfo;
 import com.wiinvent.gami.domain.utils.Converter.PackageInfoConverter;
 import jakarta.persistence.*;
@@ -45,4 +46,10 @@ public class PackageHistory extends BaseEntity {
   @Column(name = "price")
   private Integer price;
 
+  @Column(name = "state_id", length = 16)
+  private UUID stateId;
+
+  @Enumerated(EnumType.STRING)
+  @Column(name = "package_type", length = 50)
+  private ProductPackageType packageType;
 }

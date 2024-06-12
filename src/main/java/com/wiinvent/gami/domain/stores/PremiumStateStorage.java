@@ -13,7 +13,7 @@ public class PremiumStateStorage extends BaseStorage {
     return premiumStateRepository.findByPremiumStateAndUserIdAndEndAtGreaterThan(PackageStateType.ACTIVE, userId, endAtNow);
   }
 
-  public PremiumState findByPackageId(Integer id) {
-    return premiumStateRepository.findPremiumStateByPackageId(id);
+  public PremiumState findPremiumStateById(UUID stateId) {
+    return premiumStateRepository.findPremiumStateById(stateId);
   }
 }

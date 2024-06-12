@@ -92,4 +92,5 @@ public abstract class BaseStorage {
   @Autowired protected UserGoldPigRepository userGoldPigRepository;
   @Autowired protected TaskUserRepository taskUserRepository;
   @Autowired protected CharacterUserRepository characterUserRepository;
+  @Autowired protected GoldPigTransactionRepository goldPigTransactionRepository;
 }

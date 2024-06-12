@@ -41,6 +41,7 @@ public class UserDetailController {
   @Autowired TaskUserService taskUserService;
   @Autowired UserGoldPigService userGoldPigService;
   @Autowired CharacterUserService characterUserService;
+  @Autowired GoldPigTransactionService goldPigTransactionService;
 
   @GetMapping("sub")
   public ResponseEntity<PageCursorResponse<PackageHistoryResponse>> getPackageHistory (
@@ -248,5 +249,18 @@ public class UserDetailController {
       Pageable pageable)
   {
     return ResponseEntity.ok(PageResponse.createFrom(userGoldPigService.getUserGoldPig(userId, transId, gte, lte, pageable)));
+  }
+
+  @GetMapping("/transaction/gold-pig")
+  public ResponseEntity<PageCursorResponse<TransactionResponse>> getGoldPigTransaction(
+      @RequestParam UUID userId,
+      @RequestParam(required = false) Long next,
+      @RequestParam(required = false) Long pre,
+      @RequestParam(required = false) UUID transId,
+      @RequestParam(required = false, defaultValue = "20") int limit,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate gte,
+      @RequestParam(required = false) @JsonFormat(pattern = "yyyy-MM-dd") LocalDate lte
+  ) {
+    return ResponseEntity.ok(goldPigTransactionService.getGoldPigTransaction(userId, transId, gte, lte, next, pre, limit));
   }
 }

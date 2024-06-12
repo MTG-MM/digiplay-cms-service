@@ -197,14 +197,14 @@ public interface ModelMapper {
   void mapUserSegmentDtoToUserSegment(UserSegmentUpdateDto userSegmentUpdateDto, @MappingTarget UserSegment userSegment);
 
   List<RewardItemHistoryResponse> toListRewardItemHistoryResponse(List<RewardItemHistory> rewardItemHistories);
-  List<PackageHistoryResponse> toPackageHistoryResponse(List<PackageHistory> packageHistories);
-
+//  List<PackageHistoryResponse> toPackageHistoryResponse(List<PackageHistory> packageHistories);
+  PackageHistoryResponse toPackageHistoryResponse(PackageHistory packageHistory);
   List<TransactionResponse> toCoinTransactionResponse(List<CoinTransaction> coinTransactions);
   List<TransactionResponse> toPointTransactionResponse(List<PointTransaction> pointTransactions);
   List<TransactionResponse> toExpHistoryResponse(List<ExpHistory> expHistories);
   List<TransactionResponse> toTurnTransactionResponse(List<TurnTransaction> turnTransactions);
   List<TaskUserResponse> toTaskUserResponse(List<TaskUser> taskUsers);
-
+  List<TransactionResponse> toGoldPigTransactionResponse(List<GoldPigTransaction> goldPigTransactions);
   UserGoldPigResponse toUserGoldPigResponse(UserGoldPig userGoldPig);
   default Page<UserGoldPigResponse> toPageUserGoldPigResponse(Page<UserGoldPig> userGoldPigs){
     return userGoldPigs.map(this::toUserGoldPigResponse);

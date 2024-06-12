@@ -11,5 +11,5 @@ import java.util.UUID;
 public interface SubStateRepository extends JpaRepository<SubState, UUID> {
   SubState findBySubStateAndUserIdAndEndAtGreaterThan(PackageStateType type, UUID userId, Long endAtNow);
 
-  SubState findSubStateByPackageId(Integer id);
+  SubState findSubStateById(UUID id);
 }

@@ -19,7 +19,11 @@ public class StatisticUserService extends BaseService {
     StatisticUserResponse response = new StatisticUserResponse();
     LocalDate start = DateUtils.convertStringToLocalDate(startDate);
     LocalDate end = DateUtils.convertStringToLocalDate(endDate);
-
+    Long millisStartToday = DateUtils.getStartOfDay(start);
+    Long millisEndToday = DateUtils.getEndOfDay(end);
+    Integer paidUser = packageHistoryStorage.countTotalPaidUser(millisStartToday, millisEndToday);
+    StatisticUserResponse.StatisticTotal statisticTotal = response.getStatisticTotal();
+    statisticTotal.setPaidUser(paidUser);
     for (LocalDate current = start; !current.isAfter(end); current = current.plusDays(1)) {
       StatisticUser statisticUser = statisticUserStorage.findByDate(current);
       StatisticUserResponse.StatisticDaily statisticDaily = new StatisticUserResponse.StatisticDaily(current.toString(), statisticUser);
@@ -70,6 +74,7 @@ public class StatisticUserService extends BaseService {
     StatisticCheckpoint statisticCheckpoint = statisticCheckpointStorage.findById(Constants.STATISTIC_USER_CHECK_POINT_ID);
     if (statisticCheckpoint == null) {
       statisticCheckpoint = new StatisticCheckpoint();
+      statisticCheckpoint.setId(Constants.STATISTIC_USER_CHECK_POINT_ID);
       statisticCheckpoint.setCheckPoint(dateNow.minusDays(30));
     }
 

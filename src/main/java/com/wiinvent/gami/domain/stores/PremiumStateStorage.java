@@ -16,4 +16,8 @@ public class PremiumStateStorage extends BaseStorage {
   public PremiumState findPremiumStateById(UUID stateId) {
     return premiumStateRepository.findPremiumStateById(stateId);
   }
+
+  public void save(PremiumState premiumState) {
+    premiumStateRepository.save(premiumState);
+  }
 }

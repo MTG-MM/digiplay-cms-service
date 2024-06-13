@@ -11,6 +11,9 @@ import com.wiinvent.gami.domain.response.base.PageCursorResponse;
 import com.wiinvent.gami.domain.response.type.CursorType;
 import com.wiinvent.gami.domain.utils.Helper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -61,6 +64,7 @@ public class PackageHistoryService extends BaseService {
     return new PageCursorResponse<>(responses, limit, type, "createdAt");
   }
 
+  @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
   public Boolean changePackageStatus(UUID id) {
     PackageHistory packageHistory = packageHistoryStorage.findById(id);
     if (Objects.equals(packageHistory.getPackageType(), ProductPackageType.CHARGE)) {
@@ -74,6 +78,7 @@ public class PackageHistoryService extends BaseService {
         throw new BadRequestException("SubState is expired");
       }
       subState.setSubState(PackageStateType.CANCEL);
+      subStateStorage.save(subState);
     } else if (Objects.equals(packageHistory.getPackageType(), ProductPackageType.PREMIUM)) {
       PremiumState premiumState = premiumStateStorage.findPremiumStateById(packageHistory.getStateId());
       if (Objects.isNull(premiumState)) {
@@ -83,6 +88,7 @@ public class PackageHistoryService extends BaseService {
         throw new BadRequestException("PremiumState is expired");
       }
       premiumState.setPremiumState(PackageStateType.CANCEL);
+      premiumStateStorage.save(premiumState);
     }
     return true;
   }

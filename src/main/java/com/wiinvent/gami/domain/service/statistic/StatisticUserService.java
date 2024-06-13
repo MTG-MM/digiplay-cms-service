@@ -2,14 +2,20 @@ package com.wiinvent.gami.domain.service.statistic;
 
 import com.wiinvent.gami.domain.entities.statistic.StatisticCheckpoint;
 import com.wiinvent.gami.domain.entities.statistic.StatisticUser;
+import com.wiinvent.gami.domain.exception.BadRequestException;
 import com.wiinvent.gami.domain.response.statistic.StatisticUserResponse;
+import com.wiinvent.gami.domain.response.statistic.UserExcelResponse;
 import com.wiinvent.gami.domain.service.BaseService;
 import com.wiinvent.gami.domain.utils.Constants;
 import com.wiinvent.gami.domain.utils.DateUtils;
+import com.wiinvent.gami.domain.utils.ExcelUtils;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Log4j2
@@ -114,5 +120,21 @@ public class StatisticUserService extends BaseService {
       statisticUserStorage.save(statisticUser);
       statisticCheckpointStorage.save(statisticCheckpoint);
     }
+  }
+
+  public byte[] getUserStatisticReport(String startDate, String endDate) throws IOException {
+    LocalDate start = DateUtils.convertStringToLocalDate(startDate);
+    LocalDate end = DateUtils.convertStringToLocalDate(endDate);
+    LocalDate nowAtVN = DateUtils.getNowDateAtUtc();
+    if (start.isAfter(nowAtVN)) {
+      throw new BadRequestException("End day must equal or greater than today");
+    }
+    List<StatisticUser> statisticUsers = new ArrayList<>();
+    for (LocalDate date = start; !date.isAfter(end); date = date.plusDays(1)) {
+      StatisticUser statisticUser = statisticUserStorage.findByDate(date);
+      statisticUsers.add(statisticUser);
+    }
+    List<UserExcelResponse>  userExcelResponses = modelMapper.toUserExcelResponses(statisticUsers);
+    return ExcelUtils.createExcelFile(userExcelResponses, UserExcelResponse.getHeader());
   }
 }

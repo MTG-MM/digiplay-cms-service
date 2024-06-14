@@ -2,6 +2,10 @@ package com.wiinvent.gami.domain.stores;
 
 import com.wiinvent.gami.domain.repositories.AccountRepository;
 import com.wiinvent.gami.domain.repositories.*;
+import com.wiinvent.gami.domain.repositories.leaderboard.LeaderboardEventRepository;
+import com.wiinvent.gami.domain.repositories.leaderboard.LeaderboardHistoryRepository;
+import com.wiinvent.gami.domain.repositories.leaderboard.LeaderboardRepository;
+import com.wiinvent.gami.domain.repositories.leaderboard.LeaderboardRewardRepository;
 import com.wiinvent.gami.domain.repositories.statistic.StatisticCheckpointRepository;
 import com.wiinvent.gami.domain.repositories.statistic.StatisticRevenueRepository;
 import com.wiinvent.gami.domain.repositories.statistic.StatisticSubRepository;
@@ -92,4 +96,8 @@ public abstract class BaseStorage {
   @Autowired protected UserGoldPigRepository userGoldPigRepository;
   @Autowired protected TaskUserRepository taskUserRepository;
   @Autowired protected CharacterUserRepository characterUserRepository;
+  @Autowired protected LeaderboardRepository leaderboardRepository;
+  @Autowired protected LeaderboardEventRepository leaderboardEventRepository;
+  @Autowired protected LeaderboardRewardRepository leaderboardRewardRepository;
+  @Autowired protected LeaderboardHistoryRepository leaderboardHistoryRepository;
 }

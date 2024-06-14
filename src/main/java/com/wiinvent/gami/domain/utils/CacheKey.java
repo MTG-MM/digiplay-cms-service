@@ -296,4 +296,20 @@ public class CacheKey {
   public String genKeyPageCharacterByPageNumber(int pageNumber, CharacterCategoryType categoryType, CharacterType characterType, CharacterGenderType gender) {
     return redisPrefixKey + ":character:" + pageNumber + ":type:" + categoryType + ":" + characterType + ":" + gender;
   }
+
+  public String genCurrentLeaderboard() {
+    return redisPrefixKey + ":leaderboard:current";
+  }
+
+  public String genLeaderboardEventByKey(Long id) {
+    return redisPrefixKey + ":leaderboard:event:id:" + id;
+  }
+
+  public String genLeaderboardUserByUserIdAndLeaderboardEventId(UUID userId, Long eventId) {
+    return redisPrefixKey + ":leaderboard:user:id:" + userId + ":event:id:" + eventId;
+  }
+
+  public String genTopUserInEvent(Long eventId, int size) {
+    return redisPrefixKey + ":leaderboard:event:id:" + eventId + ":top:" + size;
+  }
 }

@@ -11,5 +11,5 @@ public class ProductExcelData {
   private String expireAt;
 
   public static String[] getHeader(){
-    return new String[]{"Stt","Mã voucher","Tên voucher", "Ngày bắt đầu", "Ngày hết hạn"};
+    return new String[]{"Stt","Mã product","Tên product", "Ngày bắt đầu", "Ngày hết hạn"};
   }}

@@ -41,7 +41,7 @@ public class GamiRequestController {
 
   @PutMapping("/achievement")
   public ResponseEntity<InternalRequestResponse> processAchievement(
-      @RequestBody @Valid InternalRequestDto dto) {
+      @RequestBody @Valid InternalAchievementRequestDto dto) {
     return ResponseEntity.ok(gamiRequestInternalFactory.addAchievement(dto));
   }
 

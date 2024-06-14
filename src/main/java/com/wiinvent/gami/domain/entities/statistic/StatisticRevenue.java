@@ -39,6 +39,9 @@ public class StatisticRevenue extends BaseEntity {
   @Column(name = "fee_submonth_revenue")
   private Long feeSubMonthRevenue;
 
+  @Column(name = "ads_revenue")
+  private Long adsRevenue;
+
   @Column(name = "total_revenue")
   private Long totalRevenue;
 }

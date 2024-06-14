@@ -90,12 +90,12 @@ public class GamiRequestInternalFactory {
     }
   }
 
-  public InternalRequestResponse addAchievement(InternalRequestDto dto) {
+  public InternalRequestResponse addAchievement(InternalAchievementRequestDto dto) {
     try {
       HttpHeaders headers = new HttpHeaders();
       headers.setContentType(MediaType.APPLICATION_JSON);
 
-      HttpEntity<InternalRequestDto> requestEntity = new HttpEntity<>(dto, headers);
+      HttpEntity<InternalAchievementRequestDto> requestEntity = new HttpEntity<>(dto, headers);
       log.debug("=========addAchievement: {}/v1/game/it/portal/achievement/add", gamiServiceDomain);
       ResponseEntity<InternalRequestResponse> response = httpRestTemplate.exchange(
           gamiServiceDomain + "/v1/game/it/portal/achievement/add",

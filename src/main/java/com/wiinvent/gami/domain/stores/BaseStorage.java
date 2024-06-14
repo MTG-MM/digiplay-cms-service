@@ -100,4 +100,5 @@ public abstract class BaseStorage {
   @Autowired protected LeaderboardEventRepository leaderboardEventRepository;
   @Autowired protected LeaderboardRewardRepository leaderboardRewardRepository;
   @Autowired protected LeaderboardHistoryRepository leaderboardHistoryRepository;
+  @Autowired protected GoldPigTransactionRepository goldPigTransactionRepository;
 }

@@ -42,10 +42,11 @@ public class UserSegmentController {
   @PageableAsQueryParam
   @Operation(summary = "Lấy danh sách level")
   public ResponseEntity<PageResponse<UserSegmentResponse>> findAll(
+      @RequestParam(required = false) Long id,
       @RequestParam(required = false) String name,
       @RequestParam(required = false) Status status,
       @Parameter(hidden = true) Pageable pageable) {
-    return ResponseEntity.ok(PageResponse.createFrom(userSegmentService.getPageUserSegment(name, status, pageable)));
+    return ResponseEntity.ok(PageResponse.createFrom(userSegmentService.getPageUserSegment(id, name, status, pageable)));
   }
 
   @PostMapping("")

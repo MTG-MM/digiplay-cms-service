@@ -28,16 +28,16 @@ public class RewardSegmentStorage extends BaseStorage {
     return rewardSegmentRepository.findById(id).orElse(null);
   }
 
-  public Page<RewardSegment> findAll(String code, Status status, Pageable pageable) {
-    return rewardSegmentRepository.findAll(rewardSegmentCondition(code, status), pageable);
+  public Page<RewardSegment> findAll(String name, Status status, Pageable pageable) {
+    return rewardSegmentRepository.findAll(rewardSegmentCondition(name, status), pageable);
   }
 
-  public Specification<RewardSegment> rewardSegmentCondition(String code, Status status){
+  public Specification<RewardSegment> rewardSegmentCondition(String name, Status status){
     return (root, query, criteriaBuilder) -> {
       List<Predicate> conditionList = new ArrayList<>();
       conditionList.add(criteriaBuilder.notEqual(root.get("status"), Status.DELETE));
-      if (code != null){
-        conditionList.add(criteriaBuilder.like(root.get("code"), "%" + code + "%"));
+      if (name != null){
+        conditionList.add(criteriaBuilder.equal(root.get("name"), name));
       }
       if (status != null){
         conditionList.add(criteriaBuilder.equal(root.get("status"), status));

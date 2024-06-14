@@ -33,8 +33,8 @@ public class ChallengeService extends BaseService{
     return modelMapper.toChallengeResponse(challenge);
   }
 
-  public Page<ChallengeResponse> findAll(Integer gameId, Status status, Pageable pageable){
-    Page<Challenge> challenges = challengeStorage.findAll(gameId, status, pageable);
+  public Page<ChallengeResponse> findAll(Integer gameId, String name, Status status, Pageable pageable){
+    Page<Challenge> challenges = challengeStorage.findAll(gameId, name, status, pageable);
     return modelMapper.toPageChallengeResponse(challenges);
   }
 

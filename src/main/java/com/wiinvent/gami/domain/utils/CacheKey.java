@@ -15,7 +15,7 @@ public class CacheKey {
   public String redisPrefixKey;
 
   public String genDallyLoginUser(LocalDate localDate) {
-    return redisPrefixKey + ":user:daily:login:" + localDate;
+    return redisPrefixKey + ":statistic:daily:user:login:" + localDate;
   }
 
   public String getPeriodTypeByUser(UUID userId, Long rewardSegmentId, Long rewardItemId) {

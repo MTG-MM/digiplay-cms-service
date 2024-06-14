@@ -30,8 +30,8 @@ import java.util.stream.Collectors;
 @Service
 public class RewardSegmentService extends BaseService {
 
-  public PageResponse<RewardSegmentResponse> getAllRewardSegments(String code, Status status, Pageable pageable) {
-    Page<RewardSegment> rewardSegments = rewardSegmentStorage.findAll(code, status, pageable);
+  public PageResponse<RewardSegmentResponse> getAllRewardSegments(String name, Status status, Pageable pageable) {
+    Page<RewardSegment> rewardSegments = rewardSegmentStorage.findAll(name, status, pageable);
     Page<RewardSegmentResponse> responses = modelMapper.toPageRewardSegmentResponse(rewardSegments);
     return PageResponse.createFrom(responses);
   }

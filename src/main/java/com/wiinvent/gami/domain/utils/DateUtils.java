@@ -104,4 +104,13 @@ public class DateUtils {
   public static LocalDate getFirstDayOfMonth(LocalDate dateNow) {
     return dateNow.with(TemporalAdjusters.firstDayOfMonth());
   }
+
+  public static String convertLocalDateTimeToString(LocalDateTime dateTime) {
+    if(dateTime == null){
+      return null;
+    }
+    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    return dateTime.format(dateTimeFormatter);
+  }
+
 }

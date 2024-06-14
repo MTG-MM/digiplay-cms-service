@@ -6,20 +6,23 @@ import com.wiinvent.gami.domain.entities.type.TransactionType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @Entity
-@Table(name = "collection_transaction")
-public class CollectionTransaction extends BaseEntity {
+@Table(name = "gold_pig_transaction")
+public class GoldPigTransaction extends BaseEntity {
   @Id
-  @Column(name = "id", nullable = false)
+  @GeneratedValue(strategy = GenerationType.UUID)
+  @Column(name = "id", nullable = false, length = 16)
   private UUID id;
 
   @NotNull
-  @Column(name = "user_id", nullable = false)
+  @Column(name = "user_id", nullable = false, length = 16)
   private UUID userId;
 
   @Column(name = "amount")
@@ -28,10 +31,6 @@ public class CollectionTransaction extends BaseEntity {
   @Column(name = "balance")
   private Integer balance;
 
-  @Column(name = "collection_id")
-  private Long collectionId;
-
-  @Lob
   @Enumerated(EnumType.STRING)
   @Column(name = "resource_type")
   private ResourceType resourceType;

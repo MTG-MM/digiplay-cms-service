@@ -29,13 +29,13 @@ public class RewardSegmentController {
 
   @GetMapping("")
   public ResponseEntity<PageResponse<RewardSegmentResponse>> getRewardSegments(
-      @RequestParam(required = false) String code,
+      @RequestParam(required = false) String name,
       @RequestParam(required = false) Status status,
       @Parameter(hidden = true)
       @SortDefault(sort = "updatedAt", direction = Sort.Direction.DESC)
       Pageable pageable
   ) {
-    return ResponseEntity.ok(rewardSegmentService.getAllRewardSegments(code, status, pageable));
+    return ResponseEntity.ok(rewardSegmentService.getAllRewardSegments(name, status, pageable));
   }
 
   @GetMapping("{id}")

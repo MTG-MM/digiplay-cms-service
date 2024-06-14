@@ -27,12 +27,12 @@ public class UserCollectionService extends BaseService {
     if (Objects.nonNull(endDate)) endDateLong = Helper.endOfDaytoLong(endDate);
     Page<UserCollection> userCollections = userCollectionStorage.findAll(userId, transId, startDateLong, endDateLong, pageable);
     List<Long> collectionIds = userCollections.getContent().stream().map(UserCollection::getCollectionId).toList();
-    Map<Long, Collection> userCollectionMap = collectionStorage.findAllCollectionByIdIn(collectionIds).stream()
+    Map<Long, Collection> collectionMap = collectionStorage.findAllCollectionByIdIn(collectionIds).stream()
         .collect(Collectors.toMap(Collection::getId, Function.identity()));
     List<UserCollectionResponse> userCollectionResponses = new ArrayList<>();
     for (UserCollection userCollection : userCollections.getContent()) {
       UserCollectionResponse collectionResponse = modelMapper.toUserCollectionResponse(userCollection);
-      Collection collection = userCollectionMap.get(userCollection.getCollectionId());
+      Collection collection = collectionMap.get(userCollection.getCollectionId());
       if (collection == null){
         collectionResponse.setCollectionName("Deleted collection");
       } else {

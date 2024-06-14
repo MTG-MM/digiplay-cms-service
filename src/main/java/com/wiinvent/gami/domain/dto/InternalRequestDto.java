@@ -12,10 +12,9 @@ public class InternalRequestDto {
   @NotNull
   private UUID userId;
   @NotNull
-  @Min(0)
+  @Min(1)
   private Double amount;
   private Long itemId;
-  private Integer score;
   private String note;
   private RequestGamiType requestType;
 }

@@ -34,16 +34,19 @@ public class UserSegmentStorage extends BaseStorage {
     return userSegmentRepository.findByIdIn(ids);
   }
 
-  public Page<UserSegment> findAll(String name, Status status, Pageable pageable) {
-    return userSegmentRepository.findAll(userSegmentSpecification(name, status), pageable);
+  public Page<UserSegment> findAll(Long id, String name, Status status, Pageable pageable) {
+    return userSegmentRepository.findAll(userSegmentSpecification(id, name, status), pageable);
   }
 
-  private Specification<UserSegment> userSegmentSpecification(String name, Status status) {
+  private Specification<UserSegment> userSegmentSpecification(Long id, String name, Status status) {
     return (root, query, criteriaBuilder) -> {
       List<Predicate> conditionLists = new ArrayList<>();
       conditionLists.add(criteriaBuilder.notEqual(root.get("status"), Status.DELETE));
+      if (id != null) {
+        conditionLists.add(criteriaBuilder.equal(root.get("id"), id));
+      }
       if (name != null) {
-        conditionLists.add(criteriaBuilder.equal(root.get("name"), "%" + name + "%"));
+        conditionLists.add(criteriaBuilder.equal(root.get("name"), name));
       }
       if (status != null) {
         conditionLists.add(criteriaBuilder.equal(root.get("status"), status));

@@ -23,8 +23,8 @@ public class ChallengeStorage extends BaseStorage{
     remoteCache.del(removeCacheKeys(challenge));
   }
 
-  public Page<Challenge> findAll(Integer gameId, Status status, Pageable pageable) {
-    return challengeRepository.findAll(challengeSpecification(gameId, status), pageable);
+  public Page<Challenge> findAll(Integer gameId, String name, Status status, Pageable pageable) {
+    return challengeRepository.findAll(challengeSpecification(gameId, name, status), pageable);
   }
 
   public List<String> removeCacheKeys(Challenge challenge) {
@@ -40,12 +40,15 @@ public class ChallengeStorage extends BaseStorage{
     return keys;
   }
 
-  public Specification<Challenge> challengeSpecification(Integer gameId, Status status) {
+  public Specification<Challenge> challengeSpecification(Integer gameId, String name, Status status) {
     return (root, query, criteriaBuilder) -> {
       List<Predicate> conditionLists = new ArrayList<>();
       conditionLists.add(criteriaBuilder.notEqual(root.get("status"), Status.DELETE));
       if (gameId != null) {
         conditionLists.add(criteriaBuilder.equal(root.get("gameId"), gameId));
+      }
+      if (name != null) {
+        conditionLists.add(criteriaBuilder.equal(root.get("name"), name));
       }
       if (status != null) {
         conditionLists.add(criteriaBuilder.equal(root.get("status"), status));

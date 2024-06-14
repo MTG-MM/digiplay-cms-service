@@ -1,18 +1,19 @@
 package com.wiinvent.gami.domain.utils;
 
 import com.wiinvent.gami.domain.exception.BadRequestException;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.streaming.SXSSFSheet;
+import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.dhatim.fastexcel.reader.ExcelReaderException;
 import org.dhatim.fastexcel.reader.ReadableWorkbook;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -98,5 +99,79 @@ public class ExcelUtils {
       }
     }
     return indexes;
+  }
+
+  public static byte[] createExcelFile(List<?> data, String[] headers) throws IOException {
+    SXSSFWorkbook workbook = new SXSSFWorkbook();
+    SXSSFSheet sheet = workbook.createSheet("Data");
+
+    Row headerRow = sheet.createRow(0);
+    CellStyle headerStyle = createHeaderCellStyle(workbook);
+    for (int i = 0; i < headers.length; i++) {
+      Cell cell = headerRow.createCell(i);
+      cell.setCellValue(headers[i]);
+      cell.setCellStyle(headerStyle);
+    }
+
+    CellStyle dataStyle = createDataCellStyle(workbook);
+    for (int i = 0; i < data.size(); i++) {
+      Row row = sheet.createRow(i + 1);
+      Object obj = data.get(i);
+
+      Class<?> clazz = obj.getClass();
+      Field[] fields = clazz.getDeclaredFields();
+      for (int j = 0; j < fields.length; j++) {
+        if(j >= headers.length){
+          break;
+        }
+        Cell cell = row.createCell(j);
+        fields[j].setAccessible(true);
+        if(fields[j].getName().equals("createdAt") || fields[j].getName().equals("invitedAt") ||
+            fields[j].getName().equals("departureAt")) continue;
+        try {
+          Object value = fields[j].get(obj);
+          if (value != null) {
+            if (value instanceof Number) {
+              cell.setCellValue(((Number) value).doubleValue());
+            }else if(value instanceof LocalDateTime){
+              cell.setCellValue((DateUtils.convertLocalDateTimeToString((LocalDateTime) value)));
+            }else {
+              cell.setCellValue(value.toString());
+            }
+          }
+        } catch (IllegalAccessException e) {
+          e.printStackTrace();
+        }
+        cell.setCellStyle(dataStyle);
+      }
+    }
+
+    for (int i = 0; i < headers.length; i++) {
+      sheet.trackAllColumnsForAutoSizing();
+      sheet.autoSizeColumn(i);
+    }
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    workbook.write(outputStream);
+    workbook.close();
+    return outputStream.toByteArray();
+  }
+
+  private static CellStyle createHeaderCellStyle(Workbook workbook) {
+    CellStyle style = workbook.createCellStyle();
+    Font font = workbook.createFont();
+    font.setBold(true);
+    style.setFont(font);
+    style.setAlignment(HorizontalAlignment.CENTER); // Căn giữa tiêu đề
+    style.setVerticalAlignment(VerticalAlignment.CENTER);
+    style.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+    style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+    return style;
+  }
+
+  private static CellStyle createDataCellStyle(Workbook workbook) {
+    CellStyle style = workbook.createCellStyle();
+    style.setVerticalAlignment(VerticalAlignment.CENTER);
+    style.setAlignment(HorizontalAlignment.LEFT);
+    return style;
   }
 }

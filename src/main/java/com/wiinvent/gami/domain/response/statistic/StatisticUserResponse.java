@@ -54,7 +54,6 @@ public class StatisticUserResponse {
     statisticTotal.newRegisterUser += statisticDaily.getNewRegisterUser();
     statisticTotal.revenuePerUser += statisticDaily.getRevenuePerUser();
     statisticTotal.revenuePerPaidUser += statisticDaily.getRevenuePerPaidUser();
-    statisticTotal.paidUser += statisticDaily.getPaidUser();
     statisticDailies.add(statisticDaily);
   }
 }

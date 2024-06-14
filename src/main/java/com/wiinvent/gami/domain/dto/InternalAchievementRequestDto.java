@@ -1,13 +1,15 @@
 package com.wiinvent.gami.domain.dto;
 
-import com.wiinvent.gami.domain.entities.type.RequestGamiType;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.util.UUID;
 @Data
-public class InternalTaskRequestDto {
+public class InternalAchievementRequestDto {
+  @NotNull
   private UUID userId;
+  @NotNull
   private Integer itemId;
+  @NotNull
   private Integer score;
-  private RequestGamiType requestType;
 }

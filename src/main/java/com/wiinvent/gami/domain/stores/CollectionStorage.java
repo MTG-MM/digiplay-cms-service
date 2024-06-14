@@ -31,6 +31,10 @@ public class CollectionStorage extends BaseStorage {
     return collectionRepository.findCollectionByTypeAndStatus(collectionType, Status.ACTIVE);
   }
 
+  public List<Collection> findCollectionActive() {
+    return collectionRepository.findCollectionByStatus(Status.ACTIVE);
+  }
+
   public List<Collection> findAllCollectionByIdIn(List<Long> ids){
     return collectionRepository.findAllCollectionByIdIn(ids);
   }

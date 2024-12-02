@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import java.util.UUID;
 
 public interface LeaderboardRepository extends JpaRepository<Leaderboard, UUID>, JpaSpecificationExecutor<Leaderboard> {
-
+  Leaderboard findById(Long id);
 }

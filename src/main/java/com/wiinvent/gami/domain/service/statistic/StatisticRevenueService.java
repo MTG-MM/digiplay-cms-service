@@ -138,7 +138,9 @@ public class StatisticRevenueService extends BaseService {
     List<StatisticRevenue> statisticRevenues = new ArrayList<>();
     for (LocalDate date = start; !date.isAfter(end); date = date.plusDays(1)) {
       StatisticRevenue statisticRevenue = statisticRevenueStorage.findByDate(date);
-      statisticRevenues.add(statisticRevenue);
+      if (statisticRevenue != null) {
+        statisticRevenues.add(statisticRevenue);
+      }
     }
     List<RevenueExcelResponse> revenueExcelResponses = modelMapper.toRevenueExcelResponses(statisticRevenues);
     return ExcelUtils.createExcelFile(revenueExcelResponses, RevenueExcelResponse.getHeader());

@@ -132,9 +132,11 @@ public class StatisticUserService extends BaseService {
     List<StatisticUser> statisticUsers = new ArrayList<>();
     for (LocalDate date = start; !date.isAfter(end); date = date.plusDays(1)) {
       StatisticUser statisticUser = statisticUserStorage.findByDate(date);
-      statisticUsers.add(statisticUser);
+      if (statisticUser != null) {
+        statisticUsers.add(statisticUser);
+      }
     }
-    List<UserExcelResponse>  userExcelResponses = modelMapper.toUserExcelResponses(statisticUsers);
+    List<UserExcelResponse> userExcelResponses = modelMapper.toUserExcelResponses(statisticUsers);
     return ExcelUtils.createExcelFile(userExcelResponses, UserExcelResponse.getHeader());
   }
 }

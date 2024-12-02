@@ -263,7 +263,9 @@ public class StatisticSubService extends BaseService {
     List<StatisticSub> statisticSubs = new ArrayList<>();
     for (LocalDate date = start; !date.isAfter(end); date = date.plusDays(1)) {
       StatisticSub statisticSub = statisticSubStorage.findByDate(date);
-      statisticSubs.add(statisticSub);
+      if (statisticSub != null) {
+        statisticSubs.add(statisticSub);
+      }
     }
     List<SubExcelResponse> subExcelResponses = modelMapper.toSubExcelResponses(statisticSubs);
     return ExcelUtils.createExcelFile(subExcelResponses, SubExcelResponse.getHeader());

@@ -21,7 +21,8 @@
         <guava.version>r05</guava.version>
         <apache-poi.version>5.2.5</apache-poi.version>
         <springdoc.version>2.2.0</springdoc.version>
-
+        <zxing.version>3.4.0</zxing.version>
+        <totp.version>1.0</totp.version>
     </properties>
     <dependencies>
         <dependency>
@@ -162,6 +163,21 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <version>4.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+            <version>${zxing.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>de.taimos</groupId>
+            <artifactId>totp</artifactId>
+            <version>${totp.version}</version>
         </dependency>
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>

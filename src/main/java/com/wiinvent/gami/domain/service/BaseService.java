@@ -2,6 +2,7 @@ package com.wiinvent.gami.domain.service;
 
 import com.wiinvent.gami.ModelMapper;
 import com.wiinvent.gami.domain.stores.*;
+import com.wiinvent.gami.domain.stores.leaderboard.LeaderboardStorage;
 import com.wiinvent.gami.domain.stores.statistic.StatisticCheckpointStorage;
 import com.wiinvent.gami.domain.stores.statistic.StatisticRevenueStorage;
 import com.wiinvent.gami.domain.stores.statistic.StatisticSubStorage;
@@ -92,4 +93,5 @@ public abstract class BaseService {
   @Autowired protected UserGoldPigStorage userGoldPigStorage;
   @Autowired protected CharacterUserStorage characterUserStorage;
   @Autowired protected GoldPigTransactionStorage goldPigTransactionStorage;
+  @Autowired protected LeaderboardStorage leaderboardStorage;
 }

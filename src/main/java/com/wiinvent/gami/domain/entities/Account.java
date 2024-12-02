@@ -37,4 +37,6 @@ public class Account extends BaseEntity {
   @Enumerated(EnumType.STRING)
   public AccountState accountState;
 
+  @Column(name = "salt")
+  public String salt;
 }

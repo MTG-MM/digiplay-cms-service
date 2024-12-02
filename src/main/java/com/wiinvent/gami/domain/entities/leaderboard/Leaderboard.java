@@ -2,6 +2,8 @@ package com.wiinvent.gami.domain.entities.leaderboard;
 
 
 import com.wiinvent.gami.domain.entities.BaseEntity;
+import com.wiinvent.gami.domain.entities.type.Status;
+import com.wiinvent.gami.domain.pojo.UserRewardItems;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -9,6 +11,7 @@ import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
+import java.util.List;
 import java.util.Map;
 
 @Getter
@@ -36,10 +39,10 @@ public class Leaderboard extends BaseEntity {
 
   @Size(max = 100)
   @Column(name = "status", length = 100)
-  private String status;
+  private Status status;
 
   @Column(name = "reward_items")
   @JdbcTypeCode(SqlTypes.JSON)
-  private Map<String, Object> rewardItems;
+  private List<UserRewardItems> rewardItems;
 
 }

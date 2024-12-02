@@ -14,4 +14,6 @@ public class LoginDto {
   @NotEmpty(message = "Mật khẩu không được trống")
   @Schema(description = "Mật khẩu", example = "abc123")
   private String password;
+
+  private String code;
 }

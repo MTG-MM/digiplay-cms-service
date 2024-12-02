@@ -37,10 +37,12 @@ public class AccountService extends BaseService {
 
   @Autowired
   UserService userService;
-
+  @Autowired
+  GoogleAuthService googleAuthService;
   @Autowired @Lazy UserSecurityService userSecurityService;
 
-  public TokenResponse login(LoginDto dto){
+  public TokenResponse login(LoginDto dto, String sign){
+    googleAuthService.checkGoogleCaptcha(sign);
     Account account = accountStorage.findByUsername(dto.getUsername());
     if(account == null){
       throw new BadRequestException(Constants.USER_NOT_FOUND);

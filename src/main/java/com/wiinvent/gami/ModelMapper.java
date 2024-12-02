@@ -6,6 +6,7 @@ import com.wiinvent.gami.domain.dto.gvc.GvcPackageUpdateDto;
 import com.wiinvent.gami.domain.dto.payment.PaymentMethodCreateDto;
 import com.wiinvent.gami.domain.entities.Character;
 import com.wiinvent.gami.domain.entities.Package;
+import com.wiinvent.gami.domain.entities.leaderboard.Leaderboard;
 import com.wiinvent.gami.domain.entities.statistic.StatisticRevenue;
 import com.wiinvent.gami.domain.entities.statistic.StatisticSub;
 import com.wiinvent.gami.domain.entities.statistic.StatisticUser;
@@ -436,4 +437,10 @@ public interface ModelMapper {
   List<UserExcelResponse> toUserExcelResponses(List<StatisticUser> statisticUsers);
   List<SubExcelResponse> toSubExcelResponses(List<StatisticSub> statisticSubs);
   List<RevenueExcelResponse> toRevenueExcelResponses(List<StatisticRevenue> statisticRevenues);
+  LeaderboardResponse toLeaderboardResponse(Leaderboard leaderboard);
+  default Page<LeaderboardResponse> toPageLeaderboardResponseResponse(Page<Leaderboard> leaderboards) {
+    return leaderboards.map(this::toLeaderboardResponse);
+  }
+  Leaderboard toLeaderboard(LeaderboardCreateDto leaderboardCreateDto);
+  void mapLeaderboardUpdateDtoToLeaderboard(LeaderboardUpdateDto leaderboardUpdateDto, @MappingTarget Leaderboard leaderboard);
 }

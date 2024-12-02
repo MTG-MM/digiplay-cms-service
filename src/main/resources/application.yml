@@ -1,6 +1,6 @@
 spring:
   application:
-    name: mos-service
+    name:  ${APPLICATION_NAME:digi-cms-service}
   datasource:
     url: ${DATASOURCE_URL:jdbc:mysql://103.200.23.126:3306/lambanha_DB-PROD}
     username: ${DATASOURCE_USERNAME:lambanha_admin}
@@ -37,6 +37,14 @@ spring:
         order_inserts: true
         order_updates: true
         continue-on-error: true
+  security:
+    2fa:
+      enabled: ${GOOGLE_2FA_ENABLE:false}
+      secret-key: ${GOOGLE_2FA_SECRET:KEY}
+    recaptcha:
+      enabled: ${GOOGLE_RECAPTCHA_ENABLE:false}
+      url: ${GOOGLE_RECAPTCHA_URL}
+      secret-key: ${GOOGLE_RECAPTCHA_SECRET:KEY}
 aes-secret: ${AES_SECRET}
 file:
   dir: ${FILE_DIR:/data/html/static.dev.wiinvent.tv}
